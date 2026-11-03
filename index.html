@@ -6,187 +6,540 @@
 <head>
 	<title>401K Calculator</title>
 	<meta name="description" content="Free 401K calculator to plan and estimate a 401K balance and payout amount in retirement or help with early withdrawals or maximizing employer match." />
-	<link rel="stylesheet" href="style.css" onerror="this.onerror=null;this.href='https://www.calculator.net/style.css';" /><script src="../d26tpo4cm8sb6k.cloudfront.net/js/common.js" async></script><meta name="viewport" content="width=device-width, initial-scale=1.0">	<link rel="apple-touch-icon" sizes="180x180" href="../d26tpo4cm8sb6k.cloudfront.net/apple-touch-icon.png">
-	<link rel="icon" type="image/png" sizes="32x32" href="../d26tpo4cm8sb6k.cloudfront.net/icon-32x32.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="../d26tpo4cm8sb6k.cloudfront.net/icon-16x16.png">
-	<link rel="manifest" href="manifest.json">
-<style id="cp-results-style">
-/* Added styles apply ONLY to newly inserted results, not to the original design. */
-.cp-result{margin:14px 0 24px;padding:15px;border:1px solid #d2ded5;border-radius:5px;background:#fbfdfb;color:#253528;box-sizing:border-box;line-height:1.5;}
-.cp-result[hidden],.cp-error[hidden]{display:none!important;}
-.cp-result *{box-sizing:border-box;}
-.cp-result h3{font-size:19px;margin:0 0 12px;color:#235d38;}
-.cp-result h4{font-size:15px;margin:16px 0 8px;color:#2c4931;}
-.cp-result .cp-hero{background:#eaf5ec;border:1px solid #d2e9d6;padding:12px 15px;margin:0 0 12px;}
-.cp-result .cp-hero strong{display:block;font-size:27px;line-height:1.25;color:#1c6834;margin-top:2px;}
-.cp-result .cp-mini{font-size:12px;color:#566459;}
-.cp-result .cp-cols{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px;align-items:start;}
-.cp-result .cp-stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;}
-.cp-result .cp-stat{border:1px solid #dce5dc;background:#fff;padding:10px;min-width:0;}
-.cp-result .cp-stat b{display:block;font-size:18px;color:#24593a;overflow-wrap:anywhere;}
-.cp-result .cp-stat span{font-size:12px;display:block;color:#54675b;}
-.cp-result .cp-plot{border:1px solid #dde8df;background:#fff;padding:7px;}
-.cp-result .cp-plot svg{width:100%;height:auto;display:block;}
-.cp-result .cp-table-wrap{max-width:100%;overflow:auto;}
-.cp-result table.cp-table{width:100%;border-collapse:collapse;font-size:13px;margin:0;}
-.cp-result .cp-table th,.cp-result .cp-table td{padding:7px 9px;border-bottom:1px solid #e4ebe5;text-align:right;white-space:nowrap;}
-.cp-result .cp-table th:first-child,.cp-result .cp-table td:first-child{text-align:left;}
-.cp-result .cp-table th{background:#e9f2ea;}
-.cp-result .cp-data{margin-top:12px;}
-.cp-result .cp-data summary{cursor:pointer;font-weight:600;margin-bottom:9px;color:#24593a;}
-.cp-result .cp-smallprint{font-size:12px;color:#5d695f;margin:10px 0 0;}
-.cp-result .cp-export{cursor:pointer;border:1px solid #7aa889;background:#fff;color:#286641;border-radius:3px;padding:5px 12px;margin-top:10px;font-size:12px;}
-.cp-error{margin:8px 0 14px;padding:10px;border:1px solid #d39797;background:#fff0f0;color:#a12121;}
-@media(max-width:640px){.cp-result .cp-cols{grid-template-columns:1fr;}.cp-result .cp-hero strong{font-size:24px;}.cp-result .cp-stats{grid-template-columns:repeat(2,minmax(0,1fr));}.cp-result{padding:11px;}}
+	<style>body,p,td,div,span,input,th,li,textarea{font-family:arial,helvetica,sans-serif;font-size:16px;color:#000;}
+body{background:#fff;margin:0px;padding:0px;border:0;text-align: center;}
+
+p{margin:5px 0 8px 0;}
+img{border:0px;}
+h1{color:#003366;font-size:26px;font-weight:bold;padding:0;margin:12px 0;}
+h2{font-size:22px;font-weight:bold;color:#003366;padding:0; margin-bottom: 2px;}
+h3{font-size:19px;font-weight:bold;}
+hr{border:0;color:#aaa;background-color:#aaa;height:1px;}
+a{color:#069;text-decoration:underline;}
+a:hover{text-decoration:none;}
+
+input{padding: 5px;color:#000;box-sizing: border-box;}
+select{padding: 4px;color:#000;box-sizing: border-box;}
+option{font-size:16px;}
+input[type=text],
+input[type=url],
+input[type=tel],
+input[type=number],
+input[type=color],
+input[type=date],
+input[type=email], select {
+	border: 1px solid #044284;
+	border-radius: 2px;
+	box-shadow: 1px 1px 2px #666;
+	font-size:16px;
+	background-color:#fff;
+}
+input[type=submit] {
+	border: 0px;
+	color:#fff;
+	padding: 11px 50px 11px 16px;
+	font-size:16px;
+	font-weight:bold;
+	background-color: #4c7b25;
+	background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="180px" height="40px"><circle cx="112" cy="20" r="11" fill="darkseagreen" /><path d="M110 12 L120 20 L110 28 Z" fill="white" /></svg>');
+	background-repeat: no-repeat;
+}
+input[type=submit]:hover {background-color: #444;}
+input[type=reset], input[type=button] {
+	border: 0px;
+	color:#fff;
+	padding: 11px 8px;
+	font-size:16px;
+	background:#ababab;
+}
+input[type=reset]:hover, input[type=button]:hover {background:#444;}
+input[type=image],input[type=image]:hover{
+	background:#518428;
+	color:#fff;
+	padding: 0px;
+	margin:0px;
+}
+.cp-c-clearbtn{cursor: pointer;}
+.inputErrMsg{position: absolute;padding:4px 8px;color: #000;background-color: #ffcccc;border: 1px solid #ffaaaa;white-space: nowrap;display:inline-block;}
+.cp-c-cbcontainer {
+	display: inline-block;
+	position: relative;
+	padding-left: 28px;
+	padding-top:1px;
+	margin: 5px 0px;
+	cursor: pointer;
+	font-size: 16px;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+.cp-c-cbcontainer input {
+	position: absolute;
+	opacity: 0;
+	cursor: pointer;
+	height: 0;
+	width: 0;
+}
+.cp-c-cbmark {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 16px;
+	width: 16px;
+	background-color: #fff;
+	border: 2px solid #336699;
+}
+.cp-c-rbmark {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 16px;
+	width: 16px;
+	background-color: #fff;
+	border: 2px solid #336699;
+	border-radius: 50%;
+}
+.cp-c-cbcontainer:hover input ~ .cp-c-cbmark, .cp-c-cbcontainer:hover input ~ .cp-c-rbmark {
+	background-color: #ccc;
+}
+.cp-c-cbcontainer input:checked ~ .cp-c-cbmark, .cp-c-cbcontainer input:checked ~ .cp-c-rbmark {
+	background-color: #336699;
+}
+.cp-c-cbmark:after, .cp-c-rbmark:after {
+	content: "";
+	position: absolute;
+	display: none;
+}
+.cp-c-cbcontainer input:checked ~ .cp-c-cbmark:after, .cp-c-cbcontainer input:checked ~ .cp-c-rbmark:after {
+	display: block;
+}
+.cp-c-cbcontainer .cp-c-cbmark:after {
+	left: 4px;
+	top: 0px;
+	width: 5px;
+	height: 10px;
+	border: solid white;
+	border-width: 0 3px 3px 0;
+	-webkit-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	transform: rotate(45deg);
+}
+.cp-c-cbcontainer .cp-c-rbmark:after {
+	top: 4px;
+	left: 4px;
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: white;
+}
+.cp-c-indollar{
+	background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="15px" height="20px"><text x="2" y="15" style="font: normal 16px arial;">$</text></svg>');
+	background-position: left center;
+	background-repeat: no-repeat no-repeat;
+	padding-left: 11px !important;
+}
+.cp-c-inpct{
+	background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="17px" height="20px"><text x="1" y="15" style="font: normal 16px arial;">%</text></svg>');
+	background-position: right center;
+	background-repeat: no-repeat no-repeat;
+	padding-right: 18px !important;
+}
+.cp-c-innormal{width: 90px;}
+.cp-c-in4char{width: 58px;}
+.cp-c-in3char{width: 46px;}
+.cp-c-in2char{width: 35px;}
+.cp-c-inlong{width: 120px;}
+.cp-c-inlonger{width: 170px;}
+.cp-c-inlongest{width: 230px;}
+.cp-c-inlongesthalf{width: 112px;}
+.cp-c-infull{width: 226px;}
+.cp-c-inhalf{width: 110px;}
+.cp-c-infulltxarea{width: 600px; padding:8px;}
+.inshortfull{width: 170px;}
+.inshorthalf{width: 82px;}
+
+.cp-c-inuiyear{padding-right:50px;}
+.cp-c-inuiyearspan{margin-left:-45px;color:#888;}
+.cp-c-inuipound{padding-right:62px;}
+.cp-c-inuipoundspan{margin-left:-58px;color:#888;}
+.cp-c-inuifoot{padding-right:38px;}
+.cp-c-inuifootspan{margin-left:-34px;color:#888;}
+.cp-c-inuiinch{padding-right:57px;}
+.cp-c-inuiinchspan{margin-left:-53px;color:#888;}
+.cp-c-inuick{padding-right:32px;}
+.cp-c-inuickspan{margin-left:-27px;color:#888;}
+.cp-c-inui1c{padding-right:16px;}
+.cp-c-inui1cspan{margin-left:-11px;color:#888;}
+
+.cp-c-scaleimg{max-width: 100%;height: auto;}
+#tt {position:absolute;display:block;background-color: #474747;color: #fff;padding: 8px;border: 1px solid #000;text-align:left;}
+.cp-c-ttimg{opacity: 0.4;vertical-align: top;}
+.cp-c-ttimg:hover{opacity: 1;}
+
+#cp-i-headerout{background:#003366;text-align: center;}
+#cp-i-header{width:1100px;height:60px;background:#003366;padding:0px;margin-left: auto;margin-right: auto;text-align: left;overflow:hidden;}
+#cp-i-logo{padding: 18px 0px;width:270px;float:left;}
+#cp-i-login{padding: 2px;float:right;color: #ccc;}
+#cp-i-login a{color:#ccc;text-decoration:none;}
+#cp-i-login a:hover{text-decoration:underline;}
+
+.cp-c-topNavAbs{position: absolute;top: 21px;left: 50%;width: 520px;margin-left:-80px;text-align:left;}
+.cp-c-topNavAbs a {color: white;padding: 10px 16px 10px 16px;border: none;cursor: pointer;font-size: 16px;text-transform: uppercase;display: inline-block;text-decoration:none;}
+.cp-c-topNavAbs a:hover {background-color: #518428;}
+.cp-c-topNavOn {background-color: #518428;}
+
+#cp-i-contentout{width:1100px;padding-top:5px;margin-left: auto;margin-right: auto;text-align: left;overflow:auto;}
+#cp-i-content{padding:0px 0px 15px 0px;width:728px;float:left;}
+#cp-i-right{width:336px;float:right;text-align:center;}
+#contentbig{padding:0px 0px 15px 0px;width:843px;float:right;}
+
+#cp-i-footer{background:#e1e1e1;padding:25px 0px;font-size:13px;color:#555;text-align:center;}
+#cp-i-footer a{color:#444;}
+#cp-i-footer a:hover{text-decoration:none;}
+#cp-i-footerin{width:1100px;margin-left: auto;margin-right: auto;text-align: left;overflow:auto;color:#555;}
+#cp-i-footernav{text-align: center;}
+
+#cp-i-homecaldiv{background:#d1dde9;padding:10px 0px;}
+#cp-i-homelistdiv{background:#fff;padding:20px 0px;}
+#cp-i-homecaldiv td{overflow:hidden;}
+#cp-i-homelistwrap {display: grid;grid-row-gap: 30px;justify-content: center;grid-template-columns: 280px 320px 260px 220px;}
+
+#cp-i-breadcrumbs, #cp-i-breadcrumbs span{font-size:13px;}
+#cp-i-breadcrumbs a, #cp-i-breadcrumbs a span{text-decoration: none;color: #069;}
+#cp-i-breadcrumbs a:hover, #cp-i-breadcrumbs a span:hover{text-decoration:underline;}
+
+#cp-i-othercalc{
+	border:solid 1px #336699;
+	margin: auto;
+	text-align:left;
+	width:332px;
+}
+#cp-i-octitle{
+	background-color: #336699;
+	padding: 6px;
+	color: #fff;
+	font-size: 18px;
+	font-weight:bold;
+}
+#cp-i-octitle a{
+	color: #fff;
+	text-decoration: none;
+}
+#cp-i-octitle a:hover {
+	text-decoration: underline;
+}
+#cp-i-occontent{
+	padding: 3px 6px;
+	font-size: 14px;
+}
+#cp-i-occontent a{
+	display: inline-block;
+	width: 158px;
+	padding: 3px 0px;
+}
+#cp-i-ocother{
+	background-color: #ddd;
+	padding: 6px;
+	text-align: center;
+	font-size: 15px;
+	color: #bbb;
+}
+#cp-i-sectitle{
+	background-color: #336699;
+	padding: 6px;
+	color: #fff;
+	font-size: 18px;
+	font-weight:bold;
+}
+
+.cp-c-hicon{padding:20px 0px 20px 10px;}
+.cp-c-hl{list-style-type: none;margin: 0px;padding: 5px 0 5px 8px;background-color: #fff;font-size:16px;}
+.cp-c-hl li{padding: 0 0 8px 0;}
+.cp-c-hl li a{text-decoration:none;}
+.cp-c-hl li a:hover{text-decoration:underline;}
+.cp-c-hh{color:#23832b;padding:8px 5px;font-size:22px;}
+.cp-c-hh a{color:#23832b;text-decoration:none;}
+.cp-c-hh a:hover{text-decoration:underline;}
+.cp-c-smtb a{text-decoration:underline;}
+.cp-c-smtb a:hover{text-decoration:none;}
+.smtbtop a{text-decoration:none;}
+.smtbtop a:hover{text-decoration:underline;}
+.cp-c-smalltext{font-size:13px;}
+.cp-c-bigtext{font-size:18px;}
+.cp-c-verybigtext{font-size:23px;}
+.cp-c-morelinespace{line-height:125%}
+.cp-c-inlinetable{display: inline;}
+table.cp-c-cinfoT{border-collapse:collapse;border-spacing:0;margin-top:0;}
+table.cp-c-cinfoT th, table.cp-c-cinfoT td.cp-c-cinfoHd, table.cp-c-cinfoT td.cp-c-cinfoHdL{border-top:1px solid #114477;border-left:1px solid #114477;border-right:1px solid #114477;border-bottom:1px solid #336699;background-color:#336699;font-weight:bold;color:#fff;padding: 5px 3px;}
+table.cp-c-cinfoT td{border:1px solid #ccc;color:#000;padding:3px;}
+table.cp-c-cinfoT tr:nth-child(odd) {background-color: #eee;}
+table.cp-c-cinfoT tr:nth-child(even) {background-color: #fff;}
+table.cp-c-cinfoTS td.cp-c-cinfoHd{font-size:13px;}
+table.cp-c-cinfoTS td.cp-c-cinfoHdL{font-size:13px;}
+table.cp-c-cinfoTS td{font-size:13px;padding:3px 1px;}
+.cp-c-frac {display: inline-block;text-align: center;vertical-align: middle;}
+.cp-c-fracnum {display: block;}
+.cp-c-fracden {display: block;border-top: 1px solid #000;padding: 0px 3px;}
+
+#cp-i-topmenu ul {color: #000;border-bottom: 1px solid #bbbbbb;margin: 12px 0px 0px 0px;padding: 0 0 8px 0;font-size: 15px;font-weight: bold;}
+#cp-i-topmenu ul li {display: inline;overflow: hidden;list-style-type: none;margin-left: 0px;}
+#cp-i-topmenu ul li a, #cp-i-topmenu ul li a:visited {color: #fff;background: #336699;border: 1px solid #336699;padding: 8px 5px 8px 5px;margin: 0;text-decoration: none;}
+#cp-i-topmenu ul li a:hover {background: #eee;color: #000;}
+#cp-i-topmenu ul #cp-i-menuon a {color: #000;background: #eee;border: 1px solid #bbbbbb;padding: 8px 5px 8px 5px;margin: 0;text-decoration: none;border-bottom: 2px solid #eee;}
+#cp-i-topmenu ul #cp-i-menuon a:hover {background: #eee;}
+.cp-c-topmenucenter {}
+#insmd{background-color:#336699;margin-bottom:3px;}
+#cp-i-insmdc{background-color:#336699;margin-bottom:3px;text-align:center;}
+
+fieldset{
+	margin-top:10px;
+	padding:0px 10px 5px 10px;
+	border: solid 0px #bdd2da;
+	background:#eee;
+	color: #eee;
+}
+legend{
+	font-size:18px;
+	font-weight: bold;
+	padding: 5px 15px;
+	background:#eee;
+	color: #000;
+}
+fieldset a{
+	display: inline-block;
+	white-space: nowrap;
+	padding: 6px;
+	font-size:16px;
+	background:#336699;
+	color: #fff;
+	margin-bottom:5px;
+	text-decoration: none;
+}
+fieldset a:hover{
+	background:#417516;
+	color: #fff;
+}
+fieldset div{
+	display: inline-block;
+	white-space: nowrap;
+	padding: 10px;
+	font-size:18px;
+	background:#044284;
+	color: #fff;
+	margin-bottom:5px;
+	border-radius: 3px;
+	text-decoration: none;
+}
+fieldset div:hover{
+	background:#c47751;
+	color: #fff;
+}
+.arrow_box {position: relative;background: #eee;border: 1px solid #aaa;padding:3px 8px;text-align:center;}
+.arrow_box:after, .arrow_box:before {left: 100%;top: 50%;border: solid transparent;content: " ";height: 0;width: 0;position: absolute;pointer-events: none;}
+.arrow_box:after {border-color: rgba(221, 221, 221, 0);border-left-color: #eee;border-width: 12px;margin-top: -12px;}
+.arrow_box:before {border-color: rgba(238, 238, 238, 0);border-left-color: #aaa;border-width: 13px;margin-top: -13px;}
+.result_box {background: #e3edda;border: 1px solid #8db46d;padding:3px 8px;text-align: center;}
+.cp-c-panel{background:#eee;border: solid 1px #bbbbbb;padding: 5px;}
+.cp-c-panel2{background-color:#eeeeee;padding: 5px;border-right:1px solid #bbbbbb;border-bottom:1px solid #bbbbbb;border-left:1px solid #bbbbbb;}
+.cp-c-reference{font-size:13px;padding-left: 1.8em;}
+.cp-c-reference li{font-size:13px;word-wrap: break-word;}
+#cp-i-printit{width: 80px;float:right;text-align:right;}
+.cp-c-h2result{background:#518428;color:#fff;border:1px solid #518428;padding: 5px;margin-top:3px;font-size:22px;font-weight: normal;}
+.cp-c-h3head{margin-bottom: 2px;}
+.cp-c-sectionlists{}
+.cp-c-sectionlists div{padding-bottom: 5px;}
+#cp-i-searchbox{padding-top: 16px;}
+#cp-i-bluebtn{border-radius: 1px;background:#336699;padding: 5px 8px;font-size:18px;color:#fff;}
+#cp-i-bluebtn:hover{background:#444;color:#fff;}
+#cp-i-calcSearchOut{padding: 5px;}
+#cp-i-calcSearchOut div{padding: 5px;text-align:left;}
+
+.cp-c-leftinput{width: 325px;float: left;}
+.cp-c-rightresult{width: 375px;float: right;}
+.cp-c-clefthalf{width: 350px;float: left;}
+.cp-c-crighthalf{width: 350px;float: right;}
+.cp-c-espaceforM{display: none;}
+#cp-i-clear{margin-left: auto;margin-right: auto;clear: both;height: 0px;}
+.cp-c-leftchart{
+	padding-top:10px;
+	width: 500px;
+	float: left;
+}
+.cp-c-rightpie{
+	padding-top:10px;
+	width: 165px;
+	float: right;
+}
+
+@media (max-width:1140px){
+	#cp-i-header{width:990px;padding-left: 8px;}
+	#cp-i-contentout{width:1000px;}
+	#cp-i-content{width:640px;float:left;padding-left:10px;}
+	#cp-i-footerin{width:990px;}
+	#cp-i-homelistwrap {display: grid;grid-row-gap: 30px;grid-template-columns: 270px 300px 220px 210px;}
+	.cp-c-leftinput, .cp-c-clefthalf, .cp-c-crighthalf{width: 310px;}
+	.cp-c-rightresult{width: 320px;}
+	.cp-c-leftchart{width: 445px;}
+	.cp-c-rightpie{width: 155px;}
+}
+@media (max-width:720px){
+	#cp-i-header{width:auto;padding: 0px 8px;}
+	#cp-i-contentout{width:auto;padding:8px;}
+	#cp-i-content{float:none;width:auto;padding:0px;}
+	#cp-i-homelistwrap {grid-template-columns: 320px 320px;}
+	#cp-i-right{width:auto;float:none;}
+	#cp-i-footerin{width:auto;}
+	.cp-c-topNavAbs{display:none;}
+	.cp-c-espaceforM{display: block;}
+}
+@media (max-width:650px){
+	#cp-i-homelistwrap {grid-template-columns: 250px 250px;}
+	.cp-c-leftinput, .cp-c-rightresult, .cp-c-clefthalf, .cp-c-crighthalf{width: auto;float: none;}
+	img{max-width: 100%;height: auto;}
+}
+@media (max-width:490px){
+	#cp-i-homelistwrap {grid-template-columns: auto;}
+}</style><meta name="viewport" content="width=device-width, initial-scale=1.0">	
+	
+	
+	
+<style>
+/* Additions only for locally rendered results. Existing style.css is unchanged. */
+.k401-results[hidden]{display:none!important}
+.k401-results{margin:12px 0 10px;text-align:left;overflow:hidden}
+.k401-result-title{position:relative;display:flex;justify-content:space-between;align-items:center}
+.k401-result-title,.k401-result-title *{color:#fff}
+.k401-print{cursor:pointer;background:none;border:0;color:#fff;font-size:20px;padding:0 3px}
+.k401-lead{font-size:18px;line-height:1.5;margin:8px 0 14px}
+.k401-green{color:#268027}
+.k401-result-grid{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);gap:15px;align-items:start;margin:10px 0 12px}
+.k401-result-grid>div{min-width:0}
+.k401-bar-chart{display:block;width:100%;height:auto;max-width:480px}
+.k401-breakdown{width:100%;border-collapse:collapse;font-size:13px}
+.k401-breakdown td{font-size:13px!important;padding:5px 4px!important;line-height:1.24}
+.k401-breakdown td:first-child{white-space:normal}
+.k401-breakdown td:nth-child(2){font-variant-numeric:tabular-nums}
+.k401-subtle,.k401-note{color:#666;font-size:12px;line-height:1.5}
+.k401-subtle{margin-top:5px}
+.k401-withdraw-heading{font-size:20px;margin:14px 0 5px;color:#003366}
+.k401-results p{line-height:1.52;margin:8px 0}
+.k401-schedule summary{cursor:pointer;text-align:center;text-decoration:underline;font-weight:bold;color:#069;padding:8px}
+.k401-schedule h4{font-size:16px;margin:12px 0 5px}
+.k401-table-scroll{width:100%;overflow-x:auto;margin:5px 0 14px}
+.k401-year-table{width:100%;min-width:530px;border-collapse:collapse;font-variant-numeric:tabular-nums}
+.k401-year-table td{font-size:12px!important;white-space:nowrap;text-align:right}
+.k401-year-table th{font-size:12px!important;white-space:nowrap}
+.k401-tblcompact{border-collapse:collapse;width:100%;max-width:620px;margin-bottom:9px}
+.k401-tblcompact td{padding:7px!important}
+.k401-error{background:#fff3f3;border:1px solid #e39a9a;color:#9b1717;padding:10px 12px;margin:7px 0}
+@media (max-width:650px){.k401-result-grid{grid-template-columns:1fr}.k401-lead{font-size:16px}}
+@media print{#cp-i-headerout,#cp-i-right,.cp-c-panel,#cp-i-footer,.cp-c-topNavAbs,#cp-i-insmdc{display:none!important}#cp-i-contentout,#cp-i-content{width:100%!important;float:none!important}.k401-print{display:none}.k401-schedule{display:block}}
 </style>
 </head>
 <body>
-<div id="headerout">
-	<div id="header">
-		<div id="logo"><a href="index.html"><img src="../d26tpo4cm8sb6k.cloudfront.net/img/svg/calculator-white.svg" width="208" height="22" alt="Calculator.net"></a></div>
-		<div id="login"><a href="my-account/sign-in.html">sign in</a></div>	</div>
+<div id="cp-i-headerout">
+	<div id="cp-i-header">
+		<div id="cp-i-logo"><a href="index.html"><span style="color:#fff;font-size:23px;font-weight:bold">Calculator.net</span></a></div>
+		<div id="cp-i-login"><a href="my-account/sign-in.html">sign in</a></div>	</div>
 </div>
-<div id="clear"></div><div id="contentout"><div id="content"><div id="breadcrumbs" itemscope itemtype="https://schema.org/BreadcrumbList"><span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="index.html" itemprop="item"><span itemprop="name">home</span></a><meta itemprop="position" content="1" /></span> / <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="financial-calculator.html" itemprop="item"><span itemprop="name">financial</span></a><meta itemprop="position" content="2" /></span> / <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="401k-calculator.html" itemprop="item"><span itemprop="name">401k calculator</span></a><meta itemprop="position" content="3" /></span></div>
+<div id="cp-i-clear"></div><div id="cp-i-contentout"><div id="cp-i-content"><div id="cp-i-breadcrumbs" itemscope itemtype="https://schema.org/BreadcrumbList"><span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="index.html" itemprop="item"><span itemprop="name">home</span></a><meta itemprop="position" content="1" /></span> / <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="financial-calculator.html" itemprop="item"><span itemprop="name">financial</span></a><meta itemprop="position" content="2" /></span> / <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="401k-calculator.html" itemprop="item"><span itemprop="name">401k calculator</span></a><meta itemprop="position" content="3" /></span></div>
 <h1>401K Calculator</h1>
 
-<p>The 401(k) Calculator can estimate a 401(k) balance at retirement as well as distributions in retirement based on income, contribution percentage, age, salary increase, and investment return. It is mainly intended for use by U.S. residents.</p><div id="insmdc"><img src="../d26tpo4cm8sb6k.cloudfront.net/img/svg/insm.svg" width="630" height="35" alt="Modify the values and click the calculate button to use"></div><div class="panel">
+<p>The 401(k) Calculator can estimate a 401(k) balance at retirement as well as distributions in retirement based on income, contribution percentage, age, salary increase, and investment return. It is mainly intended for use by U.S. residents.</p><div id="k401-result" class="k401-results" hidden aria-live="polite"></div><div id="cp-i-insmdc"><span style="display:block;min-height:35px;padding:7px 5px;box-sizing:border-box;color:#fff;font-weight:bold">Modify the values and click the calculate button to use</span></div><div class="cp-c-panel">
 <form name="f401k1" action="#">
-<div class="clefthalf">
+<div class="cp-c-clefthalf">
 <table align="center" width="100%">
-<tr><td colspan="3" id="sectitle">Basic info</td></tr>
-<tr><td>Current age</td><td colspan="2"><input type="text" name="age" value="30" class="inlong"></td><td>&nbsp;</td></tr>
-<tr><td>Current annual salary</td><td colspan="2"><input type="text" name="income" id="income" value="75000" class="inlong indollar"></td></tr>
-<tr><td>Current 401(k) balance</td><td colspan="2"><input type="text" name="balance" id="balance" value="35000" class="inlong indollar"></td></tr>
-<tr><td>Contribution (% of salary)</td><td colspan="2"><input type="text" name="contribution" value="10" class="inlong inpct"></td></tr>
-<tr><td>Employer match</td><td colspan="2"><input type="text" name="ematch" value="50" class="inlong inpct"></td></tr>
-<tr><td>Employer match limit</td><td colspan="2"><input type="text" name="ematchend" value="3" class="inlong inpct"></td></tr>
+<tr><td colspan="3" id="cp-i-sectitle">Basic info</td></tr>
+<tr><td>Current age</td><td colspan="2"><input type="text" name="age" value="30" class="cp-c-inlong"></td><td>&nbsp;</td></tr>
+<tr><td>Current annual salary</td><td colspan="2"><input type="text" name="income" id="cp-i-income" value="75000" class="cp-c-inlong cp-c-indollar"></td></tr>
+<tr><td>Current 401(k) balance</td><td colspan="2"><input type="text" name="balance" id="cp-i-balance" value="35000" class="cp-c-inlong cp-c-indollar"></td></tr>
+<tr><td>Contribution (% of salary)</td><td colspan="2"><input type="text" name="contribution" value="10" class="cp-c-inlong cp-c-inpct"></td></tr>
+<tr><td>Employer match</td><td colspan="2"><input type="text" name="ematch" value="50" class="cp-c-inlong cp-c-inpct"></td></tr>
+<tr><td>Employer match limit</td><td colspan="2"><input type="text" name="ematchend" value="3" class="cp-c-inlong cp-c-inpct"></td></tr>
 </table>
 </div>
-<div class="crighthalf">
+<div class="cp-c-crighthalf">
 <table align="center" width="100%">
-<tr><td colspan="3" id="sectitle">Projections</td></tr>
-<tr><td>Expected retirement age</td><td><input type="text" name="retirementage" value="65" class="innormal"></td><td>&nbsp;</td></tr>
-<tr><td>Life expectancy</td><td><input type="text" name="lifeexpectancy" value="85" class="innormal"></td><td>&nbsp;</td></tr>
-<tr><td>Expected salary increase</td><td><input type="text" name="incomeincrease" value="3" class="innormal inpct"></td><td>per year</td></tr>
-<tr><td>Expected annual return</td><td><input type="text" name="rate" value="6" class="innormal inpct"></td><td>per year</td></tr>
-<tr><td>Expected inflation rate</td><td><input type="text" name="inflation" value="3" class="innormal inpct"></td><td>per year</td></tr>
+<tr><td colspan="3" id="cp-i-sectitle">Projections</td></tr>
+<tr><td>Expected retirement age</td><td><input type="text" name="retirementage" value="65" class="cp-c-innormal"></td><td>&nbsp;</td></tr>
+<tr><td>Life expectancy</td><td><input type="text" name="lifeexpectancy" value="85" class="cp-c-innormal"></td><td>&nbsp;</td></tr>
+<tr><td>Expected salary increase</td><td><input type="text" name="incomeincrease" value="3" class="cp-c-innormal cp-c-inpct"></td><td>per year</td></tr>
+<tr><td>Expected annual return</td><td><input type="text" name="rate" value="6" class="cp-c-innormal cp-c-inpct"></td><td>per year</td></tr>
+<tr><td>Expected inflation rate</td><td><input type="text" name="inflation" value="3" class="cp-c-innormal cp-c-inpct"></td><td>per year</td></tr>
 <tr><td colspan="3" align="center" style="padding-top:8px;"><input type="hidden" name="hideirslimit" value="0">
 	<input type="hidden" name="type" value="1">
 	<input type="submit" name="x" value="Calculate">
-	<input type="button" value="Clear" onClick="clearForm(document.f401k1);">
+	<input type="button" value="Clear" data-k401-clear="k401-result">
 </td></tr>
 </table>
-</div><div id="clear"></div>
+</div><div id="cp-i-clear"></div>
 </form></div>
-
-<div class="cp-error" id="cp-error-1" role="alert" hidden></div>
-<section class="cp-result" id="cp-result-1" aria-label="401(k) retirement calculation results" aria-live="polite" hidden>
-  <h3>Result</h3>
-  <div class="cp-hero">Projected 401(k) balance at retirement <strong id="cp-ret-balance"></strong><span class="cp-mini" id="cp-ret-context"></span></div>
-  <div class="cp-cols">
-    <div class="cp-stats">
-      <div class="cp-stat"><span>Monthly retirement payout</span><b id="cp-ret-monthly"></b></div>
-      <div class="cp-stat"><span>Balance in today's dollars</span><b id="cp-ret-real"></b></div>
-      <div class="cp-stat"><span>Your total contributions</span><b id="cp-ret-personal"></b></div>
-      <div class="cp-stat"><span>Employer contributions</span><b id="cp-ret-employer"></b></div>
-      <div class="cp-stat"><span>Starting account balance</span><b id="cp-ret-start"></b></div>
-      <div class="cp-stat"><span>Investment growth</span><b id="cp-ret-growth"></b></div>
-    </div>
-    <div class="cp-plot"><h4>Projected account growth</h4><div id="cp-ret-chart"></div></div>
-  </div>
-  <details class="cp-data"><summary>View year-by-year 401(k) balances</summary>
-    <div class="cp-table-wrap"><table class="cp-table"><thead><tr><th>Age</th><th>Annual salary</th><th>Beginning balance</th><th>Your contributions</th><th>Employer match</th><th>Investment growth</th><th>Ending balance</th></tr></thead><tbody id="cp-ret-rows"></tbody></table></div>
-    <button class="cp-export" type="button" id="cp-export-csv">Download CSV</button>
-  </details>
-  <p class="cp-smallprint" id="cp-ret-assumptions"></p>
-</section>
 
 <a name="earlywithdrawal"></a>
 <br><h2>401(k) Early Withdrawal Costs Calculator</h2>
 <p>Early 401(k) withdrawals will result in a penalty. This calculation can determine the actual amount received if opting for an early withdrawal.</p>
-<form name="f401k2" action="#earlywithdrawal">
-<table class="panel" align="center">
-<tr><td>Early withdrawal amount</td><td align="right"><input type="text" name="withdrawamt" id="withdrawamt" value="10000" class="inlong indollar"></td></tr>
-<tr><td>Federal income tax rate</td><td align="right"><input type="text" name="fedtax" value="25" class="inlong inpct"></td></tr>
-<tr><td>State income tax rate</td><td align="right"><input type="text" name="statetax" value="5" class="inlong inpct"></td></tr>
-<tr><td>Local/city income tax rate</td><td align="right"><input type="text" name="localtax" value="0" class="inlong inpct"></td></tr>
+<div id="k401-early-result" class="k401-results" hidden aria-live="polite"></div><form name="f401k2" action="#">
+<table class="cp-c-panel" align="center">
+<tr><td>Early withdrawal amount</td><td align="right"><input type="text" name="withdrawamt" id="cp-i-withdrawamt" value="10000" class="cp-c-inlong cp-c-indollar"></td></tr>
+<tr><td>Federal income tax rate</td><td align="right"><input type="text" name="fedtax" value="25" class="cp-c-inlong cp-c-inpct"></td></tr>
+<tr><td>State income tax rate</td><td align="right"><input type="text" name="statetax" value="5" class="cp-c-inlong cp-c-inpct"></td></tr>
+<tr><td>Local/city income tax rate</td><td align="right"><input type="text" name="localtax" value="0" class="cp-c-inlong cp-c-inpct"></td></tr>
 <tr><td colspan="2">
 	<div style="padding: 5px 0px;">Are you employed?
-		<label for="isemployed1" class="cbcontainer"><input type="radio" name="isemployed" id="isemployed1" value="y" checked onClick="document.getElementById('is55plusdiv').style.display='none';" /><span class="rbmark"></span>Yes</label>
-		<label for="isemployed2" class="cbcontainer"><input type="radio" name="isemployed" id="isemployed2" value="n"  onClick="document.getElementById('is55plusdiv').style.display='block';" /><span class="rbmark"></span>No</label>
+		<label for="cp-i-isemployed1" class="cp-c-cbcontainer"><input type="radio" name="isemployed" id="cp-i-isemployed1" value="y" checked onClick="document.getElementById('cp-i-is55plusdiv').style.display='none';" /><span class="cp-c-rbmark"></span>Yes</label>
+		<label for="cp-i-isemployed2" class="cp-c-cbcontainer"><input type="radio" name="isemployed" id="cp-i-isemployed2" value="n"  onClick="document.getElementById('cp-i-is55plusdiv').style.display='block';" /><span class="cp-c-rbmark"></span>No</label>
 	</div>
-	<div style="padding: 5px 0px; display:none;" id="is55plusdiv">
+	<div style="padding: 5px 0px; display:none;" id="cp-i-is55plusdiv">
 		Were you 55 or older when you left employment?
 		<div style="text-align:center;">
-			<label for="is55plus1" class="cbcontainer"><input type="radio" name="is55plus" id="is55plus1" value="y"  /><span class="rbmark"></span>Yes</label>
-			<label for="is55plus2" class="cbcontainer"><input type="radio" name="is55plus" id="is55plus2" value="n" checked /><span class="rbmark"></span>No</label>
+			<label for="cp-i-is55plus1" class="cp-c-cbcontainer"><input type="radio" name="is55plus" id="cp-i-is55plus1" value="y"  /><span class="cp-c-rbmark"></span>Yes</label>
+			<label for="cp-i-is55plus2" class="cp-c-cbcontainer"><input type="radio" name="is55plus" id="cp-i-is55plus2" value="n" checked /><span class="cp-c-rbmark"></span>No</label>
 		</div>
 	</div>
 </td></tr>
 <tr><td colspan="2">
 	<div style="padding: 5px 0px;">Do you have a qualifying disability?
 		<div style="text-align:center;">
-		<label for="isdisabled1" class="cbcontainer"><input type="radio" name="isdisabled" id="isdisabled1" value="y"  /><span class="rbmark"></span>Yes</label>
-		<label for="isdisabled2" class="cbcontainer"><input type="radio" name="isdisabled" id="isdisabled2" value="n" checked /><span class="rbmark"></span>No</label>
+		<label for="cp-i-isdisabled1" class="cp-c-cbcontainer"><input type="radio" name="isdisabled" id="cp-i-isdisabled1" value="y"  /><span class="cp-c-rbmark"></span>Yes</label>
+		<label for="cp-i-isdisabled2" class="cp-c-cbcontainer"><input type="radio" name="isdisabled" id="cp-i-isdisabled2" value="n" checked /><span class="cp-c-rbmark"></span>No</label>
 		</div>
 	</div>
 </td></tr>
 <tr><td colspan="2">
 	<div style="padding: 5px 0px;">Do you qualify for other penalty exemptions?
 		<div style="text-align:center;">
-		<label for="isexempt1" class="cbcontainer"><input type="radio" name="isexempt" id="isexempt1" value="y"  /><span class="rbmark"></span>Yes</label>
-		<label for="isexempt2" class="cbcontainer"><input type="radio" name="isexempt" id="isexempt2" value="n" checked /><span class="rbmark"></span>No</label>
+		<label for="cp-i-isexempt1" class="cp-c-cbcontainer"><input type="radio" name="isexempt" id="cp-i-isexempt1" value="y"  /><span class="cp-c-rbmark"></span>Yes</label>
+		<label for="cp-i-isexempt2" class="cp-c-cbcontainer"><input type="radio" name="isexempt" id="cp-i-isexempt2" value="n" checked /><span class="cp-c-rbmark"></span>No</label>
 		</div>
 	</div>
 </td></tr>
 <tr><td colspan="2" align="center" style="padding-top:8px;">
 	<input type="hidden" name="type" value="2">
 	<input type="submit" name="x" value="Calculate">
-	<input type="button" value="Clear" onClick="clearForm(document.f401k2);">
+	<input type="button" value="Clear" data-k401-clear="k401-early-result">
 </td></tr>
 </table></form>
-
-<div class="cp-error" id="cp-error-2" role="alert" hidden></div>
-<section class="cp-result" id="cp-result-2" aria-label="Early withdrawal calculation results" aria-live="polite" hidden>
-  <h3>Result</h3><div class="cp-hero">Amount received after estimated taxes and penalties<strong id="cp-with-net"></strong></div>
-  <div class="cp-stats"><div class="cp-stat"><span>Withdrawal requested</span><b id="cp-with-gross"></b></div><div class="cp-stat"><span>Income taxes</span><b id="cp-with-taxes"></b></div><div class="cp-stat"><span>Early withdrawal penalty</span><b id="cp-with-penalty"></b></div><div class="cp-stat"><span>Total estimated costs</span><b id="cp-with-cost"></b></div></div>
-  <p class="cp-smallprint" id="cp-with-assumptions"></p>
-</section>
 
 <a name="maximizematch"></a>
 <br><h2>Maximize Employer 401(k) Match Calculator</h2>
 <p>Contribution percentages that are too low or too high may not take full advantage of employer matches. If the percentage is too high, contributions may reach the IRS limit before the end of the year. As a result, employers will not match for the rest of the year. This calculation can show the contribution percentage window in order to take full advantage of the employer's matching contributions.</p>
-<form name="f401k3" action="#maximizematch">
-<table class="panel" align="center">
-<tr><td>Current age</td><td align="right"><input type="text" name="age" value="30" class="inlong"></td></tr>
-<tr><td>Current annual salary</td><td align="right"><input type="text" name="income" id="income2" value="75000" class="inlong indollar"></td></tr>
-<tr><td>Employer match 1</td><td align="right"><input type="text" name="ematch" value="50" class="inlong inpct"></td></tr>
-<tr><td>Employer match 1 limit</td><td align="right"><input type="text" name="ematchend" value="3" class="inlong inpct"></td></tr>
-<tr><td>Employer match 2</td><td align="right"><input type="text" name="ematch2" value="20" class="inlong inpct"></td></tr>
-<tr><td>Employer match 2 limit</td><td align="right"><input type="text" name="ematchend2" value="6" class="inlong inpct"></td></tr>
+<div id="k401-match-result" class="k401-results" hidden aria-live="polite"></div><form name="f401k3" action="#">
+<table class="cp-c-panel" align="center">
+<tr><td>Current age</td><td align="right"><input type="text" name="age" value="30" class="cp-c-inlong"></td></tr>
+<tr><td>Current annual salary</td><td align="right"><input type="text" name="income" id="cp-i-income2" value="75000" class="cp-c-inlong cp-c-indollar"></td></tr>
+<tr><td>Employer match 1</td><td align="right"><input type="text" name="ematch" value="50" class="cp-c-inlong cp-c-inpct"></td></tr>
+<tr><td>Employer match 1 limit</td><td align="right"><input type="text" name="ematchend" value="3" class="cp-c-inlong cp-c-inpct"></td></tr>
+<tr><td>Employer match 2</td><td align="right"><input type="text" name="ematch2" value="20" class="cp-c-inlong cp-c-inpct"></td></tr>
+<tr><td>Employer match 2 limit</td><td align="right"><input type="text" name="ematchend2" value="6" class="cp-c-inlong cp-c-inpct"></td></tr>
 <tr><td colspan="2" align="center" style="padding-top:8px;">
 	<input type="hidden" name="type" value="3">
 	<input type="submit" name="x" value="Calculate">
-	<input type="button" value="Clear" onClick="clearForm(document.f401k3);">
+	<input type="button" value="Clear" data-k401-clear="k401-match-result">
 </td></tr>
 </table></form>
 
-<div class="cp-error" id="cp-error-3" role="alert" hidden></div>
-<section class="cp-result" id="cp-result-3" aria-label="Maximize employer match calculation results" aria-live="polite" hidden>
-  <h3>Result</h3><div class="cp-hero">Estimated maximum employer match per year<strong id="cp-match-maximum"></strong></div>
-  <div class="cp-stats"><div class="cp-stat"><span>Minimum contribution to earn full per-paycheck match</span><b id="cp-match-min"></b></div><div class="cp-stat"><span>Highest uniform rate before deferrals run out early</span><b id="cp-match-max"></b></div><div class="cp-stat"><span>Recommended contribution</span><b id="cp-match-recommended"></b></div><div class="cp-stat"><span>2026 employee deferral limit</span><b id="cp-match-cap"></b></div></div>
-  <h4>Example contribution rates</h4><div class="cp-table-wrap"><table class="cp-table"><thead><tr><th>Employee rate</th><th>Your annual contributions</th><th>Employer annual match</th><th>Paychecks with contributions</th></tr></thead><tbody id="cp-match-rows"></tbody></table></div>
-  <p class="cp-smallprint" id="cp-match-assumptions"></p>
-</section>
 
-<script>
-function insertComma2(t,l){d=t.value.toString().replaceAll(",",""),a="";if("i"==l)a=(d=d.replace(/[^\d.-]/g,"")).toString().split(".")[0].replace(/\B(?=(\d{3})+(?!\d))/g,",");else if("d"==l){let g=(d=d.replace(/[^\d.-]/g,"")).toString().split(".");a=g[0].replace(/\B(?=(\d{3})+(?!\d))/g,","),g.length>1&&(a+="."+g[1])}else"c"==l&&(a=d.replace(/\B(?=(\d{3})+(?!\d))/g,","));t.value=a}
-function proComma2(p){let m=document.getElementById(p);m.onblur=function(){insertComma2(m, 'd');};insertComma2(m, 'd');}
-proComma2("income");
-proComma2("balance");
-proComma2("withdrawamt");
-proComma2("income2");
-</script>
 
 <br><p><fieldset><legend>Related</legend><a href="retirement-calculator.html">Retirement Calculator</a> | <a href="roth-ira-calculator.html">Roth IRA Calculator</a> | <a href="annuity-payout-calculator.html">Annuity Payout Calculator</a></fieldset></p>
 
@@ -300,208 +653,276 @@ proComma2("income2");
 
 
 </div>
-	<div id="right">
+	<div id="cp-i-right">
 		<div style="padding-top:10px;  min-height:280px; text-align:center;">
-<script async src="../securepubads.g.doubleclick.net/tag/js/f.txt"></script>
-<script>
-  window.googletag = window.googletag || {cmd: []};
-  googletag.cmd.push(function() {
-	googletag.defineSlot('/1057446/Calculator-Top-Right-Desktop', [[300, 250], [336, 280]], 'div-gpt-ad-1589567013929-0').addService(googletag.pubads());
-	googletag.pubads().enableSingleRequest();
-	googletag.enableServices();
-  });
-</script>
-<!-- /1057446/Calculator-Top-Right-Desktop -->
-<div id='div-gpt-ad-1589567013929-0'>
-  <script>
-    googletag.cmd.push(function() { googletag.display('div-gpt-ad-1589567013929-0'); });
-  </script>
+
 </div>
+<form name="calcSearchForm" onsubmit="calcSearch(); return false;" autocomplete="off"><table align="center" id="cp-i-searchbox"><tr><td><input type="text" name="calcSearchTerm" id="cp-i-calcSearchTerm" class="cp-c-inlongest" onkeyup="return calcSearch();"></td><td><span id="cp-i-bluebtn" onClick="return calcSearch();">Search</span></td></tr><tr><td colspan="2"><div id="cp-i-calcSearchOut"></div></td></tr></table></form><div id="cp-i-othercalc"><div id="cp-i-octitle"><a href="financial-calculator.html">Financial Calculators</a></div><div id="cp-i-occontent"><a href="mortgage-calculator.html">Mortgage</a><a href="loan-calculator.html">Loan</a><a href="auto-loan-calculator.html">Auto Loan</a><a href="interest-calculator.html">Interest</a><a href="payment-calculator.html">Payment</a><a href="retirement-calculator.html">Retirement</a><a href="amortization-calculator.html">Amortization</a><a href="investment-calculator.html">Investment</a><a href="currency-calculator.html">Currency</a><a href="inflation-calculator.html">Inflation</a><a href="finance-calculator.html">Finance</a><a href="mortgage-payoff-calculator.html">Mortgage Payoff</a><a href="tax-calculator.html">Income Tax</a><a href="compound-interest-calculator.html">Compound Interest</a><a href="salary-calculator.html">Salary</a><a href="401k-calculator.html">401K</a><a href="interest-rate-calculator.html">Interest Rate</a><a href="sales-tax-calculator.html">Sales Tax</a><a href="financial-calculator.html">More Financial Calculators</a></div><div id="cp-i-ocother"><a href="financial-calculator.html">Financial</a> | <a href="fitness-and-health-calculator.html">Fitness and Health</a> | <a href="math-calculator.html">Math</a> | <a href="other-calculator.html">Other</a></div></div>	</div>
 </div>
-<form name="calcSearchForm" onsubmit="calcSearch(); return false;" autocomplete="off"><table align="center" id="searchbox"><tr><td><input type="text" name="calcSearchTerm" id="calcSearchTerm" class="inlongest" onkeyup="return calcSearch();"></td><td><span id="bluebtn" onClick="return calcSearch();">Search</span></td></tr><tr><td colspan="2"><div id="calcSearchOut"></div></td></tr></table></form><div id="othercalc"><div id="octitle"><a href="financial-calculator.html">Financial Calculators</a></div><div id="occontent"><a href="mortgage-calculator.html">Mortgage</a><a href="loan-calculator.html">Loan</a><a href="auto-loan-calculator.html">Auto Loan</a><a href="interest-calculator.html">Interest</a><a href="payment-calculator.html">Payment</a><a href="retirement-calculator.html">Retirement</a><a href="amortization-calculator.html">Amortization</a><a href="investment-calculator.html">Investment</a><a href="currency-calculator.html">Currency</a><a href="inflation-calculator.html">Inflation</a><a href="finance-calculator.html">Finance</a><a href="mortgage-payoff-calculator.html">Mortgage Payoff</a><a href="tax-calculator.html">Income Tax</a><a href="compound-interest-calculator.html">Compound Interest</a><a href="salary-calculator.html">Salary</a><a href="401k-calculator.html">401K</a><a href="interest-rate-calculator.html">Interest Rate</a><a href="sales-tax-calculator.html">Sales Tax</a><a href="financial-calculator.html">More Financial Calculators</a></div><div id="ocother"><a href="financial-calculator.html">Financial</a> | <a href="fitness-and-health-calculator.html">Fitness and Health</a> | <a href="math-calculator.html">Math</a> | <a href="other-calculator.html">Other</a></div></div>	</div>
-</div>
-<div id="clear"></div>
-<div id="footer"><div id="footerin"><div id="footernav"><a href="about-us.html">about us</a> | <a href="sitemap.html">sitemap</a> | <a href="about-us.html#terms">terms of use</a> | <a href="about-us.html#privacy">privacy policy</a> &nbsp;  &copy; 2008 - 2026 <a href="index.html">calculator.net</a></div></div></div>
-<div class="topNavAbs">
-<a href="financial-calculator.html" class="topNavOn">Financial</a>
+<div id="cp-i-clear"></div>
+<div id="cp-i-footer"><div id="cp-i-footerin"><div id="cp-i-footernav"><a href="about-us.html">about us</a> | <a href="sitemap.html">sitemap</a> | <a href="about-us.html#terms">terms of use</a> | <a href="about-us.html#privacy">privacy policy</a> &nbsp;  &copy; 2008 - 2026 <a href="index.html">calculator.net</a></div></div></div>
+<div class="cp-c-topNavAbs">
+<a href="financial-calculator.html" class="cp-c-topNavOn">Financial</a>
 <a href="fitness-and-health-calculator.html">Fitness &amp; Health</a>
 <a href="math-calculator.html">Math</a>
 <a href="other-calculator.html">Other</a>
 </div>
-
-<script id="cp-functional-calculation">
-(function () {
+<script>/* Independent, browser-only 401(k) calculators. No network calls / redirects. */
+(() => {
   'use strict';
-  const $ = id => document.getElementById(id);
-  const usd = n => new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0}).format(n);
-  const usd2 = n => new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',minimumFractionDigits:2,maximumFractionDigits:2}).format(n);
-  const pct = n => Number(n.toFixed(2)) + '%';
-  const LIMIT = {basic:24500, catchup:8000, special:11250, annual:72000, compensation:360000};
-  let yearly = [];
-  function field(form,name,min,max){
-    const el=form.elements.namedItem(name);
-    const raw=(el && el.value || '').trim().replace(/[$,%\s]/g,'');
-    if(!raw) throw new Error('Please enter a value for '+name+'.');
-    if(!/^[+-]?(?:\d+\.?\d*|\.\d+)$/.test(raw)) throw new Error('Please enter a valid number for '+name+'.');
-    const val=Number(raw);
-    if(!Number.isFinite(val)||val<min||val>max) throw new Error(name+' must be between '+min+' and '+max+'.');
-    return val;
-  }
-  function displayError(n,message){const el=$('cp-error-'+n);el.textContent=message||'';el.hidden=!message;$('cp-result-'+n).hidden=Boolean(message);}
-  function deferralLimit(age,factor){return (LIMIT.basic+(age>=60 && age<=63?LIMIT.special:age>=50?LIMIT.catchup:0))*factor;}
-  function monthlyRate(annualPercent){return Math.pow(1+annualPercent/100,1/12)-1;}
-  function employerTier1(pay,actual,matchPct,limitPct,eligiblePay){
-    return pay<=0?0:eligiblePay*Math.min(actual/pay*100,limitPct)/100*matchPct/100;
-  }
-  function employerTier2(pay,actual,r1,l1,r2,l2,eligiblePay){
-    if(pay<=0) return 0;
-    const p=actual/pay*100;
-    return eligiblePay*(Math.min(p,l1)*r1/100 + Math.max(0,Math.min(p,l2)-l1)*r2/100)/100;
-  }
-  function drawChart(series){
-    const w=590,h=245,left=65,right=12,top=13,bottom=34;
-    const minAge=series[0].age, maxAge=series[series.length-1].age;
-    const maxValue=Math.max(1,...series.map(p=>p.balance));
-    const x=age=>left+(age-minAge)/Math.max(1,maxAge-minAge)*(w-left-right);
-    const y=value=>h-bottom-Math.max(0,value)/maxValue*(h-top-bottom);
-    const lines=[0,.25,.5,.75,1].map(f=>{
-      const val=maxValue*f, yy=y(val);
-      return `<line x1="${left}" y1="${yy}" x2="${w-right}" y2="${yy}" stroke="#e4eae4"/>`+
-             `<text x="${left-5}" y="${yy+4}" text-anchor="end" fill="#536756" font-size="10">${val>=1000000?'$'+(val/1000000).toFixed(1)+'m':'$'+Math.round(val/1000)+'k'}</text>`;
-    }).join('');
-    const path=series.map((p,i)=>(i?'L':'M')+x(p.age).toFixed(2)+' '+y(p.balance).toFixed(2)).join(' ');
-    const xLabels=[0,.25,.5,.75,1].map(f=>{
-      const age=minAge+(maxAge-minAge)*f;
-      return `<text x="${x(age)}" y="${h-10}" text-anchor="middle" fill="#536756" font-size="11">${Math.round(age)}</text>`;
-    }).join('');
-    return `<svg viewBox="0 0 ${w} ${h}" role="img" aria-label="Projected 401(k) retirement balance by age">${lines}<path d="${path}" stroke="#237a45" stroke-width="3" fill="none" stroke-linejoin="round"/>${xLabels}</svg>`;
-  }
-  function calcRetirement(){
-    const f=document.forms.f401k1;
-    try{
-      const age=field(f,'age',18,99),salary=field(f,'income',0,100000000),initial=field(f,'balance',0,1000000000),contribution=field(f,'contribution',0,100),match=field(f,'ematch',0,200),matchLimit=field(f,'ematchend',0,100),retire=field(f,'retirementage',18,110),life=field(f,'lifeexpectancy',19,120),salaryIncrease=field(f,'incomeincrease',-99,100),annualReturn=field(f,'rate',-99,100),inflation=field(f,'inflation',-99,100);
-      if(retire<=age) throw new Error('Expected retirement age must be higher than current age.');
-      if(life<=retire) throw new Error('Life expectancy must be higher than retirement age.');
-      let balance=initial,totalEmployee=0,totalEmployer=0,totalGrowth=0;
-      const mr=monthlyRate(annualReturn), series=[{age,balance}],rows=[];
-      for(let n=0;n<retire-age;n++){
-        const yearAge=age+n,factor=Math.pow(1+inflation/100,n),yrSalary=salary*Math.pow(1+salaryIncrease/100,n),pay=yrSalary/12,eligiblePay=Math.min(yrSalary,LIMIT.compensation*factor)/12;
-        const maxEmployee=deferralLimit(yearAge,factor),maxAnnual=Math.min(yrSalary,LIMIT.annual*factor),maxCatchup=Math.max(0,maxEmployee-LIMIT.basic*factor);
-        const beginning=balance;
-        let empYear=0,matchYear=0,growthYear=0,regularYear=0;
-        for(let m=0;m<12;m++){
-          const earned=balance*mr; balance+=earned; growthYear+=earned;
-          const requested=Math.max(0,Math.min(pay*contribution/100,maxEmployee-empYear));
-          const allowedRegular=Math.max(0,Math.min(requested,maxAnnual-regularYear-matchYear));
-          const allowedCatchup=Math.max(0,Math.min(requested-allowedRegular,maxCatchup-(empYear-regularYear)));
-          const deposited=allowedRegular+allowedCatchup;
-          const rawEmployer=employerTier1(pay,deposited,match,matchLimit,eligiblePay);
-          const employer=Math.max(0,Math.min(rawEmployer,maxAnnual-regularYear-allowedRegular-matchYear));
-          empYear+=deposited;regularYear+=allowedRegular;matchYear+=employer;balance+=deposited+employer;
-        }
-        totalEmployee+=empYear;totalEmployer+=matchYear;totalGrowth+=growthYear;
-        rows.push({age:yearAge+1,salary:yrSalary,start:beginning,employee:empYear,employer:matchYear,growth:growthYear,end:balance});
-        series.push({age:yearAge+1,balance});
-      }
-      const months=(life-retire)*12;
-      const monthly= Math.abs(mr)<1e-10?balance/months:balance*mr/(1-Math.pow(1+mr,-months));
-      $('cp-ret-balance').textContent=usd(balance);
-      $('cp-ret-context').textContent=`At age ${retire} (${retire-age} years from now)`;
-      $('cp-ret-monthly').textContent=usd(monthly);
-      $('cp-ret-real').textContent=usd(balance/Math.pow(1+inflation/100,retire-age));
-      $('cp-ret-personal').textContent=usd(totalEmployee);
-      $('cp-ret-employer').textContent=usd(totalEmployer);
-      $('cp-ret-start').textContent=usd(initial);
-      $('cp-ret-growth').textContent=usd(totalGrowth);
-      $('cp-ret-chart').innerHTML=drawChart(series);
-      $('cp-ret-rows').innerHTML=rows.map(r=>`<tr><td>${r.age}</td><td>${usd(r.salary)}</td><td>${usd(r.start)}</td><td>${usd(r.employee)}</td><td>${usd(r.employer)}</td><td>${usd(r.growth)}</td><td>${usd(r.end)}</td></tr>`).join('');
-      $('cp-ret-assumptions').textContent=`Estimate assumes monthly compounding and end-of-month deposits, with withdrawals from ages ${retire} to ${life} at the expected ${annualReturn}% annual return. Base 2026 IRS contribution limits are projected to increase at ${inflation}% annually. Actual future legal limits, taxes and market returns may differ.`;
-      yearly=rows;displayError(1,null);$('cp-result-1').hidden=false;
-    } catch(e){yearly=[];displayError(1,e.message);}
-  }
-  function radio(f,name){return f.querySelector('input[name="'+name+'"]:checked')?.value||'';}
-  function calcWithdrawal(){
-    const f=document.forms.f401k2;
-    try{
-      const amount=field(f,'withdrawamt',0,1000000000),fed=field(f,'fedtax',0,100),state=field(f,'statetax',0,100),local=field(f,'localtax',0,100);
-      if(fed+state+local>100) throw new Error('Federal, state and local tax rates cannot add up to more than 100%.');
-      const rule55=radio(f,'isemployed')==='n' && radio(f,'is55plus')==='y';
-      const exception=rule55 || radio(f,'isdisabled')==='y' || radio(f,'isexempt')==='y';
-      const taxes=amount*(fed+state+local)/100,penalty=exception?0:amount*.10;
-      $('cp-with-net').textContent=usd2(amount-taxes-penalty);
-      $('cp-with-gross').textContent=usd2(amount);
-      $('cp-with-taxes').textContent=usd2(taxes);
-      $('cp-with-penalty').textContent=usd2(penalty);
-      $('cp-with-cost').textContent=usd2(taxes+penalty);
-      $('cp-with-assumptions').textContent=exception?'Selected exception removes the estimated 10% early distribution additional tax. Ordinary income taxes still apply as entered. Confirm eligibility with your plan administrator and tax professional.':'Assumes an early withdrawal before age 59½ without an exception. The default 10% additional tax plus entered income tax rates is used; actual tax liability may differ.';
-      displayError(2,null);$('cp-result-2').hidden=false;
-    }catch(e){displayError(2,e.message);}
-  }
-  function simulateMatch(salary,rate,deferralCap,r1,l1,r2,l2){
-    const paycheck=salary/12,eligiblePaycheck=Math.min(salary,LIMIT.compensation)/12,annualCap=Math.min(salary,LIMIT.annual),maxCatchup=Math.max(0,deferralCap-LIMIT.basic);
-    let employee=0,employer=0,regular=0,paychecks=0;
-    for(let m=0;m<12;m++){
-      const requested=Math.max(0,Math.min(paycheck*rate/100,deferralCap-employee));
-      const allowedRegular=Math.max(0,Math.min(requested,annualCap-regular-employer));
-      const allowedCatchup=Math.max(0,Math.min(requested-allowedRegular,maxCatchup-(employee-regular)));
-      const deposited=allowedRegular+allowedCatchup;
-      const rawMatch=employerTier2(paycheck,deposited,r1,l1,r2,l2,eligiblePaycheck);
-      const given=Math.max(0,Math.min(rawMatch,annualCap-regular-allowedRegular-employer));
-      if(deposited>0.005)paychecks++;
-      employee+=deposited;regular+=allowedRegular;employer+=given;
-    }
-    return {rate,employee,employer,paychecks};
-  }
-  function calcMatch(){
-    const f=document.forms.f401k3;
-    try{
-      const age=field(f,'age',18,99),salary=field(f,'income',.01,100000000),r1=field(f,'ematch',0,200),l1=field(f,'ematchend',0,100),r2=field(f,'ematch2',0,200),l2=field(f,'ematchend2',0,100);
-      if(l2<l1) throw new Error('Employer match 2 limit must not be less than employer match 1 limit.');
-      const cap=deferralLimit(age,1),minimum=r2>0?l2:r1>0?l1:0,highest=Math.min(100,cap/salary*100);
-      const feasible=minimum<=highest+1e-8;
-      let best=simulateMatch(salary,feasible?minimum:0,cap,r1,l1,r2,l2),bestRate=best.rate;
-      if(!feasible){for(let i=0;i<=2000;i++){
-        const val=simulateMatch(salary,i/20,cap,r1,l1,r2,l2);
-        if(val.employer>best.employer+.005 || (Math.abs(val.employer-best.employer)<.005 && val.rate<bestRate)) {best=val;bestRate=val.rate;}
-      }}
-      const rates=[0,minimum,Math.min(100,(minimum+highest)/2),highest,Math.min(100,highest+5),bestRate];
-      const scenarios=[...new Set(rates.filter(x=>x>=0&&x<=100).map(x=>x.toFixed(2)))].map(Number).sort((a,b)=>a-b).map(x=>simulateMatch(salary,x,cap,r1,l1,r2,l2));
-      $('cp-match-maximum').textContent=usd2(best.employer);
-      $('cp-match-min').textContent=feasible?pct(minimum):'Not possible at this salary';
-      $('cp-match-max').textContent=pct(highest);
-      $('cp-match-recommended').textContent=pct(bestRate);
-      $('cp-match-cap').textContent=usd(cap);
-      $('cp-match-rows').innerHTML=scenarios.map(s=>`<tr><td>${pct(s.rate)}</td><td>${usd2(s.employee)}</td><td>${usd2(s.employer)}</td><td>${s.paychecks} of 12</td></tr>`).join('');
-      $('cp-match-assumptions').textContent=`Uses 2026 IRS contribution and compensation limits, monthly payroll contributions, and no year-end employer true-up. Second employer match tier applies to salary contributions above ${pct(l1)} through ${pct(l2)}. ${feasible?'For a full match each paycheck, contribute between '+pct(minimum)+' and '+pct(highest)+' of salary, if your plan permits.':'The match limit cannot be captured throughout the year under the annual employee deferral limit; shown recommendation is an approximate maximum.'}`;
-      displayError(3,null);$('cp-result-3').hidden=false;
-    }catch(e){displayError(3,e.message);}
-  }
-  // Preserve original Calculate and Clear controls and layout; only replace their behavior.
-  [[document.forms.f401k1,calcRetirement],[document.forms.f401k2,calcWithdrawal],[document.forms.f401k3,calcMatch]].forEach(([f,fn])=>{
-    f.addEventListener('submit',e=>{e.preventDefault();fn();});
-  });
-  window.clearForm=function(f){
-    for(const control of f.querySelectorAll('input[type="text"]')) control.value='';
-    for(const control of f.querySelectorAll('input[type="radio"]')) control.checked=control.defaultChecked;
-    const n=f.name==='f401k1'?1:f.name==='f401k2'?2:3;
-    $('cp-result-'+n).hidden=true;$('cp-error-'+n).hidden=true;
-    if(n===1) yearly=[];
-    if(n===2) toggleRule55();
+  const main = document.forms.namedItem('f401k1');
+  const early = document.forms.namedItem('f401k2');
+  const match = document.forms.namedItem('f401k3');
+  if (!main || !early || !match) return;
+
+  const money = value => '$' + Math.round(value).toLocaleString('en-US');
+  const moneyDec = value => '$' + value.toLocaleString('en-US', {minimumFractionDigits:2,maximumFractionDigits:2});
+  const percentage = value => (Math.round(value * 100) / 100).toLocaleString('en-US', {maximumFractionDigits:2}) + '%';
+  const num = (form, name) => {
+    const v = String(form.elements.namedItem(name).value || '').replace(/[$,%\s]/g,'');
+    if (v.trim() === '' || !Number.isFinite(Number(v))) throw new Error('Please enter a valid number for ' + name + '.');
+    return Number(v);
   };
-  function toggleRule55(){ $('is55plusdiv').style.display=radio(document.forms.f401k2,'isemployed')==='n'?'block':'none'; }
-  document.forms.f401k2.querySelectorAll('input[name="isemployed"]').forEach(el=>el.addEventListener('change',toggleRule55));
-  $('cp-export-csv').addEventListener('click',()=>{
-    if(!yearly.length) return;
-    const header=['Age','Salary','Starting Balance','Employee Contribution','Employer Contribution','Investment Growth','Ending Balance'];
-    const table=[header,...yearly.map(r=>[r.age,r.salary.toFixed(2),r.start.toFixed(2),r.employee.toFixed(2),r.employer.toFixed(2),r.growth.toFixed(2),r.end.toFixed(2)])];
-    const csv=table.map(r=>r.map(s=>'"'+String(s).replace(/"/g,'""')+'"').join(',')).join('\r\n');
-    const url=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8;'}));
-    const a=document.createElement('a');a.href=url;a.download='401k-retirement-yearly-results.csv';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
+  const show = (id, html) => {
+    const el = document.getElementById(id);
+    el.innerHTML = html;
+    el.hidden = false;
+  };
+  const error = (target, message) => show(target, '<div class="k401-error" role="alert">' + message.replace(/[<>&]/g, '') + '</div>');
+  const clean = form => {
+    form.querySelectorAll('input[type="text"]').forEach(el => el.value = '');
+    form.querySelectorAll('input[type="radio"]').forEach(el => {el.checked = el.defaultChecked;});
+    for (const el of form.querySelectorAll('input[type="hidden"]')) el.value = el.defaultValue;
+  };
+  const formatTick = v => v >= 1e6 ? ((v / 1e6).toFixed(v % 1e6 ? 1 : 0) + 'M') : v >= 1e3 ? ((v / 1e3).toFixed(v % 1e3 ? 0 : 0) + 'K') : String(v);
+  const checked = (form, name) => form.querySelector(`input[name="${name}"]:checked`)?.value || 'n';
+  const row = (label, value) => `<tr><td>${label}</td><td style="text-align:right;white-space:nowrap">${value}</td></tr>`;
+  const duration = n => Math.max(1,Math.round(n));
+
+  // 2026 IRS deferral base: $24,500, plus age-50 catch-up ($8,000),
+  // or age-60 through age-63 catch-up ($11,250). Future COLA is an estimate.
+  function deferralLimit(age, year, inflation) {
+    const adjustment = Math.pow(1 + Math.max(-.25, inflation) / 100, year);
+    const base = Math.round(24500 * adjustment / 500) * 500;
+    const extra = age >= 60 && age <= 63 ? 11250 : age >= 50 ? 8000 : 0;
+    return base + Math.round(extra * adjustment / 500) * 500;
+  }
+
+  // Reference screenshot calculation: grow existing balance by r annually,
+  // credit each year's employee+employer contribution at mid-year (r/2).
+  function project(p) {
+    const data = [{age:p.age, balance:p.balance, employee:p.balance, employer:0, gains:0, salary:p.salary, newEmployee:0, newEmployer:0}];
+    let balance = p.balance, salary = p.salary, employee = p.balance, employer = 0;
+    let ownTotal = 0;
+    for (let y = 0; y < p.retire - p.age; y++) {
+      const age = p.age + y;
+      const limit = p.useLimit ? deferralLimit(age, y, p.inflation) : Infinity;
+      const own = Math.min(salary * p.contrib / 100, limit, salary);
+      const compMatch = salary * Math.min(p.contrib / 100, p.matchLimit / 100, own / Math.max(1,salary)) * p.matchRate / 100;
+      const overallLimit = p.useLimit ? (72000 * Math.pow(1 + Math.max(-.25,p.inflation) / 100,y)) : Infinity;
+      const addMatch = Math.max(0, Math.min(compMatch, overallLimit - own));
+      balance = balance * (1 + p.rate / 100) + (own + addMatch) * (1 + p.rate / 200);
+      ownTotal += own;
+      employee += own;
+      employer += addMatch;
+      const gains = balance - employee - employer;
+      data.push({age:age+1, balance, employee, employer, gains, salary, newEmployee:own, newEmployer:addMatch});
+      salary *= (1 + p.raise/100);
+    }
+    return {balance, employee, employer, ownTotal, gains:balance-employee-employer, data};
+  }
+
+  function chartSVG(data) {
+    const w=480,h=220,left=53,right=13,top=32,bottom=30;
+    const pw=w-left-right,ph=h-top-bottom;
+    const max=Math.max(1,...data.map(v=>v.balance));
+    const pow=Math.pow(10, Math.floor(Math.log10(max/4)));
+    const step=Math.max(pow, Math.ceil(max/4/pow)*pow);
+    const ceiling=step*4;
+    let el = `<svg class="k401-bar-chart" role="img" aria-label="Projected 401(k) balance by age, split into employee contributions, employer match and investment earnings" viewBox="0 0 ${w} ${h}" xmlns="http://www.w3.org/2000/svg">`;
+    el += `<g font-family="Arial,sans-serif" font-size="10" fill="#444"><rect x="66" y="6" width="10" height="9" fill="#368bd1"/><text x="80" y="14">Employee contributions</text><rect x="243" y="6" width="10" height="9" fill="#86b942"/><text x="257" y="14">Employer match</text><rect x="372" y="6" width="10" height="9" fill="#b62827"/><text x="386" y="14">Earnings</text></g>`;
+    for(let i=0;i<=4;i++) {
+      const y=top+ph-(i/4)*ph;
+      el+=`<line x1="${left}" x2="${w-right}" y1="${y}" y2="${y}" stroke="#d0d0d0" stroke-width="1"/><text x="${left-6}" y="${y+4}" text-anchor="end" font-size="11" fill="#555">${formatTick(i*step)}</text>`;
+    }
+    const cols=data.length-1;
+    const bw=Math.max(1,Math.min(9,pw/Math.max(cols,1)*.70));
+    data.slice(1).forEach((d,i)=>{
+      const x=left+((i+.5)/cols)*pw-bw/2;
+      let y=top+ph;
+      [[Math.max(0,d.employee),'#368bd1'],[Math.max(0,d.employer),'#86b942'],[Math.max(0,d.gains),'#b62827']].forEach(pair=>{
+        const ht=pair[0]/ceiling*ph;
+        y-=ht;
+        el+=`<rect x="${x.toFixed(2)}" y="${y.toFixed(2)}" width="${bw.toFixed(2)}" height="${Math.max(0,ht).toFixed(2)}" fill="${pair[1]}"/>`;
+      });
+    });
+    const ticks=[0,.25,.5,.75,1];
+    ticks.forEach(f=>{
+      const age=Math.round(data[0].age+f*cols);
+      el+=`<text x="${(left+f*pw).toFixed(1)}" y="${h-15}" text-anchor="middle" font-size="11" fill="#555">${age}</text>`;
+    });
+    el+=`<text x="${(left+pw/2).toFixed(1)}" y="${h-1}" text-anchor="middle" font-size="11" fill="#555">Age</text></svg>`;
+    return el;
+  }
+
+  function withdrawModel(balance, retire, life, annualRate, annualInflation) {
+    const years=duration(life-retire), months=years*12;
+    const i=Math.pow(1+annualRate/100,1/12)-1;
+    const g=1+annualInflation/100;
+    // Payment at the end of every month. Each calendar year gets a COLA raise.
+    let pvFactor=0, fixedFactor=0;
+    for (let m=1;m<=months;m++) {
+      const factor=Math.pow(1+i,-m);
+      fixedFactor+=factor;
+      pvFactor+=factor*Math.pow(g,Math.floor((m-1)/12));
+    }
+    const firstMonthly=balance/pvFactor;
+    const fixedMonthly=balance/fixedFactor;
+    const annualPay=(annualRate === 0) ? balance/years : (balance*(annualRate/100)/(1-Math.pow(1+annualRate/100,-years)));
+    // Yearly withdrawal schedule for purchasing-power-adjusted payments.
+    let remain=balance;
+    const payments=[];
+    for(let y=0;y<years;y++) {
+      const starting=remain, monthly=firstMonthly*Math.pow(g,y);
+      for(let j=0;j<12;j++) remain=Math.max(0, remain*(1+i)-monthly);
+      payments.push({age:retire+y, first:starting, monthly, annual:monthly*12, ending:remain});
+    }
+    return {years, firstMonthly,fixedMonthly,annualPay,payments};
+  }
+
+  function mainResult(p,proj) {
+    const present=proj.balance / Math.pow(1+p.inflation/100, p.retire-p.age);
+    const payout=withdrawModel(proj.balance,p.retire,p.life,p.rate,p.inflation);
+    const currentPayout=payout.firstMonthly/Math.pow(1+p.inflation/100,p.retire-p.age);
+    const fixedStart=payout.fixedMonthly/Math.pow(1+p.inflation/100,p.retire-p.age);
+    const fixedEnd=payout.fixedMonthly/Math.pow(1+p.inflation/100,p.life-p.age);
+    const schedule = proj.data.map(d=>`<tr><td>${d.age}</td><td>${money(d.salary)}</td><td>${money(d.newEmployee)}</td><td>${money(d.newEmployer)}</td><td>${money(d.balance)}</td></tr>`).join('');
+    const retirementSchedule = payout.payments.map(d=>`<tr><td>${d.age}</td><td>${money(d.first)}</td><td>${money(d.monthly)}</td><td>${money(d.annual)}</td><td>${money(d.ending)}</td></tr>`).join('');
+    return `<div class="cp-c-h2result k401-result-title">Result <button class="k401-print" type="button" title="Print results" aria-label="Print results">▣</button></div>
+    <p class="k401-lead">At the retirement age of <b>${p.retire}</b>, the 401(k) balance will be <strong class="k401-green">${money(proj.balance)}</strong>, which is equivalent to <strong class="k401-green">${money(present)}</strong> in purchasing power today.</p>
+    <div class="k401-result-grid"><div>${chartSVG(proj.data)}</div><div><table class="cp-c-cinfoT k401-breakdown"><tbody>
+    ${row('<b>Balance at '+p.retire+':</b>','<b>'+money(proj.balance)+'</b>')}
+    ${row('<b>Total contributions:</b>','<b>'+money(proj.employee+proj.employer)+'</b>')}
+    ${row('&nbsp;&nbsp;Employee contributions:',money(proj.ownTotal))}
+    ${row('&nbsp;&nbsp;Employer match:',money(proj.employer))}
+    ${row('<b>Investment earnings:</b>','<b>'+money(proj.gains)+'</b>')}
+    </tbody></table><div class="k401-subtle">Includes ${money(p.balance)} starting balance.</div></div></div>
+    <h3 class="k401-withdraw-heading">Withdrawal</h3>
+    <p>Withdrawing at <b>fixed purchasing power</b> annually, <strong class="k401-green">${money(payout.firstMonthly)} per month</strong> can be withdrawn from age ${p.retire} and increase ${percentage(p.inflation)} per year until ${p.life}. This is equivalent to <strong class="k401-green">${money(currentPayout)}</strong> in purchasing power today.</p>
+    <p>Withdrawing at <b>fixed amount monthly</b>, <strong class="k401-green">${money(payout.fixedMonthly)} per month</strong> can be withdrawn from age ${p.retire} until ${p.life}. At ${p.retire}, it is equivalent to ${money(fixedStart)} in purchasing power today, and at ${p.life}, it is equivalent to ${money(fixedEnd)}.</p>
+    <p>Withdrawing at <b>fixed amount annually</b>, <strong class="k401-green">${money(payout.annualPay)} per year</strong> can be withdrawn in retirement until age ${p.life}.</p>
+    <details class="k401-schedule"><summary>+ Show Schedule</summary>
+      <h4>401(k) accumulation schedule</h4><div class="k401-table-scroll"><table class="cp-c-cinfoT k401-year-table"><thead><tr><th>Age</th><th>Salary</th><th>Employee</th><th>Employer</th><th>Year-end balance</th></tr></thead><tbody>${schedule}</tbody></table></div>
+      <h4>Inflation-adjusted withdrawal schedule</h4><div class="k401-table-scroll"><table class="cp-c-cinfoT k401-year-table"><thead><tr><th>Age</th><th>Starting balance</th><th>Monthly payout</th><th>Annual payout</th><th>Ending balance</th></tr></thead><tbody>${retirementSchedule}</tbody></table></div>
+    </details>
+    <p class="k401-note">Estimates assume a constant annual return, contributions made around midyear, and future IRS limits adjusted approximately for inflation. Actual investment results, payroll timing, taxes and plan rules may differ.</p>`;
+  }
+
+  main.addEventListener('submit',event=>{
+    event.preventDefault();
+    const target='k401-result';
+    try {
+      const p={
+        age:num(main,'age'),salary:num(main,'income'),balance:num(main,'balance'),
+        contrib:num(main,'contribution'),matchRate:num(main,'ematch'),matchLimit:num(main,'ematchend'),
+        retire:num(main,'retirementage'),life:num(main,'lifeexpectancy'),
+        raise:num(main,'incomeincrease'),rate:num(main,'rate'),inflation:num(main,'inflation'),
+        useLimit:main.elements.namedItem('hideirslimit').value!=='1'
+      };
+      if(!Number.isInteger(p.age)||p.age<0||p.age>100) throw new Error('Current age must be a whole number from 0 to 100.');
+      if(!Number.isInteger(p.retire)||p.retire<=p.age||p.retire>110) throw new Error('Retirement age must be a whole number greater than your current age (up to 110).');
+      if(!Number.isInteger(p.life)||p.life<=p.retire||p.life>120) throw new Error('Life expectancy must be greater than retirement age (up to 120).');
+      if(p.salary<0||p.balance<0) throw new Error('Salary and current balance cannot be negative.');
+      if(p.contrib<0||p.contrib>100||p.matchRate<0||p.matchRate>1000||p.matchLimit<0||p.matchLimit>100) throw new Error('Contribution and match percentages are out of range.');
+      if(p.rate<=-100||p.rate>100||p.raise<=-100||p.raise>100||p.inflation<=-100||p.inflation>100) throw new Error('Expected return, raise and inflation must be greater than -100% and at most 100%.');
+      const proj=project(p);
+      if(!Number.isFinite(proj.balance)||proj.balance<0) throw new Error('The entered values lead to an invalid projection. Please adjust them.');
+      show(target, mainResult(p,proj));
+      document.getElementById(target).querySelector('.k401-print').addEventListener('click',()=>window.print());
+      document.getElementById(target).scrollIntoView({behavior:'smooth',block:'start'});
+    } catch(ex) {error(target,ex.message);}
   });
-  toggleRule55();
+
+  early.addEventListener('submit',event=>{
+    event.preventDefault();
+    const target='k401-early-result';
+    try {
+      const amount=num(early,'withdrawamt'), fed=num(early,'fedtax'),state=num(early,'statetax'),local=num(early,'localtax');
+      if(amount<0 || [fed,state,local].some(v=>v<0||v>100)) throw new Error('Enter a nonnegative withdrawal and tax rates from 0% to 100%.');
+      const eligible=(checked(early,'isemployed')==='n'&&checked(early,'is55plus')==='y')||checked(early,'isdisabled')==='y'||checked(early,'isexempt')==='y';
+      const penalty=eligible ? 0 : amount*.10;
+      const tax=amount*(fed+state+local)/100;
+      const takeHome=amount-tax-penalty;
+      show(target,`<div class="cp-c-h2result k401-result-title">Result</div>
+      <p class="k401-lead">From an early 401(k) withdrawal of <b>${money(amount)}</b>, the estimated amount received is <strong class="k401-green">${money(takeHome)}</strong>.</p>
+      <table class="cp-c-cinfoT k401-tblcompact"><tbody>
+      ${row('Withdrawal amount',money(amount))}${row('Federal income tax',money(amount*fed/100))}${row('State income tax',money(amount*state/100))}${row('Local income tax',money(amount*local/100))}${row(eligible?'Early withdrawal penalty (exempt)':'Early withdrawal penalty (10%)',money(penalty))}${row('<b>Estimated amount received</b>','<b>'+money(takeHome)+'</b>')}
+      </tbody></table><p class="k401-note">Taxes are estimated using the entered flat rates. A qualifying exemption can remove the additional 10% penalty, but not the ordinary taxes. Actual eligibility depends on IRS rules.</p>`);
+      document.getElementById(target).scrollIntoView({behavior:'smooth',block:'start'});
+    } catch(ex) {error(target,ex.message);}
+  });
+
+  match.addEventListener('submit',event=>{
+    event.preventDefault();
+    const target='k401-match-result';
+    try {
+      const age=num(match,'age'),salary=num(match,'income');
+      const match1=num(match,'ematch')/100, limit1=num(match,'ematchend')/100;
+      const match2=num(match,'ematch2')/100, limit2=num(match,'ematchend2')/100;
+      if (!Number.isInteger(age)||age<0||age>100||salary<=0) throw new Error('Enter a valid age (0–100) and positive annual salary.');
+      if([match1,limit1,match2,limit2].some(x=>x<0||x>10)||limit1>1||limit2>1) throw new Error('Enter valid matching percentages and limits.');
+      const threshold = Math.max((match1>0 ? limit1 : 0),(match2>0 ? limit2 : 0));
+      const firstMatched = Math.min(threshold,limit1)*match1;
+      const secondMatched = Math.max(0,Math.min(threshold,limit2)-Math.min(limit1,limit2))*match2;
+      const maxEmployer = salary*(firstMatched+secondMatched);
+      const annualMax = deferralLimit(age,0,0);
+      const upper = Math.min(1, annualMax/salary);
+      const possible = upper>=threshold;
+      show(target,`<div class="cp-c-h2result k401-result-title">Result</div>
+      <p class="k401-lead">${possible ? `To maximize the employer match, contribute <strong class="k401-green">${percentage(threshold*100)}</strong> to <strong class="k401-green">${percentage(upper*100)}</strong> of annual salary.` : `The employer's full matching threshold is <strong class="k401-green">${percentage(threshold*100)}</strong>, but the estimated employee deferral limit permits at most <strong class="k401-green">${percentage(upper*100)}</strong> at this salary.`}</p>
+      <table class="cp-c-cinfoT k401-tblcompact"><tbody>${row('Full-match employee contribution rate',percentage(threshold*100))}${row('Employee contribution at full-match threshold',money(salary*threshold))}${row('Potential employer match (full year)',money(maxEmployer))}${row('2026 employee deferral limit (age-adjusted)',money(annualMax))}${row('Maximum employee contribution rate',percentage(upper*100))}</tbody></table>
+      <p class="k401-note">Uses two cumulative matching tiers: ${percentage(match1*100)} up to ${percentage(limit1*100)} of pay, then ${percentage(match2*100)} on the band from ${percentage(limit1*100)} to ${percentage(limit2*100)}. Assumes matching occurs throughout the year; employer rules may differ.</p>`);
+      document.getElementById(target).scrollIntoView({behavior:'smooth',block:'start'});
+    } catch(ex) {error(target,ex.message);}
+  });
+
+  document.querySelectorAll('[data-k401-clear]').forEach(button=>{
+    button.addEventListener('click',()=>{
+      const form=button.closest('form');
+      clean(form);
+      const id=button.dataset.k401Clear;
+      const el=document.getElementById(id);
+      if(el) {el.hidden=true;el.innerHTML='';}
+      if (form===early) document.getElementById('cp-i-is55plusdiv').style.display='none';
+    });
+  });
+
+  document.getElementById('cp-i-isemployed1')?.addEventListener('change',()=>document.getElementById('cp-i-is55plusdiv').style.display='none');
+  document.getElementById('cp-i-isemployed2')?.addEventListener('change',()=>document.getElementById('cp-i-is55plusdiv').style.display='block');
+
+  // Keep the original currency field display but provide local formatting.
+  document.querySelectorAll('.cp-c-indollar').forEach(input=>{
+    const fmt=()=>{
+      const normalized=input.value.replace(/[$,\s]/g,'');
+      if(normalized.trim()!==''&&Number.isFinite(Number(normalized))) input.value=Number(normalized).toLocaleString('en-US',{maximumFractionDigits:2});
+    };
+    input.addEventListener('blur',fmt);fmt();
+  });
+
+  // Sidebar's search no longer depends on an unavailable third-party common.js.
+  window.calcSearch=()=>{
+    const input=document.getElementById('cp-i-calcSearchTerm');
+    const output=document.getElementById('cp-i-calcSearchOut');
+    if (!input||!output) return false;
+    const query=input.value.trim().toLowerCase();
+    if(query.length<2){output.replaceChildren();return false;}
+    const links=Array.from(document.querySelectorAll('#cp-i-occontent a'))
+      .filter(a=>a.textContent.toLowerCase().includes(query)).slice(0,10);
+    output.replaceChildren(...links.map(a=>{const div=document.createElement('div');const link=a.cloneNode(true);div.appendChild(link);return div;}));
+    return false;
+  };
 })();
-</script>
-</body>
+</script></body>
 
 <!-- Mirrored from https://www.calculator.net/401k-calculator.html by HTTrack Website Copier/3.x [XR&CO], Mon, 02 Nov 2026 06:10:49 GMT -->
 </html>
