@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>Horsepower Calculator | CalcPro</title><meta content="Calculate horsepower from force, distance and time, or convert W, kW, mechanical, metric, electrical and boiler horsepower, and BTU/h." name="description"/><link href="template-style.css" rel="stylesheet"/><!--TOOL CSS INSERT HERE: Paste only calculator-specific CSS here. Use unique class/id prefixes per tool, e.g. bmi-, loan-, age-. Keep header, sidebar and article CSS in style.css.--><style>
+/* Horsepower-specific styles: scoped to prevent collisions with CalcPro global styles. */
+.calcpro-hp{--hp-navy:#003366;--hp-blue:#336699;--hp-green:#4b8527;--hp-border:#c3cbd2;--hp-grey:#ededed;max-width:100%;color:#172533;font:15px/1.45 Arial,Helvetica,sans-serif}
+.calcpro-hp *, .calcpro-hp *::before, .calcpro-hp *::after{box-sizing:border-box}
+.calcpro-hp [hidden]{display:none!important}
+.calcpro-hp .calcpro-hp-intro-banner{width:min(100%,620px);padding:8px 12px;background:var(--hp-blue);color:#fff;font-size:14px;margin:3px 0 18px;text-align:center}
+.calcpro-hp .calcpro-hp-heading{font-size:20px;color:var(--hp-navy);line-height:1.3;margin:17px 0 6px;font-weight:700}
+.calcpro-hp .calcpro-hp-formula{display:flex;flex-wrap:wrap;align-items:center;gap:5px;margin:4px 0 10px}
+.calcpro-hp .calcpro-hp-fraction{display:inline-flex;flex-direction:column;text-align:center;vertical-align:middle;line-height:1.15;font-size:15px}
+.calcpro-hp .calcpro-hp-fraction span:first-child{border-bottom:1px solid currentColor;padding:0 4px 2px}
+.calcpro-hp .calcpro-hp-fraction span:last-child{padding-top:2px}
+.calcpro-hp .calcpro-hp-panel{display:table;max-width:100%;background:var(--hp-grey);border:1px solid #c5c5c5;padding:9px 10px 10px;margin:8px 0 24px}
+.calcpro-hp .calcpro-hp-def-grid{display:grid;grid-template-columns:94px minmax(86px,100px) minmax(130px,174px);align-items:center;gap:5px 5px}
+.calcpro-hp .calcpro-hp-label{font-weight:700;font-size:14px;text-align:right;white-space:nowrap}
+.calcpro-hp .calcpro-hp-input,.calcpro-hp .calcpro-hp-select{height:34px;max-width:100%;min-width:0;border:1px solid #376a9d;border-radius:2px;background:#fff;color:#16242d;font:15px Arial,Helvetica,sans-serif;padding:4px 6px}
+.calcpro-hp .calcpro-hp-input{width:100%}
+.calcpro-hp .calcpro-hp-select{width:100%}
+.calcpro-hp .calcpro-hp-input:focus-visible,.calcpro-hp .calcpro-hp-select:focus-visible,.calcpro-hp button:focus-visible{outline:2px solid #1875ad;outline-offset:2px}
+.calcpro-hp [aria-invalid="true"]{border-color:#ae2626!important;outline:1px solid #ae2626}
+.calcpro-hp .calcpro-hp-actions{display:flex;justify-content:center;gap:5px;align-items:center;margin-top:10px}
+.calcpro-hp button{font:700 14px Arial,Helvetica,sans-serif;cursor:pointer;border:0;line-height:1.1}
+.calcpro-hp .calcpro-hp-calculate{background:var(--hp-green);color:#fff;min-height:36px;padding:7px 11px 7px 15px;display:inline-flex;gap:12px;align-items:center}
+.calcpro-hp .calcpro-hp-calculate:hover{background:#376e1a}
+.calcpro-hp .calcpro-hp-calculate-icon{font-size:11px;line-height:20px;border-radius:50%;background:#8ebc78;color:white;display:inline-flex;align-items:center;justify-content:center;width:19px;height:19px;padding-left:2px}
+.calcpro-hp .calcpro-hp-clear{background:#a5a5a5;color:#fff;min-height:36px;padding:9px 12px;font-weight:400}
+.calcpro-hp .calcpro-hp-clear:hover{background:#888}
+.calcpro-hp .calcpro-hp-converter-note{margin:1px 0 10px}
+.calcpro-hp .calcpro-hp-convert-panel{width:min(100%,520px);display:block}
+.calcpro-hp .calcpro-hp-convert-grid{display:grid;grid-template-columns:minmax(72px,0.75fr) minmax(145px,1.8fr) minmax(135px,1.5fr);gap:6px;align-items:end}
+.calcpro-hp .calcpro-hp-convert-field{display:flex;flex-direction:column;gap:5px;min-width:0}
+.calcpro-hp .calcpro-hp-convert-field label{font-weight:700;font-size:13px;white-space:nowrap}
+.calcpro-hp .calcpro-hp-result{width:min(100%,620px);margin:10px 0 18px}
+.calcpro-hp .calcpro-hp-result-head{background:var(--hp-green);color:#fff;padding:6px 9px;font-size:17px;line-height:1.3;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.calcpro-hp .calcpro-hp-result-body{padding:9px 0 3px}
+.calcpro-hp .calcpro-hp-result-main{font-size:20px;line-height:1.4;margin:0 0 5px}
+.calcpro-hp .calcpro-hp-result-main strong{color:green;font-weight:700}
+.calcpro-hp .calcpro-hp-result-caption{margin:4px 0 0}
+.calcpro-hp .calcpro-hp-equivalents{list-style:none;padding:0 0 0 10px;margin:1px 0 3px;font-size:14px}
+.calcpro-hp .calcpro-hp-save{background:transparent;border:1px solid rgba(255,255,255,.8);border-radius:3px;color:#fff;font-size:12px;padding:3px 8px;white-space:nowrap}
+.calcpro-hp .calcpro-hp-save:hover{background:rgba(255,255,255,.16)}
+.calcpro-hp .calcpro-hp-msg{color:#a22222;font-size:13px;margin:5px 0 2px;font-weight:700}
+.calcpro-hp .calcpro-hp-save-status{color:#286318;font-size:13px;margin:4px 0}
+.calcpro-hp .calcpro-hp-input::-webkit-inner-spin-button,.calcpro-hp .calcpro-hp-input::-webkit-outer-spin-button{opacity:0}
+@media(max-width:500px){.calcpro-hp{font-size:14px}.calcpro-hp .calcpro-hp-heading{font-size:18px}.calcpro-hp .calcpro-hp-panel{display:block;width:100%;padding:10px}.calcpro-hp .calcpro-hp-def-grid{grid-template-columns:75px minmax(72px,.8fr) minmax(112px,1.3fr);gap:5px}.calcpro-hp .calcpro-hp-input,.calcpro-hp .calcpro-hp-select{font-size:14px}.calcpro-hp .calcpro-hp-convert-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.calcpro-hp .calcpro-hp-convert-field:first-child{grid-column:1/-1}.calcpro-hp .calcpro-hp-result-main{font-size:18px}}
+@media(max-width:350px){.calcpro-hp .calcpro-hp-def-grid{grid-template-columns:70px minmax(65px,.75fr) minmax(90px,1fr)}.calcpro-hp .calcpro-hp-input,.calcpro-hp .calcpro-hp-select{padding:3px;font-size:13px}.calcpro-hp .calcpro-hp-convert-grid{grid-template-columns:1fr}}
+@media print{.calcpro-hp .calcpro-hp-actions,.calcpro-hp .calcpro-hp-save,.calcpro-hp .calcpro-hp-intro-banner{display:none!important}.calcpro-hp .calcpro-hp-result{break-inside:avoid}}
+</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="other-calculator.html">Other Calculators</a> / Horsepower Calculator</nav><h1 class="cp-page-title">Horsepower Calculator</h1><p class="cp-intro">Horsepower describes the rate at which work is performed. Calculate power from force, distance, and time, or convert among common power units. For estimates based on vehicle performance, see the <a href="https://www.calculator.net/engine-horsepower-calculator.html">Engine Horsepower Calculator</a>.</p><section aria-label="Calculator" class="cp-tool-area">
+<div class="calcpro-hp" id="calcpro-hp-root">
+<div class="calcpro-hp-intro-banner" id="calcpro-hp-intro-banner">Modify the values and click Calculate to use either calculator.</div>
+<section aria-labelledby="calcpro-hp-def-heading" class="calcpro-hp-section">
+<h2 class="calcpro-hp-heading" id="calcpro-hp-def-heading">Horsepower Calculation Based on Definition</h2>
+<p class="calcpro-hp-formula">By definition  Power = force × <span class="calcpro-hp-fraction"><span>distance</span><span>time</span></span></p>
+<div aria-atomic="true" aria-live="polite" class="calcpro-hp-result" hidden="" id="calcpro-hp-def-result" role="status">
+<div class="calcpro-hp-result-head"><span>Result</span><button class="calcpro-hp-save" id="calcpro-hp-save-definition" title="Save this result to a text file" type="button">▣ Save</button></div>
+<div class="calcpro-hp-result-body">
+<p class="calcpro-hp-result-main">The power is <strong id="calcpro-hp-watts-value"></strong>.</p>
+<p class="calcpro-hp-result-caption">It is equivalent to:</p>
+<ul class="calcpro-hp-equivalents">
+<li><span id="calcpro-hp-mech-value"></span> mechanical horsepowers</li>
+<li><span id="calcpro-hp-metric-value"></span> metric horsepowers</li>
+<li><span id="calcpro-hp-electric-value"></span> electrical horsepowers</li>
+<li><span id="calcpro-hp-boiler-value"></span> boiler horsepowers</li>
+</ul>
+<p aria-live="polite" class="calcpro-hp-save-status" hidden="" id="calcpro-hp-save-status"></p>
+</div>
+</div>
+<p class="calcpro-hp-msg" hidden="" id="calcpro-hp-def-error" role="alert"></p>
+<form class="calcpro-hp-panel" id="calcpro-hp-def-form" novalidate="">
+<div class="calcpro-hp-def-grid">
+<label class="calcpro-hp-label" for="calcpro-hp-force">Force:</label>
+<input class="calcpro-hp-input" id="calcpro-hp-force" inputmode="decimal" min="0" name="force" required="" step="any" type="number" value="10"/>
+<select aria-label="Force unit" class="calcpro-hp-select" id="calcpro-hp-forceunit" name="forceunit"><option selected="" value="newton">newton</option><option value="kilonewton">kilonewton</option><option value="pound-force">pound-force</option><option value="kilogram-force">kilogram-force</option></select>
+<label class="calcpro-hp-label" for="calcpro-hp-distance">Distance:</label>
+<input class="calcpro-hp-input" id="calcpro-hp-distance" inputmode="decimal" min="0" name="distance" required="" step="any" type="number" value="3"/>
+<select aria-label="Distance unit" class="calcpro-hp-select" id="calcpro-hp-distanceunit" name="distanceunit"><option selected="" value="meter">meter</option><option value="kilometer">kilometer</option><option value="mile">mile</option><option value="yard">yard</option></select>
+<label class="calcpro-hp-label" for="calcpro-hp-time">Time:</label>
+<input class="calcpro-hp-input" id="calcpro-hp-time" inputmode="decimal" min="0" name="time" required="" step="any" type="number" value="2"/>
+<select aria-label="Time unit" class="calcpro-hp-select" id="calcpro-hp-timeunit" name="timeunit"><option selected="" value="second">second</option><option value="minute">minute</option><option value="hour">hour</option><option value="day">day</option></select>
+</div>
+<div class="calcpro-hp-actions"><button class="calcpro-hp-calculate" type="submit">Calculate <span aria-hidden="true" class="calcpro-hp-calculate-icon">▶</span></button><button class="calcpro-hp-clear" id="calcpro-hp-clear-def" type="button">Clear</button></div>
+</form>
+</section>
+<section aria-labelledby="calcpro-hp-con-heading" class="calcpro-hp-section">
+<h2 class="calcpro-hp-heading" id="calcpro-hp-con-heading">Horsepower Converter</h2>
+<p class="calcpro-hp-converter-note">Converts between different units of power.</p>
+<div aria-atomic="true" aria-live="polite" class="calcpro-hp-result" hidden="" id="calcpro-hp-con-result" role="status">
+<div class="calcpro-hp-result-head"><span>Result</span></div>
+<div class="calcpro-hp-result-body"><p class="calcpro-hp-result-main"><span id="calcpro-hp-con-source"></span> is equivalent to <strong id="calcpro-hp-con-value"></strong> <span id="calcpro-hp-con-target"></span>.</p></div>
+</div>
+<p class="calcpro-hp-msg" hidden="" id="calcpro-hp-con-error" role="alert"></p>
+<form class="calcpro-hp-panel calcpro-hp-convert-panel" id="calcpro-hp-con-form" novalidate="">
+<div class="calcpro-hp-convert-grid">
+<div class="calcpro-hp-convert-field"><label for="calcpro-hp-amount">Amount:</label><input class="calcpro-hp-input" id="calcpro-hp-amount" inputmode="decimal" name="convertamount" required="" step="any" type="number" value="1"/></div>
+<div class="calcpro-hp-convert-field"><label for="calcpro-hp-from">Convert From:</label><select class="calcpro-hp-select" id="calcpro-hp-from" name="convertfrom"><option value="Watt">Watt</option><option value="Kilowatt">Kilowatt</option><option selected="" value="Mechanical Horsepower">Mechanical Horsepower</option><option value="Metric Horsepower">Metric Horsepower</option><option value="Electrical Horsepower">Electrical Horsepower</option><option value="Boiler Horsepower">Boiler Horsepower</option><option value="BTU/h">BTU/h</option></select></div>
+<div class="calcpro-hp-convert-field"><label for="calcpro-hp-to">Convert To:</label><select class="calcpro-hp-select" id="calcpro-hp-to" name="convertto"><option selected="" value="Watt">Watt</option><option value="Kilowatt">Kilowatt</option><option value="Mechanical Horsepower">Mechanical Horsepower</option><option value="Metric Horsepower">Metric Horsepower</option><option value="Electrical Horsepower">Electrical Horsepower</option><option value="Boiler Horsepower">Boiler Horsepower</option><option value="BTU/h">BTU/h</option></select></div>
+</div>
+<div class="calcpro-hp-actions"><button class="calcpro-hp-calculate" type="submit">Calculate <span aria-hidden="true" class="calcpro-hp-calculate-icon">▶</span></button><button class="calcpro-hp-clear" id="calcpro-hp-clear-con" type="button">Clear</button></div>
+</form>
+</section>
+</div>
+</section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><!-- REPLACE these links with real related tools for each calculator; verify live slugs. --><a href="retirement-calculator.html">Retirement</a><a href="roth-ira-calculator.html">Roth IRA</a><a href="investment-calculator.html">Investment</a><a href="compound-interest-calculator.html">Compound Interest</a><a href="annuity-payout-calculator.html">Annuity Payout</a><a href="pension-calculator.html">Pension</a><a href="inflation-calculator.html">Inflation</a><a href="future-value-calculator.html">Future Value</a><a href="income-tax-calculator.html">Income Tax</a><a href="savings-calculator.html">Savings</a><a href="mortgage-calculator.html">Mortgage</a><a href="loan-calculator.html">Loan</a></div></section></aside><article class="cp-article">
+<h2>How to Use the Horsepower Calculator</h2>
+<p>Use the first calculator to find power from force, travel distance and elapsed time. Enter each measurement, choose its unit, then select <strong>Calculate</strong>. The result appears directly above the form in watts, followed by mechanical, metric, electrical and boiler horsepower equivalents.</p>
+<p>Use the second calculator for direct conversions. Enter the amount, choose the <strong>Convert From</strong> and <strong>Convert To</strong> units, and select <strong>Calculate</strong>. Each tool has its own <strong>Clear</strong> button. You can also save a calculated force–distance–time result as a text file.</p>
+<h2>Horsepower Formula</h2>
+<p>Power is the rate of doing work. When a constant force acts in the same direction as an object's displacement, work equals force multiplied by distance. Average power is:</p>
+<p><strong>Power (W) = Force (N) × Distance (m) ÷ Time (s)</strong></p>
+<p>The calculator first converts your force to newtons, distance to meters, and time to seconds, then applies the formula. If the force is at an angle to the displacement, its component along the displacement must be used rather than the full force. The formula calculates average power over the given interval, not necessarily peak engine output.</p>
+<h3>Worked Example</h3>
+<p>Suppose a constant force of 10 newtons moves an object 3 meters in 2 seconds. Its work is 10 × 3 = 30 joules, and its average power is 30 ÷ 2 = <strong>15 watts</strong>. This is approximately <strong>0.02012 mechanical horsepower</strong>.</p>
+<h2>Types of Horsepower and Power Units</h2>
+<p>Horsepower is not one universal power unit: its definition depends on the application and measurement tradition. A watt is one joule per second, and a kilowatt equals 1,000 watts. The table shows the conversion factors used by the calculator.</p>
+<div class="cp-table-scroll"><table class="cp-content-table"><thead><tr><th>Power unit</th><th>Watts per unit</th><th>Common use</th></tr></thead><tbody>
+<tr><td>Watt (W)</td><td>1</td><td>SI power measurement</td></tr>
+<tr><td>Kilowatt (kW)</td><td>1,000</td><td>Motors, equipment, electrical load</td></tr>
+<tr><td>Mechanical horsepower (hp)</td><td>745.6998716</td><td>Mechanical and engine power</td></tr>
+<tr><td>Metric horsepower (PS)</td><td>735.49875</td><td>Metric engine ratings</td></tr>
+<tr><td>Electrical horsepower</td><td>746</td><td>Electrical machines</td></tr>
+<tr><td>Boiler horsepower</td><td>9,809.5</td><td>Boiler capacity</td></tr>
+<tr><td>BTU per hour (BTU/h)</td><td>0.29307107</td><td>Heating and cooling power</td></tr>
+</tbody></table></div>
+<p class="cp-note">A BTU is a unit of <em>energy</em>; BTU per hour is a unit of <em>power</em>. The conversion tool correctly uses BTU/h, not BTU alone. Boiler horsepower is a conventional steam-generation unit whose watt equivalent is approximate.</p>
+<h2>Frequently Asked Questions</h2>
+<h3>How many watts are in one horsepower?</h3>
+<p>One mechanical horsepower equals approximately <strong>745.7 W</strong>. One metric horsepower is about <strong>735.5 W</strong>, so it is important to specify which horsepower definition is being used.</p>
+<h3>Does horsepower measure force, torque, or energy?</h3>
+<p>Horsepower measures <strong>power</strong>—energy transferred or work performed per unit time. Force is measured in newtons, torque in newton-meters, and energy or work in joules.</p>
+<h3>Can I enter kilonewtons, miles, and hours?</h3>
+<p>Yes. Each input has its own unit selector. The calculator converts every measurement to SI units before evaluating the formula, so mixed-unit inputs are supported.</p>
+<h3>Why is the time required to be greater than zero?</h3>
+<p>Power is work divided by time. Zero elapsed time would cause division by zero and does not produce a finite power result. Negative times are also rejected.</p>
+<h3>Can I use this to estimate a vehicle's engine horsepower?</h3>
+<p>This formula gives average mechanical power when force and travel distance are known. Estimating a vehicle engine's rated output can require speed, wheel force, drivetrain losses, or a dynamometer measurement. For vehicle-specific estimates, a dedicated <a href="https://www.calculator.net/engine-horsepower-calculator.html" rel="noopener noreferrer">engine horsepower calculator</a> may be more appropriate.</p>
+<h2>Sources and Conversion Definitions</h2>
+<p>Reference inputs and output arrangement: <a href="https://www.calculator.net/horsepower-calculator.html" rel="noopener noreferrer">Calculator.net Horsepower Calculator</a>. International unit definitions and standard conversions: <a href="https://www.nist.gov/pml/owm/metric-si/si-units" rel="noopener noreferrer">NIST SI Units</a> and <a href="https://www.nist.gov/pml/owm/metric-si/unit-conversion" rel="noopener noreferrer">NIST Unit Conversion</a>.</p>
+<p class="cp-page-footer">CalcPro — results are for informational and educational use. Choose consistent measurement conditions when comparing power ratings.</p>
+</article></main></div><script>
+(function () {
+  'use strict';
+  const root = document.getElementById('calcpro-hp-root');
+  if (!root) return;
+  const byId = id => root.querySelector('#' + id);
+  const forceUnits = Object.freeze({newton:1,kilonewton:1000,'pound-force':4.4482216152605,'kilogram-force':9.80665});
+  const distanceUnits = Object.freeze({meter:1,kilometer:1000,mile:1609.344,yard:0.9144});
+  const timeUnits = Object.freeze({second:1,minute:60,hour:3600,day:86400});
+  // SI watt values. Mechanical: 550 international ft·lbf/s. Metric: 75 kgf·m/s.
+  const powerUnits = Object.freeze({'Watt':1,'Kilowatt':1000,'Mechanical Horsepower':745.6998715822702,'Metric Horsepower':735.49875,'Electrical Horsepower':746,'Boiler Horsepower':9809.5,'BTU/h':0.2930710701722222});
+  const nf = (digits, min=0) => new Intl.NumberFormat('en-US',{useGrouping:true,maximumFractionDigits:digits,minimumFractionDigits:min});
+  const concise = n => {if(n===0) return '0'; if(Math.abs(n)>=1e14 || Math.abs(n)<1e-8) return n.toExponential(6);return nf(9).format(n)};
+  const horseFmt = n => {const a=Math.abs(n);if(a===0) return '0';if(a<1e-7 || a>=1e14)return n.toExponential(6);const dp=a>=1?4:a>=0.01?5:a>=0.001?6:Math.min(10,Math.ceil(-Math.log10(a))+4);return nf(dp).format(n)};
+  const converterFmt = n => {const a=Math.abs(n);if(a===0)return '0.000';if(a<0.001){if(a<1e-9)return n.toExponential(6);return nf(Math.min(11,Math.ceil(-Math.log10(a))+4)).format(n)}if(a>=1e14) return n.toExponential(6);return nf(3,3).format(n)};
+  const validateNumber = (el,label,negative=false,zero=true) => {
+    const raw=el.value.trim();const number=Number(raw);
+    if(raw==='' || !Number.isFinite(number) || el.validity.badInput) throw {el, message:'Enter a valid number for '+label+'.'};
+    if(!negative && number<0) throw {el,message:label+' cannot be negative.'};
+    if(!zero && number===0) throw {el,message:label+' must be greater than zero.'};
+    return number;
+  };
+  const invalidState = (form, error) => {
+    form.querySelectorAll('[aria-invalid]').forEach(el=>el.removeAttribute('aria-invalid'));
+    if(error) { error.el.setAttribute('aria-invalid','true');error.el.focus(); }
+  };
+  const showError = (id,message) => {const el=byId(id);el.textContent=message;el.hidden=false};
+  const hideError = id => {const el=byId(id);el.textContent='';el.hidden=true};
+  const hideBanner = ()=>{byId('calcpro-hp-intro-banner').hidden=true};
+  const defForm = byId('calcpro-hp-def-form');
+  const conForm = byId('calcpro-hp-con-form');
+  let savedText = '';
+  defForm.addEventListener('submit',event => {
+    event.preventDefault();hideBanner();hideError('calcpro-hp-def-error');invalidState(defForm,null);
+    try {
+      const force=validateNumber(byId('calcpro-hp-force'),'Force');
+      const distance=validateNumber(byId('calcpro-hp-distance'),'Distance');
+      const time=validateNumber(byId('calcpro-hp-time'),'Time',false,false);
+      const newtons=force*forceUnits[byId('calcpro-hp-forceunit').value];
+      const meters=distance*distanceUnits[byId('calcpro-hp-distanceunit').value];
+      const seconds=time*timeUnits[byId('calcpro-hp-timeunit').value];
+      const watts=newtons*meters/seconds;
+      if(!Number.isFinite(watts) || !Number.isFinite(newtons) || !Number.isFinite(meters) || !Number.isFinite(seconds) || seconds===0) {
+        throw {el:byId('calcpro-hp-time'),message:'These numbers are outside the supported calculation range. Use smaller values or a larger time.'};
+      }
+      const equivalents=[['calcpro-hp-mech-value',watts/powerUnits['Mechanical Horsepower'],'mechanical horsepowers'],['calcpro-hp-metric-value',watts/powerUnits['Metric Horsepower'],'metric horsepowers'],['calcpro-hp-electric-value',watts/powerUnits['Electrical Horsepower'],'electrical horsepowers'],['calcpro-hp-boiler-value',watts/powerUnits['Boiler Horsepower'],'boiler horsepowers']];
+      const wattStr=concise(watts);
+      byId('calcpro-hp-watts-value').textContent=wattStr+' '+(watts===1?'watt':'watts');
+      for(const [id,value] of equivalents) byId(id).textContent=horseFmt(value);
+      savedText='Horsepower Calculator — CalcPro\nPower: '+wattStr+' W\n'+equivalents.map(([id,value,label])=>horseFmt(value)+' '+label).join('\n')+'\nFormula: force × distance ÷ time\n';
+      byId('calcpro-hp-save-status').hidden=true;
+      byId('calcpro-hp-def-result').hidden=false;
+    } catch(error) {
+      byId('calcpro-hp-def-result').hidden=true;savedText='';
+      invalidState(defForm,error && error.el?error:null);
+      showError('calcpro-hp-def-error',error && error.message?error.message:'Unable to calculate. Check all inputs.');
+    }
+  });
+  conForm.addEventListener('submit',event=>{
+    event.preventDefault();hideBanner();hideError('calcpro-hp-con-error');invalidState(conForm,null);
+    try {
+      const amount=validateNumber(byId('calcpro-hp-amount'),'Amount',true);
+      const from=byId('calcpro-hp-from').value;
+      const to=byId('calcpro-hp-to').value;
+      const converted=amount*powerUnits[from]/powerUnits[to];
+      if(!Number.isFinite(converted))throw {el:byId('calcpro-hp-amount'),message:'The amount is too large to convert.'};
+      byId('calcpro-hp-con-source').textContent=concise(amount)+' '+from;
+      byId('calcpro-hp-con-value').textContent=converterFmt(converted);
+      byId('calcpro-hp-con-target').textContent=to;
+      byId('calcpro-hp-con-result').hidden=false;
+    } catch(error) {
+      byId('calcpro-hp-con-result').hidden=true;invalidState(conForm,error && error.el?error:null);
+      showError('calcpro-hp-con-error',error && error.message?error.message:'Unable to convert. Check all inputs.');
+    }
+  });
+  const clearForm = (form, inputs, resetSelects, resultId,errorId) => {
+    for(const id of inputs){const el=byId(id);el.value='';el.removeAttribute('aria-invalid')}
+    for(const [id,value] of resetSelects)byId(id).value=value;
+    byId(resultId).hidden=true;hideError(errorId);form.querySelectorAll('[aria-invalid]').forEach(el=>el.removeAttribute('aria-invalid'));
+    byId(inputs[0]).focus();
+  };
+  byId('calcpro-hp-clear-def').addEventListener('click',()=>{clearForm(defForm,['calcpro-hp-force','calcpro-hp-distance','calcpro-hp-time'],[['calcpro-hp-forceunit','newton'],['calcpro-hp-distanceunit','meter'],['calcpro-hp-timeunit','second']],'calcpro-hp-def-result','calcpro-hp-def-error');savedText='';});
+  byId('calcpro-hp-clear-con').addEventListener('click',()=>clearForm(conForm,['calcpro-hp-amount'],[['calcpro-hp-from','Mechanical Horsepower'],['calcpro-hp-to','Watt']],'calcpro-hp-con-result','calcpro-hp-con-error'));
+  byId('calcpro-hp-save-definition').addEventListener('click',()=>{
+    if(!savedText)return;
+    const blob=new Blob([savedText],{type:'text/plain;charset=utf-8'});
+    const url=URL.createObjectURL(blob);
+    const anchor=document.createElement('a');anchor.href=url;anchor.download='calcpro-horsepower-result.txt';
+    document.body.appendChild(anchor);anchor.click();anchor.remove();
+    setTimeout(()=>URL.revokeObjectURL(url),1000);
+    const status=byId('calcpro-hp-save-status');status.textContent='Result saved as a text file.';status.hidden=false;
+  });
+})();
+</script><script data-calcpro-latest-result>
+(function () {
+  var toolRoot = document.querySelector('.cp-tool-area') || document.querySelector('main') || document.body;
+  var forms = Array.prototype.slice.call(toolRoot.querySelectorAll('form'));
+  if (forms.length < 2) return;
+
+  var selector = '[id*="result"], [class*="result"], [id*="output"], [class*="output"], [id*="total"], [class*="total"], [id*="summary"], [class*="summary"], [data-result], [data-re-results], [data-cp-surface-result]';
+  var candidates = Array.prototype.slice.call(toolRoot.querySelectorAll(selector));
+  var panels = candidates.filter(function (node) {
+    return !candidates.some(function (other) { return other !== node && other.contains(node); });
+  });
+  var activeOwner = null;
+
+  function namesOf(node) {
+    var names = [node.id].concat(Array.prototype.slice.call(node.classList || []));
+    return names.map(function (name) {
+      return String(name).toLowerCase().replace(/[-_](form|result|results|output|outputs|total|totals|summary|summaries)([-_].*)?$/, '');
+    }).filter(Boolean);
+  }
+
+  function pairedForm(panel) {
+    var names = namesOf(panel);
+    var matches = forms.filter(function (form) {
+      return namesOf(form).some(function (name) { return names.indexOf(name) !== -1; });
+    });
+    return matches.length === 1 ? matches[0] : null;
+  }
+
+  function ownerOf(node) {
+    if (node.matches('form')) return node;
+    var form = node.closest('form') || pairedForm(node);
+    if (form) return form;
+    for (var current = node; current && current !== toolRoot; current = current.parentElement) {
+      var formCount = (current.matches('form') ? 1 : 0) + current.querySelectorAll('form').length;
+      if (formCount === 1 && panels.some(function (panel) { return current === panel || current.contains(panel); })) return current.querySelector('form') || current;
+    }
+    return node.closest('section') || node;
+  }
+
+  function keepOnly(owner, showActive) {
+    panels.forEach(function (panel) {
+      var isActive = ownerOf(panel) === owner;
+      if (!isActive) panel.hidden = true;
+      else if (showActive) panel.hidden = false;
+    });
+  }
+
+  function activate(owner) {
+    if (!owner) return;
+    activeOwner = owner;
+    keepOnly(owner, false);
+  }
+
+  toolRoot.addEventListener('submit', function (event) {
+    var form = event.target;
+    if (form instanceof HTMLFormElement) activate(ownerOf(form));
+  }, true);
+
+  toolRoot.addEventListener('input', function (event) {
+    var form = event.target.closest('form');
+    if (form) activeOwner = ownerOf(form);
+  }, true);
+
+  toolRoot.addEventListener('click', function (event) {
+    var button = event.target.closest('button');
+    var form = button && button.closest('form');
+    if (!form) return;
+    var label = [button.id, button.textContent, button.getAttribute('aria-label') || ''].join(' ').toLowerCase();
+    if (/\b(clear|reset)\b/.test(label) || button.type === 'reset') activeOwner = null;
+    else if (button.type === 'submit' || /\b(calculate|compute|roll|start|encode|decode|convert|generate|run|solve|estimate)\b/.test(label)) activate(ownerOf(form));
+  }, true);
+
+  var observer = new MutationObserver(function (records) {
+    records.forEach(function (record) {
+      var panel = panels.find(function (item) { return item === record.target || item.contains(record.target); });
+      if (!panel || !activeOwner || ownerOf(panel) !== activeOwner) return;
+      if (record.type === 'attributes' && panel.hidden) return;
+      keepOnly(activeOwner, true);
+    });
+  });
+  panels.forEach(function (panel) {
+    observer.observe(panel, {attributes: true, attributeFilter: ['hidden'], childList: true, characterData: true, subtree: true});
+  });
+})();
+</script>
+</body></html>

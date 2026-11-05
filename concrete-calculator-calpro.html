@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>Concrete Calculator | CalcPro</title><meta content="Calculate concrete volume, weight, and 60-lb or 80-lb bag estimates for slabs, round columns, tube shapes, curbs and gutters, and stairs." name="description"/><link href="template-style.css" rel="stylesheet"/><style>
+/* Concrete Calculator: all calculator UI selectors scoped to this component. */
+.calcpro-concrete{--calcpro-concrete-blue:#0b4775;--calcpro-concrete-green:#4f8726;--calcpro-concrete-line:#cbd4dc;--calcpro-concrete-ink:#152b3c;font-family:Arial,Helvetica,sans-serif;color:#152b3c;font-size:15px;line-height:1.45;max-width:100%}
+.calcpro-concrete *,.calcpro-concrete *::before,.calcpro-concrete *::after{box-sizing:border-box}
+.calcpro-concrete .calcpro-concrete-section{margin:0 0 25px;scroll-margin-top:18px}
+.calcpro-concrete .calcpro-concrete-heading{font-size:19px;line-height:1.26;color:#073969;margin:16px 0 9px;font-weight:700}
+.calcpro-concrete .calcpro-concrete-workspace{display:flex;align-items:flex-start;gap:13px;max-width:100%}
+.calcpro-concrete .calcpro-concrete-form{flex:0 1 392px;min-width:0;background:#f1f2f2;border:1px solid #c6cacf;padding:12px 11px 11px;margin:0;border-radius:2px}
+.calcpro-concrete .calcpro-concrete-grid{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(65px,.8fr) minmax(90px,.95fr);gap:7px 6px;align-items:center}
+.calcpro-concrete .calcpro-concrete-grid label{font-size:13px;text-align:right;color:#17384d;line-height:1.18;min-width:0}
+.calcpro-concrete .calcpro-concrete-field,.calcpro-concrete .calcpro-concrete-unit{width:100%;min-width:0;height:31px;padding:4px 6px;border:1px solid #87a0bb;border-radius:2px;background:#fff;color:#17293a;font:14px Arial,Helvetica,sans-serif}
+.calcpro-concrete .calcpro-concrete-field:focus,.calcpro-concrete .calcpro-concrete-unit:focus{outline:2px solid #0c7caf;outline-offset:1px}
+.calcpro-concrete .calcpro-concrete-field[aria-invalid="true"]{border-color:#c93838;background:#fff8f8}
+.calcpro-concrete .calcpro-concrete-unit-blank{height:1px}
+.calcpro-concrete .calcpro-concrete-form-actions{display:flex;justify-content:center;gap:6px;margin-top:10px}
+.calcpro-concrete .calcpro-concrete-button{appearance:none;border:0;cursor:pointer;min-height:34px;padding:7px 12px;color:#fff;font-weight:700;font-size:13px;border-radius:1px;line-height:1.25}
+.calcpro-concrete .calcpro-concrete-calculate{background:#4d8427}
+.calcpro-concrete .calcpro-concrete-calculate:hover{background:#3f701f}
+.calcpro-concrete .calcpro-concrete-clear{background:#9a9da1}
+.calcpro-concrete .calcpro-concrete-clear:hover{background:#7b8187}
+.calcpro-concrete .calcpro-concrete-button:focus-visible,.calcpro-concrete .calcpro-concrete-result-action:focus-visible{outline:3px solid #2b6fb8;outline-offset:2px}
+.calcpro-concrete .calcpro-concrete-play{display:inline-grid;place-items:center;width:16px;height:16px;vertical-align:-3px;margin-left:6px;background:#9ec49b;border-radius:50%;color:white;font-size:11px}
+.calcpro-concrete .calcpro-concrete-diagram{flex:0 1 200px;width:195px;max-width:38%;height:auto;display:block;margin:3px 0 0;overflow:visible}
+.calcpro-concrete .calcpro-concrete-diagram .calcpro-concrete-shape{stroke:#586674;stroke-width:1.4;fill:#fff;stroke-linecap:round;stroke-linejoin:round}
+.calcpro-concrete .calcpro-concrete-diagram .calcpro-concrete-line{stroke:#65717d;stroke-width:1.1;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.calcpro-concrete .calcpro-concrete-diagram .calcpro-concrete-dashed{stroke-dasharray:3 3}
+.calcpro-concrete .calcpro-concrete-diagram .calcpro-concrete-measure{stroke:#2b4dc8;stroke-width:1.4;fill:none}
+.calcpro-concrete .calcpro-concrete-diagram .calcpro-concrete-label{fill:#2446cb;font-family:Arial,Helvetica,sans-serif;font-size:12px}
+.calcpro-concrete .calcpro-concrete-result{border:1px solid #d5dfd0;background:#fff;max-width:640px;margin:0 0 12px}
+.calcpro-concrete .calcpro-concrete-result[hidden]{display:none!important}
+.calcpro-concrete .calcpro-concrete-result-top{display:flex;justify-content:space-between;align-items:center;background:var(--calcpro-concrete-green);color:#fff;padding:6px 9px;min-height:35px}
+.calcpro-concrete .calcpro-concrete-result-top strong{font-size:17px;font-weight:700}
+.calcpro-concrete .calcpro-concrete-result-actions{display:flex;gap:4px}
+.calcpro-concrete .calcpro-concrete-result-action{border:1px solid transparent;background:transparent;color:#fff;font-size:12px;cursor:pointer;min-width:34px;padding:5px 7px;border-radius:2px}
+.calcpro-concrete .calcpro-concrete-result-action:hover{background:#36671b}
+.calcpro-concrete .calcpro-concrete-result-body{padding:11px 12px 10px}
+.calcpro-concrete .calcpro-concrete-volume{font-size:15px;line-height:1.4;margin:0 0 13px}
+.calcpro-concrete .calcpro-concrete-volume-line{display:block;padding-left:57px}
+.calcpro-concrete .calcpro-concrete-value{color:#188018;font-weight:700}
+.calcpro-concrete .calcpro-concrete-result-intro{font-size:12px;margin:0 0 4px;color:#314152}
+.calcpro-concrete .calcpro-concrete-result-table{border-collapse:collapse;font-size:13px;line-height:1.4;min-width:292px;max-width:100%}
+.calcpro-concrete .calcpro-concrete-result-table tr:nth-child(odd){background:#f0f2f1}
+.calcpro-concrete .calcpro-concrete-result-table td{padding:3px 9px;border:1px solid #dce1e4}
+.calcpro-concrete .calcpro-concrete-result-table td:first-child{white-space:nowrap}
+.calcpro-concrete .calcpro-concrete-result-note{font-size:11px;margin:6px 0 0;color:#596673}
+.calcpro-concrete .calcpro-concrete-error{grid-column:1/-1;background:#fff1ef;color:#9c2525;border-left:3px solid #b42b2b;padding:6px 8px;font-size:12px;margin:1px 0 0}
+.calcpro-concrete .calcpro-concrete-error[hidden]{display:none}
+.calcpro-concrete .calcpro-concrete-explainer{margin:7px 0 0;color:#445970;font-size:12px}
+.calcpro-concrete .calcpro-concrete-related{background:#f3f5f6;border-left:4px solid #346c9a;max-width:640px;padding:11px 14px;margin:30px 0 0;font-size:13px}
+.calcpro-concrete .calcpro-concrete-related a{color:#006699}
+.calcpro-concrete .calcpro-concrete-related strong{margin-right:8px}
+@media(max-width:680px){.calcpro-concrete .calcpro-concrete-form{flex:1 1 355px}.calcpro-concrete .calcpro-concrete-diagram{width:150px;max-width:30%}.calcpro-concrete .calcpro-concrete-grid{grid-template-columns:minmax(0,1.4fr) minmax(60px,.8fr) minmax(82px,.9fr);gap:6px 4px}.calcpro-concrete .calcpro-concrete-field,.calcpro-concrete .calcpro-concrete-unit{font-size:13px}}
+@media(max-width:510px){.calcpro-concrete .calcpro-concrete-heading{font-size:17px}.calcpro-concrete .calcpro-concrete-workspace{flex-wrap:wrap;gap:7px}.calcpro-concrete .calcpro-concrete-form{flex:1 1 100%;width:100%}.calcpro-concrete .calcpro-concrete-diagram{max-width:210px;width:48%;margin:0 auto 4px}.calcpro-concrete .calcpro-concrete-result-body{padding:9px 8px}.calcpro-concrete .calcpro-concrete-result-table{width:100%;min-width:0}.calcpro-concrete .calcpro-concrete-result-table td{padding:4px 5px}.calcpro-concrete .calcpro-concrete-result-table td:first-child{white-space:normal}.calcpro-concrete .calcpro-concrete-volume-line{padding-left:34px}}
+@media(max-width:355px){.calcpro-concrete .calcpro-concrete-grid{grid-template-columns:minmax(0,1.25fr) minmax(55px,.7fr) minmax(75px,.9fr)}.calcpro-concrete .calcpro-concrete-form{padding:10px 7px}.calcpro-concrete .calcpro-concrete-grid label{font-size:12px}}
+@media print{.calcpro-concrete .calcpro-concrete-button,.calcpro-concrete .calcpro-concrete-result-actions{display:none!important}.calcpro-concrete .calcpro-concrete-result[hidden]{display:none!important}.calcpro-concrete .calcpro-concrete-section{break-inside:avoid}.calcpro-concrete .calcpro-concrete-form{background:#fff}}
+
+</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/other-calculators/">Other</a> / Concrete Calculator</nav><h1 class="cp-page-title">Concrete Calculator</h1><p class="cp-intro">Estimate the volume and weight of concrete needed for slabs, square footings, columns, tubes, curbs, gutters, and stairs. Calculate in imperial or metric dimensions, and estimate quantities of 60-lb and 80-lb premixed concrete bags.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-concrete" id="calcpro-concrete-root">
+<section class="calcpro-concrete-section" aria-labelledby="calcpro-concrete-heading-slab" id="calcpro-concrete-section-slab">
+ <h2 class="calcpro-concrete-heading" id="calcpro-concrete-heading-slab">Slabs, Square Footings, or Walls</h2>
+ <div class="calcpro-concrete-result" data-calcpro-concrete-result="slab" id="calcpro-concrete-result-slab" role="status" aria-live="polite" hidden>
+  <div class="calcpro-concrete-result-top"><strong>Result</strong><div class="calcpro-concrete-result-actions"><button type="button" class="calcpro-concrete-result-action" data-calcpro-concrete-save="slab" title="Save results as a text file" aria-label="Save slab results">&#128190; Save</button><button type="button" class="calcpro-concrete-result-action" data-calcpro-concrete-print="slab" title="Print results" aria-label="Print slab results">Print</button></div></div>
+  <div class="calcpro-concrete-result-body"><p class="calcpro-concrete-volume">Volume: <span class="calcpro-concrete-value" data-calcpro-concrete-value="feet"></span> cubic feet
+   <span class="calcpro-concrete-volume-line">or <span class="calcpro-concrete-value" data-calcpro-concrete-value="yards"></span> cubic yards</span>
+   <span class="calcpro-concrete-volume-line">or <span class="calcpro-concrete-value" data-calcpro-concrete-value="meters"></span> cubic meters</span></p>
+   <p class="calcpro-concrete-result-intro">If using pre-mixed concrete with density of 2,130 kg/m³ or 133 lbs/ft³*:</p>
+   <table class="calcpro-concrete-result-table"><tbody>
+   <tr><td>Weight needed</td><td><span class="calcpro-concrete-value" data-calcpro-concrete-value="pounds"></span> lbs or <span class="calcpro-concrete-value" data-calcpro-concrete-value="kilograms"></span> kg</td></tr>
+   <tr><td>Using 60-lb bags</td><td><span class="calcpro-concrete-value" data-calcpro-concrete-value="bags60"></span> bags</td></tr>
+   <tr><td>Using 80-lb bags</td><td><span class="calcpro-concrete-value" data-calcpro-concrete-value="bags80"></span> bags</td></tr></tbody></table>
+   <p class="calcpro-concrete-result-note">*Concrete density and bag yield vary by product. Round bag purchases up and include a waste allowance.</p></div>
+ </div>
+ <div class="calcpro-concrete-workspace">
+  <form class="calcpro-concrete-form" data-calcpro-concrete-form="slab" autocomplete="off" novalidate>
+   <div class="calcpro-concrete-grid"><label for="calcpro-concrete-slablength">Length (l)</label><input class="calcpro-concrete-field" id="calcpro-concrete-slablength" name="slablength" data-label="Length (l)" type="number" step="any" min="0" inputmode="decimal" value="5" required><select class="calcpro-concrete-unit" id="calcpro-concrete-slablength-unit" name="slablengthunit" aria-label="Units for Length (l)"><option value="foot" selected>feet</option><option value="inch">inches</option><option value="yard">yards</option><option value="meter">meters</option><option value="centimeter">centimeters</option></select>
+<label for="calcpro-concrete-slabwidth">Width (w)</label><input class="calcpro-concrete-field" id="calcpro-concrete-slabwidth" name="slabwidth" data-label="Width (w)" type="number" step="any" min="0" inputmode="decimal" value="2.5" required><select class="calcpro-concrete-unit" id="calcpro-concrete-slabwidth-unit" name="slabwidthunit" aria-label="Units for Width (w)"><option value="foot" selected>feet</option><option value="inch">inches</option><option value="yard">yards</option><option value="meter">meters</option><option value="centimeter">centimeters</option></select>
+<label for="calcpro-concrete-slabthick">Thickness or Height (h)</label><input class="calcpro-concrete-field" id="calcpro-concrete-slabthick" name="slabthick" data-label="Thickness or Height (h)" type="number" step="any" min="0" inputmode="decimal" value="5" required><select class="calcpro-concrete-unit" id="calcpro-concrete-slabthick-unit" name="slabthickunit" aria-label="Units for Thickness or Height (h)"><option value="foot">feet</option><option value="inch" selected>inches</option><option value="yard">yards</option><option value="meter">meters</option><option value="centimeter">centimeters</option></select>
+    <label for="calcpro-concrete-slabquantity">Quantity</label><input class="calcpro-concrete-field" type="number" inputmode="numeric" id="calcpro-concrete-slabquantity" name="slabquantity" data-label="Quantity" min="1" step="1" value="1" required><span class="calcpro-concrete-unit-blank" aria-hidden="true"></span>
+    <p class="calcpro-concrete-error" role="alert" hidden></p>
+   </div>
+   <div class="calcpro-concrete-form-actions"><button type="submit" class="calcpro-concrete-button calcpro-concrete-calculate">Calculate <span class="calcpro-concrete-play" aria-hidden="true">&#9654;</span></button><button type="reset" class="calcpro-concrete-button calcpro-concrete-clear">Clear</button></div>
+  </form>
+  <svg class="calcpro-concrete-diagram" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 206 139" role="img" aria-label="Slabs, Square Footings, or Walls profile diagram"><polygon class="calcpro-concrete-shape" points="25,44 96,44 122,19 51,19"/><polygon class="calcpro-concrete-shape" points="25,44 96,44 96,77 25,77"/><polygon class="calcpro-concrete-shape" points="96,44 122,19 122,54 96,77"/><path class="calcpro-concrete-line calcpro-concrete-dashed" d="M25 44L51 19M25 77L51 54L122 54M51 19V54"/><text class="calcpro-concrete-label" x="66" y="92">l</text><text class="calcpro-concrete-label" x="128" y="68">w</text><text class="calcpro-concrete-label" x="129" y="34">h</text></svg>
+ </div></section>
+<section class="calcpro-concrete-section" aria-labelledby="calcpro-concrete-heading-hole" id="calcpro-concrete-section-hole">
+ <h2 class="calcpro-concrete-heading" id="calcpro-concrete-heading-hole">Hole, Column, or Round Footings</h2>
+ <div class="calcpro-concrete-result" data-calcpro-concrete-result="hole" id="calcpro-concrete-result-hole" role="status" aria-live="polite" hidden>
+  <div class="calcpro-concrete-result-top"><strong>Result</strong><div class="calcpro-concrete-result-actions"><button type="button" class="calcpro-concrete-result-action" data-calcpro-concrete-save="hole" title="Save results as a text file" aria-label="Save hole results">&#128190; Save</button><button type="button" class="calcpro-concrete-result-action" data-calcpro-concrete-print="hole" title="Print results" aria-label="Print hole results">Print</button></div></div>
+  <div class="calcpro-concrete-result-body"><p class="calcpro-concrete-volume">Volume: <span class="calcpro-concrete-value" data-calcpro-concrete-value="feet"></span> cubic feet
+   <span class="calcpro-concrete-volume-line">or <span class="calcpro-concrete-value" data-calcpro-concrete-value="yards"></span> cubic yards</span>
+   <span class="calcpro-concrete-volume-line">or <span class="calcpro-concrete-value" data-calcpro-concrete-value="meters"></span> cubic meters</span></p>
+   <p class="calcpro-concrete-result-intro">If using pre-mixed concrete with density of 2,130 kg/m³ or 133 lbs/ft³*:</p>
+   <table class="calcpro-concrete-result-table"><tbody>
+   <tr><td>Weight needed</td><td><span class="calcpro-concrete-value" data-calcpro-concrete-value="pounds"></span> lbs or <span class="calcpro-concrete-value" data-calcpro-concrete-value="kilograms"></span> kg</td></tr>
+   <tr><td>Using 60-lb bags</td><td><span class="calcpro-concrete-value" data-calcpro-concrete-value="bags60"></span> bags</td></tr>
+   <tr><td>Using 80-lb bags</td><td><span class="calcpro-concrete-value" data-calcpro-concrete-value="bags80"></span> bags</td></tr></tbody></table>
+   <p class="calcpro-concrete-result-note">*Concrete density and bag yield vary by product. Round bag purchases up and include a waste allowance.</p></div>
+ </div>
+ <div class="calcpro-concrete-workspace">
+  <form class="calcpro-concrete-form" data-calcpro-concrete-form="hole" autocomplete="off" novalidate>
+   <div class="calcpro-concrete-grid"><label for="calcpro-concrete-holediameter">Diameter (d)</label><input class="calcpro-concrete-field" id="calcpro-concrete-holediameter" name="holediameter" data-label="Diameter (d)" type="number" step="any" min="0" inputmode="decimal" value="2.5" required><select class="calcpro-concrete-unit" id="calcpro-concrete-holediameter-unit" name="holediameterunit" aria-label="Units for Diameter (d)"><option value="foot" selected>feet</option><option value="inch">inches</option><option value="yard">yards</option><option value="meter">meters</option><option value="centimeter">centimeters</option></select>
+<label for="calcpro-concrete-holedepth">Depth or Height (h)</label><input class="calcpro-concrete-field" id="calcpro-concrete-holedepth" name="holedepth" data-label="Depth or Height (h)" type="number" step="any" min="0" inputmode="decimal" value="6" required><select class="calcpro-concrete-unit" id="calcpro-concrete-holedepth-unit" name="holedepthunit" aria-label="Units for Depth or Height (h)"><option value="foot" selected>feet</option><option value="inch">inches</option><option value="yard">yards</option><option value="meter">meters</option><option value="centimeter">centimeters</option></select>
+    <label for="calcpro-concrete-holequantity">Quantity</label><input class="calcpro-concrete-field" type="number" inputmode="numeric" id="calcpro-concrete-holequantity" name="holequantity" data-label="Quantity" min="1" step="1" value="1" required><span class="calcpro-concrete-unit-blank" aria-hidden="true"></span>
+    <p class="calcpro-concrete-error" role="alert" hidden></p>
+   </div>
+   <div class="calcpro-concrete-form-actions"><button type="submit" class="calcpro-concrete-button calcpro-concrete-calculate">Calculate <span class="calcpro-concrete-play" aria-hidden="true">&#9654;</span></button><button type="reset" class="calcpro-concrete-button calcpro-concrete-clear">Clear</button></div>
+  </form>
+  <svg class="calcpro-concrete-diagram" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 206 139" role="img" aria-label="Hole, Column, or Round Footings profile diagram"><ellipse class="calcpro-concrete-shape" cx="72" cy="35" rx="42" ry="13"/><path class="calcpro-concrete-line" d="M30 35V77C30 94 114 94 114 77V35"/><path class="calcpro-concrete-line calcpro-concrete-dashed" d="M30 77C30 59 114 59 114 77"/><path class="calcpro-concrete-measure" d="M31 30H113M31 26V34M113 26V34"/><text class="calcpro-concrete-label" x="70" y="24">d</text><text class="calcpro-concrete-label" x="120" y="68">h</text></svg>
+ </div></section>
+<section class="calcpro-concrete-section" aria-labelledby="calcpro-concrete-heading-tube" id="calcpro-concrete-section-tube">
+ <h2 class="calcpro-concrete-heading" id="calcpro-concrete-heading-tube">Circular Slab or Tube</h2>
+ <div class="calcpro-concrete-result" data-calcpro-concrete-result="tube" id="calcpro-concrete-result-tube" role="status" aria-live="polite" hidden>
+  <div class="calcpro-concrete-result-top"><strong>Result</strong><div class="calcpro-concrete-result-actions"><button type="button" class="calcpro-concrete-result-action" data-calcpro-concrete-save="tube" title="Save results as a text file" aria-label="Save tube results">&#128190; Save</button><button type="button" class="calcpro-concrete-result-action" data-calcpro-concrete-print="tube" title="Print results" aria-label="Print tube results">Print</button></div></div>
+  <div class="calcpro-concrete-result-body"><p class="calcpro-concrete-volume">Volume: <span class="calcpro-concrete-value" data-calcpro-concrete-value="feet"></span> cubic feet
+   <span class="calcpro-concrete-volume-line">or <span class="calcpro-concrete-value" data-calcpro-concrete-value="yards"></span> cubic yards</span>
+   <span class="calcpro-concrete-volume-line">or <span class="calcpro-concrete-value" data-calcpro-concrete-value="meters"></span> cubic meters</span></p>
+   <p class="calcpro-concrete-result-intro">If using pre-mixed concrete with density of 2,130 kg/m³ or 133 lbs/ft³*:</p>
+   <table class="calcpro-concrete-result-table"><tbody>
+   <tr><td>Weight needed</td><td><span class="calcpro-concrete-value" data-calcpro-concrete-value="pounds"></span> lbs or <span class="calcpro-concrete-value" data-calcpro-concrete-value="kilograms"></span> kg</td></tr>
+   <tr><td>Using 60-lb bags</td><td><span class="calcpro-concrete-value" data-calcpro-concrete-value="bags60"></span> bags</td></tr>
+   <tr><td>Using 80-lb bags</td><td><span class="calcpro-concrete-value" data-calcpro-concrete-value="bags80"></span> bags</td></tr></tbody></table>
+   <p class="calcpro-concrete-result-note">*Concrete density and bag yield vary by product. Round bag purchases up and include a waste allowance.</p></div>
+ </div>
+ <div class="calcpro-concrete-workspace">
+  <form class="calcpro-concrete-form" data-calcpro-concrete-form="tube" autocomplete="off" novalidate>
+   <div class="calcpro-concrete-grid"><label for="calcpro-concrete-tubediameter">Outer Diameter (d₁)</label><input class="calcpro-concrete-field" id="calcpro-concrete-tubediameter" name="tubediameter" data-label="Outer Diameter (d₁)" type="number" step="any" min="0" inputmode="decimal" value="5" required><select class="calcpro-concrete-unit" id="calcpro-concrete-tubediameter-unit" name="tubediameterunit" aria-label="Units for Outer Diameter (d₁)"><option value="foot" selected>feet</option><option value="inch">inches</option><option value="yard">yards</option><option value="meter">meters</option><option value="centimeter">centimeters</option></select>
+<label for="calcpro-concrete-tubeindiameter">Inner Diameter (d₂)</label><input class="calcpro-concrete-field" id="calcpro-concrete-tubeindiameter" name="tubeindiameter" data-label="Inner Diameter (d₂)" type="number" step="any" min="0" inputmode="decimal" value="4" required><select class="calcpro-concrete-unit" id="calcpro-concrete-tubeindiameter-unit" name="tubeindiameterunit" aria-label="Units for Inner Diameter (d₂)"><option value="foot" selected>feet</option><option value="inch">inches</option><option value="yard">yards</option><option value="meter">meters</option><option value="centimeter">centimeters</option></select>
+<label for="calcpro-concrete-tubedepth">Length or Height (h)</label><input class="calcpro-concrete-field" id="calcpro-concrete-tubedepth" name="tubedepth" data-label="Length or Height (h)" type="number" step="any" min="0" inputmode="decimal" value="6" required><select class="calcpro-concrete-unit" id="calcpro-concrete-tubedepth-unit" name="tubedepthunit" aria-label="Units for Length or Height (h)"><option value="foot">feet</option><option value="inch" selected>inches</option><option value="yard">yards</option><option value="meter">meters</option><option value="centimeter">centimeters</option></select>
+    <label for="calcpro-concrete-tubequantity">Quantity</label><input class="calcpro-concrete-field" type="number" inputmode="numeric" id="calcpro-concrete-tubequantity" name="tubequantity" data-label="Quantity" min="1" step="1" value="1" required><span class="calcpro-concrete-unit-blank" aria-hidden="true"></span>
+    <p class="calcpro-concrete-error" role="alert" hidden></p>
+   </div>
+   <div class="calcpro-concrete-form-actions"><button type="submit" class="calcpro-concrete-button calcpro-concrete-calculate">Calculate <span class="calcpro-concrete-play" aria-hidden="true">&#9654;</span></button><button type="reset" class="calcpro-concrete-button calcpro-concrete-clear">Clear</button></div>
+  </form>
+  <svg class="calcpro-concrete-diagram" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 206 139" role="img" aria-label="Circular Slab or Tube profile diagram"><ellipse class="calcpro-concrete-shape" cx="75" cy="31" rx="47" ry="17"/><ellipse class="calcpro-concrete-shape" cx="75" cy="31" rx="24" ry="8"/><path class="calcpro-concrete-line" d="M28 31V80C28 100 122 100 122 80V31"/><path class="calcpro-concrete-line calcpro-concrete-dashed" d="M51 31V79C51 90 99 90 99 79V31M28 80C28 62 122 62 122 80M51 79C51 69 99 69 99 79"/><path class="calcpro-concrete-measure" d="M29 113H121M29 105V117M121 105V117M52 8H98M52 4V13M98 4V13"/><text class="calcpro-concrete-label" x="63" y="126">d1</text><text class="calcpro-concrete-label" x="65" y="7">d2</text><text class="calcpro-concrete-label" x="12" y="65">h</text></svg>
+ </div></section>
+<section class="calcpro-concrete-section" aria-labelledby="calcpro-concrete-heading-curb" id="calcpro-concrete-section-curb">
+ <h2 class="calcpro-concrete-heading" id="calcpro-concrete-heading-curb">Curb and Gutter Barrier</h2>
+ <div class="calcpro-concrete-result" data-calcpro-concrete-result="curb" id="calcpro-concrete-result-curb" role="status" aria-live="polite" hidden>
+  <div class="calcpro-concrete-result-top"><strong>Result</strong><div class="calcpro-concrete-result-actions"><button type="button" class="calcpro-concrete-result-action" data-calcpro-concrete-save="curb" title="Save results as a text file" aria-label="Save curb results">&#128190; Save</button><button type="button" class="calcpro-concrete-result-action" data-calcpro-concrete-print="curb" title="Print results" aria-label="Print curb results">Print</button></div></div>
+  <div class="calcpro-concrete-result-body"><p class="calcpro-concrete-volume">Volume: <span class="calcpro-concrete-value" data-calcpro-concrete-value="feet"></span> cubic feet
+   <span class="calcpro-concrete-volume-line">or <span class="calcpro-concrete-value" data-calcpro-concrete-value="yards"></span> cubic yards</span>
+   <span class="calcpro-concrete-volume-line">or <span class="calcpro-concrete-value" data-calcpro-concrete-value="meters"></span> cubic meters</span></p>
+   <p class="calcpro-concrete-result-intro">If using pre-mixed concrete with density of 2,130 kg/m³ or 133 lbs/ft³*:</p>
+   <table class="calcpro-concrete-result-table"><tbody>
+   <tr><td>Weight needed</td><td><span class="calcpro-concrete-value" data-calcpro-concrete-value="pounds"></span> lbs or <span class="calcpro-concrete-value" data-calcpro-concrete-value="kilograms"></span> kg</td></tr>
+   <tr><td>Using 60-lb bags</td><td><span class="calcpro-concrete-value" data-calcpro-concrete-value="bags60"></span> bags</td></tr>
+   <tr><td>Using 80-lb bags</td><td><span class="calcpro-concrete-value" data-calcpro-concrete-value="bags80"></span> bags</td></tr></tbody></table>
+   <p class="calcpro-concrete-result-note">*Concrete density and bag yield vary by product. Round bag purchases up and include a waste allowance.</p></div>
+ </div>
+ <div class="calcpro-concrete-workspace">
+  <form class="calcpro-concrete-form" data-calcpro-concrete-form="curb" autocomplete="off" novalidate>
+   <div class="calcpro-concrete-grid"><label for="calcpro-concrete-curbdepth">Curb Depth</label><input class="calcpro-concrete-field" id="calcpro-concrete-curbdepth" name="curbdepth" data-label="Curb Depth" type="number" step="any" min="0" inputmode="decimal" value="4" required><select class="calcpro-concrete-unit" id="calcpro-concrete-curbdepth-unit" name="curbdepthunit" aria-label="Units for Curb Depth"><option value="foot">feet</option><option value="inch" selected>inches</option><option value="yard">yards</option><option value="meter">meters</option><option value="centimeter">centimeters</option></select>
+<label for="calcpro-concrete-curbgwidth">Gutter Width</label><input class="calcpro-concrete-field" id="calcpro-concrete-curbgwidth" name="curbgwidth" data-label="Gutter Width" type="number" step="any" min="0" inputmode="decimal" value="10" required><select class="calcpro-concrete-unit" id="calcpro-concrete-curbgwidth-unit" name="curbgwidthunit" aria-label="Units for Gutter Width"><option value="foot">feet</option><option value="inch" selected>inches</option><option value="yard">yards</option><option value="meter">meters</option><option value="centimeter">centimeters</option></select>
+<label for="calcpro-concrete-curbheight">Curb Height</label><input class="calcpro-concrete-field" id="calcpro-concrete-curbheight" name="curbheight" data-label="Curb Height" type="number" step="any" min="0" inputmode="decimal" value="4" required><select class="calcpro-concrete-unit" id="calcpro-concrete-curbheight-unit" name="curbheightunit" aria-label="Units for Curb Height"><option value="foot">feet</option><option value="inch" selected>inches</option><option value="yard">yards</option><option value="meter">meters</option><option value="centimeter">centimeters</option></select>
+<label for="calcpro-concrete-curbfthick">Flag Thickness</label><input class="calcpro-concrete-field" id="calcpro-concrete-curbfthick" name="curbfthick" data-label="Flag Thickness" type="number" step="any" min="0" inputmode="decimal" value="5" required><select class="calcpro-concrete-unit" id="calcpro-concrete-curbfthick-unit" name="curbfthickunit" aria-label="Units for Flag Thickness"><option value="foot">feet</option><option value="inch" selected>inches</option><option value="yard">yards</option><option value="meter">meters</option><option value="centimeter">centimeters</option></select>
+<label for="calcpro-concrete-curblength">Length</label><input class="calcpro-concrete-field" id="calcpro-concrete-curblength" name="curblength" data-label="Length" type="number" step="any" min="0" inputmode="decimal" value="10" required><select class="calcpro-concrete-unit" id="calcpro-concrete-curblength-unit" name="curblengthunit" aria-label="Units for Length"><option value="foot" selected>feet</option><option value="inch">inches</option><option value="yard">yards</option><option value="meter">meters</option><option value="centimeter">centimeters</option></select>
+    <label for="calcpro-concrete-curbquantity">Quantity</label><input class="calcpro-concrete-field" type="number" inputmode="numeric" id="calcpro-concrete-curbquantity" name="curbquantity" data-label="Quantity" min="1" step="1" value="1" required><span class="calcpro-concrete-unit-blank" aria-hidden="true"></span>
+    <p class="calcpro-concrete-error" role="alert" hidden></p>
+   </div>
+   <div class="calcpro-concrete-form-actions"><button type="submit" class="calcpro-concrete-button calcpro-concrete-calculate">Calculate <span class="calcpro-concrete-play" aria-hidden="true">&#9654;</span></button><button type="reset" class="calcpro-concrete-button calcpro-concrete-clear">Clear</button></div>
+  </form>
+  <svg class="calcpro-concrete-diagram" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 206 139" role="img" aria-label="Curb and Gutter Barrier profile diagram"><path class="calcpro-concrete-shape" d="M18 85L58 85L58 48L93 18L118 18L118 59L153 59L123 86L123 107L18 107Z"/><path class="calcpro-concrete-line" d="M18 85L49 59L58 59M58 48L83 48L118 18M58 85L93 55L118 55M58 85V107M123 86L93 86L93 55M93 86L58 107M123 86L153 59M123 107L153 80L153 59"/><text class="calcpro-concrete-label" x="4" y="22">Curb</text><text class="calcpro-concrete-label" x="4" y="35">Depth</text><path class="calcpro-concrete-measure" d="M27 40L60 40M27 35V45M60 35V45"/><text class="calcpro-concrete-label" x="89" y="11">Gutter width</text><path class="calcpro-concrete-measure" d="M117 14H154M117 9V19M154 9V19"/><text class="calcpro-concrete-label" x="119" y="40">Curb</text><text class="calcpro-concrete-label" x="119" y="51">height</text><text class="calcpro-concrete-label" x="145" y="99">Flag</text><text class="calcpro-concrete-label" x="145" y="111">thick.</text><text class="calcpro-concrete-label" x="113" y="126">Length</text></svg>
+ </div></section>
+<section class="calcpro-concrete-section" aria-labelledby="calcpro-concrete-heading-stairs" id="calcpro-concrete-section-stairs">
+ <h2 class="calcpro-concrete-heading" id="calcpro-concrete-heading-stairs">Stairs</h2>
+ <div class="calcpro-concrete-result" data-calcpro-concrete-result="stairs" id="calcpro-concrete-result-stairs" role="status" aria-live="polite" hidden>
+  <div class="calcpro-concrete-result-top"><strong>Result</strong><div class="calcpro-concrete-result-actions"><button type="button" class="calcpro-concrete-result-action" data-calcpro-concrete-save="stairs" title="Save results as a text file" aria-label="Save stairs results">&#128190; Save</button><button type="button" class="calcpro-concrete-result-action" data-calcpro-concrete-print="stairs" title="Print results" aria-label="Print stairs results">Print</button></div></div>
+  <div class="calcpro-concrete-result-body"><p class="calcpro-concrete-volume">Volume: <span class="calcpro-concrete-value" data-calcpro-concrete-value="feet"></span> cubic feet
+   <span class="calcpro-concrete-volume-line">or <span class="calcpro-concrete-value" data-calcpro-concrete-value="yards"></span> cubic yards</span>
+   <span class="calcpro-concrete-volume-line">or <span class="calcpro-concrete-value" data-calcpro-concrete-value="meters"></span> cubic meters</span></p>
+   <p class="calcpro-concrete-result-intro">If using pre-mixed concrete with density of 2,130 kg/m³ or 133 lbs/ft³*:</p>
+   <table class="calcpro-concrete-result-table"><tbody>
+   <tr><td>Weight needed</td><td><span class="calcpro-concrete-value" data-calcpro-concrete-value="pounds"></span> lbs or <span class="calcpro-concrete-value" data-calcpro-concrete-value="kilograms"></span> kg</td></tr>
+   <tr><td>Using 60-lb bags</td><td><span class="calcpro-concrete-value" data-calcpro-concrete-value="bags60"></span> bags</td></tr>
+   <tr><td>Using 80-lb bags</td><td><span class="calcpro-concrete-value" data-calcpro-concrete-value="bags80"></span> bags</td></tr></tbody></table>
+   <p class="calcpro-concrete-result-note">*Concrete density and bag yield vary by product. Round bag purchases up and include a waste allowance.</p></div>
+ </div>
+ <div class="calcpro-concrete-workspace">
+  <form class="calcpro-concrete-form" data-calcpro-concrete-form="stairs" autocomplete="off" novalidate>
+   <div class="calcpro-concrete-grid"><label for="calcpro-concrete-stairrun">Run</label><input class="calcpro-concrete-field" id="calcpro-concrete-stairrun" name="stairrun" data-label="Run" type="number" step="any" min="0" inputmode="decimal" value="12" required><select class="calcpro-concrete-unit" id="calcpro-concrete-stairrun-unit" name="stairrununit" aria-label="Units for Run"><option value="foot">feet</option><option value="inch" selected>inches</option><option value="yard">yards</option><option value="meter">meters</option><option value="centimeter">centimeters</option></select>
+<label for="calcpro-concrete-stairrise">Rise</label><input class="calcpro-concrete-field" id="calcpro-concrete-stairrise" name="stairrise" data-label="Rise" type="number" step="any" min="0" inputmode="decimal" value="6" required><select class="calcpro-concrete-unit" id="calcpro-concrete-stairrise-unit" name="stairriseunit" aria-label="Units for Rise"><option value="foot">feet</option><option value="inch" selected>inches</option><option value="yard">yards</option><option value="meter">meters</option><option value="centimeter">centimeters</option></select>
+<label for="calcpro-concrete-stairwidth">Width</label><input class="calcpro-concrete-field" id="calcpro-concrete-stairwidth" name="stairwidth" data-label="Width" type="number" step="any" min="0" inputmode="decimal" value="50" required><select class="calcpro-concrete-unit" id="calcpro-concrete-stairwidth-unit" name="stairwidthunit" aria-label="Units for Width"><option value="foot">feet</option><option value="inch" selected>inches</option><option value="yard">yards</option><option value="meter">meters</option><option value="centimeter">centimeters</option></select>
+<label for="calcpro-concrete-stairpdepth">Platform Depth</label><input class="calcpro-concrete-field" id="calcpro-concrete-stairpdepth" name="stairpdepth" data-label="Platform Depth" type="number" step="any" min="0" inputmode="decimal" value="5" required><select class="calcpro-concrete-unit" id="calcpro-concrete-stairpdepth-unit" name="stairpdepthunit" aria-label="Units for Platform Depth"><option value="foot">feet</option><option value="inch" selected>inches</option><option value="yard">yards</option><option value="meter">meters</option><option value="centimeter">centimeters</option></select>
+    <label for="calcpro-concrete-stairquantity">Number of Risers</label><input class="calcpro-concrete-field" type="number" inputmode="numeric" id="calcpro-concrete-stairquantity" name="stairquantity" data-label="Number of Risers" min="1" step="1" value="5" required><span class="calcpro-concrete-unit-blank" aria-hidden="true"></span>
+    <p class="calcpro-concrete-error" role="alert" hidden></p>
+   </div>
+   <div class="calcpro-concrete-form-actions"><button type="submit" class="calcpro-concrete-button calcpro-concrete-calculate">Calculate <span class="calcpro-concrete-play" aria-hidden="true">&#9654;</span></button><button type="reset" class="calcpro-concrete-button calcpro-concrete-clear">Clear</button></div>
+  </form>
+  <svg class="calcpro-concrete-diagram" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 206 139" role="img" aria-label="Stairs profile diagram"><path class="calcpro-concrete-shape" d="M8 64L53 23L102 23L102 34L118 34L118 46L134 46L134 58L150 58L150 70L167 70L167 82L185 82L142 123L8 123Z"/><path class="calcpro-concrete-line" d="M8 64H61V74H78V85H94V96H110V107H126V123M61 74L102 34M78 85L118 46M94 96L134 58M110 107L150 70M126 123L167 82M61 64L102 23M61 64V74M53 23V34L8 75M8 64V123"/><text class="calcpro-concrete-label" x="42" y="17">Platform depth</text><path class="calcpro-concrete-measure" d="M53 19H100M53 15V23M100 15V23"/><text class="calcpro-concrete-label" x="142" y="45">Run</text><text class="calcpro-concrete-label" x="178" y="72">Rise</text><text class="calcpro-concrete-label" x="166" y="115">Width</text><text class="calcpro-concrete-label" x="66" y="87">4</text><text class="calcpro-concrete-label" x="84" y="97">3</text><text class="calcpro-concrete-label" x="100" y="109">2</text><text class="calcpro-concrete-label" x="119" y="119">1</text></svg>
+ </div></section>
+<div class="calcpro-concrete-related"><strong>Related:</strong> <a href="volume-calculator.html">Volume Calculator</a> · <a href="square-footage-calculator.html">Square Footage Calculator</a> · <a href="gravel-calculator.html">Gravel Calculator</a></div></div></section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><a href="volume-calculator.html">Volume Calculator</a><a href="square-footage-calculator.html">Square Footage</a><a href="gravel-calculator.html">Gravel Calculator</a><a href="area-calculator.html">Area Calculator</a><a href="conversion-calculator.html">Unit Conversion</a><a href="density-calculator.html">Density Calculator</a><a href="circle-calculator.html">Circle Calculator</a><a href="surface-area-calculator.html">Surface Area</a><a href="slope-calculator.html">Slope Calculator</a><a href="weight-calculator.html">Weight Calculator</a><a href="triangle-calculator.html">Triangle Calculator</a><a href="concrete-calculator.html">Concrete Calculator</a></div></section></aside><article class="cp-article"><h2>How to Use the Concrete Calculator</h2>
+<p>Select the shape that best matches your project: slab, column, hollow cylinder, curb-and-gutter barrier, or solid stairs. Enter each dimension in the unit you measured. You can mix units in the same calculation, such as a 5-foot length and a 5-inch slab thickness. Enter how many identical slabs, columns, tubes, or curb sections you need. For stairs, enter the number of risers (vertical steps) rather than a quantity of staircases.</p>
+<p>Click <strong>Calculate</strong> to see the result immediately above that shape's form; no page reload is necessary. The calculator reports cubic feet, cubic yards, cubic meters, estimated concrete weight, and equivalent numbers of 60-lb or 80-lb bags. Click <strong>Clear</strong> to return that form to its example inputs. The Save and Print controls allow you to retain your current estimate.</p>
+<h2>Concrete Volume Formulas</h2>
+<p>All dimensions are converted to a common unit before applying the formulas. The volume of each shape is then converted to cubic feet, cubic yards, and cubic meters.</p>
+<div class="cp-table-scroll"><table class="cp-content-table"><thead><tr><th>Shape</th><th>Formula</th><th>Measurement notes</th></tr></thead><tbody>
+<tr><td>Slab, square footing, or wall</td><td>V = L × W × T × Q</td><td>Length × width × thickness/height × quantity.</td></tr>
+<tr><td>Round column or hole</td><td>V = π × (D/2)² × H × Q</td><td>Diameter, depth/height, and number of cylinders.</td></tr>
+<tr><td>Circular slab or hollow tube</td><td>V = π/4 × (Dₒ² − Dᵢ²) × H × Q</td><td>Subtract the circular inner opening; the inner diameter must be smaller than the outer diameter. Use zero for a solid cylinder.</td></tr>
+<tr><td>Curb and gutter</td><td>V = [C × (H + T) + G × T] × L × Q</td><td>Curb depth C, curb height H above the flag, flag thickness T, gutter width G, and length L.</td></tr>
+<tr><td>Solid stairs with platform</td><td>V = W × R × [D × N × (N − 1)/2 + P × N]</td><td>Width W, rise R, tread run D, platform depth P, and N risers. Assumes a solid concrete stair section and a landing at full stair height.</td></tr>
+</tbody></table></div>
+<h2>Worked Concrete Examples</h2>
+<h3>5 ft × 2.5 ft slab, 5 in thick</h3><p>Convert thickness: 5 ÷ 12 = 0.4167 ft. Volume = 5 × 2.5 × (5/12) = <strong>5.21 ft³</strong>, or <strong>0.19 yd³</strong> (about <strong>0.15 m³</strong>). Estimated weight at 133 lb/ft³ is 692.71 lb. This corresponds to 11.55 bags by mass if each bag holds 60 lb; purchase whole bags and confirm the actual yield.</p>
+<h3>2.5 ft diameter × 6 ft round footing</h3><p>Volume = π × (2.5/2)² × 6 = <strong>29.45 ft³</strong>, approximately <strong>1.09 yd³</strong>.</p>
+<h3>Solid stairs with five risers</h3><p>With a 12-in run, 6-in rise, 50-in width, and 5-in platform depth, the four treads below the platform and the full-height landing total approximately <strong>25.17 ft³</strong>.</p>
+<h2>How to Interpret Concrete Bag and Weight Estimates</h2>
+<p>This calculator follows the reference assumptions of <strong>133 lb per cubic foot</strong> for the pounds estimate and <strong>2,130 kg per cubic meter</strong> for the metric mass estimate. Values may differ slightly because these are two rounded nominal density assumptions. The displayed bag equivalents use the estimated weight divided by the nominal 60-lb or 80-lb bag size; actual pre-mixed bag yields depend on the product and its mix.</p>
+<div class="cp-tip"><strong>Ordering tip:</strong> Round bag counts up to whole bags, then consider extra material for spills, uneven excavation, and waste. For ready-mix orders, check your supplier's minimum delivery size, ordering increments, and recommended waste allowance.</div>
+<h2>Frequently Asked Questions</h2>
+<h3>What is the difference between cubic feet and cubic yards?</h3><p>One cubic yard equals 27 cubic feet. Divide a volume in cubic feet by 27 to convert it to cubic yards.</p>
+<h3>Can I mix inches, feet, and metric units?</h3><p>Yes. Each measurement has its own unit selector. The calculator converts all entered dimensions before calculating volume.</p>
+<h3>What if I need a solid column instead of a hollow tube?</h3><p>Use the round column section, or enter an inner diameter of zero in the tube section.</p>
+<h3>Does the stair calculator include the landing?</h3><p>Yes. It assumes a solid concrete stair body with one fewer tread runs than risers and includes the full-height top platform based on the platform depth you enter. It does not account for hollow construction, complex supports, or landings of a different shape.</p>
+<h3>Why might my bag purchase quantity differ from the result?</h3><p>Bag counts shown here are weight-based equivalents, not certified mixed-volume yields. A manufacturer's bag label is the more reliable basis for buying premixed concrete. Always round purchases up to whole bags.</p>
+<h2>References and Further Reading</h2><p>See the <a href="https://www.calculator.net/concrete-calculator.html" rel="noopener noreferrer">reference concrete calculator</a> for layout and example conventions and <a href="https://www.calculatorsoup.com/calculators/construction/concrete-calculator.php" rel="noopener noreferrer">CalculatorSoup concrete formulas</a> for the geometric volume approach. Consult concrete product labels and local construction guidance for appropriate mixes and planning allowances.</p>
+<p class="cp-page-footer">CalcPro — concrete quantities are planning estimates. Confirm actual dimensions, reinforcement, design requirements, and product yields before ordering.</p></article></main></div><script>
+(() => {
+  'use strict';
+  const root = document.getElementById('calcpro-concrete-root');
+  if (!root) return;
+  const METERS_PER_FOOT = 0.3048;
+  const CUBIC_METERS_PER_CUBIC_FOOT = 0.028316846592;
+  const UNIT_TO_FEET = Object.freeze({foot:1, inch:1/12, yard:3, meter:1/METERS_PER_FOOT, centimeter:1/30.48});
+  const DENSITY_LB_PER_CUBIC_FOOT = 133;
+  const DENSITY_KG_PER_CUBIC_METER = 2130;
+  const names = ['slab','hole','tube','curb','stairs'];
+  const pretty = n => Number(n.toFixed(2)).toLocaleString('en-US',{maximumFractionDigits:2});
+  const toFeet = (field, form) => {
+    const input = form.elements.namedItem(field);
+    const unit = form.elements.namedItem(field+'unit');
+    if (!input || !unit) throw new Error('Required dimension is missing.');
+    const raw = input.value.trim();
+    const n = Number(raw);
+    if (!raw || !Number.isFinite(n) || n < 0) {
+      input.setAttribute('aria-invalid','true');
+      throw new Error('Enter a valid non-negative number for '+input.dataset.label+'.');
+    }
+    return n * UNIT_TO_FEET[unit.value];
+  };
+  const quantity = (form, field) => {
+    const input = form.elements.namedItem(field);
+    const n = Number(input.value.trim());
+    if (!input.value.trim() || !Number.isSafeInteger(n) || n < 1) {
+      input.setAttribute('aria-invalid','true');
+      throw new Error('Quantity or number of risers must be a positive whole number.');
+    }
+    return n;
+  };
+  const requirePositive = (value, label) => {
+    if (!(value > 0)) throw new Error(label+' must be greater than zero.');
+    return value;
+  };
+  function calculate(name, form) {
+    const d = field => toFeet(field,form);
+    let v;
+    switch (name) {
+      case 'slab':
+        v = requirePositive(d('slablength'),'Length') * requirePositive(d('slabwidth'),'Width') * requirePositive(d('slabthick'),'Thickness') * quantity(form,'slabquantity');
+        break;
+      case 'hole': {
+        const diameter = requirePositive(d('holediameter'),'Diameter');
+        v = Math.PI * (diameter / 2)**2 * requirePositive(d('holedepth'),'Depth or height') * quantity(form,'holequantity');
+        break;
+      }
+      case 'tube': {
+        const outer = requirePositive(d('tubediameter'),'Outer diameter');
+        const inner = d('tubeindiameter');
+        if (inner >= outer) throw new Error('Inner diameter must be smaller than the outer diameter.');
+        v = (Math.PI / 4) * (outer**2 - inner**2) * requirePositive(d('tubedepth'),'Length or height') * quantity(form,'tubequantity');
+        break;
+      }
+      case 'curb': {
+        const depth = requirePositive(d('curbdepth'),'Curb depth');
+        const width = d('curbgwidth');
+        const height = requirePositive(d('curbheight'),'Curb height');
+        const thick = requirePositive(d('curbfthick'),'Flag thickness');
+        const length = requirePositive(d('curblength'),'Length');
+        v = (depth*(height+thick)+width*thick)*length*quantity(form,'curbquantity');
+        break;
+      }
+      case 'stairs': {
+        const run = requirePositive(d('stairrun'),'Run');
+        const rise = requirePositive(d('stairrise'),'Rise');
+        const width = requirePositive(d('stairwidth'),'Width');
+        const platform = d('stairpdepth');
+        const risers = quantity(form,'stairquantity');
+        // N risers have N-1 independent treads, plus a landing N rises high.
+        v = width*rise*(run*risers*(risers-1)/2 + platform*risers);
+        break;
+      }
+      default: throw new Error('Unknown calculator type.');
+    }
+    if (!Number.isFinite(v) || v <= 0 || v > 1e13) throw new Error('The calculated volume is outside the supported range.');
+    return v;
+  }
+  function resultText(name, ft3) {
+    const yd3 = ft3/27;
+    const m3 = ft3*CUBIC_METERS_PER_CUBIC_FOOT;
+    const lbs = ft3*DENSITY_LB_PER_CUBIC_FOOT;
+    const kg = m3*DENSITY_KG_PER_CUBIC_METER;
+    return `${name.charAt(0).toUpperCase()+name.slice(1)} concrete estimate\nVolume: ${pretty(ft3)} ft³ (${pretty(yd3)} yd³; ${pretty(m3)} m³)\nWeight: ${pretty(lbs)} lb (${pretty(kg)} kg)\n60-lb bags: ${pretty(lbs/60)}\n80-lb bags: ${pretty(lbs/80)}\nBasis: 133 lb/ft³ for pounds, 2,130 kg/m³ for kilograms.\nVerify actual bag yield and purchase extra for waste.`;
+  }
+  function displayResult(name, ft3) {
+    names.forEach(key => {
+      const block = root.querySelector(`[data-calcpro-concrete-result="${key}"]`);
+      block.hidden = key !== name;
+      if (key !== name) return;
+      const values = {
+        feet: ft3,
+        yards: ft3/27,
+        meters: ft3*CUBIC_METERS_PER_CUBIC_FOOT,
+        pounds: ft3*DENSITY_LB_PER_CUBIC_FOOT,
+        kilograms: ft3*CUBIC_METERS_PER_CUBIC_FOOT*DENSITY_KG_PER_CUBIC_METER,
+        bags60: ft3*DENSITY_LB_PER_CUBIC_FOOT/60,
+        bags80: ft3*DENSITY_LB_PER_CUBIC_FOOT/80
+      };
+      Object.entries(values).forEach(([field, value]) => {
+        const target = block.querySelector(`[data-calcpro-concrete-value="${field}"]`);
+        if (target) target.textContent = pretty(value);
+      });
+      block.dataset.summary = resultText(name,ft3);
+    });
+  }
+  function hideError(form) {
+    form.querySelectorAll('[aria-invalid="true"]').forEach(field => field.removeAttribute('aria-invalid'));
+    const el = form.querySelector('.calcpro-concrete-error');
+    el.hidden=true;
+    el.textContent='';
+  }
+  function showError(form,message) {
+    const el = form.querySelector('.calcpro-concrete-error');
+    el.textContent=message;
+    el.hidden=false;
+  }
+  root.querySelectorAll('.calcpro-concrete-form').forEach(form => {
+    form.addEventListener('submit',event => {
+      event.preventDefault();
+      hideError(form);
+      const name=form.dataset.calcproConcreteForm;
+      try { displayResult(name,calculate(name,form)); }
+      catch(e) { root.querySelectorAll('.calcpro-concrete-result').forEach(r=>{r.hidden=true}); showError(form,e.message); }
+    });
+    form.addEventListener('reset',() => {
+      // Native reset restores the reference defaults in this form only.
+      hideError(form);
+      const block=root.querySelector(`[data-calcpro-concrete-result="${form.dataset.calcproConcreteForm}"]`);
+      if(block) block.hidden=true;
+    });
+    form.addEventListener('input', e => {
+      if(e.target.matches('input') && e.target.hasAttribute('aria-invalid')) e.target.removeAttribute('aria-invalid');
+      const err=form.querySelector('.calcpro-concrete-error');
+      if(err && !err.hidden){err.hidden=true;err.textContent=''}
+    });
+  });
+  root.querySelectorAll('[data-calcpro-concrete-save]').forEach(button => {
+    button.addEventListener('click', () => {
+      const block=button.closest('.calcpro-concrete-result');
+      if (!block || block.hidden || !block.dataset.summary) return;
+      const blob=new Blob([block.dataset.summary+'\n'],{type:'text/plain;charset=utf-8'});
+      const url=URL.createObjectURL(blob);
+      const a=document.createElement('a');
+      a.href=url;a.download='concrete-'+button.dataset.calcproConcreteSave+'-estimate.txt';
+      document.body.appendChild(a);a.click();a.remove();
+      setTimeout(()=>URL.revokeObjectURL(url),1000);
+    });
+  });
+  root.querySelectorAll('[data-calcpro-concrete-print]').forEach(button => {
+    button.addEventListener('click', () => window.print());
+  });
+})();
+
+</script><script data-calcpro-latest-result>
+(function () {
+  var toolRoot = document.querySelector('.cp-tool-area') || document.querySelector('main') || document.body;
+  var forms = Array.prototype.slice.call(toolRoot.querySelectorAll('form'));
+  if (forms.length < 2) return;
+
+  var selector = '[id*="result"], [class*="result"], [id*="output"], [class*="output"], [id*="total"], [class*="total"], [id*="summary"], [class*="summary"], [data-result], [data-re-results], [data-cp-surface-result]';
+  var candidates = Array.prototype.slice.call(toolRoot.querySelectorAll(selector));
+  var panels = candidates.filter(function (node) {
+    return !candidates.some(function (other) { return other !== node && other.contains(node); });
+  });
+  var activeOwner = null;
+
+  function namesOf(node) {
+    var names = [node.id].concat(Array.prototype.slice.call(node.classList || []));
+    return names.map(function (name) {
+      return String(name).toLowerCase().replace(/[-_](form|result|results|output|outputs|total|totals|summary|summaries)([-_].*)?$/, '');
+    }).filter(Boolean);
+  }
+
+  function pairedForm(panel) {
+    var names = namesOf(panel);
+    var matches = forms.filter(function (form) {
+      return namesOf(form).some(function (name) { return names.indexOf(name) !== -1; });
+    });
+    return matches.length === 1 ? matches[0] : null;
+  }
+
+  function ownerOf(node) {
+    if (node.matches('form')) return node;
+    var form = node.closest('form') || pairedForm(node);
+    if (form) return form;
+    for (var current = node; current && current !== toolRoot; current = current.parentElement) {
+      var formCount = (current.matches('form') ? 1 : 0) + current.querySelectorAll('form').length;
+      if (formCount === 1 && panels.some(function (panel) { return current === panel || current.contains(panel); })) return current.querySelector('form') || current;
+    }
+    return node.closest('section') || node;
+  }
+
+  function keepOnly(owner, showActive) {
+    panels.forEach(function (panel) {
+      var isActive = ownerOf(panel) === owner;
+      if (!isActive) panel.hidden = true;
+      else if (showActive) panel.hidden = false;
+    });
+  }
+
+  function activate(owner) {
+    if (!owner) return;
+    activeOwner = owner;
+    keepOnly(owner, false);
+  }
+
+  toolRoot.addEventListener('submit', function (event) {
+    var form = event.target;
+    if (form instanceof HTMLFormElement) activate(ownerOf(form));
+  }, true);
+
+  toolRoot.addEventListener('input', function (event) {
+    var form = event.target.closest('form');
+    if (form) activeOwner = ownerOf(form);
+  }, true);
+
+  toolRoot.addEventListener('click', function (event) {
+    var button = event.target.closest('button');
+    var form = button && button.closest('form');
+    if (!form) return;
+    var label = [button.id, button.textContent, button.getAttribute('aria-label') || ''].join(' ').toLowerCase();
+    if (/\b(clear|reset)\b/.test(label) || button.type === 'reset') activeOwner = null;
+    else if (button.type === 'submit' || /\b(calculate|compute|roll|start|encode|decode|convert|generate|run|solve|estimate)\b/.test(label)) activate(ownerOf(form));
+  }, true);
+
+  var observer = new MutationObserver(function (records) {
+    records.forEach(function (record) {
+      var panel = panels.find(function (item) { return item === record.target || item.contains(record.target); });
+      if (!panel || !activeOwner || ownerOf(panel) !== activeOwner) return;
+      if (record.type === 'attributes' && panel.hidden) return;
+      keepOnly(activeOwner, true);
+    });
+  });
+  panels.forEach(function (panel) {
+    observer.observe(panel, {attributes: true, attributeFilter: ['hidden'], childList: true, characterData: true, subtree: true});
+  });
+})();
+</script>
+</body></html>

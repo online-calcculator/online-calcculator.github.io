@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>Real Estate Calculator | Mortgage, Rent, Area &amp; More | CalcPro</title><meta content="Browse 20 real-estate calculators and estimate mortgages, affordability, down payments, rental returns, rent budgets, and property area directly in CalcPro." name="description"/><style>
+/* CalcPro global layout — reusable for any calculator.
+   Tool-specific UI CSS belongs inside that calculator HTML, NOT here.
+   Site root: .cp-site; main layout: .cp-layout; content: .cp-main. */
+
+:root{--cp-navy:#003366;--cp-blue:#336699;--cp-link:#006699;--cp-text:#111;--cp-border:#c7d4df}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;padding:0;background:#fff}
+.cp-site{font:16px Arial,Helvetica,sans-serif;color:var(--cp-text);line-height:1.45;min-height:100vh}
+.cp-site a{color:var(--cp-link)}
+.cp-site a:focus-visible,.cp-site button:focus-visible{outline:2px solid #275f98;outline-offset:3px}
+
+/* Header */
+.cp-header{height:60px;background:var(--cp-navy);display:flex;align-items:center}
+.cp-header-inner{width:min(calc(100% - 28px),1100px);margin:0 auto}
+.cp-brand,.cp-site .cp-brand{color:#fff;text-decoration:none;font-size:24px;font-weight:700}
+.cp-site .cp-brand:hover{text-decoration:underline}
+
+/* Main two-column desktop layout. Keep the guide in the left column. */
+.cp-layout{width:min(calc(100% - 28px),1100px);margin:20px auto 54px;display:grid;grid-template-columns:minmax(0,728px) minmax(260px,336px);grid-template-areas:'primary rail' 'guide rail';gap:22px 34px;align-items:start}
+.cp-main{grid-area:primary;min-width:0;text-align:left}
+.cp-breadcrumbs{font-size:13px;margin-bottom:11px;color:#555}
+.cp-breadcrumbs a{font-size:13px;text-decoration:none}
+.cp-breadcrumbs a:hover{text-decoration:underline}
+.cp-page-title{font-size:26px;line-height:1.18;color:var(--cp-navy);margin:12px 0;font-weight:700}
+.cp-intro{margin:7px 0 12px;line-height:1.52}
+.cp-tool-area{min-width:0;max-width:100%}
+
+/* Right rail: ad slot at top, related links below */
+.cp-sidebar{grid-area:rail;min-width:0;padding-top:8px;align-self:start}
+.cp-ad-area{min-height:280px;display:flex;justify-content:center;align-items:flex-start;margin:0 0 14px}
+.cp-ad-slot{width:300px;max-width:100%;height:250px;display:flex;justify-content:center;align-items:flex-start;border:1px solid #ededed;background:#fff;color:#9c9c9c;padding:5px;font-size:11px;overflow:hidden}
+.cp-ad-slot>span{font-size:11px;color:#9c9c9c}
+.cp-related{border:1px solid var(--cp-blue);margin:0}
+.cp-related-title{margin:0;background:var(--cp-blue);color:#fff;padding:8px 9px;font-size:18px;line-height:1.3;font-weight:700}
+.cp-related-links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:9px;row-gap:0;padding:8px 9px}
+.cp-related-links a{font-size:14px;line-height:1.3;padding:5px 2px;color:var(--cp-link);text-decoration:underline;overflow-wrap:anywhere}
+.cp-related-links a:hover{text-decoration:none}
+
+/* SEO/content article, tables and highlighted tips */
+.cp-article{grid-area:guide;min-width:0;margin:0 0 26px;font-size:16px;line-height:1.55}
+.cp-article h2{font-size:22px;line-height:1.3;color:var(--cp-navy);margin:28px 0 10px}
+.cp-article h3{font-size:18px;line-height:1.35;color:var(--cp-navy);margin:19px 0 8px}
+.cp-article p{font-size:16px;line-height:1.55;margin:8px 0 13px}
+.cp-article ul,.cp-article ol{padding-left:23px;margin:10px 0 15px}
+.cp-article li{margin-bottom:6px}
+.cp-article img{max-width:100%;height:auto}
+.cp-table-scroll{max-width:100%;overflow-x:auto;margin:12px 0 18px}
+.cp-content-table{width:100%;border-collapse:collapse;font-size:14px}
+.cp-content-table td,.cp-content-table th{border:1px solid var(--cp-border);padding:8px;text-align:left;min-width:98px;vertical-align:top;font-size:13px;line-height:1.35}
+.cp-content-table th{background:var(--cp-blue);color:#fff;font-weight:700}
+.cp-content-table tr:nth-child(even) td{background:#f4f8fa}
+.cp-tip{background:#ebf8ee;padding:10px 12px;border-left:4px solid #276738;margin:12px 0}
+.cp-note{background:#f2f5f8;padding:10px 12px;border:1px solid #9aa7b4;margin:12px 0}
+.cp-warning{background:#fff7d0;border-left:4px solid #d9aa2d;padding:10px 12px;margin:12px 0}
+.cp-page-footer{border-top:1px solid #ddd;font-size:12px;color:#777;margin-top:38px;padding-top:12px}
+
+/* Responsive: collapse rail below tool, before content, as in reference. */
+@media(max-width:1110px){.cp-layout{grid-template-columns:minmax(0,1fr) minmax(245px,300px);gap:22px}}
+@media(max-width:940px){.cp-layout{grid-template-columns:minmax(0,1fr);grid-template-areas:'primary' 'rail' 'guide';width:min(calc(100% - 24px),728px)}.cp-sidebar{width:100%;padding:0 0 25px}.cp-ad-area{min-height:250px}.cp-related{max-width:400px;margin:0 auto}}
+@media(max-width:580px){.cp-layout{width:calc(100% - 20px)}.cp-article h2{font-size:20px}.cp-article h3{font-size:17px}.cp-article p{font-size:15px}.cp-page-title{font-size:24px}}
+@media print{.cp-header,.cp-sidebar{display:none!important}.cp-layout{display:block;width:100%;margin:0}.cp-main,.cp-article{width:100%;margin:0}.cp-related{display:none}}
+
+</style><style>
+
+/* Real Estate Calculator hub: every class and ID is tool-scoped. */
+.calcpro-re-hub{max-width:100%;font-size:16px;line-height:1.4}
+.calcpro-re-hub [hidden],.calcpro-re-search [hidden]{display:none!important}
+.calcpro-re-directory-intro{margin:0 0 15px}
+.calcpro-re-directory-section h2{font-size:23px;line-height:1.25;color:var(--cp-navy,#003366);margin:20px 0 12px}
+.calcpro-re-directory-list{margin:0 0 20px;padding-left:38px}
+.calcpro-re-directory-list li{margin:0 0 3px;line-height:1.36}
+.calcpro-re-directory-list a{color:#006699;text-decoration:underline}
+.calcpro-re-directory-list a:hover{text-decoration:none}
+.calcpro-re-directory-section:last-of-type{margin-top:33px}
+.calcpro-re-empty{color:#8b2f2f;font-weight:600}
+.calcpro-re-search{border:1px solid #c9d6e1;background:#f6f9fc;padding:11px;margin:0 0 15px;font-size:13px}
+.calcpro-re-search label{display:block;margin-bottom:5px;font-weight:700;color:#1f4266}
+.calcpro-re-search-row{display:flex;gap:5px}
+.calcpro-re-search input{flex:1;min-width:0;border:1px solid #92a8bb;border-radius:3px;padding:8px 9px;font:inherit;font-size:14px;background:#fff}
+.calcpro-re-search button,.calcpro-re-primary{border:1px solid #235b89;border-radius:4px;background:#336699;color:#fff;padding:9px 16px;cursor:pointer;font-weight:700;font:inherit}
+.calcpro-re-search button:hover,.calcpro-re-primary:hover{background:#164b78}
+.calcpro-re-search #calcpro-re-search-status{margin:7px 0 0;color:#46596a;font-size:12px}
+.calcpro-re-estimator{margin-top:35px;padding:18px;border:1px solid #cad9e7;border-radius:7px;background:#f8fbfe}
+.calcpro-re-estimator h2{font-size:23px;color:var(--cp-navy,#003366);margin:0 0 8px;line-height:1.2}
+.calcpro-re-estimator-intro{margin:0 0 15px;color:#36485a}
+.calcpro-re-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:10px 11px;background:#edf3f8;border:1px solid #d3e0e9;border-radius:5px;margin-bottom:12px;font-size:13px}
+.calcpro-re-toolbar label{font-weight:700}
+.calcpro-re-toolbar select{font-size:14px;padding:6px;border:1px solid #92a8bb;border-radius:4px;background:white;margin-left:7px}
+.calcpro-re-toolbar span{font-size:12px;color:#475e72}
+.calcpro-re-tabs{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:15px;border-bottom:1px solid #b8cddd;padding-bottom:9px}
+.calcpro-re-tab{font:inherit;font-size:13px;font-weight:600;padding:8px 10px;background:#fff;color:#164d75;border:1px solid #bed0df;border-radius:4px;cursor:pointer}
+.calcpro-re-tab[aria-selected="true"]{background:#336699;color:#fff;border-color:#336699}
+.calcpro-re-tab:hover:not([aria-selected="true"]){background:#e8f0f8}
+.calcpro-re-tab:focus-visible,.calcpro-re-estimator button:focus-visible,.calcpro-re-estimator input:focus-visible,.calcpro-re-estimator select:focus-visible{outline:2px solid #2269a4;outline-offset:2px}
+.calcpro-re-panel h4{font-size:19px;color:#183f62;margin:0 0 5px}
+.calcpro-re-hint{margin:0 0 14px;font-size:13px;color:#4b5d6c}
+.calcpro-re-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 14px}
+.calcpro-re-field{min-width:0;display:flex;flex-direction:column;gap:5px;font-size:13px;font-weight:700;color:#243e54}
+.calcpro-re-field>span{line-height:1.25}
+.calcpro-re-field input,.calcpro-re-field select{width:100%;min-width:0;border:1px solid #9cb1c2;border-radius:4px;background:#fff;color:#152330;font-size:16px;padding:9px 10px;line-height:1.35}
+.calcpro-re-field small{font-size:11px;font-weight:400;color:#526679;line-height:1.25}
+.calcpro-re-shape-fields{display:contents}
+.calcpro-re-actions{display:flex;gap:9px;margin:17px 0 0}
+.calcpro-re-actions button{font-size:15px;padding:10px 20px;font-weight:700;cursor:pointer}
+.calcpro-re-reset{background:#e8edf1;color:#22415b;border:1px solid #9cadbc;border-radius:4px}
+.calcpro-re-reset:hover{background:#d9e6ed}
+.calcpro-re-error{background:#fff1ee;border-left:3px solid #b13f2d;color:#912d22;padding:9px 10px;margin:12px 0 0;font-size:13px}
+.calcpro-re-results{background:#fff;border:1px solid #cbd8e1;border-radius:5px;margin-top:17px;padding:16px;overflow-wrap:anywhere}
+.calcpro-re-result-head{font-size:18px;font-weight:700;color:#173f60;margin:0 0 13px}
+.calcpro-re-lead{border-left:4px solid #3f8a45;background:#eef8f0;padding:12px;margin-bottom:12px}
+.calcpro-re-lead span{display:block;font-size:13px;color:#355740}
+.calcpro-re-lead strong{display:block;font-size:29px;font-weight:700;line-height:1.25;color:#163c2a;overflow-wrap:anywhere}
+.calcpro-re-kpis{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin:12px 0}
+.calcpro-re-kpi{border:1px solid #dce4eb;background:#f7fafc;padding:10px;border-radius:4px}
+.calcpro-re-kpi span{display:block;font-size:12px;color:#506779;margin-bottom:4px}
+.calcpro-re-kpi strong{display:block;font-size:18px;color:#193a54;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.calcpro-re-results h5{font-size:15px;margin:18px 0 8px;color:#244f73}
+.calcpro-re-footnote{font-size:12px;line-height:1.4;color:#5c6b75;margin:12px 0 0}
+.calcpro-re-chart-row{display:flex;flex-wrap:wrap;gap:24px;align-items:center;margin:12px 0}
+.calcpro-re-donut{width:158px;height:158px;border-radius:50%;flex:none;display:grid;place-items:center}
+.calcpro-re-donut-center{width:104px;height:104px;border-radius:50%;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;font-size:12px;color:#375168}
+.calcpro-re-donut-center strong{font-size:20px;color:#234966}
+.calcpro-re-legend{font-size:13px;line-height:1.8}
+.calcpro-re-swatch{display:inline-block;width:11px;height:11px;margin-right:5px;border-radius:2px}
+.calcpro-re-svg-chart{display:block;width:100%;height:auto;max-height:250px;background:#fff;border:1px solid #e2e9f0;border-radius:3px}
+.calcpro-re-scroll-table{overflow-x:auto;max-width:100%}
+.calcpro-re-data-table{border-collapse:collapse;width:100%;font-size:12px;white-space:nowrap}
+.calcpro-re-data-table th,.calcpro-re-data-table td{padding:7px 9px;border:1px solid #d4e0e8;text-align:right}
+.calcpro-re-data-table th{background:#e8f1f8;color:#213f57}
+.calcpro-re-data-table th:first-child,.calcpro-re-data-table td:first-child{text-align:left}
+.calcpro-re-data-table tbody tr:nth-child(even){background:#f7fbfd}
+.calcpro-re-results details{margin-top:14px}
+.calcpro-re-results summary{font-size:14px;font-weight:700;color:#006699;cursor:pointer;padding:5px 0}
+.calcpro-re-bar-chart{margin:13px 0}
+.calcpro-re-bar-track{height:22px;width:100%;background:#e7edf2;border-radius:4px;overflow:hidden;display:flex}
+.calcpro-re-bar-segment{height:100%;transition:width .25s ease}
+.calcpro-re-bar-legend{font-size:12px;color:#425869;margin-top:8px;line-height:1.7}
+.calcpro-re-external-note{font-size:12px;line-height:1.4;color:#5a6f81;margin:12px 0 0}
+@media(max-width:610px){.calcpro-re-estimator{padding:12px}.calcpro-re-fields,.calcpro-re-kpis{grid-template-columns:1fr}.calcpro-re-directory-list{padding-left:23px}.calcpro-re-results{padding:12px}.calcpro-re-lead strong{font-size:25px}.calcpro-re-toolbar{align-items:flex-start}.calcpro-re-directory-section h2,.calcpro-re-estimator h2{font-size:21px}}
+@media print{.calcpro-re-search,.calcpro-re-tabs,.calcpro-re-actions,.calcpro-re-toolbar{display:none!important}.calcpro-re-estimator{break-inside:avoid}.calcpro-re-panel[hidden],.calcpro-re-results[hidden]{display:none!important}}
+
+</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Real Estate Calculator</nav><h1 class="cp-page-title">Real Estate Calculator</h1><p class="cp-intro">Explore 20 real estate calculators for home financing, rent, property investment, measurements and construction. Use the quick estimates below for common real estate questions.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-re-hub" id="calcpro-re-hub">
+    <div class="calcpro-re-directory" id="calcpro-re-directory">
+      <p class="calcpro-re-directory-intro">Real estate covers financing, renting, ownership and construction. Browse the categories below to find a dedicated calculator. Six topics also offer a quick estimate directly on this page.</p>
+      <section class="calcpro-re-directory-section" id="calcpro-re-financial"><h2>Financial</h2><ul class="calcpro-re-directory-list">
+<li data-re-entry><a href="#calcpro-re-estimator" data-re-target="mortgage" title="Open the Mortgage Calculator quick estimator on this page"><em>Mortgage Calculator</em></a> — Plan a mortgage and estimate principal, interest, taxes and insurance.</li>
+<li data-re-entry><a href="#calcpro-re-estimator" data-re-target="affordability" title="Open the House Affordability Calculator quick estimator on this page"><em>House Affordability Calculator</em></a> — Estimate a home-price budget from income, debts and housing expenses.</li>
+<li data-re-entry><a href="https://www.calculator.net/mortgage-payoff-calculator.html" target="_blank" rel="noopener noreferrer" title="Opens a specialized calculator at calculator.net in a new tab"><em>Mortgage Payoff Calculator</em></a> — See the potential effect of additional mortgage payments.</li>
+<li data-re-entry><a href="https://www.calculator.net/refinance-calculator.html" target="_blank" rel="noopener noreferrer" title="Opens a specialized calculator at calculator.net in a new tab"><em>Refinance Calculator</em></a> — Compare the cost of replacing an existing home loan.</li>
+<li data-re-entry><a href="https://www.calculator.net/fha-loan-calculator.html" target="_blank" rel="noopener noreferrer" title="Opens a specialized calculator at calculator.net in a new tab"><em>FHA Loan Calculator</em></a> — Explore U.S. FHA mortgage payments and applicable fees.</li>
+<li data-re-entry><a href="https://www.calculator.net/va-mortgage-calculator.html" target="_blank" rel="noopener noreferrer" title="Opens a specialized calculator at calculator.net in a new tab"><em>VA Mortgage Calculator</em></a> — Explore U.S. VA loan terms and funding charges.</li>
+<li data-re-entry><a href="#calcpro-re-estimator" data-re-target="downpayment" title="Open the Down Payment Calculator quick estimator on this page"><em>Down Payment Calculator</em></a> — Estimate a home down payment and cash needed at closing.</li>
+<li data-re-entry><a href="https://www.calculator.net/apr-calculator.html" target="_blank" rel="noopener noreferrer" title="Opens a specialized calculator at calculator.net in a new tab"><em>APR Calculator</em></a> — Estimate borrowing cost when loan fees are included.</li>
+<li data-re-entry><a href="https://www.calculator.net/home-equity-loan-calculator.html" target="_blank" rel="noopener noreferrer" title="Opens a specialized calculator at calculator.net in a new tab"><em>Home Equity Loan Calculator</em></a> — Estimate monthly payments on a home equity loan.</li>
+<li data-re-entry><a href="https://www.calculator.net/heloc-calculator.html" target="_blank" rel="noopener noreferrer" title="Opens a specialized calculator at calculator.net in a new tab"><em>HELOC Calculator</em></a> — Explore costs associated with a home equity line of credit.</li>
+<li data-re-entry><a href="#calcpro-re-estimator" data-re-target="rental" title="Open the Rental Property Calculator quick estimator on this page"><em>Rental Property Calculator</em></a> — Estimate rental income, expenses, cash flow and investment yield.</li>
+<li data-re-entry><a href="#calcpro-re-estimator" data-re-target="rent" title="Open the Rent Calculator quick estimator on this page"><em>Rent Calculator</em></a> — Estimate a rent budget after recurring expenses and savings.</li>
+<li data-re-entry><a href="https://www.calculator.net/rent-vs-buy-calculator.html" target="_blank" rel="noopener noreferrer" title="Opens a specialized calculator at calculator.net in a new tab"><em>Rent vs. Buy Calculator</em></a> — Compare the long-term economics of renting and buying.</li>
+</ul></section>
+      <section class="calcpro-re-directory-section" id="calcpro-re-other"><h2>Other</h2><ul class="calcpro-re-directory-list">
+<li data-re-entry><a href="#calcpro-re-estimator" data-re-target="area" title="Open the Area Calculator quick estimator on this page"><em>Area Calculator</em></a> — Calculate the area of a lot, floor or other surface.</li>
+<li data-re-entry><a href="https://www.calculator.net/concrete-calculator.html" target="_blank" rel="noopener noreferrer" title="Opens a specialized calculator at calculator.net in a new tab"><em>Concrete Calculator</em></a> — Estimate concrete volume for a building project.</li>
+<li data-re-entry><a href="https://www.calculator.net/btu-calculator.html" target="_blank" rel="noopener noreferrer" title="Opens a specialized calculator at calculator.net in a new tab"><em>BTU Calculator</em></a> — Estimate heating or cooling capacity for a space.</li>
+<li data-re-entry><a href="https://www.calculator.net/stair-calculator.html" target="_blank" rel="noopener noreferrer" title="Opens a specialized calculator at calculator.net in a new tab"><em>Stair Calculator</em></a> — Work out stair-rise and tread dimensions.</li>
+<li data-re-entry><a href="https://www.calculator.net/tile-calculator.html" target="_blank" rel="noopener noreferrer" title="Opens a specialized calculator at calculator.net in a new tab"><em>Tile Calculator</em></a> — Estimate the number of tiles needed for a surface.</li>
+<li data-re-entry><a href="#calcpro-re-estimator" data-re-target="area" title="Open the Square Footage Calculator quick estimator on this page"><em>Square Footage Calculator</em></a> — Convert measurements into square footage.</li>
+<li data-re-entry><a href="https://www.calculator.net/roofing-calculator.html" target="_blank" rel="noopener noreferrer" title="Opens a specialized calculator at calculator.net in a new tab"><em>Roofing Calculator</em></a> — Estimate roof area and roofing materials.</li>
+</ul></section>
+      <p class="calcpro-re-empty" id="calcpro-re-empty" hidden>No matching calculators were found. Try a different keyword.</p>
+    </div>
+    <section id="calcpro-re-estimator" class="calcpro-re-estimator" aria-labelledby="calcpro-re-estimator-heading">
+      <h2 id="calcpro-re-estimator-heading">Quick Real Estate Estimates</h2>
+      <p class="calcpro-re-estimator-intro">Choose a tool below to calculate without leaving this page. These are simplified planning estimates, not replacements for the specialist calculators linked above.</p>
+      <div class="calcpro-re-toolbar"><label for="calcpro-re-currency">Currency <select id="calcpro-re-currency"><option value="USD">USD ($)</option><option value="PKR">PKR (₨)</option><option value="GBP">GBP (£)</option><option value="EUR">EUR (€)</option><option value="INR">INR (₹)</option><option value="CAD">CAD ($)</option><option value="AUD">AUD ($)</option></select></label><span>Currency changes labels only; no exchange-rate conversion.</span></div>
+      <div role="tablist" aria-label="Real estate estimate type" class="calcpro-re-tabs"><button class="calcpro-re-tab" type="button" role="tab" aria-controls="calcpro-re-panel-mortgage" aria-selected="true" data-re-tab="mortgage" tabindex="0">Mortgage</button><button class="calcpro-re-tab" type="button" role="tab" aria-controls="calcpro-re-panel-affordability" aria-selected="false" data-re-tab="affordability" tabindex="-1">Affordability</button><button class="calcpro-re-tab" type="button" role="tab" aria-controls="calcpro-re-panel-downpayment" aria-selected="false" data-re-tab="downpayment" tabindex="-1">Down payment</button><button class="calcpro-re-tab" type="button" role="tab" aria-controls="calcpro-re-panel-rental" aria-selected="false" data-re-tab="rental" tabindex="-1">Rental returns</button><button class="calcpro-re-tab" type="button" role="tab" aria-controls="calcpro-re-panel-rent" aria-selected="false" data-re-tab="rent" tabindex="-1">Rent budget</button><button class="calcpro-re-tab" type="button" role="tab" aria-controls="calcpro-re-panel-area" aria-selected="false" data-re-tab="area" tabindex="-1">Property area</button></div>
+      <section class="calcpro-re-panel" id="calcpro-re-panel-mortgage" data-re-panel="mortgage" aria-labelledby="calcpro-re-label-mortgage">
+      <h4 id="calcpro-re-label-mortgage">Mortgage payment calculator</h4><p class="calcpro-re-hint">Fixed-rate principal and interest plus the extra monthly costs you enter. PMI applies only if the down payment is below 20%.</p>
+      <form class="calcpro-re-form" data-re-form="mortgage" novalidate>
+        <div class="calcpro-re-fields"><label class="calcpro-re-field" for="calcpro-re-mortgage-price"><span>Home price</span><input id="calcpro-re-mortgage-price" name="price" type="number" min="1" max="1000000000000" step="any" value="400000" required inputmode="decimal"></label><label class="calcpro-re-field" for="calcpro-re-mortgage-down"><span>Down payment (%)</span><input id="calcpro-re-mortgage-down" name="down" type="number" min="0" max="100" step="any" value="20" required inputmode="decimal"></label><label class="calcpro-re-field" for="calcpro-re-mortgage-rate"><span>Annual interest rate (%)</span><input id="calcpro-re-mortgage-rate" name="rate" type="number" min="0" max="100" step="any" value="6.5" required inputmode="decimal"></label><label class="calcpro-re-field" for="calcpro-re-mortgage-years"><span>Loan term (years)</span><input id="calcpro-re-mortgage-years" name="years" type="number" min="1" max="50" step="1" value="30" required inputmode="decimal"></label><label class="calcpro-re-field" for="calcpro-re-mortgage-tax"><span>Property taxes per year</span><input id="calcpro-re-mortgage-tax" name="tax" type="number" min="0" max="1000000000000" step="any" value="4800" required inputmode="decimal"></label><label class="calcpro-re-field" for="calcpro-re-mortgage-insurance"><span>Home insurance per year</span><input id="calcpro-re-mortgage-insurance" name="insurance" type="number" min="0" max="1000000000000" step="any" value="1800" required inputmode="decimal"></label><label class="calcpro-re-field" for="calcpro-re-mortgage-hoa"><span>HOA fees per month</span><input id="calcpro-re-mortgage-hoa" name="hoa" type="number" min="0" max="1000000000000" step="any" value="0" required inputmode="decimal"></label><label class="calcpro-re-field" for="calcpro-re-mortgage-pmi"><span>PMI annual rate (%)</span><input id="calcpro-re-mortgage-pmi" name="pmi" type="number" min="0" max="10" step="any" value="0.5" required inputmode="decimal"><small>Applied to the loan amount only below 20% down.</small></label></div>
+        <div class="calcpro-re-actions"><button type="submit" class="calcpro-re-primary">Calculate</button><button type="reset" class="calcpro-re-reset">Reset</button></div>
+        <p class="calcpro-re-error" data-re-error role="alert" hidden></p>
+      </form>
+      <div class="calcpro-re-results" data-re-results aria-live="polite" hidden></div>
+    </section><section class="calcpro-re-panel" id="calcpro-re-panel-affordability" data-re-panel="affordability" aria-labelledby="calcpro-re-label-affordability" hidden>
+      <h4 id="calcpro-re-label-affordability">House affordability calculator</h4><p class="calcpro-re-hint">Estimate a maximum home price under editable illustrative front-end and total-debt-to-income limits—not a lending decision.</p>
+      <form class="calcpro-re-form" data-re-form="affordability" novalidate>
+        <div class="calcpro-re-fields"><label class="calcpro-re-field" for="calcpro-re-affordability-income"><span>Gross household income per month</span><input id="calcpro-re-affordability-income" name="income" type="number" min="1" max="1000000000000" step="any" value="9000" required inputmode="decimal"></label><label class="calcpro-re-field" for="calcpro-re-affordability-debts"><span>Other debt payments per month</span><input id="calcpro-re-affordability-debts" name="debts" type="number" min="0" max="1000000000000" step="any" value="650" required inputmode="decimal"></label><label class="calcpro-re-field" for="calcpro-re-affordability-front"><span>Housing-to-income limit (%)</span><input id="calcpro-re-affordability-front" name="front" type="number" min="1" max="100" step="any" value="28" required inputmode="decimal"></label><label class="calcpro-re-field" for="calcpro-re-affordability-back"><span>Total-debt-to-income limit (%)</span><input id="calcpro-re-affordability-back" name="back" type="number" min="1" max="100" step="any" value="36" required inputmode="decimal"></label><label class="calcpro-re-field" for="calcpro-re-affordability-down"><span>Down payment (%)</span><input id="calcpro-re-affordability-down" name="down" type="number" min="0" max="99" step="any" value="20" required inputmode="decimal"></label><label class="calcpro-re-field" for="calcpro-re-affordability-rate"><span>Annual loan interest (%)</span><input id="calcpro-re-affordability-rate" name="rate" type="number" min="0" max="100" step="any" value="6.5" required inputmode="decimal"></label><label class="calcpro-re-field" for="calcpro-re-affordability-years"><span>Loan term (years)</span><input id="calcpro-re-affordability-years" name="years" type="number" min="1" max="50" step="1" value="30" required inputmode="decimal"></label><label class="calcpro-re-field" for="calcpro-re-affordability-other"><span>Monthly property taxes, insurance and HOA</span><input id="calcpro-re-affordability-other" name="other" type="number" min="0" max="1000000000000" step="any" value="550" required inputmode="decimal"></label></div>
+        <div class="calcpro-re-actions"><button type="submit" class="calcpro-re-primary">Calculate</button><button type="reset" class="calcpro-re-reset">Reset</button></div>
+        <p class="calcpro-re-error" data-re-error role="alert" hidden></p>
+      </form>
+      <div class="calcpro-re-results" data-re-results aria-live="polite" hidden></div>
+    </section><section class="calcpro-re-panel" id="calcpro-re-panel-downpayment" data-re-panel="downpayment" aria-labelledby="calcpro-re-label-downpayment" hidden>
+      <h4 id="calcpro-re-label-downpayment">Down payment calculator</h4><p class="calcpro-re-hint">Estimate the initial cash required for a purchase. An earnest-money deposit is counted toward—not added to—the cash needed.</p>
+      <form class="calcpro-re-form" data-re-form="downpayment" novalidate>
+        <div class="calcpro-re-fields"><label class="calcpro-re-field" for="calcpro-re-downpayment-price"><span>Purchase price</span><input id="calcpro-re-downpayment-price" name="price" type="number" min="1" max="1000000000000" step="any" value="400000" required inputmode="decimal"></label><label class="calcpro-re-field" for="calcpro-re-downpayment-down"><span>Down payment (%)</span><input id="calcpro-re-downpayment-down" name="down" type="number" min="0" max="100" step="any" value="20" required inputmode="decimal"></label><label class="calcpro-re-field" for="calcpro-re-downpayment-closing"><span>Estimated closing costs (%)</span><input id="calcpro-re-downpayment-closing" name="closing" type="number" min="0" max="30" step="any" value="3" required inputmode="decimal"></label><label class="calcpro-re-field" for="calcpro-re-downpayment-deposit"><span>Earnest-money deposit already paid</span><input id="calcpro-re-downpayment-deposit" name="deposit" type="number" min="0" max="1000000000000" step="any" value="5000" required inputmode="decimal"></label></div>
+        <div class="calcpro-re-actions"><button type="submit" class="calcpro-re-primary">Calculate</button><button type="reset" class="calcpro-re-reset">Reset</button></div>
+        <p class="calcpro-re-error" data-re-error role="alert" hidden></p>
+      </form>
+      <div class="calcpro-re-results" data-re-results aria-live="polite" hidden></div>
+    </section><section class="calcpro-re-panel" id="calcpro-re-panel-rental" data-re-panel="rental" aria-labelledby="calcpro-re-label-rental" hidden>
+      <h4 id="calcpro-re-label-rental">Rental property returns calculator</h4><p class="calcpro-re-hint">Simplified year-one cash flow with a fixed-rate loan; excludes income tax, appreciation, depreciation, selling costs and future changes.</p>
+      <form class="calcpro-re-form" data-re-form="rental" novalidate>
+        <div class="calcpro-re-fields"><label class="calcpro-re-field" for="calcpro-re-rental-price"><span>Property purchase price</span><input id="calcpro-re-rental-price" name="price" type="number" min="1" max="1000000000000" step="any" value="300000" required inputmode="decimal"></label><label class="calcpro-re-field" for="calcpro-re-rental-down"><span>Down payment (%)</span><input id="calcpro-re-rental-down" name="down" type="number" min="0" max="100" step="any" value="25" required inputmode="decimal"></label><label class="calcpro-re-field" for="calcpro-re-rental-rate"><span>Loan interest rate (%)</span><input id="calcpro-re-rental-rate" name="rate" type="number" min="0" max="100" step="any" value="6.5" required inputmode="decimal"></label><label class="calcpro-re-field" for="calcpro-re-rental-years"><span>Loan term (years)</span><input id="calcpro-re-rental-years" name="years" type="number" min="1" max="50" step="1" value="30" required inputmode="decimal"></label><label class="calcpro-re-field" for="calcpro-re-rental-rent"><span>Monthly scheduled rent</span><input id="calcpro-re-rental-rent" name="rent" type="number" min="0" max="1000000000000" step="any" value="2800" required inputmode="decimal"></label><label class="calcpro-re-field" for="calcpro-re-rental-vacancy"><span>Vacancy / collection loss (%)</span><input id="calcpro-re-rental-vacancy" name="vacancy" type="number" min="0" max="100" step="any" value="5" required inputmode="decimal"></label><label class="calcpro-re-field" for="calcpro-re-rental-opex"><span>Monthly operating expenses (excl. taxes and insurance)</span><input id="calcpro-re-rental-opex" name="opex" type="number" min="0" max="1000000000000" step="any" value="350" required inputmode="decimal"></label><label class="calcpro-re-field" for="calcpro-re-rental-tax"><span>Annual property taxes</span><input id="calcpro-re-rental-tax" name="tax" type="number" min="0" max="1000000000000" step="any" value="3600" required inputmode="decimal"></label><label class="calcpro-re-field" for="calcpro-re-rental-insurance"><span>Annual insurance</span><input id="calcpro-re-rental-insurance" name="insurance" type="number" min="0" max="1000000000000" step="any" value="1200" required inputmode="decimal"></label><label class="calcpro-re-field" for="calcpro-re-rental-closing"><span>Buyer closing costs (%)</span><input id="calcpro-re-rental-closing" name="closing" type="number" min="0" max="30" step="any" value="3" required inputmode="decimal"></label><label class="calcpro-re-field" for="calcpro-re-rental-repairs"><span>One-time rehabilitation / startup costs</span><input id="calcpro-re-rental-repairs" name="repairs" type="number" min="0" max="1000000000000" step="any" value="0" required inputmode="decimal"></label></div>
+        <div class="calcpro-re-actions"><button type="submit" class="calcpro-re-primary">Calculate</button><button type="reset" class="calcpro-re-reset">Reset</button></div>
+        <p class="calcpro-re-error" data-re-error role="alert" hidden></p>
+      </form>
+      <div class="calcpro-re-results" data-re-results aria-live="polite" hidden></div>
+    </section><section class="calcpro-re-panel" id="calcpro-re-panel-rent" data-re-panel="rent" aria-labelledby="calcpro-re-label-rent" hidden>
+      <h4 id="calcpro-re-label-rent">Rent budget calculator</h4><p class="calcpro-re-hint">Estimate an affordable monthly rent using your take-home income, a target spending ratio and your actual commitments.</p>
+      <form class="calcpro-re-form" data-re-form="rent" novalidate>
+        <div class="calcpro-re-fields"><label class="calcpro-re-field" for="calcpro-re-rent-income"><span>Monthly take-home income</span><input id="calcpro-re-rent-income" name="income" type="number" min="0" max="1000000000000" step="any" value="6000" required inputmode="decimal"></label><label class="calcpro-re-field" for="calcpro-re-rent-percentage"><span>Rent spending target (%)</span><input id="calcpro-re-rent-percentage" name="percentage" type="number" min="0" max="100" step="any" value="30" required inputmode="decimal"></label><label class="calcpro-re-field" for="calcpro-re-rent-debts"><span>Monthly debt payments</span><input id="calcpro-re-rent-debts" name="debts" type="number" min="0" max="1000000000000" step="any" value="500" required inputmode="decimal"></label><label class="calcpro-re-field" for="calcpro-re-rent-essentials"><span>Other monthly essential spending</span><input id="calcpro-re-rent-essentials" name="essentials" type="number" min="0" max="1000000000000" step="any" value="1800" required inputmode="decimal"></label><label class="calcpro-re-field" for="calcpro-re-rent-savings"><span>Monthly savings goal</span><input id="calcpro-re-rent-savings" name="savings" type="number" min="0" max="1000000000000" step="any" value="900" required inputmode="decimal"></label></div>
+        <div class="calcpro-re-actions"><button type="submit" class="calcpro-re-primary">Calculate</button><button type="reset" class="calcpro-re-reset">Reset</button></div>
+        <p class="calcpro-re-error" data-re-error role="alert" hidden></p>
+      </form>
+      <div class="calcpro-re-results" data-re-results aria-live="polite" hidden></div>
+    </section><section class="calcpro-re-panel" id="calcpro-re-panel-area" data-re-panel="area" aria-labelledby="calcpro-re-label-area" hidden>
+      <h4 id="calcpro-re-label-area">Property area calculator</h4><p class="calcpro-re-hint">Calculate a rectangle, triangle or circle in feet or meters. The measurements are straight-line dimensions.</p>
+      <form class="calcpro-re-form" data-re-form="area" novalidate>
+        <div class="calcpro-re-fields"><label class="calcpro-re-field" for="calcpro-re-area-shape"><span>Shape</span><select id="calcpro-re-area-shape" name="shape"><option value="rectangle">Rectangle</option><option value="triangle">Triangle</option><option value="circle">Circle</option></select></label><label class="calcpro-re-field" for="calcpro-re-area-unit"><span>Input length unit</span><select id="calcpro-re-area-unit" name="unit"><option value="ft">Feet (ft)</option><option value="m">Meters (m)</option></select></label><div class="calcpro-re-shape-fields" data-re-shape="rectangle"><label class="calcpro-re-field" for="calcpro-re-area-length"><span>Length</span><input id="calcpro-re-area-length" name="length" type="number" min="1e-06" max="1000000000000" step="any" value="40" required inputmode="decimal"></label><label class="calcpro-re-field" for="calcpro-re-area-width"><span>Width</span><input id="calcpro-re-area-width" name="width" type="number" min="1e-06" max="1000000000000" step="any" value="30" required inputmode="decimal"></label></div><div class="calcpro-re-shape-fields" data-re-shape="triangle" hidden><label class="calcpro-re-field" for="calcpro-re-area-base"><span>Base</span><input id="calcpro-re-area-base" name="base" type="number" min="1e-06" max="1000000000000" step="any" value="40" required inputmode="decimal"></label><label class="calcpro-re-field" for="calcpro-re-area-height"><span>Perpendicular height</span><input id="calcpro-re-area-height" name="height" type="number" min="1e-06" max="1000000000000" step="any" value="30" required inputmode="decimal"></label></div><div class="calcpro-re-shape-fields" data-re-shape="circle" hidden><label class="calcpro-re-field" for="calcpro-re-area-radius"><span>Radius</span><input id="calcpro-re-area-radius" name="radius" type="number" min="1e-06" max="1000000000000" step="any" value="15" required inputmode="decimal"></label></div></div>
+        <div class="calcpro-re-actions"><button type="submit" class="calcpro-re-primary">Calculate</button><button type="reset" class="calcpro-re-reset">Reset</button></div>
+        <p class="calcpro-re-error" data-re-error role="alert" hidden></p>
+      </form>
+      <div class="calcpro-re-results" data-re-results aria-live="polite" hidden></div>
+    </section>
+    </section>
+    <p class="calcpro-re-external-note">Specialized topics that do not have an on-page quick estimator open the corresponding external calculator.net page in a new tab. No external website is used to calculate the results shown here.</p>
+  </div></section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><form class="calcpro-re-search" id="calcpro-re-search" role="search" novalidate><label for="calcpro-re-search-input">Search real estate calculators</label><div class="calcpro-re-search-row"><input type="search" id="calcpro-re-search-input" placeholder="Search calculators" autocomplete="off"><button type="submit">Search</button></div><p id="calcpro-re-search-status" aria-live="polite">20 calculators</p></form><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><a href="#calcpro-re-estimator" data-re-target="mortgage">Mortgage</a><a href="#calcpro-re-estimator" data-re-target="affordability">House Affordability</a><a href="#calcpro-re-estimator" data-re-target="downpayment">Down Payment</a><a href="#calcpro-re-estimator" data-re-target="rental">Rental Property</a><a href="#calcpro-re-estimator" data-re-target="rent">Rent Budget</a><a href="#calcpro-re-estimator" data-re-target="area">Area</a></div></section></aside><article class="cp-article"><h2>How to Use the Real Estate Calculator Directory</h2>
+<p>Select a specialized calculator from the Financial or Other list, or use the on-page Quick Real Estate Estimates section for mortgage payments, affordability, down payments, rental property returns, a rent budget or geometric property area. Use the search field in the sidebar to narrow the directory by name or topic.</p>
+<h2>How the Quick Estimates Work</h2>
+<h3>Fixed-Rate Mortgage</h3>
+<p>For loan principal <em>P</em>, monthly interest rate <em>r</em> (annual percentage rate divided by 1,200) and <em>n</em> monthly payments, the principal-and-interest payment is <strong>M = P × r ÷ [1 − (1 + r)<sup>−n</sup>]</strong>. For a zero-interest loan, <strong>M = P ÷ n</strong>. Property taxes, insurance, HOA dues and any user-estimated PMI are added separately. The annual amortization schedule calculates interest on the balance remaining each month.</p>
+<h3>Home Affordability</h3>
+<p>The estimator takes the lower of a housing-to-income budget and a total-debt-to-income budget after existing debt payments. It deducts estimated taxes, insurance and HOA charges, calculates the affordable loan principal using the mortgage payment factor, and adjusts for the down-payment percentage. The default percentage limits are adjustable examples, not lender approval criteria.</p>
+<h3>Down Payment and Cash to Close</h3>
+<p>The down payment is the purchase price multiplied by the down-payment percentage. Estimated initial cash equals the down payment plus the entered closing-cost estimate; cash still needed is reduced by any earnest-money deposit already paid. Actual settlement statements may include prepaid expenses and credits.</p>
+<h3>Rental Property Performance</h3>
+<p>Estimated <strong>net operating income (NOI)</strong> equals collected rent minus recurring operating expenses, property taxes and insurance, before mortgage debt service. Capitalization rate equals annual NOI divided by purchase price. Monthly cash flow is NOI per month minus the mortgage principal-and-interest payment. Cash-on-cash return is annual cash flow divided by estimated initial cash invested. A negative return signals a modeled cash shortfall.</p>
+<h3>Rent Budget and Property Area</h3>
+<p>The rent budget compares a target percentage of monthly take-home income with the cash available after debts, essentials and planned savings, using the lower value. The area calculator supports a rectangle (<em>length × width</em>), triangle (<em>base × perpendicular height ÷ 2</em>) and circle (<em>π × radius²</em>). Conversions use 1 foot = 0.3048 meters and 1 acre = 43,560 square feet.</p>
+<h2>Worked Examples</h2>
+<p>For a $400,000 home with 20% down, the loan principal is $320,000. At a fixed 6.5% annual rate for 30 years, principal and interest are approximately <strong>$2,022.62 per month</strong>, before property tax, insurance, and fees. A 40-by-30-foot rectangle measures <strong>1,200 ft²</strong>, or approximately <strong>111.48 m²</strong>.</p>
+<h2>Frequently Asked Questions</h2>
+<h3>Are taxes and insurance included in the mortgage payment?</h3><p>They are included in the tool's estimated all-in monthly cost if you enter them, but not in its principal-and-interest or total-loan-interest calculations. The actual lender payment may differ.</p>
+<h3>Does a higher capitalization rate mean guaranteed profit?</h3><p>No. Cap rate describes annual property operating income relative to price. It ignores financing costs, income taxes, appreciation, sale costs and many potential risks.</p>
+<h3>Are these affordability estimates loan approvals?</h3><p>No. Approval depends on lender requirements, location, credit history, verified expenses and other underwriting considerations. The editable ratios are budgeting assumptions.</p>
+<h3>Can I use a currency other than U.S. dollars?</h3><p>Yes. Choose USD, PKR, GBP, EUR, INR, CAD or AUD. The selector changes only the denomination displayed on monetary results; it does not convert existing entered amounts at exchange rates.</p>
+<h2>Formula References</h2>
+<p><a href="https://www.consumerfinance.gov/ask-cfpb/how-do-mortgage-lenders-calculate-monthly-payments-en-1965/" target="_blank" rel="noopener noreferrer">Consumer Financial Protection Bureau — fixed-rate monthly mortgage payments</a>; <a href="https://www.consumerfinance.gov/ask-cfpb/on-a-mortgage-whats-the-difference-between-my-principal-and-interest-payment-and-my-total-monthly-payment-en-1941/" target="_blank" rel="noopener noreferrer">CFPB — principal and interest versus all-in mortgage cost</a>; <a href="https://www.boe.ca.gov/info/iav/lesson8.htm" target="_blank" rel="noopener noreferrer">California State Board of Equalization — income capitalization</a>.</p>
+<p class="cp-page-footer">CalcPro — real-estate results are educational estimates only and are not financing, investment or legal advice.</p></article></main></div><script>(function(){
+ 'use strict';
+ const hub=document.getElementById('calcpro-re-hub');
+ if(!hub)return;
+ const $=id=>document.getElementById('calcpro-re-'+id);
+ const modes=['mortgage','affordability','downpayment','rental','rent','area'];
+ const codes=new Set(['USD','PKR','GBP','EUR','INR','CAD','AUD']);
+ const curr=$('currency');
+ let active='mortgage';
+ const money=x=>new Intl.NumberFormat('en-US',{style:'currency',currency:codes.has(curr.value)?curr.value:'USD',minimumFractionDigits:2,maximumFractionDigits:2}).format(x);
+ const number=(x,d=2)=>new Intl.NumberFormat('en-US',{maximumFractionDigits:d,minimumFractionDigits:0}).format(x);
+ const percent=x=>number(x,2)+'%';
+ function pi(loan,rate,years){
+   if(loan<=0)return 0;
+   const r=rate/1200,n=years*12;
+   if(r===0)return loan/n;
+   return loan*r/(1-Math.pow(1+r,-n));
+ }
+ function amortize(loan,rate,years){
+   const monthly=pi(loan,rate,years),r=rate/1200,n=years*12;
+   let balance=loan,paidInterest=0,yearInterest=0,yearPrincipal=0;
+   const yearly=[{year:0,balance:loan,interest:0,principal:0}];
+   for(let i=1;i<=n;i++){
+     const interest=balance*r;
+     const principal=Math.min(balance,Math.max(0,monthly-interest));
+     balance=Math.max(0,balance-principal);
+     paidInterest+=interest;yearInterest+=interest;yearPrincipal+=principal;
+     if(i%12===0){yearly.push({year:i/12,balance,interest:yearInterest,principal:yearPrincipal});yearInterest=0;yearPrincipal=0;}
+   }
+   return {monthly,interest:paidInterest,yearly};
+ }
+ function kpi(label,value){return '<div class="calcpro-re-kpi"><span>'+label+'</span><strong>'+value+'</strong></div>';}
+ function result(leadLabel,leadValue,kpis,extra='',note=''){
+   return '<div class="calcpro-re-lead"><span>'+leadLabel+'</span><strong>'+leadValue+'</strong></div><div class="calcpro-re-kpis">'+kpis.join('')+'</div>'+extra+(note?'<p class="calcpro-re-footnote">'+note+'</p>':'');
+ }
+ function chartBalance(yearly,loan){
+   const W=640,H=180,left=54,right=18,top=14,bottom=35,width=W-left-right,height=H-top-bottom;
+   const n=yearly.length-1;
+   const pts=yearly.map((p,i)=>[left+i/Math.max(1,n)*width,top+(1-(loan>0?p.balance/loan:0))*height]);
+   const d=pts.map((p,i)=>(i===0?'M':'L')+p[0].toFixed(2)+' '+p[1].toFixed(2)).join(' ');
+   const lines=[0,.25,.5,.75,1].map(t=>{const y=top+t*height;return '<line x1="'+left+'" y1="'+y+'" x2="'+(W-right)+'" y2="'+y+'" stroke="#e2e9ef"/><text x="'+(left-8)+'" y="'+(y+4)+'" text-anchor="end" fill="#5c6d77" font-size="12">'+Math.round((1-t)*100)+'%</text>';}).join('');
+   return '<h5>Remaining loan balance over time</h5><svg class="calcpro-re-svg-chart" role="img" aria-label="Projected outstanding loan balance by year, from 100 percent to zero" viewBox="0 0 '+W+' '+H+'">'+lines+'<path d="'+d+'" fill="none" stroke="#23679b" stroke-width="3" stroke-linejoin="round"/><text x="'+left+'" y="'+(H-9)+'" font-size="12" fill="#526779">Year 0</text><text x="'+(W-right)+'" y="'+(H-9)+'" text-anchor="end" font-size="12" fill="#526779">Year '+n+'</text></svg>';
+ }
+ function tableSchedule(yearly){
+   return '<details><summary>View annual amortization schedule</summary><div class="calcpro-re-scroll-table"><table class="calcpro-re-data-table"><thead><tr><th>Year</th><th>Principal paid</th><th>Interest paid</th><th>Ending balance</th></tr></thead><tbody>'+yearly.slice(1).map(y=>'<tr><td>'+y.year+'</td><td>'+money(y.principal)+'</td><td>'+money(y.interest)+'</td><td>'+money(y.balance)+'</td></tr>').join('')+'</tbody></table></div></details>';
+ }
+ function computeMortgage(v){
+   const loan=v.price*(1-v.down/100),a=amortize(loan,v.rate,v.years);
+   const pmi=v.down<20?loan*v.pmi/1200:0,tax=v.tax/12,ins=v.insurance/12,extra=tax+ins+v.hoa+pmi,total=a.monthly+extra;
+   const share=total>0?a.monthly/total*100:0;
+   const donut='<h5>Monthly payment breakdown</h5><div class="calcpro-re-chart-row"><div class="calcpro-re-donut" role="img" aria-label="Principal and interest '+percent(share)+'; other monthly housing costs '+percent(100-share)+'" style="background:conic-gradient(#285f90 0% '+share+'%,#9bb6c9 '+share+'% 100%)"><div class="calcpro-re-donut-center">Total/month<strong>'+money(total)+'</strong></div></div><div class="calcpro-re-legend"><div><i class="calcpro-re-swatch" style="background:#285f90"></i> Principal &amp; interest: '+money(a.monthly)+'</div><div><i class="calcpro-re-swatch" style="background:#9bb6c9"></i> Taxes, insurance, HOA &amp; PMI: '+money(extra)+'</div></div></div>';
+   return result('Estimated total monthly housing payment',money(total),[
+      kpi('Principal and interest / month',money(a.monthly)),kpi('Loan principal',money(loan)),
+      kpi('Down payment',money(v.price-loan)),kpi('Estimated total loan interest',money(a.interest)),
+      kpi('Monthly taxes + home insurance',money(tax+ins)),kpi('Monthly HOA + PMI',money(v.hoa+pmi))
+    ],donut+chartBalance(a.yearly,loan)+tableSchedule(a.yearly),
+    'Assumes a fixed interest rate and full term. PMI is a constant user-supplied estimate below 20% down and is not automatically canceled. Taxes, insurance, PMI and HOA may change; they are not included in loan interest.');
+ }
+ function computeAffordability(v){
+   const front=v.income*v.front/100,back=Math.max(0,v.income*v.back/100-v.debts);
+   const housingBudget=Math.max(0,Math.min(front,back)),maxPI=Math.max(0,housingBudget-v.other);
+   const factor=pi(1,v.rate,v.years),loan=factor>0?maxPI/factor:0,price=loan/(1-v.down/100);
+   const limiting=front<=back?'housing-to-income limit':'total debt-to-income limit';
+   return result('Estimated maximum home price',money(price),[
+     kpi('Estimated maximum loan',money(loan)),kpi('Down payment',money(price-loan)),
+     kpi('Maximum all-in housing cost / month',money(housingBudget)),kpi('Principal and interest budget / month',money(maxPI)),
+     kpi('Front-end limit / month',money(front)),kpi('Back-end limit less debts / month',money(back))
+   ],'', 'The '+limiting+' is binding. The 28%/36% defaults are illustrative, not universal underwriting rules. This estimate excludes closing costs and any separate PMI; enter all expected monthly ownership costs in the field provided.');
+ }
+ function computeDown(v){
+   const down=v.price*v.down/100,closing=v.price*v.closing/100,initial=down+closing,remaining=initial-v.deposit;
+   if(remaining<0)return {error:'The earnest-money deposit cannot exceed the estimated down payment plus closing costs.'};
+   return result('Estimated remaining cash needed at closing',money(remaining),[
+      kpi('Down payment',money(down)),kpi('Estimated closing costs',money(closing)),
+      kpi('Initial cash requirement',money(initial)),kpi('Earnest money already paid',money(v.deposit)),
+      kpi('Loan required',money(v.price-down)),kpi('Loan-to-value ratio',percent(100-v.down))
+   ],'', 'Assumes the deposit applies to your purchase cash requirement. Actual prepaid taxes, insurance, seller credits and financing conditions can alter the cash needed.');
+ }
+ function computeRental(v){
+   const loan=v.price*(1-v.down/100),monthlyPI=pi(loan,v.rate,v.years),collected=v.rent*(1-v.vacancy/100);
+   const operating=v.opex+(v.tax+v.insurance)/12,noiM=collected-operating,noiY=noiM*12,flowM=noiM-monthlyPI;
+   const capital=v.price*v.down/100+v.price*v.closing/100+v.repairs;
+   const capRate=noiY/v.price*100,coc=capital>0?flowM*12/capital*100:null,dscr=monthlyPI>0?noiM/monthlyPI:null;
+   const gross=v.rent*12,loss=gross-collected*12,ops=operating*12,service=monthlyPI*12;
+   const denom=Math.max(gross,0.01);
+   const segments=[['#8da9bf',Math.max(0,loss)],['#d3a55e',Math.max(0,ops)],['#436e99',Math.max(0,service)],['#3e8c64',Math.max(0,flowM*12)]];
+   const bars='<h5>Annual gross rent allocation (positive amounts)</h5><div class="calcpro-re-bar-chart"><div class="calcpro-re-bar-track" role="img" aria-label="Approximate allocation of gross scheduled rent">'+segments.map(s=>'<div class="calcpro-re-bar-segment" style="width:'+Math.min(100,s[1]/denom*100)+'%;background:'+s[0]+'"></div>').join('')+'</div><div class="calcpro-re-bar-legend">'+[['Vacancy / loss',loss],['Operating expenses',ops],['Debt service',service],['Remaining cash flow',flowM*12]].map((z,i)=>'<div><i class="calcpro-re-swatch" style="background:'+segments[i][0]+'"></i> '+z[0]+': '+money(z[1])+'</div>').join('')+'</div></div>';
+   return result('Estimated monthly rental cash flow',money(flowM),[
+     kpi('Annual net operating income (NOI)',money(noiY)),kpi('Capitalization rate',percent(capRate)),
+     kpi('Cash-on-cash return',coc===null?'N/A':percent(coc)),kpi('Monthly mortgage principal & interest',money(monthlyPI)),
+     kpi('Initial cash invested',money(capital)),kpi('Debt-service coverage ratio',dscr===null?'N/A':number(dscr,2)+'×'),
+     kpi('Effective rent collected / month',money(collected)),kpi('Monthly operating expenses',money(operating))
+   ],bars, 'NOI excludes loan payments and initial costs; cash flow deducts principal and interest. Cash-on-cash return uses initial cash invested, including the entered closing and startup costs. Negative results represent estimated losses.');
+ }
+ function computeRent(v){
+   const guideline=v.income*v.percentage/100,cashBudget=Math.max(0,v.income-v.debts-v.essentials-v.savings);
+   const affordable=Math.min(guideline,cashBudget);
+   return result('Suggested monthly rent ceiling',money(affordable),[
+     kpi('Percentage-based ceiling',money(guideline)),kpi('Cash-flow-based ceiling',money(cashBudget)),
+     kpi('Monthly committed spending and savings',money(v.debts+v.essentials+v.savings)),
+     kpi('Income left after rent at the ceiling',money(v.income-v.debts-v.essentials-v.savings-affordable))
+   ],'', 'This is a budgeting guide using take-home income, not a landlord qualification rule. Add utilities and any rental insurance to your spending estimate.');
+ }
+ function computeArea(v){
+   let s=0;
+   if(v.shape==='rectangle')s=v.length*v.width;
+   else if(v.shape==='triangle')s=v.base*v.height/2;
+   else s=Math.PI*v.radius*v.radius;
+   const squareMeters=v.unit==='ft'?s*0.09290304:s;
+   const squareFeet=squareMeters/0.09290304;
+   return result('Calculated '+v.shape+' area',number(s,3)+(v.unit==='ft'?' ft²':' m²'),[
+     kpi('Area in square feet',number(squareFeet,3)+' ft²'),kpi('Area in square meters',number(squareMeters,3)+' m²'),
+     kpi('Area in acres',number(squareFeet/43560,6)+' acres'),kpi('Area in hectares',number(squareMeters/10000,6)+' ha')
+   ],'', 'Assumes flat, ideal geometric shapes. Conversion: 1 international foot = 0.3048 meter exactly; 1 acre = 43,560 square feet.');
+ }
+ const operations={mortgage:computeMortgage,affordability:computeAffordability,downpayment:computeDown,rental:computeRental,rent:computeRent,area:computeArea};
+ function validate(form,mode){
+   const v={};
+   for(const el of form.querySelectorAll('input[type="number"],select')){
+     if(el.closest('.calcpro-re-shape-fields')?.hidden)continue;
+     if(el.type==='number'){
+       const value=el.value.trim();
+       const name=el.closest('label')?.querySelector('span')?.textContent||el.name;
+       if(!value||!Number.isFinite(Number(value))){return {error:'Enter a valid number for '+name+'.',input:el};}
+       const x=Number(value),min=Number(el.min),max=Number(el.max);
+       if((el.min&&x<min)||(el.max&&x>max)||el.validity.stepMismatch){return {error:'Check '+name+': the value must be between '+min+' and '+max+(el.step==='1'?' in whole numbers':'')+'.',input:el};}
+       v[el.name]=x;
+     }else v[el.name]=el.value;
+   }
+   if(mode==='affordability'&&v.back<v.front){/* Different ceilings are valid; the smaller budget governs. */}
+   return {values:v};
+ }
+ function calculate(mode){
+   const form=hub.querySelector('[data-re-form="'+mode+'"]');
+   const resultBox=hub.querySelector('#calcpro-re-panel-'+mode+' [data-re-results]');
+   const errorBox=form.querySelector('[data-re-error]');
+   const check=validate(form,mode);
+   if(check.error){errorBox.textContent=check.error;errorBox.hidden=false;resultBox.hidden=true;check.input?.focus();return;}
+   const answer=operations[mode](check.values);
+   if(answer&&typeof answer==='object'&&answer.error){errorBox.textContent=answer.error;errorBox.hidden=false;resultBox.hidden=true;return;}
+   errorBox.textContent='';errorBox.hidden=true;resultBox.innerHTML=answer;resultBox.hidden=false;
+ }
+ function switchMode(mode,scroll){
+   if(!modes.includes(mode))return;
+   active=mode;
+   hub.querySelectorAll('[data-re-panel]').forEach(p=>{p.hidden=p.dataset.rePanel!==mode;});
+   hub.querySelectorAll('[data-re-tab]').forEach(t=>{const on=t.dataset.reTab===mode;t.setAttribute('aria-selected',String(on));t.tabIndex=on?0:-1;});
+   if(scroll){const el=$('estimator');el.scrollIntoView({behavior:'smooth',block:'start'});}
+ }
+ hub.querySelectorAll('[data-re-tab]').forEach(tab=>{
+   tab.addEventListener('click',()=>switchMode(tab.dataset.reTab,false));
+   tab.addEventListener('keydown',e=>{
+     if(!['ArrowRight','ArrowLeft','Home','End'].includes(e.key))return;
+     e.preventDefault();const i=modes.indexOf(active);
+     const next=e.key==='Home'?0:e.key==='End'?modes.length-1:(i+(e.key==='ArrowRight'?1:-1)+modes.length)%modes.length;
+     switchMode(modes[next],false);hub.querySelector('[data-re-tab="'+modes[next]+'"]').focus();
+   });
+ });
+ document.querySelectorAll('[data-re-target]').forEach(link=>link.addEventListener('click',e=>{e.preventDefault();switchMode(link.dataset.reTarget,true);}));
+ hub.querySelectorAll('[data-re-form]').forEach(form=>{
+   const mode=form.dataset.reForm;
+   form.addEventListener('submit',e=>{e.preventDefault();calculate(mode);});
+   form.addEventListener('reset',()=>{
+     const p=form.closest('[data-re-panel]');p.querySelector('[data-re-results]').hidden=true;
+     const err=form.querySelector('[data-re-error]');err.hidden=true;err.textContent='';
+     if(mode==='area')setTimeout(updateShape,0);
+   });
+ });
+ curr.addEventListener('change',()=>{
+   for(const mode of modes){
+     const results=hub.querySelector('#calcpro-re-panel-'+mode+' [data-re-results]');
+     if(!results.hidden)calculate(mode);
+   }
+ });
+ function updateShape(){
+   const shape=$('area-shape').value;
+   hub.querySelectorAll('[data-re-shape]').forEach(p=>p.hidden=p.dataset.reShape!==shape);
+ }
+ $('area-shape').addEventListener('change',updateShape);updateShape();
+ const search=$('search'), searchInput=$('search-input'),status=$('search-status');
+ const entries=Array.from(hub.querySelectorAll('[data-re-entry]'));
+ function filterDirectory(){
+   const q=searchInput.value.trim().toLocaleLowerCase();let matches=0;
+   for(const entry of entries){const show=entry.textContent.toLocaleLowerCase().includes(q);entry.hidden=!show;if(show)matches++;}
+   hub.querySelectorAll('.calcpro-re-directory-section').forEach(section=>{
+     const count=section.querySelectorAll('[data-re-entry]:not([hidden])').length;section.hidden=count===0;
+   });
+   $('empty').hidden=matches>0;
+   status.textContent=matches+' matching calculator'+(matches===1?'':'s');
+ }
+ search.addEventListener('submit',e=>{e.preventDefault();filterDirectory();});
+ searchInput.addEventListener('input',filterDirectory);
+})();</script><script data-calcpro-latest-result>
+(function () {
+  var toolRoot = document.querySelector('.cp-tool-area') || document.querySelector('main') || document.body;
+  var forms = Array.prototype.slice.call(toolRoot.querySelectorAll('form'));
+  if (forms.length < 2) return;
+
+  var selector = '[id*="result"], [class*="result"], [id*="output"], [class*="output"], [id*="total"], [class*="total"], [id*="summary"], [class*="summary"], [data-result], [data-re-results], [data-cp-surface-result]';
+  var candidates = Array.prototype.slice.call(toolRoot.querySelectorAll(selector));
+  var panels = candidates.filter(function (node) {
+    return !candidates.some(function (other) { return other !== node && other.contains(node); });
+  });
+  var activeOwner = null;
+
+  function namesOf(node) {
+    var names = [node.id].concat(Array.prototype.slice.call(node.classList || []));
+    return names.map(function (name) {
+      return String(name).toLowerCase().replace(/[-_](form|result|results|output|outputs|total|totals|summary|summaries)([-_].*)?$/, '');
+    }).filter(Boolean);
+  }
+
+  function pairedForm(panel) {
+    var names = namesOf(panel);
+    var matches = forms.filter(function (form) {
+      return namesOf(form).some(function (name) { return names.indexOf(name) !== -1; });
+    });
+    return matches.length === 1 ? matches[0] : null;
+  }
+
+  function ownerOf(node) {
+    if (node.matches('form')) return node;
+    var form = node.closest('form') || pairedForm(node);
+    if (form) return form;
+    for (var current = node; current && current !== toolRoot; current = current.parentElement) {
+      var formCount = (current.matches('form') ? 1 : 0) + current.querySelectorAll('form').length;
+      if (formCount === 1 && panels.some(function (panel) { return current === panel || current.contains(panel); })) return current.querySelector('form') || current;
+    }
+    return node.closest('section') || node;
+  }
+
+  function keepOnly(owner, showActive) {
+    panels.forEach(function (panel) {
+      var isActive = ownerOf(panel) === owner;
+      if (!isActive) panel.hidden = true;
+      else if (showActive) panel.hidden = false;
+    });
+  }
+
+  function activate(owner) {
+    if (!owner) return;
+    activeOwner = owner;
+    keepOnly(owner, false);
+  }
+
+  toolRoot.addEventListener('submit', function (event) {
+    var form = event.target;
+    if (form instanceof HTMLFormElement) activate(ownerOf(form));
+  }, true);
+
+  toolRoot.addEventListener('input', function (event) {
+    var form = event.target.closest('form');
+    if (form) activeOwner = ownerOf(form);
+  }, true);
+
+  toolRoot.addEventListener('click', function (event) {
+    var button = event.target.closest('button');
+    var form = button && button.closest('form');
+    if (!form) return;
+    var label = [button.id, button.textContent, button.getAttribute('aria-label') || ''].join(' ').toLowerCase();
+    if (/\b(clear|reset)\b/.test(label) || button.type === 'reset') activeOwner = null;
+    else if (button.type === 'submit' || /\b(calculate|compute|roll|start|encode|decode|convert|generate|run|solve|estimate)\b/.test(label)) activate(ownerOf(form));
+  }, true);
+
+  var observer = new MutationObserver(function (records) {
+    records.forEach(function (record) {
+      var panel = panels.find(function (item) { return item === record.target || item.contains(record.target); });
+      if (!panel || !activeOwner || ownerOf(panel) !== activeOwner) return;
+      if (record.type === 'attributes' && panel.hidden) return;
+      keepOnly(activeOwner, true);
+    });
+  });
+  panels.forEach(function (panel) {
+    observer.observe(panel, {attributes: true, attributeFilter: ['hidden'], childList: true, characterData: true, subtree: true});
+  });
+})();
+</script>
+</body></html>

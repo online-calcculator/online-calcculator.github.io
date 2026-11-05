@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>Calories Burned Calculator | CalcPro</title><meta content="Estimate calories burned by activity duration or by walking, running, or cycling distance. Convert pace, speed, weight, and distance units." name="description"/><link href="template-style.css" rel="stylesheet"/><style>
+/* Calories burned calculator: isolated, tool-only styles. */
+.calcpro-cb-root{--calcpro-cb-navy:#003b69;--calcpro-cb-green:#4b8421;--calcpro-cb-edge:#d3d8dd;--calcpro-cb-bg:#f0f0f0;color:#162336;font:14px/1.4 Arial,Helvetica,sans-serif;max-width:100%}
+.calcpro-cb-root *{box-sizing:border-box}
+.calcpro-cb-root .calcpro-cb-section{margin:0 0 28px;max-width:650px}
+.calcpro-cb-root .calcpro-cb-heading{font-size:20px;line-height:1.25;margin:25px 0 5px;color:#053b70;font-weight:700}
+.calcpro-cb-root .calcpro-cb-sectiondesc{font-size:14px;margin:0 0 9px}
+.calcpro-cb-root .calcpro-cb-hint{display:flex;gap:7px;align-items:center;min-height:31px;padding:6px 12px;background:#336b9f;color:#fff;font-weight:600}
+.calcpro-cb-root .calcpro-cb-hint-icon{background:#fff;color:#336b9f;display:inline-flex;align-items:center;justify-content:center;border-radius:50%;width:15px;height:15px;font-size:11px}
+.calcpro-cb-root .calcpro-cb-panel{border:1px solid var(--calcpro-cb-edge);background:var(--calcpro-cb-bg);padding:15px 13px 13px}
+.calcpro-cb-root .calcpro-cb-fieldrow{display:grid;grid-template-columns:119px minmax(0,1fr);column-gap:8px;align-items:start;margin:0 0 9px}
+.calcpro-cb-root .calcpro-cb-fieldlabel{text-align:right;padding-top:6px;font-size:14px;line-height:1.25}
+.calcpro-cb-root .calcpro-cb-control{max-width:100%;height:31px;background:#fff;border:1px solid #7197b2;border-radius:2px;font:14px Arial,sans-serif;color:#182233;padding:4px 7px;min-width:0}
+.calcpro-cb-root .calcpro-cb-selectcategory{width:min(100%,340px)}
+.calcpro-cb-root .calcpro-cb-short{width:92px;text-align:left}
+.calcpro-cb-root .calcpro-cb-unit{width:150px}
+.calcpro-cb-root .calcpro-cb-inputgroup{display:flex;flex-wrap:wrap;gap:6px;align-items:center;min-width:0}
+.calcpro-cb-root .calcpro-cb-minutesunit{position:relative;display:inline-flex;align-items:center}
+.calcpro-cb-root .calcpro-cb-minutesunit .calcpro-cb-control{padding-right:6px}
+.calcpro-cb-root .calcpro-cb-sublabel{font-size:12px;color:#4e5863}
+.calcpro-cb-root .calcpro-cb-weightnote{font-size:11px;color:#364c5d}
+.calcpro-cb-root .calcpro-cb-radios{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:3px 11px;margin:8px 0 2px;max-width:100%}
+.calcpro-cb-root .calcpro-cb-choice{display:flex;gap:6px;align-items:baseline;line-height:1.35;font-size:13px;cursor:pointer;min-width:0}
+.calcpro-cb-root .calcpro-cb-choice input{flex:none;accent-color:#3f8c32}
+.calcpro-cb-root .calcpro-cb-choice span{overflow-wrap:anywhere}
+.calcpro-cb-root .calcpro-cb-actions{display:flex;gap:6px;align-items:center;margin:12px 0 0 127px}
+.calcpro-cb-root .calcpro-cb-calculate,.calcpro-cb-root .calcpro-cb-reset{cursor:pointer;border:0;padding:7px 15px;font-size:14px;line-height:1.25;font-weight:700;color:#fff;border-radius:2px}
+.calcpro-cb-root .calcpro-cb-calculate{background:#4b8421}
+.calcpro-cb-root .calcpro-cb-calculate:hover{background:#366b14}
+.calcpro-cb-root .calcpro-cb-calculate .calcpro-cb-arrow{display:inline-flex;justify-content:center;align-items:center;margin-left:8px;color:#2d6d25;background:#fff;border-radius:50%;width:16px;height:16px;font-size:11px}
+.calcpro-cb-root .calcpro-cb-reset{background:#9d9d9d}
+.calcpro-cb-root .calcpro-cb-reset:hover{background:#737373}
+.calcpro-cb-root .calcpro-cb-calculate:focus-visible,.calcpro-cb-root .calcpro-cb-reset:focus-visible,.calcpro-cb-root .calcpro-cb-control:focus-visible,.calcpro-cb-root .calcpro-cb-tinybutton:focus-visible{outline:2px solid #164e81;outline-offset:2px}
+.calcpro-cb-root .calcpro-cb-presets{font-size:12px;white-space:normal;line-height:1.45;align-self:center}
+.calcpro-cb-root .calcpro-cb-presets button{appearance:none;border:0;padding:0;background:transparent;text-decoration:underline;color:#006699;cursor:pointer;font:inherit}
+.calcpro-cb-root .calcpro-cb-presets button:hover{text-decoration:none}
+.calcpro-cb-root .calcpro-cb-result{margin:0 0 12px}
+.calcpro-cb-root .calcpro-cb-result[hidden],.calcpro-cb-root .calcpro-cb-hint[hidden],.calcpro-cb-root .calcpro-cb-radios[hidden],.calcpro-cb-root .calcpro-cb-error[hidden]{display:none!important}
+.calcpro-cb-root .calcpro-cb-resultheader{background:var(--calcpro-cb-green);color:#fff;min-height:31px;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:6px 10px;font-weight:700;font-size:15px}
+.calcpro-cb-root .calcpro-cb-resulttools{display:flex;gap:5px}
+.calcpro-cb-root .calcpro-cb-tinybutton{background:transparent;border:1px solid #c5dda9;color:white;border-radius:3px;cursor:pointer;padding:3px 7px;font:12px Arial,sans-serif}
+.calcpro-cb-root .calcpro-cb-tinybutton:hover{background:#3a6e15}
+.calcpro-cb-root .calcpro-cb-resultbody{margin:8px 0 1px;padding:0 1px;font-size:15px;line-height:1.6}
+.calcpro-cb-root .calcpro-cb-resultbody strong{color:#168512;font-size:18px}
+.calcpro-cb-root .calcpro-cb-error{border-left:4px solid #b3312a;background:#fff0ed;color:#74251b;padding:8px 10px;margin:0 0 9px;font-size:13px}
+.calcpro-cb-root .calcpro-cb-inlinehelp{font-size:12px;color:#536575;margin:6px 0 0 127px}
+.calcpro-cb-root .calcpro-cb-footnote{color:#536575;font-size:12px;margin:8px 0}
+@media(max-width:650px){.calcpro-cb-root .calcpro-cb-section{max-width:100%}.calcpro-cb-root .calcpro-cb-fieldrow{grid-template-columns:100px minmax(0,1fr);gap:6px}.calcpro-cb-root .calcpro-cb-fieldlabel{font-size:13px}.calcpro-cb-root .calcpro-cb-actions{margin-left:106px}.calcpro-cb-root .calcpro-cb-inlinehelp{margin-left:106px}.calcpro-cb-root .calcpro-cb-radios{grid-template-columns:1fr}.calcpro-cb-root .calcpro-cb-panel{padding:11px 9px}}
+@media(max-width:420px){.calcpro-cb-root .calcpro-cb-fieldrow{display:block;margin-bottom:12px}.calcpro-cb-root .calcpro-cb-fieldlabel{text-align:left;padding-top:0;margin-bottom:5px;font-weight:600}.calcpro-cb-root .calcpro-cb-actions,.calcpro-cb-root .calcpro-cb-inlinehelp{margin-left:0}.calcpro-cb-root .calcpro-cb-short{width:77px}.calcpro-cb-root .calcpro-cb-unit{width:135px}.calcpro-cb-root .calcpro-cb-selectcategory{width:100%}.calcpro-cb-root .calcpro-cb-resultheader{flex-wrap:wrap}.calcpro-cb-root .calcpro-cb-presets{width:100%}}
+@media print{.calcpro-cb-root .calcpro-cb-resulttools,.calcpro-cb-root .calcpro-cb-actions,.calcpro-cb-root .calcpro-cb-presets{display:none!important}.calcpro-cb-root .calcpro-cb-panel{break-inside:avoid}}
+</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/fitness-and-health-calculator/">Fitness &amp; Health</a> / Calories Burned Calculator</nav><h1 class="cp-page-title">Calories Burned Calculator</h1><p class="cp-intro">Estimate calories burned from workout duration or from the distance and pace of a walk, run, or bike ride.</p><section aria-label="Calculator" class="cp-tool-area">
+<div class="calcpro-cb-root" id="calcpro-cb-root">
+<section aria-label="Calories burned by activity duration" class="calcpro-cb-section">
+<div aria-live="polite" class="calcpro-cb-result" hidden="" id="calcpro-cb-time-result" role="status">
+<div class="calcpro-cb-resultheader"><span>Result</span><span class="calcpro-cb-resulttools"><button aria-label="Copy activity result" class="calcpro-cb-tinybutton" data-calcpro-cb-copy="time" type="button">Copy</button><button aria-label="Save activity result" class="calcpro-cb-tinybutton" data-calcpro-cb-save="time" type="button">Save</button><button aria-label="Print activity result" class="calcpro-cb-tinybutton" data-calcpro-cb-print="time" type="button">Print</button></span></div>
+<p class="calcpro-cb-resultbody" id="calcpro-cb-time-result-text"></p>
+</div>
+<div class="calcpro-cb-hint" id="calcpro-cb-time-hint"><span aria-hidden="true" class="calcpro-cb-hint-icon">▼</span> Modify the values and click the Calculate button to use</div>
+<form id="calcpro-cb-time-form" novalidate="">
+<div class="calcpro-cb-panel">
+<div class="calcpro-cb-error" hidden="" id="calcpro-cb-time-error" role="alert"></div>
+<div class="calcpro-cb-fieldrow"><label class="calcpro-cb-fieldlabel" for="calcpro-cb-activity-group">Activity:</label><div>
+<select aria-controls="calcpro-cb-activity-choices" class="calcpro-cb-control calcpro-cb-selectcategory" id="calcpro-cb-activity-group" name="activityCategory">
+<option value="">--- Select One ---</option>
+<option value="0">Walking, Running, Cycling, Swimming</option><option value="1">Gym Activities</option><option value="2">Training and Sports Activities</option><option value="3">Outdoor Activities</option><option value="4">Home &amp; Daily Life Activities</option>
+</select>
+<div aria-label="Specific activity" class="calcpro-cb-radios" hidden="" id="calcpro-cb-activity-choices" role="radiogroup"></div>
+</div></div>
+<div class="calcpro-cb-fieldrow"><span class="calcpro-cb-fieldlabel">Duration:</span><div class="calcpro-cb-inputgroup">
+<label class="calcpro-cb-minutesunit"><input aria-label="Hours" class="calcpro-cb-control calcpro-cb-short" id="calcpro-cb-hours" inputmode="numeric" min="0" name="hours" placeholder="0" step="1" type="number"/><span class="calcpro-cb-sublabel"> hours</span></label>
+<label class="calcpro-cb-minutesunit"><input aria-label="Minutes" class="calcpro-cb-control calcpro-cb-short" id="calcpro-cb-minutes" inputmode="numeric" min="0" name="minutes" step="1" type="number" value="45"/><span class="calcpro-cb-sublabel"> minutes</span></label>
+</div></div>
+<div class="calcpro-cb-fieldrow"><label class="calcpro-cb-fieldlabel" for="calcpro-cb-time-weight">Body Weight:</label><div class="calcpro-cb-inputgroup">
+<input class="calcpro-cb-control calcpro-cb-short" id="calcpro-cb-time-weight" inputmode="decimal" min="1" name="weight" step="any" type="number" value="150"/>
+<select aria-label="Weight unit" class="calcpro-cb-control calcpro-cb-unit" id="calcpro-cb-time-weightunit" name="weightUnit"><option value="lb">pounds</option><option value="kg">kilograms</option></select>
+<span class="calcpro-cb-weightnote">80–350 pounds or 35–160 kilograms</span>
+</div></div>
+<div class="calcpro-cb-actions"><button class="calcpro-cb-calculate" type="submit">Calculate <span aria-hidden="true" class="calcpro-cb-arrow">▶</span></button><button class="calcpro-cb-reset" id="calcpro-cb-time-clear" type="button">Clear</button></div>
+</div>
+</form>
+</section>
+<section aria-labelledby="calcpro-cb-distance-title" class="calcpro-cb-section" id="calcpro-cb-distance-section">
+<h2 class="calcpro-cb-heading" id="calcpro-cb-distance-title">Calorie Burned by Distance Calculator</h2>
+<p class="calcpro-cb-sectiondesc">Estimate the calories you burn walking, running, or cycling over a specified distance.</p>
+<div aria-live="polite" class="calcpro-cb-result" hidden="" id="calcpro-cb-distance-result" role="status">
+<div class="calcpro-cb-resultheader"><span>Result</span><span class="calcpro-cb-resulttools"><button aria-label="Copy distance result" class="calcpro-cb-tinybutton" data-calcpro-cb-copy="distance" type="button">Copy</button><button aria-label="Save distance result" class="calcpro-cb-tinybutton" data-calcpro-cb-save="distance" type="button">Save</button><button aria-label="Print distance result" class="calcpro-cb-tinybutton" data-calcpro-cb-print="distance" type="button">Print</button></span></div>
+<p class="calcpro-cb-resultbody" id="calcpro-cb-distance-result-text"></p>
+</div>
+<form id="calcpro-cb-distance-form" novalidate="">
+<div class="calcpro-cb-panel">
+<div class="calcpro-cb-error" hidden="" id="calcpro-cb-distance-error" role="alert"></div>
+<div class="calcpro-cb-fieldrow"><label class="calcpro-cb-fieldlabel" for="calcpro-cb-distance-activity">Activity:</label><div>
+<select class="calcpro-cb-control calcpro-cb-selectcategory" id="calcpro-cb-distance-activity" name="activity"><option value="w">Walking</option><option value="r">Running</option><option value="b">Cycling</option></select>
+</div></div>
+<div class="calcpro-cb-fieldrow"><label class="calcpro-cb-fieldlabel" for="calcpro-cb-speed">Speed/Pace:</label><div class="calcpro-cb-inputgroup">
+<input class="calcpro-cb-control calcpro-cb-short" id="calcpro-cb-speed" inputmode="decimal" min="0" name="speed" step="any" type="number" value="3"/>
+<select aria-label="Speed or pace unit" class="calcpro-cb-control calcpro-cb-unit" id="calcpro-cb-speedunit" name="speedUnit"><option value="mph">miles per hour</option><option value="mpm">minutes per mile</option><option value="yps">yards per second</option><option value="mpk">minutes per kilometer</option><option value="kph">kilometers per hour</option><option value="mps">meters per second</option></select>
+<span class="calcpro-cb-presets">or use <button data-calcpro-cb-preset="slow" type="button">slow</button>, <button data-calcpro-cb-preset="moderate" type="button">moderate</button>, <button data-calcpro-cb-preset="fast" type="button">fast</button>, <button data-calcpro-cb-preset="veryfast" type="button">very fast</button></span>
+</div></div>
+<div class="calcpro-cb-fieldrow"><label class="calcpro-cb-fieldlabel" for="calcpro-cb-distance">Distance:</label><div class="calcpro-cb-inputgroup">
+<input class="calcpro-cb-control calcpro-cb-short" id="calcpro-cb-distance" inputmode="decimal" min="0" name="distance" step="any" type="number" value="5"/>
+<select aria-label="Distance unit" class="calcpro-cb-control calcpro-cb-unit" id="calcpro-cb-distanceunit" name="distanceUnit"><option value="mi">miles</option><option value="yd">yards</option><option value="km">kilometers</option><option value="m">meters</option></select>
+</div></div>
+<div class="calcpro-cb-fieldrow"><label class="calcpro-cb-fieldlabel" for="calcpro-cb-distance-weight">Body Weight:</label><div class="calcpro-cb-inputgroup">
+<input class="calcpro-cb-control calcpro-cb-short" id="calcpro-cb-distance-weight" inputmode="decimal" min="1" name="weight" step="any" type="number" value="150"/>
+<select aria-label="Weight unit" class="calcpro-cb-control calcpro-cb-unit" id="calcpro-cb-distance-weightunit" name="weightUnit"><option value="lb">pounds</option><option value="kg">kilograms</option></select>
+<span class="calcpro-cb-weightnote">80–350 pounds or 35–160 kilograms</span>
+</div></div>
+<div class="calcpro-cb-actions"><button class="calcpro-cb-calculate" type="submit">Calculate <span aria-hidden="true" class="calcpro-cb-arrow">▶</span></button><button class="calcpro-cb-reset" id="calcpro-cb-distance-clear" type="button">Clear</button></div>
+</div>
+</form>
+<p class="calcpro-cb-footnote">Estimates include resting energy use during the selected exercise. Actual calorie expenditure varies by individual and effort.</p>
+</section>
+</div>
+</section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><a href="bmi-calculator.html">BMI</a><a href="calorie-calculator.html">Calorie</a><a href="body-fat-calculator.html">Body Fat</a><a href="bmr-calculator.html">BMR</a><a href="macro-calculator.html">Macro</a><a href="ideal-weight-calculator.html">Ideal Weight</a><a href="pace-calculator.html">Pace</a><a href="protein-calculator.html">Protein</a><a href="tdee-calculator.html">TDEE</a><a href="lean-body-mass-calculator.html">Lean Body Mass</a><a href="target-heart-rate-calculator.html">Target Heart Rate</a><a href="army-body-fat-calculator.html">Army Body Fat</a></div></section></aside><article class="cp-article">
+<h2>How to Use the Calories Burned Calculator</h2>
+<p>This tool offers two ways to estimate exercise energy expenditure. The activity-duration calculator covers walking, running, swimming, cycling, gym workouts, sports, outdoor chores, and daily activities. The distance calculator estimates calories burned from a walking, running, or cycling route using your pace or speed.</p>
+<h3>By Activity and Duration</h3>
+<ol><li>Choose an activity category, then select the specific type of exercise.</li><li>Enter the number of hours and minutes you spent exercising.</li><li>Enter your body weight and choose pounds or kilograms.</li><li>Click <strong>Calculate</strong>. The estimated calories appear in the green result panel <strong>above the form</strong>.</li></ol>
+<h3>By Distance, Speed, or Pace</h3>
+<ol><li>Select walking, running, or cycling.</li><li>Enter a speed or pace and select the appropriate unit. You can also use the four speed shortcuts.</li><li>Enter the route distance in miles, yards, kilometers, or meters, and specify your weight.</li><li>Click <strong>Calculate</strong> to see the calories burned and estimated travel time <strong>above the distance form</strong>.</li></ol>
+<h2>Calories Burned Formula</h2>
+<p>Calories burned are estimated from the metabolic equivalent of a task (MET), exercise duration, and body mass. The conventional oxygen-consumption method is:</p>
+<div class="cp-note"><strong>Calories (kcal) = MET × 3.5 × body weight (kg) × activity time (minutes) ÷ 200</strong></div>
+<p>The factor 3.5 is the conventional resting oxygen uptake in milliliters per kilogram per minute. MET is a relative exercise-intensity measure. Higher MET values mean greater energy expenditure per unit of body mass and time. Results are rounded upward to a whole calorie to follow the supplied reference examples.</p>
+<p>For the distance calculator, duration is computed from <strong>time = distance ÷ speed</strong>, after converting both quantities to compatible units. Exercise intensity is estimated from activity-specific speed-to-MET reference ranges, with interpolation between speeds.</p>
+<h3>Worked Example: 45 Minutes of Slow Walking</h3>
+<p>A person weighing 150 pounds (approximately 68.04 kilograms) walks slowly at an estimated MET value of 2.0 for 45 minutes:</p>
+<p>2.0 × 3.5 × 68.04 × 45 ÷ 200 = approximately 107.16 kcal, displayed as <strong>108 calories</strong>.</p>
+<h3>Worked Example: Walking Five Miles</h3>
+<p>For a 150-pound person walking 5 miles at 3 miles per hour, the travel time is 5 ÷ 3 hours, or <strong>100 minutes</strong>. Using the 2.9 MET calibration from the reference example:</p>
+<p>2.9 × 3.5 × 68.04 × 100 ÷ 200 = approximately 345.30 kcal, displayed as <strong>346 calories</strong>, with a duration of <strong>1 hour and 40 minutes</strong>.</p>
+<h2>What Changes Calories Burned?</h2>
+<h3>Intensity and MET Value</h3>
+<p>Running generally has a higher MET value than casual walking. Cycling and swimming can span light through vigorous intensity. Speed is useful but not a complete measure of effort: hills, wind, terrain, equipment, and technique matter.</p>
+<h3>Body Mass and Exercise Time</h3>
+<p>When MET and duration remain constant, a higher body weight produces a proportionately higher estimate. Calories also increase with time spent performing an activity. The calculator reports total (gross) estimated energy expenditure during the activity, rather than calories above resting energy expenditure.</p>
+<h3>Limits of MET-Based Estimates</h3>
+<p>METs are population-based reference values rather than direct measures of an individual's metabolism. Fitness, age, movement efficiency, terrain, temperature, and interruptions during exercise can change real expenditure. Speed-to-MET values between standardized points are interpolated, so the distance result is an approximation, not a laboratory measurement.</p>
+<h2>Frequently Asked Questions</h2>
+<h3>Does the result include calories I would burn at rest?</h3>
+<p>Yes. This calculator estimates gross activity calories, which include resting energy expenditure during the activity. Net exercise calories would subtract an estimate of resting energy use from the total.</p>
+<h3>What if I only know my pace?</h3>
+<p>Choose minutes per mile or minutes per kilometer in the speed selector. The calculator converts pace to speed internally before calculating travel time and applying the MET lookup.</p>
+<h3>Do units affect the result?</h3>
+<p>They should not, apart from minor rounding caused by displayed unit conversions. Switching between pounds and kilograms or between speed and distance units automatically converts the entered value to preserve the same quantity.</p>
+<h3>Why might my fitness tracker report a different number?</h3>
+<p>Trackers may use heart rate, age, sex, or personal calibration data. This tool estimates energy expenditure using a standardized MET-based model, so the two methods will not necessarily agree.</p>
+<h3>Can I save or print the result?</h3>
+<p>Yes. After calculating, use <strong>Copy</strong>, <strong>Save</strong>, or <strong>Print</strong> on the result bar. Save creates a small text file containing the result; Print uses your browser's print dialog.</p>
+<h2>Sources and Methodology</h2>
+<p>MET values are informed by the <a href="https://pacompendium.com/" rel="noopener noreferrer" target="_blank">Compendium of Physical Activities</a>. The calculator's input modes and result placement follow the <a href="https://www.calculator.net/calories-burned-calculator.html" rel="noopener noreferrer" target="_blank">reference calories-burned calculator</a>. Some legacy activity labels do not map perfectly to a single modern Compendium entry, and estimates may differ from the reference website for less-common activities or speeds.</p>
+<p class="cp-page-footer">CalcPro — exercise estimates are informational and are not medical advice.</p>
+</article></main></div><script>
+(function(){
+  'use strict';
+  const root=document.getElementById('calcpro-cb-root');
+  if(!root || root.dataset.initialized==='true')return;
+  root.dataset.initialized='true';
+  const groups=[[{"label":"Walking: slow","met":2.0},{"label":"Walking: fast","met":4.3},{"label":"Hiking: cross-country","met":6.0},{"label":"Running: moderate","met":9.8},{"label":"Running: very fast","met":14.5},{"label":"Cycling: slow","met":4.0},{"label":"Cycling: fast","met":10.0},{"label":"Cycling: BMX or mountain","met":8.5},{"label":"Swimming: laps, vigorous","met":9.8},{"label":"Walking: moderate","met":2.9},{"label":"Walking: very fast","met":6.3},{"label":"Running: slow","met":8.3},{"label":"Running: fast","met":11.8},{"label":"Running: cross-country","met":9.0},{"label":"Cycling: moderate","met":8.0},{"label":"Cycling: very fast","met":16.8},{"label":"Swimming: moderate","met":6.0}],[{"label":"Aerobics, Step: high impact","met":8.5},{"label":"Aerobics: high impact","met":8.0},{"label":"Aerobics: water","met":5.5},{"label":"Cycling, Stationary: vigorous","met":8.8},{"label":"Calisthenics: vigorous","met":8.0},{"label":"Elliptical Trainer: general","met":5.0},{"label":"Rowing, Stationary: vigorous","met":7.0},{"label":"Stair Step Machine: general","met":9.0},{"label":"Weight Lifting: general","met":3.5},{"label":"Aerobics, Step: low impact","met":5.0},{"label":"Aerobics: low impact","met":6.5},{"label":"Cycling, Stationary: moderate","met":6.0},{"label":"Calisthenics: moderate","met":4.0},{"label":"Circuit Training: general","met":8.0},{"label":"Rowing, Stationary: moderate","met":5.0},{"label":"Ski Machine: general","met":7.0},{"label":"Stretching, Hatha Yoga","met":2.5},{"label":"Weight Lifting: vigorous","met":6.0}],[{"label":"Badminton: general","met":5.5},{"label":"Basketball: wheelchair","met":2.7},{"label":"Bowling","met":3.0},{"label":"Dancing: disco, ballroom, square","met":5.5},{"label":"Dancing: slow, waltz, foxtrot","met":3.0},{"label":"Football: competitive","met":8.0},{"label":"Frisbee","met":3.0},{"label":"Golf: using cart","met":3.5},{"label":"Handball: general","met":8.0},{"label":"Horseback Riding: general","met":5.5},{"label":"Kayaking","met":5.0},{"label":"Racquetball: casual, general","met":7.0},{"label":"Rock Climbing: ascending","met":8.0},{"label":"Rollerblading/skating (Casual)","met":7.0},{"label":"Rope Jumping (Fast)","met":12.3},{"label":"Rugby: competitive","met":10.0},{"label":"Skateboarding","met":5.0},{"label":"Skiing: downhill","met":5.3},{"label":"Snow Shoeing","met":5.3},{"label":"Softball: general play","met":5.0},{"label":"Tennis: general","met":7.3},{"label":"Volleyball: competitive, gymnasium play","met":8.0},{"label":"Walk/Jog: jog <10 min.","met":6.0},{"label":"Water Skiing","met":6.0},{"label":"Whitewater: rafting, kayaking","met":5.0},{"label":"Basketball: playing a game","met":8.0},{"label":"Billiards","met":2.5},{"label":"Boxing: sparring","met":7.8},{"label":"Dancing: Fast, ballet, twist","met":7.5},{"label":"Fencing: general","met":6.0},{"label":"Football: touch, flag, general","met":4.0},{"label":"Golf: carrying clubs","met":4.3},{"label":"Gymnastics: general","met":3.8},{"label":"Hockey: field & ice","met":8.0},{"label":"Ice Skating: general","met":7.0},{"label":"Martial Arts: judo, karate, kickbox","met":10.3},{"label":"Racquetball: competitive","met":10.0},{"label":"Rock Climbing: rappelling","met":5.0},{"label":"Rollerblading/skating (Fast)","met":12.0},{"label":"Rope Jumping (Slow)","met":8.8},{"label":"Scuba or skin diving","met":7.0},{"label":"Skiing: cross-country","met":8.0},{"label":"Sledding, luge, toboggan","met":7.0},{"label":"Soccer: general","met":7.0},{"label":"Tai Chi","met":3.3},{"label":"Volleyball: beach","met":8.0},{"label":"Volleyball: non-competitive, general play","met":3.0},{"label":"Water Polo","met":10.0},{"label":"Water Volleyball","met":3.0},{"label":"Wrestling","met":6.0}],[{"label":"Carrying & stacking wood","met":5.5},{"label":"Fishing","met":4.0},{"label":"Mowing Lawn: push, hand","met":5.5},{"label":"Operate Snow Blower: walking","met":5.3},{"label":"Shoveling Snow: by hand","met":6.0},{"label":"Chopping & splitting wood","met":6.3},{"label":"Gardening: general","met":3.8},{"label":"Mowing lawn: push, power","met":4.5},{"label":"Raking lawn","met":4.0}],[{"label":"Cooking","met":2.5},{"label":"Heavy Cleaning: wash car, windows","met":3.5},{"label":"Moving: household furniture","met":5.8},{"label":"Playing w/kids: moderate effort","met":3.5},{"label":"Sex","met":1.8},{"label":"Standing in line","met":1.8},{"label":"Food Shopping: with cart","met":2.3},{"label":"Moving: carrying boxes","met":7.0},{"label":"Paint, paper, remodel: inside","met":3.3},{"label":"Reading: sitting","met":1.3},{"label":"Sleeping","met":0.95},{"label":"Watching TV","met":1.3}]];
+  const byId=id=>document.getElementById('calcpro-cb-'+id);
+  const fmt=n=>Number(n).toLocaleString('en-US',{maximumFractionDigits:3});
+  const num=id=>{const e=byId(id);return e.value.trim()===''?NaN:Number(e.value);};
+  const numeric=(v,lo,hi)=>Number.isFinite(v)&&v>=lo&&v<=hi;
+  const kilograms=(v,unit)=>unit==='lb'?v*0.45359237:v;
+  const miles=(v,unit)=>({mi:v,yd:v/1760,km:v/1.609344,m:v/1609.344})[unit];
+  const toMph=(v,unit)=>({mph:()=>v,mpm:()=>60/v,yps:()=>v*3600/1760,mpk:()=>60/(v*1.609344),kph:()=>v/1.609344,mps:()=>v*3600/1609.344})[unit]();
+  const fromMph=(mph,unit)=>({mph:()=>mph,mpm:()=>60/mph,yps:()=>mph*1760/3600,mpk:()=>60/(mph*1.609344),kph:()=>mph*1.609344,mps:()=>mph*1609.344/3600})[unit]();
+  const distanceFromMiles=(m,unit)=>({mi:m,yd:m*1760,km:m*1.609344,m:m*1609.344})[unit];
+  const displayNumber=v=>(Math.round(v*100000)/100000).toString();
+  const error=(prefix,text)=>{const el=byId(prefix+'-error');el.textContent=text;el.hidden=!text;};
+  const clearResult=prefix=>{byId(prefix+'-result').hidden=true;byId(prefix+'-result-text').replaceChildren();error(prefix,'');if(prefix==='time')byId('time-hint').hidden=false;};
+  const weightValid=(weight,unit)=>numeric(weight,0.000001,10000)&&numeric(kilograms(weight,unit),35,160);
+  const calories=(met,kg,minutes)=>Math.ceil(met*3.5*kg*minutes/200-1e-10);
+  const escapeHTML=text=>text.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#39;');
+  function renderActivityGroup(){
+    const sel=byId('activity-group');const choices=byId('activity-choices');choices.replaceChildren();
+    if(sel.value===''){choices.hidden=true;return;}
+    const chosen=groups[Number(sel.value)];
+    chosen.forEach((act,idx)=>{
+      const label=document.createElement('label');label.className='calcpro-cb-choice';
+      const radio=document.createElement('input');radio.type='radio';radio.name='calcpro-cb-activity';radio.value=String(idx);radio.checked=idx===0;
+      const span=document.createElement('span');span.textContent=act.label;label.append(radio,span);choices.append(label);
+    });
+    choices.hidden=false;
+  }
+  byId('activity-group').addEventListener('change',()=>{renderActivityGroup();clearResult('time');});
+  byId('time-form').addEventListener('submit',event=>{
+    event.preventDefault();error('time','');
+    const g=byId('activity-group').value;
+    if(g===''){clearResult('time');error('time','Please select an activity category and a specific activity.');byId('activity-group').focus();return;}
+    const chosen=byId('activity-choices').querySelector('input[name="calcpro-cb-activity"]:checked');
+    if(!chosen){clearResult('time');error('time','Please choose a specific activity.');return;}
+    const hr=byId('hours').value.trim()===''?0:num('hours');
+    const min=byId('minutes').value.trim()===''?0:num('minutes');
+    const weight=num('time-weight');const unit=byId('time-weightunit').value;
+    if(!numeric(hr,0,1000)||!Number.isInteger(hr)||!numeric(min,0,59)||!Number.isInteger(min)||hr*60+min===0){clearResult('time');error('time','Enter a positive duration, with whole hours and 0–59 whole minutes.');return;}
+    if(!weightValid(weight,unit)){clearResult('time');error('time','Enter a body weight equivalent to approximately 35–160 kilograms (80–350 pounds).');return;}
+    const activity=groups[Number(g)][Number(chosen.value)];
+    const total=hr*60+min;const burned=calories(activity.met,kilograms(weight,unit),total);
+    const summary='Conducting the activity, '+activity.label+', for '+fmt(total)+' minute'+(total===1?'':'s')+' will burn around '+fmt(burned)+' calories.';
+    byId('time-result-text').innerHTML=escapeHTML('Conducting the activity, '+activity.label+', for '+fmt(total)+' minute'+(total===1?'':'s')+' will burn around ')+'<strong>'+fmt(burned)+' calories</strong>.';
+    byId('time-result').dataset.summary=summary;byId('time-result').hidden=false;byId('time-hint').hidden=true;
+  });
+  function interpolation(speed,entries){
+    if(speed<=entries[0][0])return entries[0][1];
+    for(let i=1;i<entries.length;i++){
+      if(speed<=entries[i][0]){const a=entries[i-1],b=entries[i];return a[1]+(speed-a[0])*(b[1]-a[1])/(b[0]-a[0]);}
+    }
+    return entries[entries.length-1][1];
+  }
+  // The 3 mph walking benchmark is 2.9 MET, consistent with the supplied
+  // example (150 lb, five miles in 100 minutes => 346 calories rounded up).
+  const speedMET={
+    w:[[0.5,2],[2,2],[2.8,2.9],[3,2.9],[3.5,4.3],[4,5],[4.5,6.3],[5,8.3],[6,9.0]],
+    r:[[3,6],[4,6.5],[5,8.3],[6,9.8],[7,11],[7.5,11.8],[8,12.3],[9,12.8],[10,14.5],[11,16],[12,19]],
+    b:[[3,3.5],[9,4],[10,6.8],[12,8],[14,10],[16,12],[20,16.8],[30,18.5]]
+  };
+  const presetSpeeds={w:{slow:2,moderate:2.8,fast:3.5,veryfast:4},r:{slow:5,moderate:6,fast:7.5,veryfast:10},b:{slow:13,moderate:15,fast:17.5,veryfast:21}};
+  function durationLabel(minutes){
+    const rounded=Math.round(minutes);const h=Math.floor(rounded/60),m=rounded%60;
+    if(h&&m)return h+' hour'+(h===1?'':'s')+' and '+m+' minute'+(m===1?'':'s');
+    if(h)return h+' hour'+(h===1?'':'s');
+    return m+' minute'+(m===1?'':'s');
+  }
+  byId('distance-form').addEventListener('submit',event=>{
+    event.preventDefault();error('distance','');
+    const speed=num('speed'),distance=num('distance'),weight=num('distance-weight');
+    const speedunit=byId('speedunit').value,distanceunit=byId('distanceunit').value,weightunit=byId('distance-weightunit').value;
+    if(!numeric(speed,0.000001,100000)){clearResult('distance');error('distance','Enter a positive speed or pace.');return;}
+    if(!numeric(distance,0.000001,10000000)){clearResult('distance');error('distance','Enter a positive distance.');return;}
+    if(!weightValid(weight,weightunit)){clearResult('distance');error('distance','Enter a body weight equivalent to approximately 35–160 kilograms (80–350 pounds).');return;}
+    const mph=toMph(speed,speedunit),distMiles=miles(distance,distanceunit);
+    if(!numeric(mph,0.1,40)||!Number.isFinite(distMiles)){clearResult('distance');error('distance','Use a realistic activity speed between 0.1 and 40 miles per hour.');return;}
+    const activity=byId('distance-activity').value;
+    const minutes=distMiles/mph*60;
+    if(minutes>1000000){clearResult('distance');error('distance','The travel duration is too long to estimate reliably.');return;}
+    const met=interpolation(mph,speedMET[activity]);
+    const burned=calories(met,kilograms(weight,weightunit),minutes);
+    const verb={w:'Walking',r:'Running',b:'Cycling'}[activity];
+    const speedlabel=fmt(speed)+' '+({mph:'mile'+(speed===1?'':'s')+' per hour',mpm:'minute'+(speed===1?'':'s')+' per mile',yps:'yard'+(speed===1?'':'s')+' per second',mpk:'minute'+(speed===1?'':'s')+' per kilometer',kph:'kilometer'+(speed===1?'':'s')+' per hour',mps:'meter'+(speed===1?'':'s')+' per second'})[speedunit];
+    const distlabel=fmt(distance)+' '+({mi:'mile',yd:'yard',km:'kilometer',m:'meter'})[distanceunit]+(distance===1?'':'s');
+    const description=verb+' at a pace of '+speedlabel+' for '+distlabel+' will burn around ';
+    const period=' It will take around '+durationLabel(minutes)+'.';
+    byId('distance-result-text').innerHTML=escapeHTML(description)+'<strong>'+fmt(burned)+' calories</strong>.'+escapeHTML(period);
+    byId('distance-result').dataset.summary=description+fmt(burned)+' calories.'+period;
+    byId('distance-result').hidden=false;
+  });
+  byId('time-clear').addEventListener('click',()=>{byId('time-form').reset();byId('activity-choices').replaceChildren();byId('activity-choices').hidden=true;clearResult('time');});
+  byId('distance-clear').addEventListener('click',()=>{byId('distance-form').reset();clearResult('distance');});
+  // When an input's physical unit changes, keep the underlying quantity fixed.
+  function convertUnit(inputId,selectId,toCanonical,fromCanonical){
+    const select=byId(selectId),input=byId(inputId);let prior=select.value;
+    select.addEventListener('change',()=>{
+      const val=Number(input.value);if(input.value.trim()!==''&&Number.isFinite(val)&&val>0){
+        const canonical=toCanonical(val,prior);const converted=fromCanonical(canonical,select.value);
+        if(Number.isFinite(converted))input.value=displayNumber(converted);
+      }prior=select.value;
+    });
+    return ()=>{prior=select.value;};
+  }
+  const unitResetters=[];
+  unitResetters.push(convertUnit('time-weight','time-weightunit',kilograms,(v,u)=>u==='lb'?v/0.45359237:v));
+  unitResetters.push(convertUnit('distance-weight','distance-weightunit',kilograms,(v,u)=>u==='lb'?v/0.45359237:v));
+  unitResetters.push(convertUnit('speed','speedunit',toMph,fromMph));
+  unitResetters.push(convertUnit('distance','distanceunit',miles,distanceFromMiles));
+  byId('time-clear').addEventListener('click',()=>unitResetters.forEach(f=>f()));
+  byId('distance-clear').addEventListener('click',()=>unitResetters.forEach(f=>f()));
+  root.querySelectorAll('[data-calcpro-cb-preset]').forEach(button=>button.addEventListener('click',()=>{
+    const act=byId('distance-activity').value,unit=byId('speedunit').value;
+    byId('speed').value=displayNumber(fromMph(presetSpeeds[act][button.dataset.calcproCbPreset],unit));
+  }));
+  root.addEventListener('click',event=>{
+    const button=event.target.closest('button');if(!button)return;
+    const mode=button.dataset.calcproCbCopy||button.dataset.calcproCbSave||button.dataset.calcproCbPrint;
+    if(!mode)return;
+    const box=byId(mode+'-result');if(box.hidden)return;
+    const text=box.dataset.summary||box.innerText;
+    if(button.hasAttribute('data-calcpro-cb-copy')){
+      if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(text).then(()=>{button.textContent='Copied';setTimeout(()=>button.textContent='Copy',1800);}).catch(()=>{fallbackCopy(text,button);});
+      else fallbackCopy(text,button);
+    }
+    else if(button.hasAttribute('data-calcpro-cb-save')){
+      const blob=new Blob(['CalcPro - Calories Burned Calculator\n\n'+text+'\n'],{type:'text/plain;charset=utf-8'});
+      const url=URL.createObjectURL(blob);const anchor=document.createElement('a');anchor.href=url;anchor.download='calories-burned-'+mode+'-result.txt';document.body.append(anchor);anchor.click();anchor.remove();setTimeout(()=>URL.revokeObjectURL(url),500);
+    }
+    else if(button.hasAttribute('data-calcpro-cb-print'))window.print();
+  });
+  function fallbackCopy(value,button){
+    const el=document.createElement('textarea');el.value=value;el.style.position='fixed';el.style.opacity='0';document.body.appendChild(el);el.select();let ok=false;
+    try{ok=document.execCommand('copy');}catch(e){}el.remove();
+    button.textContent=ok?'Copied':'Select text';setTimeout(()=>button.textContent='Copy',2000);
+  }
+})();
+</script><script data-calcpro-latest-result>
+(function () {
+  var toolRoot = document.querySelector('.cp-tool-area') || document.querySelector('main') || document.body;
+  var forms = Array.prototype.slice.call(toolRoot.querySelectorAll('form'));
+  if (forms.length < 2) return;
+
+  var selector = '[id*="result"], [class*="result"], [id*="output"], [class*="output"], [id*="total"], [class*="total"], [id*="summary"], [class*="summary"], [data-result], [data-re-results], [data-cp-surface-result]';
+  var candidates = Array.prototype.slice.call(toolRoot.querySelectorAll(selector));
+  var panels = candidates.filter(function (node) {
+    return !candidates.some(function (other) { return other !== node && other.contains(node); });
+  });
+  var activeOwner = null;
+
+  function namesOf(node) {
+    var names = [node.id].concat(Array.prototype.slice.call(node.classList || []));
+    return names.map(function (name) {
+      return String(name).toLowerCase().replace(/[-_](form|result|results|output|outputs|total|totals|summary|summaries)([-_].*)?$/, '');
+    }).filter(Boolean);
+  }
+
+  function pairedForm(panel) {
+    var names = namesOf(panel);
+    var matches = forms.filter(function (form) {
+      return namesOf(form).some(function (name) { return names.indexOf(name) !== -1; });
+    });
+    return matches.length === 1 ? matches[0] : null;
+  }
+
+  function ownerOf(node) {
+    if (node.matches('form')) return node;
+    var form = node.closest('form') || pairedForm(node);
+    if (form) return form;
+    for (var current = node; current && current !== toolRoot; current = current.parentElement) {
+      var formCount = (current.matches('form') ? 1 : 0) + current.querySelectorAll('form').length;
+      if (formCount === 1 && panels.some(function (panel) { return current === panel || current.contains(panel); })) return current.querySelector('form') || current;
+    }
+    return node.closest('section') || node;
+  }
+
+  function keepOnly(owner, showActive) {
+    panels.forEach(function (panel) {
+      var isActive = ownerOf(panel) === owner;
+      if (!isActive) panel.hidden = true;
+      else if (showActive) panel.hidden = false;
+    });
+  }
+
+  function activate(owner) {
+    if (!owner) return;
+    activeOwner = owner;
+    keepOnly(owner, false);
+  }
+
+  toolRoot.addEventListener('submit', function (event) {
+    var form = event.target;
+    if (form instanceof HTMLFormElement) activate(ownerOf(form));
+  }, true);
+
+  toolRoot.addEventListener('input', function (event) {
+    var form = event.target.closest('form');
+    if (form) activeOwner = ownerOf(form);
+  }, true);
+
+  toolRoot.addEventListener('click', function (event) {
+    var button = event.target.closest('button');
+    var form = button && button.closest('form');
+    if (!form) return;
+    var label = [button.id, button.textContent, button.getAttribute('aria-label') || ''].join(' ').toLowerCase();
+    if (/\b(clear|reset)\b/.test(label) || button.type === 'reset') activeOwner = null;
+    else if (button.type === 'submit' || /\b(calculate|compute|roll|start|encode|decode|convert|generate|run|solve|estimate)\b/.test(label)) activate(ownerOf(form));
+  }, true);
+
+  var observer = new MutationObserver(function (records) {
+    records.forEach(function (record) {
+      var panel = panels.find(function (item) { return item === record.target || item.contains(record.target); });
+      if (!panel || !activeOwner || ownerOf(panel) !== activeOwner) return;
+      if (record.type === 'attributes' && panel.hidden) return;
+      keepOnly(activeOwner, true);
+    });
+  });
+  panels.forEach(function (panel) {
+    observer.observe(panel, {attributes: true, attributeFilter: ['hidden'], childList: true, characterData: true, subtree: true});
+  });
+})();
+</script>
+</body></html>

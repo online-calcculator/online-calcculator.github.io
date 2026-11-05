@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>Social Security Calculator — Claim Age &amp; Break-Even | CalcPro</title><meta content="Use this Social Security calculator to find the ideal claiming age, compare two retirement ages, and visualize monthly benefits and break-even points." name="description"/><link href="template-style.css" rel="stylesheet"/><style>
+/* All calculator styles are isolated inside the calcpro-ss root. */
+.calcpro-ss{max-width:100%;font:15px/1.45 Arial,Helvetica,sans-serif;color:#182b3a}
+.calcpro-ss *{box-sizing:border-box}
+.calcpro-ss [hidden]{display:none!important}
+.calcpro-ss .calcpro-ss-section{margin:0 0 27px}
+.calcpro-ss .calcpro-ss-section-title{font-size:21px;line-height:1.27;color:#07518a;margin:0 0 5px;font-weight:700}
+.calcpro-ss .calcpro-ss-help{font-size:14px;margin:4px 0 13px;max-width:710px}
+.calcpro-ss .calcpro-ss-help a{color:#006699}
+.calcpro-ss .calcpro-ss-form{background:#f0f0f0;border:1px solid #d4d9df;border-radius:3px;width:min(100%,426px);margin:12px auto 0;padding:10px 13px 12px}
+.calcpro-ss .calcpro-ss-fields{display:grid;grid-template-columns:minmax(0,1fr) 100px minmax(64px,auto);align-items:center;gap:7px 9px}
+.calcpro-ss .calcpro-ss-fields label{font-size:13px;line-height:1.2}
+.calcpro-ss .calcpro-ss-field{display:flex;align-items:center;overflow:hidden;background:white;border:1px solid #8ba4bc;border-radius:2px;min-width:0}
+.calcpro-ss .calcpro-ss-field:focus-within{outline:2px solid #3773ac;outline-offset:1px}
+.calcpro-ss .calcpro-ss-field input{font-size:14px;font-family:inherit;padding:5px 7px;min-height:30px;width:100%;border:0;outline:0;background:transparent;color:#0c2942;min-width:0;appearance:textfield;-moz-appearance:textfield}
+.calcpro-ss .calcpro-ss-field input::-webkit-outer-spin-button,.calcpro-ss .calcpro-ss-field input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.calcpro-ss .calcpro-ss-percent span,.calcpro-ss .calcpro-ss-money span{background:#ecf3f7;color:#49667c;font-size:13px;padding:7px 6px;white-space:nowrap}
+.calcpro-ss .calcpro-ss-money span{border-right:1px solid #d2dfe8}
+.calcpro-ss .calcpro-ss-percent span{border-left:1px solid #d2dfe8}
+.calcpro-ss .calcpro-ss-unit{font-size:12px;color:#526372;white-space:nowrap}
+.calcpro-ss .calcpro-ss-form-band{margin:9px -5px 10px;background:#336699;color:white;font-size:13px;font-weight:700;line-height:1.28;padding:6px 8px}
+.calcpro-ss .calcpro-ss-form-band:first-child{margin-top:0}
+.calcpro-ss .calcpro-ss-actions{display:flex;gap:6px;justify-content:center;margin-top:13px}
+.calcpro-ss .calcpro-ss-actions button{font:700 13px/1 Arial,Helvetica,sans-serif;cursor:pointer;border-radius:2px;padding:9px 12px;min-height:32px;border:1px solid transparent}
+.calcpro-ss .calcpro-ss-calculate{background:#3a7428;color:white;border-color:#28671d!important}
+.calcpro-ss .calcpro-ss-calculate:hover{background:#2d6020}
+.calcpro-ss .calcpro-ss-clear{background:#b8babc;color:#1f2931}
+.calcpro-ss .calcpro-ss-clear:hover{background:#a5a9ac}
+.calcpro-ss button:focus-visible,.calcpro-ss summary:focus-visible,.calcpro-ss a:focus-visible{outline:2px solid #275f98;outline-offset:3px}
+.calcpro-ss .calcpro-ss-error{background:#fff1ed;color:#9c2d16;border:1px solid #dd8b7b;border-radius:3px;padding:9px 11px;margin:10px 0;font-size:14px}
+.calcpro-ss .calcpro-ss-result{margin:13px 0 20px}
+.calcpro-ss .calcpro-ss-result-head{background:#609531;color:white;font-size:17px;font-weight:700;padding:7px 11px;line-height:1.2}
+.calcpro-ss .calcpro-ss-result-text{font-size:15px;line-height:1.4;margin:8px 0 5px;color:#22364a}
+.calcpro-ss .calcpro-ss-result-text strong{color:#155c20}
+.calcpro-ss .calcpro-ss-detail{font-size:13px;color:#516474;margin:0 0 9px}
+.calcpro-ss .calcpro-ss-chart-area{width:100%;max-width:700px;margin:14px auto 7px}
+.calcpro-ss .calcpro-ss-chart-title{font-size:13px;font-weight:700;text-align:center;color:#182b3b;margin-bottom:2px}
+.calcpro-ss .calcpro-ss-chart svg{display:block;width:100%;height:auto;max-height:340px;background:#fff}
+.calcpro-ss .calcpro-ss-expand{font-size:13px;color:#23405a;margin:11px 0}
+.calcpro-ss .calcpro-ss-expand summary{cursor:pointer;color:#006699;font-weight:700}
+.calcpro-ss .calcpro-ss-table-wrap{overflow-x:auto;margin-top:6px}
+.calcpro-ss .calcpro-ss-data{font-size:12px;border-collapse:collapse;width:100%;max-width:620px}
+.calcpro-ss .calcpro-ss-data th,.calcpro-ss .calcpro-ss-data td{text-align:right;border:1px solid #d4dfe7;padding:6px 9px}
+.calcpro-ss .calcpro-ss-data th:first-child,.calcpro-ss .calcpro-ss-data td:first-child{text-align:left}
+.calcpro-ss .calcpro-ss-data th{background:#e9f0f6;color:#23405a}
+.calcpro-ss .calcpro-ss-data tr:nth-child(even){background:#f6f9fb}
+.calcpro-ss .calcpro-ss-note,.calcpro-ss .calcpro-ss-footnote{color:#556673;font-size:12px;line-height:1.45;margin:10px 0}
+.calcpro-ss .calcpro-ss-footnote{margin-top:8px;border-top:1px solid #dce5ec;padding-top:9px}
+@media(max-width:600px){.calcpro-ss .calcpro-ss-section-title{font-size:19px}.calcpro-ss .calcpro-ss-help{font-size:13px}.calcpro-ss .calcpro-ss-form{padding:9px 10px}.calcpro-ss .calcpro-ss-fields{grid-template-columns:minmax(112px,1fr) minmax(74px,102px);gap:7px 10px}.calcpro-ss .calcpro-ss-unit{grid-column:2;font-size:11px;margin-top:-6px}.calcpro-ss .calcpro-ss-unit:empty{display:none}.calcpro-ss .calcpro-ss-chart svg{max-height:none}.calcpro-ss .calcpro-ss-result-head{font-size:16px}}
+@media(max-width:350px){.calcpro-ss .calcpro-ss-fields{grid-template-columns:minmax(94px,1fr) minmax(68px,90px);gap:6px}.calcpro-ss .calcpro-ss-fields label{font-size:12px}}
+@media print{.calcpro-ss .calcpro-ss-form{background:#fff}.calcpro-ss .calcpro-ss-actions{display:none}.calcpro-ss .calcpro-ss-result-head{color:#111;background:#eee}}
+
+</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Social Security Calculator</nav><h1 class="cp-page-title">Social Security Calculator</h1><p class="cp-intro">Explore the best time to claim U.S. Social Security retirement benefits. Estimate a financially preferred claim age or compare two claiming ages using cost-of-living adjustments and investment returns.</p><section aria-label="Calculator" class="cp-tool-area">
+<div class="calcpro-ss" id="calcpro-ss-calculator">
+  <section class="calcpro-ss-section" aria-labelledby="calcpro-ss-ideal-heading">
+    <h2 id="calcpro-ss-ideal-heading" class="calcpro-ss-section-title">Determine the ideal application age</h2>
+    <p class="calcpro-ss-help">Estimate the financially preferable age to begin U.S. Social Security retirement benefits, based on life expectancy, investment return, and cost-of-living adjustments.</p>
+    <div id="calcpro-ss-ideal-error" class="calcpro-ss-error" role="alert" hidden></div>
+    <div id="calcpro-ss-ideal-result" class="calcpro-ss-result" aria-live="polite" hidden>
+      <div class="calcpro-ss-result-head">Result</div>
+      <p id="calcpro-ss-ideal-summary" class="calcpro-ss-result-text"></p>
+      <p id="calcpro-ss-ideal-context" class="calcpro-ss-detail"></p>
+      <div class="calcpro-ss-chart-area"><div class="calcpro-ss-chart-title">Value comparison of application ages</div><div id="calcpro-ss-ideal-chart" class="calcpro-ss-chart"></div></div>
+      <details class="calcpro-ss-expand"><summary>View comparison by application age</summary><div class="calcpro-ss-table-wrap"><table class="calcpro-ss-data"><thead><tr><th>Claim age</th><th>Relative lifetime value</th><th>Compared with the best</th></tr></thead><tbody id="calcpro-ss-ideal-rows"></tbody></table></div></details>
+      <p class="calcpro-ss-note">Modeled using a hypothetical $1,000 monthly benefit at full retirement age; the recommendation does not require or estimate your personal Social Security benefit.</p>
+    </div>
+    <form id="calcpro-ss-ideal-form" class="calcpro-ss-form" novalidate>
+      <div class="calcpro-ss-fields">
+        <label for="calcpro-ss-birth">Your birth year</label><div class="calcpro-ss-field"><input id="calcpro-ss-birth" name="birth" type="number" inputmode="numeric" step="1" value="1970" required></div><span class="calcpro-ss-unit"></span>
+        <label for="calcpro-ss-life">Your life expectancy</label><div class="calcpro-ss-field"><input id="calcpro-ss-life" name="life" type="number" inputmode="decimal" step="any" value="83" required></div><span class="calcpro-ss-unit">years</span>
+        <label for="calcpro-ss-return">Your investment return</label><div class="calcpro-ss-field calcpro-ss-percent"><input id="calcpro-ss-return" name="return" type="number" inputmode="decimal" step="any" value="5" required><span>%</span></div><span class="calcpro-ss-unit">per year</span>
+        <label for="calcpro-ss-cola">Cost-of-living adjustment</label><div class="calcpro-ss-field calcpro-ss-percent"><input id="calcpro-ss-cola" name="cola" type="number" inputmode="decimal" step="any" value="3" required><span>%</span></div><span class="calcpro-ss-unit">per year</span>
+      </div>
+      <div class="calcpro-ss-actions"><button class="calcpro-ss-calculate" type="submit">Calculate <span aria-hidden="true">➜</span></button><button class="calcpro-ss-clear" type="reset">Clear</button></div>
+    </form>
+  </section>
+
+  <section class="calcpro-ss-section" aria-labelledby="calcpro-ss-compare-heading">
+    <h2 id="calcpro-ss-compare-heading" class="calcpro-ss-section-title">Compare two application ages</h2>
+    <p class="calcpro-ss-help">Compare the financial value of two Social Security claim ages using your own estimated monthly benefits. You can obtain estimates through your <a href="https://www.ssa.gov/myaccount/" target="_blank" rel="noopener noreferrer">my Social Security account</a>.</p>
+    <div id="calcpro-ss-compare-error" class="calcpro-ss-error" role="alert" hidden></div>
+    <div id="calcpro-ss-compare-result" class="calcpro-ss-result" aria-live="polite" hidden>
+      <div class="calcpro-ss-result-head">Result</div>
+      <p id="calcpro-ss-compare-summary" class="calcpro-ss-result-text"></p>
+      <p id="calcpro-ss-compare-context" class="calcpro-ss-detail"></p>
+      <div class="calcpro-ss-chart-area"><div id="calcpro-ss-compare-chart-title" class="calcpro-ss-chart-title">Equivalent value at the first claiming age</div><div id="calcpro-ss-compare-chart" class="calcpro-ss-chart"></div></div>
+      <details class="calcpro-ss-expand"><summary>View projected values by age</summary><div class="calcpro-ss-table-wrap"><table class="calcpro-ss-data"><thead><tr><th>Age reached</th><th>Option 1 present value</th><th>Option 2 present value</th></tr></thead><tbody id="calcpro-ss-compare-rows"></tbody></table></div></details>
+      <p class="calcpro-ss-note">The two monthly payment estimates are assumed to be quoted in the same base-year dollars. COLA is projected before and after each claiming date; returns are hypothetical, not guaranteed.</p>
+    </div>
+    <form id="calcpro-ss-compare-form" class="calcpro-ss-form" novalidate>
+      <div class="calcpro-ss-form-band">Social Security claim option 1</div>
+      <div class="calcpro-ss-fields">
+        <label for="calcpro-ss-age1">Retirement age</label><div class="calcpro-ss-field"><input id="calcpro-ss-age1" name="age1" type="number" inputmode="decimal" step="any" value="62" required></div><span class="calcpro-ss-unit">years</span>
+        <label for="calcpro-ss-benefit1">Monthly payment</label><div class="calcpro-ss-field calcpro-ss-money"><span>$</span><input id="calcpro-ss-benefit1" name="benefit1" type="number" inputmode="decimal" step="any" value="1600" required></div><span class="calcpro-ss-unit">per month</span>
+      </div>
+      <div class="calcpro-ss-form-band">Social Security claim option 2 (work longer)</div>
+      <div class="calcpro-ss-fields">
+        <label for="calcpro-ss-age2">Retirement age</label><div class="calcpro-ss-field"><input id="calcpro-ss-age2" name="age2" type="number" inputmode="decimal" step="any" value="70" required></div><span class="calcpro-ss-unit">years</span>
+        <label for="calcpro-ss-benefit2">Monthly payment</label><div class="calcpro-ss-field calcpro-ss-money"><span>$</span><input id="calcpro-ss-benefit2" name="benefit2" type="number" inputmode="decimal" step="any" value="2810" required></div><span class="calcpro-ss-unit">per month</span>
+      </div>
+      <div class="calcpro-ss-form-band">Other information</div>
+      <div class="calcpro-ss-fields">
+        <label for="calcpro-ss-return2">Your investment return</label><div class="calcpro-ss-field calcpro-ss-percent"><input id="calcpro-ss-return2" name="return2" type="number" inputmode="decimal" step="any" value="5" required><span>%</span></div><span class="calcpro-ss-unit">per year</span>
+        <label for="calcpro-ss-cola2">Cost-of-living adjustment</label><div class="calcpro-ss-field calcpro-ss-percent"><input id="calcpro-ss-cola2" name="cola2" type="number" inputmode="decimal" step="any" value="3" required><span>%</span></div><span class="calcpro-ss-unit">per year</span>
+      </div>
+      <div class="calcpro-ss-actions"><button class="calcpro-ss-calculate" type="submit">Calculate <span aria-hidden="true">➜</span></button><button class="calcpro-ss-clear" type="reset">Clear</button></div>
+    </form>
+  </section>
+  <p class="calcpro-ss-footnote">Estimates for U.S. retired-worker benefits only. Not affiliated with the Social Security Administration. Results exclude individual earnings history, payroll taxes, benefit taxation, earnings tests, spousal/survivor benefits, and uncertainty about longevity, COLA, and investment returns.</p>
+</div>
+
+</section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><!-- REPLACE these links with real related tools for each calculator; verify live slugs. --><a href="retirement-calculator.html">Retirement</a><a href="roth-ira-calculator.html">Roth IRA</a><a href="investment-calculator.html">Investment</a><a href="compound-interest-calculator.html">Compound Interest</a><a href="annuity-payout-calculator.html">Annuity Payout</a><a href="pension-calculator.html">Pension</a><a href="inflation-calculator.html">Inflation</a><a href="future-value-calculator.html">Future Value</a><a href="income-tax-calculator.html">Income Tax</a><a href="savings-calculator.html">Savings</a><a href="mortgage-calculator.html">Mortgage</a><a href="loan-calculator.html">Loan</a></div></section></aside><article class="cp-article">
+<h2>How to Use the Social Security Calculator</h2>
+<p>This calculator offers two ways to explore when to claim <strong>U.S. Social Security retirement benefits</strong>. The first section estimates an age between 62 and 70 that maximizes the projected investment-adjusted value of your retirement payments through an assumed life expectancy. The second section compares two claiming ages using monthly benefit estimates that you provide.</p>
+<h3>Find a financially preferred claiming age</h3>
+<ol>
+  <li>Enter your <strong>birth year</strong> to determine your full retirement age (FRA) and early/late claiming adjustments.</li>
+  <li>Enter your <strong>life expectancy</strong> in years. A longer lifetime generally makes waiting for larger benefits more attractive.</li>
+  <li>Estimate your <strong>annual investment return</strong> and <strong>future annual COLA</strong>. These assumptions are not guaranteed.</li>
+  <li>Select <strong>Calculate</strong>. The recommendation appears above the form, followed by a chart of relative lifetime values for different claiming ages. Select <em>View comparison by application age</em> for the numbers.</li>
+</ol>
+<p>To compare actual monthly benefit estimates, enter the two claiming ages and their corresponding monthly benefits in the second section, then calculate. Its chart shows the cumulative value of payments discounted to the first claiming age; the intersection, if any, is the modeled break-even point.</p>
+<h2>Social Security Retirement Age Rules</h2>
+<p>For retired workers, Social Security may begin at age 62, subject to a permanent reduction compared with claiming at full retirement age. Waiting beyond full retirement age can increase the monthly benefit through delayed retirement credits, but those credits do not grow after age 70. The exact full retirement age depends on the year of birth. <a href="https://www.ssa.gov/OACT/quickcalc/early_late.html" target="_blank" rel="noopener noreferrer">Source: Social Security Administration, Early or Late Retirement</a>.</p>
+<div class="cp-table-scroll"><table class="cp-content-table"><thead><tr><th>Birth year</th><th>Full retirement age</th><th>Estimated age-62 benefit as share of FRA benefit</th></tr></thead><tbody>
+<tr><td>1943–1954</td><td>66 years</td><td>75%</td></tr>
+<tr><td>1955</td><td>66 years 2 months</td><td>74.2%</td></tr>
+<tr><td>1956</td><td>66 years 4 months</td><td>73.3%</td></tr>
+<tr><td>1957</td><td>66 years 6 months</td><td>72.5%</td></tr>
+<tr><td>1958</td><td>66 years 8 months</td><td>71.7%</td></tr>
+<tr><td>1959</td><td>66 years 10 months</td><td>70.8%</td></tr>
+<tr><td>1960 or later</td><td>67 years</td><td>70%</td></tr>
+</tbody></table></div>
+<p>These percentages are before projected cost-of-living changes and exclude special filing situations. Birth years before 1943 are also supported by the calculator's historical FRA and delayed-credit schedule.</p>
+<h2>Formulas and Calculation Method</h2>
+<h3>Early-retirement reduction</h3>
+<p>The monthly benefit is reduced by <strong>5/9 of 1%</strong> for each of the first 36 months before FRA, plus <strong>5/12 of 1%</strong> for each additional month. If the benefit at FRA is $2,000 and FRA is 67, starting at age 62 is 60 months early:</p>
+<p><strong>Reduction</strong> = 36 × (5/9)% + 24 × (5/12)% = 30%. Therefore, the age-62 benefit is approximately <strong>$1,400 per month</strong>, expressed in the same base-year dollars and before future COLAs.</p>
+<h3>Delayed-retirement credits</h3>
+<p>For people born in 1943 or later, delayed claiming earns credits of <strong>8% of the FRA benefit per year</strong>, apportioned by month, up to age 70. For someone whose FRA is 67, a $2,000 FRA benefit becomes approximately $2,480 at age 70 before future COLAs: $2,000 × (1 + 3 × 8%). Older birth cohorts have different delayed-credit percentages.</p>
+<h3>COLA and investment-adjusted value</h3>
+<p>For each month in the modeled retirement period, the calculator increases a base monthly benefit by the assumed annual COLA at whole-year intervals and discounts the payment using a monthly equivalent of the annual investment return. It then sums those discounted amounts:</p>
+<p><strong>Present value</strong> = sum of [monthly benefit × (1 + COLA)<sup>elapsed whole years</sup> ÷ (1 + investment return)<sup>elapsed months / 12</sup>].</p>
+<p>The ideal-age calculation uses a hypothetical $1,000 monthly FRA benefit, so different claiming ages are compared on an equal basis without requiring your earnings record. It evaluates every month from age 62 through age 70 and chooses the largest modeled value. Since all ages use the same underlying FRA amount, changing the hypothetical dollar amount would not change the result.</p>
+<p>The two-age comparison assumes both entered benefits are expressed in the <strong>same starting-year dollars</strong>. COLA is therefore projected to the date a benefit starts, and at subsequent annual model intervals. If your figures already include inflation through their claiming dates, adjust them to common-dollar estimates before comparing to avoid counting inflation twice.</p>
+<h2>Understanding the Break-Even Age</h2>
+<p>Claiming early yields a lower monthly amount over more months; claiming later provides a larger amount but fewer payments. The break-even age is when the cumulative investment-adjusted value of the later option first reaches that of the earlier option. It depends on both benefit amounts and the assumed annual return and COLA. The chart extends to age 120 to illustrate possible long-run outcomes; it does not predict anyone's survival.</p>
+<div class="cp-tip"><strong>Tip:</strong> Use benefit estimates from your official <a href="https://www.ssa.gov/myaccount/" target="_blank" rel="noopener noreferrer">my Social Security account</a> for the two-age comparison. The ideal-age tool models claim timing only and cannot recreate an individual's benefit amount without their earnings record.</div>
+<h2>Important Limitations</h2>
+<p>A financially optimal claiming age is not necessarily the best personal choice. The model does not account for your health, immediate income needs, taxes on benefits, changes in work-related earnings, Medicare costs, spousal or survivor benefits, dependents, disability benefits, eligibility restrictions, or earnings-test withholding before FRA. Future COLAs and investment returns are uncertain. Social Security also generally pays a monthly benefit in the month after it is due; for modeling simplicity, this tool counts benefit-month accruals.</p>
+<p>For official personal estimates or filing decisions, consult the <a href="https://www.ssa.gov/benefits/calculators/" target="_blank" rel="noopener noreferrer">SSA benefit calculators</a> and <a href="https://www.ssa.gov/benefits/retirement/planner/applying2.html" target="_blank" rel="noopener noreferrer">SSA retirement planning guidance</a>.</p>
+<h2>Frequently Asked Questions</h2>
+<h3>Is age 70 always the best time to claim Social Security?</h3>
+<p>No. Age 70 generally offers the largest monthly retirement benefit for a given earnings history, but collecting payments earlier can produce greater cumulative value over a shorter lifespan or with certain investment-return assumptions.</p>
+<h3>Why does life expectancy affect the result?</h3>
+<p>Claiming later means giving up several years of payments in exchange for a higher future monthly check. A longer lifetime gives the higher payment more time to make up for the earlier payments that were forgone.</p>
+<h3>What does the investment return mean?</h3>
+<p>It is an opportunity-cost assumption. Earlier benefits could potentially be saved or invested, so the model converts later payments into an equivalent value at the comparison starting age. It is not a forecast of investment performance.</p>
+<h3>Can I enter ages such as 67.5?</h3>
+<p>Yes. Decimal claiming ages are rounded to the nearest calendar month: 67.5 is 67 years and 6 months. The ideal-age analysis evaluates every claiming month from 62 through 70.</p>
+<h3>Is this an official SSA benefit calculation?</h3>
+<p>No. CalcPro compares claiming strategies using published age-adjustment rules and your assumptions. SSA determines actual benefits from your earnings record and other circumstances. The two-age tool requires your estimated payment amounts; the ideal-age tool does not calculate a personal monthly payment.</p>
+<h2>Sources</h2>
+<ul>
+<li><a href="https://www.ssa.gov/OACT/quickcalc/early_late.html" target="_blank" rel="noopener noreferrer">SSA: Early or Late Retirement</a> — early-reduction and delayed-credit schedules.</li>
+<li><a href="https://www.ssa.gov/benefits/retirement/planner/agereduction.html" target="_blank" rel="noopener noreferrer">SSA: Retirement Age and Benefit Reduction</a> — full retirement ages and early-payment factors.</li>
+<li><a href="https://www.ssa.gov/OACT/COLA/colasummary.html" target="_blank" rel="noopener noreferrer">SSA: Cost-of-Living Adjustments</a> — benefit COLA background.</li>
+<li><a href="https://www.ssa.gov/benefits/calculators/" target="_blank" rel="noopener noreferrer">SSA: Benefit Calculators</a> — official benefit estimates and planning tools.</li>
+</ul>
+<p class="cp-page-footer">CalcPro — estimates are educational and not legal, tax, or financial advice.</p>
+
+</article></main></div><script>
+(() => {
+  'use strict';
+  const root = document.getElementById('calcpro-ss-calculator');
+  if (!root) return;
+  const $ = (suffix) => root.querySelector('#calcpro-ss-' + suffix);
+  const BASE_MONTH = 62 * 12;
+  const MAX_MONTH = 70 * 12;
+  const PROJECTION_MONTH = 120 * 12;
+  const integerMoney = new Intl.NumberFormat('en-US', {style:'currency',currency:'USD',maximumFractionDigits:0});
+
+  function fullRetirementAgeMonths(year) {
+    if (year <= 1937) return 65 * 12;
+    if (year <= 1942) return 65 * 12 + 2 * (year - 1937);
+    if (year <= 1954) return 66 * 12;
+    if (year <= 1959) return 66 * 12 + 2 * (year - 1954);
+    return 67 * 12;
+  }
+  function delayedCreditPercent(year) {
+    if (year >= 1943) return 8;
+    if (year >= 1941) return 7.5;
+    if (year >= 1939) return 7;
+    if (year >= 1937) return 6.5;
+    if (year >= 1935) return 6;
+    if (year >= 1933) return 5.5;
+    if (year >= 1931) return 5;
+    if (year >= 1929) return 4.5;
+    if (year >= 1927) return 4;
+    if (year >= 1925) return 3.5;
+    return 3;
+  }
+  function benefitFactor(year, claimingMonth) {
+    const fra = fullRetirementAgeMonths(year);
+    if (claimingMonth < fra) {
+      const early = fra - claimingMonth;
+      const first36 = Math.min(36, early);
+      const extra = Math.max(0, early - 36);
+      return 1 - first36 * (5/9)/100 - extra * (5/12)/100;
+    }
+    const delayed = Math.min(claimingMonth, MAX_MONTH) - fra;
+    return 1 + delayed * delayedCreditPercent(year) / 1200;
+  }
+  function ageLong(months) {
+    const years = Math.floor(months / 12);
+    const rem = months % 12;
+    return rem ? years + ' years ' + rem + (rem === 1 ? ' month' : ' months') : years + ' years';
+  }
+  function ageShort(months) {
+    return Math.floor(months / 12) + (months % 12 ? 'y ' + months % 12 + 'm' : '');
+  }
+  function abbreviatedDollars(n) {
+    if (Math.abs(n) >= 1000000) return '$' + (n/1000000).toFixed(1).replace(/\.0$/,'') + 'M';
+    if (Math.abs(n) >= 1000) return '$' + (n/1000).toFixed(0) + 'k';
+    return '$' + Math.round(n);
+  }
+  function numberFrom(id, label, lower, upper, isInteger = false) {
+    const el = $(id);
+    const raw = el.value.trim();
+    const value = Number(raw);
+    if (!raw || !Number.isFinite(value) || value < lower || value > upper || (isInteger && !Number.isInteger(value))) {
+      throw new Error(label + ' must be ' + (isInteger ? 'a whole number ' : 'a number ') + 'between ' + lower + ' and ' + upper + '.');
+    }
+    return value;
+  }
+  function showError(which, message) {
+    const error = $(which + '-error');
+    error.textContent = message;
+    error.hidden = false;
+    $(which + '-result').hidden = true;
+  }
+  function clearError(which) {
+    const el = $(which + '-error');
+    el.hidden = true;
+    el.textContent = '';
+  }
+  function updateRows(tbody, rows) {
+    const fragment = document.createDocumentFragment();
+    rows.forEach((columns) => {
+      const tr = document.createElement('tr');
+      columns.forEach((col) => {
+        const td = document.createElement('td');
+        td.textContent = col;
+        tr.appendChild(td);
+      });
+      fragment.appendChild(tr);
+    });
+    tbody.replaceChildren(fragment);
+  }
+  function showResult(which) {
+    $(which + '-result').hidden = false;
+    const panel = $(which + '-result');
+    // The source page's form anchors return to the corresponding result section.
+    const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    panel.scrollIntoView({behavior:reduced ? 'instant' : 'smooth',block:'start'});
+  }
+
+  function optimalScores(year, expectancy, returnRate, colaRate) {
+    const deathMonth = Math.min(PROJECTION_MONTH, Math.round(expectancy * 12));
+    const discountMonth = Math.pow(1 + returnRate / 100, 1 / 12);
+    const colaYear = 1 + colaRate / 100;
+    const scores = [];
+    // All claim ages are evaluated at one-month increments using the same $1,000 FRA PIA.
+    for (let claim = BASE_MONTH; claim <= MAX_MONTH; claim++) {
+      const factor = benefitFactor(year, claim);
+      let pvAt62 = 0;
+      for (let payMonth = claim; payMonth < deathMonth; payMonth++) {
+        const birthdayYears = Math.floor((payMonth - BASE_MONTH) / 12);
+        const projectedPayment = 1000 * factor * Math.pow(colaYear, birthdayYears);
+        pvAt62 += projectedPayment / Math.pow(discountMonth, payMonth - BASE_MONTH);
+      }
+      scores.push({month:claim,value:pvAt62});
+    }
+    return scores;
+  }
+  function idealSvg(bars, best) {
+    const width = 720, height = 281;
+    const left = 59, right = 17, top = 21, bottom = 60;
+    const w = width - left - right, h = height - top - bottom;
+    const gap = 5, bw = (w - gap*(bars.length-1)) / bars.length;
+    const max = Math.max(best.value, 0.0001);
+    let out = `<svg viewBox="0 0 ${width} ${height}" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Relative present value of lifetime payments for claiming ages 62 through 70, compared with the highest value"><title>Claiming-age comparison</title><desc>Each bar represents investment-adjusted lifetime payments as a percentage of the best claiming age.</desc>`;
+    for (let t=0;t<=4;t++) {
+      const pct=t*25, y=top+h-h*pct/100;
+      out += `<line x1="${left}" y1="${y}" x2="${left+w}" y2="${y}" stroke="#e0e8ef" stroke-width="1"/><text x="${left-8}" y="${y+4}" text-anchor="end" font-size="11" fill="#526779">${pct}%</text>`;
+    }
+    bars.forEach((d,i) => {
+      const percent = (d.value/max)*100;
+      const barHeight = Math.max(0, h * Math.max(0,percent)/100);
+      const x=left+i*(bw+gap), y=top+h-barHeight;
+      const bestBar = Math.abs(d.month-best.month)<=3;
+      out += `<rect x="${x.toFixed(2)}" y="${y.toFixed(2)}" width="${bw.toFixed(2)}" height="${barHeight.toFixed(2)}" rx="1" fill="${bestBar ? '#619834' : '#377dc6'}"><title>${ageLong(d.month)}: ${percent.toFixed(1)}% of best</title></rect>`;
+      if (i%2===0 || i===bars.length-1) out += `<text transform="translate(${(x+bw/2).toFixed(1)},${(height-bottom+14).toFixed(1)}) rotate(0)" text-anchor="middle" font-size="10" fill="#415c6e">${(d.month/12).toFixed(0)}</text>`;
+    });
+    out += `<text x="${left+w/2}" y="${height-10}" text-anchor="middle" font-size="12" fill="#3c5365">Application age (years)</text><text transform="translate(14,${top+h/2}) rotate(-90)" text-anchor="middle" font-size="12" fill="#3c5365">Relative lifetime value</text></svg>`;
+    return out;
+  }
+  function handleIdeal(event) {
+    event.preventDefault();
+    clearError('ideal');
+    try {
+      const year = numberFrom('birth','Birth year',1917,new Date().getFullYear(),true);
+      const life = numberFrom('life','Life expectancy',62.1,120);
+      const rate = numberFrom('return','Investment return (%)',-30,30);
+      const cola = numberFrom('cola','Cost-of-living adjustment (%)',0,20);
+      const scores = optimalScores(year,life,rate,cola);
+      // Pick earliest month in the event of a tie.
+      const best = scores.reduce((a,b) => b.value>a.value+0.00000001 ? b : a);
+      const fra = fullRetirementAgeMonths(year);
+      const bestPercent = 100 * (best.value / Math.max(scores[0].value,0.00001) - 1);
+      $('ideal-summary').innerHTML = `With these assumptions, the financially preferred age to apply is <strong>${ageLong(best.month)}</strong>.`;
+      $('ideal-context').textContent = `Full retirement age: ${ageLong(fra)}. Compared with claiming at 62, the modeled lifetime present value is ${bestPercent >= 0 ? '+' : ''}${bestPercent.toFixed(1)}%. This is a financial model, not a prediction of your life span or your SSA benefit.`;
+      const bars = scores.filter((x)=> (x.month-BASE_MONTH)%6===0);
+      $('ideal-chart').innerHTML = idealSvg(bars, best);
+      const detail = [...bars];
+      if (!detail.some(d=>d.month===best.month)) detail.push(best);
+      detail.sort((a,b)=>a.month-b.month);
+      updateRows($('ideal-rows'),detail.map(d=>[ageLong(d.month)+(d.month===best.month?' (best)':''),integerMoney.format(d.value), (100*d.value/Math.max(best.value,0.0001)).toFixed(1)+'%']));
+      showResult('ideal');
+    } catch (error) {
+      showError('ideal',error.message);
+    }
+  }
+
+  function comparisonProjection(age1, monthly1, age2, monthly2, returnRate, colaRate) {
+    const baseMonth = age1, discount = Math.pow(1+returnRate/100,1/12), colaYear = 1+colaRate/100;
+    let cum1=0,cum2=0,crossover=null;
+    const records=[{month:baseMonth,pv1:0,pv2:0}];
+    for (let m=baseMonth; m<PROJECTION_MONTH; m++) {
+      const yearsSinceBase = Math.floor((m-baseMonth)/12);
+      const growth = Math.pow(colaYear,yearsSinceBase)/Math.pow(discount,m-baseMonth);
+      if (m>=age1) cum1+=monthly1*growth;
+      if (m>=age2) cum2+=monthly2*growth;
+      if (crossover===null && m>=age2 && cum2>=cum1) crossover=m+1;
+      records.push({month:m+1,pv1:cum1,pv2:cum2});
+    }
+    return {records,crossover};
+  }
+  function compareSvg(records, age1, age2, crossover) {
+    const width=720,height=303,left=67,right=17,top=38,bottom=53;
+    const w=width-left-right,h=height-top-bottom;
+    const maxPV = Math.max(records[records.length-1].pv1,records[records.length-1].pv2,1);
+    const yScale=maxPV*1.03;
+    const x = (m) => left+(m-age1)/(PROJECTION_MONTH-age1)*w;
+    const y = (v) => top+h-(v/yScale)*h;
+    const pathFor = (key) => records.filter((row,i)=>i%3===0 || i===records.length-1).map((row,i)=>`${i===0?'M':'L'}${x(row.month).toFixed(2)},${y(row[key]).toFixed(2)}`).join(' ');
+    let out=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} ${height}" role="img" aria-label="Present value of cumulative benefits at the first claiming age for both Social Security filing options through age 120"><title>Comparison of accumulated, discounted Social Security benefits</title><desc>Blue is option 1 and green is option 2; the intersection represents the financial break-even age.</desc>`;
+    out+=`<line x1="${left+15}" y1="15" x2="${left+38}" y2="15" stroke="#337cca" stroke-width="4"/><text x="${left+43}" y="19" font-size="12" fill="#30495d">File at ${ageShort(age1)}</text>`;
+    out+=`<line x1="${left+185}" y1="15" x2="${left+208}" y2="15" stroke="#6b9d2e" stroke-width="4"/><text x="${left+213}" y="19" font-size="12" fill="#30495d">File at ${ageShort(age2)}</text>`;
+    for(let t=0;t<=4;t++){
+      const v=yScale*t/4,yy=y(v);
+      out+=`<line x1="${left}" y1="${yy.toFixed(2)}" x2="${left+w}" y2="${yy.toFixed(2)}" stroke="#e0e8ef"/><text x="${left-8}" y="${(yy+4).toFixed(2)}" text-anchor="end" font-size="11" fill="#526779">${abbreviatedDollars(v)}</text>`;
+    }
+    const tickYears=[Math.ceil(age1/12/10)*10,70,80,90,100,110,120].filter((v,i,a)=>v>=age1/12 && v<=120 && a.indexOf(v)===i).sort((a,b)=>a-b);
+    tickYears.unshift(age1/12);
+    [...new Set(tickYears)].forEach(yr=>{
+      const xx=x(yr*12);
+      out+=`<line x1="${xx.toFixed(2)}" y1="${top+h}" x2="${xx.toFixed(2)}" y2="${top+h+4}" stroke="#7890a2"/><text x="${xx.toFixed(2)}" y="${top+h+17}" text-anchor="middle" font-size="11" fill="#415c6e">${Math.round(yr)}</text>`;
+    });
+    if (crossover !== null){
+      const xx=x(crossover);
+      out+=`<line x1="${xx.toFixed(2)}" y1="${top}" x2="${xx.toFixed(2)}" y2="${top+h}" stroke="#829299" stroke-width="1.5" stroke-dasharray="5 5"/><text x="${Math.min(left+w-32,Math.max(left+35,xx)).toFixed(2)}" y="${top+13}" text-anchor="middle" font-size="11" font-weight="700" fill="#4b626c">Break-even</text>`;
+    }
+    out+=`<path d="${pathFor('pv1')}" stroke="#337cca" stroke-width="3" fill="none" stroke-linejoin="round"/><path d="${pathFor('pv2')}" stroke="#6b9d2e" stroke-width="3" fill="none" stroke-linejoin="round"/>`;
+    out+=`<text x="${left+w/2}" y="${height-9}" text-anchor="middle" font-size="12" fill="#3c5365">Life expectancy (years)</text><text transform="translate(15,${top+h/2}) rotate(-90)" text-anchor="middle" font-size="12" fill="#3c5365">Present value of benefits</text></svg>`;
+    return out;
+  }
+  function handleCompare(event) {
+    event.preventDefault();
+    clearError('compare');
+    try {
+      const a1=numberFrom('age1','First claiming age',62,70);
+      const a2=numberFrom('age2','Second claiming age',62,70);
+      const b1=numberFrom('benefit1','First monthly payment ($)',0.01,1000000);
+      const b2=numberFrom('benefit2','Second monthly payment ($)',0.01,1000000);
+      const r=numberFrom('return2','Investment return (%)',-30,30);
+      const c=numberFrom('cola2','Cost-of-living adjustment (%)',0,20);
+      const m1=Math.round(a1*12),m2=Math.round(a2*12);
+      if (m2<=m1) throw new Error('Option 2 must start at least one month after option 1.');
+      const p=comparisonProjection(m1,b1,m2,b2,r,c);
+      if (p.crossover!==null) {
+        $('compare-summary').textContent=`If you expect to live to about ${ageLong(p.crossover)} or beyond, claiming at ${ageLong(m2)} (option 2) has the higher modeled value. For shorter lifespans, claiming at ${ageLong(m1)} (option 1) is ahead.`;
+        $('compare-context').textContent=`Financial break-even occurs at approximately age ${ageLong(p.crossover)}. The model discounts future payments at ${r}% per year and projects ${c}% annual COLA.`;
+      } else {
+        $('compare-summary').textContent=`Under these assumptions, claiming at ${ageLong(m1)} (option 1) has the higher modeled cumulative value through age 120.`;
+        $('compare-context').textContent=`The later-claiming option does not catch up by age 120 at a ${r}% investment return and ${c}% COLA.`;
+      }
+      $('compare-chart-title').textContent=`Equivalent value at age ${ageShort(m1)}`;
+      $('compare-chart').innerHTML=compareSvg(p.records,m1,m2,p.crossover);
+      const ages=[m1,m2,75*12,80*12,85*12,90*12,95*12,100*12,110*12,120*12];
+      if(p.crossover!==null) ages.push(p.crossover);
+      const uniqueAges=[...new Set(ages)].filter(x=>x>=m1 && x<=PROJECTION_MONTH).sort((a,b)=>a-b);
+      updateRows($('compare-rows'),uniqueAges.map(m=>[ageLong(m)+(m===p.crossover?' (break-even)':''),integerMoney.format(p.records[m-m1].pv1),integerMoney.format(p.records[m-m1].pv2)]));
+      showResult('compare');
+    } catch (error) {
+      showError('compare',error.message);
+    }
+  }
+  $('ideal-form').addEventListener('submit',handleIdeal);
+  $('compare-form').addEventListener('submit',handleCompare);
+  ['ideal','compare'].forEach(which=>{
+    $(which+'-form').addEventListener('reset',()=>{
+      clearError(which);
+      $(which+'-result').hidden=true;
+    });
+  });
+})();
+
+</script><script data-calcpro-latest-result>
+(function () {
+  var toolRoot = document.querySelector('.cp-tool-area') || document.querySelector('main') || document.body;
+  var forms = Array.prototype.slice.call(toolRoot.querySelectorAll('form'));
+  if (forms.length < 2) return;
+
+  var selector = '[id*="result"], [class*="result"], [id*="output"], [class*="output"], [id*="total"], [class*="total"], [id*="summary"], [class*="summary"], [data-result], [data-re-results], [data-cp-surface-result]';
+  var candidates = Array.prototype.slice.call(toolRoot.querySelectorAll(selector));
+  var panels = candidates.filter(function (node) {
+    return !candidates.some(function (other) { return other !== node && other.contains(node); });
+  });
+  var activeOwner = null;
+
+  function namesOf(node) {
+    var names = [node.id].concat(Array.prototype.slice.call(node.classList || []));
+    return names.map(function (name) {
+      return String(name).toLowerCase().replace(/[-_](form|result|results|output|outputs|total|totals|summary|summaries)([-_].*)?$/, '');
+    }).filter(Boolean);
+  }
+
+  function pairedForm(panel) {
+    var names = namesOf(panel);
+    var matches = forms.filter(function (form) {
+      return namesOf(form).some(function (name) { return names.indexOf(name) !== -1; });
+    });
+    return matches.length === 1 ? matches[0] : null;
+  }
+
+  function ownerOf(node) {
+    if (node.matches('form')) return node;
+    var form = node.closest('form') || pairedForm(node);
+    if (form) return form;
+    for (var current = node; current && current !== toolRoot; current = current.parentElement) {
+      var formCount = (current.matches('form') ? 1 : 0) + current.querySelectorAll('form').length;
+      if (formCount === 1 && panels.some(function (panel) { return current === panel || current.contains(panel); })) return current.querySelector('form') || current;
+    }
+    return node.closest('section') || node;
+  }
+
+  function keepOnly(owner, showActive) {
+    panels.forEach(function (panel) {
+      var isActive = ownerOf(panel) === owner;
+      if (!isActive) panel.hidden = true;
+      else if (showActive) panel.hidden = false;
+    });
+  }
+
+  function activate(owner) {
+    if (!owner) return;
+    activeOwner = owner;
+    keepOnly(owner, false);
+  }
+
+  toolRoot.addEventListener('submit', function (event) {
+    var form = event.target;
+    if (form instanceof HTMLFormElement) activate(ownerOf(form));
+  }, true);
+
+  toolRoot.addEventListener('input', function (event) {
+    var form = event.target.closest('form');
+    if (form) activeOwner = ownerOf(form);
+  }, true);
+
+  toolRoot.addEventListener('click', function (event) {
+    var button = event.target.closest('button');
+    var form = button && button.closest('form');
+    if (!form) return;
+    var label = [button.id, button.textContent, button.getAttribute('aria-label') || ''].join(' ').toLowerCase();
+    if (/\b(clear|reset)\b/.test(label) || button.type === 'reset') activeOwner = null;
+    else if (button.type === 'submit' || /\b(calculate|compute|roll|start|encode|decode|convert|generate|run|solve|estimate)\b/.test(label)) activate(ownerOf(form));
+  }, true);
+
+  var observer = new MutationObserver(function (records) {
+    records.forEach(function (record) {
+      var panel = panels.find(function (item) { return item === record.target || item.contains(record.target); });
+      if (!panel || !activeOwner || ownerOf(panel) !== activeOwner) return;
+      if (record.type === 'attributes' && panel.hidden) return;
+      keepOnly(activeOwner, true);
+    });
+  });
+  panels.forEach(function (panel) {
+    observer.observe(panel, {attributes: true, attributeFilter: ['hidden'], childList: true, characterData: true, subtree: true});
+  });
+})();
+</script>
+</body></html>

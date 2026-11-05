@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>IP Subnet Calculator | CalcPro</title><meta content="Calculate IPv4 and IPv6 subnet masks, CIDR networks, usable host ranges, and possible subnets online with CalcPro." name="description"/><link href="template-style.css" rel="stylesheet"/><style>
+/* IP Subnet Calculator: all styles scoped to the tool root. */
+.calcpro-subnet{--subnet-dark:#003366;--subnet-blue:#336699;--subnet-green:#548725;--subnet-gray:#efefef;font:14px Arial,Helvetica,sans-serif;line-height:1.4;color:#151515;max-width:100%;}
+.calcpro-subnet *, .calcpro-subnet *::before, .calcpro-subnet *::after{box-sizing:border-box}
+.calcpro-subnet .calcpro-subnet-section{margin:0 0 22px;max-width:630px;}
+.calcpro-subnet .calcpro-subnet-section h2{font-size:19px;line-height:1.25;color:var(--subnet-dark);margin:14px 0 5px;font-weight:700;}
+.calcpro-subnet .calcpro-subnet-panel{padding:13px 14px;background:var(--subnet-gray);border:1px solid #d1d1d1;width:100%;}
+.calcpro-subnet .calcpro-subnet-row{display:grid;grid-template-columns:112px minmax(0,1fr);gap:6px 12px;align-items:center;margin-bottom:7px;}
+.calcpro-subnet .calcpro-subnet-label{font-size:14px;line-height:1.25;}
+.calcpro-subnet .calcpro-subnet-radios{display:flex;gap:12px;align-items:center;flex-wrap:wrap;}
+.calcpro-subnet .calcpro-subnet-radios label{display:inline-flex;align-items:center;gap:5px;white-space:nowrap;cursor:pointer;}
+.calcpro-subnet input[type="radio"]{margin:0;accent-color:#3670a4;}
+.calcpro-subnet input[type="text"],.calcpro-subnet select{background:#fff;border:1px solid #326999;border-radius:1px;min-height:31px;color:#111;font:14px Arial,Helvetica,sans-serif;padding:4px 6px;max-width:100%;}
+.calcpro-subnet input[type="text"]{width:220px;}
+.calcpro-subnet .calcpro-subnet-long{width:360px!important;max-width:100%;}
+.calcpro-subnet select{width:fit-content;justify-self:start;max-width:100%;cursor:pointer;}
+.calcpro-subnet .calcpro-subnet-buttons{display:flex;gap:5px;align-items:center;margin:8px 0 0 124px;flex-wrap:wrap;}
+.calcpro-subnet button{cursor:pointer;font-family:inherit;font-size:14px;}
+.calcpro-subnet .calcpro-subnet-calculate{background:var(--subnet-green);border:1px solid #477523;border-radius:0;color:#fff;padding:8px 12px;font-weight:700;min-height:36px;}
+.calcpro-subnet .calcpro-subnet-calculate:hover{background:#416f1e;}
+.calcpro-subnet .calcpro-subnet-arrow{display:inline-flex;align-items:center;justify-content:center;border-radius:100%;background:#a5c78a;width:18px;height:18px;font-size:11px;margin-left:6px;}
+.calcpro-subnet .calcpro-subnet-clear{background:#a4a4a4;border:1px solid #9e9e9e;color:#fff;min-height:36px;padding:8px 10px;}
+.calcpro-subnet .calcpro-subnet-clear:hover{background:#868686;}
+.calcpro-subnet .calcpro-subnet-error{margin:9px 0 0;padding:8px 10px;border-left:3px solid #b32d25;background:#fff4f1;color:#842820;}
+.calcpro-subnet [hidden]{display:none!important;}
+.calcpro-subnet .calcpro-subnet-results{margin-bottom:14px;max-width:100%;}
+.calcpro-subnet .calcpro-subnet-result-heading{background:var(--subnet-green);color:#fff;padding:6px 8px;display:flex;align-items:center;justify-content:space-between;font-size:17px;line-height:1.1;}
+.calcpro-subnet .calcpro-subnet-save{background:transparent;border:0;color:#fff;font-size:12px;padding:2px 5px;display:flex;align-items:center;gap:3px;}
+.calcpro-subnet .calcpro-subnet-save:hover{text-decoration:underline;}
+.calcpro-subnet .calcpro-subnet-scroll{overflow-x:auto;max-width:100%;margin:10px 0 8px;}
+.calcpro-subnet .calcpro-subnet-result-table,.calcpro-subnet .calcpro-subnet-networks{border-collapse:collapse;font-size:12px;line-height:1.22;max-width:100%;}
+.calcpro-subnet .calcpro-subnet-result-table{min-width:min(100%,430px);width:auto;}
+.calcpro-subnet .calcpro-subnet-result-table th,.calcpro-subnet .calcpro-subnet-result-table td,.calcpro-subnet .calcpro-subnet-networks th,.calcpro-subnet .calcpro-subnet-networks td{border:1px solid #d8d8d8;padding:4px 7px;text-align:left;vertical-align:top;font-size:12px;}
+.calcpro-subnet .calcpro-subnet-result-table th{width:42%;font-weight:400;white-space:nowrap;}
+.calcpro-subnet .calcpro-subnet-result-table td{overflow-wrap:anywhere;word-break:normal;}
+.calcpro-subnet .calcpro-subnet-result-table tr:nth-child(even),.calcpro-subnet .calcpro-subnet-networks tbody tr:nth-child(even){background:#ededed;}
+.calcpro-subnet .calcpro-subnet-networks th{background:var(--subnet-blue);color:#fff;font-weight:700;white-space:nowrap;}
+.calcpro-subnet .calcpro-subnet-networks td{white-space:nowrap;}
+.calcpro-subnet .calcpro-subnet-networks tr.calcpro-subnet-current{background:#e9f6da;font-weight:700;}
+.calcpro-subnet .calcpro-subnet-subheading{font-size:15px!important;color:#222!important;margin:12px 0 4px!important;}
+.calcpro-subnet .calcpro-subnet-help{font-size:12px;color:#555;margin:7px 0 10px;}
+.calcpro-subnet .calcpro-subnet-secondary{border:1px solid #8fa5b4;background:#f1f6fa;color:#17496e;padding:6px 9px;margin:3px 0 9px;}
+.calcpro-subnet .calcpro-subnet-secondary:hover{background:#dfeaf2;}
+.calcpro-subnet .calcpro-subnet-related{max-width:630px;background:#efefef;margin:21px 0 6px;padding:11px 12px 13px;position:relative;display:flex;gap:9px;flex-wrap:wrap;}
+.calcpro-subnet .calcpro-subnet-related-title{position:absolute;top:-12px;left:9px;background:#efefef;padding:2px 9px;font-weight:700;font-size:13px;}
+.calcpro-subnet .calcpro-subnet-related a,.cp-site .calcpro-subnet .calcpro-subnet-related a{background:#336699;color:#fff;text-decoration:none;font-size:13px;padding:4px 7px;}
+.calcpro-subnet .calcpro-subnet-related a:hover{text-decoration:underline;}
+@media(max-width:580px){.calcpro-subnet .calcpro-subnet-panel{padding:12px 10px}.calcpro-subnet .calcpro-subnet-row{grid-template-columns:1fr;gap:3px;margin-bottom:11px}.calcpro-subnet .calcpro-subnet-buttons{margin-left:0}.calcpro-subnet input[type="text"],.calcpro-subnet .calcpro-subnet-long{width:100%!important}.calcpro-subnet .calcpro-subnet-result-table{min-width:0;width:100%}.calcpro-subnet .calcpro-subnet-result-table th{white-space:normal;width:42%}.calcpro-subnet .calcpro-subnet-result-table td{overflow-wrap:anywhere}.calcpro-subnet .calcpro-subnet-radios{gap:9px}.calcpro-subnet .calcpro-subnet-section h2{font-size:18px}}
+@media print{.calcpro-subnet .calcpro-subnet-save,.calcpro-subnet .calcpro-subnet-secondary,.calcpro-subnet .calcpro-subnet-buttons{display:none}.calcpro-subnet .calcpro-subnet-scroll{overflow:visible}.calcpro-subnet .calcpro-subnet-results{break-inside:avoid}}
+
+.calcpro-subnet-article code{overflow-wrap:anywhere;word-break:break-word;white-space:normal}
+
+</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/other-calculators/">Other Calculators</a> / IP Subnet Calculator</nav><h1 class="cp-page-title">IP Subnet Calculator</h1><p class="cp-intro">Calculate IPv4 and IPv6 subnet details including network addresses, usable host ranges, subnet masks, CIDR prefixes, and possible IPv4 subnet blocks.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-subnet" id="calcpro-subnet-calculator">
+  <section class="calcpro-subnet-section" aria-labelledby="calcpro-subnet-v4-title">
+    <h2 id="calcpro-subnet-v4-title">IPv4 Subnet Calculator</h2>
+    <div class="calcpro-subnet-results" id="calcpro-subnet-v4-results" aria-live="polite" hidden></div>
+    <form id="calcpro-subnet-v4-form" class="calcpro-subnet-panel" novalidate>
+      <div class="calcpro-subnet-row">
+        <span class="calcpro-subnet-label" id="calcpro-subnet-class-label">Network Class</span>
+        <div class="calcpro-subnet-radios" role="group" aria-labelledby="calcpro-subnet-class-label">
+          <label><input type="radio" name="calcpro-subnet-class" value="any" checked> Any</label>
+          <label><input type="radio" name="calcpro-subnet-class" value="a"> A</label>
+          <label><input type="radio" name="calcpro-subnet-class" value="b"> B</label>
+          <label><input type="radio" name="calcpro-subnet-class" value="c"> C</label>
+        </div>
+      </div>
+      <div class="calcpro-subnet-row"><label class="calcpro-subnet-label" for="calcpro-subnet-v4-prefix">Subnet</label><select id="calcpro-subnet-v4-prefix" aria-label="IPv4 subnet mask and CIDR prefix"></select></div>
+      <div class="calcpro-subnet-row"><label class="calcpro-subnet-label" for="calcpro-subnet-v4-address">IP Address</label><input id="calcpro-subnet-v4-address" name="calcpro-subnet-v4-address" type="text" value="103.150.207.129" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="192.168.1.10" required></div>
+      <div class="calcpro-subnet-buttons"><button class="calcpro-subnet-calculate" type="submit">Calculate <span class="calcpro-subnet-arrow" aria-hidden="true">▶</span></button><button class="calcpro-subnet-clear" id="calcpro-subnet-v4-clear" type="button">Clear</button></div>
+      <p class="calcpro-subnet-error" id="calcpro-subnet-v4-error" role="alert" hidden></p>
+    </form>
+  </section>
+  <section class="calcpro-subnet-section" aria-labelledby="calcpro-subnet-v6-title">
+    <h2 id="calcpro-subnet-v6-title">IPv6 Subnet Calculator</h2>
+    <div class="calcpro-subnet-results" id="calcpro-subnet-v6-results" aria-live="polite" hidden></div>
+    <form id="calcpro-subnet-v6-form" class="calcpro-subnet-panel" novalidate>
+      <div class="calcpro-subnet-row"><label class="calcpro-subnet-label" for="calcpro-subnet-v6-prefix">Prefix Length</label><select id="calcpro-subnet-v6-prefix" aria-label="IPv6 network prefix length"></select></div>
+      <div class="calcpro-subnet-row"><label class="calcpro-subnet-label" for="calcpro-subnet-v6-address">IP Address</label><input id="calcpro-subnet-v6-address" class="calcpro-subnet-long" type="text" value="2001:db8:85a3::8a2e:370:7334" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="2001:db8::1" required></div>
+      <div class="calcpro-subnet-buttons"><button class="calcpro-subnet-calculate" type="submit">Calculate <span class="calcpro-subnet-arrow" aria-hidden="true">▶</span></button><button class="calcpro-subnet-clear" type="button" id="calcpro-subnet-v6-clear">Clear</button></div>
+      <p class="calcpro-subnet-error" id="calcpro-subnet-v6-error" role="alert" hidden></p>
+    </form>
+  </section>
+  <nav aria-label="Related technical calculators" class="calcpro-subnet-related"><span class="calcpro-subnet-related-title">Related</span><a href="bandwidth-calculator.html">Bandwidth Calculator</a><a href="binary-calculator.html">Binary Calculator</a></nav>
+</div></section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><a href="bandwidth-calculator.html">Bandwidth Calculator</a><a href="binary-calculator.html">Binary Calculator</a><a href="hex-calculator.html">Hex Calculator</a><a href="conversion-calculator.html">Conversion Calculator</a><a href="ratio-calculator.html">Ratio Calculator</a><a href="math-calculator.html">Math Calculator</a><a href="scientific-calculator.html">Scientific Calculator</a><a href="password-generator.html">Password Generator</a></div></section></aside><article class="cp-article"><div class="calcpro-subnet-article"><h2>How to Use the IP Subnet Calculator</h2>
+<p>This calculator divides an IPv4 or IPv6 address space into its network and host portions. Select the subnet mask or prefix, enter an IP address, and choose <strong>Calculate</strong>. The results appear immediately above that version’s form, without leaving the page.</p>
+<ol><li>For IPv4, choose <strong>Any</strong>, <strong>A</strong>, <strong>B</strong>, or <strong>C</strong> to filter traditional mask ranges. Select a dotted-decimal subnet mask and enter an IPv4 address.</li><li>For IPv6, select a prefix length from /1 through /128 and enter an IPv6 address, including valid <code>::</code> compression if desired.</li><li>Review the network address, address range and counts. The IPv4 tool also lists every same-sized subnet inside the relevant /8, /16, or /24 parent block. Use <strong>Save</strong> or the CSV action to export results.</li></ol>
+<p>You can also type a CIDR suffix directly into either address field (for example, <code>192.168.10.37/26</code> or <code>2001:db8::1/64</code>); that prefix takes precedence over the dropdown, provided it is allowed by the current selector.</p>
+<h2>IPv4 Subnet Formulas</h2>
+<p>An IPv4 address has 32 bits. A prefix <code>/p</code> identifies the first <em>p</em> bits as network bits and leaves <em>32 − p</em> bits for host addressing.</p>
+<ul><li><strong>Subnet mask:</strong> <em>p</em> leading binary ones followed by <em>32 − p</em> zeros.</li><li><strong>Network address:</strong> IP address AND subnet mask.</li><li><strong>Broadcast address:</strong> network address OR inverse (wildcard) mask.</li><li><strong>Total addresses:</strong> 2<sup>32 − p</sup>.</li><li><strong>Conventional usable hosts:</strong> 2<sup>32 − p</sup> − 2 for prefixes /1 through /30.</li></ul>
+<h3>Worked IPv4 Example</h3>
+<p>For <code>192.168.1.129/26</code>, the subnet mask is <code>255.255.255.192</code>. A /26 block contains 64 addresses; the network is <code>192.168.1.128</code>, its broadcast address is <code>192.168.1.191</code>, and the conventional usable range is <code>192.168.1.129</code> through <code>192.168.1.190</code> (62 hosts).</p>
+<h3>Special Cases: /31 and /32</h3>
+<p>To match the reference calculator's traditional subnet table, the primary IPv4 usable-host count is shown as zero for /31 and /32. Modern routing has exceptions: under <a href="https://www.rfc-editor.org/info/rfc3021/" target="_blank" rel="noopener noreferrer">RFC 3021</a>, both /31 addresses are usable endpoints on a point-to-point link; a /32 describes one individual host route. The detailed output identifies these cases separately.</p>
+<h2>IPv6 Prefixes and Address Ranges</h2>
+<p>IPv6 uses 128-bit addresses and a routing prefix, not an IPv4-style broadcast address. For an IPv6 /64, the range contains 2<sup>64</sup> = 18,446,744,073,709,551,616 addresses. The tool uses exact integer arithmetic, expands addresses into eight four-character hexadecimal groups, and compresses consecutive zero groups following <a href="https://www.rfc-editor.org/info/rfc5952/" target="_blank" rel="noopener noreferrer">RFC 5952</a> conventions.</p>
+<p>For example, <code>2001:db8:85a3::8a2e:370:7334/64</code> belongs to <code>2001:db8:85a3::/64</code>. Its first address is <code>2001:db8:85a3::</code>, and its last address is <code>2001:db8:85a3:0:ffff:ffff:ffff:ffff</code>. Unlike IPv4, no network or broadcast address is subtracted from the IPv6 count.</p>
+<h2>Common IPv4 Subnet Masks</h2>
+<p>The reference table below lists conventional usable-host counts, which subtract two addresses even for /31 and /32. Modern point-to-point and host-route exceptions are explained above.</p>
+<div class="cp-table-scroll"><table class="cp-content-table"><thead><tr><th scope="col">Prefix size</th><th scope="col">Network mask</th><th scope="col">Usable hosts per subnet</th></tr></thead><tbody>
+<tr><td>/1</td><td>128.0.0.0</td><td>2,147,483,646</td></tr>
+<tr><td>/2</td><td>192.0.0.0</td><td>1,073,741,822</td></tr>
+<tr><td>/3</td><td>224.0.0.0</td><td>536,870,910</td></tr>
+<tr><td>/4</td><td>240.0.0.0</td><td>268,435,454</td></tr>
+<tr><td>/5</td><td>248.0.0.0</td><td>134,217,726</td></tr>
+<tr><td>/6</td><td>252.0.0.0</td><td>67,108,862</td></tr>
+<tr><td>/7</td><td>254.0.0.0</td><td>33,554,430</td></tr>
+<tr><th colspan="3" style="text-align:center">Class A</th></tr>
+<tr><td>/8</td><td>255.0.0.0</td><td>16,777,214</td></tr>
+<tr><td>/9</td><td>255.128.0.0</td><td>8,388,606</td></tr>
+<tr><td>/10</td><td>255.192.0.0</td><td>4,194,302</td></tr>
+<tr><td>/11</td><td>255.224.0.0</td><td>2,097,150</td></tr>
+<tr><td>/12</td><td>255.240.0.0</td><td>1,048,574</td></tr>
+<tr><td>/13</td><td>255.248.0.0</td><td>524,286</td></tr>
+<tr><td>/14</td><td>255.252.0.0</td><td>262,142</td></tr>
+<tr><td>/15</td><td>255.254.0.0</td><td>131,070</td></tr>
+<tr><th colspan="3" style="text-align:center">Class B</th></tr>
+<tr><td>/16</td><td>255.255.0.0</td><td>65,534</td></tr>
+<tr><td>/17</td><td>255.255.128.0</td><td>32,766</td></tr>
+<tr><td>/18</td><td>255.255.192.0</td><td>16,382</td></tr>
+<tr><td>/19</td><td>255.255.224.0</td><td>8,190</td></tr>
+<tr><td>/20</td><td>255.255.240.0</td><td>4,094</td></tr>
+<tr><td>/21</td><td>255.255.248.0</td><td>2,046</td></tr>
+<tr><td>/22</td><td>255.255.252.0</td><td>1,022</td></tr>
+<tr><td>/23</td><td>255.255.254.0</td><td>510</td></tr>
+<tr><th colspan="3" style="text-align:center">Class C</th></tr>
+<tr><td>/24</td><td>255.255.255.0</td><td>254</td></tr>
+<tr><td>/25</td><td>255.255.255.128</td><td>126</td></tr>
+<tr><td>/26</td><td>255.255.255.192</td><td>62</td></tr>
+<tr><td>/27</td><td>255.255.255.224</td><td>30</td></tr>
+<tr><td>/28</td><td>255.255.255.240</td><td>14</td></tr>
+<tr><td>/29</td><td>255.255.255.248</td><td>6</td></tr>
+<tr><td>/30</td><td>255.255.255.252</td><td>2</td></tr>
+<tr><td>/31</td><td>255.255.255.254</td><td>0</td></tr>
+<tr><td>/32</td><td>255.255.255.255</td><td>0</td></tr>
+</tbody></table></div>
+<h2>Frequently Asked Questions</h2>
+<h3>What is the difference between a subnet mask and CIDR notation?</h3><p>They express the same IPv4 network boundary in different formats. A dotted mask of <code>255.255.255.0</code> is equivalent to <code>/24</code>.</p>
+<h3>Does choosing class A, B, or C change the entered IP address?</h3><p>No. These options filter the subnet dropdown to prefixes /8 and longer, /16 and longer, or /24 and longer. Modern CIDR routing is classless, so an address's historical class does not dictate its actual network prefix.</p>
+<h3>Why are subnet boundaries different from the entered IP address?</h3><p>The network address is calculated by clearing all host bits. An address such as <code>192.168.1.129/26</code> is inside the <code>192.168.1.128/26</code> subnet.</p>
+<h3>Does this tool support IPv6 compressed addresses?</h3><p>Yes. IPv6 inputs may contain <code>::</code> once to replace consecutive zero groups. Expanded and compressed results are both available.</p>
+<h3>Are the calculations sent to another website?</h3><p>No. All parsing, subnet calculations and table generation occur locally in your browser, with no server-side submission.</p>
+<h2>Standards and Sources</h2><p>See <a href="https://www.rfc-editor.org/info/rfc3021/" target="_blank" rel="noopener noreferrer">RFC 3021 (IPv4 /31 links)</a>, <a href="https://www.rfc-editor.org/info/rfc4291/" target="_blank" rel="noopener noreferrer">RFC 4291 (IPv6 addressing architecture)</a>, and <a href="https://www.rfc-editor.org/info/rfc5952/" target="_blank" rel="noopener noreferrer">RFC 5952 (IPv6 text format)</a>.</p>
+<p class="cp-page-footer">CalcPro — subnet calculations are informational and do not test connectivity or change network settings.</p></div></article></main></div><script>
+(() => {
+  'use strict';
+  const base = 'calcpro-subnet-';
+  const get = name => document.getElementById(base + name);
+  const root = get('calculator');
+  if (!root) return;
+
+  const v4Form = get('v4-form');
+  const v4Address = get('v4-address');
+  const v4Prefix = get('v4-prefix');
+  const v4Result = get('v4-results');
+  const v4Error = get('v4-error');
+  const v6Form = get('v6-form');
+  const v6Address = get('v6-address');
+  const v6Prefix = get('v6-prefix');
+  const v6Result = get('v6-results');
+  const v6Error = get('v6-error');
+  const max4 = (1n << 32n) - 1n;
+  const max6 = (1n << 128n) - 1n;
+  let v4Save = '';
+  let v6Save = '';
+  let csvSave = '';
+  const nf = value => value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+  function prefixMask(prefix, bits) {
+    return ((1n << BigInt(prefix)) - 1n) << BigInt(bits - prefix);
+  }
+  function parseV4(text) {
+    const parts = text.trim().split('.');
+    if (parts.length !== 4 || parts.some(part => !/^\d{1,3}$/.test(part) || Number(part) > 255)) {
+      throw new Error('Enter a valid IPv4 address, such as 192.168.1.10.');
+    }
+    return parts.reduce((v, part) => (v << 8n) | BigInt(Number(part)), 0n);
+  }
+  function formatV4(num) {
+    return [24n, 16n, 8n, 0n].map(shift => String(Number((num >> shift) & 255n))).join('.');
+  }
+  function dottedBinary(num) {
+    return [24n, 16n, 8n, 0n].map(shift => Number((num >> shift) & 255n).toString(2).padStart(8, '0')).join('.');
+  }
+  function ipClass(ip) {
+    const first = Number(ip >> 24n);
+    if (first <= 126) return 'A';
+    if (first === 127) return 'A (loopback)';
+    if (first <= 191) return 'B';
+    if (first <= 223) return 'C';
+    if (first <= 239) return 'D (multicast)';
+    return 'E (reserved)';
+  }
+  function inCidr(ip, address, prefix) {
+    const mask = prefixMask(prefix, 32);
+    return (ip & mask) === (parseV4(address) & mask);
+  }
+  function ipType(ip) {
+    if (ip === max4) return 'Limited broadcast';
+    if (inCidr(ip, '0.0.0.0', 8)) return 'Current network / unspecified';
+    if (inCidr(ip, '10.0.0.0', 8) || inCidr(ip, '172.16.0.0', 12) || inCidr(ip, '192.168.0.0', 16)) return 'Private (RFC 1918)';
+    if (inCidr(ip, '100.64.0.0', 10)) return 'Shared / carrier-grade NAT';
+    if (inCidr(ip, '127.0.0.0', 8)) return 'Loopback';
+    if (inCidr(ip, '169.254.0.0', 16)) return 'Link-local';
+    if (inCidr(ip, '192.0.2.0', 24) || inCidr(ip, '198.51.100.0', 24) || inCidr(ip, '203.0.113.0', 24)) return 'Documentation / TEST-NET';
+    if (inCidr(ip, '198.18.0.0', 15)) return 'Benchmark testing';
+    if (inCidr(ip, '192.0.0.0', 24)) return 'IETF protocol assignments';
+    if (inCidr(ip, '224.0.0.0', 4)) return 'Multicast';
+    if (inCidr(ip, '240.0.0.0', 4)) return 'Reserved / special-use';
+    return 'Public (globally routable range)';
+  }
+  function parseV6(raw) {
+    let address = raw.trim().toLowerCase();
+    if (!address || /[%\s\[\]]/.test(address)) throw new Error('Enter a valid IPv6 address, such as 2001:db8::1.');
+    if (address.includes('.')) {
+      const match = address.match(/(\d{1,3}(?:\.\d{1,3}){3})$/);
+      if (!match || !address.includes(':')) throw new Error('The IPv6 address has an invalid embedded IPv4 address.');
+      const embedded = parseV4(match[1]);
+      address = address.slice(0, -match[1].length) + Number(embedded >> 16n).toString(16) + ':' + Number(embedded & 65535n).toString(16);
+    }
+    if (!/^[0-9a-f:]+$/.test(address)) throw new Error('IPv6 addresses contain hexadecimal groups separated by colons.');
+    if (address.split('::').length > 2) throw new Error('Only one :: compression sequence is allowed.');
+    const compressed = address.includes('::');
+    const halves = compressed ? address.split('::') : [address];
+    const left = halves[0] ? halves[0].split(':') : [];
+    const right = compressed && halves[1] ? halves[1].split(':') : [];
+    const all = [...left, ...right];
+    if (all.some(group => !/^[0-9a-f]{1,4}$/.test(group))) throw new Error('Each IPv6 group must contain 1–4 hexadecimal digits.');
+    const missing = 8 - all.length;
+    if ((!compressed && missing !== 0) || (compressed && missing < 1)) throw new Error('The IPv6 address must expand to exactly eight groups.');
+    const groups = [...left, ...Array.from({length: compressed ? missing : 0}, () => '0'), ...right];
+    return groups.reduce((value, group) => (value << 16n) | BigInt('0x' + group), 0n);
+  }
+  function splitV6(value) {
+    return Array.from({length: 8}, (_, i) => Number((value >> BigInt((7 - i) * 16)) & 65535n));
+  }
+  function fullV6(value) {
+    return splitV6(value).map(part => part.toString(16).padStart(4, '0')).join(':');
+  }
+  function formatV6(value) {
+    const segments = splitV6(value);
+    let bestAt = -1, bestLen = 0;
+    for (let index = 0; index < 8;) {
+      if (segments[index] !== 0) { index++; continue; }
+      let end = index;
+      while (end < 8 && segments[end] === 0) end++;
+      if (end - index > bestLen && end - index >= 2) { bestAt = index; bestLen = end - index; }
+      index = end;
+    }
+    const hex = segments.map(v => v.toString(16));
+    if (bestAt < 0) return hex.join(':');
+    const left = hex.slice(0, bestAt).join(':');
+    const right = hex.slice(bestAt + bestLen).join(':');
+    return left + '::' + right;
+  }
+  function showError(element, text) {
+    element.textContent = text;
+    element.hidden = false;
+  }
+  function clearError(element) {
+    element.textContent = '';
+    element.hidden = true;
+  }
+  function row(label, value) {
+    return '<tr><th scope="row">' + label + '</th><td>' + value + '</td></tr>';
+  }
+  function tableMarkup(tableRows) {
+    return '<div class="calcpro-subnet-scroll"><table class="calcpro-subnet-result-table"><tbody>' + tableRows.join('') + '</tbody></table></div>';
+  }
+  function panelHead(family) {
+    return '<div class="calcpro-subnet-result-heading"><strong>Result</strong><button type="button" class="calcpro-subnet-save" data-family="' + family + '" aria-label="Save IPv' + family + ' results as a text file" title="Save results"><span aria-hidden="true">▣</span> Save</button></div>';
+  }
+  function populateV4() {
+    const chosenClass = root.querySelector('input[name="calcpro-subnet-class"]:checked').value;
+    const minimum = {any: 1, a: 8, b: 16, c: 24}[chosenClass];
+    const previous = Number(v4Prefix.value) || 30;
+    v4Prefix.replaceChildren();
+    for (let prefix = 32; prefix >= minimum; prefix--) {
+      const opt = document.createElement('option');
+      opt.value = String(prefix);
+      opt.textContent = formatV4(prefixMask(prefix, 32)) + ' /' + prefix;
+      v4Prefix.appendChild(opt);
+    }
+    v4Prefix.value = String(Math.max(minimum, previous));
+  }
+  function parseAddressAndPrefix(value, family, select) {
+    const raw = value.trim();
+    const parts = raw.split('/');
+    if (parts.length > 2) throw new Error('Use only one CIDR prefix, such as /24 or /64.');
+    let prefix = Number(select.value);
+    if (parts.length === 2) {
+      if (!/^\d+$/.test(parts[1])) throw new Error('CIDR prefix must be a whole number.');
+      prefix = Number(parts[1]);
+      const options = Array.from(select.options).map(opt => Number(opt.value));
+      if (!options.includes(prefix)) throw new Error('Choose a /' + options[options.length - 1] + ' to /' + options[0] + ' prefix with the current selection.');
+      select.value = String(prefix);
+    }
+    const address = parts[0];
+    return {address, prefix, value: family === 4 ? parseV4(address) : parseV6(address)};
+  }
+  function usableRange(net, end, prefix) {
+    return prefix <= 30 ? (formatV4(net + 1n) + ' – ' + formatV4(end - 1n)) : 'None (traditional subnet convention)';
+  }
+  function calculateV4(event) {
+    event.preventDefault();
+    clearError(v4Error);
+    try {
+      const {value: ip, prefix} = parseAddressAndPrefix(v4Address.value, 4, v4Prefix);
+      const subnetMask = prefixMask(prefix, 32);
+      const inverse = max4 ^ subnetMask;
+      const network = ip & subnetMask;
+      const broadcast = network | inverse;
+      const total = 1n << BigInt(32 - prefix);
+      const usable = prefix <= 30 ? total - 2n : 0n;
+      const ipString = formatV4(ip);
+      const maskString = formatV4(subnetMask);
+      const networkString = formatV4(network);
+      const binary = ip.toString(2).padStart(32, '0');
+      const classByPrefix = prefix >= 24 ? 'C' : prefix >= 16 ? 'B' : prefix >= 8 ? 'A' : 'Classless (supernet)';
+      const first16 = Number(ip >> 16n).toString(16).padStart(4, '0');
+      const last16 = Number(ip & 65535n).toString(16).padStart(4, '0');
+      const hostsText = usableRange(network, broadcast, prefix);
+      const fields = [
+        ['IP Address', ipString],
+        ['Network Address', networkString],
+        ['Usable Host IP Range', hostsText],
+        ['Broadcast Address', formatV4(broadcast)],
+        ['Total Number of Hosts', nf(total)],
+        ['Number of Usable Hosts', nf(usable)],
+        ['Subnet Mask', maskString],
+        ['Wildcard Mask', formatV4(inverse)],
+        ['Binary Subnet Mask', dottedBinary(subnetMask)],
+        ['IP Class (subnet size)', classByPrefix],
+        ['IP Class (address)', ipClass(ip)],
+        ['CIDR Notation', networkString + '/' + prefix],
+        ['IP Type', ipType(ip)],
+        ['Short', ipString + '/' + prefix],
+        ['Binary ID', binary],
+        ['Integer ID', String(ip)],
+        ['Hex ID', '0x' + ip.toString(16).padStart(8, '0').toUpperCase()],
+        ['in-addr.arpa', ipString.split('.').reverse().join('.') + '.in-addr.arpa'],
+        ['IPv4 Mapped Address', '::ffff:' + ipString],
+        ['6to4 Prefix', '2002:' + first16 + ':' + last16 + '::/48']
+      ];
+      const allRows = fields.map(([label, value]) => row(label, value));
+      if (prefix === 31) allRows.splice(6, 0, row('Point-to-point usable (RFC 3021)', nf(total) + ' (' + formatV4(network) + ' – ' + formatV4(broadcast) + ')'));
+      if (prefix === 32) allRows.splice(6, 0, row('Single-host route', ipString));
+      const intro = prefix >= 31
+        ? '<p class="calcpro-subnet-help">Traditional host counts reserve the first and last addresses. A /31 has two usable endpoints on a point-to-point link (RFC 3021); a /32 identifies one host.</p>'
+        : '';
+      const parentPrefix = prefix < 8 ? 0 : prefix < 16 ? 8 : prefix < 24 ? 16 : 24;
+      const parentNet = ip & prefixMask(parentPrefix, 32);
+      const subnetCount = 2 ** (prefix - parentPrefix);
+      const parentParts = formatV4(parentNet).split('.');
+      const fixedOctets = parentPrefix / 8;
+      const parentPattern = parentParts.slice(0, fixedOctets).concat(Array(4 - fixedOctets).fill('*')).join('.');
+      let tableRows = '';
+      const csv = ['Network Address,Usable Host IP Range,Broadcast Address'];
+      for (let i = 0; i < subnetCount; i++) {
+        const n = parentNet + BigInt(i) * total;
+        const end = n + total - 1n;
+        const networkText = formatV4(n);
+        const rangeText = usableRange(n, end, prefix);
+        const broadcastText = formatV4(end);
+        const rowClass = n === network ? ' class="calcpro-subnet-current"' : '';
+        tableRows += '<tr' + rowClass + '><td>' + networkText + '</td><td>' + rangeText + '</td><td>' + broadcastText + '</td></tr>';
+        csv.push('"' + networkText + '","' + rangeText + '","' + broadcastText + '"');
+      }
+      const subnetTable = '<h3 class="calcpro-subnet-subheading">All ' + nf(BigInt(subnetCount)) + ' Possible /' + prefix + ' Networks for ' + parentPattern + '</h3>' +
+        '<div class="calcpro-subnet-scroll"><table class="calcpro-subnet-networks"><thead><tr><th scope="col">Network Address</th><th scope="col">Usable Host IP Range</th><th scope="col">Broadcast Address</th></tr></thead><tbody>' + tableRows + '</tbody></table></div>' +
+        '<button type="button" id="calcpro-subnet-csv" class="calcpro-subnet-secondary">Save subnet table (CSV)</button>';
+      v4Result.innerHTML = panelHead('4') + tableMarkup(allRows) + intro + subnetTable;
+      v4Result.hidden = false;
+      v4Save = 'IPv4 Subnet Calculator\n\n' + fields.map(([a,b]) => a + ': ' + b).join('\n') + '\n';
+      csvSave = csv.join('\r\n') + '\r\n';
+    } catch (error) {
+      v4Result.hidden = true;
+      showError(v4Error, error.message || 'Unable to calculate IPv4 subnet.');
+    }
+  }
+  function calculateV6(event) {
+    event.preventDefault();
+    clearError(v6Error);
+    try {
+      const {value: ip, prefix} = parseAddressAndPrefix(v6Address.value, 6, v6Prefix);
+      const mask = prefixMask(prefix, 128);
+      const network = ip & mask;
+      const last = network | (max6 ^ mask);
+      const count = 1n << BigInt(128 - prefix);
+      const fields = [
+        ['IP Address', formatV6(ip) + '/' + prefix],
+        ['Full IP Address', fullV6(ip)],
+        ['Total IP Addresses', nf(count)],
+        ['Network', formatV6(network)],
+        ['IP Range', formatV6(network) + ' – ' + formatV6(last)],
+        ['CIDR Network', formatV6(network) + '/' + prefix],
+        ['Full Network Address', fullV6(network)],
+        ['Full Last Address', fullV6(last)]
+      ];
+      v6Result.innerHTML = panelHead('6') + tableMarkup(fields.map(([label,value]) => row(label, value))) + '<p class="calcpro-subnet-help">IPv6 does not use broadcast addresses. The address count is exact and includes every address in the prefix.</p>';
+      v6Result.hidden = false;
+      v6Save = 'IPv6 Subnet Calculator\n\n' + fields.map(([a,b]) => a + ': ' + b).join('\n') + '\n';
+    } catch (error) {
+      v6Result.hidden = true;
+      showError(v6Error, error.message || 'Unable to calculate IPv6 subnet.');
+    }
+  }
+  function download(text, filename, contentType) {
+    if (!text) return;
+    const url = URL.createObjectURL(new Blob([text], {type: contentType || 'text/plain;charset=utf-8'}));
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = filename;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  }
+  root.querySelectorAll('input[name="calcpro-subnet-class"]').forEach(input => {
+    input.addEventListener('change', () => {populateV4(); clearError(v4Error);});
+  });
+  root.addEventListener('click', event => {
+    const save = event.target.closest('.calcpro-subnet-save');
+    if (save && root.contains(save)) {
+      const family = save.dataset.family;
+      download(family === '4' ? v4Save : v6Save, 'ip-subnet-ipv' + family + '-results.txt');
+    }
+    if (event.target.closest('#calcpro-subnet-csv')) download(csvSave, 'ip-subnet-networks.csv', 'text/csv;charset=utf-8');
+  });
+  v4Form.addEventListener('submit', calculateV4);
+  v6Form.addEventListener('submit', calculateV6);
+  get('v4-clear').addEventListener('click', () => {
+    v4Address.value = '';
+    root.querySelector('input[name="calcpro-subnet-class"][value="any"]').checked = true;
+    v4Prefix.value = '30';
+    populateV4();
+    v4Result.hidden = true;
+    v4Result.innerHTML = '';
+    v4Save = '';
+    csvSave = '';
+    clearError(v4Error);
+    v4Address.focus();
+  });
+  get('v6-clear').addEventListener('click', () => {
+    v6Address.value = '';
+    v6Prefix.value = '64';
+    v6Result.hidden = true;
+    v6Result.innerHTML = '';
+    v6Save = '';
+    clearError(v6Error);
+    v6Address.focus();
+  });
+  populateV4();
+  for (let prefix = 1; prefix <= 128; prefix++) {
+    const option = document.createElement('option');
+    option.value = String(prefix);
+    option.textContent = '/' + prefix;
+    v6Prefix.appendChild(option);
+  }
+  v6Prefix.value = '64';
+})();
+
+</script><script data-calcpro-latest-result>
+(function () {
+  var toolRoot = document.querySelector('.cp-tool-area') || document.querySelector('main') || document.body;
+  var forms = Array.prototype.slice.call(toolRoot.querySelectorAll('form'));
+  if (forms.length < 2) return;
+
+  var selector = '[id*="result"], [class*="result"], [id*="output"], [class*="output"], [id*="total"], [class*="total"], [id*="summary"], [class*="summary"], [data-result], [data-re-results], [data-cp-surface-result]';
+  var candidates = Array.prototype.slice.call(toolRoot.querySelectorAll(selector));
+  var panels = candidates.filter(function (node) {
+    return !candidates.some(function (other) { return other !== node && other.contains(node); });
+  });
+  var activeOwner = null;
+
+  function namesOf(node) {
+    var names = [node.id].concat(Array.prototype.slice.call(node.classList || []));
+    return names.map(function (name) {
+      return String(name).toLowerCase().replace(/[-_](form|result|results|output|outputs|total|totals|summary|summaries)([-_].*)?$/, '');
+    }).filter(Boolean);
+  }
+
+  function pairedForm(panel) {
+    var names = namesOf(panel);
+    var matches = forms.filter(function (form) {
+      return namesOf(form).some(function (name) { return names.indexOf(name) !== -1; });
+    });
+    return matches.length === 1 ? matches[0] : null;
+  }
+
+  function ownerOf(node) {
+    if (node.matches('form')) return node;
+    var form = node.closest('form') || pairedForm(node);
+    if (form) return form;
+    for (var current = node; current && current !== toolRoot; current = current.parentElement) {
+      var formCount = (current.matches('form') ? 1 : 0) + current.querySelectorAll('form').length;
+      if (formCount === 1 && panels.some(function (panel) { return current === panel || current.contains(panel); })) return current.querySelector('form') || current;
+    }
+    return node.closest('section') || node;
+  }
+
+  function keepOnly(owner, showActive) {
+    panels.forEach(function (panel) {
+      var isActive = ownerOf(panel) === owner;
+      if (!isActive) panel.hidden = true;
+      else if (showActive) panel.hidden = false;
+    });
+  }
+
+  function activate(owner) {
+    if (!owner) return;
+    activeOwner = owner;
+    keepOnly(owner, false);
+  }
+
+  toolRoot.addEventListener('submit', function (event) {
+    var form = event.target;
+    if (form instanceof HTMLFormElement) activate(ownerOf(form));
+  }, true);
+
+  toolRoot.addEventListener('input', function (event) {
+    var form = event.target.closest('form');
+    if (form) activeOwner = ownerOf(form);
+  }, true);
+
+  toolRoot.addEventListener('click', function (event) {
+    var button = event.target.closest('button');
+    var form = button && button.closest('form');
+    if (!form) return;
+    var label = [button.id, button.textContent, button.getAttribute('aria-label') || ''].join(' ').toLowerCase();
+    if (/\b(clear|reset)\b/.test(label) || button.type === 'reset') activeOwner = null;
+    else if (button.type === 'submit' || /\b(calculate|compute|roll|start|encode|decode|convert|generate|run|solve|estimate)\b/.test(label)) activate(ownerOf(form));
+  }, true);
+
+  var observer = new MutationObserver(function (records) {
+    records.forEach(function (record) {
+      var panel = panels.find(function (item) { return item === record.target || item.contains(record.target); });
+      if (!panel || !activeOwner || ownerOf(panel) !== activeOwner) return;
+      if (record.type === 'attributes' && panel.hidden) return;
+      keepOnly(activeOwner, true);
+    });
+  });
+  panels.forEach(function (panel) {
+    observer.observe(panel, {attributes: true, attributeFilter: ['hidden'], childList: true, characterData: true, subtree: true});
+  });
+})();
+</script>
+</body></html>

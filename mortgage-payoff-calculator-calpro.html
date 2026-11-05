@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>Mortgage Payoff Calculator | CalcPro</title><meta content="Mortgage payoff calculator with extra monthly, annual, and one-time payments, biweekly repayment, interest savings, animated charts, and amortization tables." name="description"/><link href="template-style.css" rel="stylesheet"/><!--TOOL CSS INSERT HERE: Paste only calculator-specific CSS here. Use unique class/id prefixes per tool, e.g. bmi-, loan-, age-. Keep header, sidebar and article CSS in style.css.--><style>
+/* Mortgage Payoff Calculator — fully scoped tool styles */
+.calcpro-mortgage{font:14px/1.42 Arial,Helvetica,sans-serif;color:#182d43;max-width:100%;--cmp-blue:#316797;--cmp-green:#558c2b;--cmp-border:#cdd9e3;--cmp-pale:#f5f8fa}
+.calcpro-mortgage *{box-sizing:border-box}
+.calcpro-mortgage button,.calcpro-mortgage input{font:inherit}
+.calcpro-mortgage h2{font-size:19px;color:#144c7b;margin:17px 0 5px}
+.calcpro-mortgage .calcpro-mortgage-help{margin:0 0 13px;font-size:13px;color:#3f5364}
+.calcpro-mortgage .calcpro-mortgage-section{margin:0 0 34px}
+.calcpro-mortgage .calcpro-mortgage-panels{display:grid;grid-template-columns:minmax(234px,.85fr) minmax(0,1.15fr);gap:17px;align-items:start}
+.calcpro-mortgage .calcpro-mortgage-form{background:#f0f0f0;padding:12px;border:1px solid #d3d3d3;border-radius:2px;min-width:0}
+.calcpro-mortgage .calcpro-mortgage-formrow{display:grid;grid-template-columns:minmax(0,1fr) minmax(95px,1fr);gap:8px;align-items:center;margin:0 0 8px}
+.calcpro-mortgage .calcpro-mortgage-formrow label{color:#243244;font-size:12px}
+.calcpro-mortgage .calcpro-mortgage-inputwrap{display:flex;align-items:stretch;min-width:0;position:relative}
+.calcpro-mortgage .calcpro-mortgage-inputwrap input{border:1px solid #8daac4;border-radius:1px;background:#fff;min-width:0;width:100%;height:28px;padding:3px 7px;color:#182d43;font-size:13px;font-variant-numeric:tabular-nums}
+.calcpro-mortgage .calcpro-mortgage-inputwrap input:focus{outline:2px solid #9bc2e2;outline-offset:1px}
+.calcpro-mortgage .calcpro-mortgage-unit{background:#e9eef3;white-space:nowrap;font-size:11px;border:1px solid #8daac4;border-left:0;padding:5px 6px;color:#4a6175}
+.calcpro-mortgage .calcpro-mortgage-termstack{display:grid;gap:5px}
+.calcpro-mortgage .calcpro-mortgage-options-heading{font-weight:700;font-size:12px;margin:11px 0 5px}
+.calcpro-mortgage .calcpro-mortgage-option{display:flex;align-items:center;gap:6px;margin:4px 0;font-size:12px;cursor:pointer;line-height:1.3}
+.calcpro-mortgage input[type=radio]{accent-color:#3678b4;width:14px;height:14px;margin:0;flex:none}
+.calcpro-mortgage .calcpro-mortgage-extra-group{margin:5px 0 7px 21px;display:grid;gap:5px}
+.calcpro-mortgage .calcpro-mortgage-extrarow{display:grid;grid-template-columns:minmax(80px,115px) 1fr;gap:8px;align-items:center;font-size:12px}
+.calcpro-mortgage .calcpro-mortgage-extrarow input{width:100%;min-width:0;border:1px solid #8daac4;height:27px;padding:3px 7px;background:#fff;color:#182d43;font-size:13px}
+.calcpro-mortgage .calcpro-mortgage-extrarow label{font-size:12px}
+.calcpro-mortgage .calcpro-mortgage-extra-group[data-disabled=true]{opacity:.5}
+.calcpro-mortgage .calcpro-mortgage-buttons{display:flex;gap:7px;justify-content:center;margin:13px 0 1px}
+.calcpro-mortgage .calcpro-mortgage-calculate{background:#4c8028;border:1px solid #3d721d;color:#fff;font-weight:700;padding:7px 16px;border-radius:2px;cursor:pointer}
+.calcpro-mortgage .calcpro-mortgage-calculate:hover{background:#3b711e}
+.calcpro-mortgage .calcpro-mortgage-clear{background:#8f979d;color:#fff;border:1px solid #8f979d;padding:7px 13px;border-radius:2px;cursor:pointer}
+.calcpro-mortgage button:focus-visible,.calcpro-mortgage a:focus-visible{outline:3px solid #82b2db;outline-offset:2px}
+.calcpro-mortgage .calcpro-mortgage-error{font-size:12px;color:#a32024;background:#fff1f1;border:1px solid #e0a3a3;border-radius:3px;padding:9px;margin-top:8px}
+.calcpro-mortgage .calcpro-mortgage-result{min-width:0;font-variant-numeric:tabular-nums}
+.calcpro-mortgage .calcpro-mortgage-result-title{margin:0 0 6px;background:var(--cmp-green);color:white;padding:7px 9px;font-size:18px;line-height:1.25;font-weight:700}
+.calcpro-mortgage .calcpro-mortgage-result-description{margin:5px 0 10px;font-size:12px;line-height:1.45}
+.calcpro-mortgage .calcpro-mortgage-kpis{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid #d5e0e9;margin:0 0 10px}
+.calcpro-mortgage .calcpro-mortgage-kpi{min-width:0;text-align:center;padding:0 6px 8px}
+.calcpro-mortgage .calcpro-mortgage-kpi+.calcpro-mortgage-kpi{border-left:1px solid #d5e0e9}
+.calcpro-mortgage .calcpro-mortgage-kpihead{background:var(--cmp-blue);color:white;font-size:12px;font-weight:700;min-height:41px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 -6px 6px;padding:4px}
+.calcpro-mortgage .calcpro-mortgage-kpihead strong{font-size:17px}
+.calcpro-mortgage .calcpro-mortgage-kpi-track{height:9px;background:#dce1e4;margin:7px 0 7px;border-radius:1px;overflow:hidden}
+.calcpro-mortgage .calcpro-mortgage-kpi-track span{height:100%;background:#77a644;display:block}
+.calcpro-mortgage .calcpro-mortgage-kpi-foot{font-size:11px;color:#465767;line-height:1.3}
+.calcpro-mortgage .calcpro-mortgage-kpi-foot strong{color:#487b25}
+.calcpro-mortgage .calcpro-mortgage-compare{border-collapse:collapse;width:100%;table-layout:fixed;font-size:12px;margin-top:9px}
+.calcpro-mortgage .calcpro-mortgage-compare th{background:var(--cmp-blue);color:#fff;text-align:center;padding:5px 3px;line-height:1.2;font-size:11px}
+.calcpro-mortgage .calcpro-mortgage-compare th:first-child{width:38%;text-align:left}
+.calcpro-mortgage .calcpro-mortgage-compare td{border-bottom:1px solid #dce4e9;padding:5px 3px;text-align:right;word-wrap:break-word}
+.calcpro-mortgage .calcpro-mortgage-compare td:first-child{text-align:left;color:#36495b}
+.calcpro-mortgage .calcpro-mortgage-compare tr:nth-child(even) td{background:#f7f9fa}
+.calcpro-mortgage .calcpro-mortgage-actions{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:8px 0;font-size:12px}
+.calcpro-mortgage .calcpro-mortgage-link{border:0;background:none;padding:3px 0;color:#0667a2;text-decoration:underline;cursor:pointer;font-size:12px}
+.calcpro-mortgage .calcpro-mortgage-small-actions{display:flex;gap:8px}
+.calcpro-mortgage .calcpro-mortgage-small-actions button{border:1px solid #a7bbc8;background:#fff;padding:4px 7px;border-radius:3px;cursor:pointer;color:#1d557e;font-size:11px}
+.calcpro-mortgage .calcpro-mortgage-chartbox{max-width:100%;background:#fff;border:1px solid #e0e6eb;border-radius:2px;padding:7px 4px 4px;margin:8px 0 0}
+.calcpro-mortgage .calcpro-mortgage-chartbox svg{display:block;width:100%;height:auto;overflow:visible}
+.calcpro-mortgage .calcpro-mortgage-chart-caption{font-size:11px;color:#66788a;text-align:center;margin:0 0 4px}
+.calcpro-mortgage .calcpro-mortgage-schedule{margin:11px 0 0;max-width:100%}
+.calcpro-mortgage .calcpro-mortgage-schedule h3{color:#174f80;font-size:15px;margin:6px 0}
+.calcpro-mortgage .calcpro-mortgage-tablewrap{max-width:100%;max-height:430px;overflow:auto;border:1px solid #cedbe5}
+.calcpro-mortgage .calcpro-mortgage-amort{border-collapse:collapse;width:100%;min-width:615px;font-size:11px;font-variant-numeric:tabular-nums}
+.calcpro-mortgage .calcpro-mortgage-amort th{position:sticky;top:0;background:var(--cmp-blue);color:#fff;padding:7px 5px;text-align:right}
+.calcpro-mortgage .calcpro-mortgage-amort td{padding:5px;text-align:right;border-bottom:1px solid #e3eaf0}
+.calcpro-mortgage .calcpro-mortgage-amort tr:nth-child(odd) td{background:#f5f8fb}
+.calcpro-mortgage .calcpro-mortgage-schedule-note{font-size:11px;color:#627181;line-height:1.4}
+.calcpro-mortgage .calcpro-mortgage-live-hint{background:#ecf5fb;border-left:3px solid #598ab1;color:#2e5879;padding:7px 10px;margin:4px 0 15px;font-size:12px}
+@media(max-width:640px){.calcpro-mortgage .calcpro-mortgage-panels{grid-template-columns:1fr;gap:12px}.calcpro-mortgage .calcpro-mortgage-form{max-width:100%}.calcpro-mortgage .calcpro-mortgage-result-title{font-size:17px}.calcpro-mortgage .calcpro-mortgage-chartbox{padding:4px 1px}.calcpro-mortgage .calcpro-mortgage-chart-caption{font-size:10px}}
+@media(prefers-reduced-motion:reduce){.calcpro-mortgage *{scroll-behavior:auto!important}}
+@media print{.calcpro-mortgage .calcpro-mortgage-buttons,.calcpro-mortgage .calcpro-mortgage-small-actions{display:none}.calcpro-mortgage .calcpro-mortgage-panels{grid-template-columns:40% 1fr}.calcpro-mortgage .calcpro-mortgage-schedule[hidden]{display:none!important}}
+</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Mortgage Payoff Calculator</nav><h1 class="cp-page-title">Mortgage Payoff Calculator</h1><p class="cp-intro">Calculate how extra payments or biweekly repayments can shorten your mortgage and reduce interest costs. Compare scenarios and explore animated balance and interest graphs.</p><section aria-label="Calculator" class="cp-tool-area">
+<div class="calcpro-mortgage" id="calcpro-mortgage-root">
+<div class="calcpro-mortgage-live-hint">Enter your mortgage details, choose a repayment strategy, and click <strong>Calculate</strong>. Compare your payoff timeline and watch the graph draw from the beginning to the end.</div>
+<section aria-labelledby="calcpro-mortgage-title-1" class="calcpro-mortgage-section">
+<h2 id="calcpro-mortgage-title-1">If you know the remaining loan term</h2>
+<p class="calcpro-mortgage-help">Use the original loan details and the number of years and months left. This works best when the original loan follows its normal amortization schedule.</p>
+<div class="calcpro-mortgage-panels">
+<form class="calcpro-mortgage-form" id="calcpro-mortgage-form-1" novalidate="">
+<div class="calcpro-mortgage-formrow"><label for="calcpro-mortgage-loan">Original loan amount</label><div class="calcpro-mortgage-inputwrap"><input aria-label="Original loan amount in dollars" id="calcpro-mortgage-loan" inputmode="decimal" name="loan" type="text" value="400,000"/><span class="calcpro-mortgage-unit">USD</span></div></div>
+<div class="calcpro-mortgage-formrow"><label for="calcpro-mortgage-term">Original loan term</label><div class="calcpro-mortgage-inputwrap"><input id="calcpro-mortgage-term" inputmode="decimal" max="100" min="1" name="term" step="1" type="number" value="30"/><span class="calcpro-mortgage-unit">years</span></div></div>
+<div class="calcpro-mortgage-formrow"><label for="calcpro-mortgage-rate">Interest rate</label><div class="calcpro-mortgage-inputwrap"><input id="calcpro-mortgage-rate" inputmode="decimal" max="99.99" min="0" name="rate" step="any" type="number" value="6"/><span class="calcpro-mortgage-unit">%</span></div></div>
+<div class="calcpro-mortgage-formrow"><label for="calcpro-mortgage-years-left">Remaining term</label><div class="calcpro-mortgage-termstack"><div class="calcpro-mortgage-inputwrap"><input id="calcpro-mortgage-years-left" inputmode="numeric" min="0" name="yearsLeft" step="1" type="number" value="25"/><span class="calcpro-mortgage-unit">years</span></div><div class="calcpro-mortgage-inputwrap"><input aria-label="Remaining months" id="calcpro-mortgage-months-left" inputmode="numeric" max="11" min="0" name="monthsLeft" step="1" type="number" value="0"/><span class="calcpro-mortgage-unit">months</span></div></div></div>
+<div class="calcpro-mortgage-options-heading">Repayment options:</div>
+<label class="calcpro-mortgage-option"><input name="method" type="radio" value="full"/>Payback altogether (today)</label>
+<label class="calcpro-mortgage-option"><input checked="" name="method" type="radio" value="extra"/>Repayment with extra payments</label>
+<div class="calcpro-mortgage-extra-group" data-extra-group="1">
+<div class="calcpro-mortgage-extrarow"><input aria-label="Extra payment per month" inputmode="decimal" name="extraMonth" type="text" value="500"/><label>per month</label></div>
+<div class="calcpro-mortgage-extrarow"><input aria-label="Extra payment per year" inputmode="decimal" name="extraYear" type="text" value="0"/><label>per year</label></div>
+<div class="calcpro-mortgage-extrarow"><input aria-label="One-time extra payment" inputmode="decimal" name="extraOnce" type="text" value="0"/><label>one time, next payment</label></div>
+</div>
+<label class="calcpro-mortgage-option"><input name="method" type="radio" value="biweekly"/>Biweekly repayment (half payment every 2 weeks)</label>
+<label class="calcpro-mortgage-option"><input name="method" type="radio" value="normal"/>Normal repayment</label>
+<div class="calcpro-mortgage-buttons"><button class="calcpro-mortgage-calculate" type="submit">Calculate ▶</button><button class="calcpro-mortgage-clear" data-clear="1" type="button">Clear</button></div>
+<div class="calcpro-mortgage-error" hidden="" id="calcpro-mortgage-error-1" role="alert"></div>
+</form>
+<div aria-live="polite" class="calcpro-mortgage-result" id="calcpro-mortgage-result-1"></div>
+</div>
+<div aria-label="Animated original and accelerated mortgage balance and cumulative interest lines" class="calcpro-mortgage-chartbox" id="calcpro-mortgage-chart-1" role="img"></div>
+<div class="calcpro-mortgage-chart-caption">Original and new mortgage balance and cumulative interest over time. The four lines animate from left to right.</div>
+<div class="calcpro-mortgage-schedule" hidden="" id="calcpro-mortgage-schedule-1"></div>
+</section>
+<section aria-labelledby="calcpro-mortgage-title-2" class="calcpro-mortgage-section">
+<h2 id="calcpro-mortgage-title-2">If you don't know the remaining loan term</h2>
+<p class="calcpro-mortgage-help">Use your current unpaid principal, regular monthly principal-and-interest payment, and mortgage interest rate to estimate your remaining term.</p>
+<div class="calcpro-mortgage-panels">
+<form class="calcpro-mortgage-form" id="calcpro-mortgage-form-2" novalidate="">
+<div class="calcpro-mortgage-formrow"><label for="calcpro-mortgage-balance">Unpaid principal balance</label><div class="calcpro-mortgage-inputwrap"><input id="calcpro-mortgage-balance" inputmode="decimal" name="balance" type="text" value="230,000"/><span class="calcpro-mortgage-unit">USD</span></div></div>
+<div class="calcpro-mortgage-formrow"><label for="calcpro-mortgage-payment">Monthly payment</label><div class="calcpro-mortgage-inputwrap"><input id="calcpro-mortgage-payment" inputmode="decimal" name="payment" type="text" value="1,500"/><span class="calcpro-mortgage-unit">USD</span></div></div>
+<div class="calcpro-mortgage-formrow"><label for="calcpro-mortgage-rate-2">Interest rate</label><div class="calcpro-mortgage-inputwrap"><input id="calcpro-mortgage-rate-2" inputmode="decimal" max="99.99" min="0" name="rate" step="any" type="number" value="6"/><span class="calcpro-mortgage-unit">%</span></div></div>
+<div class="calcpro-mortgage-options-heading">Repayment options:</div>
+<label class="calcpro-mortgage-option"><input checked="" name="method" type="radio" value="extra"/>Repayment with extra payments</label>
+<div class="calcpro-mortgage-extra-group" data-extra-group="2">
+<div class="calcpro-mortgage-extrarow"><input aria-label="Extra payment per month" inputmode="decimal" name="extraMonth" type="text" value="500"/><label>per month</label></div>
+<div class="calcpro-mortgage-extrarow"><input aria-label="Extra payment per year" inputmode="decimal" name="extraYear" type="text" value="0"/><label>per year</label></div>
+<div class="calcpro-mortgage-extrarow"><input aria-label="One-time extra payment" inputmode="decimal" name="extraOnce" type="text" value="0"/><label>one time, next payment</label></div>
+</div>
+<label class="calcpro-mortgage-option"><input name="method" type="radio" value="biweekly"/>Biweekly repayment (half payment every 2 weeks)</label>
+<label class="calcpro-mortgage-option"><input name="method" type="radio" value="normal"/>Normal repayment</label>
+<div class="calcpro-mortgage-buttons"><button class="calcpro-mortgage-calculate" type="submit">Calculate ▶</button><button class="calcpro-mortgage-clear" data-clear="2" type="button">Clear</button></div>
+<div class="calcpro-mortgage-error" hidden="" id="calcpro-mortgage-error-2" role="alert"></div>
+</form>
+<div aria-live="polite" class="calcpro-mortgage-result" id="calcpro-mortgage-result-2"></div>
+</div>
+<div aria-label="Animated original and accelerated mortgage balance and cumulative interest lines" class="calcpro-mortgage-chartbox" id="calcpro-mortgage-chart-2" role="img"></div>
+<div class="calcpro-mortgage-chart-caption">Mortgage balance decreases as cumulative interest grows; the new payoff ends sooner when extra principal is paid.</div>
+<div class="calcpro-mortgage-schedule" hidden="" id="calcpro-mortgage-schedule-2"></div>
+</section>
+</div>
+</section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><a href="mortgage-calculator.html">Mortgage Calculator</a><a href="refinance-calculator.html">Refinance Calculator</a><a href="loan-calculator.html">Loan Calculator</a><a href="amortization-calculator.html">Amortization Calculator</a><a href="mortgage-payoff-calculator-calpro.html">Extra Payments</a><a href="interest-calculator.html">Interest Calculator</a><a href="payment-calculator.html">Payment Calculator</a><a href="apr-calculator.html">Mortgage APR</a><a href="debt-payoff-calculator.html">Debt Payoff</a><a href="retirement-calculator.html">Retirement</a><a href="investment-calculator.html">Investment</a><a href="compound-interest-calculator.html">Compound Interest</a></div></section></aside><article class="cp-article">
+<h2>How to Use the Mortgage Payoff Calculator</h2>
+<p>Choose the first calculator if you know the original loan amount, original term, annual interest rate, and the time left on your loan. If you only know the current principal balance and your regular principal-and-interest payment, use the second calculator. Choose extra monthly, annual, or one-time payments; biweekly payments; or the normal repayment schedule. The first calculator also offers immediate full payoff.</p>
+<p>Click <strong>Calculate</strong> to see the projected time to repay your loan, how much interest you can save, and an animated graph comparing the original and accelerated balances and cumulative interest. Select <strong>View Amortization Table</strong> for a payment-by-payment breakdown. Click <strong>Clear</strong> to restore the example values.</p>
+<h2>Mortgage Payoff Formula</h2>
+<p>For a fixed-rate loan, the scheduled monthly principal-and-interest payment is calculated as <strong>M = P × r / (1 − (1 + r)<sup>−n</sup>)</strong>, where P is the loan principal, r is the annual interest rate divided by 12 (expressed as a decimal), and n is the number of monthly payments. With a 0% interest rate, M = P/n.</p>
+<p>In each period, interest equals the unpaid balance multiplied by the periodic interest rate. The remaining part of your installment, plus applicable extra principal payments, reduces the balance. The calculator repeats this process until the outstanding loan is fully paid.</p>
+<h3>Worked Example</h3>
+<p>For a $400,000 mortgage with a 30-year term and 6% annual fixed interest, the scheduled principal-and-interest payment is about <strong>$2,398.20 per month</strong>. After five years of scheduled payments, the balance is approximately <strong>$372,217.43</strong>. Adding $500 to each remaining monthly payment reduces the remaining payoff period from 25 years to <strong>17 years and 3 months</strong> and saves approximately <strong>$122,306</strong> in interest over the life of the loan.</p>
+<h2>Understanding the Results and Animated Chart</h2>
+<p>The summary compares total paid, interest paid, and years until payoff under the original schedule versus your proposed strategy. For the first calculator, lifetime totals include payments already made; remaining totals cover only future installments. The graph's blue and dark lines show the original balance and cumulative interest, while the green and red lines show your new balance and interest. The lines draw chronologically from the loan's starting point to its payoff endpoint when the calculation loads or changes.</p>
+<h3>Extra Payments and Biweekly Repayment</h3>
+<p>Extra payments are applied to principal after the period's interest. Monthly extras start with your next monthly payment, annual extras are applied every twelfth payment, and a one-time extra is added at the next payment. Biweekly repayment uses 26 half-sized installments each year with a nominal annual rate split into 26 interest periods, resulting in the equivalent of 13 ordinary monthly payments annually. Your lender may calculate biweekly interest differently.</p>
+<h3>Important Assumptions</h3>
+<p>Results assume a fixed nominal annual interest rate, on-time payments, and application of additional amounts directly to mortgage principal. Taxes, homeowners insurance, escrow, points, late fees, and prepayment penalties are excluded. For the known-term calculation, the current balance is reconstructed from the original schedule and assumes no earlier additional payments or changes in interest. All calculations use full internal precision and round only when displayed.</p>
+<h2>Frequently Asked Questions</h2>
+<h3>Will an extra principal payment always reduce interest?</h3>
+<p>Under the fixed-rate amortization model, reducing principal sooner generally lowers later interest charges. The benefit depends on when and how much extra principal is paid, as well as the loan's rate and remaining term.</p>
+<h3>What if I only know my current balance and payment?</h3>
+<p>Use the second form. It calculates the original remaining repayment period from the balance, fixed interest rate, and principal-and-interest payment. Your payment must exceed the interest accruing in the first month, or the balance will not decline.</p>
+<h3>Is the chart animation part of the payment calculation?</h3>
+<p>No. The figures and amortization schedule are calculated immediately; the graph animation simply shows how the balance and interest evolve from the beginning of the loan to its end. You can request another animation by pressing Calculate again.</p>
+<h3>Does this include a mortgage payoff statement from my lender?</h3>
+<p>No. An official lender payoff amount can include daily accrued interest, fees, and other items that this educational estimate does not model. Confirm the actual payoff quote with your lender before making a final payment.</p>
+<h2>Reference</h2>
+<p>Compare the loan structure and repayment choices with <a href="https://www.calculator.net/mortgage-payoff-calculator.html" rel="noopener noreferrer" target="_blank">Calculator.net's Mortgage Payoff Calculator</a>. This CalcPro implementation performs its calculations locally in your browser without submitting mortgage data to the reference website.</p>
+<p class="cp-page-footer">CalcPro — results are estimates for planning and educational use, not lender payoff quotes.</p>
+</article></main></div><script>
+(() => {
+  'use strict';
+  const root = document.getElementById('calcpro-mortgage-root');
+  if (!root) return;
+  const NS = 'http://www.w3.org/2000/svg';
+  const USD = new Intl.NumberFormat('en-US', {style:'currency',currency:'USD',minimumFractionDigits:2,maximumFractionDigits:2});
+  const INT = new Intl.NumberFormat('en-US', {style:'currency',currency:'USD',maximumFractionDigits:0,minimumFractionDigits:0});
+  const money = x => USD.format(x);
+  const money0 = x => INT.format(x);
+  const readNum = value => {
+    const s = String(value).trim().replace(/[$,\s]/g,'');
+    if (s === '' || !/^(?:\d+\.?\d*|\.\d+)$/.test(s)) return NaN;
+    return Number(s);
+  };
+  const monthsText = count => {
+    const n = Math.max(0, Math.ceil(count-1e-8));
+    const y = Math.floor(n/12), m=n%12;
+    return [y ? y+' year'+(y===1?'':'s') : '',m ? m+' month'+(m===1?'':'s') : ''].filter(Boolean).join(' and ') || '0 months';
+  };
+  const compactMonths = count => {
+    const n = Math.max(0,Math.ceil(count-1e-8));
+    const y=Math.floor(n/12),m=n%12;
+    return [y ? y+' yrs' : '',m ? m+' mos' : ''].filter(Boolean).join(', ') || '0 mos';
+  };
+  const clean = num => Math.abs(num) < 1e-8 ? 0 : num;
+  const clamp = (val,low,high) => Math.max(low,Math.min(high,val));
+  const parseNonnegative = (form,name,label,allowZero=true) => {
+    const v=readNum(form.elements.namedItem(name).value);
+    if (!Number.isFinite(v) || v < 0 || (!allowZero && v <= 0) || v > 1e13) throw Error(label+' must be '+(allowZero?'zero or a positive':'a positive')+' number.');
+    return v;
+  };
+  const paymentFor = (principal,annualRate,n) => {
+    const r=annualRate/1200;
+    if (r===0) return principal/n;
+    return principal*r/(1-Math.pow(1+r,-n));
+  };
+  // Internal arithmetic is kept at full floating-point precision; rounding is presentation-only.
+  function amortize(principal, annualRate, payment, strategy, options={}) {
+    let balance=principal, paid=0, interest=0;
+    const rows=[];
+    if (strategy==='full') {
+      return {rows:[{t:0,payment:principal,principal,interest:0,balance:0,totalInterest:0}],paid:principal,interest:0,months:0};
+    }
+    const biweekly = strategy==='biweekly';
+    const monthlyExtra = strategy==='extra' ? options.monthly : 0;
+    const yearlyExtra = strategy==='extra' ? options.yearly : 0;
+    const once = strategy==='extra' ? options.once : 0;
+    const eachPeriodRate = annualRate/100/(biweekly?26:12);
+    const periodPayment = payment/(biweekly?2:1);
+    const periodsMax=biweekly?2600:1200;
+    for(let k=1;k<=periodsMax && balance>1e-8;k++) {
+      const charge=balance*eachPeriodRate;
+      const extra = biweekly ? 0 : (monthlyExtra+(k%12===0?yearlyExtra:0)+(k===1?once:0));
+      const required=balance+charge;
+      const installment=Math.min(required,periodPayment+extra);
+      if (installment <= charge+1e-9) throw Error('The scheduled payment does not cover the interest. Please increase the monthly payment.');
+      const toPrincipal = installment-charge;
+      balance=Math.max(0,balance-toPrincipal);
+      paid+=installment;interest+=charge;
+      rows.push({t:k*(biweekly?12/26:1),payment:installment,principal:toPrincipal,interest:charge,balance:clean(balance),totalInterest:interest});
+    }
+    if(balance > .00001) throw Error('The loan does not pay off within 100 years. Increase the payment or check the interest rate.');
+    const elapsed = rows.length * (biweekly?12/26:1);
+    return {rows,paid,interest,months:Math.ceil(elapsed-1e-8)};
+  }
+  function makeData(form,id){
+    const rate=parseNonnegative(form,'rate','Interest rate');
+    if(rate>99.99)throw Error('Interest rate must be 99.99% or less.');
+    const method=form.querySelector('input[name="method"]:checked').value;
+    const extra = {monthly:0,yearly:0,once:0};
+    if(method==='extra'){
+      extra.monthly=parseNonnegative(form,'extraMonth','Monthly extra payment');
+      extra.yearly=parseNonnegative(form,'extraYear','Annual extra payment');
+      extra.once=parseNonnegative(form,'extraOnce','One-time extra payment');
+    }
+    let startBalance,scheduledPayment,history=[],original,withPayoff,remainingOriginal,originalFull,withFull,oldMonths,monthsAlready=0,originalAmount=0;
+    if(id===1){
+      originalAmount=parseNonnegative(form,'loan','Original loan amount',false);
+      const loanYears=readNum(form.elements.namedItem('term').value);
+      const remYears=readNum(form.elements.namedItem('yearsLeft').value);
+      const remMonths=readNum(form.elements.namedItem('monthsLeft').value);
+      if (![loanYears,remYears,remMonths].every(Number.isInteger) || loanYears<1 || loanYears>100 || remYears<0 || remMonths<0 || remMonths>11) throw Error('Enter a whole-number original term (1–100 years), remaining years, and 0–11 remaining months.');
+      const totalMonths=loanYears*12;
+      oldMonths=remYears*12+remMonths;
+      if(oldMonths<1 || oldMonths>totalMonths) throw Error('Remaining loan term must be between 1 month and the original loan term.');
+      monthsAlready=totalMonths-oldMonths;
+      scheduledPayment=paymentFor(originalAmount,rate,totalMonths);
+      original=amortize(originalAmount,rate,scheduledPayment,'normal');
+      history=original.rows.slice(0,monthsAlready);
+      startBalance=history.length ? history[history.length-1].balance : originalAmount;
+      remainingOriginal={rows:original.rows.slice(monthsAlready), months:oldMonths, interest:original.interest-(history.length?history[history.length-1].totalInterest:0), paid:original.paid-history.reduce((s,x)=>s+x.payment,0)};
+      withPayoff=amortize(startBalance,rate,scheduledPayment,method,extra);
+      const previousPayments=history.reduce((s,x)=>s+x.payment,0);
+      const previousInterest=history.length?history[history.length-1].totalInterest:0;
+      originalFull={paid:original.paid,interest:original.interest};
+      withFull={paid:previousPayments+withPayoff.paid,interest:previousInterest+withPayoff.interest};
+    } else {
+      startBalance=parseNonnegative(form,'balance','Unpaid principal balance',false);
+      scheduledPayment=parseNonnegative(form,'payment','Monthly payment',false);
+      if(scheduledPayment<=startBalance*rate/1200)throw Error('Monthly payment must exceed the interest due each month ('+money(startBalance*rate/1200)+').');
+      originalAmount=startBalance;
+      original=amortize(startBalance,rate,scheduledPayment,'normal');
+      remainingOriginal=original;
+      oldMonths=original.months;
+      withPayoff=amortize(startBalance,rate,scheduledPayment,method,extra);
+      originalFull={paid:original.paid,interest:original.interest};
+      withFull={paid:withPayoff.paid,interest:withPayoff.interest};
+    }
+    // A rare case with an enormous lump sum may repay immediately at next payment.
+    const savedInterest=Math.max(0,remainingOriginal.interest-withPayoff.interest);
+    const savedMonths=Math.max(0,oldMonths-withPayoff.months);
+    return {id,rate,method,extra,originalAmount,startBalance,scheduledPayment,history,original,withPayoff,remainingOriginal,originalFull,withFull,oldMonths,monthsAlready,savedInterest,savedMonths};
+  }
+  const safe = s => String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  function describe(data){
+    const {method,extra}=data;
+    if(method==='full')return 'By paying the remaining balance of '+money(data.startBalance)+' in full today, you avoid all future interest (excluding any lender fees or penalties).';
+    if(method==='biweekly')return 'By paying half the regular monthly installment every two weeks (26 payments per year), the loan is projected to finish in '+monthsText(data.withPayoff.months)+'.';
+    if(method==='normal')return 'Without extra payments, the loan follows the scheduled payment plan.';
+    const changes=[];
+    if(extra.monthly) changes.push(money(extra.monthly)+' extra each month');
+    if(extra.yearly) changes.push(money(extra.yearly)+' extra each year');
+    if(extra.once) changes.push(money(extra.once)+' extra at the next payment');
+    return 'With '+(changes.length?changes.join(', '):'no extra principal payments')+', the remaining loan is projected to be paid off in '+monthsText(data.withPayoff.months)+'.';
+  }
+  function report(data){
+    const {id,method,extra,originalFull,withFull,scheduledPayment,original,withPayoff,startBalance,oldMonths,savedInterest,savedMonths}=data;
+    const payN=withPayoff.months, timePct=oldMonths ? savedMonths/oldMonths*100:0;
+    const oldInterest=originalFull.interest;
+    const newInterest=withFull.interest;
+    const interestPct=oldInterest?Math.max(0,savedInterest/oldInterest*100):0;
+    const currentPay=method==='full'?startBalance : method==='biweekly'?scheduledPayment/2 : scheduledPayment+(method==='extra'?extra.monthly:0);
+    const payLabel=method==='biweekly'?'Biweekly pay':method==='full'?'Payoff today':'Monthly pay';
+    const bodyRows=[
+      [payLabel,method==='biweekly'?money(scheduledPayment/2):money(scheduledPayment),money(currentPay)],
+      ['Total payments',money(originalFull.paid),money(withFull.paid)],
+      ['Total interest',money(oldInterest),money(newInterest)],
+    ];
+    if(id===1){
+      bodyRows.push(['Remaining payments',money(data.remainingOriginal.paid),money(withPayoff.paid)]);
+      bodyRows.push(['Remaining interest',money(data.remainingOriginal.interest),money(withPayoff.interest)]);
+    }
+    bodyRows.push([id===1?'Payoff in':'Remaining term',compactMonths(oldMonths),compactMonths(payN)]);
+    const displayInterest=money0(savedInterest);
+    const lead=id===1?'The remaining loan balance is '+money(startBalance)+'. ':'The original remaining loan term is '+monthsText(oldMonths)+'. ';
+    const text=lead+describe(data)+' '+(savedMonths?'This is '+monthsText(savedMonths)+' sooner. ':'')+'Estimated interest savings: '+money(savedInterest)+'.';
+    return `
+      <div class="calcpro-mortgage-result-title">Payoff in ${safe(monthsText(payN))}</div>
+      <p class="calcpro-mortgage-result-description">${safe(text)}</p>
+      <div class="calcpro-mortgage-kpis">
+        <div class="calcpro-mortgage-kpi"><div class="calcpro-mortgage-kpihead">Interest savings<strong>${safe(displayInterest)}</strong></div><div class="calcpro-mortgage-kpi-foot">Original: ${safe(money0(oldInterest))}</div><div class="calcpro-mortgage-kpi-track"><span style="width:${clamp(100-interestPct,0,100).toFixed(2)}%"></span></div><div class="calcpro-mortgage-kpi-foot">With payoff: <strong>${safe(money0(newInterest))}</strong></div><div class="calcpro-mortgage-kpi-foot"><strong>Pay ${Math.round(interestPct)}% less</strong> lifetime interest</div></div>
+        <div class="calcpro-mortgage-kpi"><div class="calcpro-mortgage-kpihead">Time savings<strong>${safe(monthsText(savedMonths))}</strong></div><div class="calcpro-mortgage-kpi-foot">Original: ${safe(compactMonths(oldMonths))}</div><div class="calcpro-mortgage-kpi-track"><span style="width:${clamp(payN/oldMonths*100,0,100).toFixed(2)}%"></span></div><div class="calcpro-mortgage-kpi-foot">With payoff: <strong>${safe(compactMonths(payN))}</strong></div><div class="calcpro-mortgage-kpi-foot"><strong>Payoff ${Math.round(timePct)}% faster</strong></div></div>
+      </div>
+      <table class="calcpro-mortgage-compare" aria-label="Original versus accelerated payoff comparison"><thead><tr><th scope="col">&nbsp;</th><th scope="col">Original</th><th scope="col">With payoff</th></tr></thead><tbody>${bodyRows.map(r=>`<tr><td>${safe(r[0])}</td><td>${safe(r[1])}</td><td>${safe(r[2])}</td></tr>`).join('')}</tbody></table>
+      <div class="calcpro-mortgage-actions"><button type="button" class="calcpro-mortgage-link" data-view-schedule="${id}" aria-expanded="false">View Amortization Table</button><div class="calcpro-mortgage-small-actions"><button type="button" data-save="${id}">Save summary</button><button type="button" data-print="${id}">Print</button></div></div>`;
+  }
+  function pointsFor(data){
+    const original=[{t:0,balance:data.originalAmount,totalInterest:0}].concat(data.original.rows);
+    let newPoints=[{t:0,balance:data.originalAmount,totalInterest:0}];
+    if(data.history.length)newPoints.push(...data.history);
+    const existingInterest=data.history.length?data.history[data.history.length-1].totalInterest:0;
+    if(data.method==='full'){
+      newPoints.push({t:data.monthsAlready,balance:0,totalInterest:existingInterest});
+    }else {
+      newPoints.push(...data.withPayoff.rows.map(x=>({t:data.monthsAlready+x.t,balance:x.balance,totalInterest:existingInterest+x.totalInterest})));
+    }
+    return {original,newPoints};
+  }
+  function svgEl(tag,attrs,parent,text){
+    const el=document.createElementNS(NS,tag);
+    for(const [k,v] of Object.entries(attrs||{}))el.setAttribute(k,String(v));
+    if(text!=null)el.textContent=text;
+    if(parent)parent.appendChild(el);
+    return el;
+  }
+  const compactAxis=v=>v>=1e6?'$'+(v/1e6).toFixed(v%1e6?1:0)+'M':v>=1000?'$'+(v/1000).toFixed(v%1000?1:0)+'K':'$'+Math.round(v);
+  const colors={oldBalance:'#3385dc',oldInterest:'#15314b',newBalance:'#89bd22',newInterest:'#a61619'};
+  const activeAnimations={};
+  function chart(data){
+    const container=document.getElementById('calcpro-mortgage-chart-'+data.id);
+    if(activeAnimations[data.id])cancelAnimationFrame(activeAnimations[data.id]);
+    container.replaceChildren();
+    const W=700,H=250,L=83,R=20,T=14,B=39,plotW=W-L-R,plotH=H-T-B;
+    const {original,newPoints}=pointsFor(data);
+    const maxT=Math.max(12,...original.map(x=>x.t),...newPoints.map(x=>x.t));
+    const maxY=Math.max(data.originalAmount,...original.map(x=>x.totalInterest),...newPoints.map(x=>x.totalInterest));
+    const magnitude=Math.pow(10,Math.floor(Math.log10(maxY/4)));
+    const rawTick=maxY/4/magnitude;
+    const interval=[1,1.25,1.5,2,2.5,3,4,5,7.5,10].find(x=>x>=rawTick)*magnitude;
+    const yMax=interval*4;
+    const xScale=x=>L+plotW*x/maxT;
+    const yScale=y=>T+plotH*(1-y/yMax);
+    const svg=svgEl('svg',{viewBox:`0 0 ${W} ${H}`,'aria-hidden':'true',focusable:'false'},container);
+    svgEl('rect',{x:L,y:T,width:plotW,height:plotH,fill:'#fff',stroke:'#aebbc6'},svg);
+    for(let i=0;i<=4;i++){
+      const y=T+(plotH*i/4);
+      svgEl('line',{x1:L,y1:y,x2:W-R,y2:y,stroke:'#d4d9dc','stroke-width':1},svg);
+      svgEl('text',{x:L-10,y:y+4,'text-anchor':'end',fill:'#526173','font-size':12},svg,compactAxis(yMax*(4-i)/4));
+    }
+    const years=Math.ceil(maxT/12);
+    const tickYears=years<=12?2:years<=30?5:10;
+    for(let yr=0;yr<=years;yr+=tickYears){
+      const x=xScale(yr*12);
+      if(x>W-R+1)break;
+      svgEl('line',{x1:x,y1:T,x2:x,y2:H-B,stroke:'#d8dde1','stroke-width':1},svg);
+      svgEl('text',{x,y:H-B+20,'text-anchor':'middle',fill:'#526173','font-size':12},svg,yr+'yr');
+    }
+    const defs=svgEl('defs',{},svg);
+    const clip=svgEl('clipPath',{id:'calcpro-mortgage-clip-'+data.id},defs);
+    const rect=svgEl('rect',{x:L,y:T-2,width:0,height:plotH+4},clip);
+    const lines=svgEl('g',{'clip-path':`url(#calcpro-mortgage-clip-${data.id})`},svg);
+    const series=[['oldBalance',original,'balance'],['oldInterest',original,'totalInterest'],['newBalance',newPoints,'balance'],['newInterest',newPoints,'totalInterest']];
+    for(const [key,points,value] of series){
+      const path=points.map((p,i)=>`${i?'L':'M'}${xScale(p.t).toFixed(2)},${yScale(p[value]).toFixed(2)}`).join(' ');
+      svgEl('path',{d:path,fill:'none',stroke:colors[key],'stroke-width':3.0,'stroke-linecap':'round','stroke-linejoin':'round'},lines);
+    }
+    // The legend stays visible while the data lines draw from left to right.
+    const legend=svgEl('g',{},svg);
+    svgEl('rect',{x:L+7,y:T+7,width:118,height:84,rx:5,fill:'#fffce4',stroke:'#b3ac65'},legend);
+    const items=[['oldBalance','Old Balance'],['oldInterest','Old Interest'],['newBalance','New Balance'],['newInterest','New Interest']];
+    items.forEach(([key,name],i)=>{
+      const y=T+23+i*18;
+      svgEl('line',{x1:L+16,y1:y-4,x2:L+33,y2:y-4,stroke:colors[key],'stroke-width':3},legend);
+      svgEl('text',{x:L+39,y:y,'font-size':12,fill:'#253b51'},legend,name);
+    });
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){rect.setAttribute('width',plotW);return;}
+    let started=null;
+    function animate(time){
+      if(started===null)started=time;
+      const t=clamp((time-started)/1700,0,1);
+      // Linear horizontal motion: starts at year zero and progresses to payoff/end term.
+      rect.setAttribute('width',(plotW*t).toFixed(2));
+      if(t<1)activeAnimations[data.id]=requestAnimationFrame(animate);
+      else activeAnimations[data.id]=null;
+    }
+    activeAnimations[data.id]=requestAnimationFrame(animate);
+  }
+  function scheduleTable(data){
+    const {id,original,withPayoff,history,method}=data;
+    const rowsOld=original.rows;
+    // Align biweekly payments to the nearest elapsed month; routine is accurate at the period level.
+    const newRows=data.history.concat(withPayoff.rows.map(x=>({...x,t:data.monthsAlready+x.t,totalInterest:x.totalInterest+(history.length?history[history.length-1].totalInterest:0)})));
+    const getNewForMonth=(month)=>{
+      if(method==='biweekly'){
+        const start=month-1,end=month;
+        const current=newRows.filter(r=>r.t>start-1e-9 && r.t<=end+1e-9);
+        if(!current.length){const last=newRows.filter(r=>r.t<=end).at(-1);return {interest:0,principal:0,balance:last?last.balance:data.originalAmount};}
+        return {interest:current.reduce((a,r)=>a+r.interest,0),principal:current.reduce((a,r)=>a+r.principal,0),balance:current.at(-1).balance};
+      }
+      const r=newRows.find(r=>Math.abs(r.t-month)<1e-8);
+      return r||{interest:0,principal:0,balance:0};
+    };
+    let rows='';
+    // Allow up to 1200 monthly periods; append all rows in chunks via a single HTML write.
+    for(let month=1;month<=rowsOld.length;month++){
+      const old=rowsOld[month-1];const now=getNewForMonth(month);
+      rows+=`<tr><td>${month}</td><td>${money(old.interest)}</td><td>${money(old.principal)}</td><td>${money(old.balance)}</td><td>${money(now.interest)}</td><td>${money(now.principal)}</td><td>${money(now.balance)}</td></tr>`;
+    }
+    document.getElementById('calcpro-mortgage-schedule-'+id).innerHTML=`<h3>Monthly Amortization Schedule</h3><p class="calcpro-mortgage-schedule-note">${id===1?'Month 1 starts at the beginning of the original mortgage.':'Month 1 starts with the current unpaid principal.'} All values are rounded for display only. ${method==='biweekly'?'Biweekly figures are grouped approximately by month; the payoff calculation uses 26 interest periods per year.':''}</p><div class="calcpro-mortgage-tablewrap" tabindex="0" aria-label="Scrollable amortization schedule"><table class="calcpro-mortgage-amort"><thead><tr><th>Month</th><th>Old interest</th><th>Old principal</th><th>Old balance</th><th>New interest</th><th>New principal</th><th>New balance</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+  }
+  const latest={};
+  function calculate(id){
+    const form=document.getElementById('calcpro-mortgage-form-'+id);
+    const error=document.getElementById('calcpro-mortgage-error-'+id);
+    try{
+      const data=makeData(form,id);
+      error.hidden=true;error.textContent='';
+      latest[id]=data;
+      document.getElementById('calcpro-mortgage-result-'+id).innerHTML=report(data);
+      const schedule=document.getElementById('calcpro-mortgage-schedule-'+id);
+      schedule.hidden=true;schedule.replaceChildren();
+      chart(data);
+    }catch(e){
+      error.textContent=e.message||'Please check the input values.';
+      error.hidden=false;
+    }
+  }
+  function syncExtra(id){
+    const form=document.getElementById('calcpro-mortgage-form-'+id);
+    const enabled=form.querySelector('input[name="method"]:checked').value==='extra';
+    const extraGroup=form.querySelector('[data-extra-group]');
+    extraGroup.dataset.disabled=String(!enabled);
+    extraGroup.querySelectorAll('input').forEach(el=>el.disabled=!enabled);
+  }
+  function saveSummary(id){
+    const data=latest[id];if(!data)return;
+    const contents=[`CalcPro - Mortgage Payoff Estimate`, `Mortgage type: ${id===1?'Known remaining term':'Unknown remaining term'}`,`Unpaid balance: ${money(data.startBalance)}`,`Rate: ${data.rate}%`,`Scheduled monthly payment: ${money(data.scheduledPayment)}`,`Option: ${data.method}`,`Time to payoff: ${monthsText(data.withPayoff.months)}`,`Original remaining term: ${monthsText(data.oldMonths)}`,`Interest saved: ${money(data.savedInterest)}`,`Original total interest: ${money(data.originalFull.interest)}`,`Total interest with payoff: ${money(data.withFull.interest)}`,`Estimates assume fixed interest, no mortgage taxes, insurance, fees, or prepayment penalties.`].join('\n');
+    const blob=new Blob([contents],{type:'text/plain;charset=utf-8'});
+    const url=URL.createObjectURL(blob);
+    const a=document.createElement('a');a.href=url;a.download='calcpro-mortgage-payoff-'+id+'.txt';document.body.appendChild(a);a.click();a.remove();
+    setTimeout(()=>URL.revokeObjectURL(url),3000);
+  }
+  root.addEventListener('submit',event=>{
+    if(!event.target.matches('.calcpro-mortgage-form'))return;
+    event.preventDefault();calculate(Number(event.target.id.split('-').pop()));
+  });
+  root.addEventListener('change',event=>{
+    if(event.target.matches('input[type="radio"][name="method"]'))syncExtra(Number(event.target.closest('form').id.split('-').pop()));
+  });
+  root.addEventListener('click',event=>{
+    const target=event.target.closest('button'); if(!target)return;
+    if(target.hasAttribute('data-clear')){
+      const id=Number(target.dataset.clear);
+      const form=document.getElementById('calcpro-mortgage-form-'+id);
+      form.reset();syncExtra(id);calculate(id);
+    }
+    if(target.hasAttribute('data-view-schedule')){
+      const id=Number(target.dataset.viewSchedule),section=document.getElementById('calcpro-mortgage-schedule-'+id);
+      const isOpen=!section.hidden;
+      if(!isOpen && !section.firstElementChild)scheduleTable(latest[id]);
+      section.hidden=isOpen;
+      target.textContent=isOpen?'View Amortization Table':'Hide Amortization Table';
+      target.setAttribute('aria-expanded',String(!isOpen));
+    }
+    if(target.hasAttribute('data-save'))saveSummary(Number(target.dataset.save));
+    if(target.hasAttribute('data-print'))window.print();
+  });
+  [1,2].forEach(id=>{syncExtra(id);calculate(id);});
+})();
+</script><script data-calcpro-latest-result>
+(function () {
+  var toolRoot = document.querySelector('.cp-tool-area') || document.querySelector('main') || document.body;
+  var forms = Array.prototype.slice.call(toolRoot.querySelectorAll('form'));
+  if (forms.length < 2) return;
+
+  var selector = '[id*="result"], [class*="result"], [id*="output"], [class*="output"], [id*="total"], [class*="total"], [id*="summary"], [class*="summary"], [data-result], [data-re-results], [data-cp-surface-result]';
+  var candidates = Array.prototype.slice.call(toolRoot.querySelectorAll(selector));
+  var panels = candidates.filter(function (node) {
+    return !candidates.some(function (other) { return other !== node && other.contains(node); });
+  });
+  var activeOwner = null;
+
+  function namesOf(node) {
+    var names = [node.id].concat(Array.prototype.slice.call(node.classList || []));
+    return names.map(function (name) {
+      return String(name).toLowerCase().replace(/[-_](form|result|results|output|outputs|total|totals|summary|summaries)([-_].*)?$/, '');
+    }).filter(Boolean);
+  }
+
+  function pairedForm(panel) {
+    var names = namesOf(panel);
+    var matches = forms.filter(function (form) {
+      return namesOf(form).some(function (name) { return names.indexOf(name) !== -1; });
+    });
+    return matches.length === 1 ? matches[0] : null;
+  }
+
+  function ownerOf(node) {
+    if (node.matches('form')) return node;
+    var form = node.closest('form') || pairedForm(node);
+    if (form) return form;
+    for (var current = node; current && current !== toolRoot; current = current.parentElement) {
+      var formCount = (current.matches('form') ? 1 : 0) + current.querySelectorAll('form').length;
+      if (formCount === 1 && panels.some(function (panel) { return current === panel || current.contains(panel); })) return current.querySelector('form') || current;
+    }
+    return node.closest('section') || node;
+  }
+
+  function keepOnly(owner, showActive) {
+    panels.forEach(function (panel) {
+      var isActive = ownerOf(panel) === owner;
+      if (!isActive) panel.hidden = true;
+      else if (showActive) panel.hidden = false;
+    });
+  }
+
+  function activate(owner) {
+    if (!owner) return;
+    activeOwner = owner;
+    keepOnly(owner, false);
+  }
+
+  toolRoot.addEventListener('submit', function (event) {
+    var form = event.target;
+    if (form instanceof HTMLFormElement) activate(ownerOf(form));
+  }, true);
+
+  toolRoot.addEventListener('input', function (event) {
+    var form = event.target.closest('form');
+    if (form) activeOwner = ownerOf(form);
+  }, true);
+
+  toolRoot.addEventListener('click', function (event) {
+    var button = event.target.closest('button');
+    var form = button && button.closest('form');
+    if (!form) return;
+    var label = [button.id, button.textContent, button.getAttribute('aria-label') || ''].join(' ').toLowerCase();
+    if (/\b(clear|reset)\b/.test(label) || button.type === 'reset') activeOwner = null;
+    else if (button.type === 'submit' || /\b(calculate|compute|roll|start|encode|decode|convert|generate|run|solve|estimate)\b/.test(label)) activate(ownerOf(form));
+  }, true);
+
+  var observer = new MutationObserver(function (records) {
+    records.forEach(function (record) {
+      var panel = panels.find(function (item) { return item === record.target || item.contains(record.target); });
+      if (!panel || !activeOwner || ownerOf(panel) !== activeOwner) return;
+      if (record.type === 'attributes' && panel.hidden) return;
+      keepOnly(activeOwner, true);
+    });
+  });
+  panels.forEach(function (panel) {
+    observer.observe(panel, {attributes: true, attributeFilter: ['hidden'], childList: true, characterData: true, subtree: true});
+  });
+})();
+</script>
+</body></html>
