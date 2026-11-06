@@ -1,0 +1,303 @@
+/* ============================================================
+   CALCPRO — Google Docs-inspired editorial article styling
+   Reference: APR Calculator: Complete Editorial Draft (Tab 1)
+   Scope: .cp-article only. Never styles calculator/tool UI,
+   site header, navigation, ads, or right sidebar.
+   Keep this stylesheet AFTER template-style.css.
+   ============================================================ */
+
+/* Google Doc baseline: Arial 11pt / 115% line spacing */
+.cp-site .cp-article {
+  --cp-doc-blue: #1155cc;
+  --cp-doc-table-head: #e0edf7;
+  --cp-doc-table-border: #cbd5df;
+  --cp-doc-green-ink: #276738;
+  --cp-doc-green-fill: #ebf8ee;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 11pt;
+  font-weight: 400;
+  line-height: 1.15;
+  color: #111;
+  overflow-wrap: break-word;
+}
+.cp-site .cp-article p,
+.cp-site .cp-article li {
+  font-family: inherit;
+  font-size: 11pt;
+  font-weight: 400;
+  line-height: 1.15;
+  color: inherit;
+}
+.cp-site .cp-article p { margin: 0 0 10px; }
+.cp-site .cp-article strong,
+.cp-site .cp-article b { font-weight: 700; }
+.cp-site .cp-article em,
+.cp-site .cp-article i { font-style: italic; }
+
+/* Google Doc Heading 2: 16pt, bold, black, 13pt above / 6pt below */
+.cp-site .cp-article h2 {
+  font: 700 16pt/1.28 Arial, Helvetica, sans-serif;
+  color: #111;
+  margin: 17px 0 8px;
+  scroll-margin-top: 16px;
+}
+/* Google Doc Heading 3: direct formatting 13pt, bold, black */
+.cp-site .cp-article h3 {
+  font: 700 13pt/1.25 Arial, Helvetica, sans-serif;
+  color: #111;
+  margin: 20px 0 6px;
+  scroll-margin-top: 16px;
+}
+.cp-site .cp-article h4 {
+  font: 700 12pt/1.3 Arial, Helvetica, sans-serif;
+  color: #222;
+  margin: 16px 0 6px;
+}
+.cp-site .cp-article > h2:first-child { margin-top: 0; }
+.cp-site .cp-article :is(h2,h3,h4) strong { font-weight: inherit; }
+
+/* Ordered and unordered instructions: preserve readable Docs-style indentation */
+.cp-site .cp-article :is(ul,ol) {
+  margin: 4px 0 12px;
+  padding-left: 36px;
+}
+.cp-site .cp-article li { padding-left: 4px; margin-bottom: 5px; }
+.cp-site .cp-article li strong { font-weight: 700; }
+.cp-site .cp-article a { color: var(--cp-doc-blue); text-decoration: underline; text-underline-offset: 2px; }
+.cp-site .cp-article a:hover { text-decoration-thickness: 2px; }
+.cp-site .cp-article a:focus-visible { outline: 2px solid var(--cp-doc-blue); outline-offset: 2px; }
+
+/* DOC TABLES: pale-blue header as in linked Doc; keep cells on a white background. */
+.cp-site .cp-article .cp-doc-table-scroll {
+  max-width: 100%;
+  width: 100%;
+  margin: 10px 0 16px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: 0;
+}
+.cp-site .cp-article table.cp-doc-table {
+  width: 100%;
+  min-width: 520px;
+  max-width: none;
+  border: 1px solid var(--cp-doc-table-border);
+  border-collapse: collapse;
+  table-layout: auto;
+  margin: 0;
+  background: #fff;
+  font: 400 11pt/1.18 Arial, Helvetica, sans-serif;
+  color: #111;
+}
+.cp-site .cp-article table.cp-doc-table :is(th,td) {
+  border: 1px solid var(--cp-doc-table-border);
+  padding: 7px;
+  min-width: 0;
+  vertical-align: top;
+  text-align: left;
+  color: #111;
+  font: inherit;
+  background: #fff;
+  overflow-wrap: normal;
+  word-break: normal;
+}
+.cp-site .cp-article table.cp-doc-table thead :is(th,td),
+.cp-site .cp-article table.cp-doc-table tbody tr:first-child > :is(th,td) {
+  background: var(--cp-doc-table-head);
+  font-weight: 700;
+}
+.cp-site .cp-article table.cp-doc-table :is(th,td) p {
+  font: inherit;
+  margin: 0;
+  color: inherit;
+}
+.cp-site .cp-article table.cp-doc-table :is(th,td) p strong { font-weight: 700; }
+/* Opt-in variant for extra-wide tables where columns must not get squeezed */
+.cp-site .cp-article .cp-doc-table-scroll.cp-doc-wide table { min-width: 660px; }
+.cp-site .cp-article .cp-doc-table-scroll:focus-visible { outline: 2px solid var(--cp-doc-blue); outline-offset: -2px; }
+
+/* Image exactly at the document's nominal width: 459.5pt ≈ 613px. */
+.cp-site .cp-article .cp-doc-figure { margin: 12px 0 12px; width: 100%; }
+.cp-site .cp-article .cp-doc-figure img,
+.cp-site .cp-article img.cp-doc-image {
+  display: block;
+  width: min(100%, 613px);
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+  border: 0;
+  margin: 0;
+}
+.cp-site .cp-article .cp-doc-figure figcaption,
+.cp-site .cp-article .cp-doc-image-caption {
+  display: block;
+  font: italic 9pt/1.3 Arial, Helvetica, sans-serif;
+  color: #343434;
+  margin: 7px 0 0;
+}
+/* General-purpose images and galleries added to future articles. */
+.cp-site .cp-article :is(p,figure) > img:not(.cp-doc-image) { max-width: 100%; height: auto; }
+.cp-site .cp-article .cp-doc-image-center { margin-inline: auto; }
+.cp-site .cp-article .cp-doc-image-border { border: 1px solid var(--cp-doc-table-border); }
+
+/* The green Pro Tip matches the reference Doc: 3pt green line + pale green fill */
+.cp-site .cp-article p.cp-doc-pro-tip,
+.cp-site .cp-article .cp-doc-tip {
+  background: var(--cp-doc-green-fill);
+  color: #111;
+  border: 0;
+  border-left: 4px solid var(--cp-doc-green-ink);
+  padding: 10px 12px;
+  margin: 10px 0 11px;
+  line-height: 1.27;
+}
+.cp-site .cp-article .cp-doc-pro-tip strong,
+.cp-site .cp-article .cp-doc-tip strong { color: var(--cp-doc-green-ink); font-weight: 700; }
+/* Optional highlight styles; apply these classes only where a document calls for them. */
+.cp-site .cp-article .cp-doc-important {
+  background: #fff8e7;
+  border-left: 4px solid #d9aa2d;
+  padding: 10px 12px;
+  margin: 11px 0;
+}
+.cp-site .cp-article .cp-doc-note {
+  background: #f2f5f8;
+  border-left: 4px solid #9aa7b4;
+  padding: 10px 12px;
+  margin: 11px 0;
+}
+/* The particular 'Important qualification' paragraph in this Doc is plain text. */
+.cp-site .cp-article .cp-doc-important-plain { background: transparent; border: 0; padding: 0; }
+
+/* FAQ & Sources: accessible dark accordion inspired by screenshot. */
+.cp-site .cp-article .cp-accordion-section {
+  max-width: 100%;
+  margin: 24px 0 28px;
+}
+.cp-site .cp-article .cp-doc-faq-heading {
+  margin: 0 0 13px;
+  color: #111;
+  font: 700 16pt/1.3 Arial, Helvetica, sans-serif;
+}
+.cp-site .cp-article .cp-accordion-list {
+  width: 100%; 
+  padding: 3px 15px;
+  border-radius: 4px;
+  color: #f2f2f4;
+}
+.cp-site .cp-article .cp-accordion-item + .cp-accordion-item {
+  border-top: 1px solid #44464d;
+}
+.cp-site .cp-article .cp-accordion-item-heading {
+  margin: 0;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+}
+.cp-site .cp-article .cp-accordion-trigger {
+  display: flex;
+  width: 100%;
+  min-height: 54px;
+  padding: 10px 0;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: #0a0a0a;
+  cursor: pointer;
+  font: 400 15px/1.42 Arial, Helvetica, sans-serif;
+  text-align: left;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.cp-site .cp-article .cp-accordion-trigger:hover .cp-accordion-question-text,
+.cp-site .cp-article .cp-accordion-trigger[aria-expanded="true"] .cp-accordion-question-text {
+  color: #242323;
+}
+.cp-site .cp-article .cp-accordion-trigger:focus-visible {
+  outline: 2px solid #9fb6ff;
+  outline-offset: -3px;
+  border-radius: 3px;
+}
+.cp-site .cp-article .cp-accordion-chevron {
+  display: inline-flex;
+  width: 36px;
+  height: 36px;
+  flex: 0 0 36px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #35373d;
+  color: #cdd0d6;
+  transition: transform .32s cubic-bezier(.2,.7,.2,1), background-color .2s ease;
+}
+.cp-site .cp-article .cp-accordion-trigger:hover .cp-accordion-chevron { background: #474951; }
+.cp-site .cp-article .cp-accordion-item[data-open="true"] .cp-accordion-chevron {
+  transform: rotate(180deg);
+  background: #454850;
+}
+/* Grid row 0fr -> 1fr animates to the actual answer height without hard-coded max-height. */
+.cp-site .cp-article .cp-accordion-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  visibility: hidden;
+  transition: grid-template-rows .36s cubic-bezier(.22,.7,.25,1), opacity .26s ease, visibility .36s;
+}
+.cp-site .cp-article .cp-accordion-item[data-open="true"] .cp-accordion-panel {
+  grid-template-rows: 1fr;
+  opacity: 1;
+  visibility: visible;
+}
+.cp-site .cp-article .cp-accordion-panel-inner { min-height: 0; overflow: hidden; }
+.cp-site .cp-article .cp-accordion-panel-content { padding: 0 45px 16px 0; }
+.cp-site .cp-article .cp-accordion-panel-content p,
+.cp-site .cp-article .cp-accordion-panel-content li {
+  color: #000000;
+  font: 400 14px/1.68 Arial, Helvetica, sans-serif;
+}
+.cp-site .cp-article .cp-accordion-panel-content p { margin: 0 0 10px; }
+.cp-site .cp-article .cp-accordion-panel-content p:last-child { margin-bottom: 0; }
+.cp-site .cp-article .cp-accordion-panel-content a {
+  color: #a9c7ff;
+  text-decoration: underline;
+  overflow-wrap: anywhere;
+}
+.cp-site .cp-article .cp-accordion-panel-content a:hover { color: #fff; }
+.cp-site .cp-article .cp-accordion-sources { margin-top: 28px; }
+.cp-site .cp-article .cp-accordion-sources .cp-accordion-trigger { font-weight: 600; }
+.cp-site .cp-article .cp-accordion-sources .cp-accordion-panel-content { padding-bottom: 19px; }
+@media (max-width: 580px) {
+  .cp-site .cp-article .cp-accordion-list { padding: 2px 12px; }
+  .cp-site .cp-article .cp-accordion-trigger { font-size: 14px; min-height: 55px; }
+  .cp-site .cp-article .cp-accordion-chevron { width: 32px; height: 32px; flex-basis: 32px; }
+  .cp-site .cp-article .cp-accordion-panel-content { padding-right: 5px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cp-site .cp-article .cp-accordion-panel,
+  .cp-site .cp-article .cp-accordion-chevron { transition: none !important; }
+}
+@media print {
+  .cp-site .cp-article .cp-accordion-list { background: transparent; color: #111; padding: 0; }
+  .cp-site .cp-article .cp-accordion-item .cp-accordion-panel { display: block; visibility: visible; opacity: 1; }
+  .cp-site .cp-article .cp-accordion-panel-content p,
+  .cp-site .cp-article .cp-accordion-panel-content li { color: #111; }
+  .cp-site .cp-article .cp-accordion-trigger { color: #111; }
+  .cp-site .cp-article .cp-accordion-chevron { display: none; }
+}
+
+@media (max-width: 580px) {
+  .cp-site .cp-article,
+  .cp-site .cp-article p,
+  .cp-site .cp-article li { font-size: 11pt; }
+  .cp-site .cp-article h2 { font-size: 16pt; line-height: 1.23; }
+  .cp-site .cp-article h3 { font-size: 13pt; }
+  .cp-site .cp-article .cp-doc-table-scroll { margin-block: 10px 15px; }
+  .cp-site .cp-article .cp-doc-table { font-size: 10.5pt; }
+  .cp-site .cp-article :is(ul,ol) { padding-left: 27px; }
+}
+@media print {
+  .cp-site .cp-article .cp-doc-table-scroll { overflow: visible; }
+  .cp-site .cp-article table.cp-doc-table { min-width: 0; }
+  .cp-site .cp-article :is(h2,h3,figure,tr) { break-inside: avoid; }
+}
