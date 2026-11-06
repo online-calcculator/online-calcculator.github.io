@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>Mutual Fund Calculator | CalcPro</title><meta content="Estimate mutual fund ending value, contributions, fees, net return and annualized IRR with this free CalcPro calculator." name="description"/><link href="template-style.css" rel="stylesheet"/><style>
+/* Mutual Fund Calculator component — all new selectors are uniquely scoped. */
+.calcpro-mf-widget{font:15px/1.35 Arial,Helvetica,sans-serif;color:#111;max-width:100%;text-align:left}
+.calcpro-mf-widget *,.calcpro-mf-widget *::before,.calcpro-mf-widget *::after{box-sizing:border-box}
+.calcpro-mf-notice{background:#346698;color:#fff;display:flex;align-items:center;justify-content:center;gap:14px;padding:8px 10px;margin:0 0 5px;min-height:35px;text-align:center;font-size:15px}
+.calcpro-mf-notice-icon{flex:none;display:inline-flex;background:#fff;color:#346698;width:23px;height:23px;border-radius:50%;align-items:center;justify-content:center;font-size:15px;line-height:1;font-weight:700}
+.calcpro-mf-columns{display:grid;grid-template-columns:minmax(0,352px) minmax(0,1fr);gap:27px;align-items:start}
+.calcpro-mf-panel{background:#eee;border:1px solid #bbb;padding:7px 7px 8px;min-width:0}
+.calcpro-mf-form{margin:0}
+.calcpro-mf-row{display:grid;grid-template-columns:135px minmax(0,1fr);gap:5px;min-height:31px;align-items:center}
+.calcpro-mf-label{font-size:14px;line-height:1.12;margin:0;min-width:0;display:block}
+.calcpro-mf-input,.calcpro-mf-widget input.calcpro-mf-input{height:29px;min-height:29px;width:100%;border:1px solid #3669a0;border-radius:2px;background:#fff;color:#111;padding:3px 5px;font:15px Arial,Helvetica,sans-serif;box-shadow:1px 1px 2px #bbb;min-width:0}
+.calcpro-mf-input:focus{outline:2px solid #306eaf;outline-offset:1px}
+.calcpro-mf-input[aria-invalid="true"]{border-color:#ba2020;outline-color:#ba2020}
+.calcpro-mf-suffix-wrap{position:relative;min-width:0}
+.calcpro-mf-suffix-wrap .calcpro-mf-input{padding-right:66px}
+.calcpro-mf-suffix{position:absolute;right:5px;top:50%;transform:translateY(-50%);font-size:14px;white-space:nowrap;pointer-events:none;color:#888}
+.calcpro-mf-suffix-wrap.calcpro-mf-pct .calcpro-mf-input{padding-right:20px}
+.calcpro-mf-suffix-wrap.calcpro-mf-pct .calcpro-mf-suffix{color:#111}
+.calcpro-mf-periods{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:3px}
+.calcpro-mf-periods .calcpro-mf-suffix-wrap .calcpro-mf-input{padding-right:35px}
+.calcpro-mf-periods .calcpro-mf-suffix{font-size:13px;right:3px}
+.calcpro-mf-tip{position:relative;border:1px solid #999;color:#777;background:#f5f5f5;display:inline-flex;justify-content:center;align-items:center;vertical-align:middle;width:14px;height:14px;border-radius:50%;font:11px Arial,Helvetica,sans-serif;cursor:help;padding:0;margin-left:2px}
+.calcpro-mf-tip:hover::after,.calcpro-mf-tip:focus-visible::after{content:attr(data-help);position:absolute;left:-65px;bottom:calc(100% + 9px);width:230px;background:#263646;color:white;border:1px solid #64798d;border-radius:4px;font-size:12px;line-height:1.4;padding:9px;box-shadow:0 3px 10px #0004;z-index:7;text-align:left;white-space:normal;font-weight:normal}
+.calcpro-mf-actions{display:flex;gap:4px;justify-content:center;margin:7px 0 0}
+.calcpro-mf-btn{border:0;border-radius:0;cursor:pointer;font:700 14px Arial,Helvetica,sans-serif;min-height:38px;padding:7px 12px}
+.calcpro-mf-calculate{background:#4b8528;color:#fff;min-width:148px;display:flex;gap:14px;align-items:center;justify-content:center}
+.calcpro-mf-calculate:hover{background:#3b7021}
+.calcpro-mf-button-arrow{background:#9ac78d;border-radius:50%;color:#fff;width:21px;height:21px;display:inline-grid;place-items:center;font-size:12px}
+.calcpro-mf-clear{background:#aaa;color:#fff;font-weight:400}
+.calcpro-mf-clear:hover{background:#8f8f8f}
+.calcpro-mf-error{color:#a21b1b;background:#fff5f4;border-left:3px solid #b52c29;padding:7px 8px;font-size:13px;margin:5px 0 8px}
+.calcpro-mf-error[hidden],.calcpro-mf-result[hidden],.calcpro-mf-deferred[hidden],.calcpro-mf-empty[hidden]{display:none!important}
+.calcpro-mf-result{min-width:0;padding-top:5px}
+.calcpro-mf-result-bar{background:#4b8528;color:#fff;display:flex;align-items:center;justify-content:space-between;font-size:21px;font-weight:400;line-height:1.2;padding:5px 7px;min-height:34px}
+.calcpro-mf-save{display:flex;flex-direction:column;gap:0;align-items:center;justify-content:center;cursor:pointer;background:transparent;border:0;color:#fff;line-height:1;min-width:20px;min-height:25px;padding:1px;font-size:9px}
+.calcpro-mf-save svg{width:16px;height:16px;display:block}
+.calcpro-mf-save:hover{opacity:.8}
+.calcpro-mf-results-table{width:100%;border-collapse:collapse;margin:3px 0 8px;table-layout:auto}
+.calcpro-mf-results-table td{font-size:14px;padding:3px 3px;line-height:1.2;border:0;vertical-align:top}
+.calcpro-mf-results-table td:first-child{width:55%}
+.calcpro-mf-results-table td:last-child{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+.calcpro-mf-results-table tr.calcpro-mf-strong td{font-weight:700}
+.calcpro-mf-donut-wrap{display:grid;grid-template-columns:114px minmax(0,1fr);column-gap:7px;align-items:center;padding:3px 0 0 7px}
+.calcpro-mf-chart{display:block;width:110px;height:110px;max-width:100%;overflow:visible}
+.calcpro-mf-chart-label{font:700 10px Arial,Helvetica,sans-serif;fill:#fff;text-anchor:middle;dominant-baseline:central;pointer-events:none}
+.calcpro-mf-legend{list-style:none;padding:0;margin:0;font-size:13px;line-height:1.18}
+.calcpro-mf-legend li{display:flex;align-items:center;gap:6px;margin:2px 0}
+.calcpro-mf-key{width:17px;height:13px;border-radius:2px;flex:none}
+.calcpro-mf-legend strong{font-weight:400}
+.calcpro-mf-chart-desc{font-size:12px;color:#505050;line-height:1.3;margin:7px 0 0;padding:0 2px}
+.calcpro-mf-empty{padding:24px 12px;color:#777;text-align:center;border:1px dashed #bbb;margin-top:5px}
+@media (max-width:720px){.calcpro-mf-columns{grid-template-columns:minmax(0,1fr);gap:13px}.calcpro-mf-panel{width:100%;max-width:420px}.calcpro-mf-result{max-width:420px;padding-top:0}.calcpro-mf-notice{font-size:14px}}
+@media (max-width:390px){.calcpro-mf-row{grid-template-columns:118px minmax(0,1fr);gap:3px}.calcpro-mf-label{font-size:13px}.calcpro-mf-periods .calcpro-mf-suffix-wrap .calcpro-mf-input{padding:3px 21px 3px 3px}.calcpro-mf-periods .calcpro-mf-suffix{font-size:11px;right:2px}.calcpro-mf-donut-wrap{grid-template-columns:110px minmax(0,1fr)}.calcpro-mf-legend{font-size:12px}.calcpro-mf-tip:hover::after,.calcpro-mf-tip:focus-visible::after{width:195px;left:-80px}}
+@media print{.calcpro-mf-notice,.calcpro-mf-actions,.calcpro-mf-save,.calcpro-mf-tip{display:none!important}.calcpro-mf-widget{break-inside:avoid}.calcpro-mf-panel{background:white;border:1px solid #bbb}.calcpro-mf-result-bar,.calcpro-mf-calculate{print-color-adjust:exact;-webkit-print-color-adjust:exact}.calcpro-mf-chart circle{print-color-adjust:exact;-webkit-print-color-adjust:exact}}
+</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Mutual Fund Calculator</nav><h1 class="cp-page-title">Mutual Fund Calculator</h1><p class="cp-intro">Estimate mutual fund ending value, net return and annualized IRR after sales loads, operating expenses and contributions.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-mf-widget" id="calcpro-mf-app">
+  <div class="calcpro-mf-notice"><span class="calcpro-mf-notice-icon" aria-hidden="true">▼</span><span>Modify the values and click the Calculate button to use</span></div>
+  <div class="calcpro-mf-columns">
+    <div class="calcpro-mf-panel">
+      <form class="calcpro-mf-form" id="calcpro-mf-form" novalidate>
+        <div class="calcpro-mf-row"><label class="calcpro-mf-label" for="calcpro-mf-initial">Initial investment</label><input class="calcpro-mf-input" id="calcpro-mf-initial" name="initial" type="text" inputmode="decimal" autocomplete="off" value="$20,000" aria-describedby="calcpro-mf-error"></div>
+        <div class="calcpro-mf-row"><label class="calcpro-mf-label" for="calcpro-mf-annual">Annual contribution</label><input class="calcpro-mf-input" id="calcpro-mf-annual" name="annual" type="text" inputmode="decimal" autocomplete="off" value="$0"></div>
+        <div class="calcpro-mf-row"><label class="calcpro-mf-label" for="calcpro-mf-monthly">Monthly contribution</label><input class="calcpro-mf-input" id="calcpro-mf-monthly" name="monthly" type="text" inputmode="decimal" autocomplete="off" value="$1,000"></div>
+        <div class="calcpro-mf-row"><label class="calcpro-mf-label" for="calcpro-mf-return">Rate of return <button class="calcpro-mf-tip" type="button" data-help="Assumed annual return before fund operating expenses and sales charges. Actual returns vary." aria-label="Help: Annual return before fees">?</button></label><span class="calcpro-mf-suffix-wrap"><input class="calcpro-mf-input" id="calcpro-mf-return" name="return" type="text" inputmode="decimal" value="5"><span class="calcpro-mf-suffix">% /year</span></span></div>
+        <div class="calcpro-mf-row"><span class="calcpro-mf-label" id="calcpro-mf-duration-label">Holding length</span><span class="calcpro-mf-periods" role="group" aria-labelledby="calcpro-mf-duration-label"><span class="calcpro-mf-suffix-wrap"><input class="calcpro-mf-input" id="calcpro-mf-years" name="years" type="text" inputmode="numeric" value="5" aria-label="Holding length in years"><span class="calcpro-mf-suffix">years</span></span><span class="calcpro-mf-suffix-wrap"><input class="calcpro-mf-input" id="calcpro-mf-months" name="months" type="text" inputmode="numeric" value="0" aria-label="Additional holding months"><span class="calcpro-mf-suffix">months</span></span></span></div>
+        <div class="calcpro-mf-row"><label class="calcpro-mf-label" for="calcpro-mf-sales">Sales charge <button class="calcpro-mf-tip" type="button" data-help="Front-end sales load paid on the initial investment and each additional contribution." aria-label="Help: Front-end sales charge">?</button></label><span class="calcpro-mf-suffix-wrap calcpro-mf-pct"><input class="calcpro-mf-input" id="calcpro-mf-sales" name="sales" type="text" inputmode="decimal" value="2"><span class="calcpro-mf-suffix">%</span></span></div>
+        <div class="calcpro-mf-row"><label class="calcpro-mf-label" for="calcpro-mf-deferred">Deferred sales charge <button class="calcpro-mf-tip" type="button" data-help="Back-end sales load on redemption, estimated on the lesser of contributed principal or fund value before redemption." aria-label="Help: Deferred sales charge">?</button></label><span class="calcpro-mf-suffix-wrap calcpro-mf-pct"><input class="calcpro-mf-input" id="calcpro-mf-deferred" name="deferred" type="text" inputmode="decimal" value="0"><span class="calcpro-mf-suffix">%</span></span></div>
+        <div class="calcpro-mf-row"><label class="calcpro-mf-label" for="calcpro-mf-expenses">Operating expenses <button class="calcpro-mf-tip" type="button" data-help="Annual fund operating expense ratio, modeled as reducing the assumed annual return." aria-label="Help: Operating expense ratio">?</button></label><span class="calcpro-mf-suffix-wrap"><input class="calcpro-mf-input" id="calcpro-mf-expenses" name="expenses" type="text" inputmode="decimal" value="0.5"><span class="calcpro-mf-suffix">% /year</span></span></div>
+        <p class="calcpro-mf-error" id="calcpro-mf-error" role="alert" hidden></p>
+        <div class="calcpro-mf-actions"><button class="calcpro-mf-btn calcpro-mf-calculate" type="submit">Calculate <span class="calcpro-mf-button-arrow" aria-hidden="true">▶</span></button><button class="calcpro-mf-btn calcpro-mf-clear" type="button" id="calcpro-mf-clear">Clear</button></div>
+      </form>
+    </div>
+    <section class="calcpro-mf-result" id="calcpro-mf-result" aria-label="Mutual fund calculation results" aria-live="polite">
+      <div class="calcpro-mf-result-bar">Results <button class="calcpro-mf-save" type="button" id="calcpro-mf-save" aria-label="Print or save these results as PDF" title="Print or save as PDF"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M4 2h13l3 3v17H4V2zm3 1v6h10V3H7zm5 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM9 3v4h6V3H9z"/></svg><span>save</span></button></div>
+      <table class="calcpro-mf-results-table" aria-label="Mutual fund financial results"><tbody>
+        <tr class="calcpro-mf-strong"><td>Ending value</td><td id="calcpro-mf-out-ending">$90,077.09</td></tr>
+        <tr><td>Total principal</td><td id="calcpro-mf-out-principal">$80,000.00</td></tr>
+        <tr><td>Total contributions</td><td id="calcpro-mf-out-contributions">$60,000.00</td></tr>
+        <tr class="calcpro-mf-strong"><td>Net return</td><td id="calcpro-mf-out-net">$10,077.09</td></tr>
+        <tr><td>Net IRR <button class="calcpro-mf-tip" type="button" data-help="Annualized internal rate of return from all investor cash outflows and the net value at redemption." aria-label="Help: Net IRR">?</button></td><td id="calcpro-mf-out-irr">3.844% per year</td></tr>
+        <tr><td>Sales charge</td><td id="calcpro-mf-out-sales">$1,600.00</td></tr>
+        <tr class="calcpro-mf-deferred" id="calcpro-mf-row-deferred" hidden><td>Deferred sales charge</td><td id="calcpro-mf-out-deferred">$0.00</td></tr>
+        <tr><td>Operating expenses</td><td id="calcpro-mf-out-expenses">$1,323.40</td></tr>
+        <tr class="calcpro-mf-strong"><td>Total charges and fees</td><td id="calcpro-mf-out-fees">$2,923.40</td></tr>
+      </tbody></table>
+      <div class="calcpro-mf-donut-wrap"><svg class="calcpro-mf-chart" id="calcpro-mf-chart" viewBox="0 0 120 120" role="img" aria-label="Chart showing the initial investment, contributions, charges and net return"><circle cx="60" cy="60" r="45" fill="none" stroke="#e6e6e6" stroke-width="27"/></svg><ul class="calcpro-mf-legend" id="calcpro-mf-legend"></ul></div>
+      <p class="calcpro-mf-chart-desc" id="calcpro-mf-chart-desc"></p>
+    </section>
+    <div class="calcpro-mf-empty" id="calcpro-mf-empty" hidden>Enter amounts and select <strong>Calculate</strong> to show the results.</div>
+  </div>
+</div></section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><!-- REPLACE these links with real related tools for each calculator; verify live slugs. --><a href="retirement-calculator.html">Retirement</a><a href="roth-ira-calculator.html">Roth IRA</a><a href="investment-calculator.html">Investment</a><a href="compound-interest-calculator.html">Compound Interest</a><a href="annuity-payout-calculator.html">Annuity Payout</a><a href="pension-calculator.html">Pension</a><a href="inflation-calculator.html">Inflation</a><a href="future-value-calculator.html">Future Value</a><a href="income-tax-calculator.html">Income Tax</a><a href="savings-calculator.html">Savings</a><a href="mortgage-calculator.html">Mortgage</a><a href="loan-calculator.html">Loan</a></div></section></aside><article class="cp-article">
+<h2>How to Use the Mutual Fund Calculator</h2>
+<p>Enter the amount you plan to invest initially, plus any monthly or annual contributions. Specify the fund's assumed annual return, holding period (years and additional months), front-end sales charge, possible deferred sales charge, and annual operating expense ratio. Select <strong>Calculate</strong> to refresh the estimate and chart without leaving the page.</p>
+<p>The default example uses a $20,000 initial purchase, $1,000 contributed at the end of each month for five years, a 5% gross annual return, a 2% sales charge, and 0.5% annual operating expenses. Select <strong>Clear</strong> to erase the inputs or <strong>save</strong> in the results bar to print or save the page as a PDF.</p>
+<h2>How the Mutual Fund Calculation Works</h2>
+<h3>Ending fund value</h3>
+<p>This model uses monthly compounding and assumes a constant annual return. The illustrative annual return after expenses is the stated annual return minus the annual operating expense ratio. The equivalent monthly growth factor is <strong>(1 + net annual rate)<sup>1/12</sup></strong>. The front-end sales charge reduces the initial investment and every subsequent purchase.</p>
+<p>Each month, the existing balance grows at the net monthly rate. Then the monthly contribution, net of its sales charge, is invested. At the end of each completed year, any annual contribution is added in the same way. The deferred sales charge, if entered, is deducted from the final pre-redemption balance, using the lesser of contributed principal and the pre-redemption balance as its basis.</p>
+<h3>Net return, charges, and IRR</h3>
+<p><strong>Total principal</strong> equals the initial investment plus all contributions. <strong>Net return</strong> equals ending value minus total principal. The sales charge is the given percentage of total principal. Operating expenses shown in dollars are a monthly approximation based on the beginning-of-month balance; the expense ratio is already included in the net growth assumption and is not subtracted again. Consequently, expense-dollar totals can vary modestly from another fund calculator that accrues fees daily or uses a different base.</p>
+<p><strong>Net IRR</strong> is the effective annual internal rate of return for the investor's cash flows: the initial investment at month zero, later contributions at the ends of their respective months, and the ending value as a final inflow. A monthly discount rate is found by solving the net-present-value equation, and it is annualized as <strong>(1 + monthly IRR)<sup>12</sup> − 1</strong>. This helps compare scenarios with different contribution schedules.</p>
+<h2>Worked Example</h2>
+<p>Invest $20,000, add $1,000 monthly for 60 months, assume a 5% annual return before 0.5% annual operating expenses, and apply a 2% front-end load. Total principal is $80,000 and the up-front charges across all purchases total $1,600. Under the simplified monthly-growth assumptions, the projected ending value is about <strong>$90,077.09</strong>, the net gain is about <strong>$10,077.09</strong>, and the net annualized IRR is approximately <strong>3.844%</strong>. The fee amount shown separately is an estimate and depends on the expense-accrual convention.</p>
+<h2>Frequently Asked Questions</h2>
+<h3>Does this calculator predict an actual mutual fund's performance?</h3>
+<p>No. Real market returns fluctuate, and fund fees and share-class rules vary. This tool models a constant assumed return and simplified fees; it does not predict security prices, distributions, taxes, or future fund performance.</p>
+<h3>What is a sales charge?</h3>
+<p>A front-end sales charge is a percentage withheld from a fund purchase before it is invested. A deferred sales charge is collected when the investment is redeemed. Some funds have charges that decline with the holding period, so check the fund's prospectus.</p>
+<h3>Why is the IRR different from the rate of return entered?</h3>
+<p>The entered rate is the annual growth assumption before operating expenses. The investor's IRR also reflects sales charges, a potential redemption charge, and the timing of contributions.</p>
+<h3>Are monthly and annual contributions made at the beginning or end of a period?</h3>
+<p>They are modeled at the <strong>end</strong> of each month or completed year, after that period's investment growth. Different timing assumptions can change the result.</p>
+<h3>Where can I learn more about mutual fund fees?</h3>
+<p>See <a href="https://www.investor.gov/introduction-investing/investing-basics/investment-products/mutual-funds-and-exchange-traded-funds-etfs/mutual-funds">Investor.gov's mutual fund education</a> and the <a href="https://www.sec.gov/investor/tools/mfcc/mfcc-faq.htm">SEC's mutual fund fee calculator FAQ</a>. The <a href="https://www.calculator.net/mutual-fund-calculator.html">reference mutual fund calculator</a> also explains loads, operating expenses, and IRR. The simplified model here is intended for educational comparison, not personalized investment advice.</p>
+<p class="cp-page-footer">CalcPro — results are estimates for informational purposes only. Review fund prospectuses and seek qualified advice when needed.</p>
+</article></main></div><script>
+/* Self-contained calculator. No global symbols, libraries, requests or redirects. */
+(function () {
+  'use strict';
+  const root = document.getElementById('calcpro-mf-app');
+  if (!root) return;
+  const el = (name) => root.querySelector('#calcpro-mf-' + name);
+  const form = el('form');
+  const inputs = {
+    initial: el('initial'), annual: el('annual'), monthly: el('monthly'),
+    rate: el('return'), years: el('years'), months: el('months'),
+    sales: el('sales'), deferred: el('deferred'), expenses: el('expenses')
+  };
+  const money = (n) => (n < -0.00000001 ? '-$' : '$') + Math.abs(n).toLocaleString('en-US', {minimumFractionDigits:2,maximumFractionDigits:2});
+  const valueOf = (input) => {
+    const text = input.value.trim().replace(/[$,\s]/g, '');
+    return text === '' || !/^[+-]?(?:\d+\.?\d*|\.\d+)$/.test(text) ? NaN : Number(text);
+  };
+  function showError(message, input) {
+    el('error').textContent = message;
+    el('error').hidden = false;
+    if (input) { input.setAttribute('aria-invalid', 'true'); input.focus(); }
+  }
+  function clearError() {
+    el('error').hidden = true;
+    el('error').textContent = '';
+    Object.values(inputs).forEach(input => input.removeAttribute('aria-invalid'));
+  }
+  function requireRange(input, label, min, max, integer) {
+    const v = valueOf(input);
+    if (!Number.isFinite(v) || v < min || v > max || (integer && !Number.isInteger(v))) {
+      showError(label + ' must be ' + (integer ? 'a whole number' : 'a number') + ' between ' + min.toLocaleString('en-US') + ' and ' + max.toLocaleString('en-US') + '.', input);
+      return null;
+    }
+    return v;
+  }
+  function readInputs() {
+    clearError();
+    const rules = [
+      ['initial','Initial investment',0,1e12,false],
+      ['annual','Annual contribution',0,1e12,false],
+      ['monthly','Monthly contribution',0,1e12,false],
+      ['rate','Rate of return',-99.99,1000,false],
+      ['years','Holding years',0,100,true],
+      ['months','Holding months',0,11,true],
+      ['sales','Sales charge',0,100,false],
+      ['deferred','Deferred sales charge',0,100,false],
+      ['expenses','Operating expenses',0,100,false]
+    ];
+    const out = {};
+    for (const [key,label,min,max,integer] of rules) {
+      out[key] = requireRange(inputs[key],label,min,max,integer);
+      if (out[key] === null) return null;
+    }
+    const count = 12*out.years + out.months;
+    if (out.rate - out.expenses <= -100) {
+      showError('The annual return after operating expenses must be greater than -100%.',inputs.rate);
+      return null;
+    }
+    if (count === 0 && out.initial === 0) {
+      showError('Enter an initial investment or a holding length above zero.',inputs.initial);
+      return null;
+    }
+    const annualPayments = Math.floor(count / 12);
+    if (out.initial + out.monthly*count + out.annual*annualPayments === 0) {
+      showError('Enter a positive initial investment or a contribution during the holding period.',inputs.initial);
+      return null;
+    }
+    return out;
+  }
+  /* The interest assumption is net of operating expense ratio; we do not subtract
+     the displayed expenses a second time. Cash is invested after each month's growth. */
+  function calculate(p) {
+    const count = p.years*12 + p.months;
+    const sale = p.sales/100;
+    const netAnnualRate = (p.rate-p.expenses)/100;
+    const factor = Math.pow(1+netAnnualRate,1/12);
+    const monthlyExpenseRatio = p.expenses/1200;
+    const annualCount = Math.floor(count/12);
+    const totalContrib = p.monthly*count + p.annual*annualCount;
+    const principal = p.initial + totalContrib;
+    const sales = principal*sale;
+    const cashflows = new Array(count+1).fill(0);
+    cashflows[0] = -p.initial;
+    let balance = p.initial*(1-sale);
+    let runningExpenses = 0;
+    for (let m=1; m<=count; m++) {
+      // Approximate annual operating-expense dollars on opening monthly assets.
+      runningExpenses += balance * monthlyExpenseRatio;
+      balance *= factor;
+      const contribution = p.monthly + (m % 12 === 0 ? p.annual : 0);
+      cashflows[m] -= contribution;
+      balance += contribution*(1-sale);
+    }
+    const deferred = Math.min(principal,Math.max(0,balance))*p.deferred/100;
+    const ending = Math.max(0,balance-deferred);
+    cashflows[count] += ending;
+    const net = ending-principal;
+    return {initial:p.initial,contributions:totalContrib,principal,ending,net,sales,deferred,
+      expenses:runningExpenses,fees:sales+deferred+runningExpenses,irr:solveIRR(cashflows)};
+  }
+  /* Monotone investor cash flow: purchases are negative; redemption positive.
+     Solve monthly NPV by bisection, then convert to effective annual IRR. */
+  function solveIRR(flows) {
+    if (flows.length < 2 || flows[flows.length-1] <= 0) return null;
+    const npv = (r) => {
+      let sum = 0;
+      let discount = 1;
+      for (let i=0; i<flows.length; i++) {
+        sum += flows[i]/discount;
+        discount *= 1+r;
+      }
+      return sum;
+    };
+    let lo=-0.999, hi=5;
+    const flo=npv(lo), fhi=npv(hi);
+    if (!(flo > 0 && fhi < 0)) return null;
+    for (let i=0;i<140;i++) {
+      const mid=(lo+hi)/2;
+      if (npv(mid)>0) lo=mid;
+      else hi=mid;
+    }
+    return (Math.pow(1+(lo+hi)/2,12)-1)*100;
+  }
+  function chart(data) {
+    const svg=el('chart'), legend=el('legend');
+    svg.querySelectorAll('circle.calcpro-mf-arc,text.calcpro-mf-chart-label').forEach(n=>n.remove());
+    legend.replaceChildren();
+    const negative=data.net < 0;
+    const groups=[
+      {name:'Initial investment',value:data.initial,color:'#2b7ddb'},
+      {name:'Total contributions',value:data.contributions,color:'#8bbc21'},
+      {name:'Fees and charges',value:data.fees,color:'#910000'},
+      {name:negative?'Net loss':'Net return',value:Math.abs(data.net),color:'#1aadce'}
+    ];
+    const total=groups.reduce((s,g)=>s+Math.max(0,g.value),0);
+    const circum=2*Math.PI*45;
+    let angle=-90;
+    const ns='http://www.w3.org/2000/svg';
+    groups.forEach(g=>{
+      const share=total>0? Math.max(0,g.value)/total:0;
+      const pct=share*100;
+      const li=document.createElement('li');
+      const color=document.createElement('span');color.className='calcpro-mf-key';color.style.backgroundColor=g.color;
+      const txt=document.createElement('span');txt.textContent=g.name;
+      li.append(color,txt);legend.appendChild(li);
+      if (share<=0) return;
+      const circle=document.createElementNS(ns,'circle');
+      circle.classList.add('calcpro-mf-arc');
+      for(const [k,v] of Object.entries({cx:'60',cy:'60',r:'45',fill:'none',stroke:g.color,'stroke-width':'27',transform:'rotate(-90 60 60)'})) circle.setAttribute(k,v);
+      // Dash starts at the top and covers this group's angular slice.
+      const size=share*circum;
+      circle.setAttribute('stroke-dasharray',Math.max(0,size-0.65)+' '+(circum-Math.max(0,size-0.65)));
+      circle.setAttribute('stroke-dashoffset',String(-((angle+90)/360)*circum));
+      const title=document.createElementNS(ns,'title');
+      title.textContent=g.name+': '+money(g.value)+' ('+pct.toFixed(1)+'%)';
+      circle.appendChild(title);svg.appendChild(circle);
+      if(pct>=2.6){
+        const midpoint=(angle+pct*3.6/2)*Math.PI/180;
+        const label=document.createElementNS(ns,'text');
+        label.classList.add('calcpro-mf-chart-label');
+        label.setAttribute('x',(60+46*Math.cos(midpoint)).toFixed(2));
+        label.setAttribute('y',(60+46*Math.sin(midpoint)).toFixed(2));
+        label.textContent=Math.round(pct)+'%';svg.appendChild(label);
+      }
+      angle+=pct*3.6;
+    });
+    svg.setAttribute('aria-label',groups.map(g=>g.name+' '+money(g.value)).join(', '));
+    el('chart-desc').textContent=negative?'The net loss is shown by its magnitude; chart segments are not a cumulative balance.':'Chart compares invested amounts, estimated charges, and net gains.';
+  }
+  function render(r) {
+    const ids={ending:r.ending,principal:r.principal,contributions:r.contributions,net:r.net,
+      sales:r.sales,deferred:r.deferred,expenses:r.expenses,fees:r.fees};
+    Object.keys(ids).forEach(k=>el('out-'+k).textContent=money(ids[k]));
+    el('out-irr').textContent=r.irr===null?'N/A':r.irr.toFixed(3)+'% per year';
+    el('row-deferred').hidden=r.deferred<0.00000001;
+    chart(r);
+    el('result').hidden=false;el('empty').hidden=true;
+  }
+  function update() {
+    const values=readInputs(); if(!values) return;
+    const result=calculate(values);
+    if(![result.ending,result.principal,result.expenses,result.fees].every(Number.isFinite)){
+      showError('These values produce an amount too large to calculate. Try smaller inputs.');return;
+    }
+    render(result);
+  }
+  form.addEventListener('submit',ev=>{ev.preventDefault();update();});
+  el('clear').addEventListener('click',()=>{
+    Object.values(inputs).forEach(input=>{input.value='';input.removeAttribute('aria-invalid');});
+    clearError();el('result').hidden=true;el('empty').hidden=false;inputs.initial.focus();
+  });
+  el('save').addEventListener('click',()=>window.print());
+  ['initial','annual','monthly'].forEach(k=>{
+    inputs[k].addEventListener('focus',()=>inputs[k].select());
+    inputs[k].addEventListener('blur',()=>{
+      const n=valueOf(inputs[k]);
+      if(Number.isFinite(n) && n>=0) inputs[k].value='$'+n.toLocaleString('en-US',{maximumFractionDigits:2});
+    });
+  });
+  // Match the reference: the example's calculated result is displayed on load.
+  update();
+})();
+</script></body></html>

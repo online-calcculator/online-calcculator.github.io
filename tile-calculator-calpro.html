@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>Tile Calculator - Tiles, Boxes, Waste &amp; Cost | CalcPro</title><meta content="Estimate tiles for floors, walls, and roofs with optional grout spacing, overlap, box count, and material cost." name="description"/><link href="template-style.css" rel="stylesheet"/><style>
+/* Tile Calculator: all styling isolated from the CalcPro site shell. */
+.calcpro-tile,.calcpro-tile *,.calcpro-tile *::before,.calcpro-tile *::after{box-sizing:border-box}
+.calcpro-tile{width:100%;font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.35;color:#111}
+.calcpro-tile [hidden]{display:none!important}
+.calcpro-tile button,.calcpro-tile input,.calcpro-tile select{font:inherit}
+.calcpro-tile button{cursor:pointer}
+.calcpro-tile .calcpro-tile-hint{min-height:37px;background:#336699;color:#fff;display:flex;justify-content:center;align-items:center;gap:13px;padding:7px 9px;margin-bottom:3px;text-align:center;font-size:15px}
+.calcpro-tile .calcpro-tile-down{display:inline-flex;align-items:center;justify-content:center;border-radius:50%;width:24px;height:24px;background:white;color:#336699;font-size:16px;line-height:1;flex:none}
+.calcpro-tile .calcpro-tile-group{display:grid;grid-template-columns:160px minmax(0,1fr);align-items:start;padding:7px 10px;column-gap:4px}
+.calcpro-tile .calcpro-tile-blue{background:#b2d8fb}
+.calcpro-tile .calcpro-tile-green{background:#cefab0}
+.calcpro-tile .calcpro-tile-gray{background:#eeeeee}
+.calcpro-tile .calcpro-tile-group-label{text-align:right;font-weight:700;padding:4px 7px 0 0;white-space:nowrap;font-size:15px}
+.calcpro-tile .calcpro-tile-input-col{min-width:0}
+.calcpro-tile .calcpro-tile-mini-row{display:flex;align-items:center;gap:4px;min-height:29px;margin:0 0 2px}
+.calcpro-tile .calcpro-tile-mini-row:last-child{margin-bottom:0}
+.calcpro-tile .calcpro-tile-mini-label{min-width:47px;text-align:right}
+.calcpro-tile .calcpro-tile-num,.calcpro-tile .calcpro-tile-select{height:29px;border:1px solid #6783aa;border-radius:2px;background:#fff;color:#111;padding:3px 6px;box-shadow:inset 0 1px 1px #eef3fa;max-width:100%}
+.calcpro-tile .calcpro-tile-num{width:86px;min-width:0;appearance:textfield;-moz-appearance:textfield}
+.calcpro-tile .calcpro-tile-num::-webkit-inner-spin-button,.calcpro-tile .calcpro-tile-num::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
+.calcpro-tile .calcpro-tile-select{width:85px;min-width:80px;padding:3px 3px}
+.calcpro-tile .calcpro-tile-price-select{width:155px}
+.calcpro-tile .calcpro-tile-solo-num{width:103px}
+.calcpro-tile .calcpro-tile-radio-group{display:flex;gap:11px;flex-wrap:wrap;align-items:center;margin:0 0 4px;min-height:22px}
+.calcpro-tile .calcpro-tile-radio-label{display:inline-flex;align-items:center;gap:5px;white-space:nowrap;cursor:pointer}
+.calcpro-tile .calcpro-tile-radio-label input{width:17px;height:17px;accent-color:#336699;margin:0 2px 0 0}
+.calcpro-tile .calcpro-tile-panel{padding-top:1px}
+.calcpro-tile .calcpro-tile-area-row{display:flex;align-items:center;gap:5px;min-height:31px}
+.calcpro-tile .calcpro-tile-area-name{min-width:48px;text-align:right}
+.calcpro-tile .calcpro-tile-solo-row{display:flex;align-items:center;flex-wrap:wrap;gap:5px;min-height:29px}
+.calcpro-tile .calcpro-tile-explain{font-size:12px;line-height:1.35}
+.calcpro-tile .calcpro-tile-currency-input{display:inline-flex;align-items:center;width:104px;height:29px;background:#fff;border:1px solid #6783aa;border-radius:2px;box-shadow:inset 0 1px 1px #eef3fa;padding-left:6px}
+.calcpro-tile .calcpro-tile-currency-input input{border:none;box-shadow:none;outline:none;padding:2px 3px;width:100%;min-width:0;height:25px;background:transparent;appearance:textfield;-moz-appearance:textfield}
+.calcpro-tile .calcpro-tile-currency-input:focus-within{outline:2px solid #275f98;outline-offset:2px}
+.calcpro-tile .calcpro-tile-actions{padding:5px 10px}
+.calcpro-tile .calcpro-tile-btn-calc{background:#4c8527;border:1px solid #4c8527;color:white;font-weight:700;padding:8px 13px;min-height:37px}
+.calcpro-tile .calcpro-tile-arrow{display:inline-block;border-radius:50%;background:#91bb7d;color:#fff;margin-left:8px;width:20px;height:20px;line-height:19px;text-align:center}
+.calcpro-tile .calcpro-tile-btn-clear{background:#aaa;border:1px solid #aaa;color:#fff;padding:8px 11px;min-height:37px;margin-left:4px}
+.calcpro-tile .calcpro-tile-btn-calc:hover{background:#366a18}
+.calcpro-tile .calcpro-tile-btn-clear:hover{background:#888}
+.calcpro-tile input:focus-visible,.calcpro-tile select:focus-visible,.calcpro-tile button:focus-visible{outline:2px solid #275f98;outline-offset:2px}
+.calcpro-tile .calcpro-tile-error{background:#fff0ec;border-left:4px solid #c13420;color:#8d2617;padding:9px 12px;margin:0 0 7px}
+.calcpro-tile .calcpro-tile-result{margin-bottom:25px}
+.calcpro-tile .calcpro-tile-result-heading{background:#4c8527;color:#fff;padding:5px 7px;display:flex;align-items:center;justify-content:space-between;min-height:37px;font-size:20px}
+.calcpro-tile .calcpro-tile-heading-controls{display:flex;align-items:center;gap:8px}
+.calcpro-tile .calcpro-tile-action-icon{display:inline-flex;gap:3px;flex-direction:column;align-items:center;justify-content:center;color:#fff;background:transparent;border:0;padding:1px 3px;font-size:9px;line-height:1}
+.calcpro-tile .calcpro-tile-action-icon svg{display:block;width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2}
+.calcpro-tile .calcpro-tile-result-body{padding-top:10px;font-size:20px}
+.calcpro-tile .calcpro-tile-summary-row{display:grid;grid-template-columns:155px minmax(0,1fr);gap:0 0;line-height:1.34}
+.calcpro-tile .calcpro-tile-summary-label{font-weight:400}
+.calcpro-tile .calcpro-tile-summary-value{overflow-wrap:anywhere}
+.calcpro-tile .calcpro-tile-waste{font-size:16px;line-height:1.28;margin:16px 0 0}
+.calcpro-tile .calcpro-tile-waste strong{color:green;font-weight:700}
+.calcpro-tile .calcpro-tile-printed-note{display:none}
+.calcpro-tile-standalone-body{margin:0;background:white;font-family:Arial,Helvetica,sans-serif;color:#111}
+.calcpro-tile-standalone-shell{max-width:728px;margin:10px auto 45px;padding:0 10px}
+.calcpro-tile-standalone-shell .calcpro-tile-standalone-title{color:#003366;font-size:25px;margin:4px 0 11px}
+.calcpro-tile-standalone-shell .calcpro-tile-standalone-intro{font-size:15px;line-height:1.25;margin:0 0 7px}
+.calcpro-tile-guide{font-family:Arial,Helvetica,sans-serif;line-height:1.55;font-size:15px;margin-top:30px}
+.calcpro-tile-guide h2{font-size:21px;line-height:1.3;color:#003366;margin:27px 0 7px}
+.calcpro-tile-guide h3{font-size:17px;color:#003366;margin:15px 0 8px}
+.calcpro-tile-guide p{margin:8px 0 13px}
+.calcpro-tile-guide ul{padding-left:23px}
+.calcpro-tile-figure{max-width:100%;height:auto;display:block;margin:12px auto}
+@media(max-width:580px){
+ .calcpro-tile .calcpro-tile-group{grid-template-columns:minmax(0,1fr);gap:4px;padding:9px 10px}
+ .calcpro-tile .calcpro-tile-group-label{text-align:left;padding:0;white-space:normal}
+ .calcpro-tile .calcpro-tile-mini-label,.calcpro-tile .calcpro-tile-area-name{text-align:left;min-width:55px}
+ .calcpro-tile .calcpro-tile-result-body{font-size:18px}
+ .calcpro-tile .calcpro-tile-summary-row{grid-template-columns:143px minmax(0,1fr)}
+ .calcpro-tile .calcpro-tile-waste{font-size:15px}
+ .calcpro-tile .calcpro-tile-hint{font-size:13px}
+}
+@media(max-width:360px){
+ .calcpro-tile .calcpro-tile-result-body{font-size:16px}
+ .calcpro-tile .calcpro-tile-summary-row{grid-template-columns:125px minmax(0,1fr)}
+ .calcpro-tile .calcpro-tile-radio-group{gap:8px;font-size:13px}
+ .calcpro-tile .calcpro-tile-price-select{width:130px}
+ .calcpro-tile .calcpro-tile-explain{width:100%}
+}
+@media print{
+ .calcpro-tile .calcpro-tile-action-icon,.calcpro-tile .calcpro-tile-actions,.calcpro-tile .calcpro-tile-hint{display:none!important}
+ .calcpro-tile .calcpro-tile-printed-note{display:block}
+ .calcpro-tile{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/other-calculator/">Other Calculators</a> / Tile Calculator</nav><h1 class="cp-page-title">Tile Calculator</h1><p class="cp-intro">Estimate the number of tiles needed to cover a floor, wall, roof, or other surface. Include grout spacing or tile overlap, and optionally calculate boxes and material cost.</p><section aria-label="Calculator" class="cp-tool-area"><section class="calcpro-tile" id="calcpro-tile-widget" aria-label="Tile Calculator">
+  <section id="calcpro-tile-result" class="calcpro-tile-result" aria-labelledby="calcpro-tile-result-title" aria-live="polite" hidden>
+    <div class="calcpro-tile-result-heading"><span id="calcpro-tile-result-title">Result</span><div class="calcpro-tile-heading-controls">
+      <button type="button" class="calcpro-tile-action-icon" id="calcpro-tile-print" title="Print results" aria-label="Print results"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9V3h12v6M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2M6 14h12v8H6z"/></svg><span>print</span></button>
+      <button type="button" class="calcpro-tile-action-icon" id="calcpro-tile-save" title="Save calculation as text" aria-label="Save calculation as text"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 3h14l3 3v15H3V3zM7 3v7h10V3M7 21v-9h10v9M9 3v5h6"/></svg><span>save</span></button>
+    </div></div>
+    <div class="calcpro-tile-result-body">
+      <div class="calcpro-tile-summary-row"><span class="calcpro-tile-summary-label">Tiles Needed:</span><span class="calcpro-tile-summary-value" id="calcpro-tile-result-tiles"></span></div>
+      <div class="calcpro-tile-summary-row" id="calcpro-tile-result-box-row"><span class="calcpro-tile-summary-label">Boxes Needed:</span><span class="calcpro-tile-summary-value" id="calcpro-tile-result-boxes"></span></div>
+      <div class="calcpro-tile-summary-row"><span class="calcpro-tile-summary-label">Total Area:</span><span class="calcpro-tile-summary-value" id="calcpro-tile-result-area"></span></div>
+      <div class="calcpro-tile-summary-row" id="calcpro-tile-result-price-row" hidden><span class="calcpro-tile-summary-label">Estimated Cost:</span><span class="calcpro-tile-summary-value" id="calcpro-tile-result-price"></span></div>
+    </div>
+    <p class="calcpro-tile-waste">Purchase 5% - 10% more (<strong id="calcpro-tile-result-waste"></strong>) for cutting, waste, and possible future repairs.</p>
+    <p class="calcpro-tile-printed-note">Estimates are based on area, including grout gap/overlap. Confirm layout and cuts before ordering.</p>
+  </section>
+  <div class="calcpro-tile-hint" id="calcpro-tile-hint"><span class="calcpro-tile-down" aria-hidden="true">▼</span> Modify the values and click the Calculate button to use</div>
+  <div class="calcpro-tile-error" id="calcpro-tile-error" role="alert" hidden></div>
+  <form id="calcpro-tile-form" autocomplete="off" novalidate>
+    <div class="calcpro-tile-group calcpro-tile-blue">
+      <div class="calcpro-tile-group-label">Tile Size:</div><div class="calcpro-tile-input-col">
+        <div class="calcpro-tile-mini-row"><label for="calcpro-tile-tile-length" class="calcpro-tile-mini-label">Length</label><input id="calcpro-tile-tile-length" class="calcpro-tile-num" type="number" inputmode="decimal" step="any" value="12"><select class="calcpro-tile-select" id="calcpro-tile-tile-length-unit" aria-label="Tile length unit"><option value="inch">inches</option><option value="foot">feet</option><option value="meter">meters</option><option value="cm" selected>cm</option><option value="mm">mm</option><option value="yard">yards</option></select></div>
+        <div class="calcpro-tile-mini-row"><label for="calcpro-tile-tile-width" class="calcpro-tile-mini-label">Width</label><input id="calcpro-tile-tile-width" class="calcpro-tile-num" type="number" inputmode="decimal" step="any" value="12"><select class="calcpro-tile-select" id="calcpro-tile-tile-width-unit" aria-label="Tile width unit"><option value="inch">inches</option><option value="foot">feet</option><option value="meter">meters</option><option value="cm" selected>cm</option><option value="mm">mm</option><option value="yard">yards</option></select></div>
+      </div>
+    </div>
+    <div class="calcpro-tile-group calcpro-tile-green">
+      <div class="calcpro-tile-group-label" id="calcpro-tile-area-mode-label">Area to Cover:</div><div class="calcpro-tile-input-col">
+        <div class="calcpro-tile-radio-group" role="radiogroup" aria-labelledby="calcpro-tile-area-mode-label">
+          <label class="calcpro-tile-radio-label" for="calcpro-tile-mode-dimensions"><input type="radio" id="calcpro-tile-mode-dimensions" name="calcpro-tile-area-mode" value="d" checked>Use Dimensions</label>
+          <label class="calcpro-tile-radio-label" for="calcpro-tile-mode-area"><input type="radio" id="calcpro-tile-mode-area" name="calcpro-tile-area-mode" value="a">Use Total Area</label>
+        </div>
+        <div class="calcpro-tile-panel" id="calcpro-tile-dimensions-panel">
+          <div class="calcpro-tile-area-row"><label class="calcpro-tile-area-name" for="calcpro-tile-area-length">Length</label><input class="calcpro-tile-num" id="calcpro-tile-area-length" type="number" inputmode="decimal" step="any" value="20"><select class="calcpro-tile-select" id="calcpro-tile-area-length-unit" aria-label="Area length unit"><option value="foot">feet</option><option value="meter" selected>meters</option><option value="inch">inches</option><option value="cm">cm</option><option value="mm">mm</option><option value="yard">yards</option></select></div>
+          <div class="calcpro-tile-area-row"><label class="calcpro-tile-area-name" for="calcpro-tile-area-width">Width</label><input class="calcpro-tile-num" id="calcpro-tile-area-width" type="number" inputmode="decimal" step="any" value="15"><select class="calcpro-tile-select" id="calcpro-tile-area-width-unit" aria-label="Area width unit"><option value="foot">feet</option><option value="meter" selected>meters</option><option value="inch">inches</option><option value="cm">cm</option><option value="mm">mm</option><option value="yard">yards</option></select></div>
+        </div>
+        <div class="calcpro-tile-panel" id="calcpro-tile-total-area-panel" hidden><div class="calcpro-tile-area-row"><label class="calcpro-tile-area-name" for="calcpro-tile-total-area" style="min-width:75px">Total Area</label><input class="calcpro-tile-num" id="calcpro-tile-total-area" type="number" inputmode="decimal" step="any" value=""><select class="calcpro-tile-select" id="calcpro-tile-total-area-unit" aria-label="Total area unit" style="width:138px"><option value="foot">square feet</option><option value="meter" selected>square meters</option><option value="yard">square yards</option><option value="inch">square inches</option><option value="cm">square centimeters</option></select></div></div>
+      </div>
+    </div>
+    <div class="calcpro-tile-group calcpro-tile-blue">
+      <label class="calcpro-tile-group-label" for="calcpro-tile-gap">Gap Size:</label><div class="calcpro-tile-solo-row"><input class="calcpro-tile-num calcpro-tile-solo-num" id="calcpro-tile-gap" type="number" inputmode="decimal" step="any" value="0.25"><select class="calcpro-tile-select" id="calcpro-tile-gap-unit" aria-label="Gap unit"><option value="inch">inches</option><option value="cm" selected>cm</option><option value="mm">mm</option><option value="foot">feet</option><option value="meter">meters</option><option value="yard">yards</option></select><span class="calcpro-tile-explain">tile grout spacing, use negative value for overlaps.</span></div>
+    </div>
+    <div class="calcpro-tile-group calcpro-tile-green">
+      <label class="calcpro-tile-group-label" for="calcpro-tile-box">Box Size (optional):</label><div class="calcpro-tile-solo-row"><input class="calcpro-tile-num calcpro-tile-solo-num" id="calcpro-tile-box" type="number" inputmode="numeric" step="1" min="1" value="12"><span>tiles per box</span></div>
+    </div>
+    <div class="calcpro-tile-group calcpro-tile-blue">
+      <label class="calcpro-tile-group-label" for="calcpro-tile-price">Price (optional):</label><div class="calcpro-tile-solo-row"><span class="calcpro-tile-currency-input"><span aria-hidden="true">$</span><input id="calcpro-tile-price" type="number" inputmode="decimal" step="any" min="0" aria-label="Price in dollars, optional"></span><select class="calcpro-tile-select calcpro-tile-price-select" id="calcpro-tile-price-unit" aria-label="Price unit"><option value="tile">per tile</option><option value="box">per box</option><option value="foot">per square foot</option><option value="inch">per square inch</option><option value="yard">per square yard</option><option value="meter">per square meter</option><option value="cm">per square cm</option></select></div>
+    </div>
+    <div class="calcpro-tile-group calcpro-tile-gray"><div aria-hidden="true"></div><div class="calcpro-tile-actions"><button type="submit" class="calcpro-tile-btn-calc">Calculate <span class="calcpro-tile-arrow" aria-hidden="true">▶</span></button><button type="button" class="calcpro-tile-btn-clear" id="calcpro-tile-clear">Clear</button></div></div>
+  </form>
+</section></section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><a href="square-footage-calculator.html">Square Footage</a><a href="area-calculator.html">Area</a><a href="roofing-calculator.html">Roofing</a><a href="concrete-calculator.html">Concrete</a><a href="gravel-calculator.html">Gravel</a><a href="volume-calculator.html">Volume</a><a href="surface-area-calculator.html">Surface Area</a><a href="stair-calculator.html">Stair</a><a href="triangle-calculator.html">Triangle</a><a href="distance-calculator.html">Distance</a><a href="conversion-calculator.html">Conversion</a><a href="mulch-calculator.html">Mulch</a></div></section></aside><article class="cp-article"><h2>How to Use the Tile Calculator</h2>
+<p>Enter the length and width of one tile and select their units. Choose <strong>Use Dimensions</strong> for a rectangular floor, wall, or roof, or select <strong>Use Total Area</strong> if you already know the surface area. Then enter the grout gap, which can be negative when tiles overlap.</p>
+<p>Enter the number of tiles in each box and a price if known. Select whether your price applies to a tile, a box, or a square unit of coverage. Choose <strong>Calculate</strong> to display the estimated number of pieces, boxes, area, optional material cost, and a suggested 5–10% purchasing allowance. Use <strong>Clear</strong> to restore the example inputs.</p>
+<h2>Tile Calculator Formula</h2>
+<p>The calculator converts all dimensions to the same unit, then includes grout spacing or overlap in the effective coverage of one tile:</p>
+<p><strong>Effective tile area = (tile length + gap) × (tile width + gap)</strong></p>
+<p><strong>Estimated tiles = round up (surface area ÷ effective tile area)</strong></p>
+<p>Boxes needed = round up (estimated tiles ÷ tiles per box). The extra allowance uses the unrounded tile estimate multiplied by 1.05 or 1.10, then rounds up. Material cost is based on the selected price unit and the baseline quantity or measured area.</p>
+<h3>Worked Example</h3>
+<p>For a surface measuring 20 m × 15 m, the area is 300 m². A 12 cm × 12 cm tile with a 0.25 cm grout gap has an effective area of 0.1225 m × 0.1225 m = 0.01500625 m². Dividing 300 m² by 0.01500625 m² gives approximately 19,991.67, so the calculator estimates <strong>19,992 tiles</strong>. At 12 tiles per box, the estimate is <strong>1,666 boxes</strong>. Adding 5–10% gives about <strong>20,992–21,991 tiles</strong>, or <strong>1,750–1,833 boxes</strong>.</p>
+<h2>Grout Gaps and Overlapping Tiles</h2>
+<p>A positive gap increases the effective coverage assigned to each tile, so fewer tiles may be required. A negative gap represents overlap, reducing effective coverage. The overlap cannot be so large that either effective tile dimension becomes zero or negative.</p>
+<svg class="calcpro-tile-figure" width="470" height="145" viewBox="0 0 470 145" role="img" aria-label="Two adjacent blue tiles separated by a narrow gray grout gap"><rect x="12" y="22" width="196" height="83" fill="#b2d8fb" stroke="#336699" stroke-width="2"/><rect x="222" y="22" width="196" height="83" fill="#b2d8fb" stroke="#336699" stroke-width="2"/><rect x="209" y="22" width="12" height="83" fill="#d0d4d9"/><line x1="209" y1="112" x2="209" y2="122" stroke="#333"/><line x1="221" y1="112" x2="221" y2="122" stroke="#333"/><line x1="209" y1="118" x2="221" y2="118" stroke="#333" stroke-width="2"/><text x="215" y="140" text-anchor="middle" font-size="14" fill="#333">Grout gap</text><text x="110" y="68" text-anchor="middle" font-size="16" fill="#173f6c">Tile</text><text x="320" y="68" text-anchor="middle" font-size="16" fill="#173f6c">Tile</text></svg>
+<h2>Frequently Asked Questions</h2>
+<h3>Does the estimate include cutting waste?</h3><p>The basic tile count is an area-based estimate. The calculator separately provides a 5–10% additional purchasing range for cuts, breakage, and spare tiles. Patterns with many edges or complicated cuts may need more.</p>
+<h3>Can I use different units for tile size and room dimensions?</h3><p>Yes. Every dimension is converted internally to meters before the tile count is calculated. Total-area mode supports square feet, square meters, square yards, square inches, and square centimeters.</p>
+<h3>What happens if I leave box size or price blank?</h3><p>Leaving box size blank hides the box counts. Leaving price blank hides the cost estimate. A price per box requires a box size.</p>
+<h3>Is the result an exact tile-by-tile layout?</h3><p>No. This is an area-based material estimate; it does not model grout joints at the outer edges, staggered patterns, obstacles, or the reuse of cut-off pieces. Verify the final layout and purchase quantities with your installer or supplier.</p>
+<p><strong>Reference:</strong> <a href="https://www.calculator.net/tile-calculator.html" target="_blank" rel="noopener noreferrer">Calculator.net Tile Calculator</a>, used as a reference for field options and result placement. This CalcPro calculator uses its own JavaScript implementation.</p><p class="cp-page-footer">CalcPro — calculator estimates are for informational purposes.</p></article></main></div><script>
+(() => {
+  'use strict';
+  const root = document.getElementById('calcpro-tile-widget');
+  if (!root) return;
+  const el = id => root.querySelector('#calcpro-tile-' + id);
+  const form = el('form');
+  const unitMeters = Object.freeze({ inch: .0254, foot: .3048, meter: 1, cm: .01, mm: .001, yard: .9144 });
+  const unitAreaNames = Object.freeze({ inch: 'inch²', foot: 'feet²', meter: 'meter²', cm: 'cm²', mm: 'mm²', yard: 'yard²' });
+  const whole = new Intl.NumberFormat('en-US', { maximumFractionDigits: 0 });
+  const decimal = new Intl.NumberFormat('en-US', { maximumFractionDigits: 4 });
+  const money = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2 });
+  let lastCalculation = null;
+
+  // Floating-point conversion can make an exact whole number look slightly larger.
+  function roundUp(value) {
+    return Math.max(1, Math.ceil(value - Math.max(1, Math.abs(value)) * Number.EPSILON * 8));
+  }
+  function numberIn(field, label, required = true, positive = false) {
+    const raw = field.value.trim();
+    if (!raw) {
+      if (!required) return null;
+      throw new Error('Please enter ' + label + '.');
+    }
+    const value = Number(raw);
+    if (!Number.isFinite(value)) throw new Error('Please enter a valid number for ' + label + '.');
+    if (positive && value <= 0) throw new Error(label + ' must be greater than zero.');
+    return value;
+  }
+  function showError(message) {
+    el('error').textContent = message;
+    el('error').hidden = false;
+  }
+  function clearError() {
+    el('error').textContent = '';
+    el('error').hidden = true;
+  }
+  function updateAreaMode() {
+    const useDimensions = el('mode-dimensions').checked;
+    el('dimensions-panel').hidden = !useDimensions;
+    el('total-area-panel').hidden = useDimensions;
+  }
+  function measureArea() {
+    if (el('mode-dimensions').checked) {
+      const length = numberIn(el('area-length'), 'area length', true, true);
+      const width = numberIn(el('area-width'), 'area width', true, true);
+      const lengthUnit = el('area-length-unit').value;
+      const widthUnit = el('area-width-unit').value;
+      const squareMeters = length * unitMeters[lengthUnit] * width * unitMeters[widthUnit];
+      if (lengthUnit === widthUnit) return { squareMeters, text: decimal.format(length * width) + ' ' + unitAreaNames[lengthUnit] };
+      return { squareMeters, text: decimal.format(squareMeters) + ' m²' };
+    }
+    const amount = numberIn(el('total-area'), 'the total area', true, true);
+    const unit = el('total-area-unit').value;
+    return { squareMeters: amount * unitMeters[unit] ** 2, text: decimal.format(amount) + ' ' + unitAreaNames[unit] };
+  }
+  function calculate() {
+    const tileLength = numberIn(el('tile-length'), 'tile length', true, true) * unitMeters[el('tile-length-unit').value];
+    const tileWidth = numberIn(el('tile-width'), 'tile width', true, true) * unitMeters[el('tile-width-unit').value];
+    const gap = numberIn(el('gap'), 'gap size') * unitMeters[el('gap-unit').value];
+    if (tileLength + gap <= 0 || tileWidth + gap <= 0) throw new Error('The gap or overlap must leave both effective tile dimensions greater than zero.');
+    const area = measureArea();
+    if (!(area.squareMeters > 0) || !Number.isFinite(area.squareMeters)) throw new Error('Please enter a finite total area greater than zero.');
+    const rawTiles = area.squareMeters / ((tileLength + gap) * (tileWidth + gap));
+    if (!Number.isFinite(rawTiles) || rawTiles <= 0 || rawTiles > 1e12) throw new Error('These dimensions produce an unsupported tile quantity. Please check your inputs.');
+    const tiles = roundUp(rawTiles);
+    const extra5 = roundUp(rawTiles * 1.05);
+    const extra10 = roundUp(rawTiles * 1.10);
+    const boxSize = numberIn(el('box'), 'box size', false);
+    if (boxSize !== null && (!Number.isSafeInteger(boxSize) || boxSize <= 0)) throw new Error('Box size must be a positive whole number.');
+    const boxes = boxSize === null ? null : roundUp(tiles / boxSize);
+    const boxes5 = boxSize === null ? null : roundUp(extra5 / boxSize);
+    const boxes10 = boxSize === null ? null : roundUp(extra10 / boxSize);
+    const price = numberIn(el('price'), 'price', false);
+    if (price !== null && price < 0) throw new Error('Price cannot be negative.');
+    const priceUnit = el('price-unit').value;
+    if (price !== null && priceUnit === 'box' && boxes === null) throw new Error('Enter the number of tiles per box to calculate a price per box.');
+    let cost = null;
+    if (price !== null) {
+      if (priceUnit === 'tile') cost = tiles * price;
+      else if (priceUnit === 'box') cost = boxes * price;
+      else cost = area.squareMeters / (unitMeters[priceUnit] ** 2) * price;
+      if (!Number.isFinite(cost) || cost > 1e15) throw new Error('The calculated price is too large. Please check your inputs.');
+    }
+    return { tiles, boxes, boxSize, extra5, extra10, boxes5, boxes10, area: area.text, cost, price, priceUnit,
+      rawTiles, areaSquareMeters: area.squareMeters, tileLength, tileWidth, gap };
+  }
+  function showCalculation(data) {
+    el('result-tiles').textContent = whole.format(data.tiles) + ' Pieces';
+    el('result-box-row').hidden = data.boxes === null;
+    el('result-boxes').textContent = data.boxes === null ? '' : whole.format(data.boxes) + ' Boxes';
+    el('result-area').textContent = data.area;
+    el('result-price-row').hidden = data.cost === null;
+    el('result-price').textContent = data.cost === null ? '' : money.format(data.cost);
+    let allowance = whole.format(data.extra5) + ' - ' + whole.format(data.extra10) + ' tiles';
+    if (data.boxes !== null) allowance += ' or ' + whole.format(data.boxes5) + ' - ' + whole.format(data.boxes10) + ' boxes';
+    el('result-waste').textContent = allowance;
+    el('result').hidden = false;
+    el('hint').hidden = true;
+    lastCalculation = data;
+  }
+  function restoreDefaults() {
+    form.reset();
+    updateAreaMode();
+    el('result').hidden = true;
+    el('hint').hidden = false;
+    clearError();
+    lastCalculation = null;
+  }
+  form.addEventListener('submit', event => {
+    event.preventDefault();
+    clearError();
+    try { showCalculation(calculate()); }
+    catch (err) { el('result').hidden = true; el('hint').hidden = false; lastCalculation = null; showError(err.message || 'Please check the entered values.'); }
+  });
+  el('mode-dimensions').addEventListener('change', updateAreaMode);
+  el('mode-area').addEventListener('change', updateAreaMode);
+  el('clear').addEventListener('click', restoreDefaults);
+  el('print').addEventListener('click', () => { if (lastCalculation) window.print(); });
+  el('save').addEventListener('click', () => {
+    if (!lastCalculation) return;
+    const d = lastCalculation;
+    const lines = [
+      'CalcPro - Tile Calculator',
+      'Tiles needed: ' + whole.format(d.tiles) + ' pieces',
+      ...(d.boxes === null ? [] : ['Boxes needed: ' + whole.format(d.boxes) + ' boxes (' + d.boxSize + ' tiles/box)']),
+      'Total area: ' + d.area,
+      ...(d.cost === null ? [] : ['Estimated material price: ' + money.format(d.cost) + ' (price ' + d.price + ' per ' + d.priceUnit + ')']),
+      '5% extra: ' + whole.format(d.extra5) + ' tiles' + (d.boxes5 === null ? '' : ', ' + whole.format(d.boxes5) + ' boxes'),
+      '10% extra: ' + whole.format(d.extra10) + ' tiles' + (d.boxes10 === null ? '' : ', ' + whole.format(d.boxes10) + ' boxes'),
+      'Method: area / ((tile length + gap) * (tile width + gap)); estimates are rounded up.',
+      'All lengths converted to meters; gap may be negative for overlaps.'
+    ];
+    const blob = new Blob([lines.join('\n') + '\n'], { type: 'text/plain;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const anchor = document.createElement('a');
+    anchor.href = url;
+    anchor.download = 'calcpro-tile-calculation.txt';
+    document.body.appendChild(anchor);
+    anchor.click();
+    anchor.remove();
+    window.setTimeout(() => URL.revokeObjectURL(url), 1000);
+  });
+  updateAreaMode();
+})();
+</script></body></html>

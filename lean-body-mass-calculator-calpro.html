@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>Lean Body Mass Calculator | CalcPro</title><meta content="Calculate lean body mass using Boer, James, Hume, and Peters formulas with metric, US, or other measurement units." name="description"/><link href="template-style.css" rel="stylesheet"/><style>
+/* Lean Body Mass Calculator — tool-only styles; all selectors are locally scoped. */
+.calcpro-lbm{font:16px/1.4 Arial,Helvetica,sans-serif;color:#111;max-width:100%;}
+.calcpro-lbm *{box-sizing:border-box}
+.calcpro-lbm button,.calcpro-lbm input,.calcpro-lbm select{font:inherit}
+.calcpro-lbm .calcpro-lbm-instruction{background:#346795;color:#fff;display:flex;gap:13px;align-items:center;justify-content:center;padding:7px 12px;margin:2px 0 6px;min-height:39px;text-align:center;}
+.calcpro-lbm .calcpro-lbm-instruction-icon{background:#fff;color:#346795;display:inline-grid;place-items:center;border-radius:50%;width:25px;height:25px;flex:none;font-size:14px;line-height:1}
+.calcpro-lbm .calcpro-lbm-grid{display:grid;grid-template-columns:minmax(0,345px) minmax(0,1fr);gap:18px;align-items:start;}
+.calcpro-lbm .calcpro-lbm-left,.calcpro-lbm .calcpro-lbm-right{min-width:0}
+.calcpro-lbm .calcpro-lbm-tabs{display:flex;gap:4px;align-items:end;flex-wrap:wrap;margin:0;}
+.calcpro-lbm .calcpro-lbm-tab{appearance:none;cursor:pointer;border:1px solid #346795;background:#346795;color:#fff;font-weight:700;padding:8px 7px;min-height:38px;line-height:1.2;font-size:14px;}
+.calcpro-lbm .calcpro-lbm-tab[aria-selected="true"]{border-color:#bdbdbd;border-bottom-color:#eee;background:#eee;color:#000;}
+.calcpro-lbm .calcpro-lbm-tab:hover:not([aria-selected="true"]){background:#24547f}
+.calcpro-lbm .calcpro-lbm-panel{border:1px solid #bdbdbd;background:#eee;padding:10px 9px 11px;min-height:218px;}
+.calcpro-lbm .calcpro-lbm-radio-row{display:flex;align-items:center;gap:7px;margin-bottom:10px;flex-wrap:wrap;}
+.calcpro-lbm .calcpro-lbm-sex-label{min-width:60px}
+.calcpro-lbm .calcpro-lbm-radio{display:inline-flex;gap:5px;align-items:center;cursor:pointer;white-space:nowrap;font-size:15px}
+.calcpro-lbm .calcpro-lbm-radio input{width:19px;height:19px;accent-color:#346795;margin:0;cursor:pointer;}
+.calcpro-lbm .calcpro-lbm-age-row{gap:7px;margin-bottom:10px;}
+.calcpro-lbm .calcpro-lbm-age-prompt{font-size:15px;}
+.calcpro-lbm .calcpro-lbm-field{display:grid;grid-template-columns:53px minmax(0,1fr);gap:8px;align-items:center;margin:5px 0;min-height:34px;}
+.calcpro-lbm .calcpro-lbm-field>label,.calcpro-lbm .calcpro-lbm-field>.calcpro-lbm-field-label{font-size:15px;}
+.calcpro-lbm .calcpro-lbm-inputbox{position:relative;min-width:0;}
+.calcpro-lbm .calcpro-lbm-inputbox input{display:block;width:100%;height:34px;background:#fff;border:1px solid #366c9b;border-radius:2px;box-shadow:1px 2px 3px #0002;padding:5px 51px 5px 8px;color:#111;outline-offset:1px;}
+.calcpro-lbm .calcpro-lbm-inputbox input:focus{outline:2px solid #346795;outline-offset:0;}
+.calcpro-lbm .calcpro-lbm-unit{position:absolute;right:9px;top:50%;transform:translateY(-50%);color:#777;font-size:13px;pointer-events:none;}
+.calcpro-lbm .calcpro-lbm-ftin{display:grid;grid-template-columns:1fr 1fr;gap:6px;}
+.calcpro-lbm .calcpro-lbm-ftin .calcpro-lbm-inputbox input{padding-right:28px;}
+.calcpro-lbm .calcpro-lbm-other-control{display:grid;grid-template-columns:minmax(0,1fr) 82px;gap:6px;}
+.calcpro-lbm .calcpro-lbm-other-control input{padding-right:8px;}
+.calcpro-lbm .calcpro-lbm-other-control select{min-width:0;width:100%;padding:5px 2px;height:34px;border:1px solid #366c9b;background:#fff;color:#111;}
+.calcpro-lbm .calcpro-lbm-actions{display:flex;gap:5px;justify-content:center;margin-top:13px;}
+.calcpro-lbm .calcpro-lbm-calculate{border:none;background:#4b831f;color:#fff;padding:9px 12px;font-size:15px;font-weight:700;cursor:pointer;min-height:41px;display:flex;gap:12px;align-items:center;}
+.calcpro-lbm .calcpro-lbm-calculate:hover{background:#3b6919}
+.calcpro-lbm .calcpro-lbm-play{display:inline-grid;place-items:center;color:#4b831f;background:#c3e3b6;border-radius:50%;width:23px;height:23px;font-size:14px;}
+.calcpro-lbm .calcpro-lbm-clear{background:#aaa;border:0;color:#fff;padding:8px 12px;cursor:pointer;font-size:15px;}
+.calcpro-lbm .calcpro-lbm-clear:hover{background:#888}
+.calcpro-lbm .calcpro-lbm-error{color:#9d1322;margin-top:8px;font-size:13px;font-weight:700;}
+.calcpro-lbm .calcpro-lbm-result-head{display:flex;justify-content:space-between;align-items:center;background:#4b831f;color:#fff;margin:0;padding:6px 8px;font-size:22px;line-height:1.2;font-weight:400;min-height:40px;}
+.calcpro-lbm .calcpro-lbm-save{border:0;background:transparent;color:#fff;cursor:pointer;padding:2px;display:grid;place-items:center;line-height:1;}
+.calcpro-lbm .calcpro-lbm-save:hover{background:#ffffff2a}
+.calcpro-lbm .calcpro-lbm-save:disabled{opacity:.4;cursor:not-allowed;}
+.calcpro-lbm .calcpro-lbm-result-intro{margin:10px 0 13px;font-size:15px;}
+.calcpro-lbm .calcpro-lbm-table-wrap{overflow-x:auto;max-width:100%;}
+.calcpro-lbm .calcpro-lbm-results-table{border-collapse:collapse;margin:0 auto;font-size:14px;white-space:nowrap;}
+.calcpro-lbm .calcpro-lbm-results-table th{border:1px solid #2c5d8b;background:#346795;color:#fff;font-weight:700;padding:5px 5px;text-align:left;}
+.calcpro-lbm .calcpro-lbm-results-table td{border:1px solid #ccc;padding:5px 5px;background:#fff;text-align:center;}
+.calcpro-lbm .calcpro-lbm-results-table td:first-child{text-align:left;}
+.calcpro-lbm .calcpro-lbm-results-table tr:nth-child(even) td{background:#f0f0f0;}
+.calcpro-lbm .calcpro-lbm-results-table strong{font-weight:700;}
+.calcpro-lbm .calcpro-lbm-result-note{font-size:12px;color:#555;line-height:1.45;margin:11px 0 0;}
+.calcpro-lbm .calcpro-lbm-caution{color:#8d3a00}
+.calcpro-lbm .calcpro-lbm-empty{font-size:14px;color:#555;min-height:52px;padding:12px 4px;}
+.calcpro-lbm .calcpro-lbm-saved-status{font-size:12px;color:#326016;margin:6px 0 0;text-align:right;}
+.calcpro-lbm :where(button,input,select):focus-visible{outline:2px solid #275f98;outline-offset:2px;}
+@media(max-width:715px){.calcpro-lbm .calcpro-lbm-grid{grid-template-columns:1fr;gap:17px}.calcpro-lbm .calcpro-lbm-left{max-width:430px}.calcpro-lbm .calcpro-lbm-right{max-width:100%;}.calcpro-lbm .calcpro-lbm-results-table{margin-left:0;}.calcpro-lbm .calcpro-lbm-result-intro{margin-bottom:9px;}}
+@media(max-width:400px){.calcpro-lbm .calcpro-lbm-instruction{font-size:13px}.calcpro-lbm .calcpro-lbm-instruction-icon{width:22px;height:22px}.calcpro-lbm .calcpro-lbm-tab{font-size:13px;padding:8px 6px}.calcpro-lbm .calcpro-lbm-panel{padding:9px 7px}.calcpro-lbm .calcpro-lbm-radio,.calcpro-lbm .calcpro-lbm-age-prompt{font-size:14px}.calcpro-lbm .calcpro-lbm-field{grid-template-columns:52px 1fr;gap:6px}.calcpro-lbm .calcpro-lbm-results-table{font-size:13px}.calcpro-lbm .calcpro-lbm-results-table td,.calcpro-lbm .calcpro-lbm-results-table th{padding:5px 3px;}}
+@media print{.calcpro-lbm .calcpro-lbm-save,.calcpro-lbm .calcpro-lbm-actions,.calcpro-lbm .calcpro-lbm-instruction{display:none!important}.calcpro-lbm .calcpro-lbm-grid{grid-template-columns:45% 1fr;gap:15px}.calcpro-lbm .calcpro-lbm-results-table{font-size:12px}}
+</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="fitness-and-health-calculator.html">Fitness &amp; Health</a> / Lean Body Mass Calculator</nav><h1 class="cp-page-title">Lean Body Mass Calculator</h1><p class="cp-intro">The Lean Body Mass Calculator computes a person's estimated lean body mass (LBM) based on body weight, height, gender, and age. For comparison purposes, the calculator provides results from multiple formulas.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-lbm" id="calcpro-lbm-root">
+  <div class="calcpro-lbm-instruction"><span class="calcpro-lbm-instruction-icon" aria-hidden="true">▼</span><span>Modify the values and click the Calculate button to use</span></div>
+  <div class="calcpro-lbm-grid">
+    <div class="calcpro-lbm-left">
+      <div class="calcpro-lbm-tabs" role="tablist" aria-label="Choose measurement units">
+        <button type="button" class="calcpro-lbm-tab" data-calcpro-lbm-mode="us" role="tab" aria-selected="false">US Units</button>
+        <button type="button" class="calcpro-lbm-tab" data-calcpro-lbm-mode="metric" role="tab" aria-selected="true">Metric Units</button>
+        <button type="button" class="calcpro-lbm-tab" data-calcpro-lbm-mode="other" role="tab" aria-selected="false">Other Units</button>
+      </div>
+      <form class="calcpro-lbm-panel" id="calcpro-lbm-form" novalidate>
+        <div class="calcpro-lbm-radio-row"><span class="calcpro-lbm-sex-label">Gender</span>
+          <label class="calcpro-lbm-radio"><input type="radio" name="calcpro-lbm-sex" value="m" checked>male</label>
+          <label class="calcpro-lbm-radio"><input type="radio" name="calcpro-lbm-sex" value="f">female</label>
+        </div>
+        <div class="calcpro-lbm-radio-row calcpro-lbm-age-row"><span class="calcpro-lbm-age-prompt">Age 14 or younger?</span>
+          <label class="calcpro-lbm-radio"><input type="radio" name="calcpro-lbm-child" value="y">yes</label>
+          <label class="calcpro-lbm-radio"><input type="radio" name="calcpro-lbm-child" value="n" checked>no</label>
+        </div>
+        <div data-calcpro-lbm-section="metric">
+          <div class="calcpro-lbm-field"><label for="calcpro-lbm-cm">Height</label><div class="calcpro-lbm-inputbox"><input id="calcpro-lbm-cm" type="number" inputmode="decimal" step="any" value="180" aria-label="Height in centimeters"><span class="calcpro-lbm-unit">cm</span></div></div>
+          <div class="calcpro-lbm-field"><label for="calcpro-lbm-kg">Weight</label><div class="calcpro-lbm-inputbox"><input id="calcpro-lbm-kg" type="number" inputmode="decimal" step="any" value="60" aria-label="Weight in kilograms"><span class="calcpro-lbm-unit">kg</span></div></div>
+        </div>
+        <div data-calcpro-lbm-section="us" hidden>
+          <div class="calcpro-lbm-field"><span class="calcpro-lbm-field-label">Height</span><div class="calcpro-lbm-ftin"><div class="calcpro-lbm-inputbox"><input id="calcpro-lbm-feet" type="number" inputmode="decimal" step="any" value="5" aria-label="Height feet"><span class="calcpro-lbm-unit">ft</span></div><div class="calcpro-lbm-inputbox"><input id="calcpro-lbm-inches" type="number" inputmode="decimal" step="any" value="10" aria-label="Height inches"><span class="calcpro-lbm-unit">in</span></div></div></div>
+          <div class="calcpro-lbm-field"><label for="calcpro-lbm-lbs">Weight</label><div class="calcpro-lbm-inputbox"><input id="calcpro-lbm-lbs" type="number" inputmode="decimal" step="any" value="160" aria-label="Weight in pounds"><span class="calcpro-lbm-unit">lbs</span></div></div>
+        </div>
+        <div data-calcpro-lbm-section="other" hidden>
+          <div class="calcpro-lbm-field"><label for="calcpro-lbm-other-height">Height</label><div class="calcpro-lbm-other-control"><div class="calcpro-lbm-inputbox"><input id="calcpro-lbm-other-height" type="number" step="any" inputmode="decimal" value="1.8" aria-label="Height in selected units"></div><select id="calcpro-lbm-height-unit" aria-label="Height unit"><option value="m" selected>m</option><option value="cm">cm</option><option value="in">inches</option><option value="ft">feet</option><option value="mm">mm</option></select></div></div>
+          <div class="calcpro-lbm-field"><label for="calcpro-lbm-other-weight">Weight</label><div class="calcpro-lbm-other-control"><div class="calcpro-lbm-inputbox"><input id="calcpro-lbm-other-weight" type="number" step="any" inputmode="decimal" value="9.448" aria-label="Weight in selected units"></div><select id="calcpro-lbm-weight-unit" aria-label="Weight unit"><option value="st" selected>stone</option><option value="kg">kg</option><option value="lb">lbs</option><option value="g">g</option><option value="oz">oz</option></select></div></div>
+        </div>
+        <div class="calcpro-lbm-actions"><button type="submit" class="calcpro-lbm-calculate">Calculate <span class="calcpro-lbm-play" aria-hidden="true">▶</span></button><button class="calcpro-lbm-clear" type="button" id="calcpro-lbm-clear">Clear</button></div>
+        <div class="calcpro-lbm-error" id="calcpro-lbm-error" role="alert" hidden></div>
+      </form>
+    </div>
+    <section class="calcpro-lbm-right" aria-labelledby="calcpro-lbm-result-title">
+      <h2 class="calcpro-lbm-result-head" id="calcpro-lbm-result-title"><span>Result</span><button type="button" class="calcpro-lbm-save" id="calcpro-lbm-save" title="Save this calculation as a text file" aria-label="Save this calculation as a text file" disabled><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 3h14l3 3v15H3V3h1zm2 2v6h11V5h-2v4H8V5H6zm6 9a3 3 0 100 6 3 3 0 000-6z"/></svg></button></h2>
+      <p class="calcpro-lbm-result-intro">The lean body mass based on different formulas:</p>
+      <div class="calcpro-lbm-table-wrap" id="calcpro-lbm-result" aria-live="polite" aria-atomic="true"><div class="calcpro-lbm-empty">Enter measurements and select Calculate.</div></div>
+      <p class="calcpro-lbm-result-note" id="calcpro-lbm-result-note"></p>
+      <p class="calcpro-lbm-saved-status" id="calcpro-lbm-saved-status" role="status" hidden></p>
+    </section>
+  </div>
+</div></section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><a href="body-fat-calculator.html">Body Fat</a><a href="bmi-calculator.html">BMI</a><a href="bmr-calculator.html">BMR</a><a href="ideal-weight-calculator.html">Ideal Weight</a><a href="calorie-calculator.html">Calorie</a><a href="army-body-fat-calculator.html">Army Body Fat</a><a href="body-surface-area-calculator.html">Body Surface Area</a><a href="calories-burned-calculator.html">Calories Burned</a><a href="macro-calculator.html">Macro</a><a href="tdee-calculator.html">TDEE</a><a href="healthy-weight-calculator.html">Healthy Weight</a><a href="protein-calculator.html">Protein</a></div></section></aside><article class="cp-article"><h2>How to Use the Lean Body Mass Calculator</h2>
+<p>Choose <strong>Metric Units</strong> for centimeters and kilograms, <strong>US Units</strong> for feet, inches, and pounds, or <strong>Other Units</strong> to enter meters, millimeters, ounces, stone, and additional units. Select your sex and indicate whether the person is 14 years old or younger. Enter height and weight, then select <strong>Calculate</strong>. Changing the unit tab converts your measurements without changing the underlying values.</p>
+<p>The results appear beside the input form on desktop screens and below it on smaller screens. The Save icon exports the current comparison table as a text file. <strong>Clear</strong> empties the form so you can start again.</p>
+<h2>Lean Body Mass Formulas</h2>
+<p>Lean body mass is the portion of total body weight that is not body fat. The equations here estimate lean mass from sex, height, and weight; they do not directly measure body composition. For all equations, <strong>W</strong> means weight in kilograms and <strong>H</strong> means height in centimeters.</p>
+<h3>Boer formula (adults)</h3>
+<p>Male: <strong>LBM = 0.407 × W + 0.267 × H − 19.2</strong><br>Female: <strong>LBM = 0.252 × W + 0.473 × H − 48.3</strong></p>
+<h3>James formula (adults)</h3>
+<p>Male: <strong>LBM = 1.10 × W − 128 × (W/H)<sup>2</sup></strong><br>Female: <strong>LBM = 1.07 × W − 148 × (W/H)<sup>2</sup></strong></p>
+<h3>Hume formula (adults)</h3>
+<p>Male: <strong>LBM = 0.32810 × W + 0.33929 × H − 29.5336</strong><br>Female: <strong>LBM = 0.29569 × W + 0.41813 × H − 43.2933</strong></p>
+<h3>Peters formula (children aged 14 or younger)</h3>
+<p>Estimated extracellular volume: <strong>eECV = 0.0215 × W<sup>0.6469</sup> × H<sup>0.7236</sup></strong>. Estimated lean body mass: <strong>LBM = 3.8 × eECV</strong>. The calculator displays Peters in place of the three adult formulas when you select the younger-age option.</p>
+<h2>Worked Example</h2>
+<p>For an adult male who is 180 cm tall and weighs 60 kg, Boer gives <strong>53.3 kg</strong> of lean body mass (about 89% of body weight), James gives <strong>51.8 kg</strong> (86%), and Hume gives <strong>51.2 kg</strong> (85%). The corresponding implied body-fat percentages are approximately 11%, 14%, and 15%.</p>
+<p>The table calculates implied body-fat percentage as <strong>(1 − LBM / total weight) × 100</strong>. These percentages are model outputs rather than measured body-fat percentages.</p>
+<h2>Frequently Asked Questions</h2>
+<h3>Is lean body mass the same as muscle mass?</h3>
+<p>No. Lean body mass includes muscle, water, bone, blood, organs, and other non-fat tissues. It is not a measurement of muscle alone.</p>
+<h3>Why do the Boer, James, and Hume results differ?</h3>
+<p>They are different regression equations developed from different populations and assumptions. Because they estimate rather than measure body composition, a difference between results is expected.</p>
+<h3>Is this suitable for children?</h3>
+<p>The calculator uses the Peters equation for ages 14 or younger. Pediatric lean-mass estimation requires age-appropriate methods, and this number should not be used on its own for clinical decisions.</p>
+<h3>Can I enter pounds or stone?</h3>
+<p>Yes. Select US Units for pounds or Other Units for kilograms, pounds, ounces, grams, or stone. All computations use the equivalent weight in kilograms and height in centimeters internally.</p>
+<h3>Can an estimate imply a negative body-fat percentage?</h3>
+<p>At unusual height-to-weight combinations, a regression formula can yield a lean-mass estimate greater than total weight. The calculator shows the computed result and flags this limitation instead of silently changing the formula.</p>
+<h2>Sources and Important Limitations</h2>
+<p>These formulas and background citations are described in <a href="https://www.calculator.net/lean-body-mass-calculator.html" rel="noopener noreferrer" target="_blank">Calculator.net’s Lean Body Mass Calculator</a>. Original studies include Boer (1984), James (1976), Hume (1966), and Peters et al. (2011). Predictions are informational estimates, not substitutes for body-composition measurement or individualized medical advice.</p>
+<p class="cp-page-footer">CalcPro — all estimates are for educational and informational use.</p></article></main></div><script>(() => {
+  'use strict';
+  const root = document.getElementById('calcpro-lbm-root');
+  if (!root) return;
+  const $ = (id) => root.querySelector('#' + id);
+  const form = $('calcpro-lbm-form');
+  const result = $('calcpro-lbm-result');
+  const error = $('calcpro-lbm-error');
+  const note = $('calcpro-lbm-result-note');
+  const saveButton = $('calcpro-lbm-save');
+  const savedStatus = $('calcpro-lbm-saved-status');
+  const tabs = Array.from(root.querySelectorAll('[data-calcpro-lbm-mode]'));
+  const groups = Array.from(root.querySelectorAll('[data-calcpro-lbm-section]'));
+  let mode = 'metric';
+  let currentSaveText = '';
+  const heightToCm = { m:100, cm:1, in:2.54, ft:30.48, mm:0.1 };
+  const weightToKg = { st:6.35029318, kg:1, lb:0.45359237, g:0.001, oz:0.028349523125 };
+  const getNumber = id => {
+    const value = $(id).value.trim();
+    return value === '' ? NaN : Number(value);
+  };
+  const formatValue = (n, digits) => Number(n.toFixed(digits)).toString();
+  const selected = name => root.querySelector('input[name="' + name + '"]:checked').value;
+  const clearError = () => { error.hidden = true; error.textContent = ''; };
+  const setError = message => { error.textContent = message; error.hidden = false; };
+  function inputsToMetric() {
+    if (mode === 'metric') return {h:getNumber('calcpro-lbm-cm'),w:getNumber('calcpro-lbm-kg')};
+    if (mode === 'us') {
+      const ft = getNumber('calcpro-lbm-feet'), inch = getNumber('calcpro-lbm-inches');
+      return { h:(ft * 12 + inch) * 2.54, w:getNumber('calcpro-lbm-lbs') * weightToKg.lb };
+    }
+    return {
+      h:getNumber('calcpro-lbm-other-height') * heightToCm[$('calcpro-lbm-height-unit').value],
+      w:getNumber('calcpro-lbm-other-weight') * weightToKg[$('calcpro-lbm-weight-unit').value]
+    };
+  }
+  function fillForMode(h,w) {
+    if (mode === 'metric') {
+      $('calcpro-lbm-cm').value = formatValue(h, 4);
+      $('calcpro-lbm-kg').value = formatValue(w, 5);
+    } else if (mode === 'us') {
+      const totalInches = h / 2.54;
+      const feet = Math.floor(totalInches / 12);
+      $('calcpro-lbm-feet').value = feet;
+      $('calcpro-lbm-inches').value = formatValue(totalInches-feet*12, 4);
+      $('calcpro-lbm-lbs').value = formatValue(w / weightToKg.lb, 5);
+    } else {
+      $('calcpro-lbm-other-height').value = formatValue(h / heightToCm[$('calcpro-lbm-height-unit').value], 6);
+      $('calcpro-lbm-other-weight').value = formatValue(w / weightToKg[$('calcpro-lbm-weight-unit').value], 6);
+    }
+  }
+  function setMode(next) {
+    if (next === mode) return;
+    const old = inputsToMetric();
+    mode = next;
+    tabs.forEach(tab => { tab.setAttribute('aria-selected', String(tab.dataset.calcproLbmMode === mode)); });
+    groups.forEach(group => { group.hidden = group.dataset.calcproLbmSection !== mode; });
+    clearError();
+    if (Number.isFinite(old.h) && Number.isFinite(old.w) && old.h > 0 && old.w > 0) {
+      fillForMode(old.h, old.w);
+      calculate();
+    } else {
+      result.innerHTML = '<div class="calcpro-lbm-empty">Enter valid height and weight, then Calculate.</div>';
+      note.textContent='';
+      saveButton.disabled = true;
+      currentSaveText='';
+    }
+  }
+  tabs.forEach(tab => tab.addEventListener('click', () => setMode(tab.dataset.calcproLbmMode)));
+  function switchOtherUnit(selectId, inputId, factors) {
+    const select = $(selectId), input = $(inputId);
+    select.dataset.previousUnit = select.value;
+    select.addEventListener('change', () => {
+      const numeric = getNumber(inputId);
+      if (Number.isFinite(numeric)) {
+        const base = numeric * factors[select.dataset.previousUnit];
+        input.value = formatValue(base / factors[select.value], 6);
+      }
+      select.dataset.previousUnit = select.value;
+      calculate();
+    });
+  }
+  switchOtherUnit('calcpro-lbm-height-unit','calcpro-lbm-other-height',heightToCm);
+  switchOtherUnit('calcpro-lbm-weight-unit','calcpro-lbm-other-weight',weightToKg);
+  const roundingUnit = () => {
+    if (mode === 'us') return { factor:1/weightToKg.lb, label:'lbs' };
+    if (mode === 'other') {
+      const unit = $('calcpro-lbm-weight-unit').value;
+      return { factor:1/weightToKg[unit], label:({lb:'lbs',st:'st',kg:'kg',g:'g',oz:'oz'})[unit] };
+    }
+    return { factor:1,label:'kg' };
+  };
+  function calculate() {
+    clearError();
+    savedStatus.hidden=true;
+    const {h,w} = inputsToMetric();
+    if (!Number.isFinite(h) || !Number.isFinite(w) || h <= 0 || w <= 0) {
+      setError('Enter a valid height and weight greater than zero.');
+      result.innerHTML = '<div class="calcpro-lbm-empty">A valid height and weight are needed.</div>';
+      note.textContent=''; currentSaveText=''; saveButton.disabled=true; return false;
+    }
+    if (h > 350 || w > 1000) {
+      setError('Check the measurements: height must be at most 350 cm and weight at most 1,000 kg.');
+      result.innerHTML = '<div class="calcpro-lbm-empty">Please correct your measurements.</div>';
+      note.textContent=''; currentSaveText=''; saveButton.disabled=true; return false;
+    }
+    if (mode === 'us' && (getNumber('calcpro-lbm-feet') < 0 || getNumber('calcpro-lbm-inches') < 0)) {
+      setError('Feet and inches must not be negative.');
+      result.innerHTML = '<div class="calcpro-lbm-empty">Please correct your height.</div>';
+      note.textContent=''; currentSaveText=''; saveButton.disabled=true; return false;
+    }
+    const sex=selected('calcpro-lbm-sex');
+    const child=selected('calcpro-lbm-child')==='y';
+    let estimates;
+    if (child) {
+      const ecv=0.0215*Math.pow(w,0.6469)*Math.pow(h,0.7236);
+      estimates=[{name:'Peters',super:'4',lbm:3.8*ecv}];
+    } else if (sex==='m') {
+      estimates=[
+        {name:'Boer',super:'1',lbm:0.407*w+0.267*h-19.2},
+        {name:'James',super:'2',lbm:1.1*w-128*Math.pow(w/h,2)},
+        {name:'Hume',super:'3',lbm:0.32810*w+0.33929*h-29.5336}
+      ];
+    } else {
+      estimates=[
+        {name:'Boer',super:'1',lbm:0.252*w+0.473*h-48.3},
+        {name:'James',super:'2',lbm:1.07*w-148*Math.pow(w/h,2)},
+        {name:'Hume',super:'3',lbm:0.29569*w+0.41813*h-43.2933}
+      ];
+    }
+    const unit=roundingUnit();
+    let outside=false;
+    const rows=estimates.map(o => {
+      const lbmPercent=Math.round((o.lbm/w)*100);
+      const fatPercent=Math.round(100-o.lbm/w*100);
+      if (o.lbm<0 || o.lbm>w) outside=true;
+      return {name:o.name,super:o.super,mass:(o.lbm*unit.factor).toFixed(1),leanPercent:lbmPercent,fatPercent};
+    });
+    result.innerHTML='<table class="calcpro-lbm-results-table"><thead><tr><th scope="col">Formula</th><th scope="col">Lean Body Mass</th><th scope="col">Body Fat</th></tr></thead><tbody>'+
+      rows.map(o=>'<tr><td>'+o.name+'<sup>'+o.super+'</sup></td><td><strong>'+o.mass+' '+unit.label+'</strong> ('+o.leanPercent+'%)</td><td>'+o.fatPercent+'%</td></tr>').join('')+
+      '</tbody></table>';
+    note.textContent = child ? 'Peters is an estimate for children aged 14 or younger; adult formulas are not shown.' : 'The body-fat percentages are implied by each equation; they are estimates, not direct measurements.';
+    note.classList.toggle('calcpro-lbm-caution',outside);
+    if (outside) note.textContent+=' At least one formula produced lean mass outside 0–100% of body weight; interpret the model cautiously.';
+    currentSaveText='Lean Body Mass Calculator | CalcPro\n'+
+      'Sex: '+(sex==='m'?'male':'female')+'; Age 14 or younger: '+(child?'yes':'no')+'\n'+
+      'Height: '+h.toFixed(2)+' cm; Weight: '+w.toFixed(3)+' kg\n'+
+      rows.map(o=>o.name+': '+o.mass+' '+unit.label+' ('+o.leanPercent+'% lean; '+o.fatPercent+'% implied body fat)').join('\n')+'\n'+note.textContent+'\n';
+    saveButton.disabled=false;
+    return true;
+  }
+  form.addEventListener('submit',event=>{event.preventDefault();calculate();});
+  $('calcpro-lbm-clear').addEventListener('click',()=>{
+    form.querySelectorAll('input[type=number]').forEach(input => {input.value='';});
+    root.querySelector('input[name="calcpro-lbm-sex"][value="m"]').checked=true;
+    root.querySelector('input[name="calcpro-lbm-child"][value="n"]').checked=true;
+    clearError();result.innerHTML='<div class="calcpro-lbm-empty">Enter your measurements and select Calculate.</div>';
+    note.textContent='';currentSaveText='';saveButton.disabled=true;savedStatus.hidden=true;
+    const first={metric:'calcpro-lbm-cm',us:'calcpro-lbm-feet',other:'calcpro-lbm-other-height'}[mode];
+    $(first).focus();
+  });
+  saveButton.addEventListener('click',()=>{
+    if(!currentSaveText)return;
+    const blob=new Blob([currentSaveText.replace(/\\n/g,'\n')],{type:'text/plain;charset=utf-8'});
+    const url=URL.createObjectURL(blob);
+    const link=document.createElement('a');
+    link.href=url;link.download='lean-body-mass-results.txt';
+    document.body.appendChild(link);link.click();link.remove();
+    window.setTimeout(()=>URL.revokeObjectURL(url),1000);
+    savedStatus.textContent='Your result file is ready to save.';savedStatus.hidden=false;
+  });
+  calculate();
+})();</script></body></html>

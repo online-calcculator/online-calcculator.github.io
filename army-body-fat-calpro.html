@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>Army Body Fat Calculator (2023 Method) | CalcPro</title><meta content="Estimate historical 2023 Army one-site body fat percentage from weight, waist, age, and gender. Includes historic limits, conversion helpers, and policy context." name="description"/><link href="template-style.css" rel="stylesheet"/><style>
+
+/* Army body fat calculator component; isolated from CalcPro site styles. */
+.calcpro-army { --calcpro-army-blue:#35699a; --calcpro-army-green:#4c8329; --calcpro-army-border:#b9b9b9; color:#111; font:16px/1.35 Arial,Helvetica,sans-serif; max-width:100%; }
+.calcpro-army *, .calcpro-army *::before, .calcpro-army *::after { box-sizing:border-box; }
+.calcpro-army [hidden] { display:none!important; }
+.calcpro-army .calcpro-army-banner { background:var(--calcpro-army-blue); color:#fff; padding:9px 12px; display:flex; align-items:center; justify-content:center; gap:22px; min-height:45px; text-align:center; font-size:17px; }
+.calcpro-army .calcpro-army-banner-symbol { display:inline-flex; align-items:center; justify-content:center; flex:0 0 27px; width:27px; height:27px; border-radius:50%; background:#fff; color:var(--calcpro-army-blue); font-size:19px; font-weight:700; line-height:1; }
+.calcpro-army .calcpro-army-form { background:#eee; border:1px solid var(--calcpro-army-border); padding:11px 10px 10px; margin-top:3px; }
+.calcpro-army .calcpro-army-row { display:flex; align-items:center; gap:7px; margin:5px 0; min-width:0; }
+.calcpro-army .calcpro-army-label { width:60px; flex:0 0 60px; font-size:16px; }
+.calcpro-army .calcpro-army-choice { display:flex; align-items:center; flex-wrap:wrap; gap:15px; min-height:30px; }
+.calcpro-army .calcpro-army-radio { display:inline-flex; align-items:center; gap:7px; cursor:pointer; white-space:nowrap; }
+.calcpro-army .calcpro-army-radio input { appearance:none; width:21px; height:21px; margin:0; border-radius:50%; border:2px solid #326b9a; background:#fff; flex:0 0 21px; cursor:pointer; }
+.calcpro-army .calcpro-army-radio input:checked { border:6px solid #326b9a; }
+.calcpro-army input:focus-visible, .calcpro-army button:focus-visible, .calcpro-army summary:focus-visible { outline:2px solid #175d9e; outline-offset:2px; }
+.calcpro-army .calcpro-army-input-wrap { position:relative; width:255px; max-width:100%; }
+.calcpro-army .calcpro-army-input-wrap input { display:block; width:100%; min-width:0; height:35px; padding:5px 9px; border:1px solid #24659b; border-radius:3px; background:#fff; box-shadow:1px 1px 2px #b0b0b0; color:#111; font:17px Arial,Helvetica,sans-serif; }
+.calcpro-army .calcpro-army-input-wrap.calcpro-army-with-unit input { padding-right:82px; }
+.calcpro-army .calcpro-army-suffix { position:absolute; top:50%; transform:translateY(-50%); right:8px; color:#838383; pointer-events:none; font-size:16px; }
+.calcpro-army .calcpro-army-waist-fields { display:flex; flex-wrap:wrap; align-items:center; gap:9px; min-width:0; }
+.calcpro-army .calcpro-army-input-wrap.calcpro-army-short { width:125px; }
+.calcpro-army .calcpro-army-short input { padding-right:60px; }
+.calcpro-army .calcpro-army-waist-note { font-size:15px; }
+.calcpro-army .calcpro-army-buttons { display:flex; align-items:center; gap:5px; padding-left:67px; margin-top:10px; }
+.calcpro-army .calcpro-army-button { border:0; border-radius:0; min-height:43px; font:bold 16px Arial,Helvetica,sans-serif; cursor:pointer; color:#fff; padding:10px 13px; }
+.calcpro-army .calcpro-army-calculate { background:#438020; display:inline-flex; align-items:center; gap:11px; }
+.calcpro-army .calcpro-army-calculate:hover { background:#346b17; }
+.calcpro-army .calcpro-army-play { display:inline-flex; align-items:center; justify-content:center; background:#9bc28a; height:24px; width:24px; border-radius:50%; color:#fff; font-size:18px; padding-left:2px; }
+.calcpro-army .calcpro-army-clear { background:#aaa; }
+.calcpro-army .calcpro-army-clear:hover { background:#888; }
+.calcpro-army .calcpro-army-error { background:#fff3ee; border:1px solid #c64823; color:#8f270e; padding:9px 11px; margin:9px 0; font-size:14px; }
+.calcpro-army .calcpro-army-result { margin:0 0 27px; }
+.calcpro-army .calcpro-army-result-title { display:flex; justify-content:space-between; align-items:center; padding:7px 9px; background:var(--calcpro-army-green); color:#fff; font-size:22px; min-height:43px; }
+.calcpro-army .calcpro-army-save { border:0; background:none; cursor:pointer; display:flex; flex-direction:column; align-items:center; justify-content:center; font:10px/1 Arial,Helvetica,sans-serif; color:#fff; padding:0 3px; min-width:30px; }
+.calcpro-army .calcpro-army-save svg { width:17px; height:17px; margin-bottom:1px; fill:currentColor; }
+.calcpro-army .calcpro-army-result-value { font-size:26px; line-height:1.18; color:#087c05; font-weight:700; margin:5px 0 0; }
+.calcpro-army .calcpro-army-result-main { font-size:23px; line-height:1.35; margin:0 0 10px; }
+.calcpro-army .calcpro-army-result-extra { margin:4px 0; font-size:16px; line-height:1.43; }
+.calcpro-army .calcpro-army-result-note { margin:12px 0 0; color:#555; font-size:12px; line-height:1.45; }
+.calcpro-army .calcpro-army-result a, .calcpro-army .calcpro-army-measurement-tools a { color:#006699; }
+.calcpro-army .calcpro-army-measurement-tools { font-size:14px; margin:10px 1px 0; border:1px solid #d4dce4; background:#f9fbfc; padding:8px 11px; }
+.calcpro-army .calcpro-army-measurement-tools summary { cursor:pointer; font-weight:700; color:#265b83; }
+.calcpro-army .calcpro-army-measurement-tools p { margin:9px 0; line-height:1.4; }
+.calcpro-army .calcpro-army-measurement-tools h3 { font-size:15px; margin:15px 0 7px; }
+.calcpro-army .calcpro-army-tool-grid { display:flex; align-items:end; flex-wrap:wrap; gap:8px; }
+.calcpro-army .calcpro-army-tool-grid label { display:flex; flex-direction:column; gap:4px; font-size:13px; }
+.calcpro-army .calcpro-army-tool-grid input { width:98px; max-width:100%; padding:7px; font-size:15px; border:1px solid #8aa9bd; border-radius:2px; }
+.calcpro-army .calcpro-army-tool-grid button { border:0; background:#35699a; color:#fff; padding:8px 9px; font:bold 13px Arial,Helvetica,sans-serif; cursor:pointer; min-height:34px; }
+.calcpro-army .calcpro-army-tool-feedback { font-size:13px; color:#284f6a; margin:7px 0 0; }
+.calcpro-army .calcpro-army-new-policy { padding:9px 11px; background:#f6f9fc; border-left:3px solid #6b91b3; font-size:13px; margin:11px 0; }
+.calcpro-army-page { margin:0 auto; max-width:850px; padding:24px 14px 50px; font:16px/1.43 Arial,Helvetica,sans-serif; color:#111; }
+.calcpro-army-page h1 { font-size:30px; color:#003366; margin:7px 0; }
+.calcpro-army-page .calcpro-army-page-crumb { color:#006699; font-size:13px; }
+.calcpro-army-page .calcpro-army-page-intro { margin:10px 0 13px; }
+.calcpro-army-page .calcpro-army-guide { margin-top:32px; line-height:1.6; }
+.calcpro-army-page .calcpro-army-guide h2 { margin:22px 0 9px; color:#003366; font-size:22px; }
+.calcpro-army-page .calcpro-army-guide h3 { color:#003366; font-size:18px; margin:18px 0 8px; }
+.calcpro-army-page .calcpro-army-guide table { border-collapse:collapse; width:100%; max-width:550px; }
+.calcpro-army-page .calcpro-army-guide td,.calcpro-army-page .calcpro-army-guide th { border:1px solid #bdccd7; padding:7px 10px; text-align:left; }
+.calcpro-army-page .calcpro-army-guide th { background:#35699a; color:#fff; }
+@media (max-width:600px) {
+ .calcpro-army .calcpro-army-banner { gap:10px; text-align:left; font-size:15px; }
+ .calcpro-army .calcpro-army-form { padding:11px 9px; }
+ .calcpro-army .calcpro-army-row { flex-direction:column; align-items:stretch; gap:4px; margin:9px 0; }
+ .calcpro-army .calcpro-army-label { width:auto; flex:none; font-weight:600; }
+ .calcpro-army .calcpro-army-input-wrap { width:100%; max-width:355px; }
+ .calcpro-army .calcpro-army-input-wrap.calcpro-army-short { width:min(46%,145px); }
+ .calcpro-army .calcpro-army-waist-fields { gap:7px; }
+ .calcpro-army .calcpro-army-waist-note { flex-basis:100%; font-size:13px; margin-top:3px; }
+ .calcpro-army .calcpro-army-buttons { padding-left:0; }
+ .calcpro-army .calcpro-army-result-main { font-size:19px; }
+ .calcpro-army .calcpro-army-result-value { font-size:24px; }
+ .calcpro-army .calcpro-army-result-title { font-size:20px; }
+ .calcpro-army-page h1 { font-size:26px; }
+}
+@media (prefers-reduced-motion:reduce) { .calcpro-army * { scroll-behavior:auto!important; } }
+@media print { .calcpro-army .calcpro-army-measurement-tools,.calcpro-army .calcpro-army-buttons,.calcpro-army .calcpro-army-save { display:none!important; } }
+
+</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="fitness-and-health-calculator.html">Fitness &amp; Health</a> / Army Body Fat Calculator</nav><h1 class="cp-page-title">Army Body Fat Calculator</h1><p class="cp-intro">Estimate your body-fat percentage using the Army’s former 2023 one-site tape-test formula. Enter weight and abdominal circumference at the navel, then compare the result with the historic age-based standards. The current Army assessment changed in July 2026.</p><section aria-label="Calculator" class="cp-tool-area">
+<div class="calcpro-army" id="calcpro-army-root">
+  <section class="calcpro-army-result" id="calcpro-army-result" aria-live="polite" aria-label="Calculated body fat result" hidden>
+    <div class="calcpro-army-result-title"><span>Result</span><button class="calcpro-army-save" type="button" id="calcpro-army-save" aria-label="Save result as a text report" title="Save result as a text report"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 2h13l5 5v15H2V4a2 2 0 0 1 2-2zm1 2v7h13V4h-3v5H7V4H5zm7 10a4 4 0 1 0 .001 8.001A4 4 0 0 0 12 14z"/></svg><span>save</span></button></div>
+    <h2 class="calcpro-army-result-value">Body Fat = <span id="calcpro-army-percent">—</span>%</h2>
+    <p class="calcpro-army-result-main" id="calcpro-army-status"></p>
+    <p class="calcpro-army-result-extra" id="calcpro-army-change"></p>
+    <p class="calcpro-army-result-note" id="calcpro-army-method-note"></p>
+    <div class="calcpro-army-new-policy">This calculator reproduces the <strong>former 2023 Army tape-test method</strong>, not today's official compliance test. The Army replaced the tape test with a <a href="https://www.army.mil/article/293753" target="_blank" rel="noopener noreferrer">waist-to-height ratio standard in July 2026</a>.</div>
+  </section>
+  <div class="calcpro-army-banner" id="calcpro-army-prompt"><span class="calcpro-army-banner-symbol" aria-hidden="true">▼</span><span>Modify the values and click the Calculate button to use</span></div>
+  <p class="calcpro-army-error" id="calcpro-army-error" role="alert" hidden></p>
+  <form class="calcpro-army-form" id="calcpro-army-form" novalidate>
+    <div class="calcpro-army-row"><span class="calcpro-army-label" id="calcpro-army-gender-label">Gender</span><div class="calcpro-army-choice" role="group" aria-labelledby="calcpro-army-gender-label"><label class="calcpro-army-radio"><input id="calcpro-army-male" type="radio" name="calcpro-army-gender" value="male" checked> male</label><label class="calcpro-army-radio"><input id="calcpro-army-female" type="radio" name="calcpro-army-gender" value="female"> female</label></div></div>
+    <div class="calcpro-army-row"><label for="calcpro-army-age" class="calcpro-army-label">Age</label><div class="calcpro-army-input-wrap"><input id="calcpro-army-age" type="number" inputmode="numeric" min="17" max="120" step="1" value="21" required></div></div>
+    <div class="calcpro-army-row"><label for="calcpro-army-weight" class="calcpro-army-label">Weight</label><div class="calcpro-army-input-wrap calcpro-army-with-unit"><input id="calcpro-army-weight" type="number" inputmode="decimal" min="70" max="650" step="any" value="165" required><span class="calcpro-army-suffix">pounds</span></div></div>
+    <div class="calcpro-army-row"><label for="calcpro-army-waist-feet" class="calcpro-army-label">Waist</label><div class="calcpro-army-waist-fields"><div class="calcpro-army-input-wrap calcpro-army-short"><input id="calcpro-army-waist-feet" type="number" inputmode="numeric" min="0" max="8" step="1" value="3" required><span class="calcpro-army-suffix">feet</span></div><div class="calcpro-army-input-wrap calcpro-army-short"><input id="calcpro-army-waist-inches" type="number" inputmode="decimal" min="0" max="11.99" step="any" value="0" required><span class="calcpro-army-suffix">inches</span></div><span class="calcpro-army-waist-note">abdominal circumference at the level of belly button</span></div></div>
+    <div class="calcpro-army-buttons"><button type="submit" class="calcpro-army-button calcpro-army-calculate">Calculate <span class="calcpro-army-play" aria-hidden="true">▶</span></button><button type="button" class="calcpro-army-button calcpro-army-clear" id="calcpro-army-clear">Clear</button></div>
+  </form>
+  <details class="calcpro-army-measurement-tools">
+    <summary>Measurement helpers: three readings and metric units</summary>
+    <p>For the historical method, take three measurements at the navel. Round each reading down to the nearest 0.5 inch, then average the readings to the nearest 0.5 inch.</p>
+    <h3>Average three waist measurements</h3>
+    <div class="calcpro-army-tool-grid"><label>Reading 1 (in)<input id="calcpro-army-reading-one" type="number" step="any" min="0" placeholder="36"></label><label>Reading 2 (in)<input id="calcpro-army-reading-two" type="number" step="any" min="0" placeholder="36"></label><label>Reading 3 (in)<input id="calcpro-army-reading-three" type="number" step="any" min="0" placeholder="36"></label><button id="calcpro-army-average" type="button">Use average</button></div>
+    <p class="calcpro-army-tool-feedback" id="calcpro-army-average-note" aria-live="polite"></p>
+    <h3>Convert metric measurements</h3>
+    <div class="calcpro-army-tool-grid"><label>Body weight (kg)<input id="calcpro-army-metric-weight" type="number" step="any" min="0" placeholder="75"></label><label>Waist (cm)<input id="calcpro-army-metric-waist" type="number" step="any" min="0" placeholder="91.4"></label><button id="calcpro-army-convert" type="button">Use metric values</button></div>
+    <p class="calcpro-army-tool-feedback" id="calcpro-army-metric-note" aria-live="polite"></p>
+  </details>
+</div>
+</section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><a href="bmi-calculator.html">BMI</a><a href="body-fat-calculator.html">Body Fat</a><a href="bmr-calculator.html">BMR</a><a href="calorie-calculator.html">Calorie</a><a href="ideal-weight-calculator.html">Ideal Weight</a><a href="healthy-weight-calculator.html">Healthy Weight</a><a href="lean-body-mass-calculator.html">Lean Body Mass</a><a href="macro-calculator.html">Macro</a><a href="protein-calculator.html">Protein</a><a href="tdee-calculator.html">TDEE</a><a href="body-surface-area-calculator.html">Body Surface Area</a><a href="calories-burned-calculator.html">Calories Burned</a></div></section></aside><article class="cp-article">
+<h2>How to Use the Army Body Fat Calculator</h2>
+<p>Select male or female, enter your age and your body weight in pounds, then enter your abdominal circumference in feet and inches. Measure at your belly button after a normal, relaxed exhalation—not at the narrowest part of your waist. Click <strong>Calculate</strong> to view the estimate and the historical age-based comparison. Results appear directly above the input form.</p>
+<p>For the original one-site method, a team took three circumference measurements. The expandable <strong>Measurement helpers</strong> area can average three readings or convert measurements from kilograms and centimeters. The calculator rounds the waist down to a half-inch and body weight to the nearest pound.</p>
+<h2>The 2023 Army Body Fat Formula</h2>
+<p>The former Army one-site assessment used body weight in pounds (W) and abdomen circumference at the navel in inches (A):</p>
+<ul><li><strong>Male:</strong> Body fat (%) = −26.97 − (0.12 × W) + (1.99 × A)</li><li><strong>Female:</strong> Body fat (%) = −9.15 − (0.015 × W) + (1.27 × A)</li></ul>
+<p>Round the computed percentage to the nearest whole percent. The official 2023 examples include a male at 210 lb and 35 in (17%) and a female at 165 lb and 30 in (26%).</p>
+<h3>Worked Example</h3>
+<p>For a 21-year-old male weighing 165 lb with a 36-inch abdomen, body fat = −26.97 − (0.12 × 165) + (1.99 × 36) = 24.87%, or <strong>25%</strong> rounded. The former 2023 maximum for men ages 21–27 was <strong>22%</strong>, a difference of three percentage points. At the starting weight, 3% × 165 lb is approximately five pounds of fat; that arithmetic comparison is <strong>not</strong> a predicted amount of weight loss needed to pass.</p>
+<h2>Former Army Body Fat Standards (2023)</h2>
+<div class="cp-table-scroll"><table class="cp-content-table"><thead><tr><th>Age</th><th>Male maximum</th><th>Female maximum</th></tr></thead><tbody><tr><td>17–20</td><td>20%</td><td>30%</td></tr><tr><td>21–27</td><td>22%</td><td>32%</td></tr><tr><td>28–39</td><td>24%</td><td>34%</td></tr><tr><td>40 and older</td><td>26%</td><td>36%</td></tr></tbody></table></div>
+<div class="cp-warning"><strong>Current policy (as of November 2026):</strong> The U.S. Army replaced the weight/waist tape method in July 2026 with waist-to-height ratio (WHtR). The new standard is <strong>waist ÷ height &lt; 0.55</strong>. This calculator reproduces the <em>former</em> 2023 body-fat estimate for comparison and research; it is not an official current Army compliance check. <a href="https://www.army.mil/article/293753" target="_blank" rel="noopener noreferrer">Read the Army's July 2026 policy announcement.</a></div>
+<h2>Frequently Asked Questions</h2>
+<h3>Where do I take the waist measurement?</h3>
+<p>At the navel (belly button), with the tape parallel to the floor and the abdomen relaxed. This differs from measuring the narrowest part of the torso.</p>
+<h3>Can I use centimeters and kilograms?</h3>
+<p>Yes. Open <strong>Measurement helpers</strong> and enter metric measurements. The tool converts them into the pounds and inches used by the historic formula and applies its rounding rules.</p>
+<h3>Is this the current U.S. Army body-composition assessment?</h3>
+<p>No. The one-site 2023 tape test was superseded in July 2026. Current screening uses a waist-to-height ratio under 0.55, which requires a height measurement that the 2023 reference calculator does not ask for.</p>
+<h3>Does the reported fat-equivalent amount equal the weight I must lose?</h3>
+<p>No. It is only the difference in percentage points multiplied by the entered body weight. Actual changes in weight, waist size, and body composition interact; the tape-test regression does not provide a reliable target weight-loss prediction.</p>
+<h2>Sources</h2>
+<ul><li><a href="https://tradocfcoeccafcoepfwprod.blob.core.usgovcloudapi.net/ncoa/blc/docs/ALARACT_046-2023.pdf" target="_blank" rel="noopener noreferrer">U.S. Army ALARACT 046/2023</a> — 2023 age-based limits, measurement method, and male/female equations in Table B–5.</li><li><a href="https://www.army.mil/article/293753" target="_blank" rel="noopener noreferrer">U.S. Army Public Affairs, July 7, 2026</a> — replacement by the waist-to-height ratio assessment.</li><li><a href="https://www.calculator.net/army-body-fat-calculator.html" target="_blank" rel="noopener noreferrer">Calculator.net Army Body Fat Calculator</a> — visual and interaction reference for this calculator design.</li></ul>
+<p class="cp-page-footer">CalcPro — estimates for informational use only; not an official military or medical assessment.</p>
+</article></main></div><script>
+(function(){
+  'use strict';
+  const root = document.getElementById('calcpro-army-root');
+  if (!root || root.dataset.initialized === 'true') return;
+  root.dataset.initialized = 'true';
+  const byId = (id) => root.querySelector('#calcpro-army-' + id);
+  const form = byId('form');
+  const result = byId('result');
+  const error = byId('error');
+  const prompt = byId('prompt');
+  const ageEl = byId('age');
+  const weightEl = byId('weight');
+  const feetEl = byId('waist-feet');
+  const inchesEl = byId('waist-inches');
+  const halfDown = (num) => Math.floor(num * 2 + 1e-10) / 2;
+  const halfNearest = (num) => Math.round(num * 2) / 2;
+  const cleanNum = (field) => field.value.trim() === '' ? NaN : Number(field.value);
+  let lastReport = '';
+  const limits = {male:[20,22,24,26],female:[30,32,34,36]};
+  function showError(message) { error.textContent = message; error.hidden=false; }
+  function removeError() { error.hidden=true; error.textContent=''; }
+  function hideResult() { result.hidden=true; prompt.hidden=false; lastReport=''; }
+  function resetHelpers() {
+    ['reading-one','reading-two','reading-three','metric-weight','metric-waist'].forEach(id=>byId(id).value='');
+    byId('average-note').textContent=''; byId('metric-note').textContent='';
+  }
+  function readData() {
+    const age = cleanNum(ageEl), originalWeight = cleanNum(weightEl);
+    const feet = cleanNum(feetEl), inches = cleanNum(inchesEl);
+    if (!Number.isInteger(age) || age < 17 || age > 120) throw new Error('Enter a whole-number age from 17 to 120 years.');
+    if (!Number.isFinite(originalWeight) || originalWeight < 70 || originalWeight > 650) throw new Error('Enter a weight between 70 and 650 pounds.');
+    if (!Number.isInteger(feet) || feet < 0 || feet > 8) throw new Error('Waist feet must be a whole number from 0 to 8.');
+    if (!Number.isFinite(inches) || inches < 0 || inches >= 12) throw new Error('Waist inches must be between 0 and less than 12.');
+    const rawWaist = feet*12 + inches;
+    if (rawWaist < 18 || rawWaist > 84) throw new Error('Enter a total abdominal circumference between 18 and 84 inches.');
+    return {age, sex:byId('female').checked?'female':'male',weight:Math.round(originalWeight),waist:halfDown(rawWaist)};
+  }
+  function calculate(data) {
+    const bfUnrounded = data.sex === 'male'
+      ? -26.97 - 0.12*data.weight + 1.99*data.waist
+      : -9.15 - 0.015*data.weight + 1.27*data.waist;
+    if (bfUnrounded < 0 || bfUnrounded > 100) throw new Error('These values produce a body-fat estimate outside 0–100%. Check the weight and waist measurements; the 2023 equation is not suitable for this combination.');
+    const bf = Math.round(bfUnrounded);
+    const group = data.age <= 20?0:data.age<=27?1:data.age<=39?2:3;
+    const max = limits[data.sex][group];
+    const over = Math.max(0,bf-max);
+    const fatEquiv = Math.round(data.weight*over/100);
+    return {bf,bfUnrounded,max,over,fatEquiv,group,passes:bf<=max};
+  }
+  function render(data,calc) {
+    const groupName=['17–20','21–27','28–39','40 and older'][calc.group];
+    byId('percent').textContent=String(calc.bf);
+    byId('status').textContent=calc.passes
+      ? `Under the former 2023 Army body-fat standards, your estimated body-fat percentage is within the ${calc.max}% maximum for your age.`
+      : `Under the former 2023 Army body-fat standards, your estimated body-fat percentage exceeds the ${calc.max}% maximum for your age.`;
+    byId('change').textContent = calc.passes
+      ? `Your estimate is ${calc.max-calc.bf} percentage point${calc.max-calc.bf===1?'':'s'} below or at the historical limit for ages ${groupName}.`
+      : `You would need a ${calc.over}-percentage-point reduction in estimated body fat to reach that historical threshold. At your current weight, that gap represents approximately ${calc.fatEquiv} pound${calc.fatEquiv===1?'':'s'} of body fat (not a predicted weight-loss target).`;
+    byId('method-note').textContent=`Calculated with ${data.weight} lb and ${data.waist.toFixed(1)} in at the navel. Measurements use the 2023 rounding method; the estimated ${calc.bf}% is rounded to a whole percent.`;
+    lastReport=[
+      'CalcPro — Army Body Fat Calculator (historical 2023 tape method)',
+      `Gender: ${data.sex}`,
+      `Age: ${data.age} years (2023 age group: ${groupName})`,
+      `Body weight: ${data.weight} lb`,
+      `Abdomen at navel: ${data.waist.toFixed(1)} in`,
+      `Estimated body fat: ${calc.bf}% (unrounded: ${calc.bfUnrounded.toFixed(3)}%)`,
+      `Former 2023 maximum: ${calc.max}%`,
+      `Comparison against 2023 standard: ${calc.passes?'within limit':'above limit'}`,
+      calc.passes?'':`Difference: ${calc.over} percentage points (equivalent to roughly ${calc.fatEquiv} lb of fat at the starting weight; not a weight-loss forecast)`,
+      '',
+      'Note: The U.S. Army replaced this method in July 2026 with waist-to-height ratio < 0.55.',
+      'Current official guidance: https://www.army.mil/article/293753',
+      'Historical method: ALARACT 046/2023, Table B-5'
+    ].filter(line=>line!=='').join('\n');
+    result.hidden=false;
+    prompt.hidden=true;
+  }
+  form.addEventListener('submit',function(event){
+    event.preventDefault();
+    removeError();
+    try { const data=readData(); const calc=calculate(data); render(data,calc); }
+    catch(e){hideResult();showError(e.message||'Please check the input values.');}
+  });
+  byId('clear').addEventListener('click',function(){
+    byId('male').checked=true;
+    [ageEl,weightEl,feetEl,inchesEl].forEach(el=>el.value='');
+    resetHelpers();removeError();hideResult();ageEl.focus();
+  });
+  byId('save').addEventListener('click',function(){
+    if(!lastReport) return;
+    const blob = new Blob([lastReport+'\n'],{type:'text/plain;charset=utf-8'});
+    const url = URL.createObjectURL(blob);
+    const a=document.createElement('a'); a.href=url; a.download='army-body-fat-2023-report.txt';
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(()=>URL.revokeObjectURL(url),1000);
+  });
+  function applyInches(inches) {
+    const rounded=halfDown(inches);
+    feetEl.value=String(Math.floor(rounded/12));
+    inchesEl.value=String(+(rounded%12).toFixed(2));
+    removeError();hideResult();
+    return rounded;
+  }
+  byId('average').addEventListener('click',function(){
+    const fields=[byId('reading-one'),byId('reading-two'),byId('reading-three')];
+    const values=fields.map(cleanNum);
+    const feedback=byId('average-note');
+    if(values.some(v=>!Number.isFinite(v)||v<18||v>84)) { feedback.textContent='Enter all three readings between 18 and 84 inches.'; return; }
+    const rounded=values.map(halfDown);
+    if(Math.max(...rounded)-Math.min(...rounded)>1) {feedback.textContent='Readings differ by more than 1 inch; take a fourth measurement and use the three closest.';return;}
+    const mean=halfNearest(rounded.reduce((a,b)=>a+b,0)/3);
+    applyInches(mean);
+    feedback.textContent=`Applied ${mean.toFixed(1)} inches (averaged from ${rounded.map(v=>v.toFixed(1)).join(', ')} in after measurement rounding).`;
+  });
+  byId('convert').addEventListener('click',function(){
+    const kg=cleanNum(byId('metric-weight'));
+    const cm=cleanNum(byId('metric-waist'));
+    const feedback=byId('metric-note');
+    if(!Number.isFinite(kg)||kg<=0||!Number.isFinite(cm)||cm<=0){feedback.textContent='Enter positive values for weight (kg) and waist (cm).';return;}
+    const lb=kg*2.20462262185, inches=cm/2.54;
+    if(lb<70||lb>650||inches<18||inches>84){feedback.textContent='Converted measurement is outside the supported weight or waist range.';return;}
+    weightEl.value=String(Math.round(lb));
+    const waist=applyInches(inches);
+    feedback.textContent=`Applied ${Math.round(lb)} lb and ${waist.toFixed(1)} in using the historical rounding rules.`;
+  });
+})();
+</script></body></html>

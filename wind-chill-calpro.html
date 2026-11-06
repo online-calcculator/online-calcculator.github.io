@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>Wind Chill Calculator | CalcPro</title><meta content="Calculate wind chill in Celsius, Fahrenheit, and Kelvin, with automatic wind-speed unit conversion and a skin heat-loss estimate." name="description"/><link href="template-style.css" rel="stylesheet"/><style>
+/* Standalone, isolated wind chill calculator styles */
+.calcpro-windchill-widget{--wc-blue:#336699;--wc-green:#4c812b;--wc-text:#111;--wc-panel:#ededed;max-width:700px;width:100%;font-family:Arial,Helvetica,sans-serif;color:var(--wc-text);font-size:14px;line-height:1.38}
+.calcpro-windchill-widget *, .calcpro-windchill-widget *::before,.calcpro-windchill-widget *::after{box-sizing:border-box}
+.calcpro-windchill-widget .calcpro-windchill-instruction{background:var(--wc-blue);color:#fff;font-weight:700;text-align:center;padding:7px 9px;margin:0 0 10px;min-height:27px;font-size:13px}
+.calcpro-windchill-widget .calcpro-windchill-results{margin:0 0 16px}
+.calcpro-windchill-widget .calcpro-windchill-results[hidden],.calcpro-windchill-widget .calcpro-windchill-instruction[hidden],.calcpro-windchill-widget .calcpro-windchill-error[hidden],.calcpro-windchill-widget .calcpro-windchill-warning[hidden]{display:none!important}
+.calcpro-windchill-widget .calcpro-windchill-result-heading{display:flex;align-items:center;justify-content:space-between;min-height:30px;background:var(--wc-green);color:#fff;padding:3px 6px;font-size:17px;font-weight:400}
+.calcpro-windchill-widget .calcpro-windchill-save{display:flex;align-items:center;flex-direction:column;justify-content:center;gap:0;background:transparent;border:0;color:#fff;cursor:pointer;padding:0 3px;font:9px Arial,Helvetica,sans-serif;line-height:1.1;min-width:36px}
+.calcpro-windchill-widget .calcpro-windchill-save:hover{text-decoration:underline}
+.calcpro-windchill-widget .calcpro-windchill-save svg{display:block;width:14px;height:14px;fill:currentColor}
+.calcpro-windchill-widget .calcpro-windchill-primary{font-size:16px;margin:9px 0 8px}
+.calcpro-windchill-widget .calcpro-windchill-primary strong{color:#00812b;font-size:17px}
+.calcpro-windchill-widget .calcpro-windchill-secondary{font-size:13px;margin:0 0 9px}
+.calcpro-windchill-widget .calcpro-windchill-warning{color:#684800;background:#fff5d5;border-left:3px solid #c98b00;padding:7px 10px;font-size:12px;margin:5px 0 9px}
+.calcpro-windchill-widget .calcpro-windchill-form{max-width:298px;margin:0;padding:8px 7px 7px;background:var(--wc-panel);border:1px solid #c0c0c0}
+.calcpro-windchill-widget .calcpro-windchill-field{display:grid;grid-template-columns:100px 75px minmax(0,1fr);align-items:center;gap:3px;margin:0 0 3px}
+.calcpro-windchill-widget .calcpro-windchill-field label{font-weight:700;text-align:right;font-size:12px;white-space:nowrap}
+.calcpro-windchill-widget .calcpro-windchill-number{width:100%;height:24px;border:1px solid #8a8a8a;border-radius:0;background:#fff;color:#111;padding:2px 4px;font:13px Arial,Helvetica,sans-serif;min-width:0}
+.calcpro-windchill-widget .calcpro-windchill-unit{height:24px;width:100%;min-width:0;border:1px solid #8a8a8a;border-radius:0;background:#fff;color:#111;padding:0 2px;font:12px Arial,Helvetica,sans-serif}
+.calcpro-windchill-widget .calcpro-windchill-number:focus-visible,.calcpro-windchill-widget .calcpro-windchill-unit:focus-visible,.calcpro-windchill-widget button:focus-visible{outline:2px solid #245c93;outline-offset:2px}
+.calcpro-windchill-widget .calcpro-windchill-actions{display:flex;align-items:center;justify-content:center;gap:4px;padding-top:5px}
+.calcpro-windchill-widget .calcpro-windchill-submit,.calcpro-windchill-widget .calcpro-windchill-clear{height:29px;border:0;border-radius:0;color:#fff;font:bold 12px Arial,Helvetica,sans-serif;cursor:pointer;padding:0 11px}
+.calcpro-windchill-widget .calcpro-windchill-submit{background:#4c812b;display:inline-flex;align-items:center;gap:8px}
+.calcpro-windchill-widget .calcpro-windchill-submit:hover{background:#3e6e21}
+.calcpro-windchill-widget .calcpro-windchill-submit .calcpro-windchill-arrow{border-radius:50%;background:#99c889;color:#fff;width:16px;height:16px;text-align:center;line-height:16px;font-size:13px}
+.calcpro-windchill-widget .calcpro-windchill-clear{background:#aaa}
+.calcpro-windchill-widget .calcpro-windchill-clear:hover{background:#888}
+.calcpro-windchill-widget .calcpro-windchill-error{max-width:298px;color:#970d10;background:#fff1ef;border:1px solid #d98e86;padding:8px;margin:0 0 7px;font-size:12px}
+.calcpro-windchill-widget .calcpro-windchill-sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+@media(max-width:355px){.calcpro-windchill-widget .calcpro-windchill-form{width:100%;max-width:100%}.calcpro-windchill-widget .calcpro-windchill-field{grid-template-columns:94px 68px minmax(0,1fr);gap:2px}.calcpro-windchill-widget .calcpro-windchill-field label{font-size:11px}}
+@media print{.calcpro-windchill-widget .calcpro-windchill-save,.calcpro-windchill-widget .calcpro-windchill-actions{display:none!important}.calcpro-windchill-widget .calcpro-windchill-results[hidden]{display:none!important}}
+/* Wind chill reference table, located in the existing guide/article, not the calculator panel */
+.calcpro-windchill-chart{border-collapse:collapse;min-width:665px;text-align:center;font-size:12px;width:100%;font-family:Arial,Helvetica,sans-serif}
+.calcpro-windchill-chart th,.calcpro-windchill-chart td{border:1px solid #bccad7;padding:5px 6px;text-align:center;white-space:nowrap}
+.calcpro-windchill-chart thead th,.calcpro-windchill-chart tbody th{background:#336699;color:#fff;font-weight:bold}
+.calcpro-windchill-chart .calcpro-windchill-chart-low{background:#e5f5ff}
+.calcpro-windchill-chart .calcpro-windchill-chart-colder{background:#c4e2fa}
+.calcpro-windchill-chart .calcpro-windchill-chart-coldest{background:#a4c9e9}
+.calcpro-windchill-chart .calcpro-windchill-chart-extreme{background:#d2cee9}
+
+</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/other-calculator/">Other</a> / Wind Chill Calculator</nav><h1 class="cp-page-title">Wind Chill Calculator</h1><p class="cp-intro">Estimate how cold it feels outdoors based on wind speed and air temperature. Enter values in your preferred units to see wind chill and equivalent exposed-skin heat loss. Supported air temperatures: −50°F to 50°F.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-windchill-widget" id="calcpro-windchill-widget">
+  <p class="calcpro-windchill-instruction" id="calcpro-windchill-instruction">Modify the values and click the Calculate button to use.</p>
+  <section class="calcpro-windchill-results" id="calcpro-windchill-results" aria-label="Wind chill calculation result" aria-live="polite" hidden>
+    <div class="calcpro-windchill-result-heading"><span>Result</span><button type="button" class="calcpro-windchill-save" id="calcpro-windchill-save" aria-label="Save wind chill result as a text file" title="Save result"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 2h15l4 4v16H2V2h1zm2 2v6h13V4h-3v5H8V4H5zm6 9a4 4 0 1 0 0 8 4 4 0 0 0 0-8zm-7 0v7h2a6 6 0 0 1 12 0h2V12H4z"/></svg><span>save</span></button></div>
+    <p class="calcpro-windchill-primary" id="calcpro-windchill-summary"></p>
+    <p class="calcpro-windchill-secondary" id="calcpro-windchill-heatloss"></p>
+    <p class="calcpro-windchill-warning" id="calcpro-windchill-warning" hidden></p>
+  </section>
+  <div class="calcpro-windchill-error" id="calcpro-windchill-error" role="alert" hidden></div>
+  <form class="calcpro-windchill-form" id="calcpro-windchill-form" novalidate>
+    <div class="calcpro-windchill-field">
+      <label for="calcpro-windchill-wind">Wind Speed</label>
+      <input class="calcpro-windchill-number" id="calcpro-windchill-wind" type="text" inputmode="decimal" autocomplete="off" value="15" aria-describedby="calcpro-windchill-unit-note">
+      <select class="calcpro-windchill-unit" id="calcpro-windchill-wind-unit" aria-label="Wind speed unit">
+        <option value="kmh" selected>km/h</option><option value="mph">mph</option><option value="ms">m/s</option><option value="knots">knots</option>
+      </select>
+    </div>
+    <div class="calcpro-windchill-field">
+      <label for="calcpro-windchill-temp">Air Temperature</label>
+      <input class="calcpro-windchill-number" id="calcpro-windchill-temp" type="text" inputmode="decimal" autocomplete="off" value="10" aria-describedby="calcpro-windchill-unit-note">
+      <select class="calcpro-windchill-unit" id="calcpro-windchill-temp-unit" aria-label="Temperature unit">
+        <option value="celsius" selected>Celsius °C</option><option value="fahrenheit">Fahrenheit °F</option><option value="kelvin">Kelvin K</option>
+      </select>
+    </div>
+    <span class="calcpro-windchill-sr-only" id="calcpro-windchill-unit-note">Changing a unit automatically converts the current number to its equivalent in the selected unit.</span>
+    <div class="calcpro-windchill-actions"><button class="calcpro-windchill-submit" type="submit">Calculate <span class="calcpro-windchill-arrow" aria-hidden="true">▶</span></button><button type="button" class="calcpro-windchill-clear" id="calcpro-windchill-clear">Clear</button></div>
+  </form>
+</div></section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><a href="heat-index-calculator.html">Heat Index</a><a href="dew-point-calculator.html">Dew Point</a><a href="conversion-calculator.html">Unit Conversion</a><a href="btu-calculator.html">BTU</a></div></section></aside><article class="cp-article"><h2>How to Use the Wind Chill Calculator</h2>
+<p>Enter the outdoor <strong>wind speed</strong> and <strong>air temperature</strong>, choose the units, then select <strong>Calculate</strong>. The wind chill result appears above the inputs in Celsius, Fahrenheit, and Kelvin, followed by an estimate of exposed-skin heat loss in watts per square meter. Changing a unit converts the current number automatically; use <strong>Clear</strong> to remove the values and result. Select <strong>Save</strong> in the result bar to save a text summary.</p>
+<h2>What Is Wind Chill?</h2>
+<p>Wind chill estimates how cold the air feels on exposed skin when wind removes heat faster than still air. It is not a second thermometer temperature: objects exposed to wind do not cool below the actual ambient air temperature merely because of wind chill. Direct sunlight, clothing, moisture, and individual conditions can change the experience.</p>
+<h2>Wind Chill Formula</h2>
+<p>CalcPro uses the U.S. National Weather Service wind chill equation, with air temperature <em>T</em> in °F and wind speed <em>V</em> in mph:</p>
+<p class="cp-note"><strong>Wind chill (°F) = 35.74 + 0.6215T − 35.75V<sup>0.16</sup> + 0.4275TV<sup>0.16</sup></strong></p>
+<p>For metric inputs, the tool first converts the values to °F and mph. The NWS index is defined for air temperatures of 50°F (10°C) or lower and wind speeds above 3 mph (4.83 km/h). This calculator limits input air temperatures to −50°F through 50°F, matching the reference calculator's supported range. At speeds of 3 mph or less, it displays the air temperature rather than an unsupported wind chill index.</p>
+<h3>Exposed-Skin Heat-Loss Estimate</h3>
+<p>The supplemental heat-loss result uses the historical Siple–Passel wind chill index, expressed in W/m²:</p>
+<p class="cp-note"><strong>Heat loss ≈ 1.163 × (10.45 + 10√u − u) × (33 − t)</strong>, where <em>u</em> is wind speed in m/s and <em>t</em> is air temperature in °C.</p>
+<p>This is a historical reference index, not a direct measurement of a particular person's heat loss. The Siple–Passel model was developed from a cooling cylinder and should be interpreted cautiously, especially above approximately 12 m/s.</p>
+<h2>Worked Example</h2>
+<p>For a wind speed of <strong>15 km/h</strong> and air temperature of <strong>10°C</strong>, the wind chill is approximately <strong>8°C (46°F or 281 K)</strong>. The historical equivalent exposed-skin heat-loss index is approximately <strong>714 W/m²</strong>.</p>
+<h2>Wind Chill Reference Chart</h2>
+<p>The table shows calculated wind chill in °F for common air temperatures and wind speeds, using the National Weather Service equation. Scroll horizontally on a small screen to see all temperatures.</p>
+<div class="cp-table-scroll" role="region" aria-label="Wind chill chart with horizontal scrolling" tabindex="0"><table class="calcpro-windchill-chart"><caption>Wind chill in °F • Wind speed in mph (rows) • Actual air temperature in °F (columns)</caption><thead><tr><th scope="col">mph ↓ / °F →</th><th scope="col">40</th><th scope="col">35</th><th scope="col">30</th><th scope="col">25</th><th scope="col">20</th><th scope="col">15</th><th scope="col">10</th><th scope="col">5</th><th scope="col">0</th><th scope="col">−5</th><th scope="col">−10</th><th scope="col">−15</th><th scope="col">−20</th></tr></thead><tbody id="calcpro-windchill-chart-body"></tbody></table></div>
+<h2>Frequently Asked Questions</h2>
+<h3>Can wind chill be lower than the air temperature?</h3>
+<p>Yes. The index expresses how quickly exposed skin loses heat in cold, windy weather. It does not mean the air or other objects become colder than the actual air temperature.</p>
+<h3>Does a wind chill below freezing mean water will freeze above 32°F?</h3>
+<p>No. Wind speeds can accelerate cooling, but wind alone cannot cool water or other objects below the measured ambient temperature.</p>
+<h3>Why is there no official wind chill value at very low wind speeds?</h3>
+<p>The NWS formula is defined only for wind speeds over 3 mph. For calm or very light wind, the calculator shows ambient temperature instead.</p>
+<h3>Is the skin heat-loss figure my body's actual heat loss?</h3>
+<p>No. It is an empirical comparison index based on historic experiments. Real heat loss varies with skin exposure, clothing, skin temperature, moisture, and other conditions.</p>
+<h2>Sources</h2>
+<ul><li><a href="https://www.weather.gov/safety/cold-wind-chill-chart" target="_blank" rel="noopener noreferrer">National Weather Service — Understanding Wind Chill</a></li><li><a href="https://www.noaa.gov/jetstream/synoptic/wind-chill" target="_blank" rel="noopener noreferrer">NOAA — Wind Chill</a></li><li><a href="https://journals.physiology.org/doi/full/10.1152/jappl.1996.81.6.2666" target="_blank" rel="noopener noreferrer">Journal of Applied Physiology — Windchill and the Risk of Tissue Freezing</a></li></ul><p class="cp-page-footer">CalcPro — calculator estimates are for informational purposes.</p></article></main></div><script>(function () {
+  'use strict';
+  const root = document.getElementById('calcpro-windchill-widget');
+  if (!root) return;
+  const $ = id => document.getElementById('calcpro-windchill-' + id);
+  const form = $('form'), windField = $('wind'), tempField = $('temp');
+  const windUnit = $('wind-unit'), tempUnit = $('temp-unit');
+  const result = $('results'), instruction = $('instruction'), error = $('error');
+  const summary = $('summary'), heat = $('heatloss'), warning = $('warning');
+  const MPH_TO_KMH = 1.609344, KNOT_TO_KMH = 1.852;
+  let windPrevious = windUnit.value, tempPrevious = tempUnit.value;
+  let lastResultText = '';
+  const toKmh = (value, unit) => ({ kmh: value, mph: value * MPH_TO_KMH, ms: value * 3.6, knots: value * KNOT_TO_KMH })[unit];
+  const fromKmh = (value, unit) => ({ kmh: value, mph: value / MPH_TO_KMH, ms: value / 3.6, knots: value / KNOT_TO_KMH })[unit];
+  const toC = (value, unit) => ({ celsius: value, fahrenheit: (value - 32) * 5 / 9, kelvin: value - 273.15 })[unit];
+  const fromC = (value, unit) => ({ celsius: value, fahrenheit: value * 9 / 5 + 32, kelvin: value + 273.15 })[unit];
+  const windChillF = (f, mph) => 35.74 + 0.6215 * f - 35.75 * Math.pow(mph, .16) + 0.4275 * f * Math.pow(mph, .16);
+  const trimNumber = n => Number(n.toFixed(3)).toString();
+  const isValidNumber = value => /^[+-]?(?:\d+(?:\.\d*)?|\.\d+)$/.test(value.trim()) && Number.isFinite(Number(value));
+  function invalidate() { result.hidden = true; instruction.hidden = false; error.hidden = true; lastResultText = ''; }
+  function showError(message, field) { invalidate(); error.textContent = message; error.hidden = false; field && field.focus(); }
+  // When the units change, preserve the physical temperature/speed rather than reinterpreting the numeric value.
+  windUnit.addEventListener('change', function () {
+    if (isValidNumber(windField.value)) windField.value = trimNumber(fromKmh(toKmh(Number(windField.value), windPrevious), windUnit.value));
+    windPrevious = windUnit.value; invalidate();
+  });
+  tempUnit.addEventListener('change', function () {
+    if (isValidNumber(tempField.value)) tempField.value = trimNumber(fromC(toC(Number(tempField.value), tempPrevious), tempUnit.value));
+    tempPrevious = tempUnit.value; invalidate();
+  });
+  [windField, tempField].forEach(field => field.addEventListener('input', invalidate));
+  form.addEventListener('submit', function (event) {
+    event.preventDefault();
+    if (!isValidNumber(windField.value)) return showError('Enter a valid numeric wind speed.', windField);
+    if (!isValidNumber(tempField.value)) return showError('Enter a valid numeric air temperature.', tempField);
+    const speed = Number(windField.value), inputTemp = Number(tempField.value);
+    if (speed < 0) return showError('Wind speed cannot be negative.', windField);
+    const kmh = toKmh(speed, windUnit.value), mph = kmh / MPH_TO_KMH, mps = kmh / 3.6;
+    const celsius = toC(inputTemp, tempUnit.value), fahrenheit = fromC(celsius, 'fahrenheit');
+    if (fahrenheit < -50 - 1e-8 || fahrenheit > 50 + 1e-8) {
+      return showError('Enter an air temperature between −50°F and 50°F (−45.56°C to 10°C).', tempField);
+    }
+    const validWindChill = mph > 3 + 1e-10;
+    const apparentC = validWindChill ? toC(windChillF(fahrenheit, mph), 'fahrenheit') : celsius;
+    const outputByUnit = {
+      celsius: { value: Math.round(apparentC), text: '°C' },
+      fahrenheit: { value: Math.round(fromC(apparentC, 'fahrenheit')), text: '°F' },
+      kelvin: { value: Math.round(fromC(apparentC, 'kelvin')), text: 'K' }
+    };
+    const first = outputByUnit[tempUnit.value];
+    const otherNames = ['celsius', 'fahrenheit', 'kelvin'].filter(u => u !== tempUnit.value);
+    const others = otherNames.map(u => outputByUnit[u].value + outputByUnit[u].text);
+    summary.replaceChildren();
+    summary.append('It will feel like ');
+    const strong = document.createElement('strong');
+    strong.textContent = first.value + first.text;
+    summary.append(strong, ' (' + others.join(' or ') + ').');
+    // Siple–Passel skin heat-loss index; kcal/(m²·h) multiplied by 1.163 -> W/m².
+    const skinFlux = 1.163 * (10.45 + 10 * Math.sqrt(mps) - mps) * (33 - celsius);
+    const flux = Math.round(skinFlux);
+    heat.replaceChildren();
+    heat.append('Equivalent heat losses for exposed skin: ' + flux + ' watts/meter');
+    const exp = document.createElement('sup'); exp.textContent = '2'; heat.append(exp);
+    warning.hidden = true; warning.textContent = '';
+    if (!validWindChill) {
+      warning.textContent = 'At wind speeds of 3 mph (4.83 km/h) or less, the official wind chill index is not defined. The air temperature is shown instead.';
+      warning.hidden = false;
+    } else if (mps > 12) {
+      warning.textContent = 'The exposed-skin heat-loss estimate uses a historical model that is less reliable above roughly 12 m/s; the wind chill temperature still uses the NWS formula.';
+      warning.hidden = false;
+    }
+    lastResultText = 'CalcPro Wind Chill Calculator\n' +
+      'Wind speed: ' + speed + ' ' + windUnit.options[windUnit.selectedIndex].text + '\n' +
+      'Air temperature: ' + inputTemp + ' ' + tempUnit.options[tempUnit.selectedIndex].text + '\n' +
+      'Feels like: ' + first.value + first.text + ' (' + others.join(' or ') + ')\n' +
+      'Equivalent exposed-skin heat loss: ' + flux + ' W/m²\n' +
+      (warning.hidden ? '' : warning.textContent + '\n') +
+      'NWS wind chill model; historical Siple-Passel heat-loss estimate.\n';
+    result.hidden = false; instruction.hidden = true; error.hidden = true;
+  });
+  $('clear').addEventListener('click', function () {
+    windField.value = ''; tempField.value = ''; invalidate(); windField.focus();
+  });
+  $('save').addEventListener('click', function () {
+    if (!lastResultText) return;
+    const blob = new Blob([lastResultText], { type: 'text/plain;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = 'calcpro-wind-chill-result.txt';
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  });
+  const chartBody = document.getElementById('calcpro-windchill-chart-body');
+  if (chartBody) {
+    const tempsF = [40, 35, 30, 25, 20, 15, 10, 5, 0, -5, -10, -15, -20];
+    for (const speedMph of [5, 10, 15, 20, 25, 30, 35, 40]) {
+      const tr = document.createElement('tr'), th = document.createElement('th');
+      th.scope = 'row'; th.textContent = speedMph; tr.appendChild(th);
+      for (const t of tempsF) {
+        const wc = Math.round(windChillF(t, speedMph)), td = document.createElement('td');
+        td.textContent = wc;
+        td.className = wc <= -40 ? 'calcpro-windchill-chart-extreme' : wc <= -20 ? 'calcpro-windchill-chart-coldest' : wc <= 0 ? 'calcpro-windchill-chart-colder' : 'calcpro-windchill-chart-low';
+        td.setAttribute('aria-label', speedMph + ' mph, ' + t + '°F: feels like ' + wc + '°F');
+        tr.appendChild(td);
+      }
+      chartBody.appendChild(tr);
+    }
+  }
+})();</script></body></html>

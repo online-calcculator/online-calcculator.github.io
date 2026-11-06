@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>Simple Interest Calculator | CalcPro</title><meta content="Calculate simple interest, ending balance, principal, time, and rate with an interactive chart and schedule." name="description"/><link href="template-style.css" rel="stylesheet"/><style id="calcpro-si-tool-style">
+/* All new styles are scoped to the Simple Interest calculator. */
+.calcpro-si{--calcpro-si-blue:#2b7ddb;--calcpro-si-green:#8bbc21;--calcpro-si-navy:#336699;--calcpro-si-result:#4d8426;color:#111;font:15px Arial,Helvetica,sans-serif;width:100%;min-width:0;}
+.calcpro-si,.calcpro-si *{box-sizing:border-box}
+.calcpro-si button,.calcpro-si input,.calcpro-si select{font:inherit}
+.calcpro-si .calcpro-si-guide{background:#336699;color:white;display:flex;align-items:center;justify-content:center;gap:20px;min-height:36px;padding:6px 9px;margin:0 0 7px;text-align:center;font-size:14px}
+.calcpro-si .calcpro-si-guide-icon{background:#fff;color:#336699;border-radius:50%;height:24px;width:24px;flex-shrink:0;display:grid;place-items:center;font-size:16px;font-weight:700;line-height:1}
+.calcpro-si .calcpro-si-overview{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:25px;align-items:start}
+.calcpro-si .calcpro-si-tabs{display:flex;align-items:flex-end;gap:4px;flex-wrap:wrap;margin:0;padding:0;list-style:none}
+.calcpro-si .calcpro-si-tab{border:0;border-radius:0;background:#336699;color:#fff;padding:8px 8px 7px;font-weight:bold;min-height:34px;cursor:pointer}
+.calcpro-si .calcpro-si-tab:hover{background:#245580}
+.calcpro-si .calcpro-si-tab[aria-selected="true"]{background:#eeeeee;color:#000;box-shadow:inset 0 1px #bbb,inset 1px 0 #bbb,inset -1px 0 #bbb}
+.calcpro-si .calcpro-si-tab:focus-visible,.calcpro-si button:focus-visible,.calcpro-si select:focus-visible,.calcpro-si input:focus-visible{outline:2px solid #005bbb;outline-offset:1px}
+.calcpro-si .calcpro-si-panel{padding:9px 8px 10px;border:1px solid #bdbdbd;background:#eee;min-height:160px}
+.calcpro-si .calcpro-si-row{display:grid;grid-template-columns:96px minmax(0,1fr);align-items:center;column-gap:6px;margin:0 0 5px;min-height:27px}
+.calcpro-si .calcpro-si-row label{white-space:nowrap}
+.calcpro-si .calcpro-si-field{display:flex;align-items:stretch;gap:4px;min-width:0}
+.calcpro-si .calcpro-si-field>input{width:100%;min-width:0;max-width:164px;height:29px;padding:3px 6px;background:#fff;border:1px solid #8c9ca9;border-radius:2px;box-shadow:1px 2px 2px #bec3c9;color:#000}
+.calcpro-si .calcpro-si-field>select{height:29px;min-width:0;width:104px;padding:2px;background:#fff;border:1px solid #8c9ca9;border-radius:2px;box-shadow:1px 2px 2px #bec3c9;color:#000}
+.calcpro-si .calcpro-si-input-with-suffix{position:relative;min-width:0;max-width:90px;flex:0 1 90px}
+.calcpro-si .calcpro-si-input-with-suffix input{width:100%;height:29px;border:1px solid #8c9ca9;border-radius:2px;background:white;padding:3px 22px 3px 6px;box-shadow:1px 2px 2px #bec3c9}
+.calcpro-si .calcpro-si-input-with-suffix span{position:absolute;right:6px;top:6px;pointer-events:none}
+.calcpro-si .calcpro-si-field.calcpro-si-field-pair>input{flex:0 1 90px;max-width:90px}
+.calcpro-si .calcpro-si-actions{display:flex;justify-content:center;gap:5px;margin-top:12px}
+.calcpro-si .calcpro-si-calc{border:0;color:#fff;background:#427b20;min-height:39px;padding:7px 12px;display:flex;align-items:center;gap:9px;font-weight:700;cursor:pointer}
+.calcpro-si .calcpro-si-calc:hover{background:#326318}
+.calcpro-si .calcpro-si-play{width:21px;height:21px;border-radius:50%;background:#a2c48a;display:grid;place-items:center;color:white;font-size:13px;padding-left:2px}
+.calcpro-si .calcpro-si-clear{background:#a7a7a7;color:#fff;border:0;min-height:39px;padding:7px 10px;cursor:pointer}
+.calcpro-si .calcpro-si-clear:hover{background:#888}
+.calcpro-si .calcpro-si-error{color:#ad1b1b;font-weight:600;margin:8px 3px 0;font-size:13px;line-height:1.4}
+.calcpro-si [hidden]{display:none!important}
+.calcpro-si .calcpro-si-results h2{background:#4d8426;color:#fff;font-size:20px;font-weight:normal;line-height:1.2;margin:0 0 9px;padding:5px 7px;display:flex;justify-content:space-between;align-items:center;min-height:34px}
+.calcpro-si .calcpro-si-save{display:flex;align-items:center;justify-content:center;background:transparent;border:1px solid transparent;border-radius:2px;padding:0 2px;cursor:pointer;color:white;min-width:29px;min-height:25px}
+.calcpro-si .calcpro-si-save:hover{background:#3d6d1d;border-color:#fff}
+.calcpro-si .calcpro-si-save svg{width:20px;height:20px;fill:currentColor}
+.calcpro-si .calcpro-si-save small{font-size:8px;display:block;line-height:8px}
+.calcpro-si .calcpro-si-summaries{display:grid;grid-template-columns:max-content max-content;column-gap:12px;row-gap:4px;line-height:1.2;margin:8px 0 13px;font-size:15px}
+.calcpro-si .calcpro-si-summaries dt{font-weight:700;margin:0}
+.calcpro-si .calcpro-si-summaries dd{font-weight:700;margin:0;text-align:right;font-variant-numeric:tabular-nums}
+.calcpro-si .calcpro-si-steps-title{margin:8px 0 3px}
+.calcpro-si .calcpro-si-steps{display:grid;grid-template-columns:max-content 1fr;gap:3px 8px;align-items:baseline;margin-top:0;font-size:14px;line-height:1.3}
+.calcpro-si .calcpro-si-steps div:nth-child(even){overflow-wrap:anywhere}
+.calcpro-si .calcpro-si-placeholder{padding:15px 0;color:#555;font-size:14px}
+.calcpro-si .calcpro-si-charts{display:grid;grid-template-columns:minmax(0,2.7fr) minmax(140px,1fr);column-gap:17px;margin:25px 0 5px;align-items:start}
+.calcpro-si .calcpro-si-chart h3{font-size:17px;font-weight:700;text-align:center;margin:0 0 5px}
+.calcpro-si .calcpro-si-chart svg{display:block;width:100%;height:auto;overflow:visible}
+.calcpro-si .calcpro-si-graph{min-width:0}
+.calcpro-si .calcpro-si-graph svg{max-height:270px}
+.calcpro-si .calcpro-si-donut{min-width:0;max-width:190px;margin:0 auto}
+.calcpro-si .calcpro-si-donut svg{max-height:210px}
+.calcpro-si .calcpro-si-graph .calcpro-si-gridline{stroke:#ddd;stroke-width:1}
+.calcpro-si .calcpro-si-graph text{font:12px Arial,Helvetica,sans-serif;fill:#555}
+.calcpro-si .calcpro-si-graph .calcpro-si-legend-text{font-size:13px;fill:#111}
+.calcpro-si .calcpro-si-graph .calcpro-si-axis-title{font-size:14px;fill:#000}
+.calcpro-si .calcpro-si-chart [tabindex="0"]{cursor:help}
+.calcpro-si .calcpro-si-schedule h2{font-size:21px;margin:8px 0 3px;color:#003366;line-height:1.3}
+.calcpro-si .calcpro-si-table-wrap{max-width:100%;overflow-x:auto}
+.calcpro-si .calcpro-si-table{border-collapse:collapse;border:1px solid #b9bdc2;margin:0 auto;font-size:14px;font-variant-numeric:tabular-nums}
+.calcpro-si .calcpro-si-table thead{background:#336699;color:#fff}
+.calcpro-si .calcpro-si-table th,.calcpro-si .calcpro-si-table td{border:1px solid #b9bdc2;padding:3px 5px;white-space:nowrap;text-align:right}
+.calcpro-si .calcpro-si-table th:first-child,.calcpro-si .calcpro-si-table td:first-child{text-align:left}
+.calcpro-si .calcpro-si-table th{font-weight:700}
+.calcpro-si .calcpro-si-table tbody tr:nth-child(2n){background:#f5f6f7}
+.calcpro-si .calcpro-si-table-note{font-size:12px;color:#555;text-align:center;margin:7px 0}
+@media(max-width:680px){.calcpro-si .calcpro-si-overview{grid-template-columns:1fr;gap:16px}.calcpro-si .calcpro-si-panel{min-height:0}.calcpro-si .calcpro-si-charts{grid-template-columns:minmax(0,1fr) minmax(120px,.42fr);column-gap:9px}.calcpro-si .calcpro-si-chart h3{font-size:15px}}
+@media(max-width:440px){.calcpro-si .calcpro-si-guide{gap:9px;font-size:12px}.calcpro-si .calcpro-si-row{grid-template-columns:88px minmax(0,1fr);column-gap:4px}.calcpro-si .calcpro-si-field>select{width:97px}.calcpro-si .calcpro-si-charts{grid-template-columns:1fr;gap:15px}.calcpro-si .calcpro-si-graph svg{max-height:none}.calcpro-si .calcpro-si-donut{max-width:195px}.calcpro-si .calcpro-si-summaries{font-size:14px}}
+@media print{.calcpro-si .calcpro-si-guide,.calcpro-si .calcpro-si-actions,.calcpro-si .calcpro-si-save{display:none!important}.calcpro-si .calcpro-si-charts{break-inside:avoid}.calcpro-si .calcpro-si-table tbody tr{break-inside:avoid}}
+</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Simple Interest Calculator</nav><h1 class="cp-page-title">Simple Interest Calculator</h1><p class="cp-intro">Use this simple interest calculator to find the ending balance, starting principal, term, or interest rate. Switch tabs to solve for each variable and view the updated schedule and charts.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-si" id="calcpro-si-root">
+  <div class="calcpro-si-guide"><span class="calcpro-si-guide-icon" aria-hidden="true">▼</span><span>Modify the values and click the Calculate button to use.</span></div>
+  <div class="calcpro-si-overview">
+    <div class="calcpro-si-input-side">
+      <div class="calcpro-si-tabs" role="tablist" aria-label="Calculate a simple interest value">
+        <button class="calcpro-si-tab" id="calcpro-si-tab-balance" type="button" role="tab" aria-selected="true" aria-controls="calcpro-si-form" data-calcpro-si-tab="balance">Balance</button>
+        <button class="calcpro-si-tab" id="calcpro-si-tab-principal" type="button" role="tab" aria-selected="false" aria-controls="calcpro-si-form" data-calcpro-si-tab="principal">Principal</button>
+        <button class="calcpro-si-tab" id="calcpro-si-tab-term" type="button" role="tab" aria-selected="false" aria-controls="calcpro-si-form" data-calcpro-si-tab="term">Term</button>
+        <button class="calcpro-si-tab" id="calcpro-si-tab-rate" type="button" role="tab" aria-selected="false" aria-controls="calcpro-si-form" data-calcpro-si-tab="rate">Rate</button>
+      </div>
+      <form id="calcpro-si-form" class="calcpro-si-panel" novalidate>
+        <div id="calcpro-si-row-balance" class="calcpro-si-row" hidden><label for="calcpro-si-balance">End balance</label><div class="calcpro-si-field"><input id="calcpro-si-balance" name="balance" value="30,000" inputmode="decimal" autocomplete="off" aria-describedby="calcpro-si-input-hint"/></div></div>
+        <div id="calcpro-si-row-principal" class="calcpro-si-row"><label for="calcpro-si-principal">Principal</label><div class="calcpro-si-field"><input id="calcpro-si-principal" name="principal" value="20,000" inputmode="decimal" autocomplete="off" aria-describedby="calcpro-si-input-hint"/></div></div>
+        <div id="calcpro-si-row-rate" class="calcpro-si-row"><label for="calcpro-si-rate">Interest rate</label><div class="calcpro-si-field"><div class="calcpro-si-input-with-suffix"><input id="calcpro-si-rate" name="rate" value="3" inputmode="decimal" autocomplete="off" aria-label="Interest rate percentage"/><span aria-hidden="true">%</span></div><select id="calcpro-si-ratebase" name="ratebase" aria-label="Interest rate period"><option value="y">per year</option><option value="m">per month</option></select></div></div>
+        <div id="calcpro-si-row-term" class="calcpro-si-row"><label for="calcpro-si-term">Term</label><div class="calcpro-si-field calcpro-si-field-pair"><input id="calcpro-si-term" name="term" value="10" inputmode="decimal" autocomplete="off"/><select id="calcpro-si-termbase" name="termbase" aria-label="Term unit"><option value="y">years</option><option value="m">months</option></select></div></div>
+        <span id="calcpro-si-input-hint" hidden>Enter a nonnegative monetary amount without a currency symbol.</span>
+        <div class="calcpro-si-actions"><button type="submit" class="calcpro-si-calc">Calculate <span class="calcpro-si-play" aria-hidden="true">▶</span></button><button type="button" id="calcpro-si-clear" class="calcpro-si-clear">Clear</button></div>
+        <p class="calcpro-si-error" id="calcpro-si-error" role="alert" hidden></p>
+      </form>
+    </div>
+    <section class="calcpro-si-results" aria-label="Calculated results" aria-live="polite" aria-atomic="false">
+      <h2>Results <button type="button" id="calcpro-si-save" class="calcpro-si-save" title="Save this calculation as a text file" aria-label="Save this calculation as a text file"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 2h15l3 3v17H3zM6 3v7h12V3h-2v5H9V3zm6 9a4 4 0 1 0 0 8 4 4 0 0 0 0-8"/></svg><small>save</small></span></button></h2>
+      <div id="calcpro-si-result-body"></div>
+    </section>
+  </div>
+  <div id="calcpro-si-details">
+    <div class="calcpro-si-charts">
+      <section class="calcpro-si-chart calcpro-si-graph"><h3>Balance Accumulation Graph</h3><div id="calcpro-si-bars"></div></section>
+      <section class="calcpro-si-chart calcpro-si-donut"><h3>Breakdown</h3><div id="calcpro-si-pie"></div></section>
+    </div>
+    <section class="calcpro-si-schedule"><h2>Schedule</h2><div class="calcpro-si-table-wrap"><table id="calcpro-si-schedule-table" class="calcpro-si-table"><thead></thead><tbody></tbody></table></div><p class="calcpro-si-table-note" id="calcpro-si-schedule-note"></p></section>
+  </div>
+</div></section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><!-- REPLACE these links with real related tools for each calculator; verify live slugs. --><a href="retirement-calculator.html">Retirement</a><a href="roth-ira-calculator.html">Roth IRA</a><a href="investment-calculator.html">Investment</a><a href="compound-interest-calculator.html">Compound Interest</a><a href="annuity-payout-calculator.html">Annuity Payout</a><a href="pension-calculator.html">Pension</a><a href="inflation-calculator.html">Inflation</a><a href="future-value-calculator.html">Future Value</a><a href="income-tax-calculator.html">Income Tax</a><a href="savings-calculator.html">Savings</a><a href="mortgage-calculator.html">Mortgage</a><a href="loan-calculator.html">Loan</a></div></section></aside><article class="cp-article"><h2>How to Use the Simple Interest Calculator</h2>
+<p>Use the <strong>Balance</strong> tab to calculate an ending amount from a starting principal, interest rate, and term. To find a different variable, choose the <strong>Principal</strong>, <strong>Term</strong>, or <strong>Rate</strong> tab, then enter the three known values. The field for the value being calculated is intentionally hidden, matching the reference calculator. Click <strong>Calculate</strong> or press Enter to refresh the results, graph, breakdown, and schedule without leaving the page.</p>
+<p>Choose <strong>per year</strong> or <strong>per month</strong> for the interest rate and <strong>years</strong> or <strong>months</strong> for the term. These units can be mixed; the calculator converts them consistently. Click <strong>Clear</strong> to empty the entries, or use the save icon to download a text summary of your most recent calculation.</p>
+<h2>Simple Interest Formula</h2>
+<p>With simple interest, the interest amount is based on the <em>original principal</em> rather than a growing balance. The standard formulas are:</p>
+<div class="cp-note"><strong>Interest:</strong> I = P × r × t<br><strong>Ending balance:</strong> A = P + I = P × (1 + r × t)</div>
+<p>Here, <strong>P</strong> is the initial principal, <strong>r</strong> is the annual interest rate as a decimal, <strong>t</strong> is the number of years, <strong>I</strong> is total interest, and <strong>A</strong> is the final balance. For a monthly rate, use the number of months rather than years. For a monthly term with an annual rate, divide the number of months by 12.</p>
+<h3>Solving for Principal, Term, or Rate</h3>
+<ul><li><strong>Principal:</strong> P = A / (1 + r × t)</li><li><strong>Time in years:</strong> t = (A − P) / (P × r), when P and r are greater than zero</li><li><strong>Annual rate:</strong> r = (A − P) / (P × t), when P and t are greater than zero</li></ul>
+<h2>Worked Example</h2>
+<p>Suppose the initial principal is <strong>$20,000</strong>, the simple interest rate is <strong>3% per year</strong>, and the term is <strong>10 years</strong>. Total interest is $20,000 × 0.03 × 10 = <strong>$6,000</strong>. The ending balance is $20,000 + $6,000 = <strong>$26,000</strong>. Each full year adds $600 in interest because the original principal remains unchanged.</p>
+<h2>Understanding the Results</h2>
+<p><strong>End Balance</strong> is the principal plus accrued simple interest. <strong>Total Interest</strong> is the additional amount earned or owed over the term. The <strong>Balance Accumulation Graph</strong> illustrates the principal and growing interest at intervals; the <strong>Breakdown</strong> chart shows their shares of the final balance. The <strong>Schedule</strong> lists the interest accrued for each year or month, including a partial final period when necessary. Amounts are displayed to two decimal places, while calculations use unrounded values.</p>
+<h2>Frequently Asked Questions</h2>
+<h3>Does simple interest compound?</h3><p>No. Simple interest is calculated only on the original principal. Compounding instead calculates interest on the initial principal plus interest accumulated in earlier periods.</p>
+<h3>Can I enter a monthly rate and a term in years?</h3><p>Yes. A monthly percentage is multiplied by 12 to obtain the corresponding simple annual rate; a term in months is divided by 12 to express time in years. For example, 1% per month for six months on $1,000 produces $60 of simple interest.</p>
+<h3>What does the interest column in the schedule show?</h3><p>It shows the interest accrued <em>during that period</em>, not all interest accumulated since the beginning. Under a constant simple interest rate, equal-length periods have equal interest amounts.</p>
+<h3>What happens when the rate is zero?</h3><p>For a balance calculation, the ending balance equals the principal. A positive term cannot be uniquely solved from zero interest when the rate is zero; likewise, rates or terms may not be solvable if the principal is zero.</p>
+<h3>Are these actual loan payments?</h3><p>No. The output is an idealized simple-interest accrual model, with no recurring payments, fees, taxes, changing balances, or compounding. An amortizing loan requires a different calculation method.</p>
+<h2>Source and Method</h2><p>This calculator uses the standard simple-interest identity described by <a href="https://www.calculator.net/simple-interest-calculator.html" target="_blank" rel="noopener noreferrer">Calculator.net's Simple Interest Calculator</a>. Its interface is a new independent implementation, not a copy of the reference site's scripts or assets. For comparison with compounding, use our <a href="compound-interest-calculator.html">Compound Interest Calculator</a>.</p>
+<p class="cp-page-footer">CalcPro — calculator estimates are for informational purposes.</p></article></main></div><script id="calcpro-si-tool-script">
+(()=>{'use strict';
+ const root=document.getElementById('calcpro-si-root');if(!root)return;
+ const $=id=>root.querySelector('#'+id);
+ const fields={balance:$('calcpro-si-balance'),principal:$('calcpro-si-principal'),rate:$('calcpro-si-rate'),term:$('calcpro-si-term'),ratebase:$('calcpro-si-ratebase'),termbase:$('calcpro-si-termbase')};
+ const form=$('calcpro-si-form'), error=$('calcpro-si-error'), summary=$('calcpro-si-result-body'), details=$('calcpro-si-details');
+ let mode='balance',last=null;
+ const money=n=>'$'+(Math.abs(n)<0.005?0:n).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+ const num=(n,d=6)=>Number(n.toFixed(d)).toLocaleString('en-US',{maximumFractionDigits:d});
+ const raw=n=>Number(n.toPrecision(12)).toString();
+ const read=id=>{const t=fields[id].value.trim().replace(/[$,\s]/g,'');return t===''?NaN:Number(t)};
+ const fmtCheck=(value,name,{zero=true,max=Infinity}={})=>{if(!Number.isFinite(value)||value<0||(!zero&&value===0)||value>max)throw new Error(name+' must be '+(zero?'a nonnegative':'a positive')+' number'+(Number.isFinite(max)?' no greater than '+num(max):'')+'.');};
+ const hideError=()=>{error.hidden=true;error.textContent='';};
+ function setTab(next){mode=next;for(const tab of root.querySelectorAll('[data-calcpro-si-tab]')){const on=tab.dataset.calcproSiTab===mode;tab.setAttribute('aria-selected',String(on));tab.tabIndex=on?0:-1;}
+  for(const key of ['balance','principal','rate','term'])$('calcpro-si-row-'+key).hidden=(key===mode);
+  hideError();}
+ root.querySelectorAll('[data-calcpro-si-tab]').forEach(t=>{t.addEventListener('click',()=>setTab(t.dataset.calcproSiTab));t.addEventListener('keydown',e=>{const tabs=[...root.querySelectorAll('[data-calcpro-si-tab]')],i=tabs.indexOf(t);if(e.key==='ArrowRight'||e.key==='ArrowLeft'||e.key==='Home'||e.key==='End'){e.preventDefault();const next=e.key==='Home'?0:e.key==='End'?3:(i+(e.key==='ArrowRight'?1:3))%4;setTab(tabs[next].dataset.calcproSiTab);tabs[next].focus();}});});
+ function calculate(){hideError();try{
+   const v={balance:read('balance'),principal:read('principal'),rate:read('rate'),term:read('term')};
+   for(const key of ['balance','principal','rate','term'])if(key!==mode)fmtCheck(v[key],{balance:'End balance',principal:'Principal',rate:'Interest rate',term:'Term'}[key],{zero:key!=='term',max:key==='rate'?1000:key==='term'?(fields.termbase.value==='y'?120:1440):1e12});
+   const monthsPerRate=fields.ratebase.value==='m',termAsMonths=fields.termbase.value==='m';
+   let p=v.principal,a=v.balance,r=v.rate/100,t=v.term,years=(termAsMonths?t/12:t),effectiveRate=r*(monthsPerRate?12:1);
+   if(mode==='balance')a=p*(1+effectiveRate*years);
+   if(mode==='principal'){
+     const factor=1+effectiveRate*years;if(factor<=0)throw new Error('The principal cannot be determined from these inputs.');
+     p=a/factor;
+   }
+   if(mode==='term'){
+     if(p<=0||r<=0)throw new Error('Principal and interest rate must both be greater than zero to calculate the term.');
+     if(a<p)throw new Error('End balance must be at least the principal for a nonnegative term.');
+     years=(a/p-1)/effectiveRate;t=termAsMonths?years*12:years;
+     if(t<=0)throw new Error('The resulting term is zero. End balance must exceed the principal.');
+     if(years>120)throw new Error('The calculated term exceeds the supported 120-year schedule.');
+   }
+   if(mode==='rate'){
+     if(p<=0||years<=0)throw new Error('Principal and term must both be greater than zero to calculate an interest rate.');
+     if(a<p)throw new Error('End balance must be at least the principal for a nonnegative interest rate.');
+     effectiveRate=(a/p-1)/years;r=effectiveRate/(monthsPerRate?12:1);
+     if(r*100>1000)throw new Error('The calculated rate exceeds the supported 1,000% per period.');
+   }
+   const interest=a-p;
+   if(![p,a,r,t,years,interest].every(Number.isFinite)||a>1e14)throw new Error('These values produce an excessively large result. Please reduce the inputs.');
+   const answer={mode,p,a,interest,r,years,t,ratebase:fields.ratebase.value,termbase:fields.termbase.value};
+   last=answer;render(answer);return answer;
+  }catch(ex){error.textContent=ex.message;error.hidden=false;const target=fields[mode==='balance'?'principal':mode==='principal'?'balance':mode==='term'?'balance':'balance'];if(target)target.setAttribute('aria-invalid','true');return null;}}
+ function create(tag,attrs={}){const el=document.createElementNS('http://www.w3.org/2000/svg',tag);for(const[k,v]of Object.entries(attrs))el.setAttribute(k,String(v));return el;}
+ function addText(parent,txt,x,y,attrs={}){const el=create('text',{x,y,...attrs});el.textContent=txt;parent.appendChild(el);return el;}
+ const thousands=n=>{const abs=Math.abs(n);return '$'+(abs>=1e9?num(n/1e9,1)+'B':abs>=1e6?num(n/1e6,1)+'M':abs>=1000?num(n/1000,1)+'K':num(n,1));};
+ function drawBarChart(d){const mount=$('calcpro-si-bars');mount.replaceChildren();
+   const svg=create('svg',{viewBox:'0 0 520 275',role:'img','aria-label':'Stacked bar chart showing the starting principal and accumulated simple interest across the term.'});
+   const top=35,bottom=225,left=44,right=510,full=bottom-top,maxY=Math.max(d.a,d.p,1),rawStep=maxY/5;
+   const exponent=Math.pow(10,Math.floor(Math.log10(rawStep))),step=[1,2,2.5,5,10].map(m=>m*exponent).find(v=>v>=rawStep)||10*exponent;const cap=Math.ceil(maxY/step)*step;
+   const yFor=value=>bottom-value/cap*full;
+   for(let i=0;i<=Math.round(cap/step);i++){const tick=i*step,y=yFor(tick);svg.appendChild(create('line',{x1:left,x2:right,y1:y,y2:y,class:'calcpro-si-gridline'}));addText(svg,thousands(tick),left-5,y+4,{'text-anchor':'end'});}
+   svg.appendChild(create('rect',{x:150,y:8,width:20,height:7,fill:'#2b7ddb'}));addText(svg,'Principal',176,15,{class:'calcpro-si-legend-text'});
+   svg.appendChild(create('rect',{x:285,y:8,width:20,height:7,fill:'#8bbc21'}));addText(svg,'Interest',311,15,{class:'calcpro-si-legend-text'});
+   const periods=d.termbase==='m'?d.years*12:d.years;
+   const integerSample=Math.max(1,Math.min(10,Math.ceil(periods)));
+   const count=integerSample+1,slot=(right-left)/count,width=Math.min(29,slot*.57);
+   for(let i=0;i<=integerSample;i++){
+     const at=periods*i/integerSample,years=d.termbase==='m'?at/12:at;
+     const accrued=d.p*d.r*(d.ratebase==='m'?years*12:years);const total=d.p+accrued;
+     const x=left+slot*(i+.5)-width/2,yPrincipal=yFor(d.p),yTotal=yFor(total);
+     const group=create('g',{tabindex:'0',role:'img','aria-label':num(at,2)+' '+(d.termbase==='m'?'months':'years')+': principal '+money(d.p)+', interest '+money(accrued)+', balance '+money(total)});
+     group.appendChild(create('rect',{x,y:yPrincipal,width,height:Math.max(0,bottom-yPrincipal),fill:'#2b7ddb'}));
+     group.appendChild(create('rect',{x,y:yTotal,width,height:Math.max(0,yPrincipal-yTotal),fill:'#8bbc21'}));
+     const tip=create('title');tip.textContent=num(at,3)+' '+(d.termbase==='m'?'months':'years')+' — Principal '+money(d.p)+'; interest '+money(accrued)+'; balance '+money(total);group.appendChild(tip);svg.appendChild(group);
+     addText(svg,num(at,periods<10?2:1)+(d.termbase==='m'?' mo':' yr'),left+slot*(i+.5),bottom+15,{'text-anchor':'middle','font-size':10});
+   }
+   addText(svg,d.termbase==='m'?'Term in months':'Term in years',277,265,{class:'calcpro-si-axis-title','text-anchor':'middle'});
+   mount.appendChild(svg);
+ }
+ function drawDonut(d){const mount=$('calcpro-si-pie');mount.replaceChildren();const svg=create('svg',{viewBox:'0 0 180 205',role:'img','aria-label':'Breakdown of the final balance between principal and simple interest.'});
+   const sum=d.p+d.interest,percent=sum>0?d.p/sum:1;
+   const cx=90,cy=65,outer=54,inner=27;
+   const polar=degree=>{const a=(degree-90)*Math.PI/180;return[cx+outer*Math.cos(a),cy+outer*Math.sin(a)];};
+   function ringSlice(start,end,color,label,value){if(end-start<=.000001)return;const group=create('g',{tabindex:'0',role:'img','aria-label':label+': '+money(value)+' ('+num((end-start)/3.6,1)+'%)'});
+     let node;if(end-start>=359.999){node=create('circle',{cx,cy,r:(outer+inner)/2,fill:'none',stroke:color,'stroke-width':outer-inner});}else{const[sx,sy]=polar(start),[ex,ey]=polar(end);node=create('path',{d:`M ${sx} ${sy} A ${outer} ${outer} 0 ${end-start>180?1:0} 1 ${ex} ${ey} L ${cx+(inner/outer)*(ex-cx)} ${cy+(inner/outer)*(ey-cy)} A ${inner} ${inner} 0 ${end-start>180?1:0} 0 ${cx+(inner/outer)*(sx-cx)} ${cy+(inner/outer)*(sy-cy)} Z`,fill:color,stroke:'#fff','stroke-width':.9});}
+     group.appendChild(node);const tip=create('title');tip.textContent=label+': '+money(value)+' ('+num((end-start)/3.6,1)+'%)';group.appendChild(tip);svg.appendChild(group);
+     if(end-start>=22){const angle=(start+end)/2-90,rad=41,px=cx+rad*Math.cos(angle*Math.PI/180),py=cy+rad*Math.sin(angle*Math.PI/180);addText(svg,Math.round((end-start)/3.6)+'%',px,py+4,{'text-anchor':'middle',fill:'#fff','font-size':12,'font-weight':'bold'});}
+   }
+   ringSlice(0,360*percent,'#2b7ddb','Principal',d.p);ringSlice(360*percent,360,'#8bbc21','Interest',d.interest);
+   svg.appendChild(create('rect',{x:24,y:140,width:19,height:14,rx:3,fill:'#2b7ddb'}));addText(svg,'Principal',49,152,{'font-size':15,fill:'#111'});
+   svg.appendChild(create('rect',{x:24,y:162,width:19,height:14,rx:3,fill:'#8bbc21'}));addText(svg,'Interest',49,174,{'font-size':15,fill:'#111'});
+   mount.appendChild(svg);
+ }
+ const cell=(text,tag)=>{const td=document.createElement(tag);td.textContent=text;return td;};
+ function drawSchedule(d){const table=$('calcpro-si-schedule-table'),thead=table.querySelector('thead'),tbody=table.querySelector('tbody');thead.replaceChildren();tbody.replaceChildren();
+   const unit=d.termbase==='m'?'Month':'Year',total=d.termbase==='m'?d.years*12:d.years;
+   const hr=document.createElement('tr');[unit,'Interest','Balance'].forEach(t=>hr.appendChild(cell(t,'th')));thead.appendChild(hr);
+   const numberRows=Math.ceil(total-1e-10),maxRows=1500,n=Math.min(numberRows,maxRows);const fragment=document.createDocumentFragment();
+   let previous=0;
+   for(let i=1;i<=n;i++){
+     const point=Math.min(i,total),years=d.termbase==='m'?point/12:point,prevYears=d.termbase==='m'?previous/12:previous;
+     const periodInterest=d.p*d.r*(d.ratebase==='m'?(years-prevYears)*12:(years-prevYears));
+     const totalInt=d.p*d.r*(d.ratebase==='m'?years*12:years);
+     const tr=document.createElement('tr');tr.appendChild(cell(num(point,3),'td'));tr.appendChild(cell(money(periodInterest),'td'));tr.appendChild(cell(money(d.p+totalInt),'td'));fragment.appendChild(tr);previous=point;
+   }
+   tbody.appendChild(fragment);
+   $('calcpro-si-schedule-note').textContent=numberRows>maxRows?'Displaying the first 1,500 periods; shorten the term to see all rows.':(total%1>1e-8?'The final row represents a partial '+unit.toLowerCase()+'.':'Each row shows interest for that period, not cumulative interest.');
+ }
+ function render(d){const outputs=[];
+   if(d.mode==='principal')outputs.push(['Principal:',money(d.p)]);
+   if(d.mode==='term')outputs.push(['Term:',num(d.t,6)+' '+(d.termbase==='m'?'months':'years')]);
+   if(d.mode==='rate')outputs.push(['Interest Rate:',num(d.r*100,6)+'% '+(d.ratebase==='m'?'per month':'per year')]);
+   outputs.push(['End Balance:',money(d.a)],['Total Interest:',money(d.interest)]);
+   const dl=document.createElement('dl');dl.className='calcpro-si-summaries';for(const[k,v]of outputs){const dt=document.createElement('dt'),dd=document.createElement('dd');dt.textContent=k;dd.textContent=v;dl.append(dt,dd);}
+   const steps=document.createElement('div');steps.className='calcpro-si-steps';const rows=[];
+   const periodCount=d.ratebase==='m'?d.years*12:d.years;
+   rows.push(['Total Interest =',money(d.p)+' × '+num(d.r*100,6)+'% × '+num(periodCount,6)],['=',money(d.interest)]);
+   rows.push(['End Balance =',money(d.p)+' + '+money(d.interest)],['=',money(d.a)]);
+   if(d.mode==='principal')rows.unshift(['Principal =',money(d.a)+' ÷ (1 + '+num(d.r*100,6)+'% × '+num(periodCount,6)+')']);
+   if(d.mode==='term')rows.unshift(['Term =','('+money(d.a)+' ÷ '+money(d.p)+' − 1) ÷ '+num(d.ratebase==='m'?d.r*12*100:d.r*100,6)+'% per year']);
+   if(d.mode==='rate')rows.unshift(['Rate =','('+money(d.a)+' ÷ '+money(d.p)+' − 1) ÷ '+num(periodCount,6)+' periods']);
+   for(const[a,b]of rows){const k=document.createElement('div'),v=document.createElement('div');k.textContent=a;v.textContent=b;steps.append(k,v);}
+   const heading=document.createElement('div');heading.className='calcpro-si-steps-title';heading.textContent='Calculation steps:';
+   summary.replaceChildren(dl,heading,steps);details.hidden=false;drawBarChart(d);drawDonut(d);drawSchedule(d);
+ }
+ form.addEventListener('submit',e=>{e.preventDefault();for(const f of Object.values(fields))f.removeAttribute('aria-invalid');calculate();});
+ $('calcpro-si-clear').addEventListener('click',()=>{for(const key of ['balance','principal','rate','term']){fields[key].value='';fields[key].removeAttribute('aria-invalid');}fields.ratebase.value='y';fields.termbase.value='y';last=null;summary.replaceChildren();const p=document.createElement('p');p.className='calcpro-si-placeholder';p.textContent='Enter values and select Calculate to view the results.';summary.appendChild(p);details.hidden=true;hideError();const visible=['balance','principal','rate','term'].find(k=>k!==mode);if(visible)fields[visible].focus();});
+ for(const id of ['balance','principal'])fields[id].addEventListener('blur',()=>{const n=read(id);if(Number.isFinite(n)){fields[id].value=Number(n).toLocaleString('en-US',{maximumFractionDigits:6});}});
+ $('calcpro-si-save').addEventListener('click',()=>{if(!last){error.textContent='Calculate a result before saving.';error.hidden=false;return;}
+   const d=last;const lines=['CalcPro - Simple Interest Calculator', 'Mode: '+d.mode, 'Principal: '+money(d.p),'Rate: '+num(d.r*100,6)+'% '+(d.ratebase==='m'?'per month':'per year'),'Term: '+num(d.t,6)+' '+(d.termbase==='m'?'months':'years'),'End balance: '+money(d.a),'Total interest: '+money(d.interest)];
+   const blob=new Blob([lines.join('\n')+'\n'],{type:'text/plain;charset=utf-8'});const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='simple-interest-calculation.txt';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1500);
+ });
+ setTab('balance');calculate();
+})();
+</script></body></html>

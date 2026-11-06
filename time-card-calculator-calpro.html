@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>Time Card Calculator — Weekly Hours &amp; Pay | CalcPro</title><meta content="Track weekly shift hours, unpaid breaks and optional overtime pay. Print or export your time card with CalcPro." name="description"/><link href="template-style.css" rel="stylesheet"/><style>
+/* All styles belong exclusively to the Time Card Calculator. */
+.calcpro-timecard{--tc-green:#cefab0;--tc-blue:#b2d8fb;--tc-dark:#548425;--tc-table-blue:#336699;font:15px Arial,Helvetica,sans-serif;color:#111;line-height:1.35;max-width:100%;}
+.calcpro-timecard *{box-sizing:border-box}
+.calcpro-timecard [hidden]{display:none!important}
+.calcpro-timecard button,.calcpro-timecard input,.calcpro-timecard textarea,.calcpro-timecard select{font:inherit}
+.calcpro-timecard input[type=text],.calcpro-timecard input[type=number],.calcpro-timecard select,.calcpro-timecard textarea{background:#fff;border:1px solid #336699;border-radius:0;padding:5px 6px;min-width:0;max-width:100%;color:#111;box-shadow:1px 2px 2px #0002;min-height:29px}
+.calcpro-timecard input:focus-visible,.calcpro-timecard textarea:focus-visible,.calcpro-timecard select:focus-visible,.calcpro-timecard button:focus-visible,.calcpro-timecard a:focus-visible{outline:2px solid #003366;outline-offset:2px}
+.calcpro-timecard button{cursor:pointer}
+.calcpro-timecard input[aria-invalid=true]{border:2px solid #a50000;background:#fff3f3}
+.calcpro-timecard-result{margin:0 0 35px;width:100%}
+.calcpro-timecard-result-heading{height:37px;background:var(--tc-dark);color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 6px;font-size:21px;margin:0 0 18px}
+.calcpro-timecard-save{display:flex;flex-direction:column;gap:0;align-items:center;justify-content:center;color:#fff;background:transparent;border:0;padding:1px 4px;min-width:38px;line-height:1}
+.calcpro-timecard-save svg{display:block;width:17px;height:17px;fill:currentColor}
+.calcpro-timecard-save small{font-size:10px}
+.calcpro-timecard-report-title{font-weight:bold;font-size:17px;margin:0 0 8px}
+.calcpro-timecard-report-note{white-space:pre-wrap;margin:8px 0 10px;overflow-wrap:anywhere}
+.calcpro-timecard-report-scroll{overflow-x:auto;max-width:100%}
+.calcpro-timecard-report-table{border-collapse:collapse;font-size:14px;line-height:1.22;margin:0 0 1px;min-width:235px;max-width:100%}
+.calcpro-timecard-report-table th{background:var(--tc-table-blue);color:white;border:1px solid #24547a;font-weight:700;text-align:left;padding:5px 4px}
+.calcpro-timecard-report-table td{border:1px solid #ccc;padding:4px;vertical-align:top;white-space:pre-line;overflow-wrap:anywhere}
+.calcpro-timecard-report-table tbody tr:nth-child(even) td{background:#f7f7f7}
+.calcpro-timecard-report-table tfoot td{background:#ececec;font-weight:700}
+.calcpro-timecard-result-total-label{text-align:right!important}
+.calcpro-timecard-result-actions{margin-top:2px;font-size:14px}
+.calcpro-timecard-inline-link{border:0;background:transparent;color:#006699;text-decoration:underline;padding:0;font-weight:600}
+.calcpro-timecard-inline-link:hover{text-decoration:none}
+.calcpro-timecard-result-actions .calcpro-timecard-inline-link{font-weight:normal}
+.calcpro-timecard-pay-result{margin:14px 0 8px;max-width:490px}
+.calcpro-timecard-pay-result h3{margin:0 0 7px;font-size:17px;color:#003366}
+.calcpro-timecard-pay-result table{border-collapse:collapse;font-size:14px;width:100%}
+.calcpro-timecard-pay-result th,.calcpro-timecard-pay-result td{border:1px solid #c7d4df;text-align:left;padding:5px 7px}
+.calcpro-timecard-pay-result th{background:#336699;color:#fff}
+.calcpro-timecard-pay-result tr:last-child{font-weight:700;background:#eaf1f5}
+.calcpro-timecard-empty{font-size:14px;margin:4px 0 8px}
+.calcpro-timecard-errors{max-width:600px;border:1px solid #b32828;background:#fff4f4;color:#8e0000;padding:10px 12px;margin:0 auto 15px;font-size:14px}
+.calcpro-timecard-errors ul{margin:4px 0 0;padding-left:20px}
+.calcpro-timecard-form{margin:0 auto;width:478px;max-width:100%;}
+.calcpro-timecard-grid-wrap{background:var(--tc-green);padding:4px 3px 0;min-width:0}
+.calcpro-timecard-shifts{width:100%;table-layout:fixed;border-collapse:separate;border-spacing:0 3px}
+.calcpro-timecard-shifts col.calcpro-timecard-col-date{width:36%}
+.calcpro-timecard-shifts col.calcpro-timecard-col-time{width:20%}
+.calcpro-timecard-shifts col.calcpro-timecard-col-break{width:20%}
+.calcpro-timecard-shifts col.calcpro-timecard-col-clear{width:4%}
+.calcpro-timecard-shifts th{font-weight:700;text-align:center;line-height:1.05;vertical-align:bottom;padding:1px 3px 5px;font-size:15px}
+.calcpro-timecard-shifts td{padding:1px 4px;vertical-align:middle;min-width:0}
+.calcpro-timecard-shifts td:last-child{padding:0 1px}
+.calcpro-timecard-shifts input{width:100%;min-width:0}
+.calcpro-timecard-remove{color:#fff;background:#f00;border:0;border-radius:4px;font-weight:700!important;font-size:14px!important;line-height:18px;width:18px;height:18px;padding:0;display:inline-flex;align-items:center;justify-content:center}
+.calcpro-timecard-rowlinks{background:var(--tc-green);text-align:center;padding:2px 5px 7px;display:flex;align-items:center;gap:13px;justify-content:center;flex-wrap:wrap}
+.calcpro-timecard-options{background:var(--tc-blue);padding:10px 10px 8px}
+.calcpro-timecard-field{display:grid;grid-template-columns:110px minmax(0,1fr);align-items:start;column-gap:9px;margin:0 0 10px}
+.calcpro-timecard-field>label{font-weight:700;padding-top:3px}
+.calcpro-timecard-field select{width:min(254px,100%)}
+.calcpro-timecard-field input[type=text]{width:min(268px,100%)}
+.calcpro-timecard-field textarea{width:min(227px,100%);height:40px;resize:vertical}
+.calcpro-timecard-checks{margin-left:119px;display:grid;gap:13px;padding:1px 0 4px}
+.calcpro-timecard-check{display:flex;align-items:flex-start;gap:9px;line-height:1.4;cursor:pointer}
+.calcpro-timecard-check input[type=checkbox]{width:18px;height:18px;flex:0 0 18px;accent-color:#336699;margin:1px 0 0}
+.calcpro-timecard-paysettings{padding:7px 0 4px;min-width:0}
+.calcpro-timecard-paysettings .calcpro-timecard-pay-title{font-weight:700;display:block;margin:2px 0 5px}
+.calcpro-timecard-paysettings input[type=text]{box-shadow:none;width:78px}
+.calcpro-timecard-paysettings .calcpro-timecard-money{width:102px}
+.calcpro-timecard-radio{display:flex;align-items:center;gap:5px;margin:5px 0;flex-wrap:wrap;line-height:1.4}
+.calcpro-timecard-radio input[type=radio]{accent-color:#336699;margin:0 3px 0 0;flex-shrink:0}
+.calcpro-timecard-radio input[type=text]{width:50px;padding:3px 5px;min-height:26px}
+.calcpro-timecard-paysettings .calcpro-timecard-otgroup{margin-top:12px}
+.calcpro-timecard-multiplier{padding-top:10px;display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.calcpro-timecard-help{font-size:12px;color:#345168;margin-top:7px;line-height:1.35}
+.calcpro-timecard-buttons{background:#ddd;display:flex;justify-content:center;align-items:center;gap:4px;padding:5px}
+.calcpro-timecard-calculate{background:#4c7f21;color:#fff;border:0;font-weight:bold!important;padding:10px 13px;min-height:38px}
+.calcpro-timecard-calculate:hover{background:#406e1b}
+.calcpro-timecard-calculate .calcpro-timecard-play{margin-left:9px;background:#82be6b;border-radius:50%;width:21px;height:21px;display:inline-flex;align-items:center;justify-content:center;font-size:16px;line-height:1}
+.calcpro-timecard-clear{background:#aaa;color:#fff;border:0;padding:10px 9px;min-height:38px}
+.calcpro-timecard-clear:hover{background:#888}
+.calcpro-timecard-sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@media(max-width:570px){
+ .calcpro-timecard{font-size:14px}
+ .calcpro-timecard-form{width:100%}
+ .calcpro-timecard-shifts{border-spacing:0 5px}
+ .calcpro-timecard-shifts th{font-size:13px;padding:2px 1px 4px}
+ .calcpro-timecard-shifts td{padding:1px 2px}
+ .calcpro-timecard-shifts td:last-child{padding:0 1px}
+ .calcpro-timecard-shifts input{font-size:13px;padding:5px 3px}
+ .calcpro-timecard-options{padding:12px 8px}
+ .calcpro-timecard-field{grid-template-columns:105px minmax(0,1fr);gap:5px}
+ .calcpro-timecard-checks{margin-left:110px}
+}
+@media(max-width:385px){
+ .calcpro-timecard-shifts thead{display:none}
+ .calcpro-timecard-shifts colgroup{display:none}
+ .calcpro-timecard-shifts,.calcpro-timecard-shifts tbody{display:block;width:100%}
+ .calcpro-timecard-shifts tr{display:grid;grid-template-columns:repeat(2,minmax(0,1fr)) 26px;gap:4px;border:1px solid #a7db8f;border-radius:3px;padding:6px 5px;margin:0 0 6px;background:#d9ffc3}
+ .calcpro-timecard-shifts td{display:flex;flex-direction:column;align-items:stretch;min-width:0;padding:0}
+ .calcpro-timecard-shifts td:before{content:attr(data-label);font-size:11px;color:#35542b;font-weight:700;min-height:14px}
+ .calcpro-timecard-shifts td:first-child{grid-column:1 / 3}
+ .calcpro-timecard-shifts td:nth-child(4){grid-column:1 / 3}
+ .calcpro-timecard-shifts td:nth-child(5){grid-column:3;grid-row:1;justify-content:flex-start;align-items:center}
+ .calcpro-timecard-shifts td:nth-child(5):before{content:"Clear"}
+ .calcpro-timecard-shifts input{width:100%}
+ .calcpro-timecard-field{grid-template-columns:1fr;row-gap:3px}
+ .calcpro-timecard-checks{margin-left:0}
+ .calcpro-timecard-radio{font-size:13px}
+}
+@media print{
+ body{background:white!important}
+ .calcpro-timecard-form,.calcpro-timecard-errors,.calcpro-timecard-result-actions,.calcpro-timecard-save{display:none!important}
+ .calcpro-timecard-result{display:block!important;margin:0!important}
+ .calcpro-timecard-result-heading{print-color-adjust:exact;-webkit-print-color-adjust:exact}
+ .calcpro-timecard-report-table th,.calcpro-timecard-pay-result th{print-color-adjust:exact;-webkit-print-color-adjust:exact}
+ .cp-site .cp-header,.cp-site .cp-sidebar,.cp-site .cp-breadcrumbs,.cp-site .cp-intro,.cp-site .cp-article,.cp-site .cp-page-title{display:none!important}
+ .cp-site .cp-layout{display:block!important;margin:0!important;width:100%!important}
+}
+
+</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="other-calculator.html">Other</a> / Time Card Calculator</nav><h1 class="cp-page-title">Time Card Calculator</h1><p class="cp-intro">Generate a printable weekly time report from your daily work hours and unpaid breaks. Enter times as 8:30AM, 8.30 or 15:30; optionally calculate gross pay and overtime, then save your entries in this browser.</p><section aria-label="Calculator" class="cp-tool-area"><section id="calcpro-timecard" class="calcpro-timecard" aria-label="Weekly time card calculator">
+  <section id="calcpro-timecard-result" class="calcpro-timecard-result" aria-label="Time card results" aria-live="polite" hidden>
+    <div class="calcpro-timecard-result-heading"><span>Result</span>
+      <button type="button" id="calcpro-timecard-save" class="calcpro-timecard-save" aria-label="Save report as CSV" title="Save as CSV">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 2h15l3 3v17H3a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1zm3 0v7h11V2h-3v5H9V2H6zm6 10a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"/></svg><small>save</small>
+      </button>
+    </div>
+    <div id="calcpro-timecard-report"></div>
+    <div class="calcpro-timecard-result-actions"><button type="button" id="calcpro-timecard-print" class="calcpro-timecard-inline-link">Print</button></div>
+  </section>
+  <div id="calcpro-timecard-errors" class="calcpro-timecard-errors" role="alert" hidden></div>
+  <form id="calcpro-timecard-form" class="calcpro-timecard-form" novalidate>
+    <div class="calcpro-timecard-grid-wrap"><table class="calcpro-timecard-shifts" aria-label="Weekly shift times and breaks">
+      <colgroup><col class="calcpro-timecard-col-date"><col class="calcpro-timecard-col-time"><col class="calcpro-timecard-col-time"><col class="calcpro-timecard-col-break"><col class="calcpro-timecard-col-clear"></colgroup>
+      <thead><tr><th scope="col">Date</th><th scope="col">From</th><th scope="col">To</th><th scope="col">Break<br>Deduction</th><th scope="col"><span class="calcpro-timecard-sr">Clear row</span></th></tr></thead>
+      <tbody>
+<tr>
+        <td data-label="Date"><input id="calcpro-timecard-label-0" type="text" value="Monday" aria-label="Monday date or label" autocomplete="off" spellcheck="false"></td>
+        <td data-label="From"><input id="calcpro-timecard-from-0" type="text" value="8:30AM" aria-label="Monday start time" autocomplete="off" spellcheck="false"></td>
+        <td data-label="To"><input id="calcpro-timecard-to-0" type="text" value="5:00PM" aria-label="Monday end time" autocomplete="off" spellcheck="false"></td>
+        <td data-label="Break"><input id="calcpro-timecard-break-0" type="text" value="0:30" aria-label="Monday unpaid break" autocomplete="off" spellcheck="false"></td>
+        <td data-label="Clear"><button type="button" class="calcpro-timecard-remove" data-tc-clear-row="0" aria-label="Clear Monday times" title="Clear Monday times">×</button></td>
+      </tr>
+<tr>
+        <td data-label="Date"><input id="calcpro-timecard-label-1" type="text" value="Tuesday" aria-label="Tuesday date or label" autocomplete="off" spellcheck="false"></td>
+        <td data-label="From"><input id="calcpro-timecard-from-1" type="text" value="" aria-label="Tuesday start time" autocomplete="off" spellcheck="false"></td>
+        <td data-label="To"><input id="calcpro-timecard-to-1" type="text" value="" aria-label="Tuesday end time" autocomplete="off" spellcheck="false"></td>
+        <td data-label="Break"><input id="calcpro-timecard-break-1" type="text" value="" aria-label="Tuesday unpaid break" autocomplete="off" spellcheck="false"></td>
+        <td data-label="Clear"><button type="button" class="calcpro-timecard-remove" data-tc-clear-row="1" aria-label="Clear Tuesday times" title="Clear Tuesday times">×</button></td>
+      </tr>
+<tr>
+        <td data-label="Date"><input id="calcpro-timecard-label-2" type="text" value="Wednesday" aria-label="Wednesday date or label" autocomplete="off" spellcheck="false"></td>
+        <td data-label="From"><input id="calcpro-timecard-from-2" type="text" value="" aria-label="Wednesday start time" autocomplete="off" spellcheck="false"></td>
+        <td data-label="To"><input id="calcpro-timecard-to-2" type="text" value="" aria-label="Wednesday end time" autocomplete="off" spellcheck="false"></td>
+        <td data-label="Break"><input id="calcpro-timecard-break-2" type="text" value="" aria-label="Wednesday unpaid break" autocomplete="off" spellcheck="false"></td>
+        <td data-label="Clear"><button type="button" class="calcpro-timecard-remove" data-tc-clear-row="2" aria-label="Clear Wednesday times" title="Clear Wednesday times">×</button></td>
+      </tr>
+<tr>
+        <td data-label="Date"><input id="calcpro-timecard-label-3" type="text" value="Thursday" aria-label="Thursday date or label" autocomplete="off" spellcheck="false"></td>
+        <td data-label="From"><input id="calcpro-timecard-from-3" type="text" value="" aria-label="Thursday start time" autocomplete="off" spellcheck="false"></td>
+        <td data-label="To"><input id="calcpro-timecard-to-3" type="text" value="" aria-label="Thursday end time" autocomplete="off" spellcheck="false"></td>
+        <td data-label="Break"><input id="calcpro-timecard-break-3" type="text" value="" aria-label="Thursday unpaid break" autocomplete="off" spellcheck="false"></td>
+        <td data-label="Clear"><button type="button" class="calcpro-timecard-remove" data-tc-clear-row="3" aria-label="Clear Thursday times" title="Clear Thursday times">×</button></td>
+      </tr>
+<tr>
+        <td data-label="Date"><input id="calcpro-timecard-label-4" type="text" value="Friday" aria-label="Friday date or label" autocomplete="off" spellcheck="false"></td>
+        <td data-label="From"><input id="calcpro-timecard-from-4" type="text" value="" aria-label="Friday start time" autocomplete="off" spellcheck="false"></td>
+        <td data-label="To"><input id="calcpro-timecard-to-4" type="text" value="" aria-label="Friday end time" autocomplete="off" spellcheck="false"></td>
+        <td data-label="Break"><input id="calcpro-timecard-break-4" type="text" value="" aria-label="Friday unpaid break" autocomplete="off" spellcheck="false"></td>
+        <td data-label="Clear"><button type="button" class="calcpro-timecard-remove" data-tc-clear-row="4" aria-label="Clear Friday times" title="Clear Friday times">×</button></td>
+      </tr>
+<tr>
+        <td data-label="Date"><input id="calcpro-timecard-label-5" type="text" value="Saturday" aria-label="Saturday date or label" autocomplete="off" spellcheck="false"></td>
+        <td data-label="From"><input id="calcpro-timecard-from-5" type="text" value="" aria-label="Saturday start time" autocomplete="off" spellcheck="false"></td>
+        <td data-label="To"><input id="calcpro-timecard-to-5" type="text" value="" aria-label="Saturday end time" autocomplete="off" spellcheck="false"></td>
+        <td data-label="Break"><input id="calcpro-timecard-break-5" type="text" value="" aria-label="Saturday unpaid break" autocomplete="off" spellcheck="false"></td>
+        <td data-label="Clear"><button type="button" class="calcpro-timecard-remove" data-tc-clear-row="5" aria-label="Clear Saturday times" title="Clear Saturday times">×</button></td>
+      </tr>
+<tr>
+        <td data-label="Date"><input id="calcpro-timecard-label-6" type="text" value="Sunday" aria-label="Sunday date or label" autocomplete="off" spellcheck="false"></td>
+        <td data-label="From"><input id="calcpro-timecard-from-6" type="text" value="" aria-label="Sunday start time" autocomplete="off" spellcheck="false"></td>
+        <td data-label="To"><input id="calcpro-timecard-to-6" type="text" value="" aria-label="Sunday end time" autocomplete="off" spellcheck="false"></td>
+        <td data-label="Break"><input id="calcpro-timecard-break-6" type="text" value="" aria-label="Sunday unpaid break" autocomplete="off" spellcheck="false"></td>
+        <td data-label="Clear"><button type="button" class="calcpro-timecard-remove" data-tc-clear-row="6" aria-label="Clear Sunday times" title="Clear Sunday times">×</button></td>
+      </tr>
+      </tbody></table></div>
+    <div class="calcpro-timecard-rowlinks">
+      <a href="#" class="calcpro-timecard-inline-link" id="calcpro-timecard-copy-down">Copy first row’s data down</a>
+      <a href="#" class="calcpro-timecard-inline-link" id="calcpro-timecard-clear-all">Clear all</a>
+    </div>
+    <div class="calcpro-timecard-options">
+      <div class="calcpro-timecard-field"><label for="calcpro-timecard-round">Round Time:</label>
+        <select id="calcpro-timecard-round"><option value="0" selected>No Round</option><option value="5">Round to the nearest 5 minutes</option><option value="10">Round to the nearest 10 minutes</option><option value="15">Round to the nearest 15 minutes</option><option value="30">Round to the nearest 30 minutes</option><option value="60">Round to the nearest hour</option></select>
+      </div>
+      <div class="calcpro-timecard-field"><label for="calcpro-timecard-header">Report Header:</label><input type="text" id="calcpro-timecard-header" maxlength="120" value="" autocomplete="off"></div>
+      <div class="calcpro-timecard-field"><label for="calcpro-timecard-notes">Report Notes:</label><textarea id="calcpro-timecard-notes" rows="2" maxlength="1000"></textarea></div>
+      <div class="calcpro-timecard-checks">
+        <label class="calcpro-timecard-check"><input type="checkbox" id="calcpro-timecard-include-pay">Include payment information</label>
+        <div id="calcpro-timecard-paysettings" class="calcpro-timecard-paysettings" hidden>
+          <label class="calcpro-timecard-pay-title" for="calcpro-timecard-pay-rate">Base Pay Rate:</label>
+          <div>$ <input type="text" id="calcpro-timecard-pay-rate" class="calcpro-timecard-money" inputmode="decimal" value="35" aria-label="Base hourly pay rate"> per hour</div>
+          <div class="calcpro-timecard-pay-title" style="margin-top:12px">Overtime Pay:</div>
+          <label class="calcpro-timecard-radio"><input type="radio" name="calcpro-timecard-overtime" value="n">No overtime rate; pay base rate for all hours</label>
+          <label class="calcpro-timecard-radio"><input type="radio" name="calcpro-timecard-overtime" value="nd">No overtime pay; pay max <input type="text" id="calcpro-timecard-cap-day" value="8" inputmode="decimal" aria-label="Daily paid hours cap"> hours per day</label>
+          <label class="calcpro-timecard-radio"><input type="radio" name="calcpro-timecard-overtime" value="nw">No overtime pay; pay max <input type="text" id="calcpro-timecard-cap-week" value="40" inputmode="decimal" aria-label="Weekly paid hours cap"> hours per week</label>
+          <div class="calcpro-timecard-otgroup">
+            <label class="calcpro-timecard-radio"><input type="radio" name="calcpro-timecard-overtime" value="d">Overtime pay after <input type="text" id="calcpro-timecard-ot-day" value="8" inputmode="decimal" aria-label="Daily overtime threshold"> hours per day</label>
+            <label class="calcpro-timecard-radio"><input type="radio" name="calcpro-timecard-overtime" value="w" checked>Overtime pay after <input type="text" id="calcpro-timecard-ot-week" value="40" inputmode="decimal" aria-label="Weekly overtime threshold"> hours per week</label>
+          </div>
+          <div class="calcpro-timecard-multiplier" id="calcpro-timecard-multiplierbox"><label for="calcpro-timecard-multiplier"><strong>Overtime Rate:</strong></label><input type="text" id="calcpro-timecard-multiplier" value="1.5" inputmode="decimal"> times base rate</div>
+          <p class="calcpro-timecard-help">Choose the overtime rule that matches your payroll policy. Daily and weekly options are alternatives, not combined.</p>
+        </div>
+        <label class="calcpro-timecard-check"><input type="checkbox" id="calcpro-timecard-show-blank">Show blank days in report</label>
+        <label class="calcpro-timecard-check"><input type="checkbox" id="calcpro-timecard-save-values">Save values to this browser</label>
+      </div>
+    </div>
+    <div class="calcpro-timecard-buttons"><button type="submit" class="calcpro-timecard-calculate">Calculate <span class="calcpro-timecard-play" aria-hidden="true">▶</span></button><button type="button" class="calcpro-timecard-clear" id="calcpro-timecard-clear-form">Clear</button></div>
+  </form>
+</section></section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><a href="time-calculator.html">Time</a><a href="hours-calculator.html">Hours</a><a href="time-duration-calculator.html">Time Duration</a><a href="date-calculator.html">Date</a><a href="day-of-the-week-calculator.html">Day of Week</a><a href="day-counter.html">Day Counter</a><a href="time-zone-calculator.html">Time Zone</a><a href="salary-calculator.html">Salary</a><a href="take-home-pay-calculator.html">Take-home Pay</a><a href="tax-calculator.html">Tax</a><a href="age-calculator.html">Age</a><a href="sales-tax-calculator.html">Sales Tax</a></div></section></aside><article class="cp-article"><!-- ================ PAGE CONTENT INSERT HERE ================ -->
+<h2 id="time-card-guide">How to Use the Time Card Calculator</h2>
+<p>Enter the start time, finish time, and unpaid break for each day you worked. The first row starts with an example shift of 8:30AM to 5:00PM with a 30-minute break; you can change it before calculating. Leave unused days empty, or select <strong>Show blank days in report</strong> to include them in your printable summary.</p>
+<ol>
+<li>Enter Monday–Sunday shift details. You can rename the days to calendar dates or custom labels.</li>
+<li>For time entries, use <strong>8:30AM</strong>, <strong>5:00PM</strong>, <strong>15:30</strong>, <strong>8.30</strong>, or <strong>830</strong>. For breaks, enter <strong>0:30</strong> or <strong>30</strong> for 30 minutes.</li>
+<li>Choose whether to round each clock-in and clock-out to the nearest five, ten, fifteen, thirty, or sixty minutes.</li>
+<li>Optionally supply a report header and notes, and enable pay calculations with an hourly rate and your own overtime policy.</li>
+<li>Click <strong>Calculate</strong>. The report appears <strong>above the input form</strong>; print it or select <strong>save</strong> to export a CSV file.</li>
+</ol>
+<h2>Time Card Formula</h2>
+<p>Daily paid working time is <strong>clock-out − clock-in − unpaid breaks</strong>, with a next-day clock-out supported for overnight shifts. For example, 8:30AM to 5:00PM is 8 hours 30 minutes; subtracting a 30-minute break gives <strong>8 hours</strong>. Sum the daily values to obtain the weekly total.</p>
+<p>When a rounding option is selected, this calculator independently rounds each clock-in and clock-out to the nearest selected increment before subtracting the exact break. With <em>No Round</em>, the entered minutes are used unchanged.</p>
+<h3>Hourly Pay and Overtime</h3>
+<p><strong>Regular earnings = regular hours × base hourly rate.</strong> When overtime pay is enabled, <strong>overtime earnings = overtime hours × base hourly rate × overtime multiplier</strong>. Total gross pay equals regular earnings plus overtime earnings. For a weekly overtime threshold of 40 hours, 45 hours at $20/hour and a 1.5× overtime rate yields 40 × $20 + 5 × $20 × 1.5 = <strong>$950</strong>.</p>
+<p>The daily and weekly overtime methods are separate selectable rules, not additive. The “pay maximum” options cap compensated hours without erasing actual worked hours from the report. All currency amounts are estimates before tax and other deductions.</p>
+<h2>Frequently Asked Questions</h2>
+<h3>Does the calculator support overnight shifts?</h3>
+<p>Yes. For an explicit end time earlier than the start time, the calculator treats the finish as occurring on the following day. Use AM/PM or 24-hour notation whenever a shift may be ambiguous.</p>
+<h3>How should I enter lunch breaks?</h3>
+<p>Use <strong>0:30</strong>, <strong>0.30</strong>, or <strong>30</strong> to deduct 30 minutes. A time with a colon or decimal point uses hours and minutes, while a whole number is treated as a number of minutes.</p>
+<h3>Can I save or print the weekly report?</h3>
+<p>Yes. Select <strong>Save values to this browser</strong> to retain your form entries locally on this device. The report's <strong>save</strong> control exports a CSV file. Use <strong>Print</strong> to print the report or choose “Save as PDF” from your browser's print dialog. The tool does not send your entries to a server.</p>
+<h3>Does it automatically apply labor law overtime rules?</h3>
+<p>No. Overtime thresholds and payment multipliers vary by location, work agreement, and employee classification. Choose the appropriate policy yourself and confirm the resulting payroll figures against applicable requirements. For U.S. recordkeeping and time rounding information, refer to the <a href="https://www.dol.gov/agencies/whd/fact-sheets/21-flsa-recordkeeping" target="_blank" rel="noopener noreferrer">U.S. Department of Labor recordkeeping guidance</a> and <a href="https://www.dol.gov/agencies/whd/fact-sheets/53-healthcare-hours-worked" target="_blank" rel="noopener noreferrer">hours-worked and rounding guidance</a>.</p>
+<p class="cp-page-footer">CalcPro — time and pay estimates are for informational purposes; confirm work records and payroll rules with your employer.</p></article></main></div><script>
+(() => {
+  'use strict';
+  const root = document.getElementById('calcpro-timecard');
+  if (!root) return;
+  const form = root.querySelector('#calcpro-timecard-form');
+  const results = root.querySelector('#calcpro-timecard-result');
+  const report = root.querySelector('#calcpro-timecard-report');
+  const errorsBox = root.querySelector('#calcpro-timecard-errors');
+  const payBox = root.querySelector('#calcpro-timecard-paysettings');
+  const multiplierBox = root.querySelector('#calcpro-timecard-multiplierbox');
+  const saveKey = 'calcpro-timecard-week-v1';
+  const dayNames = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'];
+  const rowFields = Array.from({length:7}, (_,i) => ({
+    label: root.querySelector('#calcpro-timecard-label-'+i),
+    from: root.querySelector('#calcpro-timecard-from-'+i),
+    to: root.querySelector('#calcpro-timecard-to-'+i),
+    break: root.querySelector('#calcpro-timecard-break-'+i)
+  }));
+  const field = name => root.querySelector('#calcpro-timecard-'+name);
+  let latest = null;
+
+  function parseClock(value) {
+    let text = String(value || '').trim().toUpperCase().replace(/\s+/g,'');
+    if (!text) return null;
+    let meridian = '';
+    const match = text.match(/(A\.?M\.?|P\.?M\.?)$/i);
+    if (match) { meridian = match[1].replace(/\./g,'').charAt(0); text=text.slice(0,-match[0].length); }
+    let h, m;
+    if (/^\d{1,2}[:.]\d{1,2}$/.test(text)) {
+      const parts = text.split(/[:.]/);
+      h=Number(parts[0]); m=Number(parts[1].length === 1 ? parts[1]+'0' : parts[1]);
+    } else if (/^\d{1,4}$/.test(text)) {
+      if (text.length <= 2) {h=Number(text);m=0;}
+      else {h=Number(text.slice(0,-2));m=Number(text.slice(-2));}
+    } else return null;
+    if (m < 0 || m > 59 || h < 0 || h > 24 || (h===24 && m!==0)) return null;
+    if (meridian) {
+      if (h<1 || h>12) return null;
+      const hh = (h%12) + (meridian==='P'?12:0);
+      return {choices:[hh*60+m],explicit:true};
+    }
+    if (h===24) return {choices:[1440],explicit:true};
+    if (h===0 || h>=13) return {choices:[h*60+m],explicit:true};
+    if (h===12) return {choices:[720+m],explicit:false};
+    return {choices:[h*60+m, (h+12)*60+m],explicit:false};
+  }
+
+  function inferShift(start, end) {
+    if (!start || !end) return null;
+    let best = null;
+    for (const a of start.choices) for (const b of end.choices) {
+      let finish = b;
+      if (finish <= a) finish += 1440;
+      const duration = finish-a;
+      if (duration <= 0 || duration > 1440) continue;
+      const score = (duration > 16*60 ? 10000 : 0)
+        + (duration > 12*60 ? 1200 : 0)
+        + (finish>=1440 ? 2 : 0)
+        + (a/1440) + duration/100000;
+      if (!best || score < best.score) best={start:a,end:finish,duration,score};
+    }
+    return best;
+  }
+
+  function parseBreak(value) {
+    const str=String(value||'').trim().toLowerCase().replace(/\s/g,'');
+    if (!str) return 0;
+    let minutes;
+    if (/^\d+(?:\.\d+)?m(?:in(?:ute)?s?)?$/.test(str)) minutes=Number(str.replace(/[a-z]+$/,''));
+    else if (/^\d+(?:\.\d+)?h(?:ou)?r?s?$/.test(str)) minutes=Number(str.replace(/[a-z]+$/,''))*60;
+    else if (/^\d+$/.test(str)) minutes=Number(str);
+    else if (/^\d+[:.]\d{1,2}$/.test(str)) {
+      const parts=str.split(/[:.]/);
+      const mm=Number(parts[1].length===1 ? parts[1]+'0' : parts[1]);
+      if (mm>59) return null;
+      minutes=Number(parts[0])*60+mm;
+    } else return null;
+    return Number.isFinite(minutes) && minutes>=0 && minutes<=1440 && Number.isInteger(minutes) ? minutes:null;
+  }
+
+  function displayTime(minute) {
+    let m=((minute%1440)+1440)%1440;
+    const hour24=Math.floor(m/60), mm=m%60;
+    const ap=hour24>=12?'PM':'AM';
+    return String(hour24%12||12)+':'+String(mm).padStart(2,'0')+ap;
+  }
+  function displayDuration(minutes) {
+    const h=Math.floor(minutes/60),m=minutes%60;
+    return (h ? h+'h' : '')+(h&&m?' ':'')+(m ? m+'m' : (!h?'0m':''));
+  }
+  function decimalHours(minutes) { return (minutes/60).toFixed(2); }
+  function money(number) { return '$'+number.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2}); }
+  function numeric(raw) {
+    const value=String(raw).trim().replace(/[$,]/g,'');
+    return value!=='' && Number.isFinite(Number(value)) ? Number(value) : NaN;
+  }
+  function readData() {
+    return {
+      rows:rowFields.map(row=>Object.fromEntries(Object.entries(row).map(([key,input])=>[key,input.value]))),
+      round:field('round').value,
+      header:field('header').value, notes:field('notes').value,
+      includePay:field('include-pay').checked,showBlank:field('show-blank').checked,
+      saveValues:field('save-values').checked,
+      payRate:field('pay-rate').value,
+      overtime:root.querySelector('input[name="calcpro-timecard-overtime"]:checked').value,
+      capDay:field('cap-day').value,capWeek:field('cap-week').value,
+      otDay:field('ot-day').value,otWeek:field('ot-week').value,
+      multiplier:field('multiplier').value
+    };
+  }
+  function applyData(data) {
+    if (!data || !Array.isArray(data.rows) || data.rows.length!==7) return;
+    data.rows.forEach((row,i)=>{
+      for (const key of ['label','from','to','break']) if (typeof row[key]==='string') rowFields[i][key].value=row[key];
+    });
+    for (const [key,value] of Object.entries({round:data.round,header:data.header,notes:data.notes,'pay-rate':data.payRate,'cap-day':data.capDay,'cap-week':data.capWeek,'ot-day':data.otDay,'ot-week':data.otWeek,multiplier:data.multiplier})) {
+      if (typeof value==='string' && field(key)) field(key).value=value;
+    }
+    for(const [key,value] of Object.entries({'include-pay':data.includePay,'show-blank':data.showBlank,'save-values':data.saveValues})) if(typeof value==='boolean') field(key).checked=value;
+    if (['n','nd','nw','d','w'].includes(data.overtime)) {
+      root.querySelector('input[name="calcpro-timecard-overtime"][value="'+data.overtime+'"]' ).checked=true;
+    }
+  }
+  function writeSaved() {
+    try { if(field('save-values').checked) localStorage.setItem(saveKey,JSON.stringify(readData())); else localStorage.removeItem(saveKey); }
+    catch (e) { /* Private browsing can disallow localStorage; calculation still works. */ }
+  }
+  function loadSaved() {
+    try { const saved=JSON.parse(localStorage.getItem(saveKey)); if(saved && saved.saveValues) applyData(saved); }
+    catch(e) { /* Ignore malformed or unavailable local storage. */ }
+  }
+  function updatePayVisibility() {
+    payBox.hidden=!field('include-pay').checked;
+    const overtime=root.querySelector('input[name="calcpro-timecard-overtime"]:checked').value;
+    multiplierBox.hidden=!['d','w'].includes(overtime);
+  }
+  function setErrors(messages, badInputs=[]) {
+    root.querySelectorAll('[aria-invalid=true]').forEach(input=>input.removeAttribute('aria-invalid'));
+    badInputs.forEach(input=>input.setAttribute('aria-invalid','true'));
+    errorsBox.replaceChildren();
+    if(!messages.length) {errorsBox.hidden=true;return;}
+    const strong=document.createElement('strong'); strong.textContent='Please correct the following:';
+    const ul=document.createElement('ul');
+    messages.forEach(message=>{const li=document.createElement('li');li.textContent=message;ul.appendChild(li);});
+    errorsBox.append(strong,ul);errorsBox.hidden=false;
+  }
+  function calculate() {
+    const data=readData(), problems=[], bad=[], rows=[];
+    const step=Number(data.round)||0;
+    data.rows.forEach((r,i)=>{
+      const label=r.label.trim()||dayNames[i];
+      if (!r.from.trim()&&!r.to.trim()) {
+        if (r.break.trim()) {problems.push(label+': enter start and end times before a break.');bad.push(rowFields[i].from,rowFields[i].to);}
+        if (data.showBlank) rows.push({label,blank:true,hours:0,summary:'—'});
+        return;
+      }
+      const from=parseClock(r.from),to=parseClock(r.to);
+      if (!from) {problems.push(label+': enter a valid start time (for example 8:30AM).');bad.push(rowFields[i].from);}
+      if (!to) {problems.push(label+': enter a valid end time (for example 5:00PM).');bad.push(rowFields[i].to);}
+      const breakM=parseBreak(r.break);
+      if (breakM===null) {problems.push(label+': enter a valid break (for example 0:30 or 30 minutes).');bad.push(rowFields[i].break);}
+      if (!from || !to || breakM===null) return;
+      let shift=inferShift(from,to);
+      if (!shift) {problems.push(label+': could not determine the shift length.');bad.push(rowFields[i].from,rowFields[i].to);return;}
+      if (step) {
+        shift={...shift,start:Math.round(shift.start/step)*step,end:Math.round(shift.end/step)*step};
+        shift.duration=Math.max(0,shift.end-shift.start);
+      }
+      if(breakM>shift.duration) {problems.push(label+': break exceeds the shift length.');bad.push(rowFields[i].break);return;}
+      const hours=shift.duration-breakM;
+      const summary=displayTime(shift.start)+'-'+displayTime(shift.end)+(breakM?'\n'+breakM+' minutes break':'');
+      rows.push({label,from:shift.start,to:shift.end,breakM,hours,summary,blank:false});
+    });
+    const worked=rows.reduce((sum,row)=>sum+row.hours,0);
+    let pay=null;
+    if(data.includePay) {
+      const rate=numeric(data.payRate),mult=numeric(data.multiplier);
+      const mode=data.overtime;
+      const thresholdField=mode==='nd'?'cap-day':mode==='nw'?'cap-week':mode==='d'?'ot-day':mode==='w'?'ot-week':null;
+      const threshold=thresholdField?numeric(field(thresholdField).value):0;
+      if(!Number.isFinite(rate)||rate<0||rate>10000000) {problems.push('Base pay rate must be a nonnegative number.');bad.push(field('pay-rate'));}
+      if(thresholdField && (!Number.isFinite(threshold)||threshold<0||threshold>168)) {problems.push('Hours threshold must be between 0 and 168.');bad.push(field(thresholdField));}
+      if(['d','w'].includes(mode) && (!Number.isFinite(mult)||mult<1||mult>100)) {problems.push('Overtime rate multiplier must be at least 1.');bad.push(field('multiplier'));}
+      if(problems.length===0) {
+        let regular=worked, overtime=0, unpaid=0;
+        if(mode==='nd') {regular=rows.reduce((s,r)=>s+Math.min(r.hours,Math.round(threshold*60)),0);unpaid=worked-regular;}
+        if(mode==='nw') {regular=Math.min(worked,Math.round(threshold*60));unpaid=worked-regular;}
+        if(mode==='d') {overtime=rows.reduce((s,r)=>s+Math.max(0,r.hours-Math.round(threshold*60)),0);regular=worked-overtime;}
+        if(mode==='w') {overtime=Math.max(0,worked-Math.round(threshold*60));regular=worked-overtime;}
+        const regularPay=regular/60*rate, overtimePay=overtime/60*rate*mult;
+        pay={mode,rate,multiplier:mult,regular,overtime,unpaid,regularPay,overtimePay,gross:regularPay+overtimePay};
+      }
+    }
+    if (problems.length) {setErrors(problems,bad);results.hidden=true;latest=null;return false;}
+    setErrors([]);
+    latest={...data,rows,worked,pay};
+    drawReport(latest);
+    results.hidden=false;
+    writeSaved();
+    return true;
+  }
+  function elt(name,className,textContent) {
+    const node=document.createElement(name);
+    if(className) node.className=className;
+    if(textContent!==undefined) node.textContent=textContent;
+    return node;
+  }
+  function drawReport(data) {
+    report.replaceChildren();
+    if(data.header.trim()) report.appendChild(elt('p','calcpro-timecard-report-title',data.header.trim()));
+    if(!data.rows.length) report.appendChild(elt('p','calcpro-timecard-empty','No worked days entered. Total: 0h.'));
+    const scroll=elt('div','calcpro-timecard-report-scroll');
+    const table=elt('table','calcpro-timecard-report-table');
+    const thead=elt('thead');const headRow=elt('tr');
+    ['Date','Summary','Hours'].forEach(x=>headRow.appendChild(elt('th','',x)));
+    thead.appendChild(headRow);table.appendChild(thead);
+    const tbody=elt('tbody');
+    data.rows.forEach(r=>{
+      const tr=elt('tr');
+      for(const text of [r.label,r.summary,r.blank?'—':displayDuration(r.hours)]) tr.appendChild(elt('td','',text));
+      tbody.appendChild(tr);
+    });
+    table.appendChild(tbody);
+    const foot=elt('tfoot');const tr=elt('tr');
+    const label=elt('td','calcpro-timecard-result-total-label','Total:');label.colSpan=2;tr.append(label,elt('td','',displayDuration(data.worked)));
+    foot.appendChild(tr);table.appendChild(foot);scroll.appendChild(table);report.appendChild(scroll);
+    if(data.pay) {
+      const p=data.pay,div=elt('div','calcpro-timecard-pay-result');
+      div.appendChild(elt('h3','', 'Payment Summary'));
+      const pt=elt('table'); const hr=elt('tr');
+      ['Category','Hours','Amount'].forEach(x=>hr.appendChild(elt('th','',x)));
+      const ph=elt('thead');ph.appendChild(hr);pt.appendChild(ph);
+      const body=elt('tbody');
+      const lines=[['Regular pay',displayDuration(p.regular),money(p.regularPay)]];
+      if(p.overtime>0 || ['d','w'].includes(p.mode)) lines.push(['Overtime pay ('+p.multiplier+'×)',displayDuration(p.overtime),money(p.overtimePay)]);
+      if(p.unpaid>0) lines.push(['Hours above pay cap (unpaid)',displayDuration(p.unpaid),money(0)]);
+      lines.push(['Total estimated gross pay',displayDuration(p.regular+p.overtime),money(p.gross)]);
+      lines.forEach(line=>{const r=elt('tr');line.forEach(x=>r.appendChild(elt('td','',x)));body.appendChild(r);});
+      pt.appendChild(body);div.appendChild(pt);
+      div.appendChild(elt('p','calcpro-timecard-help','Base pay rate: '+money(p.rate)+'/hour. Gross pay excludes taxes and other deductions.'));
+      report.appendChild(div);
+    }
+    if(data.notes.trim()) report.appendChild(elt('p','calcpro-timecard-report-note','Notes: '+data.notes.trim()));
+  }
+  function csvCell(value) {
+    let s=String(value==null?'':value);
+    if (/^[\s]*[=+@-]/.test(s)) s="'"+s;
+    return '"'+s.replace(/"/g,'""')+'"';
+  }
+  function downloadCsv() {
+    if(!latest) return;
+    const lines=[];
+    if(latest.header.trim()) lines.push([latest.header.trim()]);
+    lines.push(['Date','Summary','Hours (hh:mm)','Hours (decimal)']);
+    latest.rows.forEach(r=>lines.push([r.label,r.summary,r.blank?'':String(Math.floor(r.hours/60))+':'+String(r.hours%60).padStart(2,'0'),r.blank?'':decimalHours(r.hours)]));
+    lines.push(['Total','',String(Math.floor(latest.worked/60))+':'+String(latest.worked%60).padStart(2,'0'),decimalHours(latest.worked)]);
+    if(latest.pay){ const p=latest.pay;lines.push([]);lines.push(['Base pay rate',money(p.rate)]);lines.push(['Regular hours',decimalHours(p.regular)]);lines.push(['Overtime hours',decimalHours(p.overtime)]);lines.push(['Unpaid hours above cap',decimalHours(p.unpaid)]);lines.push(['Gross pay',money(p.gross)]); }
+    if(latest.notes.trim()) lines.push([],['Notes',latest.notes.trim()]);
+    const csv='\ufeff'+lines.map(line=>line.map(csvCell).join(',')).join('\r\n');
+    const url=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8;'}));
+    const a=document.createElement('a');a.href=url;a.download='calcpro-time-card-report.csv';document.body.appendChild(a);a.click();a.remove();
+    setTimeout(()=>URL.revokeObjectURL(url),500);
+  }
+  function hideResult() { results.hidden=true;latest=null;setErrors([]); }
+  form.addEventListener('submit',event=>{event.preventDefault();calculate();});
+  field('include-pay').addEventListener('change',updatePayVisibility);
+  root.querySelectorAll('input[name="calcpro-timecard-overtime"]').forEach(r=>r.addEventListener('change',updatePayVisibility));
+  root.querySelectorAll('[data-tc-clear-row]').forEach(button=>button.addEventListener('click',()=>{
+    const row=rowFields[Number(button.dataset.tcClearRow)];
+    for(const key of ['from','to','break']) row[key].value='';
+    hideResult();writeSaved();
+  }));
+  field('copy-down').addEventListener('click',event=>{
+    event.preventDefault();
+    for(let i=1;i<7;i++) for(const key of ['from','to','break']) rowFields[i][key].value=rowFields[0][key].value;
+    hideResult();writeSaved();
+  });
+  field('clear-all').addEventListener('click',event=>{
+    event.preventDefault();
+    rowFields.forEach(r=>{for(const key of ['from','to','break'])r[key].value='';});
+    hideResult();writeSaved();
+  });
+  field('clear-form').addEventListener('click',()=>{
+    form.reset();
+    rowFields.forEach((r,i)=>{r.label.value=dayNames[i];r.from.value='';r.to.value='';r.break.value='';});
+    field('save-values').checked=false;
+    updatePayVisibility();hideResult();writeSaved();
+  });
+  field('save').addEventListener('click',downloadCsv);
+  field('print').addEventListener('click',()=>{if(latest) window.print();});
+  form.addEventListener('input',()=>{writeSaved();});
+  form.addEventListener('change',()=>{updatePayVisibility();writeSaved();});
+  loadSaved();updatePayVisibility();
+})();
+
+</script></body></html>

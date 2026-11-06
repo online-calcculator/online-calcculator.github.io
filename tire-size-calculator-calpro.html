@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>Tire Size Calculator | CalcPro</title><meta content="Calculate tire diameter, circumference, sidewall height, wheel fitment alternatives, tire size differences and speedometer error." name="description"/><link href="template-style.css" rel="stylesheet"/><style>
+
+/* Tire Size Calculator: uniquely scoped component styles. */
+#calcpro-tire-root {--tire-navy:#003366;--tire-blue:#336699;--tire-green:#508529;--tire-light:#edf3f8;--tire-border:#bdc7d0;--tire-ink:#161e27;color:#121820;font-family:Arial,Helvetica,sans-serif;line-height:1.38;max-width:100%;}
+#calcpro-tire-root *,#calcpro-tire-root *::before,#calcpro-tire-root *::after {box-sizing:border-box;}
+#calcpro-tire-root [hidden] {display:none!important;}
+#calcpro-tire-root .calcpro-tire-hint {background:#336699;color:#fff;font-size:14px;text-align:center;padding:8px 12px;margin:6px 0 12px;display:flex;justify-content:center;align-items:center;gap:12px;}
+#calcpro-tire-root .calcpro-tire-hint-icon {background:#fff;border-radius:100%;width:23px;height:23px;display:inline-grid;place-items:center;color:#336699;font-weight:900;font-size:18px;line-height:1;flex-shrink:0;}
+#calcpro-tire-root .calcpro-tire-section {margin-bottom:36px;min-width:0;}
+#calcpro-tire-root .calcpro-tire-section + .calcpro-tire-section {margin-top:35px;}
+#calcpro-tire-root .calcpro-tire-section-title {font-size:22px;color:#003366;line-height:1.25;margin:0 0 5px;font-weight:700;}
+#calcpro-tire-root .calcpro-tire-section-intro {margin:0 0 8px;font-size:15px;line-height:1.4;}
+#calcpro-tire-root .calcpro-tire-form {background:#eee;border:1px solid #bfc0c1;display:table;max-width:100%;padding:11px 12px 10px;min-width:0;}
+#calcpro-tire-root .calcpro-tire-size-line {display:flex;align-items:center;justify-content:center;gap:4px;flex-wrap:nowrap;margin:0 0 6px;white-space:nowrap;}
+#calcpro-tire-root .calcpro-tire-size-line label {font-weight:700;font-size:14px;flex:0 0 auto;}
+#calcpro-tire-root .calcpro-tire-sep {font-size:17px;color:#0b2138;}
+#calcpro-tire-root .calcpro-tire-field {border:1px solid #336699;background:#fff;border-radius:2px;box-shadow:1px 2px 2px #aab3bc;font:16px Arial,Helvetica,sans-serif;color:#141414;padding:3px 5px;height:30px;min-width:0;outline-offset:2px;appearance:textfield;-moz-appearance:textfield;}
+#calcpro-tire-root .calcpro-tire-field::-webkit-inner-spin-button,#calcpro-tire-root .calcpro-tire-field::-webkit-outer-spin-button {-webkit-appearance:none;margin:0;}
+#calcpro-tire-root .calcpro-tire-field:focus {outline:2px solid #aecbe5;outline-offset:1px;}
+#calcpro-tire-root .calcpro-tire-field[aria-invalid='true'] {border-color:#ba2333;box-shadow:0 0 0 1px #ba2333;}
+#calcpro-tire-root .calcpro-tire-field-width {width:83px;}
+#calcpro-tire-root .calcpro-tire-field-ratio {width:57px;}
+#calcpro-tire-root .calcpro-tire-field-rim {width:57px;}
+#calcpro-tire-root .calcpro-tire-wheel-choice {text-align:center;font-size:15px;margin:13px auto 11px;}
+#calcpro-tire-root .calcpro-tire-radio-group {display:flex;justify-content:center;align-items:center;gap:16px;margin-top:4px;}
+#calcpro-tire-root .calcpro-tire-radio-group label {display:inline-flex;align-items:center;gap:5px;cursor:pointer;}
+#calcpro-tire-root .calcpro-tire-radio-group input {accent-color:#336699;width:17px;height:17px;margin:0;}
+#calcpro-tire-root .calcpro-tire-new-wheel {margin:10px auto 0;display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:7px;}
+#calcpro-tire-root .calcpro-tire-new-wheel label {font-size:14px;font-weight:700;}
+#calcpro-tire-root .calcpro-tire-unit {color:#414141;font-size:13px;}
+#calcpro-tire-root .calcpro-tire-actions {display:flex;justify-content:center;gap:5px;margin-top:12px;align-items:stretch;}
+#calcpro-tire-root .calcpro-tire-button {appearance:none;border:0;padding:8px 12px;font:700 14px Arial,Helvetica,sans-serif;cursor:pointer;min-height:36px;}
+#calcpro-tire-root .calcpro-tire-calculate {background:#4f8228;color:#fff;display:inline-flex;align-items:center;gap:13px;}
+#calcpro-tire-root .calcpro-tire-calculate:hover {background:#38691c;}
+#calcpro-tire-root .calcpro-tire-arrow {background:#a8caa5;color:#fff;border-radius:100%;width:21px;height:21px;display:inline-grid;place-items:center;font-size:15px;padding-left:2px;line-height:1;}
+#calcpro-tire-root .calcpro-tire-clear {background:#aaa;color:#fff;font-weight:400;}
+#calcpro-tire-root .calcpro-tire-clear:hover {background:#888;}
+#calcpro-tire-root .calcpro-tire-error {background:#fff1f1;border:1px solid #bf5454;color:#842222;border-radius:2px;padding:8px 10px;font-size:13px;margin:10px 0 0;max-width:500px;}
+#calcpro-tire-root .calcpro-tire-result {margin:0 0 16px;max-width:100%;}
+#calcpro-tire-root .calcpro-tire-result-bar {background:#4f8228;color:#fff;display:flex;align-items:center;justify-content:space-between;padding:7px 9px;font-size:19px;line-height:1.2;margin:0 0 9px;}
+#calcpro-tire-root .calcpro-tire-save {background:none;border:0;color:#fff;display:flex;align-items:center;gap:5px;font:12px Arial,Helvetica,sans-serif;cursor:pointer;padding:2px 4px;}
+#calcpro-tire-root .calcpro-tire-save:hover {text-decoration:underline;}
+#calcpro-tire-root .calcpro-tire-single-output {display:grid;grid-template-columns:minmax(250px,310px) minmax(0,1fr);gap:10px 14px;align-items:start;}
+#calcpro-tire-root .calcpro-tire-table-wrap {max-width:100%;overflow-x:auto;}
+#calcpro-tire-root .calcpro-tire-data-table {border-collapse:collapse;font-size:14px;line-height:1.22;white-space:nowrap;}
+#calcpro-tire-root .calcpro-tire-data-table td,#calcpro-tire-root .calcpro-tire-data-table th {border:1px solid #c9c9c9;padding:4px 5px;text-align:right;font-weight:400;}
+#calcpro-tire-root .calcpro-tire-data-table tbody tr:nth-child(even) {background:#eee;}
+#calcpro-tire-root .calcpro-tire-data-table .calcpro-tire-label-cell {text-align:left;}
+#calcpro-tire-root .calcpro-tire-single-table {width:100%;}
+#calcpro-tire-root .calcpro-tire-single-table .calcpro-tire-label-cell {min-width:165px;}
+#calcpro-tire-root .calcpro-tire-figure {margin:0;min-width:0;}
+#calcpro-tire-root .calcpro-tire-figure svg {display:block;width:100%;height:auto;max-width:550px;}
+#calcpro-tire-root .calcpro-tire-figure figcaption {text-align:center;color:#3b5065;font-size:12px;margin-top:2px;}
+#calcpro-tire-root .calcpro-tire-alternatives {margin-top:15px;}
+#calcpro-tire-root .calcpro-tire-alternatives h3 {font-size:17px;color:#003366;margin:12px 0 5px;}
+#calcpro-tire-root .calcpro-tire-alternatives p {font-size:13px;margin:5px 0 10px;max-width:650px;}
+#calcpro-tire-root .calcpro-tire-alternatives .calcpro-tire-data-table {min-width:440px;}
+#calcpro-tire-root .calcpro-tire-alternatives thead th {background:#336699;color:#fff;font-weight:700;text-align:center;}
+#calcpro-tire-root .calcpro-tire-compare-button {border:1px solid #336699;background:#f3f8fb;color:#003366;padding:3px 8px;cursor:pointer;font-size:12px;}
+#calcpro-tire-root .calcpro-tire-compare-button:hover {background:#dbeaf4;}
+#calcpro-tire-root .calcpro-tire-compare-table {min-width:535px;width:100%;}
+#calcpro-tire-root .calcpro-tire-compare-table thead th {background:#336699;color:#fff;text-align:center;font-weight:700;padding:6px 3px;}
+#calcpro-tire-root .calcpro-tire-compare-table .calcpro-tire-value-a {background:#aed5f6;}
+#calcpro-tire-root .calcpro-tire-compare-table .calcpro-tire-value-b {background:#c9f6ad;}
+#calcpro-tire-root .calcpro-tire-compare-table tbody tr:nth-child(even) .calcpro-tire-value-a {background:#9fcef5;}
+#calcpro-tire-root .calcpro-tire-compare-table tbody tr:nth-child(even) .calcpro-tire-value-b {background:#b8ed9a;}
+#calcpro-tire-root .calcpro-tire-compare-table .calcpro-tire-label-cell {min-width:160px;}
+#calcpro-tire-root .calcpro-tire-speed-wrap {margin:20px 0 12px;}
+#calcpro-tire-root .calcpro-tire-subtitle {font-size:14px;font-weight:700;margin:8px 0 3px;}
+#calcpro-tire-root .calcpro-tire-speed-table td,#calcpro-tire-root .calcpro-tire-speed-table th {font-size:13px;padding:4px 5px;}
+#calcpro-tire-root .calcpro-tire-speed-table th {font-weight:400;text-align:left;background:#f2f2f2;}
+#calcpro-tire-root .calcpro-tire-compare-visuals {margin:15px 0 18px;}
+#calcpro-tire-root .calcpro-tire-note {font-size:12px;color:#5b6570;margin:9px 0 0;line-height:1.45;}
+#calcpro-tire-root .calcpro-tire-live {position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
+@media(max-width:650px){
+ #calcpro-tire-root .calcpro-tire-single-output {grid-template-columns:minmax(0,1fr);}
+ #calcpro-tire-root .calcpro-tire-figure svg {max-width:440px;}
+ #calcpro-tire-root .calcpro-tire-section-title {font-size:20px;}
+ #calcpro-tire-root .calcpro-tire-hint {font-size:13px;}
+}
+@media(max-width:400px){
+ #calcpro-tire-root .calcpro-tire-form {width:100%;padding:12px 7px;display:block;}
+ #calcpro-tire-root .calcpro-tire-size-line {gap:2px;}
+ #calcpro-tire-root .calcpro-tire-size-line label {font-size:12px;}
+ #calcpro-tire-root .calcpro-tire-field {font-size:14px;}
+ #calcpro-tire-root .calcpro-tire-field-width {width:70px;}
+ #calcpro-tire-root .calcpro-tire-field-ratio,#calcpro-tire-root .calcpro-tire-field-rim {width:48px;}
+ #calcpro-tire-root .calcpro-tire-sep {font-size:15px;}
+ #calcpro-tire-root .calcpro-tire-single-table .calcpro-tire-label-cell {min-width:0;}
+ #calcpro-tire-root .calcpro-tire-data-table {font-size:12px;}
+}
+@media print {
+ #calcpro-tire-root .calcpro-tire-hint,#calcpro-tire-root .calcpro-tire-actions,#calcpro-tire-root .calcpro-tire-save,#calcpro-tire-root .calcpro-tire-compare-button {display:none!important;}
+ #calcpro-tire-root .calcpro-tire-form {border:0;padding:0;background:white;}
+ #calcpro-tire-root .calcpro-tire-result {break-inside:avoid;}
+ #calcpro-tire-root .calcpro-tire-result-bar {print-color-adjust:exact;-webkit-print-color-adjust:exact;}
+ #calcpro-tire-root .calcpro-tire-data-table th,#calcpro-tire-root .calcpro-tire-value-a,#calcpro-tire-root .calcpro-tire-value-b {print-color-adjust:exact;-webkit-print-color-adjust:exact;}
+}
+
+</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / Automotive / Tire Size Calculator</nav><h1 class="cp-page-title">Tire Size Calculator</h1><p class="cp-intro">Calculate tire diameter, width, sidewall height, circumference, revolutions per mile and kilometer, and compare two tire sizes or explore alternatives for a different wheel diameter.</p><section aria-label="Calculator" class="cp-tool-area">
+<div id="calcpro-tire-root" class="calcpro-tire-root">
+  <p class="calcpro-tire-hint"><span class="calcpro-tire-hint-icon" aria-hidden="true">▼</span><span>Modify the values and click the Calculate button to use</span></p>
+  <section class="calcpro-tire-section" aria-label="Tire size dimensions">
+    <div id="calcpro-tire-main-result" class="calcpro-tire-result" hidden aria-label="Tire size results"></div>
+    <form id="calcpro-tire-main-form" class="calcpro-tire-form" novalidate>
+      <div class="calcpro-tire-size-line">
+        <label for="calcpro-tire-main-width">Tire Size:</label>
+        <input id="calcpro-tire-main-width" class="calcpro-tire-field calcpro-tire-field-width" type="number" min="100" max="500" step="any" inputmode="decimal" value="265" aria-label="Tire width in millimeters" required>
+        <span class="calcpro-tire-sep" aria-hidden="true">/</span>
+        <input id="calcpro-tire-main-aspect" class="calcpro-tire-field calcpro-tire-field-ratio" type="number" min="20" max="100" step="any" inputmode="decimal" value="70" aria-label="Tire aspect ratio in percent" required>
+        <span class="calcpro-tire-sep" aria-hidden="true">R</span>
+        <input id="calcpro-tire-main-rim" class="calcpro-tire-field calcpro-tire-field-rim" type="number" min="8" max="40" step="any" inputmode="decimal" value="17" aria-label="Wheel diameter in inches" required>
+      </div>
+      <div class="calcpro-tire-wheel-choice">
+        <span>Change to a new wheel size?</span>
+        <div class="calcpro-tire-radio-group" role="radiogroup" aria-label="Change to a new wheel size">
+          <label><input type="radio" name="calcpro-tire-newchoice" id="calcpro-tire-choice-yes" value="yes"> Yes</label>
+          <label><input type="radio" name="calcpro-tire-newchoice" id="calcpro-tire-choice-no" value="no" checked> No</label>
+        </div>
+        <div id="calcpro-tire-new-wheel-group" class="calcpro-tire-new-wheel" hidden>
+          <label for="calcpro-tire-new-rim">New Wheel Size/Diameter:</label>
+          <input id="calcpro-tire-new-rim" class="calcpro-tire-field calcpro-tire-field-rim" type="number" min="8" max="40" step="any" inputmode="decimal" value="19" aria-label="New wheel size in inches">
+          <span class="calcpro-tire-unit">inches</span>
+        </div>
+      </div>
+      <div class="calcpro-tire-actions">
+        <button class="calcpro-tire-button calcpro-tire-calculate" type="submit">Calculate <span class="calcpro-tire-arrow" aria-hidden="true">▶</span></button>
+        <button class="calcpro-tire-button calcpro-tire-clear" type="button" id="calcpro-tire-main-clear">Clear</button>
+      </div>
+      <p class="calcpro-tire-error" id="calcpro-tire-main-error" role="alert" hidden></p>
+    </form>
+  </section>
+  <section class="calcpro-tire-section" id="calcpro-tire-compare-section" aria-label="Tire size comparison">
+    <h2 id="calcpro-tire-compare-heading" class="calcpro-tire-section-title">Tire Size Comparison Calculator</h2>
+    <p class="calcpro-tire-section-intro">Use this calculator to compare the sizes of two tires both numerically and visually.</p>
+    <div id="calcpro-tire-compare-result" class="calcpro-tire-result" hidden aria-label="Tire size comparison results"></div>
+    <form id="calcpro-tire-compare-form" class="calcpro-tire-form" novalidate>
+      <div class="calcpro-tire-size-line">
+        <label for="calcpro-tire-a-width">Tire 1:</label>
+        <input id="calcpro-tire-a-width" class="calcpro-tire-field calcpro-tire-field-width" type="number" min="100" max="500" step="any" inputmode="decimal" value="265" aria-label="Tire 1 width in millimeters" required>
+        <span class="calcpro-tire-sep" aria-hidden="true">/</span>
+        <input id="calcpro-tire-a-aspect" class="calcpro-tire-field calcpro-tire-field-ratio" type="number" min="20" max="100" step="any" inputmode="decimal" value="70" aria-label="Tire 1 aspect ratio in percent" required>
+        <span class="calcpro-tire-sep" aria-hidden="true">R</span>
+        <input id="calcpro-tire-a-rim" class="calcpro-tire-field calcpro-tire-field-rim" type="number" min="8" max="40" step="any" inputmode="decimal" value="17" aria-label="Tire 1 wheel diameter in inches" required>
+      </div>
+      <div class="calcpro-tire-size-line">
+        <label for="calcpro-tire-b-width">Tire 2:</label>
+        <input id="calcpro-tire-b-width" class="calcpro-tire-field calcpro-tire-field-width" type="number" min="100" max="500" step="any" inputmode="decimal" value="265" aria-label="Tire 2 width in millimeters" required>
+        <span class="calcpro-tire-sep" aria-hidden="true">/</span>
+        <input id="calcpro-tire-b-aspect" class="calcpro-tire-field calcpro-tire-field-ratio" type="number" min="20" max="100" step="any" inputmode="decimal" value="40" aria-label="Tire 2 aspect ratio in percent" required>
+        <span class="calcpro-tire-sep" aria-hidden="true">R</span>
+        <input id="calcpro-tire-b-rim" class="calcpro-tire-field calcpro-tire-field-rim" type="number" min="8" max="40" step="any" inputmode="decimal" value="23" aria-label="Tire 2 wheel diameter in inches" required>
+      </div>
+      <div class="calcpro-tire-actions">
+        <button class="calcpro-tire-button calcpro-tire-calculate" type="submit">Calculate <span class="calcpro-tire-arrow" aria-hidden="true">▶</span></button>
+        <button class="calcpro-tire-button calcpro-tire-clear" type="button" id="calcpro-tire-compare-clear">Clear</button>
+      </div>
+      <p class="calcpro-tire-error" id="calcpro-tire-compare-error" role="alert" hidden></p>
+    </form>
+  </section>
+  <div id="calcpro-tire-live" class="calcpro-tire-live" role="status" aria-live="polite"></div>
+</div>
+</section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><!-- REPLACE these links with real related tools for each calculator; verify live slugs. --><a href="retirement-calculator.html">Retirement</a><a href="roth-ira-calculator.html">Roth IRA</a><a href="investment-calculator.html">Investment</a><a href="compound-interest-calculator.html">Compound Interest</a><a href="annuity-payout-calculator.html">Annuity Payout</a><a href="pension-calculator.html">Pension</a><a href="inflation-calculator.html">Inflation</a><a href="future-value-calculator.html">Future Value</a><a href="income-tax-calculator.html">Income Tax</a><a href="savings-calculator.html">Savings</a><a href="mortgage-calculator.html">Mortgage</a><a href="loan-calculator.html">Loan</a></div></section></aside><article class="cp-article">
+<h2>Tire code: understanding the numbers</h2>
+<p>A tire code such as <strong>P215/65R15 95H</strong> describes the tire's intended use, section width, sidewall aspect ratio, construction, wheel diameter, and load and speed ratings. The diagram below labels these elements.</p>
+<figure style="max-width:650px;margin:12px 0 18px;text-align:center">
+ <svg viewBox="0 0 660 235" role="img" aria-label="Diagram showing the components of the tire code P215 slash 65 R15 95H" style="max-width:100%;height:auto;display:block">
+  <rect x="25" y="68" width="610" height="84" rx="14" fill="#1c242c"/>
+  <text x="330" y="120" text-anchor="middle" fill="#fff" font-family="Arial,Helvetica,sans-serif" font-weight="bold" font-size="52" letter-spacing="1">P215/65R15 95H</text>
+  <g stroke="#2675c9" fill="none" stroke-width="1.6"><path d="M 60 68 L 60 28 H 25"/><path d="M 155 68 L 155 14 H 150"/><path d="M 275 68 L 275 28 H 297"/><path d="M 365 152 L 365 190 H 335"/><path d="M 423 68 L 423 28 H 430"/><path d="M 523 152 L 523 190 H 500"/><path d="M 579 68 L 579 28 H 574"/></g>
+  <g fill="#003366" font-family="Arial,Helvetica,sans-serif" font-size="13"><text x="25" y="20">Tire type</text><text x="150" y="11" text-anchor="middle">Width</text><text x="297" y="22">Aspect ratio</text><text x="335" y="207" text-anchor="middle">Radial</text><text x="430" y="20">Wheel size</text><text x="500" y="207" text-anchor="middle">Load index</text><text x="574" y="20" text-anchor="middle">Speed rating</text></g>
+ </svg>
+ <figcaption style="color:#586575;font-size:13px">Illustrative tire markings; actual tires may carry additional letters and DOT manufacturing codes.</figcaption>
+</figure>
+<h3>What each part means</h3>
+<ul>
+ <li><strong>Section width:</strong> in 265/70R17, <strong>265</strong> means the nominal tire width is 265 mm.</li>
+ <li><strong>Aspect ratio:</strong> <strong>70</strong> means each sidewall's height is nominally 70% of the tire's width.</li>
+ <li><strong>Construction:</strong> <strong>R</strong> means radial construction.</li>
+ <li><strong>Wheel diameter:</strong> <strong>17</strong> means the tire mounts on a wheel with a 17-inch bead-seat diameter.</li>
+ <li><strong>Other marks:</strong> a prefix such as P or LT describes service category; the load index and speed rating specify performance limits and require independent checking.</li>
+</ul>
+<h2>How to use the Tire Size Calculator</h2>
+<ol>
+ <li>Enter the tire's section width (mm), aspect ratio (%), and wheel diameter (inches).</li>
+ <li>Select <strong>No</strong> for the tire's dimensions alone or <strong>Yes</strong> to enter a different wheel diameter and see nominal alternative sizes within 3% of the original diameter.</li>
+ <li>Click <strong>Calculate</strong> to display tire height, wheel and sidewall dimensions, circumference, revolutions, and a dimension diagram above the form.</li>
+ <li>Use the comparison calculator to enter two tire sizes and inspect their dimensions, percentage changes, and estimated speedometer readings.</li>
+ <li>Use <strong>Save / Print</strong> in the result bar to print the calculated results or save them as a PDF using your browser.</li>
+</ol>
+<h2>Tire size formulas</h2>
+<p>The calculator converts rim diameter to millimeters using exactly 25.4 mm per inch and uses the nominal geometry of a metric tire size.</p>
+<div class="cp-note">
+ <p><strong>Sidewall height (mm)</strong> = tire width (mm) × aspect ratio ÷ 100</p>
+ <p><strong>Overall diameter (mm)</strong> = wheel diameter (in) × 25.4 + 2 × sidewall height (mm)</p>
+ <p><strong>Circumference (mm)</strong> = π × overall diameter (mm)</p>
+ <p><strong>Revolutions per mile</strong> = 1,609,344 ÷ circumference (mm)</p>
+ <p><strong>Revolutions per kilometer</strong> = 1,000,000 ÷ circumference (mm)</p>
+</div>
+<h3>Worked example: 265/70R17</h3>
+<p>Sidewall height = 265 × 0.70 = <strong>185.5 mm</strong>. The wheel diameter is 17 × 25.4 = <strong>431.8 mm</strong>. The overall tire diameter is 431.8 + 2 × 185.5 = <strong>802.8 mm (31.6 in)</strong>. Its nominal circumference is approximately <strong>2,522.1 mm (99.3 in)</strong>, equal to approximately <strong>638.1 revolutions per mile</strong>.</p>
+<h2>How to interpret a tire comparison</h2>
+<p>The difference percentage for each measurement is computed against Tire 1: <strong>|Tire 2 − Tire 1| ÷ Tire 1 × 100</strong>. A greater wheel diameter alone does not always mean a taller tire; a shorter sidewall can offset it.</p>
+<p>Assuming the speedometer is calibrated for Tire 1, estimated actual speed on Tire 2 equals <strong>indicated speed × Tire 2 overall diameter ÷ Tire 1 overall diameter</strong>. For 265/70R17 versus 265/40R23, the second tire is about <strong>0.82% smaller in diameter</strong>, so an indicated 60 mph corresponds to approximately <strong>59.5 mph</strong>.</p>
+<div class="cp-warning"><strong>Fitment and safety:</strong> A diameter difference within 3% is only a useful preliminary comparison, not permission to fit a tire. You must also confirm the vehicle placard or manual, wheel width and offset, load index, speed rating, brake and suspension clearance, and any vehicle-specific requirements. Actual rolling dimensions can vary by model and load.</div>
+<h2>Frequently asked questions</h2>
+<h3>Does a larger rim always increase tire height?</h3>
+<p>No. Low-profile tires can have smaller sidewalls and nearly the same outside diameter even with a larger wheel.</p>
+<h3>Why is my measured tire different from the calculator?</h3>
+<p>These values are nominal geometric dimensions from the size markings. Tire manufacturers, tread wear, loading, inflation pressure, and the measuring method can change real-world figures.</p>
+<h3>Does this calculator establish tire compatibility?</h3>
+<p>No. Its alternative-size suggestions only check nominal diameter. A professional should confirm complete wheel and vehicle fitment, including tire load capacity and the manufacturer's requirements.</p>
+<h3>Are speedometer figures in mph or km/h?</h3>
+<p>The comparison table works with either because it uses a dimensionless diameter ratio. Interpret both rows in the same speed unit.</p>
+<h2>Sources and further guidance</h2>
+<p>For basic tire-size definitions, consult the <a href="https://www.calculator.net/tire-size-calculator.html" target="_blank" rel="noopener noreferrer">Calculator.net Tire Size Calculator</a>. For replacement tire selection, see <a href="https://www.nhtsa.gov/vehicle-safety/tires" target="_blank" rel="noopener noreferrer">NHTSA TireWise</a> and the <a href="https://www.ustires.org/tire-care-safety/replacing-tires" target="_blank" rel="noopener noreferrer">U.S. Tire Manufacturers Association replacement guidance</a>.</p>
+<p class="cp-page-footer">CalcPro — calculations are estimates for informational use and do not substitute for professional fitment advice.</p>
+</article></main></div><script>
+
+(() => {
+  'use strict';
+  const scope = document.getElementById('calcpro-tire-root');
+  if (!scope) return;
+  const $ = (name) => scope.querySelector('#calcpro-tire-' + name);
+  const fmt = (n, digits = 1) => Number(n).toLocaleString('en-US', {minimumFractionDigits: digits, maximumFractionDigits: digits});
+  const integer = (n) => Math.round(n).toLocaleString('en-US');
+  const trim = (n) => String(Number(n));
+  const label = (t) => `${trim(t.width)}/${trim(t.aspect)}R${trim(t.rim)}`;
+  const measure = (width, aspect, rim) => {
+    const sideMM = width * aspect / 100;
+    const wheelMM = rim * 25.4;
+    const diameterMM = wheelMM + 2 * sideMM;
+    const circumferenceMM = Math.PI * diameterMM;
+    const circumferenceIN = circumferenceMM / 25.4;
+    return {width, aspect, rim, sideMM, wheelMM, diameterMM, diameterIN: diameterMM / 25.4,
+      circumferenceMM, circumferenceIN, widthIN: width / 25.4, sideIN: sideMM / 25.4,
+      revMile: 63360 / circumferenceIN, revKM: 1000000 / circumferenceMM};
+  };
+  const parameters = [['width','Width (mm)',100,500],['aspect','Aspect ratio (%)',20,100],['rim','Wheel diameter (inches)',8,40]];
+  function readTire(prefix) {
+    const values = {};
+    for (const [field, description, min, max] of parameters) {
+      const input = $(prefix + '-' + field);
+      input.removeAttribute('aria-invalid');
+      const value = input.value.trim() ? Number(input.value) : NaN;
+      if (!Number.isFinite(value) || value < min || value > max) {
+        input.setAttribute('aria-invalid', 'true');
+        throw {message:`${description} must be a number between ${min} and ${max}.`, input};
+      }
+      values[field] = value;
+    }
+    return measure(values.width, values.aspect, values.rim);
+  }
+  function showError(prefix, error) {
+    const el = $(prefix + '-error');
+    const activeResult = $(prefix + '-result');
+    if (activeResult) activeResult.hidden = true;
+    el.textContent = error.message || 'Please check your tire size values.';
+    el.hidden = false;
+    if (error.input) error.input.focus();
+    $('live').textContent = el.textContent;
+  }
+  function clearError(prefix) {const el = $(prefix + '-error'); el.hidden = true; el.textContent = '';}
+  function resultBar() {
+    return `<div class="calcpro-tire-result-bar"><span>Result</span><button class="calcpro-tire-save" type="button" data-calcpro-tire-print title="Print result or save as PDF" aria-label="Print or save as PDF">` +
+      `<svg width="17" height="17" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M4 2h13l3 3v17H4zM7 3v7h10V3h-2v5H9V3zm5 10a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"/></svg><span>Save / Print</span></button></div>`;
+  }
+  const dimRows = [
+    ['Tire Height (Diameter)', 'diameterIN', 'diameterMM'],
+    ['Wheel Size', 'rim', 'wheelMM'],
+    ['Sidewall Height', 'sideIN', 'sideMM'],
+    ['Tire Width', 'widthIN', 'width'],
+    ['Tire Circumference', 'circumferenceIN', 'circumferenceMM'],
+    ['Revolutions per Mile', 'revMile', null],
+    ['Revolutions per Kilometer', 'revKM', null]
+  ];
+  function singleTable(t) {
+    const rows = dimRows.map(([title, inchKey, mmKey]) => {
+      if (mmKey === null) return `<tr><td class="calcpro-tire-label-cell">${title}</td><td colspan="2">${fmt(t[inchKey])}</td></tr>`;
+      const inches = inchKey === 'rim' ? `${trim(t.rim)} in` : `${fmt(t[inchKey])} in`;
+      return `<tr><td class="calcpro-tire-label-cell">${title}</td><td>${inches}</td><td>${integer(t[mmKey])} mm</td></tr>`;
+    }).join('');
+    return `<div class="calcpro-tire-table-wrap"><table class="calcpro-tire-data-table calcpro-tire-single-table"><tbody>${rows}</tbody></table></div>`;
+  }
+  function tireFace(cx, cy, outerR, wheelR) {
+    const spokes = Array.from({length:5}, (_,i) => {
+      const theta = i * Math.PI * 2 / 5 - Math.PI / 2;
+      return `<line x1="${cx+Math.cos(theta)*wheelR*.18}" y1="${cy+Math.sin(theta)*wheelR*.18}" x2="${cx+Math.cos(theta)*wheelR*.82}" y2="${cy+Math.sin(theta)*wheelR*.82}" stroke="#e6e8e9" stroke-width="${Math.max(4,wheelR*.24)}" stroke-linecap="round"/>`;
+    }).join('');
+    return `<circle cx="${cx}" cy="${cy}" r="${outerR}" fill="#111"/>`+
+      `<circle cx="${cx}" cy="${cy}" r="${outerR*.84}" fill="#383b3d"/>`+
+      `<circle cx="${cx}" cy="${cy}" r="${outerR*.68}" fill="#090a0b"/>`+
+      `<circle cx="${cx}" cy="${cy}" r="${wheelR}" fill="#c0c3c6" stroke="#f8f8f8" stroke-width="2"/>`+
+      `<circle cx="${cx}" cy="${cy}" r="${wheelR*.78}" fill="#f9f9f9"/>`+
+      spokes + `<circle cx="${cx}" cy="${cy}" r="${Math.max(4,wheelR*.11)}" fill="#b8b8b8"/>`;
+  }
+  function tireTread(x, centerY, width, height) {
+    const y = centerY - height/2;
+    const stripes = Array.from({length:5}, (_,i) => `<line x1="${x+width*(i+1)/6}" y1="${y+5}" x2="${x+width*(i+1)/6}" y2="${y+height-5}" stroke="${i%2 ? '#737373' : '#555'}" stroke-width="${Math.max(2,width*.08)}"/>`).join('');
+    return `<rect x="${x}" y="${y}" width="${width}" height="${height}" rx="12" fill="#171717"/>${stripes}`;
+  }
+  function diagramSingle(t) {
+    const cx=345, cy=122, r=88, wr=r*t.rim/t.diameterIN;
+    const tw=Math.max(37,Math.min(75,t.widthIN*5.6));
+    const h=2*r;
+    const blue='#104cff';
+    return `<figure class="calcpro-tire-figure"><svg viewBox="0 0 530 255" role="img" aria-label="Dimension drawing of ${label(t)}, overall diameter ${fmt(t.diameterIN)} inches, rim ${trim(t.rim)} inches, and width ${fmt(t.widthIN)} inches">`+
+      tireTread(22,cy,tw,h)+tireFace(cx,cy,r,wr)+
+      `<g fill="none" stroke="${blue}" stroke-width="1.5"><path d="M 19 225 H ${22+tw} M 19 219 V 230 M ${22+tw} 219 V 230"/><path d="M ${cx+r+14} ${cy-r} v ${h} m -6 -${h} h 18 m -18 ${h} h 18"/>`+
+      `<path d="M ${cx-r-12} ${cy-r} V ${cy+r} M ${cx-r-18} ${cy-r} H ${cx-r-6} M ${cx-r-18} ${cy+r} H ${cx-r-6}"/>`+
+      `<path d="M ${cx+wr+4} ${cy-wr} H ${cx+r+14} M ${cx+wr+4} ${cy+wr} H ${cx+r+14}"/></g>`+
+      `<g fill="${blue}" font-family="Arial,Helvetica,sans-serif" font-size="15"><text x="22" y="244">${fmt(t.widthIN)} in · ${integer(t.width)} mm</text>`+
+      `<text x="${cx-r-22}" y="${cy-4}" text-anchor="end">${fmt(t.diameterIN)} in</text><text x="${cx-r-22}" y="${cy+14}" text-anchor="end">${integer(t.diameterMM)} mm</text>`+
+      `<text x="${cx+r+23}" y="${cy-wr-8}">${trim(t.rim)} in</text><text x="${cx+r+23}" y="${cy-wr+11}">${integer(t.wheelMM)} mm</text>`+
+      `<text x="${cx+r+23}" y="${cy-r+15}">${fmt(t.sideIN)} in</text><text x="${cx+r+23}" y="${cy-r+33}">${integer(t.sideMM)} mm</text></g></svg></figure>`;
+  }
+  function diagramCompare(a,b) {
+    const maxD=Math.max(a.diameterMM,b.diameterMM), maxWidth=Math.max(a.width,b.width);
+    const cy=124, r1=96*a.diameterMM/maxD, r2=96*b.diameterMM/maxD;
+    const x1=115,x2=325;
+    const w1=48*a.width/maxWidth,w2=48*b.width/maxWidth;
+    return `<figure class="calcpro-tire-figure"><svg viewBox="0 0 665 266" role="img" aria-label="To-scale side and front views of Tire 1 and Tire 2">`+
+      tireFace(x1,cy,r1,r1*a.rim/a.diameterIN)+tireFace(x2,cy,r2,r2*b.rim/b.diameterIN)+
+      tireTread(499-w1/2,cy,w1,2*r1)+tireTread(594-w2/2,cy,w2,2*r2)+
+      `<g fill="#104cff" font-family="Arial,Helvetica,sans-serif" font-size="16" text-anchor="middle"><text x="${x1}" y="240">Tire 1</text><text x="${x2}" y="240">Tire 2</text><text x="499" y="240">Tire 1</text><text x="594" y="240">Tire 2</text></g></svg></figure>`;
+  }
+  function alternatives(t, newRim) {
+    const choices=[];
+    for (let width=125;width<=395;width+=10) {
+      for (let aspect=20;aspect<=90;aspect+=5) {
+        const alt=measure(width,aspect,newRim), change=(alt.diameterMM/t.diameterMM-1)*100;
+        if (Math.abs(change)<=3.000000001) choices.push({...alt,change});
+      }
+    }
+    choices.sort((a,b) => Math.abs(a.change)-Math.abs(b.change) || Math.abs(a.width-t.width)-Math.abs(b.width-t.width));
+    const top=choices.slice(0,16);
+    let rows=top.map(t2=> `<tr><td class="calcpro-tire-label-cell">${label(t2)}</td><td>${fmt(t2.diameterIN)} in</td>`+
+      `<td>${fmt(t2.widthIN)} in</td><td>${t2.change>0?'+':''}${fmt(t2.change,2)}%</td>`+
+      `<td><button type="button" class="calcpro-tire-compare-button" data-calcpro-tire-select="${t2.width},${t2.aspect},${t2.rim}" aria-label="Compare ${label(t2)} with original tire">Compare</button></td></tr>`).join('');
+    if (!rows) rows='<tr><td colspan="5" class="calcpro-tire-label-cell">No standard 5%-step aspect-ratio options within ±3% were found for this wheel size.</td></tr>';
+    return `<section class="calcpro-tire-alternatives"><h3>Alternative tires for ${trim(newRim)}-inch wheels</h3>`+
+      `<p>These nominal sizes are within ±3% of the original ${label(t)} diameter, sorted by closest diameter. This is a dimensional shortlist, <strong>not a confirmation of vehicle or rim fitment</strong>.</p>`+
+      `<div class="calcpro-tire-table-wrap"><table class="calcpro-tire-data-table"><thead><tr><th>Tire size</th><th>Diameter</th><th>Width</th><th>Diameter change</th><th>Compare</th></tr></thead><tbody>${rows}</tbody></table></div>`+
+      `<p class="calcpro-tire-note">Verify wheel width, wheel offset, clearance, load index, speed rating, and the vehicle manufacturer's requirements before selecting a replacement tire.</p></section>`;
+  }
+  function renderSingle(t, useNew, rimValue) {
+    $('main-result').innerHTML = resultBar()+`<div class="calcpro-tire-single-output">${singleTable(t)}${diagramSingle(t)}</div>`+
+      (useNew ? alternatives(t,rimValue) : '') +
+      `<p class="calcpro-tire-note">Nominal dimensions calculated from the tire code; actual mounted dimensions and rolling revolutions vary with construction, load and pressure.</p>`;
+    $('main-result').hidden=false;
+    $('compare-result').hidden=true;
+  }
+  function compareTable(a,b) {
+    const pct=(x,y)=> `${fmt(Math.abs((y/x-1)*100),2)}%`;
+    const cells=(value,kind) => kind === 'mm' ? `${integer(value)} mm` : kind === 'in' ? `${fmt(value)} in` : fmt(value);
+    const rows=[
+      ['Tire Height (Diameter)', ['diameterIN','in'], ['diameterMM','mm'],'diameterMM'],
+      ['Wheel Size', ['rim','in'], ['wheelMM','mm'],'rim'],
+      ['Sidewall Height', ['sideIN','in'], ['sideMM','mm'],'sideMM'],
+      ['Tire Width', ['widthIN','in'], ['width','mm'],'width'],
+      ['Tire Circumference', ['circumferenceIN','in'], ['circumferenceMM','mm'],'circumferenceMM'],
+      ['Revolutions per Mile', ['revMile',null],null,'revMile'],
+      ['Revolutions per Kilometer', ['revKM',null],null,'revKM']
+    ].map(([title,m1,m2,base])=> {
+      const va = m2 ? `<td class="calcpro-tire-value-a">${cells(a[m1[0]],m1[1])}</td><td class="calcpro-tire-value-a">${cells(a[m2[0]],m2[1])}</td>` : `<td colspan="2" class="calcpro-tire-value-a">${cells(a[m1[0]],m1[1])}</td>`;
+      const vb = m2 ? `<td class="calcpro-tire-value-b">${cells(b[m1[0]],m1[1])}</td><td class="calcpro-tire-value-b">${cells(b[m2[0]],m2[1])}</td>` : `<td colspan="2" class="calcpro-tire-value-b">${cells(b[m1[0]],m1[1])}</td>`;
+      return `<tr><td class="calcpro-tire-label-cell">${title}</td>${va}${vb}<td>${pct(a[base],b[base])}</td></tr>`;
+    }).join('');
+    return `<div class="calcpro-tire-table-wrap"><table class="calcpro-tire-data-table calcpro-tire-compare-table"><thead>`+
+      `<tr><th></th><th colspan="2">Tire 1<br>${label(a)}</th><th colspan="2">Tire 2<br>${label(b)}</th><th>Difference</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+  }
+  function speedometer(a,b) {
+    const speeds=[20,40,60,80,100,120], actual=speeds.map(s=>s*b.diameterMM/a.diameterMM);
+    return `<div class="calcpro-tire-speed-wrap"><p class="calcpro-tire-subtitle">Speedometer Difference:</p>`+
+      `<div class="calcpro-tire-table-wrap"><table class="calcpro-tire-data-table calcpro-tire-speed-table"><tbody>`+
+      `<tr><th>Tire 1 (mph or km/h):</th>${speeds.map(s=>`<td>${s}</td>`).join('')}</tr>`+
+      `<tr><th>Tire 2 (mph or km/h):</th>${actual.map(v=>`<td>${Number(v.toFixed(1))}</td>`).join('')}</tr>`+
+      `</tbody></table></div></div>`;
+  }
+  function renderCompare(a,b) {
+    $('compare-result').innerHTML=resultBar()+compareTable(a,b)+speedometer(a,b)+
+      `<div class="calcpro-tire-compare-visuals">${diagramCompare(a,b)}</div>`+
+      `<p class="calcpro-tire-note">Differences use Tire 1 as the baseline; a positive or negative speed correction depends on whether Tire 2 is larger or smaller. Calculated from nominal size geometry.</p>`;
+    $('compare-result').hidden=false;
+    $('main-result').hidden=true;
+  }
+  function gotoResult(element) {
+    if (!element || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    element.scrollIntoView({behavior:'smooth',block:'start'});
+  }
+  $('choice-yes').addEventListener('change', ()=>{$('new-wheel-group').hidden=false;});
+  $('choice-no').addEventListener('change', ()=>{$('new-wheel-group').hidden=true; $('new-rim').removeAttribute('aria-invalid');});
+  $('main-form').addEventListener('submit', e=> {
+    e.preventDefault();clearError('main');
+    try {
+      const tire=readTire('main'), useNew=$('choice-yes').checked, input=$('new-rim');
+      input.removeAttribute('aria-invalid');
+      let newRim=NaN;
+      if (useNew) {
+        newRim=input.value.trim()?Number(input.value):NaN;
+        if (!Number.isFinite(newRim)||newRim<8||newRim>40) {
+          input.setAttribute('aria-invalid','true');
+          throw {message:'New wheel diameter must be between 8 and 40 inches.',input};
+        }
+      }
+      renderSingle(tire,useNew,newRim);
+      $('live').textContent=`Dimensions calculated for ${label(tire)}.`;
+      gotoResult($('main-result'));
+    } catch(err) {showError('main',err);}
+  });
+  $('compare-form').addEventListener('submit',e=> {
+    e.preventDefault();clearError('compare');
+    try {
+      const a=readTire('a'), b=readTire('b');
+      renderCompare(a,b);
+      $('live').textContent=`Comparison calculated for ${label(a)} and ${label(b)}.`;
+      gotoResult($('compare-heading'));
+    } catch(err){showError('compare',err);}
+  });
+  function clearFields(ids) {ids.forEach(id=> {const input=$(id);input.value='';input.removeAttribute('aria-invalid');});}
+  $('main-clear').addEventListener('click',()=> {
+    clearFields(['main-width','main-aspect','main-rim','new-rim']);
+    $('choice-no').checked=true; $('new-wheel-group').hidden=true;
+    $('main-result').hidden=true; $('main-result').innerHTML=''; clearError('main');
+    $('live').textContent='Tire size inputs cleared.';
+  });
+  $('compare-clear').addEventListener('click',()=> {
+    clearFields(['a-width','a-aspect','a-rim','b-width','b-aspect','b-rim']);
+    $('compare-result').hidden=true; $('compare-result').innerHTML='';clearError('compare');
+    $('live').textContent='Tire comparison inputs cleared.';
+  });
+  scope.addEventListener('click',e=> {
+    const print=e.target.closest('[data-calcpro-tire-print]');
+    if(print){window.print();return;}
+    const select=e.target.closest('[data-calcpro-tire-select]');
+    if(!select) return;
+    const chosen=select.getAttribute('data-calcpro-tire-select').split(',');
+    [['a-width','main-width'],['a-aspect','main-aspect'],['a-rim','main-rim']].forEach(([to,from])=>{$(to).value=$(from).value;});
+    ['b-width','b-aspect','b-rim'].forEach((name,i)=>{$(name).value=chosen[i];});
+    $('compare-form').requestSubmit();
+  });
+})();
+
+</script></body></html>

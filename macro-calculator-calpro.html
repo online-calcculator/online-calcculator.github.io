@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>Macro Calculator – Daily Protein, Carbs &amp; Fat | CalcPro</title><meta content="Estimate your daily calorie needs and macronutrient targets with US, metric and custom units, activity levels, weight goals and flexible meal plans." name="description"/><link href="template-style.css" rel="stylesheet"/><!--TOOL CSS INSERT HERE: Paste only calculator-specific CSS here. Use unique class/id prefixes per tool, e.g. bmi-, loan-, age-. Keep header, sidebar and article CSS in style.css.--><style>
+/* Macro Calculator component — isolated from CalcPro global styles. */
+.calcpro-macro{font:16px/1.34 Arial,Helvetica,sans-serif;color:#111;width:100%;max-width:100%;text-align:left}
+.calcpro-macro *{box-sizing:border-box}
+.calcpro-macro button,.calcpro-macro input,.calcpro-macro select{font:inherit}
+.calcpro-macro a{color:#006699}
+.calcpro-macro button{cursor:pointer}
+.calcpro-macro [hidden]{display:none!important}
+.calcpro-macro .calcpro-macro-topactions{display:flex;justify-content:flex-end;margin:0 0 4px}
+.calcpro-macro .calcpro-macro-print{background:none;border:0;padding:0;color:#006699;text-decoration:underline;font-size:14px}
+.calcpro-macro .calcpro-macro-instruction{background:#336699;color:white;font-weight:700;font-size:16px;text-align:center;padding:10px 7px;margin:3px 0}
+.calcpro-macro .calcpro-macro-instruction::before{content:'▼';display:inline-grid;place-items:center;color:#336699;background:#fff;border-radius:50%;width:25px;height:25px;font-size:16px;margin-right:24px;vertical-align:middle}
+.calcpro-macro .calcpro-macro-unit-tabs{display:flex;gap:4px;flex-wrap:wrap;align-items:flex-end;margin:3px 0 0}
+.calcpro-macro .calcpro-macro-unit-tab{background:#336699;color:#fff;border:1px solid #336699;border-bottom:0;padding:7px 8px 8px;font-size:15px;font-weight:700;border-radius:0;min-height:37px}
+.calcpro-macro .calcpro-macro-unit-tab[aria-selected="true"]{background:#ececec;color:#000;border-color:#bcbcbc;box-shadow:inset 0 3px #ececec}
+.calcpro-macro .calcpro-macro-form-panel{background:#eee;border:1px solid #bebebe;padding:12px 14px 13px}
+.calcpro-macro .calcpro-macro-field{display:grid;grid-template-columns:86px minmax(0,1fr);gap:4px;align-items:center;margin-bottom:6px}
+.calcpro-macro .calcpro-macro-field>label,.calcpro-macro .calcpro-macro-field>.calcpro-macro-field-label{font-weight:400}
+.calcpro-macro .calcpro-macro-inline{display:flex;flex-wrap:wrap;gap:6px;align-items:center;min-width:0}
+.calcpro-macro input[type="number"],.calcpro-macro select{border:1px solid #326496;border-radius:2px;background:#fff;color:#000;box-shadow:1px 2px 2px #b8b8b8;height:33px;padding:4px 8px;max-width:100%;min-width:0}
+.calcpro-macro input[type="number"]:focus,.calcpro-macro select:focus{outline:2px solid #648fc1;outline-offset:1px}
+.calcpro-macro .calcpro-macro-age{width:116px}
+.calcpro-macro .calcpro-macro-short{width:104px}
+.calcpro-macro .calcpro-macro-dimension{position:relative;display:inline-flex;max-width:100%}
+.calcpro-macro .calcpro-macro-field>.calcpro-macro-dimension{justify-self:start}
+.calcpro-macro .calcpro-macro-dimension input{width:240px;padding-right:53px}
+.calcpro-macro .calcpro-macro-dimension.compact input{width:115px;padding-right:39px}
+.calcpro-macro .calcpro-macro-suffix{position:absolute;right:9px;top:7px;color:#777;pointer-events:none}
+.calcpro-macro .calcpro-macro-radio{display:inline-flex;align-items:center;gap:6px;cursor:pointer;white-space:nowrap}
+.calcpro-macro input[type="radio"]{appearance:auto;accent-color:#336699;width:18px;height:18px;cursor:pointer;margin:0}
+.calcpro-macro .calcpro-macro-choice{gap:12px}
+.calcpro-macro .calcpro-macro-activity{width:min(100%,460px)}
+.calcpro-macro .calcpro-macro-goal{width:min(100%,370px)}
+.calcpro-macro .calcpro-macro-advanced-row{margin-top:8px}
+.calcpro-macro .calcpro-macro-settings-button{background:none;border:0;color:#006699;font-size:15px;font-weight:bold;text-decoration:underline;padding:0}
+.calcpro-macro .calcpro-macro-settings{background:#f7f7f7;border:1px solid #d4d4d4;padding:10px;margin:8px 0 4px;max-width:460px}
+.calcpro-macro .calcpro-macro-settings-label{font-size:14px;font-weight:700;margin-bottom:8px}
+.calcpro-macro .calcpro-macro-settings-option{margin:5px 0}
+.calcpro-macro .calcpro-macro-settings-option .calcpro-macro-short{height:31px;width:80px}
+.calcpro-macro .calcpro-macro-actions{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0 1px}
+.calcpro-macro .calcpro-macro-calculate{background:#4b8325;color:#fff;border:0;padding:10px 17px;font-weight:700;min-height:42px}
+.calcpro-macro .calcpro-macro-calculate::after{content:'▶';font-weight:400;font-size:12px;color:#4b8325;background:#cee5cb;border-radius:50%;display:inline-grid;place-items:center;margin-left:12px;width:23px;height:23px}
+.calcpro-macro .calcpro-macro-clear{background:#aaa;color:white;border:0;padding:10px 13px;min-height:42px}
+.calcpro-macro .calcpro-macro-error{color:#a22412;background:#fff2ee;border-left:4px solid #bf4936;padding:8px 10px;margin:9px 0;font-size:14px}
+.calcpro-macro .calcpro-macro-activity-note{padding-left:22px;margin:0 0 15px;font-size:13px;line-height:1.24}
+.calcpro-macro .calcpro-macro-activity-note li{margin:0}
+.calcpro-macro .calcpro-macro-result{margin-bottom:18px}
+.calcpro-macro .calcpro-macro-result-title{background:#4b8325;color:white;padding:6px 8px;display:flex;align-items:center;justify-content:space-between;font-size:20px;margin-bottom:14px}
+.calcpro-macro .calcpro-macro-save{border:1px solid #d8eed1;background:transparent;color:white;font-size:12px;padding:3px 7px;border-radius:2px}
+.calcpro-macro .calcpro-macro-result-intro{margin:0 0 8px;font-size:14px;max-width:710px}
+.calcpro-macro .calcpro-macro-preset-tabs{display:flex;flex-wrap:wrap;gap:2px;margin:0 0 9px}
+.calcpro-macro .calcpro-macro-preset{background:#336699;border:1px solid #336699;color:#fff;border-radius:3px;padding:5px 7px;font-size:13px;line-height:1.1}
+.calcpro-macro .calcpro-macro-preset[aria-selected="true"]{background:#666;border-color:#666;position:relative}
+.calcpro-macro .calcpro-macro-preset[aria-selected="true"]::after{content:'';position:absolute;top:100%;left:calc(50% - 6px);width:0;height:0;border:6px solid transparent;border-top-color:#666}
+.calcpro-macro .calcpro-macro-results-table{border-collapse:separate;border-spacing:1px;width:min(100%,340px);font-size:15px;margin:8px 0}
+.calcpro-macro .calcpro-macro-results-table th{width:46%;background:#eee;text-align:center;border:1px solid #bbb;padding:6px 3px;font-weight:400;line-height:1.15}
+.calcpro-macro .calcpro-macro-results-table th small{display:block;color:#999;font-size:11px;margin-top:2px}
+.calcpro-macro .calcpro-macro-results-table td{background:#e1eddf;border:1px solid #8fac77;padding:3px 5px 3px 12px;line-height:1.15;vertical-align:middle}
+.calcpro-macro .calcpro-macro-results-table td strong{font-size:23px;color:#111}
+.calcpro-macro .calcpro-macro-results-table td small{display:block;color:#858585;margin-top:2px;font-size:14px}
+.calcpro-macro .calcpro-macro-range-details{max-width:340px;color:#666;font-size:12px;margin:0 0 12px}
+.calcpro-macro .calcpro-macro-custom{border:1px solid #bfd0dc;background:#f4f8fb;padding:12px;margin:8px 0 12px;max-width:460px}
+.calcpro-macro .calcpro-macro-custom h3{font-size:15px;font-weight:700;margin:0 0 8px}
+.calcpro-macro .calcpro-macro-slider-row{display:grid;grid-template-columns:76px minmax(0,1fr) 70px;gap:9px;align-items:center;margin:10px 0}
+.calcpro-macro .calcpro-macro-slider-row input[type="range"]{width:100%;accent-color:#336699}
+.calcpro-macro .calcpro-macro-slider-output{text-align:right;font-size:14px;font-variant-numeric:tabular-nums}
+.calcpro-macro .calcpro-macro-custom-tip{color:#444;font-size:12px;line-height:1.4;margin:9px 0 0}
+.calcpro-macro .calcpro-macro-result-note{font-size:14px;line-height:1.32;max-width:710px;margin:11px 0 12px}
+.calcpro-macro .calcpro-macro-numbers{font-variant-numeric:tabular-nums}
+.calcpro-macro .calcpro-macro-other-select{height:33px;max-width:155px}
+.calcpro-macro .calcpro-macro-unit-help{font-size:12px;color:#595959;margin:5px 0 10px 90px}
+.calcpro-macro .calcpro-macro-warning{background:#fff7de;border-left:4px solid #d0a542;padding:7px 10px;margin:8px 0;font-size:13px;max-width:660px}
+@media(max-width:580px){.calcpro-macro{font-size:15px}.calcpro-macro .calcpro-macro-form-panel{padding:11px 9px}.calcpro-macro .calcpro-macro-field{grid-template-columns:75px minmax(0,1fr)}.calcpro-macro .calcpro-macro-instruction::before{margin-right:8px}.calcpro-macro .calcpro-macro-activity,.calcpro-macro .calcpro-macro-goal{width:100%;font-size:13px}.calcpro-macro .calcpro-macro-dimension input{width:min(100%,220px)}.calcpro-macro .calcpro-macro-unit-help{margin-left:79px}.calcpro-macro .calcpro-macro-preset{font-size:12px}.calcpro-macro .calcpro-macro-result-title{font-size:19px}}
+@media(max-width:380px){.calcpro-macro .calcpro-macro-field{grid-template-columns:1fr;gap:3px}.calcpro-macro .calcpro-macro-dimension input{width:100%}.calcpro-macro .calcpro-macro-suffix{right:8px}.calcpro-macro .calcpro-macro-unit-help{margin-left:0}.calcpro-macro .calcpro-macro-slider-row{grid-template-columns:65px minmax(0,1fr) 52px;gap:4px}.calcpro-macro .calcpro-macro-slider-output{font-size:12px}.calcpro-macro .calcpro-macro-instruction{font-size:13px}.calcpro-macro .calcpro-macro-unit-tab{font-size:13px;padding:6px}.calcpro-macro .calcpro-macro-results-table td strong{font-size:20px}}
+@media print{.calcpro-macro .calcpro-macro-topactions,.calcpro-macro .calcpro-macro-save,.calcpro-macro .calcpro-macro-instruction,.calcpro-macro .calcpro-macro-actions,.calcpro-macro .calcpro-macro-custom{display:none!important}.calcpro-macro .calcpro-macro-result{break-inside:avoid}.calcpro-macro .calcpro-macro-form-panel{background:white}}
+</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/fitness-health-calculator/">Fitness &amp; Health</a> / Macro Calculator</nav><h1 class="cp-page-title">Macro Calculator</h1><p class="cp-intro">Estimate your daily calorie needs and the suggested amounts of protein, carbohydrates, and fat for weight maintenance, loss, or gain.</p><section aria-label="Calculator" class="cp-tool-area">
+<div class="calcpro-macro" id="calcpro-macro-root">
+<div class="calcpro-macro-topactions"><button class="calcpro-macro-print" id="calcpro-macro-print" type="button">Print</button></div>
+<section aria-label="Macro calculation results" aria-live="polite" class="calcpro-macro-result" hidden="" id="calcpro-macro-result">
+<div class="calcpro-macro-result-title"><span>Result</span><button aria-label="Save this calculation" class="calcpro-macro-save" id="calcpro-macro-save" type="button">▣ Save</button></div>
+<p class="calcpro-macro-result-intro" id="calcpro-macro-result-intro"></p>
+<div aria-label="Macro plans" class="calcpro-macro-preset-tabs" role="tablist">
+<button aria-selected="true" class="calcpro-macro-preset" data-calcpro-macro-preset="balanced" role="tab" type="button">Balanced</button>
+<button aria-selected="false" class="calcpro-macro-preset" data-calcpro-macro-preset="low-fat" role="tab" type="button">Low Fat</button>
+<button aria-selected="false" class="calcpro-macro-preset" data-calcpro-macro-preset="low-carb" role="tab" type="button">Low Carb</button>
+<button aria-selected="false" class="calcpro-macro-preset" data-calcpro-macro-preset="high-protein" role="tab" type="button">High Protein</button>
+<button aria-selected="false" class="calcpro-macro-preset" data-calcpro-macro-preset="custom" role="tab" type="button">Create Your Own</button>
+</div>
+<div class="calcpro-macro-custom" hidden="" id="calcpro-macro-custom-panel">
+<h3>Slide the bars to create your own plan</h3>
+<div class="calcpro-macro-slider-row"><label for="calcpro-macro-protein-slider">Protein</label><input id="calcpro-macro-protein-slider" max="500" min="0" step="0.1" type="range"/><output class="calcpro-macro-slider-output" id="calcpro-macro-protein-custom-output">0 g</output></div>
+<div class="calcpro-macro-slider-row"><label for="calcpro-macro-carbs-slider">Carbs</label><input id="calcpro-macro-carbs-slider" max="800" min="0" step="0.1" type="range"/><output class="calcpro-macro-slider-output" id="calcpro-macro-carbs-custom-output">0 g</output></div>
+<div class="calcpro-macro-slider-row"><label for="calcpro-macro-fat-slider">Fat</label><input id="calcpro-macro-fat-slider" max="200" min="0" step="0.1" type="range"/><output class="calcpro-macro-slider-output" id="calcpro-macro-fat-custom-output">0 g</output></div>
+<p class="calcpro-macro-custom-tip">Moving one slider automatically adjusts the other two while maintaining the calorie target and suggested ranges.</p>
+</div>
+<table aria-label="Daily macronutrient suggestions" class="calcpro-macro-results-table calcpro-macro-numbers">
+<tbody>
+<tr><th scope="row">Protein</th><td><strong id="calcpro-macro-protein-value">–</strong> grams/day <small id="calcpro-macro-protein-range"></small></td></tr>
+<tr><th scope="row">Carbs <small>Includes Sugar</small></th><td><strong id="calcpro-macro-carbs-value">–</strong> grams/day <small id="calcpro-macro-carbs-range"></small></td></tr>
+<tr><th scope="row">Fat <small>Includes Saturated Fat</small></th><td><strong id="calcpro-macro-fat-value">–</strong> grams/day <small id="calcpro-macro-fat-range"></small></td></tr>
+<tr><th scope="row">Sugar</th><td><strong id="calcpro-macro-sugar-value">–</strong> grams/day</td></tr>
+<tr><th scope="row">Saturated Fat</th><td><strong id="calcpro-macro-saturated-value">–</strong> grams/day</td></tr>
+<tr><th scope="row">Food Energy</th><td><strong id="calcpro-macro-energy-value">–</strong> Calories/day <small id="calcpro-macro-kilojoules-value"></small></td></tr>
+</tbody>
+</table>
+<p class="calcpro-macro-range-details" id="calcpro-macro-bmr-details"></p>
+<p class="calcpro-macro-warning" hidden="" id="calcpro-macro-lowcal-warning"></p>
+<p class="calcpro-macro-result-note">These are general estimates for typical adults, not individualized medical or sports-nutrition advice. Calorie and macronutrient requirements may differ with pregnancy, medical conditions, intensive training, or other special circumstances. The diet-style presets are examples, not required targets.</p>
+</section>
+<div class="calcpro-macro-instruction" id="calcpro-macro-instruction">Modify the values and click the Calculate button to use</div>
+<div aria-label="Measurement units" class="calcpro-macro-unit-tabs" role="tablist">
+<button aria-selected="false" class="calcpro-macro-unit-tab" data-calcpro-macro-unit="us" role="tab" type="button">US Units</button>
+<button aria-selected="true" class="calcpro-macro-unit-tab" data-calcpro-macro-unit="metric" role="tab" type="button">Metric Units</button>
+<button aria-selected="false" class="calcpro-macro-unit-tab" data-calcpro-macro-unit="other" role="tab" type="button">Other Units</button>
+</div>
+<form class="calcpro-macro-form-panel" id="calcpro-macro-form" novalidate="">
+<div class="calcpro-macro-field"><label for="calcpro-macro-age">Age</label><div class="calcpro-macro-inline"><input class="calcpro-macro-age" id="calcpro-macro-age" max="80" min="18" required="" step="1" type="number" value="25"/><span>ages 18 - 80</span></div></div>
+<div class="calcpro-macro-field"><span class="calcpro-macro-field-label" id="calcpro-macro-sex-label">Gender</span><div aria-labelledby="calcpro-macro-sex-label" class="calcpro-macro-inline calcpro-macro-choice" role="group"><label class="calcpro-macro-radio"><input checked="" name="calcpro-macro-sex" type="radio" value="male"/> male</label><label class="calcpro-macro-radio"><input name="calcpro-macro-sex" type="radio" value="female"/> female</label></div></div>
+<div id="calcpro-macro-panel-metric">
+<div class="calcpro-macro-field"><label for="calcpro-macro-height-cm">Height</label><div class="calcpro-macro-dimension"><input id="calcpro-macro-height-cm" inputmode="decimal" max="250" min="90" step="any" type="number" value="180"/><span class="calcpro-macro-suffix">cm</span></div></div>
+<div class="calcpro-macro-field"><label for="calcpro-macro-weight-kg">Weight</label><div class="calcpro-macro-dimension"><input id="calcpro-macro-weight-kg" inputmode="decimal" max="450" min="15" step="any" type="number" value="65"/><span class="calcpro-macro-suffix">kg</span></div></div>
+</div>
+<div hidden="" id="calcpro-macro-panel-us">
+<div class="calcpro-macro-field"><span class="calcpro-macro-field-label">Height</span><div class="calcpro-macro-inline"><label class="calcpro-macro-dimension compact"><input aria-label="Height in feet" id="calcpro-macro-height-ft" max="8" min="0" step="1" type="number" value="5"/><span class="calcpro-macro-suffix">ft</span></label><label class="calcpro-macro-dimension compact"><input aria-label="Additional inches" id="calcpro-macro-height-in" max="11.99" min="0" step="any" type="number" value="10.87"/><span class="calcpro-macro-suffix">in</span></label></div></div>
+<div class="calcpro-macro-field"><label for="calcpro-macro-weight-lb">Weight</label><div class="calcpro-macro-dimension"><input id="calcpro-macro-weight-lb" max="992" min="33" step="any" type="number" value="143.3"/><span class="calcpro-macro-suffix">lb</span></div></div>
+</div>
+<div hidden="" id="calcpro-macro-panel-other">
+<p class="calcpro-macro-unit-help">Choose independent height and weight units.</p>
+<div class="calcpro-macro-field"><label for="calcpro-macro-height-other">Height</label><div class="calcpro-macro-inline"><input class="calcpro-macro-short" id="calcpro-macro-height-other" min="1" step="any" type="number" value="180"/><select aria-label="Other height unit" class="calcpro-macro-other-select" id="calcpro-macro-height-other-unit"><option value="cm">centimeters</option><option value="in">inches</option><option value="m">meters</option></select></div></div>
+<div class="calcpro-macro-field"><label for="calcpro-macro-weight-other">Weight</label><div class="calcpro-macro-inline"><input class="calcpro-macro-short" id="calcpro-macro-weight-other" min="1" step="any" type="number" value="65"/><select aria-label="Other weight unit" class="calcpro-macro-other-select" id="calcpro-macro-weight-other-unit"><option value="kg">kilograms</option><option value="lb">pounds</option><option value="st">stones</option></select></div></div>
+</div>
+<div class="calcpro-macro-field"><label for="calcpro-macro-activity">Activity</label><select class="calcpro-macro-activity" id="calcpro-macro-activity">
+<option value="1">Basal Metabolic Rate (BMR)</option>
+<option value="1.2">Sedentary: little or no exercise</option>
+<option value="1.375">Light: exercise 1-3 times/week</option>
+<option selected="" value="1.465">Moderate: exercise 4-5 times/week</option>
+<option value="1.55">Active: daily exercise or intense exercise 3-4 times/week</option>
+<option value="1.725">Very Active: intense exercise 6-7 times/week</option>
+<option value="1.9">Extra Active: very intense exercise daily, or physical job</option>
+</select></div>
+<div class="calcpro-macro-field"><label for="calcpro-macro-goal">Your Goal</label><select class="calcpro-macro-goal" id="calcpro-macro-goal">
+<option selected="" value="0">Maintain weight</option>
+<option value="-250">Mild weight loss of 0.5 lb (0.25 kg) per week</option>
+<option value="-500">Weight loss of 1 lb (0.5 kg) per week</option>
+<option value="-1000">Extreme weight loss of 2 lb (1 kg) per week</option>
+<option value="250">Mild weight gain of 0.5 lb (0.25 kg) per week</option>
+<option value="500">Weight gain of 1 lb (0.5 kg) per week</option>
+<option value="1000">Extreme weight gain of 2 lb (1 kg) per week</option>
+</select></div>
+<div class="calcpro-macro-field calcpro-macro-advanced-row"><span aria-hidden="true"></span><div><button aria-controls="calcpro-macro-settings" aria-expanded="false" class="calcpro-macro-settings-button" id="calcpro-macro-settings-toggle" type="button">+ Settings</button>
+<div class="calcpro-macro-settings" hidden="" id="calcpro-macro-settings"><div class="calcpro-macro-settings-label">BMR estimation formula:</div>
+<div class="calcpro-macro-settings-option"><label class="calcpro-macro-radio"><input checked="" name="calcpro-macro-formula" type="radio" value="mifflin"/> Mifflin St Jeor</label></div>
+<div class="calcpro-macro-settings-option"><label class="calcpro-macro-radio"><input name="calcpro-macro-formula" type="radio" value="katch"/> Katch-McArdle</label></div>
+<div class="calcpro-macro-settings-option"><label for="calcpro-macro-bodyfat">Body Fat: </label><input aria-describedby="calcpro-macro-bodyfat-help" class="calcpro-macro-short" id="calcpro-macro-bodyfat" max="70" min="1" step="any" type="number" value="20"/> % <small id="calcpro-macro-bodyfat-help">Required for Katch-McArdle.</small></div>
+</div>
+</div></div>
+<div class="calcpro-macro-field"><span aria-hidden="true"></span><div><div class="calcpro-macro-actions"><button class="calcpro-macro-calculate" type="submit">Calculate</button><button class="calcpro-macro-clear" id="calcpro-macro-clear" type="button">Clear</button></div></div></div>
+<div class="calcpro-macro-error" hidden="" id="calcpro-macro-error" role="alert"></div>
+</form>
+<ul class="calcpro-macro-activity-note"><li><strong>Exercise:</strong> 15–30 minutes of elevated heart rate activity.</li><li><strong>Intense exercise:</strong> 45–120 minutes of elevated heart rate activity.</li><li><strong>Very intense exercise:</strong> 2+ hours of elevated heart rate activity.</li></ul>
+</div>
+</section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><a href="calorie-calculator.html">Calorie Calculator</a><a href="bmr-calculator.html">BMR Calculator</a><a href="tdee-calculator.html">TDEE Calculator</a><a href="protein-calculator.html">Protein Calculator</a><a href="carbohydrate-calculator.html">Carbohydrate Calculator</a><a href="fat-intake-calculator.html">Fat Intake Calculator</a><a href="bmi-calculator.html">BMI Calculator</a><a href="body-fat-calculator.html">Body Fat Calculator</a><a href="ideal-weight-calculator.html">Ideal Weight Calculator</a><a href="calories-burned-calculator.html">Calories Burned</a></div></section></aside><article class="cp-article">
+<h2>How to Use the Macro Calculator</h2>
+<p>Enter your age, gender, height, and weight. Choose US, metric, or other units, select your exercise activity level, and set a weight-management goal. Select <strong>Calculate</strong> to see a daily calorie estimate and suggested protein, carbohydrate, and fat amounts. After calculating, switch between Balanced, Low Fat, Low Carb, and High Protein, or use the <strong>Create Your Own</strong> sliders to redistribute calories.</p>
+<h2>How Daily Calories Are Estimated</h2>
+<h3>Mifflin-St Jeor equation</h3>
+<p>The default formula estimates resting energy expenditure (BMR), with weight measured in kilograms, height in centimeters, and age in years. For males, BMR = 10 × weight + 6.25 × height − 5 × age + 5. For females, BMR = 10 × weight + 6.25 × height − 5 × age − 161.</p>
+<h3>Katch-McArdle equation</h3>
+<p>Under <strong>Settings</strong>, the Katch-McArdle option uses lean body mass: BMR = 370 + 21.6 × lean body mass (kg), where lean body mass = weight × (1 − body-fat percentage ÷ 100). Body-fat percentage is required for this method.</p>
+<p><strong>Maintenance calories</strong> = estimated BMR × selected activity factor. The calculator applies a selected daily adjustment of approximately ±250, ±500, or ±1,000 Calories for weight-loss or weight-gain goals. These adjustments are simple energy-balance estimates and do not guarantee a particular rate of body-weight change.</p>
+<h2>How the Macro Targets Are Calculated</h2>
+<p>The Balanced preset allocates 25% of estimated energy to protein, 50% to carbohydrate, and 25% to fat. To reproduce the reference calculator's figures, the component uses energy conversion factors of <strong>4.1 Calories/gram for protein, 3.75 for carbohydrate, and 8.8 for fat</strong>. A selected macro amount (grams) equals its calorie allocation divided by the corresponding conversion factor. Alternative diet-style presets redistribute these energy shares without changing the calorie target.</p>
+<p>Macro ranges are illustrative rather than strict medical recommendations. The calculator shows a protein lower reference near 1 gram per kilogram, an upper protein limit around 35% of calories, carbohydrate limits informed by energy shares, and a fat reference range of 20–35% of calories. Sugar is shown as a suggested ceiling of 20% of carbohydrate grams; saturated fat as 40% of fat grams, following the reference presentation. These are not substitutes for individualized dietary guidelines.</p>
+<h2>Worked Example</h2>
+<p>Consider a 25-year-old man at 180 cm and 65 kg, using the default Moderate activity factor of 1.465 and aiming to maintain weight. His estimated BMR is 1,655 Calories/day, and maintenance calories are 1,655 × 1.465 = approximately <strong>2,425 Calories/day</strong>. The Balanced plan therefore estimates about <strong>148 g protein, 323 g carbohydrate, and 69 g fat per day</strong> when rounded to whole grams.</p>
+<h2>Frequently Asked Questions</h2>
+<h3>How do I change from pounds to kilograms?</h3>
+<p>Switch between US Units and Metric Units; current measurements are converted automatically. Other Units allows separate measurement choices, including stones and meters.</p>
+<h3>Which macronutrient split should I use?</h3>
+<p>Balanced is a starting point, while Low Fat, Low Carb, and High Protein offer different distributions. No single macronutrient distribution is appropriate for every person. Use the custom sliders to explore feasible combinations while keeping the same estimated daily energy target.</p>
+<h3>Is the result a medical recommendation?</h3>
+<p>No. The model estimates typical adult energy needs. Calorie intake, nutritional needs, and the appropriateness of weight-change goals depend on health conditions, medications, pregnancy, training intensity, and other factors. Ask a registered dietitian or clinician for personalized recommendations.</p>
+<h2>References</h2>
+<p><a href="https://www.calculator.net/macro-calculator.html">Macro Calculator reference</a> (inputs, activity factors, preset interaction, and reference energy factors). For nutrition context, see <a href="https://www.ncbi.nlm.nih.gov/books/NBK56068/">Dietary Reference Intakes: Macronutrients (National Academies / NCBI)</a> and the <a href="https://www.niddk.nih.gov/health-information/weight-management/body-weight-planner">NIDDK Body Weight Planner</a> for a more dynamic view of weight change.</p>
+<p class="cp-page-footer">CalcPro — estimates are for informational purposes, not diagnosis or treatment.</p>
+</article></main></div><script>
+(()=>{'use strict';
+const root=document.getElementById('calcpro-macro-root');if(!root)return;
+const by=id=>root.querySelector('#calcpro-macro-'+id);
+const getRadio=name=>root.querySelector('input[name="calcpro-macro-'+name+'"]:checked').value;
+const fmt=n=>Math.round(n).toLocaleString('en-US');
+const nearest=(n,places=2)=>Number(n.toFixed(places));
+const ENERGY={protein:4.1,carbs:3.75,fat:8.8};
+const PLANS={balanced:[.25,.50,.25],'low-fat':[.25,.55,.20],'low-carb':[.30,.40,.30],'high-protein':[.35,.40,.25]};
+let unit='metric',plan='balanced',last=null,custom=null;
+const finite=v=>v!==''&&Number.isFinite(Number(v));
+const num=id=>{const x=by(id);return x&&finite(x.value)?Number(x.value):NaN};
+const showError=message=>{by('error').textContent=message;by('error').hidden=!message;};
+const bounds={height:[90,250],weight:[15,450]};
+function readDimensions(){
+ if(unit==='metric')return {cm:num('height-cm'),kg:num('weight-kg')};
+ if(unit==='us')return {cm:(num('height-ft')*12+num('height-in'))*2.54,kg:num('weight-lb')/2.2046226218488};
+ const h=num('height-other'),w=num('weight-other');
+ return {cm:h*({cm:1,in:2.54,m:100}[by('height-other-unit').value]),kg:w*({kg:1,lb:1/2.2046226218488,st:6.35029318}[by('weight-other-unit').value])};
+}
+function writeDimensions(cm,kg,target){
+ if(!Number.isFinite(cm)||!Number.isFinite(kg)){
+   (target==='us'?['height-ft','height-in','weight-lb']:target==='other'?['height-other','weight-other']:['height-cm','weight-kg']).forEach(k=>{by(k).value='';});return;
+ }
+ if(target==='metric'){by('height-cm').value=nearest(cm,2);by('weight-kg').value=nearest(kg,3);}
+ if(target==='us'){const total=cm/2.54;let ft=Math.floor(total/12),inch=nearest(total-ft*12,2);if(inch>=12){ft++;inch=0;}by('height-ft').value=ft;by('height-in').value=inch;by('weight-lb').value=nearest(kg*2.2046226218488,2);}
+ if(target==='other'){
+ const hU=by('height-other-unit').value,wU=by('weight-other-unit').value;
+ by('height-other').value=nearest(cm/({cm:1,in:2.54,m:100}[hU]),hU==='m'?4:2);
+ by('weight-other').value=nearest(kg/({kg:1,lb:1/2.2046226218488,st:6.35029318}[wU]),3);
+ }
+}
+root.querySelectorAll('[data-calcpro-macro-unit]').forEach(btn=>btn.addEventListener('click',()=>{
+ const next=btn.dataset.calcproMacroUnit;if(next===unit)return;
+ const current=readDimensions();unit=next;
+ ['metric','us','other'].forEach(u=>{by('panel-'+u).hidden=u!==unit;});
+ root.querySelectorAll('[data-calcpro-macro-unit]').forEach(b=>b.setAttribute('aria-selected',String(b.dataset.calcproMacroUnit===unit)));
+ writeDimensions(current.cm,current.kg,unit);
+ showError('');
+}));
+['height-other-unit','weight-other-unit'].forEach(id=>by(id).addEventListener('change',e=>{
+ const isHeight=id==='height-other-unit';
+ const previous=e.target.dataset.lastUnit||(isHeight?'cm':'kg');
+ const value=num(isHeight?'height-other':'weight-other');
+ if(Number.isFinite(value)){
+ const factors=isHeight?{cm:1,in:2.54,m:100}:{kg:1,lb:1/2.2046226218488,st:6.35029318};
+ by(isHeight?'height-other':'weight-other').value=nearest(value*factors[previous]/factors[e.target.value],3);
+ }
+ e.target.dataset.lastUnit=e.target.value;
+}));
+by('settings-toggle').addEventListener('click',()=>{
+ const open=by('settings').hidden;by('settings').hidden=!open;
+ by('settings-toggle').setAttribute('aria-expanded',String(open));
+ by('settings-toggle').textContent=open?'- Settings':'+ Settings';
+});
+function calculate(){
+ const age=num('age'),dim=readDimensions(),sex=getRadio('sex'),formula=getRadio('formula');
+ if(!Number.isInteger(age)||age<18||age>80)throw Error('Enter a whole-number age from 18 to 80.');
+ if(!Number.isFinite(dim.cm)||dim.cm<bounds.height[0]||dim.cm>bounds.height[1])throw Error('Enter a valid height between 90 and 250 cm (or the equivalent in your units).');
+ if(!Number.isFinite(dim.kg)||dim.kg<bounds.weight[0]||dim.kg>bounds.weight[1])throw Error('Enter a valid weight between 15 and 450 kg (or the equivalent in your units).');
+ const bodyFat=num('bodyfat');
+ if(formula==='katch'&&(!Number.isFinite(bodyFat)||bodyFat<1||bodyFat>70))throw Error('For Katch-McArdle, enter a body fat percentage from 1 to 70.');
+ const bmr=formula==='mifflin'?(10*dim.kg+6.25*dim.cm-5*age+(sex==='male'?5:-161)):(370+21.6*dim.kg*(1-bodyFat/100));
+ const activity=Number(by('activity').value),change=Number(by('goal').value),tdee=bmr*activity,kcal=tdee+change;
+ if(kcal<=0)throw Error('This goal produces an invalid calorie target. Choose a less aggressive goal or revise your inputs.');
+ // Approximate reference ranges: protein >= 1 g/kg, upper 35% kcal; carbs >=40%, fat 20%-35% kcal.
+ const proteinMin=Math.min(dim.kg,kcal*.35/ENERGY.protein);
+ const proteinMax=kcal*.35/ENERGY.protein;
+ const fatMin=kcal*.2/ENERGY.fat,fatMax=kcal*.35/ENERGY.fat;
+ const carbsMin=kcal*.4/ENERGY.carbs;
+ const carbsMax=Math.max(carbsMin,(kcal-proteinMin*ENERGY.protein-fatMin*ENERGY.fat)/ENERGY.carbs);
+ return {age,sex,cm:dim.cm,kg:dim.kg,formula,bodyFat,activity,change,bmr,tdee,kcal,limits:{protein:[proteinMin,proteinMax],carbs:[carbsMin,carbsMax],fat:[fatMin,fatMax]}};
+}
+function gramsFromPlan(key){const p=PLANS[key];return {protein:last.kcal*p[0]/ENERGY.protein,carbs:last.kcal*p[1]/ENERGY.carbs,fat:last.kcal*p[2]/ENERGY.fat};}
+function populate(){
+ if(!last)return;const m=plan==='custom'?custom:gramsFromPlan(plan);
+ ['protein','carbs','fat'].forEach(k=>{
+ by(k+'-value').textContent=fmt(m[k]);
+ by(k+'-range').textContent='Range: '+fmt(last.limits[k][0])+' - '+fmt(last.limits[k][1]);
+ const slider=by(k+'-slider');slider.min=nearest(last.limits[k][0],2);slider.max=nearest(last.limits[k][1],2);slider.value=m[k];
+ by(k+'-custom-output').textContent=fmt(m[k])+' g';
+ });
+ by('sugar-value').textContent='<'+fmt(m.carbs*.2);
+ by('saturated-value').textContent='<'+fmt(m.fat*.4);
+ by('energy-value').textContent=fmt(last.kcal);
+ by('kilojoules-value').textContent='or '+fmt(Math.round(last.kcal)*4.1868)+' kJ/day';
+ by('bmr-details').textContent='Estimated BMR: '+fmt(last.bmr)+' Calories/day · Maintenance: '+fmt(last.tdee)+' Calories/day';
+ by('lowcal-warning').hidden=!(last.kcal<(last.sex==='female'?1200:1500));
+ by('lowcal-warning').textContent='This calorie target is low. Consult a qualified health professional before following a restrictive diet.';
+ by('custom-panel').hidden=plan!=='custom';
+ root.querySelectorAll('[data-calcpro-macro-preset]').forEach(b=>b.setAttribute('aria-selected',String(b.dataset.calcproMacroPreset===plan)));
+}
+function setPlan(key){if(!last)return;if(key==='custom'&&plan!=='custom')custom=gramsFromPlan(plan);plan=key;populate();}
+root.querySelectorAll('[data-calcpro-macro-preset]').forEach(b=>b.addEventListener('click',()=>setPlan(b.dataset.calcproMacroPreset)));
+function moveSlider(key,raw){
+ if(!last||plan!=='custom'||!custom)return;
+ const [low,high]=last.limits[key],want=Math.min(high,Math.max(low,Number(raw)));
+ const rest=['protein','carbs','fat'].filter(k=>k!==key),[a,b]=rest;
+ const total=last.kcal-want*ENERGY[key];
+ const minA=last.limits[a][0]*ENERGY[a],maxA=last.limits[a][1]*ENERGY[a];
+ const minB=last.limits[b][0]*ENERGY[b],maxB=last.limits[b][1]*ENERGY[b];
+ const lowA=Math.max(minA,total-maxB),highA=Math.min(maxA,total-minB);
+ // All presets use the same feasible calorie/range constraints.
+ let aEnergy;if(lowA<=highA){
+  const oldA=custom[a]*ENERGY[a],oldB=custom[b]*ENERGY[b];
+  aEnergy=Math.max(lowA,Math.min(highA,total*(oldA+oldB>0?oldA/(oldA+oldB):.5)));
+ }else{aEnergy=Math.max(minA,Math.min(maxA,total*.5));}
+ custom[key]=want;custom[a]=aEnergy/ENERGY[a];custom[b]=(total-aEnergy)/ENERGY[b];
+ populate();
+}
+['protein','carbs','fat'].forEach(k=>by(k+'-slider').addEventListener('input',e=>moveSlider(k,e.target.value)));
+by('form').addEventListener('submit',event=>{
+ event.preventDefault();
+ try{last=calculate();plan='balanced';custom=gramsFromPlan('balanced');showError('');
+  by('instruction').hidden=true;by('result').hidden=false;
+  const goal=last.change<0?('lose '+(Math.abs(last.change)===250?'0.5':Math.abs(last.change)===500?'1':'2')+' lb per week'):last.change>0?('gain '+(last.change===250?'0.5':last.change===500?'1':'2')+' lb per week'):'maintain your weight';
+  by('result-intro').textContent='The results below are the suggested amounts of macronutrients and food energy (Calories) you need to consume daily to '+goal+'. Each macronutrient amount is represented as a range of values. Please click whichever tab best suits your needs, or create your own plan.';
+  populate();
+ }catch(e){last=null;by('result').hidden=true;by('instruction').hidden=false;showError(e.message);}
+});
+by('clear').addEventListener('click',()=>{
+ by('form').reset();
+ ['age','height-cm','weight-kg','height-ft','height-in','weight-lb','height-other','weight-other'].forEach(k=>{by(k).value='';});
+ unit='metric';['metric','us','other'].forEach(u=>by('panel-'+u).hidden=u!=='metric');
+ root.querySelectorAll('[data-calcpro-macro-unit]').forEach(b=>b.setAttribute('aria-selected',String(b.dataset.calcproMacroUnit==='metric')));
+ by('height-other-unit').dataset.lastUnit='cm';by('weight-other-unit').dataset.lastUnit='kg';
+ by('settings').hidden=true;by('settings-toggle').setAttribute('aria-expanded','false');by('settings-toggle').textContent='+ Settings';
+ last=null;plan='balanced';custom=null;by('result').hidden=true;by('instruction').hidden=false;showError('');by('age').focus();
+});
+by('print').addEventListener('click',()=>window.print());
+by('save').addEventListener('click',()=>{
+ if(!last)return;
+ const m=plan==='custom'?custom:gramsFromPlan(plan);
+ const lines=['CalcPro Macro Calculator','Date: '+new Date().toLocaleDateString(),'Age: '+last.age,'Gender: '+last.sex,'Height: '+nearest(last.cm,1)+' cm','Weight: '+nearest(last.kg,2)+' kg','BMR formula: '+(last.formula==='mifflin'?'Mifflin St Jeor':'Katch-McArdle'),'BMR: '+fmt(last.bmr)+' kcal/day','Maintenance energy: '+fmt(last.tdee)+' kcal/day','Goal adjustment: '+(last.change>=0?'+':'')+last.change+' kcal/day','Diet plan: '+plan,'Target energy: '+fmt(last.kcal)+' kcal/day','Protein: '+fmt(m.protein)+' g/day','Carbs: '+fmt(m.carbs)+' g/day','Fat: '+fmt(m.fat)+' g/day','Sugar: <'+fmt(m.carbs*.2)+' g/day','Saturated fat: <'+fmt(m.fat*.4)+' g/day','Estimates for general informational use.'];
+ const blob=new Blob([lines.join('\n')+'\n'],{type:'text/plain;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');
+ a.href=url;a.download='calcpro-macro-results.txt';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
+});
+})();
+</script></body></html>

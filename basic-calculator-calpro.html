@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>Basic Calculator | CalcPro</title><meta content="Perform basic arithmetic with the CalcPro calculator: add, subtract, multiply, divide, use scientific notation, memory keys, random numbers and recent calculations." name="description"/><link href="template-style.css" rel="stylesheet"/><style>
+/* All tool styles are scoped to the Basic Calculator; global CalcPro CSS stays untouched. */
+.calcpro-basic-root{width:100%;min-width:0;font-family:Arial,Helvetica,sans-serif;color:#111}
+.calcpro-basic-root .calcpro-basic-calculator{box-sizing:border-box;width:301px;max-width:100%;margin:15px auto 6px;padding:7px 8px 6px;border:1px solid #222;background:#fff}
+.calcpro-basic-root .calcpro-basic-expression{height:20px;line-height:20px;text-align:right;font-size:16px;white-space:nowrap;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;padding-right:1px;font-variant-numeric:tabular-nums}
+.calcpro-basic-root .calcpro-basic-expression::-webkit-scrollbar{display:none}
+.calcpro-basic-root .calcpro-basic-display{box-sizing:border-box;height:32px;line-height:24px;padding:4px 4px;text-align:right;background:#366896;color:white;font-size:20px;font-weight:700;font-variant-numeric:tabular-nums;overflow-x:auto;overflow-y:hidden;white-space:nowrap;scrollbar-width:thin}
+.calcpro-basic-root .calcpro-basic-display[data-error="true"]{font-size:16px}
+.calcpro-basic-root .calcpro-basic-keypad{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:3px;margin-top:6px}
+.calcpro-basic-root .calcpro-basic-key{box-sizing:border-box;display:flex;align-items:center;justify-content:center;height:35px;min-width:0;border:1px solid #477fae;border-radius:3px;background:#abc5dd;color:#000;font:700 16px/1 Arial,Helvetica,sans-serif;cursor:pointer;padding:0 1px;touch-action:manipulation;user-select:none;-webkit-tap-highlight-color:transparent}
+.calcpro-basic-root .calcpro-basic-key[data-kind="operator"],.calcpro-basic-root .calcpro-basic-key[data-kind="function"]{background:#e1ebf5;border-color:#98b8d9}
+.calcpro-basic-root .calcpro-basic-key[data-kind="action"]{background:#acc4db}
+.calcpro-basic-root .calcpro-basic-key:hover{filter:brightness(.95)}
+.calcpro-basic-root .calcpro-basic-key:active{background:#6d97bc;color:#fff;transform:translateY(1px)}
+.calcpro-basic-root .calcpro-basic-key:focus-visible{outline:3px solid #1d5f9e;outline-offset:1px;position:relative;z-index:1}
+.calcpro-basic-root .calcpro-basic-history{color:#65748a;text-align:right;font-size:12px;line-height:15px;max-height:48px;overflow:auto;font-variant-numeric:tabular-nums}
+.calcpro-basic-root .calcpro-basic-history:not(:empty){margin-top:1px}
+.calcpro-basic-root .calcpro-basic-history-item{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.calcpro-basic-root .calcpro-basic-note{margin:6px 0 12px;font-size:16px}
+.calcpro-basic-root .calcpro-basic-note a{color:#006699;text-decoration:underline}
+@media (max-width:370px){.calcpro-basic-root .calcpro-basic-calculator{margin-inline:auto;width:min(301px,100%)}.calcpro-basic-root .calcpro-basic-key{height:36px;font-size:15px}}
+@media print{.calcpro-basic-root .calcpro-basic-key{print-color-adjust:exact;-webkit-print-color-adjust:exact}.calcpro-basic-root .calcpro-basic-display{print-color-adjust:exact;-webkit-print-color-adjust:exact}}
+
+</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="math-calculator.html">Math</a> / Basic Calculator</nav><h1 class="cp-page-title">Basic Calculator</h1><p class="cp-intro">Perform addition, subtraction, multiplication, and division with a simple keypad calculator. Use Ans, memory, EXP, and RND for more calculations.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-basic-root" id="calcpro-basic-root">
+  <div class="calcpro-basic-calculator" role="group" aria-label="Basic arithmetic calculator">
+    <div class="calcpro-basic-expression" id="calcpro-basic-expression" aria-label="Current expression"></div>
+    <div class="calcpro-basic-display" id="calcpro-basic-display" role="status" aria-live="polite" aria-atomic="true">0</div>
+    <div class="calcpro-basic-keypad" role="group" aria-label="Calculator keys">
+      <button type="button" class="calcpro-basic-key" data-key="7" data-kind="number" aria-label="Number 7">7</button>
+      <button type="button" class="calcpro-basic-key" data-key="8" data-kind="number" aria-label="Number 8">8</button>
+      <button type="button" class="calcpro-basic-key" data-key="9" data-kind="number" aria-label="Number 9">9</button>
+      <button type="button" class="calcpro-basic-key" data-key="+" data-kind="operator" aria-label="Add">+</button>
+      <button type="button" class="calcpro-basic-key" data-key="Back" data-kind="function" aria-label="Delete last digit">Back</button>
+      <button type="button" class="calcpro-basic-key" data-key="4" data-kind="number" aria-label="Number 4">4</button>
+      <button type="button" class="calcpro-basic-key" data-key="5" data-kind="number" aria-label="Number 5">5</button>
+      <button type="button" class="calcpro-basic-key" data-key="6" data-kind="number" aria-label="Number 6">6</button>
+      <button type="button" class="calcpro-basic-key" data-key="-" data-kind="operator" aria-label="Subtract">−</button>
+      <button type="button" class="calcpro-basic-key" data-key="Ans" data-kind="function" aria-label="Recall last answer">Ans</button>
+      <button type="button" class="calcpro-basic-key" data-key="1" data-kind="number" aria-label="Number 1">1</button>
+      <button type="button" class="calcpro-basic-key" data-key="2" data-kind="number" aria-label="Number 2">2</button>
+      <button type="button" class="calcpro-basic-key" data-key="3" data-kind="number" aria-label="Number 3">3</button>
+      <button type="button" class="calcpro-basic-key" data-key="*" data-kind="operator" aria-label="Multiply">×</button>
+      <button type="button" class="calcpro-basic-key" data-key="M+" data-kind="function" aria-label="Add displayed value to memory">M+</button>
+      <button type="button" class="calcpro-basic-key" data-key="0" data-kind="number" aria-label="Number 0">0</button>
+      <button type="button" class="calcpro-basic-key" data-key="." data-kind="number" aria-label="Decimal point">.</button>
+      <button type="button" class="calcpro-basic-key" data-key="EXP" data-kind="function" aria-label="Enter scientific notation exponent">EXP</button>
+      <button type="button" class="calcpro-basic-key" data-key="/" data-kind="operator" aria-label="Divide">÷</button>
+      <button type="button" class="calcpro-basic-key" data-key="M-" data-kind="function" aria-label="Subtract displayed value from memory">M-</button>
+      <button type="button" class="calcpro-basic-key" data-key="Sign" data-kind="function" aria-label="Change sign">±</button>
+      <button type="button" class="calcpro-basic-key" data-key="RND" data-kind="function" aria-label="Random number between zero and one">RND</button>
+      <button type="button" class="calcpro-basic-key" data-key="AC" data-kind="action" aria-label="All clear">AC</button>
+      <button type="button" class="calcpro-basic-key" data-key="=" data-kind="action" aria-label="Calculate result">=</button>
+      <button type="button" class="calcpro-basic-key" data-key="MR" data-kind="function" aria-label="Recall memory">MR</button>
+    </div>
+    <div class="calcpro-basic-history" id="calcpro-basic-history" aria-label="Calculation history"></div>
+  </div>
+  <p class="calcpro-basic-note">Also check the <a href="scientific-calculator.html">scientific calculator</a>.</p>
+</div></section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><a href="scientific-calculator.html">Scientific</a><a href="fraction-calculator.html">Fraction</a><a href="percent-calculator.html">Percentage</a><a href="rounding-calculator.html">Rounding</a><a href="random-number-generator.html">Random Number</a><a href="exponent-calculator.html">Exponent</a><a href="average-calculator.html">Average</a><a href="root-calculator.html">Root</a><a href="ratio-calculator.html">Ratio</a><a href="binary-calculator.html">Binary</a><a href="hex-calculator.html">Hex</a><a href="math-calculator.html">Math Calculators</a></div></section></aside><article class="cp-article"><h2>How to Use the Basic Calculator</h2>
+<p>Click the number keys and one of the operation keys (+, −, ×, ÷), then enter another number and press <strong>=</strong>. The current input or result appears in the blue display, while the completed expression appears above it. Recent calculations appear directly below the keypad.</p>
+<p><strong>Back</strong> removes the last digit, <strong>AC</strong> clears the current calculation and visible history, and <strong>±</strong> changes the sign. <strong>Ans</strong> recalls the most recent computed result. <strong>EXP</strong> enters powers of ten using scientific notation; for example, 2 EXP 3 represents 2 × 10<sup>3</sup> = 2,000. <strong>RND</strong> inserts a random decimal from 0 (inclusive) to 1 (exclusive).</p>
+<h3>Memory Buttons</h3>
+<p><strong>M+</strong> adds the displayed value to calculator memory; <strong>M-</strong> subtracts it; <strong>MR</strong> recalls the stored value. AC clears the working expression but preserves memory until you refresh the page. To set memory to zero without refreshing, recall it with MR and use M- on that recalled value.</p>
+<h3>Keyboard Shortcuts</h3>
+<p>Use the number keys, decimal point, +, −, *, and /. Press <strong>Enter</strong> or <strong>=</strong> to calculate, <strong>Backspace</strong> to remove the last digit, and <strong>Escape</strong> or <strong>Delete</strong> for AC. The E key enters scientific notation, and R produces a random number.</p>
+<h2>Mathematical Operations and Examples</h2>
+<div class="cp-table-scroll"><table class="cp-content-table"><thead><tr><th>Operation</th><th>Formula</th><th>Example</th></tr></thead><tbody>
+<tr><td>Addition</td><td>a + b</td><td>7 + 6 = 13</td></tr>
+<tr><td>Subtraction</td><td>a − b</td><td>12 − 5 = 7</td></tr>
+<tr><td>Multiplication</td><td>a × b</td><td>8 × 4 = 32</td></tr>
+<tr><td>Division</td><td>a ÷ b, b ≠ 0</td><td>27 ÷ 3 = 9</td></tr>
+<tr><td>Scientific notation</td><td>a × 10<sup>n</sup></td><td>2.5 EXP 3 = 2,500</td></tr>
+</tbody></table></div>
+<p>For an expression with multiple operators, multiplication and division take precedence over addition and subtraction. For example, 2 + 3 × 4 = 14. Parentheses and advanced mathematical functions are available in a scientific calculator instead.</p>
+<h2>Understanding the Results</h2>
+<p>The blue display shows the value you are entering or the computed answer. After pressing =, the full expression appears above the result, and the calculation is saved in the small history area below. Long decimal results are rounded for readable display; calculations use JavaScript floating-point arithmetic internally.</p>
+<h2>Frequently Asked Questions</h2>
+<h3>Can I calculate with decimals and negative numbers?</h3>
+<p>Yes. Press the decimal point once within a number and use ± to switch between positive and negative values.</p>
+<h3>What happens if I divide by zero?</h3>
+<p>Division by zero displays an error rather than an invalid answer. Press AC or enter a new digit to start another calculation.</p>
+<h3>What does EXP mean?</h3>
+<p>EXP stands for exponent in base-10 scientific notation. For instance, entering 6 EXP 2 represents 6 × 10<sup>2</sup>, which equals 600. Press ± while editing the exponent to enter a negative exponent.</p>
+<h3>Does the calculator follow the order of operations?</h3>
+<p>Yes. In expressions with multiple operators, multiplication and division are evaluated before addition and subtraction, working from left to right within each priority level.</p>
+<h3>Is the random number predictable?</h3>
+<p>RND uses the browser's pseudo-random number generator and is intended for everyday calculations, not security or cryptography.</p>
+<p class="cp-page-footer">CalcPro — results are for general informational and educational use. Numbers are subject to the usual precision limits of browser-based floating-point arithmetic.</p></article></main></div><script>
+(() => {
+  'use strict';
+  const root = document.getElementById('calcpro-basic-root');
+  if (!root) return;
+  const display = root.querySelector('#calcpro-basic-display');
+  const expression = root.querySelector('#calcpro-basic-expression');
+  const historyBox = root.querySelector('#calcpro-basic-history');
+  const memoryButton = root.querySelector('[data-key="MR"]');
+  let current = '0';
+  let tokens = [];  // Alternating operand strings and operator strings.
+  let waiting = false;
+  let evaluated = false;
+  let error = false;
+  let expFresh = false;
+  let answer = 0;
+  let memory = 0;
+  let lastBinary = null;
+  let entries = [];
+  const opSigns = {'+':'+', '-':'−', '*':'×', '/':'÷'};
+  const valuePattern = /^-?(?:\d+(?:\.\d*)?|\.\d+)(?:e[+-]?\d+)?$/i;
+
+  function getNumber(text) {
+    if (!valuePattern.test(text)) return NaN;
+    return Number(text);
+  }
+  function cleanNumber(n) {
+    if (!Number.isFinite(n)) return null;
+    if (Object.is(n, -0) || n === 0) return '0';
+    const abs = Math.abs(n);
+    const rounded = Number(n.toPrecision(13));
+    if (abs >= 1e13 || abs < 1e-9) return rounded.toExponential(9).replace(/\.?0+e/, 'e').replace(/e\+/, 'e+');
+    return String(rounded);
+  }
+  function expressionText(parts) {
+    return parts.map(item => Object.prototype.hasOwnProperty.call(opSigns,item) ? opSigns[item] : item).join(' ');
+  }
+  function paint() {
+    display.textContent = current;
+    display.dataset.error = error ? 'true' : 'false';
+    if (!evaluated && !error) expression.textContent = expressionText(tokens);
+    memoryButton.title = memory === 0 ? 'Memory is empty' : 'Memory: ' + cleanNumber(memory);
+  }
+  function startFreshIfNeeded() {
+    if (error) {
+      current='0';tokens=[];waiting=false;evaluated=false;error=false;expFresh=false;
+      expression.textContent='';
+    }
+    if (evaluated) {
+      tokens=[];waiting=false;evaluated=false;expFresh=false;
+      expression.textContent='';
+      lastBinary=null;
+    }
+  }
+  function inputDigit(digit) {
+    startFreshIfNeeded();
+    if (waiting) {current='0';waiting=false;expFresh=false;}
+    const m = current.match(/^(-?\d+(?:\.\d*)?)e([+-]?)(\d+)$/i);
+    if (m) {
+      const tail = expFresh ? digit : ((m[3]==='0') ? digit : m[3]+digit);
+      current=m[1]+'e'+m[2]+tail;
+      expFresh=false;
+    } else if (current==='0') current=digit;
+    else if (current==='-0') current='-'+digit;
+    else if (current.replace(/\D/g,'').length < 28) current+=digit;
+    paint();
+  }
+  function inputDecimal() {
+    startFreshIfNeeded();
+    if (waiting) {current='0';waiting=false;expFresh=false;}
+    if (!current.toLowerCase().includes('e') && !current.includes('.')) current+='.';
+    paint();
+  }
+  function toggleSign() {
+    if (error) return;
+    if (evaluated) {evaluated=false;tokens=[];expression.textContent='';lastBinary=null;}
+    if (waiting) {current='0';waiting=false;}
+    const exponentIndex=current.toLowerCase().indexOf('e');
+    if (exponentIndex!==-1) {
+      const lead=current.slice(0,exponentIndex+1);
+      const tail=current.slice(exponentIndex+1);
+      current=lead+(tail.startsWith('-') ? tail.slice(1) : '-'+tail.replace(/^\+/,''));
+    } else current=current.startsWith('-') ? current.slice(1) : '-'+current;
+    paint();
+  }
+  function inputExp() {
+    startFreshIfNeeded();
+    if (waiting) {current='0';waiting=false;}
+    if (!current.toLowerCase().includes('e')) {current+='e0';expFresh=true;}
+    paint();
+  }
+  function backspace() {
+    if (error) {allClear();return;}
+    if (evaluated) {evaluated=false;tokens=[];expression.textContent='';lastBinary=null;}
+    if (waiting) { if (tokens.length>=2) {current=tokens[tokens.length-2];tokens=tokens.slice(0,-2);} waiting=false;paint();return; }
+    if (current.toLowerCase().includes('e')) {
+      const i=current.toLowerCase().indexOf('e');
+      if (current.slice(i+1).replace(/^[+-]/,'').length<=1) current=current.slice(0,i);
+      else current=current.slice(0,-1);
+      expFresh=false;
+    } else {
+      current=current.slice(0,-1);
+      if (!current || current==='-') current='0';
+    }
+    paint();
+  }
+  function allClear() {
+    current='0';tokens=[];waiting=false;evaluated=false;error=false;expFresh=false;
+    lastBinary=null;entries=[];expression.textContent='';historyBox.replaceChildren();
+    paint();
+  }
+  function useOperator(op) {
+    if (error) return;
+    if (evaluated) {tokens=[];evaluated=false;expression.textContent='';lastBinary=null;}
+    if (waiting && tokens.length) tokens[tokens.length-1]=op;
+    else {
+      if (!Number.isFinite(getNumber(current))) {showError('Invalid number');return;}
+      tokens.push(current,op);
+    }
+    waiting=true;expFresh=false;
+    paint();
+  }
+  function calculateSequence(sequence) {
+    if (sequence.length===1) return getNumber(sequence[0]);
+    if (sequence.length%2!==1) return NaN;
+    const reduced=[getNumber(sequence[0])];
+    for (let i=1;i<sequence.length;i+=2) {
+      const op=sequence[i], right=getNumber(sequence[i+1]);
+      if (!Number.isFinite(right)) return NaN;
+      if (op==='*' || op==='/') {
+        const left=reduced.pop();
+        if (op==='/' && right===0) return NaN;
+        reduced.push(op==='*' ? left*right : left/right);
+      } else reduced.push(op,right);
+    }
+    let result=reduced[0];
+    for (let i=1;i<reduced.length;i+=2) result=reduced[i]==='+' ? result+reduced[i+1] : result-reduced[i+1];
+    return result;
+  }
+  function showError(message) {
+    current='Error';error=true;evaluated=false;waiting=false;tokens=[];
+    expression.textContent=message;
+    paint();expression.textContent=message;
+  }
+  function renderHistory() {
+    historyBox.replaceChildren();
+    entries.forEach(entry => {
+      const line=document.createElement('div');
+      line.className='calcpro-basic-history-item';
+      line.textContent=entry;
+      line.title=entry;
+      historyBox.appendChild(line);
+    });
+  }
+  function equals() {
+    if (error) return;
+    let sequence;
+    if (evaluated && lastBinary) sequence=[current,lastBinary.op,lastBinary.right];
+    else if (!tokens.length) sequence=[current];
+    else sequence=tokens.concat([current]);
+    const value=calculateSequence(sequence);
+    const finalValue=cleanNumber(value);
+    if (finalValue===null) {showError('Undefined result or division by zero');return;}
+    const statement=expressionText(sequence)+' =';
+    current=finalValue;
+    answer=value;
+    lastBinary=sequence.length>=3 ? {op:sequence[sequence.length-2],right:sequence[sequence.length-1]} : null;
+    tokens=[];waiting=false;expFresh=false;evaluated=true;
+    expression.textContent=statement;
+    const fullLine=statement+' '+finalValue;
+    entries.push(fullLine);
+    if (entries.length>3) entries.shift();
+    renderHistory();
+    paint();
+  }
+  function injectValue(value) {
+    const normalized=cleanNumber(value);
+    if (normalized===null) {showError('Invalid stored value');return;}
+    startFreshIfNeeded();
+    current=normalized;waiting=false;expFresh=false;
+    paint();
+  }
+  function changeMemory(dir) {
+    if (error) return;
+    const val=getNumber(current);
+    if (!Number.isFinite(val)) {showError('Invalid memory operation');return;}
+    const sum=memory+dir*val;
+    if (cleanNumber(sum)===null) {showError('Memory overflow');return;}
+    memory=sum;paint();
+  }
+  function handle(key) {
+    if (/^\d$/.test(key)) {inputDigit(key);return;}
+    if (key==='.') {inputDecimal();return;}
+    if (key==='AC') {allClear();return;}
+    if (key==='Back') {backspace();return;}
+    if (key==='Sign') {toggleSign();return;}
+    if (key==='EXP') {inputExp();return;}
+    if (Object.prototype.hasOwnProperty.call(opSigns,key)) {useOperator(key);return;}
+    if (key==='=') {equals();return;}
+    if (key==='Ans') {injectValue(answer);return;}
+    if (key==='RND') {injectValue(Math.random());return;}
+    if (key==='M+') {changeMemory(1);return;}
+    if (key==='M-') {changeMemory(-1);return;}
+    if (key==='MR') {injectValue(memory);return;}
+  }
+  root.querySelectorAll('.calcpro-basic-key').forEach(button => {
+    button.addEventListener('click',()=>handle(button.dataset.key));
+  });
+  document.addEventListener('keydown',event=>{
+    if (event.altKey || event.ctrlKey || event.metaKey || event.defaultPrevented) return;
+    const target=event.target;
+    if (target.closest('input,textarea,select,[contenteditable="true"]')) return;
+    const mapping={'Enter':'=','=':'=','Backspace':'Back','Escape':'AC','Delete':'AC','*':'*','x':'*','X':'*','/':'/','+':'+','-':'-','e':'EXP','E':'EXP','r':'RND','R':'RND'};
+    const key=Object.prototype.hasOwnProperty.call(mapping,event.key)?mapping[event.key]:event.key;
+    if (!/^\d$/.test(key) && !['.','=','Back','AC','*','/','+','-','EXP','RND'].includes(key)) return;
+    event.preventDefault();
+    handle(key);
+  });
+  paint();
+})();
+
+</script></body></html>

@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>Depreciation Calculator | CalcPro</title><meta content="Calculate straight-line, declining-balance, and sum-of-years-digits depreciation with schedules, charts, and partial-year conventions." name="description"/><link href="template-style.css" rel="stylesheet"/><style>
+/* Depreciation Calculator: every tool-only selector is isolated under its unique root. */
+.calcpro-depr{font-family:Arial,Helvetica,sans-serif;color:#18283b;line-height:1.4;max-width:100%;font-size:14px}
+.calcpro-depr *{box-sizing:border-box}
+.calcpro-depr [hidden]{display:none!important}
+.calcpro-depr-instruction{background:#336699;color:#fff;text-align:center;font-weight:600;padding:8px 12px;margin:0 0 8px;font-size:14px}
+.calcpro-depr-instruction::before{content:"▼";display:inline-grid;place-items:center;width:19px;height:19px;border-radius:50%;background:#fff;color:#336699;margin-right:16px;font-size:12px;vertical-align:middle}
+.calcpro-depr-form{width:min(100%,360px);margin:0 auto;background:#f1f1f1;border:1px solid #bdbdbd;padding:10px 11px 9px;color:#111;font-size:14px}
+.calcpro-depr-field{display:grid;grid-template-columns:minmax(0,42%) minmax(0,58%);align-items:center;gap:5px;margin:0 0 5px}
+.calcpro-depr-field>label,.calcpro-depr-field>.calcpro-depr-field-label{font-size:13px;line-height:1.25}
+.calcpro-depr-control{width:100%;min-width:0;height:29px;border:1px solid #5b7187;border-radius:2px;background:#fff;color:#111;padding:3px 6px;font:14px Arial,Helvetica,sans-serif;box-shadow:inset 0 0 0 1px #d1e0f2}
+.calcpro-depr-control:focus-visible{outline:2px solid #246db6;outline-offset:1px}
+.calcpro-depr-radio-line{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:10px 0 0;font-size:13px}
+.calcpro-depr-radio-line .calcpro-depr-question{font-weight:600;margin-right:1px}
+.calcpro-depr-choice{display:inline-flex;align-items:center;gap:4px;cursor:pointer;white-space:nowrap;font-size:13px}
+.calcpro-depr-choice input{accent-color:#336699;cursor:pointer;width:15px;height:15px;margin:0}
+.calcpro-depr-optional{border-top:1px solid #d0d0d0;margin:10px 0 0;padding-top:10px}
+.calcpro-depr-fiscal-inputs{display:flex;gap:4px;min-width:0}
+.calcpro-depr-fiscal-inputs select:first-child{flex:1;min-width:0}
+.calcpro-depr-fiscal-inputs select:last-child{width:62px}
+.calcpro-depr-actions{display:flex;justify-content:center;gap:5px;margin:12px 0 0}
+.calcpro-depr-submit,.calcpro-depr-clear{border:0;border-radius:2px;color:#fff;font-weight:700;cursor:pointer;min-height:31px;padding:6px 15px;font-size:13px}
+.calcpro-depr-submit{background:#3c7b16}.calcpro-depr-submit:hover{background:#2e6311}
+.calcpro-depr-clear{background:#969ba3}.calcpro-depr-clear:hover{background:#747a82}
+.calcpro-depr-go{display:inline-flex;align-items:center;justify-content:center;width:17px;height:17px;background:#a9cfa4;border-radius:100%;color:#fff;font-size:10px;margin-left:6px}
+.calcpro-depr-error{margin:8px 0 0;color:#9c1420;font-size:13px;font-weight:600;padding:6px 8px;border:1px solid #dd8990;background:#fff2f3}
+.calcpro-depr-result{margin:0 0 22px;min-width:0}
+.calcpro-depr-resultbar{background:#3c7d16;color:white;display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:18px;font-weight:700;padding:4px 9px;margin:0 0 8px}
+.calcpro-depr-resultactions{display:flex;gap:8px;align-items:center}
+.calcpro-depr-resultactions button{color:#fff;background:transparent;border:1px solid rgba(255,255,255,.75);border-radius:2px;padding:2px 6px;font-weight:600;font-size:11px;cursor:pointer}
+.calcpro-depr-resultactions button:hover{background:rgba(255,255,255,.18)}
+.calcpro-depr-summary{font-size:15px;line-height:1.5;margin:0 0 8px;color:#222}
+.calcpro-depr-highlight{color:green;font-weight:700}
+.calcpro-depr-statline{font-size:13px;color:#44556a;margin:0 0 10px}
+.calcpro-depr-table-scroll{overflow-x:auto;width:100%;max-width:100%;border:1px solid #c5d0da}
+.calcpro-depr-table{border-collapse:collapse;width:100%;min-width:615px;table-layout:fixed;font-variant-numeric:tabular-nums;font-size:12px;color:#172437}
+.calcpro-depr-table thead th{background:#252525;color:#fff;text-align:right;padding:7px 6px;line-height:1.2;border-right:1px solid #4b4b4b;font-weight:700}
+.calcpro-depr-table thead th:first-child,.calcpro-depr-table td:first-child{text-align:left;width:11%}
+.calcpro-depr-table thead th:nth-child(2){width:19%}.calcpro-depr-table thead th:nth-child(3){width:16%}.calcpro-depr-table thead th:nth-child(4){width:18%}.calcpro-depr-table thead th:nth-child(5){width:21%}.calcpro-depr-table thead th:nth-child(6){width:15%}
+.calcpro-depr-table tbody td{padding:5px 6px;text-align:right;border-bottom:1px solid #e3e7eb;border-right:1px solid #ebeff3;white-space:nowrap}
+.calcpro-depr-table tbody tr:nth-child(even){background:#f4f8fb}
+.calcpro-depr-table tbody tr:last-child td{border-bottom:0}
+.calcpro-depr-chartwrap{margin:12px auto 0;width:100%;max-width:660px}
+.calcpro-depr-chart-title{text-align:center;font-size:13px;color:#384f6b;margin:0 0 3px}
+.calcpro-depr-chart{width:100%;display:block;height:auto;max-height:340px}
+.calcpro-depr-chart-note{font-size:12px;color:#617388;text-align:center;margin:0}
+.calcpro-depr-explanation{font-size:12px;color:#46586c;margin:10px 0 0}
+@media(max-width:600px){.calcpro-depr-form{width:100%;max-width:420px;padding:10px}.calcpro-depr-field{grid-template-columns:minmax(0,44%) minmax(0,56%)}.calcpro-depr-field>label,.calcpro-depr-field>.calcpro-depr-field-label{font-size:12px}.calcpro-depr-radio-line{gap:7px}.calcpro-depr-resultbar{font-size:16px}.calcpro-depr-summary{font-size:14px}.calcpro-depr-table{min-width:590px}}
+@media(max-width:380px){.calcpro-depr-radio-line .calcpro-depr-question{width:100%}.calcpro-depr-control{font-size:13px}.calcpro-depr-fiscal-inputs select:last-child{width:52px}}
+@media print{.calcpro-depr-instruction,.calcpro-depr-form,.calcpro-depr-resultactions{display:none!important}.calcpro-depr-result{display:block!important}.calcpro-depr-table-scroll{overflow:visible}.calcpro-depr-table{min-width:0;font-size:9px}.calcpro-depr-chart{max-height:250px}}
+</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Depreciation Calculator</nav><h1 class="cp-page-title">Depreciation Calculator</h1><p class="cp-intro">Calculate asset depreciation using straight-line, declining-balance, or sum-of-the-years’ digits methods. View annual depreciation, accumulated depreciation, book value, and a chart. Optional partial-year conventions support custom fiscal-year start dates.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-depr" id="calcpro-depr-root">
+  <div class="calcpro-depr-instruction" id="calcpro-depr-instruction">Modify the values and click the Calculate button to use</div>
+  <!-- Reference placement: calculated results are shown BEFORE the form. -->
+  <section class="calcpro-depr-result" id="calcpro-depr-result" aria-label="Depreciation results" aria-live="polite" hidden>
+    <div class="calcpro-depr-resultbar"><span>Result</span><span class="calcpro-depr-resultactions"><button type="button" id="calcpro-depr-save" title="Save the depreciation schedule as CSV">Save CSV</button><button type="button" id="calcpro-depr-print" title="Print the depreciation result">Print</button></span></div>
+    <p class="calcpro-depr-summary" id="calcpro-depr-summary"></p>
+    <p class="calcpro-depr-statline" id="calcpro-depr-stats"></p>
+    <div class="calcpro-depr-table-scroll" tabindex="0" aria-label="Scroll depreciation schedule horizontally if needed">
+      <table class="calcpro-depr-table"><thead><tr><th scope="col">Year</th><th scope="col">Beginning Year Book Value</th><th scope="col">Depreciation Percent</th><th scope="col">Depreciation Amount</th><th scope="col">Accumulated Depreciation</th><th scope="col">Ending Book Value</th></tr></thead><tbody id="calcpro-depr-schedule"></tbody></table>
+    </div>
+    <div class="calcpro-depr-chartwrap"><p class="calcpro-depr-chart-title">Book value and annual depreciation by year</p><svg class="calcpro-depr-chart" id="calcpro-depr-chart" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Bar chart of book value and annual depreciation amount"></svg><p class="calcpro-depr-chart-note">Blue: ending book value · Green: depreciation amount</p></div>
+    <p class="calcpro-depr-explanation" id="calcpro-depr-explanation"></p>
+  </section>
+  <form class="calcpro-depr-form" id="calcpro-depr-form" novalidate>
+    <div class="calcpro-depr-field"><label for="calcpro-depr-method">Depreciation method</label><select class="calcpro-depr-control" id="calcpro-depr-method"><option value="straight">Straight Line</option><option value="declining">Declining Balance</option><option value="sum">Sum of the Year's Digits</option></select></div>
+    <div class="calcpro-depr-field"><label for="calcpro-depr-cost">Asset cost</label><input class="calcpro-depr-control" id="calcpro-depr-cost" type="text" inputmode="decimal" value="11,000" autocomplete="off" aria-required="true"></div>
+    <div class="calcpro-depr-field"><label for="calcpro-depr-salvage">Salvage value</label><input class="calcpro-depr-control" id="calcpro-depr-salvage" type="text" inputmode="decimal" value="1,000" autocomplete="off" aria-required="true"></div>
+    <div class="calcpro-depr-field"><label for="calcpro-depr-years">Depreciation years</label><input class="calcpro-depr-control" id="calcpro-depr-years" type="number" value="5" min="1" max="100" step="1" required></div>
+    <div class="calcpro-depr-field" id="calcpro-depr-factor-row" hidden><label for="calcpro-depr-factor">Depreciation factor</label><input class="calcpro-depr-control" id="calcpro-depr-factor" type="number" value="2" min="0.01" max="100" step="any"></div>
+    <div class="calcpro-depr-radio-line" role="group" aria-label="Round to dollars"><span class="calcpro-depr-question">Round to dollars?</span><label class="calcpro-depr-choice"><input type="radio" name="calcpro-depr-round" value="yes" checked> Yes</label><label class="calcpro-depr-choice"><input type="radio" name="calcpro-depr-round" value="no"> No</label></div>
+    <div class="calcpro-depr-radio-line" role="group" aria-label="Partial year depreciation"><span class="calcpro-depr-question">Partial year depreciation?</span><label class="calcpro-depr-choice"><input type="radio" name="calcpro-depr-partial" value="yes"> Yes</label><label class="calcpro-depr-choice"><input type="radio" name="calcpro-depr-partial" value="no" checked> No</label></div>
+    <div class="calcpro-depr-optional" id="calcpro-depr-partial-fields" hidden>
+      <div class="calcpro-depr-field"><label for="calcpro-depr-convention">Convention</label><select class="calcpro-depr-control" id="calcpro-depr-convention"><option value="day">Count Every Day</option><option value="halfmonth" selected>Half-Month</option><option value="fullmonth">Full-Month</option><option value="halfquarter">Half-Quarter</option><option value="fullquarter">Full-Quarter</option><option value="halfyear">Half-Year</option></select></div>
+      <div class="calcpro-depr-field"><label for="calcpro-depr-service">Start of asset service</label><input class="calcpro-depr-control" id="calcpro-depr-service" type="date" value="2026-11-02"></div>
+      <div class="calcpro-depr-field"><span class="calcpro-depr-field-label">Start of accounting year</span><div class="calcpro-depr-fiscal-inputs"><select class="calcpro-depr-control" id="calcpro-depr-fiscal-month" aria-label="Accounting year start month"><option value="1">January</option><option value="2">February</option><option value="3">March</option><option value="4">April</option><option value="5">May</option><option value="6">June</option><option value="7">July</option><option value="8">August</option><option value="9">September</option><option value="10">October</option><option value="11">November</option><option value="12">December</option></select><select class="calcpro-depr-control" id="calcpro-depr-fiscal-day" aria-label="Accounting year start day"></select></div></div>
+    </div>
+    <div class="calcpro-depr-error" id="calcpro-depr-error" role="alert" hidden></div>
+    <div class="calcpro-depr-actions"><button class="calcpro-depr-submit" type="submit">Calculate <span class="calcpro-depr-go" aria-hidden="true">▶</span></button><button class="calcpro-depr-clear" type="button" id="calcpro-depr-reset">Clear</button></div>
+  </form>
+</div></section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><!-- REPLACE these links with real related tools for each calculator; verify live slugs. --><a href="retirement-calculator.html">Retirement</a><a href="roth-ira-calculator.html">Roth IRA</a><a href="investment-calculator.html">Investment</a><a href="compound-interest-calculator.html">Compound Interest</a><a href="annuity-payout-calculator.html">Annuity Payout</a><a href="pension-calculator.html">Pension</a><a href="inflation-calculator.html">Inflation</a><a href="future-value-calculator.html">Future Value</a><a href="income-tax-calculator.html">Income Tax</a><a href="savings-calculator.html">Savings</a><a href="mortgage-calculator.html">Mortgage</a><a href="loan-calculator.html">Loan</a></div></section></aside><article class="cp-article"><h2>How to Use the Depreciation Calculator</h2>
+<p>Choose a <strong>depreciation method</strong>, enter the asset cost, estimated salvage value, and useful life in whole years. For declining balance, enter a factor (use <strong>2</strong> for double-declining balance). Choose whole-dollar or cent-level display, then select <strong>Calculate</strong>. Results appear above the form with a depreciation schedule and bar chart.</p>
+<p>For assets placed in service during a fiscal year, turn on <strong>Partial year depreciation</strong>, choose a convention, set the service date, and select the month and day your accounting year begins. The schedule will account for the shortened first period and, where necessary, a final partial period. Use <strong>Save CSV</strong> to export the schedule or <strong>Print</strong> for a print-ready report. <strong>Clear</strong> restores the example inputs.</p>
+<h2>Depreciation Formulas</h2>
+<h3>Straight-Line Method</h3>
+<p><strong>Annual depreciation = (Asset cost − Salvage value) ÷ Useful life.</strong> Depreciation is constant each full year. An asset costing $11,000 with a $1,000 salvage value over 5 years depreciates by ($11,000 − $1,000) ÷ 5 = <strong>$2,000 per year</strong>. Its end-of-year book values are $9,000, $7,000, $5,000, $3,000, and $1,000.</p>
+<h3>Declining Balance and Double Declining Balance</h3>
+<p><strong>Depreciation expense = Opening book value × (Factor ÷ Useful life).</strong> A factor of 2 applies a rate twice the straight-line rate. For the $11,000 example over 5 years, the first-year expense at a factor of 2 is $11,000 × 2 ÷ 5 = <strong>$4,400</strong>. The method caps each charge so the book value never falls below the salvage value. This calculator does not automatically switch to straight-line depreciation; without such a switch, the ending book value can remain above salvage value after the stated useful life.</p>
+<h3>Sum of the Years' Digits (SYD)</h3>
+<p><strong>Depreciation expense = (Cost − Salvage) × Remaining years ÷ [n(n + 1) ÷ 2]</strong>, where n is the useful life. Over 5 years, the denominator is 15, so first-year depreciation is $10,000 × 5/15 = <strong>$3,333.33</strong> before rounding. Later annual expenses fall as the remaining-life numerator decreases.</p>
+<h2>Partial-Year Depreciation and Conventions</h2>
+<p>The partial-year option supports <strong>Count Every Day, Half-Month, Full-Month, Half-Quarter, Full-Quarter, and Half-Year</strong>. Count Every Day uses actual elapsed days within the fiscal year. Half-Month and Half-Quarter treat placement as occurring at the midpoint of the relevant fiscal month or quarter; Full-Month and Full-Quarter count the entire fiscal month or quarter containing the placement date; Half-Year assigns a half-year to the first accounting period. Later periods continue the remaining depreciation schedule, and a partial final period may be added.</p>
+<p>These are general accounting schedules, <strong>not U.S. MACRS tax depreciation tables</strong>. Tax rules may require a different convention, recovery period, or an accelerated-to-straight-line switch. Fiscal starts falling on an unavailable day in a subsequent year are interpreted as that month’s last day.</p>
+<h2>Understanding the Results</h2>
+<p>The table shows each accounting period's opening book value, depreciation percentage, current depreciation expense, accumulated depreciation, and ending book value. The chart compares ending book value (blue) with the current period’s depreciation expense (green). Under straight-line and SYD, a small rounding correction in the final period ensures the displayed schedule reaches the displayed salvage value.</p>
+<h2>Frequently Asked Questions</h2>
+<h3>What is salvage value?</h3>
+<p>Salvage value, also called residual value, is the amount the asset is expected to be worth at the end of its useful life. It sets the floor used when calculating depreciable cost.</p>
+<h3>What is the difference between straight-line and declining balance?</h3>
+<p>Straight-line spreads the depreciable cost evenly. Declining balance charges a percentage of the remaining book value, which generally creates higher expenses in the earlier years.</p>
+<h3>Why might a depreciation schedule contain an extra year?</h3>
+<p>When an asset begins service partway through an accounting period, the first period covers less than one full year. The remaining fraction of the last depreciation year is then shown in an additional fiscal period.</p>
+<h3>Can I use these figures for a tax return?</h3>
+<p>They are useful for accounting estimates but may not satisfy tax requirements. For U.S. tax reporting, check the relevant recovery system and conventions in IRS Publication 946, or consult a tax professional.</p>
+<h2>Further Reading</h2>
+<ul><li><a href="https://www.calculator.net/depreciation-calculator.html" target="_blank" rel="noopener noreferrer">Calculator.net depreciation calculator (feature reference)</a></li><li><a href="https://openstax.org/books/principles-financial-accounting/pages/11-3-explain-and-apply-depreciation-methods-to-allocate-capitalized-costs" target="_blank" rel="noopener noreferrer">OpenStax: Financial Accounting — Depreciation Methods</a></li><li><a href="https://www.irs.gov/publications/p946" target="_blank" rel="noopener noreferrer">IRS Publication 946: How To Depreciate Property</a></li></ul>
+<p class="cp-page-footer">CalcPro — general accounting estimates for information only; not a substitute for professional financial or tax advice.</p></article></main></div><script>
+/* All calculator behavior is isolated; no server, external API, or global function required. */
+(function () {
+  'use strict';
+  const root = document.getElementById('calcpro-depr-root');
+  if (!root) return;
+  const get = (id) => root.querySelector('#calcpro-depr-' + id);
+  const form = get('form');
+  const result = get('result');
+  const instruction = get('instruction');
+  const error = get('error');
+  let lastCalculation = null;
+
+  for (let day = 1; day <= 31; day++) {
+    const option = document.createElement('option');
+    option.value = String(day); option.textContent = String(day);
+    get('fiscal-day').appendChild(option);
+  }
+  get('fiscal-day').value = '1';
+
+  function choice(name) {
+    return form.querySelector('input[name="calcpro-depr-' + name + '"]:checked').value;
+  }
+  function updateConditional() {
+    get('factor-row').hidden = get('method').value !== 'declining';
+    get('partial-fields').hidden = choice('partial') !== 'yes';
+  }
+  function numeric(value, label, allowZero) {
+    const normalized = value.trim().replace(/[$,\s]/g, '');
+    if (!/^(?:\d+(?:\.\d*)?|\.\d+)$/.test(normalized)) throw new Error('Enter a valid non-negative ' + label + '.');
+    const number = Number(normalized);
+    if (!Number.isFinite(number) || number > 1e12 || (!allowZero && number <= 0)) throw new Error(label + ' must be ' + (allowZero ? 'at least 0' : 'greater than 0') + ' and no more than $1 trillion.');
+    return number;
+  }
+  function calendarUTC(y, m, d) { return Date.UTC(y, m - 1, d); }
+  function clampedFiscalUTC(y, m, d) {
+    const last = new Date(Date.UTC(y, m, 0)).getUTCDate();
+    return calendarUTC(y, m, Math.min(d, last));
+  }
+  function readInputs() {
+    const method = get('method').value;
+    const cost = numeric(get('cost').value, 'asset cost', false);
+    const salvage = numeric(get('salvage').value, 'salvage value', true);
+    if (salvage > cost) throw new Error('Salvage value cannot exceed asset cost.');
+    const years = Number(get('years').value);
+    if (!Number.isInteger(years) || years < 1 || years > 100) throw new Error('Depreciation years must be a whole number between 1 and 100.');
+    const factor = Number(get('factor').value);
+    if (method === 'declining' && (!Number.isFinite(factor) || factor <= 0 || factor > 100)) throw new Error('Depreciation factor must be greater than 0 and no more than 100.');
+    const partial = choice('partial') === 'yes';
+    const round = choice('round') === 'yes';
+    let firstFraction = 1;
+    let firstFiscalYear = null;
+    let convention = get('convention').value;
+    let service = get('service').value;
+    let fiscalMonth = Number(get('fiscal-month').value);
+    let fiscalDay = Number(get('fiscal-day').value);
+    if (partial) {
+      if (!/^\d{4}-\d\d-\d\d$/.test(service)) throw new Error('Choose a valid start-of-service date.');
+      const parts = service.split('-').map(Number);
+      const startTime = calendarUTC(parts[0], parts[1], parts[2]);
+      const real = new Date(startTime);
+      if (real.getUTCFullYear() !== parts[0] || real.getUTCMonth() + 1 !== parts[1] || real.getUTCDate() !== parts[2]) throw new Error('Choose a valid start-of-service date.');
+      if (!Number.isInteger(fiscalMonth) || fiscalMonth < 1 || fiscalMonth > 12 || !Number.isInteger(fiscalDay) || fiscalDay < 1 || fiscalDay > 31) throw new Error('Choose a valid fiscal-year start date.');
+      let fyStart = clampedFiscalUTC(parts[0], fiscalMonth, fiscalDay);
+      if (startTime < fyStart) fyStart = clampedFiscalUTC(parts[0] - 1, fiscalMonth, fiscalDay);
+      firstFiscalYear = new Date(fyStart).getUTCFullYear();
+      const fyEnd = clampedFiscalUTC(firstFiscalYear + 1, fiscalMonth, fiscalDay);
+      if (convention === 'day') {
+        firstFraction = (fyEnd - startTime) / (fyEnd - fyStart);
+      } else if (convention === 'halfyear') {
+        firstFraction = 0.5;
+      } else {
+        // Fiscal months run from each month/day anniversary of the accounting-year start.
+        const startDate = new Date(fyStart);
+        const startYear = startDate.getUTCFullYear();
+        const startMonth = startDate.getUTCMonth();
+        let months = (parts[0] - startYear) * 12 + (parts[1] - 1 - startMonth);
+        const nthMonthYear = startYear + Math.floor((startMonth + months) / 12);
+        const nthMonth = (startMonth + months) % 12 + 1;
+        const startOfMonth = clampedFiscalUTC(nthMonthYear, nthMonth, fiscalDay);
+        if (startTime < startOfMonth) months--;
+        months = Math.max(0, Math.min(11, months));
+        const quarter = Math.floor(months / 3);
+        if (convention === 'halfmonth') firstFraction = (12 - months - 0.5) / 12;
+        if (convention === 'fullmonth') firstFraction = (12 - months) / 12;
+        if (convention === 'halfquarter') firstFraction = (12 - (quarter * 3 + 1.5)) / 12;
+        if (convention === 'fullquarter') firstFraction = (12 - quarter * 3) / 12;
+      }
+      firstFraction = Math.max(0, Math.min(1, firstFraction));
+      if (firstFraction <= 0) throw new Error('The service date must fall within an accounting year.');
+    }
+    return {method, cost, salvage, years, factor, partial, round, convention, service, fiscalMonth, fiscalDay, firstFiscalYear, firstFraction};
+  }
+  function moneyRound(value, digits) {
+    const mult = Math.pow(10, digits);
+    return Math.round((value + Number.EPSILON * Math.max(1, Math.abs(value))) * mult) / mult;
+  }
+  function calculate(input) {
+    const n = input.years;
+    const base = input.cost - input.salvage;
+    const f = input.firstFraction;
+    const extra = f < 1 - 1e-10;
+    const count = n + (extra ? 1 : 0);
+    const digits = input.round ? 0 : 2;
+    const bookCost = moneyRound(input.cost, digits);
+    const bookSalvage = moneyRound(input.salvage, digits);
+    const planned = [];
+    if (input.method === 'straight' || input.method === 'sum') {
+      const annual = Array.from({length:n}, (_, idx) =>
+        input.method === 'straight' ? base / n : base * (n - idx) / (n * (n + 1) / 2));
+      for (let year = 0; year < count; year++) {
+        const from = year === 0 ? 0 : f + year - 1;
+        const to = year === 0 ? f : Math.min(n, f + year);
+        let amount = 0;
+        for (let block = 0; block < n; block++) {
+          const overlap = Math.max(0, Math.min(to, block + 1) - Math.max(from, block));
+          amount += annual[block] * overlap;
+        }
+        planned.push(amount);
+      }
+    }
+    const schedule = [];
+    let book = bookCost;
+    let bookRaw = input.cost;
+    let accumulated = 0;
+    for (let year = 0; year < count; year++) {
+      const periodFraction = extra ? (year === 0 ? f : (year === count - 1 ? 1 - f : 1)) : 1;
+      let amountRaw;
+      if (input.method === 'declining') {
+        amountRaw = Math.min(Math.max(0, bookRaw - input.salvage), bookRaw * input.factor / n * periodFraction);
+        bookRaw = Math.max(input.salvage, bookRaw - amountRaw);
+      } else {
+        amountRaw = planned[year];
+      }
+      let amount = moneyRound(Math.max(0, amountRaw), digits);
+      amount = Math.min(amount, Math.max(0, moneyRound(book - bookSalvage, digits)));
+      // The final regular straight-line/SYD period absorbs cent/dollar rounding differences.
+      if (year === count - 1 && input.method !== 'declining') amount = Math.max(0, moneyRound(book - bookSalvage, digits));
+      const opening = book;
+      book = moneyRound(Math.max(bookSalvage, book - amount), digits);
+      accumulated = moneyRound(accumulated + amount, digits);
+      const percentBase = input.method === 'declining' ? opening : base;
+      const percent = percentBase > 0 ? amount / percentBase * 100 : 0;
+      schedule.push({year:year + 1, fiscal:input.firstFiscalYear === null ? null : input.firstFiscalYear + year, opening, percent, amount, accumulated, ending:book, periodFraction});
+    }
+    return {input, schedule, bookCost, bookSalvage, total:accumulated, finalBook:book};
+  }
+  function money(value, round) {return '$' + Number(value).toLocaleString('en-US',{minimumFractionDigits:round?0:2,maximumFractionDigits:round?0:2});}
+  function pct(value) {return value.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2}) + '%';}
+  function escapeText(s) {return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+  function svgText(x, y, str, extra) { return '<text x="' + x + '" y="' + y + '" ' + (extra || '') + '>' + escapeText(str) + '</text>'; }
+  function buildChart(calculation) {
+    const rows = calculation.schedule;
+    const start = [{year:0, opening:calculation.bookCost, amount:0}].concat(rows.map(x => ({year:x.year, opening:x.ending, amount:x.amount})));
+    const svg = get('chart');
+    const w = 660, h = 284, left = 71, top = 39, right = 21, bottom = 43;
+    const plotW = w - left - right, plotH = h - top - bottom;
+    const maxValue = Math.max(1, ...start.map(x => Math.max(x.opening,x.amount)));
+    // Friendly y-axis grid lines, including thousand-level screenshot-style labels.
+    const magnitude = Math.pow(10, Math.floor(Math.log10(maxValue / 4)));
+    const roughStep = maxValue / 4 / magnitude;
+    const niceStep = (roughStep <= 1 ? 1 : roughStep <= 2 ? 2 : roughStep <= 2.5 ? 2.5 : roughStep <= 5 ? 5 : 10) * magnitude;
+    const niceMax = Math.ceil(maxValue / niceStep) * niceStep;
+    const groupW = plotW / start.length;
+    const bw = Math.min(19, groupW * .28);
+    let s = '<title>Depreciation by year: ending book value (blue) and annual depreciation (green)</title>';
+    s += '<rect width="660" height="284" fill="white"/>';
+    for (let tick = 0; tick <= Math.ceil(niceMax/niceStep); tick++) {
+      const value = tick * niceStep;
+      const y = top + plotH * (1 - value / niceMax);
+      s += '<line x1="' + left + '" y1="' + y.toFixed(2) + '" x2="' + (w-right) + '" y2="' + y.toFixed(2) + '" stroke="#d8dde2" stroke-width="1"/>';
+      const lab = value >= 1000000000 ? '$'+(value/1000000000).toFixed(1).replace(/\.0$/,'')+'B' : value >= 1000000 ? '$'+(value/1000000).toFixed(1).replace(/\.0$/,'')+'M' : value >= 1000 ? '$'+(value/1000).toFixed(1).replace(/\.0$/,'')+'K' : '$'+value.toLocaleString('en-US',{maximumFractionDigits:2});
+      s += svgText(left - 7, y + 4, lab, 'text-anchor="end" font-size="11" fill="#6a7480"');
+    }
+    const labelStep = Math.max(1, Math.ceil(start.length / 18));
+    start.forEach((r, i) => {
+      const x = left + i * groupW + groupW / 2;
+      const bvH = plotH * r.opening / niceMax;
+      const deH = plotH * r.amount / niceMax;
+      const blueX = x - bw - 1, greenX = x + 1;
+      s += '<rect x="'+blueX.toFixed(2)+'" y="'+(top+plotH-bvH).toFixed(2)+'" width="'+bw.toFixed(2)+'" height="'+Math.max(0,bvH).toFixed(2)+'" fill="#2f81d9"><title>Year '+r.year+': ending book value '+money(r.opening,calculation.input.round)+'</title></rect>';
+      if (i) s += '<rect x="'+greenX.toFixed(2)+'" y="'+(top+plotH-deH).toFixed(2)+'" width="'+bw.toFixed(2)+'" height="'+Math.max(0,deH).toFixed(2)+'" fill="#81bb21"><title>Year '+r.year+': depreciation '+money(r.amount,calculation.input.round)+'</title></rect>';
+      if (i % labelStep === 0 || i === start.length - 1) s += svgText(x, top+plotH+18, String(r.year), 'text-anchor="middle" font-size="11" fill="#526271"');
+    });
+    s += '<rect x="165" y="8" width="14" height="10" fill="#2f81d9"/>' + svgText(184,17,'Book Value','font-size="12" fill="#263b52"');
+    s += '<rect x="295" y="8" width="14" height="10" fill="#81bb21"/>' + svgText(314,17,'Depreciation Amount','font-size="12" fill="#263b52"');
+    s += svgText(left+plotW/2,h-7,'Year','text-anchor="middle" font-size="12" fill="#263b52"');
+    svg.setAttribute('viewBox','0 0 '+w+' '+h);
+    svg.setAttribute('preserveAspectRatio','xMidYMid meet');
+    svg.innerHTML = s;
+  }
+  function render(calculation) {
+    const {input,schedule,total,finalBook} = calculation;
+    const methodNames = {straight:'straight line',declining:'declining balance',sum:"sum of the years' digits"};
+    const first = schedule[0];
+    let line;
+    if (input.method === 'straight' && !input.partial) line = 'With the straight line method, the depreciation per year is ';
+    else line = 'With the ' + methodNames[input.method] + ' method, the first year depreciation is ';
+    get('summary').innerHTML = escapeText(line) + '<span class="calcpro-depr-highlight">' + money(first.amount,input.round) + '</span>.';
+    get('stats').textContent = 'Total depreciation: '+money(total,input.round)+'   ·   Ending book value: '+money(finalBook,input.round)+'   ·   Schedule: '+schedule.length+' accounting year'+(schedule.length===1?'':'s');
+    get('schedule').innerHTML = schedule.map(x => '<tr><td title="'+(input.partial?'Fiscal year starting '+x.fiscal:'Depreciation year')+'">'+x.year+'.'+(input.partial?' (FY '+x.fiscal+')':'')+'</td><td>'+money(x.opening,input.round)+'</td><td>'+pct(x.percent)+'</td><td>'+money(x.amount,input.round)+'</td><td>'+money(x.accumulated,input.round)+'</td><td>'+money(x.ending,input.round)+'</td></tr>').join('');
+    if (input.partial) {
+      const names = {day:'Count Every Day',halfmonth:'Half-Month',fullmonth:'Full-Month',halfquarter:'Half-Quarter',fullquarter:'Full-Quarter',halfyear:'Half-Year'};
+      get('explanation').textContent = names[input.convention]+' convention: '+pct(input.firstFraction*100)+' of a full depreciation year in the first fiscal period; subsequent periods continue until the useful-life schedule ends. The beginning book value is the value before each period. Rounded rows may differ slightly from unrounded calculations.';
+    } else if (input.method === 'declining') {
+      get('explanation').textContent = 'Declining balance uses the beginning book value × (depreciation factor ÷ useful life). Depreciation never reduces book value below salvage value. This accounting method does not force a last-year write-down or automatically switch to straight line.';
+    } else {
+      get('explanation').textContent = 'Annual depreciation is allocated across the useful life. The final period absorbs any cent or whole-dollar rounding difference so ending book value matches salvage value.';
+    }
+    buildChart(calculation);
+    instruction.hidden = true;
+    result.hidden = false;
+    lastCalculation = calculation;
+  }
+  function clearError() {error.hidden = true; error.textContent = '';}
+  function reset() {
+    form.reset();
+    get('fiscal-day').value = '1';
+    lastCalculation = null;
+    clearError();
+    result.hidden = true;
+    instruction.hidden = false;
+    updateConditional();
+  }
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    clearError();
+    try {
+      const calculation = calculate(readInputs());
+      render(calculation);
+      if (typeof result.scrollIntoView === 'function') result.scrollIntoView({behavior:'smooth',block:'start'});
+    } catch (ex) {
+      error.textContent = ex.message || 'Check your input values.';
+      error.hidden = false;
+      result.hidden = true;
+      instruction.hidden = false;
+      lastCalculation = null;
+    }
+  });
+  get('reset').addEventListener('click',reset);
+  get('method').addEventListener('change',updateConditional);
+  form.querySelectorAll('input[name="calcpro-depr-partial"]').forEach(el => el.addEventListener('change',updateConditional));
+  ['cost','salvage'].forEach(key => get(key).addEventListener('blur', () => {
+    const raw = get(key).value.trim().replace(/[$,\s]/g, '');
+    if (/^(?:\d+(?:\.\d*)?|\.\d+)$/.test(raw)) get(key).value = Number(raw).toLocaleString('en-US',{maximumFractionDigits:6});
+  }));
+  get('print').addEventListener('click', () => {if (lastCalculation) window.print();});
+  get('save').addEventListener('click', () => {
+    if (!lastCalculation) return;
+    const rows = [['Year','Fiscal-year start','Beginning book value','Depreciation percent','Depreciation amount','Accumulated depreciation','Ending book value']];
+    lastCalculation.schedule.forEach(r => rows.push([r.year,r.fiscal||'',r.opening,r.percent.toFixed(4)+'%',r.amount,r.accumulated,r.ending]));
+    const csv = rows.map(row=>row.map(v=>'"'+String(v).replace(/"/g,'""')+'"').join(',')).join('\r\n');
+    const url = URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));
+    const anchor = document.createElement('a');
+    anchor.href = url; anchor.download = 'calcpro-depreciation-schedule.csv';
+    document.body.appendChild(anchor);anchor.click();anchor.remove();
+    setTimeout(()=>URL.revokeObjectURL(url),1000);
+  });
+  updateConditional();
+})();
+</script></body></html>

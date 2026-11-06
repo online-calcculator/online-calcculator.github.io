@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>Matrix Calculator | CalcPro</title><meta content="Calculate matrix addition, subtraction, multiplication, transpose, determinant, inverse, powers and scalar products in CalcPro." name="description"/><link href="template-style.css" rel="stylesheet"/><style>
+/* Scoped Matrix Calculator UI — independent from CalcPro global styling */
+.calcpro-matrix{--calcpro-matrix-blue:#346898;--calcpro-matrix-green:#387e12;--calcpro-matrix-border:#bbb;font:15px Arial,Helvetica,sans-serif;color:#111;width:100%;max-width:100%;line-height:1.3}
+.calcpro-matrix *{box-sizing:border-box}
+.calcpro-matrix-panels{display:flex;align-items:flex-start;gap:6px;flex-wrap:wrap}
+.calcpro-matrix-card{width:244px;max-width:100%;padding:5px 6px 7px;border:1px solid var(--calcpro-matrix-border);background:#eee;flex:0 0 auto;min-width:0}
+.calcpro-matrix-card h2{background:var(--calcpro-matrix-blue);color:#fff;font-size:16px;font-weight:700;margin:0 0 4px;padding:7px 6px;line-height:1.2}
+.calcpro-matrix-size{display:flex;align-items:flex-end;gap:5px;margin:0 2px 5px;white-space:nowrap}
+.calcpro-matrix-dimension{display:flex;flex-direction:column;gap:2px}
+.calcpro-matrix-dimension label{font-size:14px;padding-left:10px}
+.calcpro-matrix-dimension-controls{display:flex;align-items:center;gap:2px}
+.calcpro-matrix-size-input,.calcpro-matrix-arg{font:16px Arial,sans-serif;outline-offset:1px;border:1px solid #0d4d91;background:#fff;border-radius:0;height:29px;padding:3px;width:44px;min-width:0;color:#111}
+.calcpro-matrix-size-input{-moz-appearance:textfield;appearance:textfield}
+.calcpro-matrix-size-input::-webkit-outer-spin-button,.calcpro-matrix-size-input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.calcpro-matrix-arrow-group{display:flex;align-items:center;justify-content:center;gap:1px}
+.calcpro-matrix-arrow-group.calcpro-matrix-vertical{flex-direction:column;gap:0}
+.calcpro-matrix-arrow{width:17px;height:15px;min-width:17px;background:transparent;border:0;color:#000;display:flex;align-items:center;justify-content:center;font-size:17px;line-height:1;cursor:pointer;padding:0}
+.calcpro-matrix-arrow:hover{color:var(--calcpro-matrix-blue)}
+.calcpro-matrix-mult{font-size:20px;line-height:29px;padding:0 2px 0 3px}
+.calcpro-matrix-grid-scroll{max-width:100%;overflow-x:auto;overflow-y:hidden;padding:0 0 2px;scrollbar-width:thin}
+.calcpro-matrix-grid{display:grid;grid-template-columns:repeat(var(--calcpro-matrix-cols,4),54px);gap:3px;width:max-content;max-width:none}
+.calcpro-matrix-cell{width:54px;height:29px;background:#fff;border:1px solid #0d4d91;border-radius:1px;padding:2px 4px;font:15px Arial,sans-serif;color:#111;min-width:0}
+.calcpro-matrix-cell:focus,.calcpro-matrix-arg:focus,.calcpro-matrix-size-input:focus{outline:2px solid #90bbe5;outline-offset:0}
+.calcpro-matrix-actions{display:flex;align-items:center;justify-content:center;gap:3px;white-space:nowrap;margin-top:5px;min-height:27px}
+.calcpro-matrix-action{border:0;border-radius:2px;color:#fff;background:#2c2c2c;padding:4px 4px;font:14px Arial,sans-serif;line-height:1.1;cursor:pointer;white-space:nowrap}
+.calcpro-matrix-action:hover{background:#4d4d4d}
+.calcpro-matrix-arg{height:29px;width:43px;font-size:15px}
+.calcpro-matrix-operation-bar{width:100%;display:flex;align-items:center;justify-content:flex-start;gap:4px;background:#ddd;padding:4px 8px;min-height:36px;flex-wrap:wrap}
+.calcpro-matrix-operation-bar button{font:15px Arial,sans-serif;color:#fff;background:#327f10;border:0;border-radius:3px;padding:8px 11px;line-height:1;cursor:pointer;min-height:30px}
+.calcpro-matrix-operation-bar button:hover{background:#24690a}
+.calcpro-matrix button:focus-visible,.calcpro-matrix a:focus-visible{outline:2px solid #155aa2;outline-offset:2px}
+.calcpro-matrix-result{margin-top:4px;width:100%;min-width:0}
+.calcpro-matrix-result[hidden]{display:none}
+.calcpro-matrix-result h2{background:#4b8e1e;color:#fff;font-size:19px;font-weight:400;margin:0 0 5px;padding:5px 6px;line-height:1.35}
+.calcpro-matrix-result-body{display:flex;align-items:flex-start;flex-wrap:wrap;gap:6px;min-width:0}
+.calcpro-matrix-result-prefix{font-size:19px;min-width:65px;display:flex;flex-direction:column;align-items:flex-start;line-height:1.25}
+.calcpro-matrix-result-prefix a{font-size:14px;color:#006699;text-decoration:underline;line-height:1.15}
+.calcpro-matrix-result-prefix .calcpro-matrix-copy-links{display:flex;flex-direction:column;margin-top:13px}
+.calcpro-matrix-result-prefix .calcpro-matrix-result-expression{white-space:nowrap}
+.calcpro-matrix-bracketed{position:relative;display:inline-block;padding:1px 9px;margin:2px 0 6px;max-width:100%;overflow-x:auto}
+.calcpro-matrix-bracketed::before,.calcpro-matrix-bracketed::after{content:"";position:absolute;top:0;bottom:0;width:6px;border-top:1px solid #111;border-bottom:1px solid #111;pointer-events:none}
+.calcpro-matrix-bracketed::before{left:0;border-left:1px solid #111}.calcpro-matrix-bracketed::after{right:0;border-right:1px solid #111}
+.calcpro-matrix-result-table{border-collapse:collapse;font:700 15px/1.25 Arial,sans-serif}
+.calcpro-matrix-result-table td{padding:1px 5px 1px 1px;text-align:right;white-space:nowrap}
+.calcpro-matrix-result-message{font-size:17px;padding:2px 0 8px;overflow-wrap:anywhere}
+.calcpro-matrix-error{border-left:4px solid #c13b2a;background:#fff0ed;padding:10px 12px;font-size:15px;color:#8d2318;margin:4px 0 10px;max-width:100%}
+.calcpro-matrix-hint{font-size:12px;color:#555;margin:7px 0 0}
+@media(max-width:525px){.calcpro-matrix-panels{gap:8px}.calcpro-matrix-card{width:min(100%,244px)}.calcpro-matrix-operation-bar{padding-left:4px;padding-right:4px}.calcpro-matrix-operation-bar button{padding:8px 9px}.calcpro-matrix-result-prefix{font-size:17px}}
+@media(max-width:310px){.calcpro-matrix-card{width:100%}.calcpro-matrix-action{font-size:12px;padding:4px 3px}.calcpro-matrix-result-body{display:block}.calcpro-matrix-result-prefix .calcpro-matrix-copy-links{margin:5px 0}}
+@media print{.calcpro-matrix{break-inside:avoid}.calcpro-matrix-operation-bar{display:none}}
+</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/math-calculator/">Math</a> / Matrix Calculator</nav><h1 class="cp-page-title">Matrix Calculator</h1><p class="cp-intro">Add, subtract, and multiply matrices or calculate a transpose, determinant, inverse, power, and scalar product. Enter values for Matrix A and/or B and choose an operation; results appear directly below the controls.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-matrix" id="calcpro-matrix-root">
+  <div class="calcpro-matrix-panels">
+    
+<section class="calcpro-matrix-card" aria-label="Matrix A inputs" data-calcpro-matrix-panel="a">
+  <h2>Matrix A Input</h2>
+  <div class="calcpro-matrix-size">
+    <div class="calcpro-matrix-dimension"><label for="calcpro-matrix-a-rows">row</label><div class="calcpro-matrix-dimension-controls">
+      <input id="calcpro-matrix-a-rows" class="calcpro-matrix-size-input" type="number" min="1" max="10" step="1" value="4" aria-label="Matrix A rows">
+      <span class="calcpro-matrix-arrow-group calcpro-matrix-vertical"><button class="calcpro-matrix-arrow" type="button" data-calcpro-matrix-resize="a:rows:1" aria-label="Increase Matrix A rows" title="Add row">▲</button><button class="calcpro-matrix-arrow" type="button" data-calcpro-matrix-resize="a:rows:-1" aria-label="Decrease Matrix A rows" title="Remove row">▼</button></span>
+    </div></div>
+    <span class="calcpro-matrix-mult" aria-hidden="true">×</span>
+    <div class="calcpro-matrix-dimension"><label for="calcpro-matrix-a-cols">column</label><div class="calcpro-matrix-dimension-controls">
+      <input id="calcpro-matrix-a-cols" class="calcpro-matrix-size-input" type="number" min="1" max="10" step="1" value="4" aria-label="Matrix A columns">
+      <span class="calcpro-matrix-arrow-group"><button class="calcpro-matrix-arrow" type="button" data-calcpro-matrix-resize="a:cols:-1" aria-label="Decrease Matrix A columns" title="Remove column">◀</button><button class="calcpro-matrix-arrow" type="button" data-calcpro-matrix-resize="a:cols:1" aria-label="Increase Matrix A columns" title="Add column">▶</button></span>
+    </div></div>
+  </div>
+  <div class="calcpro-matrix-grid-scroll" tabindex="0" aria-label="Scrollable Matrix A value grid"><div class="calcpro-matrix-grid" id="calcpro-matrix-grid-a" role="group" aria-label="Matrix A cells"></div></div>
+  <div class="calcpro-matrix-actions"><button type="button" class="calcpro-matrix-action" data-calcpro-matrix-fill="a:clear">Clear</button><button type="button" class="calcpro-matrix-action" data-calcpro-matrix-fill="a:zero">All 0</button><button type="button" class="calcpro-matrix-action" data-calcpro-matrix-fill="a:one">All 1</button><button type="button" class="calcpro-matrix-action" data-calcpro-matrix-fill="a:random">Random</button></div>
+  <div class="calcpro-matrix-actions"><button type="button" class="calcpro-matrix-action" data-calcpro-matrix-unary="a:transpose">Transpose</button><button type="button" class="calcpro-matrix-action" data-calcpro-matrix-unary="a:power">Power of</button><input id="calcpro-matrix-a-power" class="calcpro-matrix-arg" type="number" step="1" value="2" aria-label="Matrix A exponent"></div>
+  <div class="calcpro-matrix-actions"><button type="button" class="calcpro-matrix-action" data-calcpro-matrix-unary="a:determinant">Determinant</button><button type="button" class="calcpro-matrix-action" data-calcpro-matrix-unary="a:inverse">Inverse</button><button type="button" class="calcpro-matrix-action" data-calcpro-matrix-unary="a:scalar" aria-label="Multiply Matrix A by scalar">×</button><input id="calcpro-matrix-a-scalar" class="calcpro-matrix-arg" type="text" inputmode="decimal" value="3" aria-label="Matrix A scalar multiplier"></div>
+</section>
+    
+<section class="calcpro-matrix-card" aria-label="Matrix B inputs" data-calcpro-matrix-panel="b">
+  <h2>Matrix B Input</h2>
+  <div class="calcpro-matrix-size">
+    <div class="calcpro-matrix-dimension"><label for="calcpro-matrix-b-rows">row</label><div class="calcpro-matrix-dimension-controls">
+      <input id="calcpro-matrix-b-rows" class="calcpro-matrix-size-input" type="number" min="1" max="10" step="1" value="4" aria-label="Matrix B rows">
+      <span class="calcpro-matrix-arrow-group calcpro-matrix-vertical"><button class="calcpro-matrix-arrow" type="button" data-calcpro-matrix-resize="b:rows:1" aria-label="Increase Matrix B rows" title="Add row">▲</button><button class="calcpro-matrix-arrow" type="button" data-calcpro-matrix-resize="b:rows:-1" aria-label="Decrease Matrix B rows" title="Remove row">▼</button></span>
+    </div></div>
+    <span class="calcpro-matrix-mult" aria-hidden="true">×</span>
+    <div class="calcpro-matrix-dimension"><label for="calcpro-matrix-b-cols">column</label><div class="calcpro-matrix-dimension-controls">
+      <input id="calcpro-matrix-b-cols" class="calcpro-matrix-size-input" type="number" min="1" max="10" step="1" value="4" aria-label="Matrix B columns">
+      <span class="calcpro-matrix-arrow-group"><button class="calcpro-matrix-arrow" type="button" data-calcpro-matrix-resize="b:cols:-1" aria-label="Decrease Matrix B columns" title="Remove column">◀</button><button class="calcpro-matrix-arrow" type="button" data-calcpro-matrix-resize="b:cols:1" aria-label="Increase Matrix B columns" title="Add column">▶</button></span>
+    </div></div>
+  </div>
+  <div class="calcpro-matrix-grid-scroll" tabindex="0" aria-label="Scrollable Matrix B value grid"><div class="calcpro-matrix-grid" id="calcpro-matrix-grid-b" role="group" aria-label="Matrix B cells"></div></div>
+  <div class="calcpro-matrix-actions"><button type="button" class="calcpro-matrix-action" data-calcpro-matrix-fill="b:clear">Clear</button><button type="button" class="calcpro-matrix-action" data-calcpro-matrix-fill="b:zero">All 0</button><button type="button" class="calcpro-matrix-action" data-calcpro-matrix-fill="b:one">All 1</button><button type="button" class="calcpro-matrix-action" data-calcpro-matrix-fill="b:random">Random</button></div>
+  <div class="calcpro-matrix-actions"><button type="button" class="calcpro-matrix-action" data-calcpro-matrix-unary="b:transpose">Transpose</button><button type="button" class="calcpro-matrix-action" data-calcpro-matrix-unary="b:power">Power of</button><input id="calcpro-matrix-b-power" class="calcpro-matrix-arg" type="number" step="1" value="2" aria-label="Matrix B exponent"></div>
+  <div class="calcpro-matrix-actions"><button type="button" class="calcpro-matrix-action" data-calcpro-matrix-unary="b:determinant">Determinant</button><button type="button" class="calcpro-matrix-action" data-calcpro-matrix-unary="b:inverse">Inverse</button><button type="button" class="calcpro-matrix-action" data-calcpro-matrix-unary="b:scalar" aria-label="Multiply Matrix B by scalar">×</button><input id="calcpro-matrix-b-scalar" class="calcpro-matrix-arg" type="text" inputmode="decimal" value="3" aria-label="Matrix B scalar multiplier"></div>
+</section>
+  </div>
+  <div class="calcpro-matrix-operation-bar" role="group" aria-label="Operations using both matrices">
+    <button type="button" data-calcpro-matrix-binary="add">A + B</button>
+    <button type="button" data-calcpro-matrix-binary="subtract">A − B</button>
+    <button type="button" data-calcpro-matrix-binary="multiply">AB</button>
+    <button type="button" data-calcpro-matrix-binary="swap">A ↔ B</button>
+  </div>
+  <section id="calcpro-matrix-result" class="calcpro-matrix-result" aria-live="polite" aria-label="Matrix calculation results" hidden>
+    <h2>Result</h2><div id="calcpro-matrix-result-body" class="calcpro-matrix-result-body"></div>
+  </section>
+  <p class="calcpro-matrix-hint">Empty cells are treated as zero. Matrices support 1–10 rows and columns; scroll a matrix horizontally when it has many columns.</p>
+</div></section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><a href="scientific-calculator.html">Scientific</a><a href="fraction-calculator.html">Fraction</a><a href="percent-calculator.html">Percentage</a><a href="standard-deviation-calculator.html">Standard Deviation</a><a href="average-calculator.html">Average</a><a href="probability-calculator.html">Probability</a><a href="statistics-calculator.html">Statistics</a><a href="random-number-generator.html">Random Number</a><a href="triangle-calculator.html">Triangle</a><a href="volume-calculator.html">Volume</a><a href="binary-calculator.html">Binary</a><a href="math-calculator.html">Math</a></div></section></aside><article class="cp-article"><h2>How to Use the Matrix Calculator</h2>
+<p>Choose the row and column count for Matrix A and Matrix B (1 to 10 for each). Enter numbers in the cells; leave a cell blank to use zero. You can increase or decrease the dimensions using the arrow buttons. When a matrix is wider than its panel, scroll within the cell grid. You can also paste tab-separated matrix values from a spreadsheet into the grid.</p>
+<p>Use <strong>Clear</strong> to empty all cells, <strong>All 0</strong> for a zero matrix, <strong>All 1</strong> for an all-ones matrix, and <strong>Random</strong> to fill cells with digits from 0 to 9. Use the operations inside either matrix panel for one-matrix calculations, or the green buttons underneath for two-matrix operations. The result is shown immediately below the buttons; use <strong>Copy To A</strong> or <strong>Copy To B</strong> to reuse it.</p>
+<h2>Matrix Operations and Formulas</h2>
+<h3>Addition and Subtraction</h3>
+<p>Matrices must have identical dimensions. For a matrix entry in row <em>i</em>, column <em>j</em>, the sum and difference are (A ± B)<sub>ij</sub> = a<sub>ij</sub> ± b<sub>ij</sub>.</p>
+<h3>Matrix Multiplication</h3>
+<p>If A has <em>m</em> rows and <em>n</em> columns, and B has <em>n</em> rows and <em>p</em> columns, then AB is an <em>m</em> × <em>p</em> matrix. The entry at row <em>i</em>, column <em>j</em> is (AB)<sub>ij</sub> = Σ<sub>k=1…n</sub> a<sub>ik</sub>b<sub>kj</sub>. Order matters: AB generally differs from BA.</p>
+<h3>Transpose, Determinant, and Inverse</h3>
+<p>A transpose exchanges rows with columns: (A<sup>T</sup>)<sub>ij</sub> = a<sub>ji</sub>. Determinants and inverses require a square matrix. For a 2 × 2 matrix A = [[a, b], [c, d]], det(A) = ad − bc. If the determinant is nonzero, A<sup>−1</sup> = (1/det(A)) × [[d, −b], [−c, a]]. Larger determinants are calculated by Gaussian elimination; inverses use Gauss–Jordan elimination with pivoting.</p>
+<h3>Powers and Scalar Multiplication</h3>
+<p>For square matrices, A<sup>2</sup> means A × A and A<sup>0</sup> is the identity matrix. Negative integer powers require an invertible matrix (for example A<sup>−2</sup> = A<sup>−1</sup>A<sup>−1</sup>). Multiplying a matrix by a scalar <em>c</em> multiplies every element: (cA)<sub>ij</sub> = c × a<sub>ij</sub>. The power field accepts integer exponents from −100 to 100.</p>
+<h2>Worked Example</h2>
+<p>Suppose A = [[1, 2], [3, 4]] and B = [[5, 6], [7, 8]]. The sum is A + B = [[6, 8], [10, 12]], and AB = [[19, 22], [43, 50]]. The determinant of A is 1 × 4 − 2 × 3 = −2, so its inverse is [[−2, 1], [1.5, −0.5]].</p>
+<h2>Frequently Asked Questions</h2>
+<h3>Why can’t I add matrices of different sizes?</h3>
+<p>Addition and subtraction combine matching entries, so both matrices must have exactly the same number of rows and columns.</p>
+<h3>Why is matrix multiplication rejected?</h3>
+<p>For AB to exist, A’s number of columns must equal B’s number of rows; the matrices do not need to be square.</p>
+<h3>Can a matrix have no inverse?</h3>
+<p>Yes. Only square, nonsingular matrices have an inverse. A matrix with a determinant of zero has no inverse; numerical calculations may also flag nearly singular matrices.</p>
+<h3>Are decimal results exact?</h3>
+<p>The calculator uses JavaScript floating-point arithmetic, and displays up to 12 significant digits. Very small rounding differences may occur, especially with ill-conditioned matrices or large powers.</p>
+<h2>Reference</h2>
+<p>For additional background and examples of matrix operations, see <a href="https://www.calculator.net/matrix-calculator.html" rel="noopener noreferrer">Calculator.net’s Matrix Calculator guide</a>.</p>
+<p class="cp-page-footer">CalcPro — calculator estimates are for informational purposes.</p></article></main></div><script>
+(() => {
+  'use strict';
+  const root = document.getElementById('calcpro-matrix-root');
+  if (!root) return;
+  const MAX = 10;
+  const state = {
+    a: {rows: 4, cols: 4, values: Array.from({length: MAX}, () => Array(MAX).fill(''))},
+    b: {rows: 4, cols: 4, values: Array.from({length: MAX}, () => Array(MAX).fill(''))}
+  };
+  let lastMatrix = null;
+  const byId = (id) => root.querySelector('#' + id);
+  const resultSection = byId('calcpro-matrix-result');
+  const resultBody = byId('calcpro-matrix-result-body');
+
+  const format = (num) => {
+    if (!Number.isFinite(num)) throw Error('The result is outside the supported numeric range.');
+    if (num === 0) return '0';
+    return String(Number(num.toPrecision(12)));
+  };
+  const dims = (k) => state[k];
+  const clampDimension = (value) => {
+    const n = Number(value);
+    return Number.isInteger(n) ? Math.min(MAX, Math.max(1, n)) : 1;
+  };
+  function hideResult() {
+    lastMatrix = null;
+    resultBody.replaceChildren();
+    resultSection.hidden = true;
+  }
+  function renderGrid(k) {
+    const s = dims(k);
+    byId(`calcpro-matrix-${k}-rows`).value = s.rows;
+    byId(`calcpro-matrix-${k}-cols`).value = s.cols;
+    const grid = byId(`calcpro-matrix-grid-${k}`);
+    grid.style.setProperty('--calcpro-matrix-cols', s.cols);
+    const frag = document.createDocumentFragment();
+    for (let r = 0; r < s.rows; r++) {
+      for (let c = 0; c < s.cols; c++) {
+        const field = document.createElement('input');
+        field.type = 'text'; field.inputMode = 'decimal'; field.autocomplete = 'off';
+        field.className = 'calcpro-matrix-cell';
+        field.dataset.row = r; field.dataset.col = c; field.dataset.matrix = k;
+        field.value = s.values[r][c];
+        field.setAttribute('aria-label', `Matrix ${k.toUpperCase()}, row ${r+1}, column ${c+1}`);
+        frag.append(field);
+      }
+    }
+    grid.replaceChildren(frag);
+  }
+  const setDimension = (k, axis, inputValue) => {
+    const n = clampDimension(inputValue);
+    state[k][axis] = n;
+    renderGrid(k);
+    hideResult();
+  };
+  const numberPattern = /^[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:e[+-]?\d+)?$/i;
+  function parseNumber(raw, context, emptyAsZero = true) {
+    const s = String(raw).trim();
+    if (!s && emptyAsZero) return 0;
+    if (!numberPattern.test(s)) throw Error(`${context}: enter a finite number (for example, -2, 0.5, or 1e-3).`);
+    const n = Number(s);
+    if (!Number.isFinite(n)) throw Error(`${context}: the number is too large.`);
+    return n;
+  }
+  function readMatrix(k) {
+    const s = state[k];
+    return Array.from({length:s.rows}, (_,r) => Array.from({length:s.cols}, (_,c) =>
+      parseNumber(s.values[r][c], `Matrix ${k.toUpperCase()} row ${r+1}, column ${c+1}`)));
+  }
+  function transpose(A) {return A[0].map((_, j) => A.map(row => row[j]));}
+  function multiply(A,B) {
+    if (A[0].length !== B.length) throw Error('The number of columns in Matrix A must equal the number of rows in Matrix B.');
+    const out = Array.from({length:A.length}, () => Array(B[0].length).fill(0));
+    for (let i=0; i<A.length; i++) for (let k=0; k<B.length; k++)
+      for (let j=0; j<B[0].length; j++) out[i][j] += A[i][k] * B[k][j];
+    return out;
+  }
+  function identity(n) {return Array.from({length:n},(_,i)=>Array.from({length:n},(_,j)=>+(i===j)));}
+  const requireSquare = (A) => {if (A.length !== A[0].length) throw Error('This operation requires a square matrix (the same number of rows and columns).');};
+  function determinant(A) {
+    requireSquare(A);
+    const n=A.length, M=A.map(row=>row.slice());
+    let det=1;
+    for(let c=0;c<n;c++) {
+      let piv=c;
+      for(let r=c+1;r<n;r++) if(Math.abs(M[r][c])>Math.abs(M[piv][c])) piv=r;
+      if (M[piv][c] === 0) return 0;
+      if(piv!==c){[M[c],M[piv]]=[M[piv],M[c]];det=-det;}
+      const pivot=M[c][c]; det*=pivot;
+      for(let r=c+1;r<n;r++){
+        const factor=M[r][c]/pivot;
+        M[r][c]=0;
+        for(let j=c+1;j<n;j++) M[r][j]-=factor*M[c][j];
+      }
+    }
+    return det;
+  }
+  function inverse(A) {
+    requireSquare(A);
+    const n=A.length, M=A.map((row,i)=>row.concat(identity(n)[i]));
+    for(let c=0;c<n;c++){
+      let piv=c;
+      for(let r=c+1;r<n;r++) if(Math.abs(M[r][c])>Math.abs(M[piv][c])) piv=r;
+      const columnMax=Math.max(...Array.from({length:n},(_,r)=>Math.abs(A[r][c])));
+      if (columnMax===0 || Math.abs(M[piv][c]) <= columnMax*1e-12) throw Error('This matrix is singular or numerically near-singular; its inverse does not exist reliably.');
+      if(piv!==c) [M[c],M[piv]]=[M[piv],M[c]];
+      const pivot=M[c][c];
+      for(let j=0;j<2*n;j++) M[c][j]/=pivot;
+      for(let r=0;r<n;r++) if(r!==c){
+        const factor=M[r][c];
+        for(let j=0;j<2*n;j++) M[r][j]-=factor*M[c][j];
+      }
+    }
+    return M.map(row=>row.slice(n));
+  }
+  function power(A, exponent) {
+    requireSquare(A);
+    if(!Number.isInteger(exponent) || Math.abs(exponent)>100) throw Error('Enter an integer power between -100 and 100.');
+    if(exponent===0) return identity(A.length);
+    let base=exponent<0?inverse(A):A.map(row=>row.slice());
+    let n=Math.abs(exponent), result=identity(A.length);
+    while(n>0){if(n%2) result=multiply(result,base);n=Math.floor(n/2);if(n)base=multiply(base,base);}
+    return result;
+  }
+  function expression(parts) {
+    const span=document.createElement('span');span.className='calcpro-matrix-result-expression';
+    if(Array.isArray(parts)) {
+      span.append(document.createTextNode(parts[0]));
+      const sup=document.createElement('sup');sup.textContent=String(parts[1]);span.append(sup,document.createTextNode(' ='));
+    } else span.textContent=parts;
+    return span;
+  }
+  function output(label, value, isScalar = false) {
+    resultSection.hidden = false;
+    resultBody.replaceChildren();
+    lastMatrix = isScalar ? null : value.map(row=>row.slice());
+    const prefix=document.createElement('div');prefix.className='calcpro-matrix-result-prefix';
+    prefix.append(expression(label));
+    if(!isScalar){
+      const links=document.createElement('div');links.className='calcpro-matrix-copy-links';
+      for(const k of ['a','b']) {
+        const a=document.createElement('a');a.href='#';a.textContent=`Copy To ${k.toUpperCase()}`;
+        a.dataset.calcproMatrixCopy=k;links.append(a);
+      }
+      prefix.append(links);
+    }
+    resultBody.append(prefix);
+    if(isScalar){const p=document.createElement('div');p.className='calcpro-matrix-result-message';p.textContent=format(value);resultBody.append(p);return;}
+    const bracket=document.createElement('div');bracket.className='calcpro-matrix-bracketed';
+    const table=document.createElement('table');table.className='calcpro-matrix-result-table';
+    table.setAttribute('aria-label','Result matrix');
+    for(const row of value){const tr=document.createElement('tr');for(const n of row){const td=document.createElement('td');td.textContent=format(n);tr.append(td);}table.append(tr);}
+    bracket.append(table);resultBody.append(bracket);
+  }
+  function displayMessage(message, error=false) {
+    lastMatrix=null;resultSection.hidden=false;resultBody.replaceChildren();
+    const item=document.createElement('div');
+    item.className=error?'calcpro-matrix-error':'calcpro-matrix-result-message';
+    item.textContent=message;resultBody.append(item);
+  }
+  function tryCompute(fn) {try{fn();}catch(e){displayMessage(e instanceof Error?e.message:'Unable to calculate this matrix.',true);}}
+  function unary(k, operation) {
+    tryCompute(()=>{
+      const A=readMatrix(k), name=k.toUpperCase();
+      switch(operation) {
+        case 'transpose': return output([name,'T'],transpose(A));
+        case 'determinant': return output(`Determinant of ${name} =`,determinant(A),true);
+        case 'inverse': return output([name,'-1'],inverse(A));
+        case 'power': {
+          const raw=byId(`calcpro-matrix-${k}-power`).value;
+          if(!/^[+-]?\d+$/.test(raw.trim())) throw Error('Enter an integer power between -100 and 100.');
+          const exp=Number(raw);return output([name,exp],power(A,exp));
+        }
+        case 'scalar':{
+          const scalar=parseNumber(byId(`calcpro-matrix-${k}-scalar`).value,`Matrix ${name} scalar`,false);
+          return output(`${name} × ${format(scalar)} =`,A.map(row=>row.map(v=>v*scalar)));
+        }
+      }
+    });
+  }
+  function binary(operation) {
+    tryCompute(()=>{
+      if(operation==='swap'){
+        const prev=state.a;state.a=state.b;state.b=prev;
+        renderGrid('a');renderGrid('b');displayMessage('Matrix A and B were swapped.');return;
+      }
+      const A=readMatrix('a'),B=readMatrix('b');
+      if(operation==='multiply') return output('AB =',multiply(A,B));
+      if(A.length!==B.length || A[0].length!==B[0].length) throw Error('Matrix A and Matrix B must have the same number of rows and columns for addition or subtraction.');
+      const sign=operation==='add'?1:-1;
+      return output(operation==='add'?'A + B =':'A − B =',A.map((row,i)=>row.map((v,j)=>v+sign*B[i][j])));
+    });
+  }
+  function fill(k,mode) {
+    const vals=state[k].values;
+    for(let r=0;r<MAX;r++)for(let c=0;c<MAX;c++) vals[r][c]=mode==='clear'?'':mode==='zero'?'0':mode==='one'?'1':String(Math.floor(Math.random()*10));
+    renderGrid(k);hideResult();
+  }
+  function copyTo(k) {
+    if(!lastMatrix)return;
+    const rows=lastMatrix.length,cols=lastMatrix[0].length;
+    if(rows>MAX||cols>MAX) {displayMessage('Result dimensions exceed the maximum matrix size.',true);return;}
+    const values=Array.from({length:MAX},()=>Array(MAX).fill(''));
+    for(let r=0;r<rows;r++)for(let c=0;c<cols;c++) values[r][c]=format(lastMatrix[r][c]);
+    state[k]={rows,cols,values};renderGrid(k);
+  }
+  // Event delegation keeps every action working after dimension changes.
+  root.addEventListener('click',event=>{
+    const resize=event.target.closest('[data-calcpro-matrix-resize]');
+    if(resize){
+      const [k,axis,amount]=resize.dataset.calcproMatrixResize.split(':');
+      const input=byId(`calcpro-matrix-${k}-${axis}`);
+      const fromField=Number(input.value);
+      setDimension(k,axis,(Number.isInteger(fromField)?fromField:state[k][axis])+Number(amount));return;
+    }
+    const fillButton=event.target.closest('[data-calcpro-matrix-fill]');
+    if(fillButton){const [k,mode]=fillButton.dataset.calcproMatrixFill.split(':');fill(k,mode);return;}
+    const unaryButton=event.target.closest('[data-calcpro-matrix-unary]');
+    if(unaryButton){const [k,operation]=unaryButton.dataset.calcproMatrixUnary.split(':');unary(k,operation);return;}
+    const binaryButton=event.target.closest('[data-calcpro-matrix-binary]');
+    if(binaryButton){binary(binaryButton.dataset.calcproMatrixBinary);return;}
+    const link=event.target.closest('[data-calcpro-matrix-copy]');
+    if(link){event.preventDefault();copyTo(link.dataset.calcproMatrixCopy);}
+  });
+  root.addEventListener('input',event=>{
+    const field=event.target.closest('.calcpro-matrix-cell');
+    if(field){state[field.dataset.matrix].values[Number(field.dataset.row)][Number(field.dataset.col)]=field.value;hideResult();}
+  });
+  root.addEventListener('change',event=>{
+    const field=event.target.closest('.calcpro-matrix-size-input');
+    if(field){const k=field.id.split('-')[2],axis=field.id.split('-')[3];setDimension(k,axis,field.value);}
+  });
+  root.addEventListener('paste',event=>{
+    const field=event.target.closest('.calcpro-matrix-cell');
+    if(!field)return;
+    const text=event.clipboardData?.getData('text/plain')||'';
+    if(!/[\t\r\n]/.test(text))return;
+    event.preventDefault();
+    const k=field.dataset.matrix,s=state[k],r0=Number(field.dataset.row),c0=Number(field.dataset.col);
+    const rows=text.trimEnd().split(/\r?\n/).map(row=>row.split('\t'));
+    s.rows=Math.min(MAX,Math.max(s.rows,r0+rows.length));
+    s.cols=Math.min(MAX,Math.max(s.cols,c0+Math.max(...rows.map(row=>row.length))));
+    rows.forEach((row,i)=>row.forEach((value,j)=>{if(r0+i<MAX && c0+j<MAX)s.values[r0+i][c0+j]=value.trim();}));
+    renderGrid(k);hideResult();
+  });
+  renderGrid('a');renderGrid('b');
+})();
+</script></body></html>

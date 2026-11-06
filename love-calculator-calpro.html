@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>Love Calculator | CalcPro</title><meta content="Try the CalcPro Love Calculator: enter two names for a playful match percentage, read the result, and save it as a PNG." name="description"/><link href="template-style.css" rel="stylesheet"/><style>
+/* Love Calculator only — all selectors are isolated from global CalcPro styles. */
+.calcpro-love{width:100%;min-width:0;font-family:Arial,Helvetica,sans-serif;color:#111;font-size:16px;line-height:1.35}
+.calcpro-love *{box-sizing:border-box}
+.calcpro-love [hidden]{display:none!important}
+.calcpro-love-result{margin:0 0 11px}
+.calcpro-love-resultbar{background:#4b8224;min-height:40px;padding:7px 8px;display:flex;justify-content:space-between;align-items:center;color:#fff}
+.calcpro-love-resulttitle{font-weight:400;font-size:22px;line-height:1.2;margin:0;color:#fff}
+.calcpro-love-save{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;gap:0;min-width:25px;min-height:28px;color:#fff;background:transparent;border:0;padding:1px;cursor:pointer;font:700 9px/1 Arial,Helvetica,sans-serif}
+.calcpro-love-save:hover{background:rgba(255,255,255,.15)}
+.calcpro-love-save svg{width:17px;height:17px;display:block}
+.calcpro-love-percent{font-size:30px;line-height:1.2;font-weight:700;color:#008000;margin:15px 0 12px;text-shadow:1px 1px 0 #eadc2b}
+.calcpro-love-verdict{font-size:16px;line-height:1.3;margin:0 0 9px}
+.calcpro-love-panel{width:min(100%,660px);margin:27px auto 0;padding:8px 9px 9px;background:#efefef;border:1px solid #bdbdbd}
+.calcpro-love-result:not([hidden]) + .calcpro-love-form .calcpro-love-panel{margin-top:9px}
+.calcpro-love-fields{display:grid;grid-template-columns:minmax(0,1fr) 146px minmax(0,1fr);column-gap:4px;align-items:end}
+.calcpro-love-field{display:flex;flex-direction:column;min-width:0;gap:8px}
+.calcpro-love-field label{display:block;text-align:center;font-size:16px;font-weight:400;line-height:1.3;white-space:nowrap}
+.calcpro-love-field input{display:block;width:100%;height:34px;background:white;border:1px solid #00366e;border-radius:2px;box-shadow:0 2px 4px rgba(0,0,0,.26);font:16px Arial,Helvetica,sans-serif;padding:5px 7px;color:#111}
+.calcpro-love-field input:focus{outline:2px solid #83afe1;outline-offset:1px}
+.calcpro-love-field input[aria-invalid="true"]{border-color:#b62222;outline-color:#b62222}
+.calcpro-love-calc{height:44px;display:flex;align-items:center;justify-content:space-around;gap:6px;background:#4b8224;border:0;color:white;font:700 16px Arial,Helvetica,sans-serif;cursor:pointer;padding:0 11px}
+.calcpro-love-calc:hover{background:#396a1b}
+.calcpro-love-calc:active{background:#2b5414}
+.calcpro-love-arrow{flex:0 0 24px;display:grid;place-items:center;width:24px;height:24px;border-radius:50%;background:#a4caaa;color:#fff}
+.calcpro-love-arrow:before{content:"";width:0;height:0;border-top:8px solid transparent;border-bottom:8px solid transparent;border-left:10px solid #fff;margin-left:3px}
+.calcpro-love-actions{min-height:16px;display:flex;justify-content:flex-end;align-items:center;margin:5px 0 0}
+.calcpro-love-clear{background:none;border:0;padding:1px 2px;color:#536274;text-decoration:underline;font:12px Arial,Helvetica,sans-serif;cursor:pointer}
+.calcpro-love-clear:hover{color:#003366}
+.calcpro-love-error{margin:5px 0 0;color:#a01818;font-weight:700;font-size:13px;text-align:center}
+.calcpro-love-footnote{color:#565656;font-size:12px;margin:10px 0 0;text-align:center}
+@media(max-width:620px){.calcpro-love-panel{max-width:450px;padding:12px}.calcpro-love-fields{grid-template-columns:minmax(0,1fr);gap:13px}.calcpro-love-field{gap:5px}.calcpro-love-field label{text-align:left;white-space:normal}.calcpro-love-field:last-child{order:2}.calcpro-love-calc{order:3;margin-top:1px;width:100%;justify-content:center;gap:16px}.calcpro-love-percent{font-size:28px}.calcpro-love-resulttitle{font-size:20px}}
+@media print{.calcpro-love-save,.calcpro-love-clear{display:none}.calcpro-love-panel{break-inside:avoid}}
+</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="other-calculator.html">Other</a> / Love Calculator</nav><h1 class="cp-page-title">Love Calculator</h1><p class="cp-intro">The Love Calculator provides a playful score based on the names of two people. The higher the percentage, the higher the name-match score in this entertainment-only game.</p><p class="cp-intro"><strong>Note</strong> that, like other love calculators, this tool is intended for amusement only. It does not provide a real indication of love; make relationship decisions based on your experiences, communication, and judgment rather than a numerical score.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-love" id="calcpro-love-root">
+  <section class="calcpro-love-result" id="calcpro-love-result" aria-label="Love calculation result" aria-live="polite" hidden>
+    <div class="calcpro-love-resultbar">
+      <h2 class="calcpro-love-resulttitle">Result</h2>
+      <button class="calcpro-love-save" type="button" id="calcpro-love-save" aria-label="Save your result as a PNG image" title="Save result as PNG">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M4 2h13l3 3v17H4c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2zm2 1v7h11V3h-2v5H8V3H6zm6 10a4 4 0 1 0 0 8 4 4 0 0 0 0-8zm0 2a2 2 0 1 1 0 4 2 2 0 0 1 0-4z"/></svg>
+        <span>Save</span>
+      </button>
+    </div>
+    <p class="calcpro-love-percent" id="calcpro-love-percent"></p>
+    <p class="calcpro-love-verdict" id="calcpro-love-verdict"></p>
+  </section>
+  <form class="calcpro-love-form" id="calcpro-love-form" autocomplete="off" novalidate>
+    <div class="calcpro-love-panel">
+      <div class="calcpro-love-fields">
+        <div class="calcpro-love-field">
+          <label for="calcpro-love-name1">Name of Person 1</label>
+          <input id="calcpro-love-name1" type="text" name="person1" maxlength="80" spellcheck="false" required aria-required="true" />
+        </div>
+        <button type="submit" class="calcpro-love-calc" id="calcpro-love-calculate"><span>Calculate</span><span class="calcpro-love-arrow" aria-hidden="true"></span></button>
+        <div class="calcpro-love-field">
+          <label for="calcpro-love-name2">Name of Person 2</label>
+          <input id="calcpro-love-name2" type="text" name="person2" maxlength="80" spellcheck="false" required aria-required="true" />
+        </div>
+      </div>
+      <p class="calcpro-love-error" id="calcpro-love-error" role="alert" hidden></p>
+      <div class="calcpro-love-actions"><button class="calcpro-love-clear" id="calcpro-love-clear" type="button">Clear</button></div>
+    </div>
+  </form>
+</div></section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><a href="marriage-calculator.html">Marriage</a><a href="age-calculator.html">Age</a><a href="date-calculator.html">Date</a><a href="day-of-the-week-calculator.html">Day of Week</a><a href="time-calculator.html">Time</a><a href="time-duration-calculator.html">Time Duration</a><a href="random-number-generator.html">Random Number</a><a href="dice-roller.html">Dice Roller</a><a href="password-generator.html">Password Generator</a><a href="height-calculator.html">Height</a><a href="grade-calculator.html">Grade</a><a href="gpa-calculator.html">GPA</a></div></section></aside><article class="cp-article"><h2>How to Use the Love Calculator</h2>
+<p>Enter the name of each person and select <strong>Calculate</strong>. A playful score and short explanation appear directly above the name fields. You can change either name and calculate again, use <strong>Clear</strong> to start over, or select <strong>Save</strong> to download the displayed result as a PNG image.</p>
+<p>You can use first names, full names, or nicknames. Keep the spelling consistent when comparing results, since changing the letters changes the score. No birthdays, gender selections, or extra details are required.</p>
+<h2>How Is the Love Score Calculated?</h2>
+<p>This is a name-based arithmetic game, not a scientific relationship assessment. CalcPro trims surrounding whitespace and converts both names to lowercase. It then adds the numerical UTF-16 code-unit values for each character in each name, multiplies those two totals, and uses the remainder after dividing by 100 as the score:</p>
+<div class="cp-note"><strong>Entertainment formula:</strong> Score = (sum of character codes in name 1 × sum of character codes in name 2) mod 100.</div>
+<p>Because the formula uses a remainder of 100, its possible outputs are whole numbers from <strong>0% through 99%</strong>, even though the display is conventionally described as a percentage out of 100. It does not represent a measured chance of a successful relationship.</p>
+<h3>Worked Example: Dog and Duck</h3>
+<p>For <strong>Dog</strong>, the lowercase letters have character codes 100, 111, and 103, totaling <strong>314</strong>. For <strong>Duck</strong>, the lowercase character codes 100, 117, 99, and 107 total <strong>423</strong>. Multiplying gives 314 × 423 = 132,822. The remainder after dividing by 100 is <strong>22</strong>, so the displayed score is <strong>22%</strong>. This matches the example on the reference page.</p>
+<h2>Understanding Your Result</h2>
+<p>The score is accompanied by a lighthearted message. Larger numbers receive a more enthusiastic message, but those messages are part of the game and are not relationship guidance. The calculation does not evaluate trust, respect, communication, shared goals, affection, or how either person behaves.</p>
+<h2>Frequently Asked Questions</h2>
+<h3>Is the Love Calculator accurate?</h3>
+<p>No. The output depends only on the characters in two names. It is intended for amusement, not as evidence about romantic compatibility or future outcomes.</p>
+<h3>Does switching the two names change the result?</h3>
+<p>No. Multiplication gives the same number regardless of which name is entered first, so reversing the pair does not alter the score.</p>
+<h3>Will I get the same result again?</h3>
+<p>Yes. The algorithm is deterministic: the same two names, with the same spelling, produce the same score. Capitalization and surrounding whitespace do not affect the result.</p>
+<h3>Why can changing one letter make a difference?</h3>
+<p>Each character contributes a numerical value to its name total. Changing the characters changes the multiplication and may change the final remainder.</p>
+<h3>Are the names sent to a server?</h3>
+<p>No. This CalcPro version performs the calculation inside your browser. It does not send the entered names to a calculator API or store them in browser storage. When you select Save, the image is generated locally in your browser.</p>
+<h3>Why does the result never show 100%?</h3>
+<p>A remainder after division by 100 can be as low as 0 or as high as 99, but cannot equal 100.</p>
+<h2>Reference and Method</h2>
+<p>The visible layout and arithmetic examples were checked against <a href="https://www.calculator.net/love-calculator.html" rel="noopener noreferrer">Calculator.net's Love Calculator</a> and its <a href="https://www.calculator.net/love-calculator-for-your-site.html" rel="noopener noreferrer">published demonstration</a>. CalcPro uses its own HTML, styling, JavaScript implementation, and result messages.</p><p class="cp-page-footer">CalcPro — calculator estimates are for informational purposes.</p></article></main></div><script>(() => {
+  'use strict';
+  const root = document.getElementById('calcpro-love-root');
+  if (!root) return;
+
+  const form = root.querySelector('#calcpro-love-form');
+  const first = root.querySelector('#calcpro-love-name1');
+  const second = root.querySelector('#calcpro-love-name2');
+  const result = root.querySelector('#calcpro-love-result');
+  const percent = root.querySelector('#calcpro-love-percent');
+  const verdict = root.querySelector('#calcpro-love-verdict');
+  const error = root.querySelector('#calcpro-love-error');
+  const clear = root.querySelector('#calcpro-love-clear');
+  const save = root.querySelector('#calcpro-love-save');
+  let latest = null;
+
+  // Independently implemented arithmetic: the sum of UTF-16 code units in
+  // each trimmed, lowercase name; multiply the sums and take remainder 100.
+  // This is an amusement-only name game, not a statistical percentage.
+  function codeUnitTotal(name) {
+    let total = 0;
+    for (let index = 0; index < name.length; index += 1) {
+      total += name.charCodeAt(index);
+    }
+    return total;
+  }
+
+  function scoreNames(nameOne, nameTwo) {
+    const a = nameOne.trim().toLowerCase();
+    const b = nameTwo.trim().toLowerCase();
+    return (codeUnitTotal(a) * codeUnitTotal(b)) % 100;
+  }
+
+  function messageFor(score) {
+    if (score >= 95) return 'Your love burns as hot as the sun, blazing through the vastness of space, and searing itself into your being.';
+    if (score >= 80) return 'An extraordinary match in this playful name game! The letters are celebrating.';
+    if (score >= 60) return 'A promising score for a lighthearted name game. Real connection is built together.';
+    if (score >= 40) return 'A surprising mix of letters! A name-based score cannot measure real affection.';
+    if (score >= 20) return 'The names are keeping their secrets. A low game score says nothing about your relationship.';
+    return 'The letters produced a small number, but your real connection is yours to discover.';
+  }
+
+  function hideError() {
+    error.hidden = true;
+    error.textContent = '';
+    first.removeAttribute('aria-invalid');
+    second.removeAttribute('aria-invalid');
+  }
+
+  function inputChanged() {
+    hideError();
+    result.hidden = true;
+    latest = null;
+  }
+
+  first.addEventListener('input', inputChanged);
+  second.addEventListener('input', inputChanged);
+
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    hideError();
+    const a = first.value.trim();
+    const b = second.value.trim();
+    if (!a || !b) {
+      error.textContent = !a && !b ? 'Please enter both names.' : (!a ? 'Please enter the name of Person 1.' : 'Please enter the name of Person 2.');
+      error.hidden = false;
+      result.hidden = true;
+      latest = null;
+      if (!a) first.setAttribute('aria-invalid', 'true');
+      if (!b) second.setAttribute('aria-invalid', 'true');
+      (!a ? first : second).focus();
+      return;
+    }
+    const score = scoreNames(a, b);
+    latest = { nameOne: a, nameTwo: b, score, description: messageFor(score) };
+    percent.textContent = `${score}%`;
+    verdict.textContent = latest.description;
+    result.hidden = false;
+  });
+
+  clear.addEventListener('click', () => {
+    form.reset();
+    latest = null;
+    hideError();
+    result.hidden = true;
+    percent.textContent = '';
+    verdict.textContent = '';
+    first.focus();
+  });
+
+  // Save a self-contained PNG card without libraries, network calls, or URLs.
+  function wrapText(ctx, text, maxWidth) {
+    const words = text.split(/\s+/);
+    const lines = [];
+    let current = '';
+    for (const word of words) {
+      const candidate = current ? `${current} ${word}` : word;
+      if (ctx.measureText(candidate).width > maxWidth && current) {
+        lines.push(current);
+        current = word;
+      } else {
+        current = candidate;
+      }
+    }
+    if (current) lines.push(current);
+    return lines;
+  }
+
+  save.addEventListener('click', () => {
+    if (!latest) return;
+    const canvas = document.createElement('canvas');
+    canvas.width = 900;
+    canvas.height = 510;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = '#4b8224';
+    ctx.fillRect(0, 0, canvas.width, 92);
+    ctx.fillStyle = '#ffffff';
+    ctx.font = 'bold 39px Arial, Helvetica, sans-serif';
+    ctx.fillText('Love Calculator', 46, 60);
+    ctx.textAlign = 'center';
+    ctx.fillStyle = '#003366';
+    ctx.font = 'bold 31px Arial, Helvetica, sans-serif';
+    const names = `${latest.nameOne}  +  ${latest.nameTwo}`;
+    const displayNames = names.length > 60 ? `${names.slice(0, 57)}...` : names;
+    ctx.fillText(displayNames, 450, 155, 820);
+    ctx.fillStyle = '#008000';
+    ctx.font = 'bold 104px Arial, Helvetica, sans-serif';
+    ctx.fillText(`${latest.score}%`, 450, 291);
+    ctx.fillStyle = '#333333';
+    ctx.font = '23px Arial, Helvetica, sans-serif';
+    const lines = wrapText(ctx, latest.description, 790);
+    lines.slice(0, 3).forEach((line, index) => ctx.fillText(line, 450, 350 + index * 31));
+    ctx.font = '19px Arial, Helvetica, sans-serif';
+    ctx.fillStyle = '#676767';
+    ctx.fillText('For entertainment only • Not a measure of real compatibility', 450, 483);
+    const link = document.createElement('a');
+    link.download = 'calcpro-love-result.png';
+    link.href = canvas.toDataURL('image/png');
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+  });
+})();</script></body></html>

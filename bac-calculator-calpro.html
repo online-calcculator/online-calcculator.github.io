@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>Blood Alcohol Concentration (BAC) Calculator | CalcPro</title><meta content="Estimate blood alcohol concentration from beer, wine, spirits, weight and elapsed time. Interactive BAC graph and educational result." name="description"/><link href="template-style.css" rel="stylesheet"/><style>
+/* CalcPro BAC Calculator — isolated component styles */
+.calcpro-bac{--bac-blue:#386b9d;--bac-navy:#002e5c;--bac-green:#4d8425;--bac-border:#bcbcbc;max-width:100%;font:16px Arial,Helvetica,sans-serif;color:#111;line-height:1.38}
+.calcpro-bac *, .calcpro-bac *::before, .calcpro-bac *::after{box-sizing:border-box}
+.calcpro-bac [hidden]{display:none!important}
+.calcpro-bac .calcpro-bac-hint{max-width:728px;background:var(--bac-blue);color:#fff;font-size:16px;font-weight:600;min-height:42px;display:flex;align-items:center;gap:16px;padding:7px 14px;margin:0 0 5px}
+.calcpro-bac .calcpro-bac-hint-symbol{background:#fff;color:var(--bac-blue);display:inline-flex;width:27px;height:27px;border-radius:50%;align-items:center;justify-content:center;font-size:21px;flex:none}
+.calcpro-bac .calcpro-bac-form{width:435px;max-width:100%;background:#efefef;border:1px solid var(--bac-border);padding:14px 9px 8px;margin:4px 0 0}
+.calcpro-bac .calcpro-bac-topfield{display:grid;grid-template-columns:163px minmax(0,1fr);align-items:center;gap:5px;margin:4px 0}
+.calcpro-bac .calcpro-bac-topfield>label,.calcpro-bac .calcpro-bac-toplabel{text-align:right;line-height:1.1}
+.calcpro-bac .calcpro-bac-radios{display:flex;align-items:center;gap:13px;min-height:26px;flex-wrap:wrap}
+.calcpro-bac .calcpro-bac-radios label{display:inline-flex;gap:5px;align-items:center;cursor:pointer}
+.calcpro-bac input[type=radio]{margin:0;width:19px;height:19px;accent-color:var(--bac-blue)}
+.calcpro-bac input[type=number],.calcpro-bac select{height:33px;border:1px solid #326591;border-radius:2px;background:#fff;color:#000;font:16px Arial,Helvetica,sans-serif;min-width:0;width:100%;padding:4px 5px;box-shadow:1px 2px 2px #0002}
+.calcpro-bac input[type=number]:focus-visible,.calcpro-bac select:focus-visible,.calcpro-bac button:focus-visible{outline:3px solid #85abd5;outline-offset:2px}
+.calcpro-bac input[type=number]{appearance:textfield;-moz-appearance:textfield}
+.calcpro-bac input[type=number]::-webkit-inner-spin-button,.calcpro-bac input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
+.calcpro-bac .calcpro-bac-combo{display:grid;grid-template-columns:minmax(65px,1fr) minmax(95px,1fr);gap:4px}
+.calcpro-bac .calcpro-bac-time{display:grid;grid-template-columns:1fr 1fr;gap:4px}
+.calcpro-bac .calcpro-bac-time-entry{position:relative;min-width:0}
+.calcpro-bac .calcpro-bac-time-entry input{padding-right:50px}
+.calcpro-bac .calcpro-bac-unit-overlay{position:absolute;right:7px;top:7px;color:#777;font-size:15px;pointer-events:none}
+.calcpro-bac .calcpro-bac-subhead{margin:15px 0 2px;background:var(--bac-blue);color:white;font-size:19px;font-weight:700;padding:4px 6px;line-height:1.35}
+.calcpro-bac .calcpro-bac-drink-grid{display:grid;grid-template-columns:45px 64px minmax(125px,1fr) 95px;gap:4px;align-items:center;margin-top:4px}
+.calcpro-bac .calcpro-bac-grid-heading{font-size:15px;text-align:center;line-height:1.05}
+.calcpro-bac .calcpro-bac-grid-heading:first-child{text-align:left}
+.calcpro-bac .calcpro-bac-drink-name{font-size:16px}
+.calcpro-bac .calcpro-bac-drink-grid select{padding-right:2px;font-size:15px}
+.calcpro-bac .calcpro-bac-other-size{display:grid;grid-template-columns:minmax(48px,62px) minmax(0,1fr);gap:4px}
+.calcpro-bac .calcpro-bac-pct{position:relative}
+.calcpro-bac .calcpro-bac-pct input{padding-right:20px}
+.calcpro-bac .calcpro-bac-pct span{position:absolute;right:7px;top:7px}
+.calcpro-bac .calcpro-bac-actions{display:flex;gap:5px;align-items:center;justify-content:center;margin:14px 0 0}
+.calcpro-bac button{cursor:pointer;font:16px Arial,Helvetica,sans-serif}
+.calcpro-bac .calcpro-bac-submit{background:var(--bac-green);border:0;color:white;font-weight:700;min-height:43px;padding:0 15px}
+.calcpro-bac .calcpro-bac-go{display:inline-flex;justify-content:center;align-items:center;color:#fff;background:#92bc83;border-radius:50%;height:23px;width:23px;margin-left:10px;font-size:16px}
+.calcpro-bac .calcpro-bac-clear{background:#aaa;color:#fff;min-height:43px;padding:0 10px;border:0}
+.calcpro-bac .calcpro-bac-submit:hover{background:#386519}.calcpro-bac .calcpro-bac-clear:hover{background:#888}
+.calcpro-bac .calcpro-bac-error{font-size:14px;color:#8a1522;background:#fff1f1;border-left:3px solid #aa2331;padding:8px 10px;margin:7px 0}
+.calcpro-bac .calcpro-bac-result{margin:0 0 18px;max-width:728px}
+.calcpro-bac .calcpro-bac-result-header{display:flex;justify-content:space-between;align-items:center;padding:3px 8px 3px 7px;min-height:40px;background:var(--bac-green);color:#fff;font-size:23px}
+.calcpro-bac .calcpro-bac-save{display:flex;align-items:center;flex-direction:column;gap:0;border:0;padding:1px 2px;background:transparent;color:#fff;font-size:10px;line-height:1;cursor:pointer}
+.calcpro-bac .calcpro-bac-save svg{width:19px;height:19px;fill:currentColor}
+.calcpro-bac .calcpro-bac-result-lead{font-size:23px;margin:17px 0 4px}
+.calcpro-bac .calcpro-bac-value{font-size:23px;color:green;font-weight:700}
+.calcpro-bac .calcpro-bac-more-time{margin:3px 0 8px;font-size:16px}
+.calcpro-bac .calcpro-bac-status{font-size:16px;margin:0 0 12px}
+.calcpro-bac .calcpro-bac-chart-wrap{max-width:520px;width:100%;margin:17px auto 10px}
+.calcpro-bac .calcpro-bac-chart-wrap>svg{width:100%;height:auto;display:block}
+.calcpro-bac .calcpro-bac-caution{font-size:13px;line-height:1.25;margin:12px 0 14px}
+.calcpro-bac .calcpro-bac-critical{font-size:14px;color:#8e1420;font-weight:700;margin:8px 0}
+.calcpro-bac .calcpro-bac-note{font-size:13px;line-height:1.35;margin:8px 0 13px;padding-left:8px;border-left:3px solid #c68b20}
+.calcpro-bac .calcpro-bac-results-details{margin:10px 0 10px;font-size:13px;color:#444}
+.calcpro-bac .calcpro-bac-results-details summary{cursor:pointer;font-weight:600}
+.calcpro-bac .calcpro-bac-results-details dl{display:grid;grid-template-columns:auto 1fr;column-gap:16px;row-gap:3px;margin:7px 0 0}
+.calcpro-bac .calcpro-bac-results-details dt{font-weight:600}
+.calcpro-bac .calcpro-bac-results-details dd{margin:0;text-align:right}
+@media(max-width:495px){.calcpro-bac .calcpro-bac-topfield{grid-template-columns:133px minmax(0,1fr);gap:4px}.calcpro-bac .calcpro-bac-drink-grid{grid-template-columns:41px 54px minmax(100px,1fr) 72px;gap:3px}.calcpro-bac .calcpro-bac-drink-grid select{font-size:13px}.calcpro-bac .calcpro-bac-form{padding:10px 7px}.calcpro-bac .calcpro-bac-other-size{grid-template-columns:minmax(42px,50px) minmax(0,1fr)}.calcpro-bac input[type=number],.calcpro-bac select{font-size:14px;padding-left:4px}.calcpro-bac .calcpro-bac-time-entry input{padding-right:40px}.calcpro-bac .calcpro-bac-unit-overlay{font-size:13px;right:4px;top:8px}}
+@media(max-width:355px){.calcpro-bac .calcpro-bac-topfield{grid-template-columns:118px minmax(0,1fr)}.calcpro-bac .calcpro-bac-drink-grid{grid-template-columns:38px 48px minmax(88px,1fr) 64px}.calcpro-bac .calcpro-bac-drink-name{font-size:14px}.calcpro-bac .calcpro-bac-grid-heading{font-size:13px}.calcpro-bac .calcpro-bac-combo{grid-template-columns:1fr 1fr}}
+@media print{.calcpro-bac .calcpro-bac-hint,.calcpro-bac .calcpro-bac-actions,.calcpro-bac .calcpro-bac-save{display:none!important}.calcpro-bac .calcpro-bac-result{break-inside:avoid}.calcpro-bac .calcpro-bac-form{break-inside:avoid}}
+</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="fitness-and-health-calculator.html">Fitness &amp; Health</a> / BAC Calculator</nav><h1 class="cp-page-title">Blood Alcohol Concentration (BAC) Calculator</h1><p class="cp-intro">Estimate your BAC from beverages, strength, time elapsed, and body weight. This educational tool is not a measurement and cannot determine whether driving is safe.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-bac" id="calcpro-bac-tool">
+  <div class="calcpro-bac-hint" id="calcpro-bac-hint"><span class="calcpro-bac-hint-symbol" aria-hidden="true">▼</span><span>Modify the values and click the Calculate button to use</span></div>
+  <section class="calcpro-bac-result" id="calcpro-bac-result" aria-label="Estimated blood alcohol concentration result" aria-live="polite" hidden>
+    <div class="calcpro-bac-result-header"><span>Result</span><button type="button" class="calcpro-bac-save" id="calcpro-bac-save" title="Save result as an SVG image" aria-label="Save result image"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 2h15l3 3v17H3V2zm3 2v6h11V4H6zm6 10a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/></svg><span>save</span></button></div>
+    <p class="calcpro-bac-result-lead">BAC is around <strong class="calcpro-bac-value" id="calcpro-bac-value">0.000%</strong>.</p>
+    <p class="calcpro-bac-more-time" id="calcpro-bac-more-time"></p>
+    <p class="calcpro-bac-status" id="calcpro-bac-status"></p>
+    <p class="calcpro-bac-critical" id="calcpro-bac-critical" hidden></p>
+    <div class="calcpro-bac-chart-wrap"><svg id="calcpro-bac-chart" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 250" role="img" aria-label="Estimated blood alcohol concentration over time"></svg></div>
+    <details class="calcpro-bac-results-details"><summary>Show calculation details</summary><dl><dt>Pure alcohol consumed</dt><dd id="calcpro-bac-alcohol-grams"></dd><dt>Model maximum BAC</dt><dd id="calcpro-bac-peak"></dd><dt>Elapsed time</dt><dd id="calcpro-bac-elapsed"></dd><dt>Model distribution factor</dt><dd id="calcpro-bac-factor"></dd></dl></details>
+    <p class="calcpro-bac-caution">* These results are educational estimates, not medical advice. They cannot establish whether it is safe or legal to drive. Consult a qualified healthcare provider about medical concerns.</p>
+    <p class="calcpro-bac-note">BAC may continue rising after the last drink. Absorption and elimination vary; only an appropriate test can measure actual BAC.</p>
+  </section>
+  <form class="calcpro-bac-form" id="calcpro-bac-form" novalidate>
+    <div class="calcpro-bac-topfield"><span class="calcpro-bac-toplabel">Gender</span><div class="calcpro-bac-radios"><label><input type="radio" name="calcpro-bac-sex" value="m" checked> Male</label><label><input type="radio" name="calcpro-bac-sex" value="f"> Female</label></div></div>
+    <div class="calcpro-bac-topfield"><label for="calcpro-bac-weight">Body Weight</label><div class="calcpro-bac-combo"><input aria-label="Body weight" id="calcpro-bac-weight" type="number" min="0.001" step="any" value="70" required><select aria-label="Body weight unit" id="calcpro-bac-weight-unit"><option value="kg" selected>kilograms</option><option value="lb">pounds</option><option value="g">grams</option></select></div></div>
+    <div class="calcpro-bac-topfield"><span class="calcpro-bac-toplabel">Time Since First Drink</span><div class="calcpro-bac-time"><label class="calcpro-bac-time-entry"><input aria-label="Hours since first drink" id="calcpro-bac-hours" type="number" value="2" min="0" step="1"><span class="calcpro-bac-unit-overlay">hours</span></label><label class="calcpro-bac-time-entry"><input aria-label="Minutes since first drink" id="calcpro-bac-minutes" type="number" value="0" min="0" max="59" step="1"><span class="calcpro-bac-unit-overlay">minutes</span></label></div></div>
+    <div class="calcpro-bac-subhead">Amount of Alcohol Consumed</div>
+    <div class="calcpro-bac-drink-grid">
+      <span class="calcpro-bac-grid-heading">Type</span><span class="calcpro-bac-grid-heading">Amount</span><span class="calcpro-bac-grid-heading">Size</span><span class="calcpro-bac-grid-heading">ABV</span>
+      <label class="calcpro-bac-drink-name" for="calcpro-bac-beer-count">Beer</label><input type="number" id="calcpro-bac-beer-count" aria-label="Number of beers" min="0" step="any" value="2"><select id="calcpro-bac-beer-size" aria-label="Beer size"><option value="250">250ml bottle</option><option value="330" selected>12oz/330ml bottle</option><option value="500">16oz/500ml bottle</option><option value="250">250ml bar cup</option><option value="330">12oz/330ml bar cup (small)</option><option value="500">16oz/500ml bar cup</option><option value="600">20oz/600ml bar cup (tall)</option><option value="330">12oz/330ml can</option><option value="500">16oz/500ml can</option><option value="600">20oz/600ml can</option><option value="1000">1 liter</option></select><select id="calcpro-bac-beer-abv" aria-label="Beer alcohol by volume"><option value="4.2">4.2%, light</option><option value="5" selected>5%</option><option value="5.8">5.8%</option></select>
+      <label class="calcpro-bac-drink-name" for="calcpro-bac-wine-count">Wine</label><input type="number" id="calcpro-bac-wine-count" aria-label="Number of wine servings" min="0" step="any"><select id="calcpro-bac-wine-size" aria-label="Wine serving size"><option value="60">2oz/60ml cup (small)</option><option value="150" selected>5oz/150ml cup</option><option value="250">8oz/250ml cup (big)</option><option value="375">375ml bottle</option><option value="500">500ml bottle</option><option value="750">750ml bottle</option><option value="1000">1 l bottle</option><option value="1500">1.5 l bottle</option></select><select id="calcpro-bac-wine-abv" aria-label="Wine alcohol by volume"><option value="6">6%</option><option value="7">7%</option><option value="8">8%</option><option value="9">9%</option><option value="10">10%</option><option value="11">11%</option><option value="12" selected>12%</option><option value="13">13%</option><option value="14">14%</option><option value="15">15%</option><option value="16">16%</option></select>
+      <label class="calcpro-bac-drink-name" for="calcpro-bac-liquor-count">Liquor</label><input type="number" id="calcpro-bac-liquor-count" aria-label="Number of liquor servings" min="0" step="any"><select id="calcpro-bac-liquor-size" aria-label="Liquor serving size"><option value="15">0.5oz/15ml shot</option><option value="30">1oz/30ml shot</option><option value="50" selected>1.5oz/50ml shot</option><option value="250">8oz/250ml cup</option><option value="100">100ml bottle</option><option value="250">250ml bottle</option><option value="375">375ml bottle</option><option value="500">500ml bottle</option><option value="750">750ml bottle</option></select><select id="calcpro-bac-liquor-abv" aria-label="Liquor alcohol by volume"><option value="35">35%</option><option value="40" selected>40%</option><option value="45">45%</option><option value="50">50%</option><option value="55">55%</option><option value="60">60%</option></select>
+      <label class="calcpro-bac-drink-name" for="calcpro-bac-other-count">Other</label><input type="number" id="calcpro-bac-other-count" aria-label="Number of other drinks" min="0" step="any"><div class="calcpro-bac-other-size"><input type="number" id="calcpro-bac-other-size" aria-label="Other drink serving size" value="250" min="0" step="any"><select id="calcpro-bac-other-unit" aria-label="Other drink size unit"><option value="ml" selected>Milliliter, ml</option><option value="l">Liter, l</option><option value="mcup">Cup (Metric)</option><option value="oz">Fluid Oz (US)</option><option value="pint">Pint (US)</option><option value="cup">Cup (US)</option><option value="ioz">Fluid Oz (UK)</option><option value="ipint">Pint (UK)</option><option value="icup">Cup (UK)</option></select></div><label class="calcpro-bac-pct"><input type="number" id="calcpro-bac-other-abv" aria-label="Other drink alcohol by volume percent" min="0" max="100" step="any" value="8"><span aria-hidden="true">%</span></label>
+    </div>
+    <p class="calcpro-bac-error" id="calcpro-bac-error" role="alert" hidden></p>
+    <div class="calcpro-bac-actions"><button type="submit" class="calcpro-bac-submit">Calculate <span class="calcpro-bac-go" aria-hidden="true">▶</span></button><button type="button" class="calcpro-bac-clear" id="calcpro-bac-clear">Clear</button></div>
+  </form>
+</div></section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><a href="bmi-calculator.html">BMI</a><a href="bmr-calculator.html">BMR</a><a href="calorie-calculator.html">Calorie</a><a href="body-fat-calculator.html">Body Fat</a><a href="ideal-weight-calculator.html">Ideal Weight</a><a href="healthy-weight-calculator.html">Healthy Weight</a><a href="macro-calculator.html">Macro</a><a href="pace-calculator.html">Pace</a><a href="army-body-fat-calculator.html">Army Body Fat</a><a href="body-surface-area-calculator.html">Body Surface Area</a><a href="pregnancy-calculator.html">Pregnancy</a><a href="due-date-calculator.html">Due Date</a></div></section></aside><article class="cp-article"><h2>How to Use the BAC Calculator</h2>
+<p>Choose the body-weight unit and enter your weight, the time since your first drink, and the quantities and strengths of any beer, wine, spirits, or other alcoholic drinks. You may combine drink types. Press <strong>Calculate</strong> to display the estimated blood alcohol concentration (BAC), an approximate time-to-zero, and a chart showing past and projected BAC changes. Use <strong>Clear</strong> to remove the drinks and enter another scenario.</p>
+<h2>How Is BAC Estimated?</h2>
+<p>This educational calculator uses a simplified Widmark model. First, it converts beverage volume and alcohol by volume (ABV) into grams of pure ethanol. It then estimates a peak concentration from body weight and a population-average alcohol-distribution factor, subtracting a constant average elimination rate.</p>
+<div class="cp-note"><p><strong>Alcohol in grams</strong> = total beverage volume (mL) × ABV as a decimal × 0.789 g/mL</p><p><strong>Estimated BAC (%)</strong> = max[0, (alcohol grams ÷ (body weight in grams × r)) × 100 − 0.015 × hours since the first drink]</p><p>For comparison with the reference examples, this tool uses <strong>r = 0.67</strong> for male and <strong>r = 0.60</strong> for female entries, with an assumed elimination rate of <strong>0.015 percentage points per hour</strong>. These constants are approximations, not individual measurements.</p></div>
+<h3>Worked Example</h3>
+<p>A 70 kg male enters two 330 mL beers at 5% ABV and two hours since his first drink. The pure alcohol is 2 × 330 × 0.05 × 0.789 = <strong>26.037 g</strong>. Estimated peak BAC is 26.037 ÷ (70,000 × 0.67) × 100 = <strong>0.0555%</strong>. After subtracting 2 × 0.015 = 0.030 percentage points, the estimate is <strong>0.026% BAC</strong> (rounded to three decimals). The simplified time-to-zero is approximately two further hours.</p>
+<h2>Understanding the Results</h2>
+<p>BAC is expressed as grams of alcohol per 100 mL of blood. The graph uses blue for the part of the simplified curve before the entered time and green for its projection afterward. The curve assumes all the entered alcohol has been absorbed immediately, followed by steady elimination. It cannot account for how drinks were spread throughout the session or when the last drink was consumed.</p>
+<div class="cp-warning"><strong>Important:</strong> Never use this estimate to decide whether to drive, work with machinery, or perform other risky activities. Reaction time and judgment can be impaired at low BAC levels, and a person's real BAC may be higher than this estimate.</div>
+<h2>Frequently Asked Questions</h2>
+<h3>Is this equivalent to a breathalyzer or blood test?</h3>
+<p>No. It is a mathematical model, not a measurement. Body composition, food, drinking pace, illness, medication, and individual metabolic differences can substantially change actual BAC.</p>
+<h3>Why does BAC sometimes display 0.000%?</h3>
+<p>The simplified equation never reports a negative BAC: after enough elapsed time, it truncates to zero. It does not guarantee that alcohol is absent from the body.</p>
+<h3>Can I enter a custom beverage?</h3>
+<p>Yes. Use the <strong>Other</strong> row to enter the number of drinks, volume per drink, volume unit, and ABV. US fluid ounces, UK fluid ounces, pints, cups, liters, and milliliters are supported.</p>
+<h3>How is time until zero calculated?</h3>
+<p>The remaining estimated BAC is divided by 0.015 percentage points per hour, then rounded up to a whole hour for the summary. Because absorption and elimination vary, this is not a safe-driving timer.</p>
+<h2>Sources and Further Reading</h2>
+<ul><li><a href="https://www.calculator.net/bac-calculator.html" rel="noopener noreferrer">Calculator.net — BAC Calculator (interface reference)</a></li><li><a href="https://fbilabqsd.fbi.gov/file-repository/chemistry/tox-216-01-ethanol-calculations.pdf" rel="noopener noreferrer">FBI Laboratory — Ethanol Calculations, Widmark/Volume of Distribution</a></li><li><a href="https://wsp.wa.gov/breathtest/docs/webdms/Studies_Articles/Widmarks%20Equation%2003-07-2002.pdf" rel="noopener noreferrer">Washington State Patrol — Widmark's Equation</a></li><li><a href="https://www.niaaa.nih.gov/sites/default/files/NIAAA-combined-behavioral-intervention-manual.pdf" rel="noopener noreferrer">NIAAA — Alcohol risks and safety</a></li></ul>
+<p class="cp-page-footer">CalcPro — BAC results are educational estimates only and are not medical or legal advice.</p></article></main></div><script>
+(function(){
+  'use strict';
+  const root = document.getElementById('calcpro-bac-tool');
+  if (!root) return;
+  const get = id => root.querySelector('#calcpro-bac-' + id);
+  const form=get('form'),result=get('result'),errorBox=get('error'),chart=get('chart');
+  // Widmark-style educational approximation. Factors 0.67 and 0.60 reproduce reference examples.
+  const R={m:0.67,f:0.60},ETHANOL_DENSITY=0.789,ELIMINATION=0.015;
+  const OTHER_ML={ml:1,l:1000,mcup:250,oz:29.5735295625,pint:473.176473,cup:236.5882365,ioz:28.4130625,ipint:568.26125,icup:284.130625};
+  let weightUnit='kg', latest=null;
+  const showError=(message)=>{errorBox.textContent=message;errorBox.hidden=false;};
+  const clearError=()=>{errorBox.textContent='';errorBox.hidden=true;};
+  const fieldNumber=(id,name,{optional=false,min=0,max=Infinity,integer=false}={})=>{
+    const el=get(id),str=el.value.trim();
+    if(optional && str==='')return 0;
+    const n=Number(str);
+    if(!str || !Number.isFinite(n) || n<min || n>max || (integer && !Number.isInteger(n))){
+      el.focus();throw new Error('Enter a valid '+name+(integer?' (whole number)':'')+'.');
+    }
+    return n;
+  };
+  const getState=()=>{
+    const sex=root.querySelector('input[name="calcpro-bac-sex"]:checked').value;
+    const w=fieldNumber('weight','body weight',{min:0.001,max:10000000});
+    const unit=get('weight-unit').value;
+    const kg=w*(unit==='kg'?1:unit==='lb'?0.45359237:0.001);
+    if(kg<0.1 || kg>1000) throw new Error('Enter a realistic body weight between 0.1 and 1,000 kg.');
+    const hours=fieldNumber('hours','hours since first drink',{integer:true,max:100000});
+    const minutes=fieldNumber('minutes','minutes since first drink',{integer:true,max:59});
+    const drinks=['beer','wine','liquor'];
+    let pureMl=0;
+    for(const type of drinks){
+      const amount=fieldNumber(type+'-count',type+' amount',{optional:true,max:100000});
+      const ml=Number(get(type+'-size').value), abv=Number(get(type+'-abv').value);
+      pureMl+=amount*ml*abv/100;
+    }
+    const otherCount=fieldNumber('other-count','other amount',{optional:true,max:100000});
+    const otherSize=otherCount>0?fieldNumber('other-size','other serving size',{min:0.001,max:10000000}):0;
+    const otherAbv=otherCount>0?fieldNumber('other-abv','other alcohol strength',{min:0.001,max:100}):0;
+    pureMl+=otherCount*otherSize*OTHER_ML[get('other-unit').value]*otherAbv/100;
+    if(!Number.isFinite(pureMl) || pureMl>1e9)throw new Error('The total entered alcohol is too large.');
+    const grams=pureMl*ETHANOL_DENSITY;
+    const peak=grams/(kg*1000*R[sex])*100;
+    const elapsed=hours+minutes/60;
+    const current=Math.max(0,peak-ELIMINATION*elapsed);
+    return {sex,kg,grams,peak,elapsed,current,remaining:current/ELIMINATION};
+  };
+  const text=(id,str)=>{get(id).textContent=str;};
+  function impairment(bac){
+    if(bac===0)return 'The simplified estimate is currently zero.';
+    if(bac<0.03)return 'Average individual appears normal; subtle impairment is still possible.';
+    if(bac<0.06)return 'Mild euphoria or relaxation may occur; concentration may be impaired.';
+    if(bac<0.10)return 'Judgment, reasoning, depth perception, and vision may be impaired.';
+    if(bac<0.20)return 'Significant impairment of reaction time, reflexes, and coordination is possible.';
+    if(bac<0.30)return 'Severe motor impairment, vomiting, or loss of consciousness may occur.';
+    if(bac<0.40)return 'Dangerous intoxication: loss of consciousness and breathing problems are possible.';
+    return 'Potentially life-threatening alcohol poisoning. Seek urgent medical help.';
+  }
+  const svgText=(str,x,y,extra='')=>`<text x="${x}" y="${y}" ${extra}>${str}</text>`;
+  const niceStep=(value)=>{
+    const p=Math.pow(10,Math.floor(Math.log10(Math.max(value,1e-9))));
+    const n=value/p;
+    return (n<=1?1:n<=2?2:n<=2.5?2.5:n<=5?5:10)*p;
+  };
+  function drawChart(s){
+    const x0=56,y0=42,w=405,h=162;
+    const atZero=s.peak/ELIMINATION;
+    const maxT=Math.max(4,Math.ceil(s.elapsed),Math.ceil(atZero));
+    const maxY=Math.max(0.01,s.peak),step=niceStep(maxY/5),topY=Math.ceil(maxY/step)*step;
+    const X=t=>x0+w*Math.max(0,Math.min(1,t/maxT));
+    const Y=v=>y0+h-h*Math.max(0,Math.min(1,v/topY));
+    const P=(t)=>Math.max(0,s.peak-ELIMINATION*t);
+    const number=(v)=>v.toFixed(2).replace(/0+$/,'').replace(/\.$/,'');
+    let out=`<title>Estimated BAC change with time: past in blue, projected future in green</title>`;
+    out+=svgText('BAC Change with Time',256,25,'font-size="18" font-weight="700" text-anchor="middle"');
+    out+=`<rect x="${x0}" y="${y0}" width="${w}" height="${h}" fill="white" stroke="#9c9c9c"/>`;
+    const yN=Math.round(topY/step);
+    for(let i=0;i<=yN;i++){
+      const val=i*step,y=Y(val);
+      out+=`<line x1="${x0}" y1="${y}" x2="${x0+w}" y2="${y}" stroke="#d2d2d2"/>`;
+      out+=svgText(number(Number(val.toFixed(6))),x0-5,y+4,'font-size="13" fill="#555" text-anchor="end"');
+    }
+    const xStep=niceStep(maxT/5);
+    for(let i=0;i<=maxT/xStep+0.00001;i++){
+      const t=i*xStep,x=X(t);
+      out+=`<line x1="${x}" y1="${y0}" x2="${x}" y2="${y0+h}" stroke="#ddd"/>`;
+      out+=svgText(number(Number(t.toFixed(6)))+'h',x,y0+h+17,'font-size="13" text-anchor="middle" fill="#555"');
+    }
+    // Draw blue segment up to current moment and green from current moment to zero.
+    const endPast=Math.min(s.elapsed,maxT);
+    const pastEnd=Math.min(endPast,atZero);
+    if(s.peak>0){
+      out+=`<path d="M ${X(0)} ${Y(P(0))} L ${X(pastEnd)} ${Y(P(pastEnd))}${endPast>atZero?' L '+X(endPast)+' '+Y(0):''}" fill="none" stroke="#287ddb" stroke-width="4" stroke-linecap="round"/>`;
+      if(s.current>0){
+        const endFuture=Math.min(atZero,maxT);
+        out+=`<path d="M ${X(s.elapsed)} ${Y(s.current)} L ${X(endFuture)} ${Y(0)}" fill="none" stroke="#6bad1a" stroke-width="4" stroke-linecap="round"/>`;
+      }
+      for(let t=0;t<=maxT;t+=xStep){
+        if(t<=s.elapsed+1e-8){out+=`<circle cx="${X(t)}" cy="${Y(P(t))}" r="3.4" fill="#287ddb"/>`}
+        else if(t<=atZero){out+=`<circle cx="${X(t)}" cy="${Y(P(t))}" r="3.4" fill="#6bad1a"/>`}
+      }
+      if(s.current>0){out+=`<circle cx="${X(s.elapsed)}" cy="${Y(s.current)}" r="4" fill="#6bad1a"/>`}
+    }
+    out+=`<line x1="370" y1="52" x2="392" y2="52" stroke="#287ddb" stroke-width="5"/>`+svgText('Past',398,56,'font-size="14"');
+    out+=`<line x1="370" y1="70" x2="392" y2="70" stroke="#6bad1a" stroke-width="5"/>`+svgText('Future',398,74,'font-size="14"');
+    out+=svgText('Time',x0+w/2,246,'font-size="15" text-anchor="middle"');
+    out+=`<text x="16" y="120" transform="rotate(-90 16 120)" font-size="15" text-anchor="middle">BAC (%)</text>`;
+    chart.innerHTML=out;
+    chart.setAttribute('aria-label','BAC graph from '+s.peak.toFixed(3)+'% at time zero to '+s.current.toFixed(3)+'% after '+s.elapsed.toFixed(2)+' hours. Past blue, forecast green.');
+  }
+  function render(s){
+    latest=s;
+    text('value',s.current.toFixed(3)+'%');
+    text('more-time',s.current>0?'It will take around '+Math.ceil(s.remaining-1e-10)+' more hour'+(Math.ceil(s.remaining-1e-10)===1?'':'s')+' to reach 0% (model estimate).':'The model currently estimates 0% BAC.');
+    text('status',impairment(s.current));
+    const critical=get('critical');critical.hidden=s.current<0.3;
+    critical.textContent=s.current>=0.3?'A very high estimated BAC can be a medical emergency. If someone is unresponsive, breathing slowly, or having seizures, call emergency services immediately.':'';
+    text('alcohol-grams',s.grams.toFixed(2)+' g');
+    text('peak',s.peak.toFixed(3)+'%');
+    text('elapsed',s.elapsed.toFixed(2)+' hours');
+    text('factor',String(R[s.sex]));
+    drawChart(s);
+    result.hidden=false;get('hint').hidden=true;
+    // Match the reference's above-form placement without changing the page route.
+    result.scrollIntoView({behavior:'auto',block:'start'});
+  }
+  form.addEventListener('submit',(e)=>{
+    e.preventDefault();clearError();
+    try{render(getState());}catch(err){result.hidden=true;get('hint').hidden=false;latest=null;showError(err.message);}
+  });
+  get('clear').addEventListener('click',()=>{
+    form.reset();get('beer-count').value='';get('wine-count').value='';get('liquor-count').value='';get('other-count').value='';
+    get('weight').value='70';get('hours').value='0';get('minutes').value='0';weightUnit='kg';
+    result.hidden=true;get('hint').hidden=false;latest=null;clearError();
+  });
+  get('weight-unit').addEventListener('change',(e)=>{
+    const newUnit=e.target.value,w=Number(get('weight').value);
+    if(Number.isFinite(w)&&w>0){
+      const kg=w*(weightUnit==='kg'?1:weightUnit==='lb'?0.45359237:0.001);
+      const changed=kg/(newUnit==='kg'?1:newUnit==='lb'?0.45359237:0.001);
+      get('weight').value=String(Number(changed.toFixed(newUnit==='g'?1:4)));
+    }
+    weightUnit=newUnit;
+  });
+  get('save').addEventListener('click',()=>{
+    if(!latest)return;
+    const s=latest;
+    const safeChart=chart.innerHTML;
+    const xml=`<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="840" height="550" viewBox="0 0 840 550"><rect width="840" height="550" fill="white"/><rect width="840" height="54" fill="#4d8425"/><text x="24" y="35" fill="white" font-size="28" font-family="Arial" font-weight="bold">CalcPro BAC Estimate</text><text x="24" y="100" fill="#111" font-size="27" font-family="Arial">BAC is around <tspan fill="green" font-weight="bold">${s.current.toFixed(3)}%</tspan></text><text x="24" y="136" font-size="19" font-family="Arial">${s.current>0?'Around '+Math.ceil(s.remaining-1e-10)+' model hours until 0%':'Current model estimate: 0%'}</text><svg x="90" y="154" width="650" height="320" viewBox="0 0 520 250">${safeChart}</svg><text x="24" y="524" font-size="14" font-family="Arial" fill="#555">Educational estimate only. Never use to decide whether it is safe to drive.</text></svg>`;
+    const url=URL.createObjectURL(new Blob([xml],{type:'image/svg+xml;charset=utf-8'}));
+    const a=document.createElement('a');a.href=url;a.download='calcpro-bac-result.svg';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
+  });
+})();
+</script></body></html>

@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>Molarity Calculator | CalcPro</title><meta content="Calculate molarity, mass, molecular weight, or volume from any three values, including unit conversion and steps." name="description"/><link href="template-style.css" rel="stylesheet"/>
+<style>
+
+/* Molarity tool only: all selectors scoped to its unique root. */
+.calcpro-molarity{font:15px/1.4 Arial,Helvetica,sans-serif;color:#151515;max-width:100%;min-width:0}
+.calcpro-molarity *, .calcpro-molarity *::before,.calcpro-molarity *::after{box-sizing:border-box}
+.calcpro-molarity [hidden]{display:none!important}
+.calcpro-molarity .calcpro-molarity-equation{display:flex;justify-content:center;align-items:center;gap:7px;flex-wrap:wrap;margin:9px 0 10px;font-size:15px}
+.calcpro-molarity .calcpro-molarity-frac{display:inline-flex;vertical-align:middle;flex-direction:column;text-align:center;line-height:1.24;max-width:100%}
+.calcpro-molarity .calcpro-molarity-frac-top{border-bottom:1px solid currentColor;padding:0 5px 1px}
+.calcpro-molarity .calcpro-molarity-frac-bottom{padding:1px 5px 0}
+.calcpro-molarity .calcpro-molarity-notice{min-height:36px;display:flex;align-items:center;justify-content:center;gap:12px;text-align:center;background:#366899;color:#fff;margin:8px 0 4px;padding:6px 9px;line-height:1.3}
+.calcpro-molarity .calcpro-molarity-notice-symbol{display:inline-flex;flex:0 0 auto;align-items:center;justify-content:center;border-radius:50%;background:white;color:#366899;width:23px;height:23px;font-size:18px;line-height:1}
+.calcpro-molarity .calcpro-molarity-form{width:min(100%,505px);border:1px solid #bcbcbc;background:#eee;padding:6px 5px 6px 4px;margin:0 0 12px}
+.calcpro-molarity .calcpro-molarity-row{display:grid;grid-template-columns:122px 104px minmax(0,1fr);align-items:center;gap:3px;margin-bottom:3px;min-width:0}
+.calcpro-molarity .calcpro-molarity-row label{text-align:right;font-size:14px;white-space:nowrap}
+.calcpro-molarity .calcpro-molarity-row input,.calcpro-molarity .calcpro-molarity-row select{min-width:0;width:100%;border:1px solid #366899;box-shadow:0 1px 2px #a1a1a1;height:29px;font:15px Arial,Helvetica,sans-serif;background:#fff;color:#101010;border-radius:1px}
+.calcpro-molarity .calcpro-molarity-row input{padding:4px 5px}
+.calcpro-molarity .calcpro-molarity-row select{padding:2px 4px;cursor:pointer}
+.calcpro-molarity .calcpro-molarity-row input:focus-visible,.calcpro-molarity .calcpro-molarity-row select:focus-visible{outline:2px solid #2462ae;outline-offset:1px}
+.calcpro-molarity .calcpro-molarity-row .calcpro-molarity-field-unknown{border-color:#366899}
+.calcpro-molarity .calcpro-molarity-actions{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:4px;padding-top:8px}
+.calcpro-molarity .calcpro-molarity-btn{font:700 14px Arial,Helvetica,sans-serif;color:#fff;border:0;padding:9px 13px;min-height:37px;cursor:pointer;line-height:1.25;border-radius:0}
+.calcpro-molarity .calcpro-molarity-btn:hover{filter:brightness(1.10)}
+.calcpro-molarity .calcpro-molarity-btn-primary{background:#4a8425}
+.calcpro-molarity .calcpro-molarity-btn-clear{background:#a9a9a9;font-weight:400}
+.calcpro-molarity .calcpro-molarity-button-arrow{display:inline-flex;margin-left:7px;border-radius:50%;width:21px;height:21px;background:#8fbb82;align-items:center;justify-content:center;font-size:13px;vertical-align:middle}
+.calcpro-molarity .calcpro-molarity-error{color:#9e2115;background:#fff0ed;border-left:4px solid #c5412d;margin:0 0 9px;padding:9px 11px;font-size:14px}
+.calcpro-molarity .calcpro-molarity-result{margin:7px 0 13px}
+.calcpro-molarity .calcpro-molarity-result-head{display:flex;align-items:center;justify-content:space-between;background:#4e8526;color:#fff;padding:5px 7px;min-height:35px;gap:10px}
+.calcpro-molarity .calcpro-molarity-result-head h2{font:21px/1.2 Arial,Helvetica,sans-serif;color:#fff;margin:0}
+.calcpro-molarity .calcpro-molarity-save{cursor:pointer;color:#fff;background:transparent;border:1px solid transparent;border-radius:2px;padding:1px 4px;text-align:center;font:10px/1 Arial,Helvetica,sans-serif}
+.calcpro-molarity .calcpro-molarity-save:hover,.calcpro-molarity .calcpro-molarity-save:focus-visible{border-color:#fff}
+.calcpro-molarity .calcpro-molarity-save-icon{display:block;font-size:14px;line-height:1.05}
+.calcpro-molarity .calcpro-molarity-result-content{padding:10px 0 1px}
+.calcpro-molarity .calcpro-molarity-result-content p{margin:5px 0 7px;line-height:1.45}
+.calcpro-molarity .calcpro-molarity-result-content .calcpro-molarity-main-value{font-weight:700;color:green}
+.calcpro-molarity .calcpro-molarity-result-content h3{font-size:15px;margin:15px 0 9px;color:#161616;font-weight:700}
+.calcpro-molarity .calcpro-molarity-step{margin:8px 0 12px;overflow-wrap:anywhere}
+.calcpro-molarity .calcpro-molarity-step-line{display:flex;align-items:center;flex-wrap:wrap;gap:5px;min-height:22px}
+.calcpro-molarity .calcpro-molarity-step-indent{padding-left:58px}
+.calcpro-molarity .calcpro-molarity-step .calcpro-molarity-frac{font-size:14px;line-height:1.15}
+.calcpro-molarity .calcpro-molarity-step-note{color:#5b5b5b;font-size:12px;margin-top:6px}
+.calcpro-molarity .calcpro-molarity-assumption{font-size:12px;color:#5b5b5b;margin-top:10px!important}
+@media(max-width:570px){
+ .calcpro-molarity .calcpro-molarity-form{padding:7px}
+ .calcpro-molarity .calcpro-molarity-row{grid-template-columns:minmax(109px,0.65fr) minmax(0,1fr);gap:4px 7px;margin-bottom:9px}
+ .calcpro-molarity .calcpro-molarity-row label{grid-column:1;grid-row:1}
+ .calcpro-molarity .calcpro-molarity-row input{grid-column:2;grid-row:1}
+ .calcpro-molarity .calcpro-molarity-row select{grid-column:2;grid-row:2;max-width:100%}
+ .calcpro-molarity .calcpro-molarity-step-indent{padding-left:15px}
+ .calcpro-molarity .calcpro-molarity-notice{font-size:13px}
+}
+@media print{
+ .calcpro-molarity .calcpro-molarity-actions,.calcpro-molarity .calcpro-molarity-notice,.calcpro-molarity .calcpro-molarity-save{display:none!important}
+ .calcpro-molarity .calcpro-molarity-form{border:none;padding:0}
+}
+
+</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="other-calculator.html">Other</a> / Molarity Calculator</nav><h1 class="cp-page-title">Molarity Calculator</h1><p class="cp-intro">Enter any three values—mass, molecular weight (molar mass), solution volume, or concentration—and leave the fourth blank to solve for it.</p><section aria-label="Calculator" class="cp-tool-area">
+<div id="calcpro-molarity-root" class="calcpro-molarity">
+ <div class="calcpro-molarity-equation" aria-label="Molarity equals mass divided by molecular weight times volume">
+  <span>Molarity = </span><span class="calcpro-molarity-frac"><span class="calcpro-molarity-frac-top">Mass</span><span class="calcpro-molarity-frac-bottom">Molecular Weight × Volume</span></span>
+ </div>
+ <div id="calcpro-molarity-notice" class="calcpro-molarity-notice"><span class="calcpro-molarity-notice-symbol" aria-hidden="true">▼</span><span>Modify the values and click the Calculate button to use</span></div>
+ <section class="calcpro-molarity-result" id="calcpro-molarity-result" aria-label="Calculated result" aria-live="polite" hidden>
+  <div class="calcpro-molarity-result-head"><h2>Result</h2><button type="button" id="calcpro-molarity-save" class="calcpro-molarity-save" aria-label="Save result as text" title="Save result as text"><span class="calcpro-molarity-save-icon" aria-hidden="true">▣</span>save</button></div>
+  <div class="calcpro-molarity-result-content" id="calcpro-molarity-result-content"></div>
+ </section>
+ <p id="calcpro-molarity-error" class="calcpro-molarity-error" role="alert" hidden></p>
+ <form id="calcpro-molarity-form" class="calcpro-molarity-form" novalidate>
+ <div class="calcpro-molarity-row">
+   <label for="calcpro-molarity-mass">Mass</label>
+   <input id="calcpro-molarity-mass" name="mass" type="text" inputmode="decimal" autocomplete="off" aria-label="Mass" value="100" placeholder="Enter value" spellcheck="false">
+   <select id="calcpro-molarity-mass-unit" name="massUnit" aria-label="Mass unit"><option value="t">t [metric ton]</option><option value="kg">kg [kilogram]</option><option value="g" selected>g [gram]</option><option value="mg">mg [milligram]</option><option value="ug">µg [microgram]</option><option value="Da">Da [atomic mass unit]</option><option value="lb">lb [pound]</option><option value="oz">oz [ounce]</option></select>
+  </div>
+ <div class="calcpro-molarity-row">
+   <label for="calcpro-molarity-mw">Molecular Weight</label>
+   <input id="calcpro-molarity-mw" name="mw" type="text" inputmode="decimal" autocomplete="off" aria-label="Molecular Weight" value="58.44" placeholder="Enter value" spellcheck="false">
+   <select id="calcpro-molarity-mw-unit" name="mwUnit" aria-label="Molecular Weight unit"><option value="gm" selected>g/mol [gram/mole]</option><option value="kgm">kg/mol [kilogram/mole]</option></select>
+  </div>
+ <div class="calcpro-molarity-row">
+   <label for="calcpro-molarity-volume">Volume</label>
+   <input id="calcpro-molarity-volume" name="volume" type="text" inputmode="decimal" autocomplete="off" aria-label="Volume" value="2" placeholder="Enter value" spellcheck="false">
+   <select id="calcpro-molarity-volume-unit" name="volumeUnit" aria-label="Volume unit"><option value="m">m³ [cubic meter]</option><option value="cm">cm³ [cubic centimeter]</option><option value="mm">mm³ [cubic millimeter]</option><option value="L" selected>L [liter]</option><option value="mL">mL [milliliter]</option><option value="gal">gal [US gallon]</option><option value="qt">qt [US quart]</option><option value="pt">pt [US pint]</option><option value="c">c [US cup]</option><option value="floz">fl oz [US fluid ounce]</option><option value="yd">yd³ [cubic yard]</option><option value="ft">ft³ [cubic foot]</option><option value="in">in³ [cubic inch]</option></select>
+  </div>
+ <div class="calcpro-molarity-row">
+   <label for="calcpro-molarity-conc">Concentration</label>
+   <input id="calcpro-molarity-conc" name="conc" type="text" inputmode="decimal" autocomplete="off" aria-label="Concentration" value="" placeholder="Enter value" spellcheck="false">
+   <select id="calcpro-molarity-conc-unit" name="concUnit" aria-label="Concentration unit"><optgroup label="molarity"><option value="M" selected>M [molar, mole/liter]</option><option value="mM">mM [millimolar, millimole/liter]</option><option value="uM">µM [micromolar, micromole/liter]</option><option value="nM">nM [nanomolar, nanomole/liter]</option><option value="molm">mol/m³ [mole/cubic meter]</option></optgroup><optgroup label="mass concentration"><option value="kgl">kg/L [kilogram/liter]</option><option value="gl">g/L [gram/liter]</option><option value="mgl">mg/L [milligram/liter]</option><option value="ppm">ppm [parts per million]</option><option value="ppb">ppb [parts per billion]</option><option value="kgm">kg/m³ [kilogram/cubic meter]</option><option value="gm">g/m³ [gram/cubic meter]</option></optgroup></select>
+  </div>
+  <div class="calcpro-molarity-actions"><button class="calcpro-molarity-btn calcpro-molarity-btn-primary" type="submit">Calculate <span class="calcpro-molarity-button-arrow" aria-hidden="true">▶</span></button><button class="calcpro-molarity-btn calcpro-molarity-btn-clear" type="button" id="calcpro-molarity-clear">Clear</button></div>
+ </form>
+</div>
+</section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><a href="molecular-weight-calculator.html">Molecular Weight</a><a href="mass-calculator.html">Mass</a><a href="density-calculator.html">Density</a><a href="conversion-calculator.html">Unit Conversion</a><a href="percent-calculator.html">Percent</a><a href="percent-error-calculator.html">Percent Error</a><a href="scientific-calculator.html">Scientific</a><a href="average-calculator.html">Average</a></div></section></aside><article class="cp-article">
+ <h2>How to Use the Molarity Calculator</h2>
+ <p>Choose the units for <strong>Mass</strong>, <strong>Molecular Weight</strong>, <strong>Volume</strong>, and <strong>Concentration</strong>. Fill in exactly three numbers, leaving the quantity you want to find empty, then select <strong>Calculate</strong>. The calculated answer, conversions, moles of solute, and worked steps appear above the input form. Select <strong>Clear</strong> to empty all fields or <strong>save</strong> in the result bar to download a text summary.</p>
+ <p>Concentration can be expressed as molarity (M, mM, µM, nM, or mol/m³) or as mass per volume (such as g/L, mg/L, and kg/m³). Selecting ppm or ppb uses the common dilute-water approximation stated below.</p>
+ <h2>Molarity Formula</h2>
+ <p><strong>M = n / V = m / (MW × V)</strong>, where <strong>M</strong> is molarity in mol/L, <strong>n</strong> is moles of solute, <strong>m</strong> is the solute mass in grams, <strong>MW</strong> is molar mass in g/mol, and <strong>V</strong> is the final solution volume in liters.</p>
+ <div class="cp-table-scroll"><table class="cp-content-table"><thead><tr><th>Missing quantity</th><th>Calculation</th></tr></thead><tbody>
+ <tr><td>Molarity</td><td>M = m / (MW × V)</td></tr>
+ <tr><td>Mass of solute</td><td>m = M × MW × V</td></tr>
+ <tr><td>Molecular weight / molar mass</td><td>MW = m / (M × V)</td></tr>
+ <tr><td>Solution volume</td><td>V = m / (MW × M)</td></tr>
+ <tr><td>Mass concentration</td><td>g/L = m (g) / V (L)</td></tr>
+ <tr><td>Moles of solute</td><td>n = m / MW</td></tr>
+ </tbody></table></div>
+ <h2>Worked Example</h2>
+ <p>For 100 g of sodium chloride (NaCl), a molar mass of 58.44 g/mol, and a final solution volume of 2 L: the number of moles is 100 / 58.44 = <strong>1.7111567419576 mol</strong>. Dividing by 2 L gives a molarity of <strong>0.85557837097878 M</strong>. The corresponding mass concentration is <strong>50 g/L</strong>.</p>
+ <h2>Units and Assumptions</h2>
+ <p>The calculator converts mass to grams, molar mass to g/mol, and final solution volume to liters before solving. For example, 500 mL is 0.5 L; 1 mM is 0.001 M; and 1 kg/m³ is 1 g/L. Mass in daltons (Da) is interpreted as the mass of individual particles, using 1 Da ≈ 1.66053906660 × 10<sup>−24</sup> g.</p>
+ <p class="cp-warning"><strong>Important:</strong> ppm is a mass fraction and is not inherently equal to mg/L. This tool treats <strong>1 ppm ≈ 1 mg/L</strong> and <strong>1 ppb ≈ 1 µg/L</strong> only for dilute aqueous solutions with density near 1 kg/L. It cannot infer molecular weight from mass concentration alone, because that relationship cancels out the molar mass.</p>
+ <h2>Frequently Asked Questions</h2>
+ <h3>What does 1 M mean?</h3><p>A 1 M solution contains one mole of solute per liter of final solution, not per liter of solvent added before dissolving the solute.</p>
+ <h3>Can I calculate any of the four variables?</h3><p>Yes, when the three known inputs uniquely determine the fourth. For molecular weight, the concentration must be specified using a molar unit, not g/L or ppm. Zero concentrations can produce indeterminate calculations for some unknowns.</p>
+ <h3>What is the difference between molarity and mass concentration?</h3><p>Molarity measures moles per liter (mol/L), whereas mass concentration measures grams per liter (g/L). Convert between them by multiplying or dividing by the solute's molar mass in g/mol.</p>
+ <h3>Is molarity the same as molality?</h3><p>No. Molarity uses liters of <em>solution</em>; molality uses kilograms of <em>solvent</em>. They are not directly interchangeable without more information.</p>
+ <h2>Sources and Further Reading</h2>
+ <p><a href="https://openstax.org/books/chemistry-2e/pages/3-3-molarity" target="_blank" rel="noopener noreferrer">OpenStax Chemistry 2e, Section 3.3: Molarity</a> explains molarity and solution preparation. The <a href="https://www.calculator.net/molarity-calculator.html" target="_blank" rel="noopener noreferrer">reference molarity calculator</a> informed the four-field interaction and result position.</p>
+ <p class="cp-page-footer">CalcPro — chemical calculations are provided for informational and educational use.</p>
+</article></main></div><script>
+(function(){
+ "use strict";
+ const root = document.getElementById("calcpro-molarity-root");
+ if (!root) return;
+ const $ = name => root.querySelector("#calcpro-molarity-" + name);
+ const form = $("form"), notice = $("notice"), result = $("result"), content = $("result-content"), error = $("error");
+ const input = Object.fromEntries(["mass", "mw", "volume", "conc"].map(k => [k, $(k)]));
+ const select = Object.fromEntries(["mass", "mw", "volume", "conc"].map(k => [k, $(k + "-unit")]));
+ const massUnits = {t:1e6,kg:1000,g:1,mg:0.001,ug:1e-6,Da:1.66053906660e-24,lb:453.59237,oz:28.349523125};
+ const mwUnits = {gm:1,kgm:1000};
+ const volumeUnits = {m:1000,cm:0.001,mm:0.000001,L:1,mL:0.001,gal:3.785411784,qt:0.946352946,pt:0.473176473,c:0.2365882365,floz:0.0295735295625,yd:764.554857984,ft:28.316846592,in:0.016387064};
+ // For dilute aqueous solutions near 1 kg/L only: ppm ≈ mg/L, ppb ≈ µg/L.
+ const molarUnits = {M:1,mM:1e-3,uM:1e-6,nM:1e-9,molm:1e-3};
+ const massConcUnits = {kgl:1000,gl:1,mgl:1e-3,ppm:1e-3,ppb:1e-6,kgm:1,gm:1e-3};
+ const labelUnits = {
+   mass:{t:"t",kg:"kg",g:"g",mg:"mg",ug:"µg",Da:"Da",lb:"lb",oz:"oz"},
+   mw:{gm:"g/mol",kgm:"kg/mol"},
+   volume:{m:"m³",cm:"cm³",mm:"mm³",L:"L",mL:"mL",gal:"US gal",qt:"US qt",pt:"US pt",c:"US cup",floz:"US fl oz",yd:"yd³",ft:"ft³",in:"in³"},
+   conc:{M:"M",mM:"mM",uM:"µM",nM:"nM",molm:"mol/m³",kgl:"kg/L",gl:"g/L",mgl:"mg/L",ppm:"ppm",ppb:"ppb",kgm:"kg/m³",gm:"g/m³"}
+ };
+ const names = {mass:"Mass",mw:"Molecular Weight",volume:"Volume",conc:"Concentration"};
+ let lastSavedText = "";
+ function fmt(v){
+   if (!Number.isFinite(v)) return "undefined";
+   if (v === 0) return "0";
+   return String(Number(v.toPrecision(14)));
+ }
+ function fnum(v,unit){return fmt(v)+" "+unit;}
+ function frac(n,d){return '<span class="calcpro-molarity-frac"><span class="calcpro-molarity-frac-top">'+n+'</span><span class="calcpro-molarity-frac-bottom">'+d+'</span></span>';}
+ function resetDisplay(){notice.hidden=false;result.hidden=true;error.hidden=true;error.textContent="";lastSavedText="";}
+ function fail(msg){resetDisplay();error.textContent=msg;error.hidden=false;}
+ function readField(key){
+   const raw = input[key].value.trim();
+   if(!raw) return null;
+   if(!/^(?:\+)?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+)?$/.test(raw)) throw new Error(names[key]+" must be a valid non-negative number.");
+   const n=Number(raw);
+   if(!Number.isFinite(n) || n<0) throw new Error(names[key]+" must be a finite non-negative number.");
+   if((key==="mw" || key==="volume") && n===0) throw new Error(names[key]+" must be greater than zero.");
+   return n;
+ }
+ function compute(){
+   const entered = Object.fromEntries(Object.keys(input).map(key=>[key,readField(key)]));
+   const missing=Object.keys(entered).filter(k=>entered[k]===null);
+   if(missing.length!==1) throw new Error(missing.length===0?"Leave exactly one field blank to calculate it.":"Enter any three values and leave the fourth field blank.");
+   const target=missing[0], cu=select.conc.value, isMolar=Object.hasOwn(molarUnits,cu);
+   if(target==="mw" && !isMolar) throw new Error("Molecular weight cannot be determined from mass concentration (g/L, ppm, etc.). Choose a molar concentration unit instead.");
+   let g=entered.mass===null?null:entered.mass*massUnits[select.mass.value];
+   let mw=entered.mw===null?null:entered.mw*mwUnits[select.mw.value];
+   let L=entered.volume===null?null:entered.volume*volumeUnits[select.volume.value];
+   let cM=entered.conc===null || !isMolar?null:entered.conc*molarUnits[cu];
+   let cG=entered.conc===null || isMolar?null:entered.conc*massConcUnits[cu];
+   if(target==="mass") g=isMolar?cM*mw*L:cG*L;
+   if(target==="mw") {
+     if(cM===0) throw new Error("Molecular weight is indeterminate when concentration is zero.");
+     mw=g/(cM*L);
+   }
+   if(target==="volume") {
+     const divisor=isMolar?cM*mw:cG;
+     if(divisor===0) throw new Error("Volume is indeterminate for a zero concentration.");
+     L=g/divisor;
+   }
+   if(target==="conc") {
+     cM=g/mw/L;
+     cG=g/L;
+   } else if(isMolar) {
+     cG=cM*mw;
+   } else {
+     cM=cG/mw;
+   }
+   if(!(mw>0) || !(L>0) || !(g>=0) || !(cM>=0) || !(cG>=0) || ![g,mw,L,cM,cG,g/mw].every(Number.isFinite)) {
+     throw new Error("The selected values cannot produce a finite, physically meaningful solution. Check units and inputs.");
+   }
+   const n=g/mw;
+   const output={mass:g/massUnits[select.mass.value],mw:mw/mwUnits[select.mw.value],volume:L/volumeUnits[select.volume.value],conc: isMolar?cM/molarUnits[cu]:cG/massConcUnits[cu]};
+   if(!Number.isFinite(output[target])) throw new Error("The result is outside the supported numeric range. Try different units.");
+   return {target,g,mw,L,cM,cG,n,output,isMolar,cu};
+ }
+ function render(r){
+   const target=r.target, value=r.output[target], targetUnit=labelUnits[target][select[target].value];
+   const primaryName=target==="conc"&&!r.isMolar?"Mass Concentration":target==="conc"?"Molarity":names[target];
+   const measured=fnum(value,targetUnit), shownConc=fnum(r.cM,"M"), shownMassConc=fnum(r.cG,"g/L"), shownMoles=fnum(r.n,"mol");
+   const g=fnum(r.g,"g"), mw=fnum(r.mw,"g/mol"), L=fnum(r.L,"L"), m=fnum(r.cM,"M"), gL=fnum(r.cG,"g/L");
+   let parts = ['<p>'+primaryName+' = <span class="calcpro-molarity-main-value">'+measured+'</span></p>'];
+   if(target!=="conc" || !r.isMolar) parts.push('<p>Molarity = '+shownConc+'</p>');
+   if(target!=="conc" || r.isMolar) parts.push('<p>Mass Concentration = '+shownMassConc+'</p>');
+   parts.push('<p>Moles of solute = '+shownMoles+'</p>','<h3>Steps:</h3>');
+   const line=(left,right,sub)=>'<div class="calcpro-molarity-step"><div class="calcpro-molarity-step-line">'+left+' = '+right+'</div>'+ (sub?'<div class="calcpro-molarity-step-line calcpro-molarity-step-indent">= '+sub+'</div>':'')+'</div>';
+   const fc=(name,num,den,val)=>'<div class="calcpro-molarity-step"><div class="calcpro-molarity-step-line">'+name+' = '+frac(num,den)+'</div><div class="calcpro-molarity-step-line calcpro-molarity-step-indent">= '+val+'</div></div>';
+   if(target==="conc"){
+     if(r.isMolar){
+       parts.push('<div class="calcpro-molarity-step"><div class="calcpro-molarity-step-line">molarity = '+frac('mass','molecular weight × volume')+'</div><div class="calcpro-molarity-step-line calcpro-molarity-step-indent">= '+frac(g,mw+' × '+L)+'</div><div class="calcpro-molarity-step-line calcpro-molarity-step-indent">= '+shownConc+'</div></div>');
+     } else {
+       parts.push(fc('mass concentration',g,L,shownMassConc));
+       parts.push(fc('molarity',gL,mw,shownConc));
+     }
+   } else if(target==="mass"){
+     if(r.isMolar) parts.push(line('mass','molarity × molecular weight × volume',m+' × '+mw+' × '+L+' = '+g));
+     else parts.push(line('mass','mass concentration × volume',gL+' × '+L+' = '+g));
+   } else if(target==="mw"){
+     parts.push(fc('molecular weight',g,m+' × '+L,mw));
+   } else {
+     if(r.isMolar) parts.push(fc('volume',g,mw+' × '+m,L));
+     else parts.push(fc('volume',g,gL,L));
+   }
+   if(target!=="conc" || !r.isMolar) parts.push(fc('molarity',g,mw+' × '+L,shownConc));
+   if(target!=="conc" || r.isMolar) parts.push(fc('mass concentration',g,L,shownMassConc));
+   parts.push(fc('moles of solute',g,mw,shownMoles));
+   if(r.cu==="ppm" || r.cu==="ppb") parts.push('<p class="calcpro-molarity-assumption">For ppm/ppb, a dilute aqueous solution with density approximately 1 kg/L is assumed. For other densities, mass-based ppm/ppb need the solution density.</p>');
+   content.innerHTML=parts.join('');
+   lastSavedText=["CalcPro Molarity Calculator",primaryName+" = "+measured,"Molarity = "+shownConc,"Mass Concentration = "+shownMassConc,"Moles of solute = "+shownMoles,"Mass = "+g,"Molecular weight = "+mw,"Volume = "+L,(r.cu==="ppm"||r.cu==="ppb")?"Note: ppm/ppb assume dilute aqueous solution with density about 1 kg/L.":""].filter(Boolean).join("\n");
+   notice.hidden=true;error.hidden=true;result.hidden=false;
+ }
+ form.addEventListener("submit",function(ev){
+   ev.preventDefault();
+   try{render(compute());}
+   catch(e){fail(e.message || "Unable to calculate. Check the fields.");}
+ });
+ root.querySelectorAll('input, select').forEach(el=>{
+   el.addEventListener('input',resetDisplay);
+   el.addEventListener('change',resetDisplay);
+ });
+ $("clear").addEventListener("click",()=>{
+   for(const key of Object.keys(input)) input[key].value="";
+   select.mass.value="g";select.mw.value="gm";select.volume.value="L";select.conc.value="M";
+   resetDisplay();input.mass.focus();
+ });
+ $("save").addEventListener("click",()=>{
+   if(!lastSavedText) return;
+   const blob=new Blob([lastSavedText+"\n"],{type:"text/plain;charset=utf-8"});
+   const url=URL.createObjectURL(blob),a=document.createElement("a");
+   a.href=url;a.download="molarity-result.txt";document.body.appendChild(a);a.click();a.remove();
+   setTimeout(()=>URL.revokeObjectURL(url),1000);
+ });
+})();
+</script></body></html>

@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>Density Calculator — Density, Volume &amp; Mass | CalcPro</title><meta content="Free density calculator: find density, volume, or mass with unit conversions, formula steps, examples, and detailed reference tables." name="description"/><link href="template-style.css" rel="stylesheet"/><style>
+/* Every tool rule is scoped to the unique CalcPro Density Calculator root. */
+.calcpro-density{font-family:Arial,Helvetica,sans-serif;color:#162534;max-width:690px;font-size:15px;line-height:1.45}
+.calcpro-density *{box-sizing:border-box}
+.calcpro-density [hidden]{display:none!important}
+.calcpro-density-notice{background:#386c9c;color:#fff;padding:9px 12px;margin:0 0 2px;display:flex;gap:10px;align-items:center;font-size:14px}
+.calcpro-density-notice-icon{display:inline-flex;align-items:center;justify-content:center;background:#fff;color:#386c9c;font-weight:bold;border-radius:50%;flex:0 0 19px;height:19px}
+.calcpro-density-form{max-width:670px;margin:0}
+.calcpro-density-tabs{display:flex;flex-wrap:wrap;gap:2px;border-bottom:3px solid #356597;background:#fff}
+.calcpro-density-tab{font:700 14px Arial,Helvetica,sans-serif;background:#356597;color:#fff;border:0;border-radius:0;padding:10px 14px;cursor:pointer;white-space:nowrap}
+.calcpro-density-tab:hover{background:#224f7d}
+.calcpro-density-tab[aria-selected="true"]{background:#244a73;box-shadow:inset 0 -3px #8dbbdb}
+.calcpro-density-tab:focus-visible,.calcpro-density button:focus-visible,.calcpro-density select:focus-visible,.calcpro-density input:focus-visible{outline:2px solid #2779bd;outline-offset:2px}
+.calcpro-density-fields{background:#eeeeee;border:1px solid #c7c7c7;border-top:0;padding:14px 12px 12px;max-width:670px}
+.calcpro-density-field{display:grid;grid-template-columns:112px minmax(95px,120px) minmax(185px,1fr);gap:9px;align-items:center;margin:0 0 9px}
+.calcpro-density-field label{font-size:14px;text-align:right;font-weight:600}
+.calcpro-density-entry{display:flex;align-items:center;min-height:34px}
+.calcpro-density-entry input{width:100%;height:34px;border:1px solid #7790a9;border-radius:2px;background:#fff;padding:6px 7px;font:14px Arial,Helvetica,sans-serif;color:#121212}
+.calcpro-density-question{font-weight:700;color:#244a73;font-size:15px}
+.calcpro-density-field select{width:100%;min-width:0;height:34px;border:1px solid #7790a9;border-radius:2px;background:#fff;padding:5px 5px;font:13px Arial,Helvetica,sans-serif;color:#111}
+.calcpro-density-field input[aria-invalid="true"]{border-color:#a62828;box-shadow:0 0 0 1px #a62828}
+.calcpro-density-actions{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:12px}
+.calcpro-density-button{font:700 14px Arial,Helvetica,sans-serif;border:0;padding:9px 18px;border-radius:2px;cursor:pointer}
+.calcpro-density-button-primary{background:#4e8824;color:#fff}
+.calcpro-density-button-primary:hover{background:#3b6d1a}
+.calcpro-density-button-secondary{background:#9fa2a6;color:#fff}
+.calcpro-density-button-secondary:hover{background:#777f87}
+.calcpro-density-error{font-size:13px;color:#9d1d1d;border-left:3px solid #bc3434;background:#fff5f4;padding:8px 10px;margin:2px 0 10px}
+.calcpro-density-result{margin:0 0 14px;max-width:670px;border:1px solid #d5dede;border-top:0;padding-bottom:12px;background:#fff}
+.calcpro-density-result-heading{display:flex;justify-content:space-between;align-items:center;background:#4d8826;color:white;min-height:36px;padding:6px 10px}
+.calcpro-density-result-heading h2{color:white!important;font-size:18px!important;margin:0!important;line-height:1.3!important}
+.calcpro-density-print{display:inline-flex;align-items:center;gap:5px;background:transparent;border:1px solid #d1e5c4;border-radius:2px;color:#fff;font:700 12px Arial,Helvetica,sans-serif;padding:4px 8px;cursor:pointer}
+.calcpro-density-print:hover{background:#386c19}
+.calcpro-density-result-summary{margin:13px 12px 13px;font-weight:700;font-size:16px;overflow-wrap:anywhere}
+.calcpro-density-result-value{color:#34851a}
+.calcpro-density-steps-label{margin:0 12px 5px;font-size:14px;font-weight:700}
+.calcpro-density-steps{margin:0 12px 0 34px;padding:0;font-size:14px;line-height:1.55;overflow-wrap:anywhere}
+.calcpro-density-steps li{padding-left:2px;margin-bottom:3px}
+.calcpro-density-step-final{font-weight:700}
+.calcpro-density-result-meta{font-size:12px;color:#4d5c68;margin:9px 12px 0}
+.calcpro-density-sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@media(max-width:600px){.calcpro-density-field{grid-template-columns:105px minmax(85px,110px) minmax(130px,1fr);gap:7px}.calcpro-density-field label{font-size:13px}.calcpro-density-field select{font-size:12px}.calcpro-density-tab{padding:9px 11px;font-size:13px}}
+@media(max-width:490px){.calcpro-density-fields{padding:11px}.calcpro-density-field{grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);column-gap:9px;row-gap:5px;margin-bottom:14px}.calcpro-density-field label{text-align:left;grid-column:1/-1}.calcpro-density-entry{grid-column:1}.calcpro-density-field select{grid-column:2}.calcpro-density-tab{flex:1 0 auto;padding:9px 6px;font-size:12px}.calcpro-density-result-heading h2{font-size:17px!important}.calcpro-density-button{padding:10px 16px}}
+@media(max-width:340px){.calcpro-density-field{grid-template-columns:minmax(0,1fr)}.calcpro-density-entry,.calcpro-density-field select{grid-column:1}.calcpro-density-tabs{gap:1px}.calcpro-density-tab{font-size:11px}}
+@media print{.calcpro-density-notice,.calcpro-density-tabs,.calcpro-density-fields,.calcpro-density-print{display:none!important}.calcpro-density-result{border:0}.calcpro-density-result-heading{-webkit-print-color-adjust:exact;print-color-adjust:exact}.calcpro-density-result[hidden]{display:none!important}}
+
+</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/other-calculator/">Other</a> / Density Calculator</nav><h1 class="cp-page-title">Density Calculator</h1><p class="cp-intro">Provide any two values in the equation <strong>ρ = m / V</strong> to calculate density, volume, or mass. Choose the units you prefer.</p><section aria-label="Calculator" class="cp-tool-area">
+<div class="calcpro-density" id="calcpro-density-root">
+  <div class="calcpro-density-result" id="calcpro-density-result" role="status" aria-live="polite" hidden>
+    <div class="calcpro-density-result-heading">
+      <h2>Result</h2>
+      <button type="button" class="calcpro-density-print" id="calcpro-density-print" title="Print or save result as PDF" aria-label="Print or save the result as PDF">&#x2399; Print / Save</button>
+    </div>
+    <p class="calcpro-density-result-summary"><span id="calcpro-density-summary-label"></span><span class="calcpro-density-result-value" id="calcpro-density-summary-value"></span></p>
+    <p class="calcpro-density-steps-label">Steps:</p>
+    <ol class="calcpro-density-steps" id="calcpro-density-steps"></ol>
+    <p class="calcpro-density-result-meta" id="calcpro-density-result-meta"></p>
+  </div>
+  <div class="calcpro-density-notice" id="calcpro-density-notice"><span class="calcpro-density-notice-icon" aria-hidden="true">&#x25BC;</span><span>Modify the values and click the Calculate button to use.</span></div>
+  <form class="calcpro-density-form" id="calcpro-density-form" novalidate>
+    <div class="calcpro-density-tabs" role="tablist" aria-label="Calculate which quantity?">
+      <button type="button" class="calcpro-density-tab" id="calcpro-density-tab-density" data-calcpro-density-mode="density" role="tab" aria-selected="true" aria-controls="calcpro-density-fields">Find Density</button>
+      <button type="button" class="calcpro-density-tab" id="calcpro-density-tab-volume" data-calcpro-density-mode="volume" role="tab" aria-selected="false" aria-controls="calcpro-density-fields">Find Volume</button>
+      <button type="button" class="calcpro-density-tab" id="calcpro-density-tab-mass" data-calcpro-density-mode="mass" role="tab" aria-selected="false" aria-controls="calcpro-density-fields">Find Mass</button>
+    </div>
+    <div class="calcpro-density-fields" id="calcpro-density-fields" role="tabpanel" aria-labelledby="calcpro-density-tab-density">
+      <div class="calcpro-density-field" id="calcpro-density-row-density">
+        <label for="calcpro-density-input-density">Density (ρ)</label>
+        <div class="calcpro-density-entry"><input id="calcpro-density-input-density" type="text" value="" inputmode="decimal" autocomplete="off" aria-label="Density"/><span class="calcpro-density-question" id="calcpro-density-question-density" hidden>= ?</span></div>
+        <select id="calcpro-density-unit-density" aria-label="Density unit"><option value="kg-m3">kilogram/cubic meter [kg/m³]</option>
+<option value="kg-cm3">kilogram/cubic centimeter [kg/cm³]</option>
+<option value="g-m3">gram/cubic meter [g/m³]</option>
+<option value="g-cm3">gram/cubic centimeter [g/cm³]</option>
+<option value="kg-L">kilogram/liter [kg/L]</option>
+<option value="g-L">gram/liter [g/L]</option>
+<option value="lb-in3">pound/cubic inch [lb/in³]</option>
+<option value="lb-ft3">pound/cubic foot [lb/ft³]</option>
+<option value="lb-yd3">pound/cubic yard [lb/yd³]</option>
+<option value="lb-usgal">pound/gallon (US) [lb/gal]</option>
+<option value="lb-ukgal">pound/gallon (UK) [lb/gal]</option></select>
+      </div>
+      <div class="calcpro-density-field" id="calcpro-density-row-volume">
+        <label for="calcpro-density-input-volume">Volume (V)</label>
+        <div class="calcpro-density-entry"><input id="calcpro-density-input-volume" type="text" value="1" inputmode="decimal" autocomplete="off" aria-label="Volume"/><span class="calcpro-density-question" id="calcpro-density-question-volume" hidden>= ?</span></div>
+        <select id="calcpro-density-unit-volume" aria-label="Volume unit"><option value="m3">cubic meter [m³]</option>
+<option value="L">liter [L]</option>
+<option value="mL">milliliter [mL]</option>
+<option value="us-gal">gallon (US) [gal]</option>
+<option value="uk-gal">gallon (UK) [gal]</option>
+<option value="ft3">cubic foot [ft³]</option>
+<option value="yd3">cubic yard [yd³]</option>
+<option value="in3">cubic inch [in³]</option>
+<option value="cm3">cubic centimeter [cm³]</option></select>
+      </div>
+      <div class="calcpro-density-field" id="calcpro-density-row-mass">
+        <label for="calcpro-density-input-mass">Mass (m)</label>
+        <div class="calcpro-density-entry"><input id="calcpro-density-input-mass" type="text" value="8900" inputmode="decimal" autocomplete="off" aria-label="Mass"/><span class="calcpro-density-question" id="calcpro-density-question-mass" hidden>= ?</span></div>
+        <select id="calcpro-density-unit-mass" aria-label="Mass unit"><option value="kg">kilogram [kg]</option>
+<option value="g">gram [g]</option>
+<option value="mg">milligram [mg]</option>
+<option value="tonne">metric ton [t]</option>
+<option value="lb">pound [lb]</option>
+<option value="oz">ounce [oz]</option>
+<option value="ct">carat [ct]</option></select>
+      </div>
+      <div class="calcpro-density-error" id="calcpro-density-error" role="alert" hidden></div>
+      <div class="calcpro-density-actions"><button type="submit" class="calcpro-density-button calcpro-density-button-primary">Calculate &#x25B6;</button><button type="button" id="calcpro-density-clear" class="calcpro-density-button calcpro-density-button-secondary">Clear</button></div>
+    </div>
+  </form>
+</div>
+</section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><a href="mass-calculator.html">Mass</a><a href="volume-calculator.html">Volume</a><a href="conversion-calculator.html">Conversion</a><a href="weight-calculator.html">Weight</a><a href="area-calculator.html">Area</a><a href="surface-area-calculator.html">Surface Area</a><a href="molarity-calculator.html">Molarity</a><a href="molecular-weight-calculator.html">Molecular Weight</a><a href="speed-calculator.html">Speed</a><a href="concrete-calculator.html">Concrete</a><a href="bmi-calculator.html">BMI</a><a href="percent-error-calculator.html">Percent Error</a></div></section></aside><article class="cp-article"><div class="calcpro-density-guide">
+<h2>How to Use the Density Calculator</h2>
+<p>Select <strong>Find Density</strong>, <strong>Find Volume</strong>, or <strong>Find Mass</strong>. Enter the two known quantities and choose a unit for each one. The third quantity is the value to be calculated; its dropdown determines the unit shown in the result. Click <strong>Calculate</strong> to see the answer and the conversion steps above the form. Choose <strong>Clear</strong> to remove entered values, or use <strong>Print / Save</strong> on a result to print it or save a PDF through your browser.</p>
+<h2>Density Formula</h2>
+<p>Density measures mass per unit of volume. It is expressed in SI units as kilograms per cubic meter (kg/m³). The three equivalent equations are:</p>
+<ul><li><strong>Density:</strong> ρ = m / V</li><li><strong>Volume:</strong> V = m / ρ</li><li><strong>Mass:</strong> m = ρ × V</li></ul>
+<p>Here, ρ represents density, m represents mass, and V represents volume. The calculator first converts all entered values to kilograms, cubic meters, and kg/m³, performs the calculation, and then converts the answer into the chosen unit. A zero divisor is not permitted.</p>
+<h2>Worked Examples</h2>
+<h3>Example 1: Find density</h3>
+<p>A sample with a mass of <strong>8,900 kg</strong> and volume of <strong>1 m³</strong> has a density of 8,900 ÷ 1 = <strong>8,900 kg/m³</strong>. This matches the calculator’s initial input values.</p>
+<h3>Example 2: Find volume using mixed units</h3>
+<p>A sample with a mass of <strong>500 g</strong> and a density of <strong>2 g/cm³</strong> has a volume of 500 ÷ 2 = <strong>250 cm³</strong>, or <strong>0.25 L</strong>.</p>
+<h3>Example 3: Find mass</h3>
+<p>If a liquid has a density of <strong>1 g/cm³</strong> and occupies <strong>2 L</strong> (2,000 cm³), its mass is 1 × 2,000 = <strong>2,000 g</strong> or <strong>2 kg</strong>.</p>
+<h2>Common Density Unit Conversions</h2>
+<p>The table gives the number of kg/m³ equivalent to <strong>one unit</strong> of each listed density measure. Values are approximate unless exact by definition.</p>
+<div class="cp-table-scroll"><table class="cp-content-table"><thead><tr><th scope="col">Density unit</th><th scope="col">Equivalent in kg/m³</th></tr></thead><tbody><tr><td>kilogram/cubic meter (kg/m³)</td><td>1 — SI base unit</td></tr>
+<tr><td>kilogram/cubic centimeter (kg/cm³)</td><td>1,000,000</td></tr>
+<tr><td>gram/cubic meter (g/m³)</td><td>0.001</td></tr>
+<tr><td>gram/cubic centimeter (g/cm³)</td><td>1,000</td></tr>
+<tr><td>kilogram/liter (kg/L)</td><td>1,000</td></tr>
+<tr><td>gram/liter (g/L)</td><td>1</td></tr>
+<tr><td>pound/cubic inch (lb/in³)</td><td>27,679.9</td></tr>
+<tr><td>pound/cubic foot (lb/ft³)</td><td>16.0185</td></tr>
+<tr><td>pound/cubic yard (lb/yd³)</td><td>0.593276</td></tr>
+<tr><td>pound/gallon (US)</td><td>119.826</td></tr>
+<tr><td>pound/gallon (UK)</td><td>99.7764</td></tr>
+<tr><td>ounce/cubic inch (oz/in³)</td><td>1,729.99</td></tr>
+<tr><td>ounce/cubic foot (oz/ft³)</td><td>1.00115</td></tr>
+<tr><td>ounce/gallon (US)</td><td>7.48915</td></tr>
+<tr><td>ounce/gallon (UK)</td><td>6.23602</td></tr>
+<tr><td>short ton/cubic yard</td><td>1,186.55</td></tr>
+<tr><td>long ton/cubic yard</td><td>1,328.94</td></tr>
+<tr><td>psi per 1,000 feet (pressure gradient equivalent)</td><td>≈ 2.3067*</td></tr></tbody></table></div>
+<p><small>* “psi per 1,000 feet” measures a pressure gradient, not density directly. Its density equivalent assumes standard gravity (9.80665 m/s²).</small></p>
+<h2>Density of Common Materials</h2>
+<p>These are illustrative reference values rather than guaranteed properties. Composition, temperature, and pressure can change density; gases are especially sensitive to conditions.</p>
+<div class="cp-table-scroll"><table class="cp-content-table"><thead><tr><th scope="col">Material</th><th scope="col">Approximate density (kg/m³)</th></tr></thead><tbody><tr><td>Earth’s atmosphere near sea level</td><td>≈ 1.2</td></tr>
+<tr><td>Water near 4 °C</td><td>≈ 1,000</td></tr>
+<tr><td>Earth (mean)</td><td>≈ 5,515</td></tr>
+<tr><td>Iron</td><td>≈ 7,874</td></tr>
+<tr><td>Copper</td><td>≈ 8,950</td></tr>
+<tr><td>Tungsten</td><td>≈ 19,250</td></tr>
+<tr><td>Gold</td><td>≈ 19,300</td></tr>
+<tr><td>Platinum</td><td>≈ 21,450</td></tr>
+<tr><td>Atomic nuclei (order of magnitude)</td><td>≈ 2.3 × 10¹⁷</td></tr></tbody></table></div>
+<h2>Frequently Asked Questions</h2>
+<h3>Can I enter values in different unit systems?</h3>
+<p>Yes. For example, enter mass in pounds and volume in liters, then select kg/m³ as the desired density unit. The calculator converts all inputs internally before dividing.</p>
+<h3>Can density be negative?</h3>
+<p>Not for ordinary mass density. Mass and volume cannot be negative, so the calculator rejects negative inputs. Zero mass is permitted when a nonzero volume or density makes the calculation defined.</p>
+<h3>Why does density vary with temperature or pressure?</h3>
+<p>Density depends on both mass and volume. Heating commonly increases volume and lowers density, while compressing a material usually reduces its volume and raises its density. Water has well-known temperature-dependent behavior near 4 °C.</p>
+<h3>What is the difference between g/cm³ and kg/m³?</h3>
+<p>One gram per cubic centimeter equals exactly 1,000 kilograms per cubic meter. For example, 7.87 g/cm³ equals 7,870 kg/m³.</p>
+<h2>Sources and Standards</h2>
+<p>Definitions and conversion factors are based on <a href="https://www.nist.gov/pml/special-publication-811/nist-guide-si-chapter-8" rel="noopener noreferrer" target="_blank">NIST Guide to the SI, Chapter 8</a> and <a href="https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors/nist-guide-si-appendix-b9" rel="noopener noreferrer" target="_blank">NIST conversion factors for mass divided by volume</a>. Material densities are approximate examples, not certified measurement values.</p>
+</div><p class="cp-page-footer">CalcPro — results are for informational and educational use. Check physical conditions and measurement precision.</p></article></main></div><script>
+(function(){
+  'use strict';
+  const root=document.getElementById('calcpro-density-root');
+  if (!root) return;
+  const densityUnits=[{"id":"kg-m3","name":"kilogram/cubic meter","symbol":"kg/m³","factor":1},{"id":"kg-cm3","name":"kilogram/cubic centimeter","symbol":"kg/cm³","factor":1000000.0},{"id":"g-m3","name":"gram/cubic meter","symbol":"g/m³","factor":0.001},{"id":"g-cm3","name":"gram/cubic centimeter","symbol":"g/cm³","factor":1000},{"id":"kg-L","name":"kilogram/liter","symbol":"kg/L","factor":1000},{"id":"g-L","name":"gram/liter","symbol":"g/L","factor":1},{"id":"lb-in3","name":"pound/cubic inch","symbol":"lb/in³","factor":27679.904710203125},{"id":"lb-ft3","name":"pound/cubic foot","symbol":"lb/ft³","factor":16.018463373960138},{"id":"lb-yd3","name":"pound/cubic yard","symbol":"lb/yd³","factor":0.5932764212577829},{"id":"lb-usgal","name":"pound/gallon (US)","symbol":"lb/gal (US)","factor":119.82642731689663},{"id":"lb-ukgal","name":"pound/gallon (UK)","symbol":"lb/gal (UK)","factor":99.7763726631017}];
+  const volumeUnits=[{"id":"m3","name":"cubic meter","symbol":"m³","factor":1},{"id":"L","name":"liter","symbol":"L","factor":0.001},{"id":"mL","name":"milliliter","symbol":"mL","factor":1e-06},{"id":"us-gal","name":"US gallon","symbol":"gal (US)","factor":0.003785411784},{"id":"uk-gal","name":"UK gallon","symbol":"gal (UK)","factor":0.00454609},{"id":"ft3","name":"cubic foot","symbol":"ft³","factor":0.028316846592000004},{"id":"yd3","name":"cubic yard","symbol":"yd³","factor":0.764554857984},{"id":"in3","name":"cubic inch","symbol":"in³","factor":1.6387064e-05},{"id":"cm3","name":"cubic centimeter","symbol":"cm³","factor":1e-06}];
+  const massUnits=[{"id":"kg","name":"kilogram","symbol":"kg","factor":1},{"id":"g","name":"gram","symbol":"g","factor":0.001},{"id":"mg","name":"milligram","symbol":"mg","factor":1e-06},{"id":"tonne","name":"metric ton","symbol":"t","factor":1000},{"id":"lb","name":"pound","symbol":"lb","factor":0.45359237},{"id":"oz","name":"ounce","symbol":"oz","factor":0.028349523125},{"id":"ct","name":"carat","symbol":"ct","factor":0.0002}];
+  const modes={density:{name:'Density',symbol:'ρ',input:'density',expression:'ρ = m / V'},volume:{name:'Volume',symbol:'V',input:'volume',expression:'V = m / ρ'},mass:{name:'Mass',symbol:'m',input:'mass',expression:'m = ρ × V'}};
+  let mode='density';
+  let lastResult=null;
+  const el=(suffix)=>root.querySelector('#calcpro-density-'+suffix);
+  const form=el('form');
+  const result=el('result');
+  const error=el('error');
+  const notice=el('notice');
+  const fields={density:el('input-density'),volume:el('input-volume'),mass:el('input-mass')};
+  const units={density:el('unit-density'),volume:el('unit-volume'),mass:el('unit-mass')};
+  const unitGroups={density:densityUnits,volume:volumeUnits,mass:massUnits};
+  const tabs=Array.from(root.querySelectorAll('[data-calcpro-density-mode]'));
+  function chosen(kind){return unitGroups[kind].find(u=>u.id===units[kind].value);}
+  function fmt(x){
+    if (Object.is(x,-0)||x===0) return '0';
+    const abs=Math.abs(x);
+    if (abs<0.000001 || abs>=1e12) return Number(x.toPrecision(9)).toExponential(6).replace(/(?:\.0+|(?<=\d)0+)e/,'e').replace('e+','e+');
+    return new Intl.NumberFormat('en-US',{useGrouping:abs>=10000,maximumSignificantDigits:10}).format(x);
+  }
+  function parseNumber(raw,label){
+    const v=raw.trim();
+    if (!v) throw new Error('Enter a value for '+label+'.');
+    let normalized=v;
+    if (v.includes(',')){
+      if(!/^\d{1,3}(?:,\d{3})+(?:\.\d*)?(?:e[+-]?\d+)?$/i.test(v))throw new Error('Enter a valid number for '+label+'.');
+      normalized=v.replace(/,/g,'');
+    }
+    if(!/^(?:\d+(?:\.\d*)?|\.\d+)(?:e[+-]?\d+)?$/i.test(normalized)) throw new Error('Enter a nonnegative number for '+label+'.');
+    const n=Number(normalized);
+    if(!Number.isFinite(n)) throw new Error(label+' is too large. Use a finite number.');
+    return n;
+  }
+  function invalidate(){
+    result.hidden=true;error.hidden=true;error.textContent='';lastResult=null;
+    Object.values(fields).forEach(f=>f.removeAttribute('aria-invalid'));
+  }
+  function selectMode(next,focus){
+    if(!modes[next]) return;
+    mode=next; invalidate(); notice.hidden=false;
+    for(const [kind,input] of Object.entries(fields)){
+      const target=(kind===mode);
+      input.hidden=target;
+      input.disabled=target;
+      el('question-'+kind).hidden=!target;
+      el('row-'+kind).classList.toggle('calcpro-density-target',target);
+      input.setAttribute('aria-required',String(!target));
+    }
+    el('fields').setAttribute('aria-labelledby','calcpro-density-tab-'+next);
+    for(const tab of tabs){
+      const active=tab.dataset.calcproDensityMode===mode;
+      tab.setAttribute('aria-selected',String(active));
+      tab.tabIndex=active?0:-1;
+      if(active && focus)tab.focus();
+    }
+  }
+  function showError(message,kind){
+    error.textContent=message;error.hidden=false;result.hidden=true;lastResult=null;
+    if(kind && fields[kind] && !fields[kind].disabled){ fields[kind].setAttribute('aria-invalid','true');fields[kind].focus(); }
+  }
+  function addStep(text,isLast){
+    const li=document.createElement('li');li.textContent=text;
+    if(isLast)li.className='calcpro-density-step-final';
+    el('steps').appendChild(li);
+  }
+  function calculate(){
+    invalidate();
+    const munit=chosen('mass'),vunit=chosen('volume'),dunit=chosen('density');
+    const values={};
+    for(const kind of ['density','volume','mass']){
+      if(kind===mode) continue;
+      try{values[kind]=parseNumber(fields[kind].value,modes[kind].name.toLowerCase());}
+      catch(err){showError(err.message,kind);return;}
+      if(values[kind]<0){showError('Enter a nonnegative value for '+kind+'.',kind);return;}
+    }
+    if(mode!=='volume' && values.volume===0){showError('Volume must be greater than zero because it is used as a divisor.','volume');return;}
+    if(mode==='volume' && values.density===0){showError('Density must be greater than zero to calculate volume.','density');return;}
+    const m=mode==='mass'?null:values.mass*munit.factor;
+    const v=mode==='volume'?null:values.volume*vunit.factor;
+    const d=mode==='density'?null:values.density*dunit.factor;
+    let answerSI;
+    if(mode==='density')answerSI=m/v;
+    else if(mode==='volume')answerSI=m/d;
+    else answerSI=d*v;
+    const targetUnit=chosen(mode);
+    const answer=answerSI/targetUnit.factor;
+    if(!Number.isFinite(answerSI)||!Number.isFinite(answer)||answer<0){showError('This combination of values is outside the supported numeric range.');return;}
+    const resultLabel=modes[mode].name+' ('+modes[mode].symbol+')';
+    el('summary-label').textContent=resultLabel+' = ';
+    el('summary-value').textContent=fmt(answer)+' '+targetUnit.name;
+    const ol=el('steps');ol.replaceChildren();
+    addStep(modes[mode].expression);
+    if(mode==='density'){
+      addStep('Mass = '+fmt(values.mass)+' '+munit.symbol+'; Volume = '+fmt(values.volume)+' '+vunit.symbol+'.');
+      addStep('Convert: '+fmt(m)+' kg ÷ '+fmt(v)+' m³ = '+fmt(answerSI)+' kg/m³.');
+    }else if(mode==='volume'){
+      addStep('Mass = '+fmt(values.mass)+' '+munit.symbol+'; Density = '+fmt(values.density)+' '+dunit.symbol+'.');
+      addStep('Convert: '+fmt(m)+' kg ÷ '+fmt(d)+' kg/m³ = '+fmt(answerSI)+' m³.');
+    }else{
+      addStep('Density = '+fmt(values.density)+' '+dunit.symbol+'; Volume = '+fmt(values.volume)+' '+vunit.symbol+'.');
+      addStep('Convert: '+fmt(d)+' kg/m³ × '+fmt(v)+' m³ = '+fmt(answerSI)+' kg.');
+    }
+    addStep('Result = '+fmt(answer)+' '+targetUnit.symbol+'.',true);
+    el('result-meta').textContent='Computed using SI units internally, then converted to the selected result unit.';
+    lastResult={name:resultLabel,value:answer,unit:targetUnit.symbol};
+    notice.hidden=true;result.hidden=false;
+  }
+  form.addEventListener('submit',function(ev){ev.preventDefault();calculate();});
+  tabs.forEach((tab,index)=>{
+    tab.addEventListener('click',()=>selectMode(tab.dataset.calcproDensityMode,false));
+    tab.addEventListener('keydown',ev=>{
+      if(!['ArrowRight','ArrowLeft','Home','End'].includes(ev.key))return;
+      ev.preventDefault();
+      let target=ev.key==='Home'?0:ev.key==='End'?tabs.length-1:(index+(ev.key==='ArrowRight'?1:-1)+tabs.length)%tabs.length;
+      selectMode(tabs[target].dataset.calcproDensityMode,true);
+    });
+  });
+  Object.values(fields).forEach(input=>input.addEventListener('input',invalidate));
+  Object.values(units).forEach(sel=>sel.addEventListener('change',invalidate));
+  el('clear').addEventListener('click',()=>{
+    for(const input of Object.values(fields))input.value='';
+    for(const unit of Object.values(units))unit.selectedIndex=0;
+    invalidate();notice.hidden=false;
+    const first=['density','volume','mass'].find(kind=>kind!==mode);
+    fields[first].focus();
+  });
+  el('print').addEventListener('click',()=>{if(lastResult)window.print();});
+  selectMode('density',false);
+})();
+</script></body></html>

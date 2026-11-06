@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>Average Calculator | CalcPro</title><meta content="Calculate the arithmetic mean, median, sum, count, geometric mean, smallest, largest, and range with steps." name="description"/><link href="template-style.css" rel="stylesheet"/><style>
+/* Average Calculator: all component rules are locally scoped. */
+.calcpro-average-tool{font:14px/1.42 Arial,Helvetica,sans-serif;color:#151515;max-width:100%;}
+.calcpro-average-tool *{box-sizing:border-box;}
+.calcpro-average-result[hidden],.calcpro-average-error[hidden]{display:none!important;}
+.calcpro-average-result{max-width:650px;margin:0 0 15px;}
+.calcpro-average-result-heading{background:#4c8425;color:#fff;display:flex;align-items:center;justify-content:space-between;padding:5px 8px;min-height:31px;font-weight:700;font-size:16px;}
+.calcpro-average-save{background:transparent;border:0;color:#fff;display:inline-flex;flex-direction:column;gap:0;align-items:center;justify-content:center;cursor:pointer;font:700 9px/1 Arial,Helvetica,sans-serif;padding:1px 3px;min-width:35px;}
+.calcpro-average-save svg{display:block;width:15px;height:15px;fill:currentColor;}
+.calcpro-average-save:hover,.calcpro-average-save:focus-visible{background:rgba(255,255,255,.16);}
+.calcpro-average-result-main{padding:9px 0 4px;}
+.calcpro-average-lead{margin:0 0 14px;font-size:16px;line-height:1.45;}
+.calcpro-average-value{color:green;font-weight:700;overflow-wrap:anywhere;}
+.calcpro-average-equation{font-size:13px;margin:13px 0 15px;line-height:1.2;}
+.calcpro-average-eq-row{display:flex;align-items:center;gap:8px;min-height:21px;}
+.calcpro-average-eq-prefix{width:70px;flex:none;text-align:right;}
+.calcpro-average-fraction{display:inline-flex;flex-direction:column;min-width:36px;align-items:center;line-height:1.15;max-width:100%;}
+.calcpro-average-fraction-top{border-bottom:1px solid currentColor;width:100%;text-align:center;padding:0 3px 2px;overflow-wrap:anywhere;}
+.calcpro-average-fraction-bottom{text-align:center;padding-top:2px;}
+.calcpro-average-eq-final{font-weight:400;overflow-wrap:anywhere;}
+.calcpro-average-summary-table{border-collapse:collapse;font-size:13px;line-height:1.12;width:245px;max-width:100%;table-layout:fixed;margin:0 0 8px;}
+.calcpro-average-summary-table th,.calcpro-average-summary-table td{border:1px solid #c9c9c9;padding:3px 5px;text-align:left;vertical-align:top;font-weight:400;overflow-wrap:anywhere;}
+.calcpro-average-summary-table th{width:48%;}
+.calcpro-average-summary-table tr:nth-child(odd){background:#ededed;}
+.calcpro-average-summary-table tr:nth-child(even){background:#fff;}
+.calcpro-average-form{margin:0 auto;width:min(100%,464px);padding:6px;background:#ededed;border:1px solid #c2c2c2;}
+.calcpro-average-numbers{display:block;width:100%;min-height:55px;padding:7px 8px;border:1px solid #888;resize:vertical;background:#fff;color:#111;font:13px/1.4 Arial,Helvetica,sans-serif;border-radius:0;}
+.calcpro-average-numbers:focus{outline:2px solid #336699;outline-offset:1px;}
+.calcpro-average-actions{display:flex;justify-content:center;align-items:center;gap:4px;margin:15px 0 0;}
+.calcpro-average-action{border:0;color:white;border-radius:0;font:bold 12px/1.2 Arial,Helvetica,sans-serif;min-height:29px;cursor:pointer;padding:7px 11px;}
+.calcpro-average-calculate{background:#4c8425;display:flex;align-items:center;gap:10px;}
+.calcpro-average-calculate:hover{background:#3e711e;}
+.calcpro-average-clear{background:#999;}
+.calcpro-average-clear:hover{background:#777;}
+.calcpro-average-play{display:inline-grid;place-items:center;width:15px;height:15px;border-radius:50%;background:#a1cfa1;color:#fff;font-size:10px;line-height:1;}
+.calcpro-average-error{max-width:650px;margin:0 0 13px;border:1px solid #c05353;background:#fff5f5;color:#8a1d1d;padding:9px 11px;font-size:13px;}
+.calcpro-average-hint{font-size:12px;color:#555;margin:8px auto 0;width:min(100%,464px);text-align:left;}
+.calcpro-average-sr-only{position:absolute;clip:rect(0 0 0 0);clip-path:inset(50%);width:1px;height:1px;overflow:hidden;white-space:nowrap;}
+@media (max-width:520px){
+  .calcpro-average-result{margin-bottom:13px;}
+  .calcpro-average-result-heading{font-size:15px;}
+  .calcpro-average-eq-prefix{width:66px;}
+  .calcpro-average-form{width:100%;}
+  .calcpro-average-summary-table{width:100%;max-width:260px;}
+}
+@media print{
+  .calcpro-average-actions,.calcpro-average-save,.calcpro-average-hint{display:none!important;}
+  .calcpro-average-result-heading{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+}
+</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/math-calculator/">Math</a> / Average Calculator</nav><h1 class="cp-page-title">Average Calculator</h1><p class="cp-intro">Please provide numbers separated by a comma to calculate the average of the numbers.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-average-tool" id="calcpro-average-tool">
+  <section class="calcpro-average-result" id="calcpro-average-result" aria-label="Average calculation results" aria-live="polite" hidden>
+    <div class="calcpro-average-result-heading"><span>Result</span>
+      <button type="button" class="calcpro-average-save" id="calcpro-average-save" title="Save results as a text file" aria-label="Save results as a text file">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h15l3 3v15H3V3zm3 2v6h11V5h-2v5H8V5H6zm0 9v5h12v-5H6z"/></svg><span>SAVE</span>
+      </button>
+    </div>
+    <div class="calcpro-average-result-main">
+      <p class="calcpro-average-lead">Average: <span class="calcpro-average-value" id="calcpro-average-mean"></span></p>
+      <div class="calcpro-average-equation" aria-label="Average calculation steps">
+        <div class="calcpro-average-eq-row"><span class="calcpro-average-eq-prefix">Average =</span><span class="calcpro-average-fraction"><span class="calcpro-average-fraction-top">Sum</span><span class="calcpro-average-fraction-bottom">Count</span></span></div>
+        <div class="calcpro-average-eq-row"><span class="calcpro-average-eq-prefix">=</span><span class="calcpro-average-fraction"><span class="calcpro-average-fraction-top" id="calcpro-average-eq-sum"></span><span class="calcpro-average-fraction-bottom" id="calcpro-average-eq-count"></span></span></div>
+        <div class="calcpro-average-eq-row"><span class="calcpro-average-eq-prefix">=</span><span class="calcpro-average-eq-final" id="calcpro-average-eq-answer"></span></div>
+      </div>
+      <table class="calcpro-average-summary-table" aria-label="Calculated descriptive statistics">
+        <tbody>
+          <tr><th scope="row">Sum</th><td id="calcpro-average-stat-sum"></td></tr>
+          <tr><th scope="row">Count</th><td id="calcpro-average-stat-count"></td></tr>
+          <tr><th scope="row">Median</th><td id="calcpro-average-stat-median"></td></tr>
+          <tr><th scope="row">Geometric Mean</th><td id="calcpro-average-stat-geometric"></td></tr>
+          <tr><th scope="row">Largest</th><td id="calcpro-average-stat-largest"></td></tr>
+          <tr><th scope="row">Smallest</th><td id="calcpro-average-stat-smallest"></td></tr>
+          <tr><th scope="row">Range</th><td id="calcpro-average-stat-range"></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+  <div class="calcpro-average-error" id="calcpro-average-error" role="alert" hidden></div>
+  <form id="calcpro-average-form" class="calcpro-average-form" novalidate>
+    <label for="calcpro-average-numbers" class="calcpro-average-sr-only">Numbers to average, separated by commas</label>
+    <textarea id="calcpro-average-numbers" class="calcpro-average-numbers" name="numbers" rows="3" spellcheck="false" aria-describedby="calcpro-average-help">10, 2, 38, 23, 38, 23, 21</textarea>
+    <div class="calcpro-average-actions">
+      <button type="submit" class="calcpro-average-action calcpro-average-calculate">Calculate <span class="calcpro-average-play" aria-hidden="true">▶</span></button>
+      <button type="button" class="calcpro-average-action calcpro-average-clear" id="calcpro-average-clear">Clear</button>
+    </div>
+  </form>
+  <p class="calcpro-average-hint" id="calcpro-average-help">Separate numbers with commas, spaces, or line breaks. Decimals and negative numbers are supported.</p>
+</div></section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><a href="standard-deviation-calculator.html">Standard Deviation Calculator</a><a href="sample-size-calculator.html">Sample Size Calculator</a><a href="mean-median-mode-range-calculator.html">Mean, Median, Mode &amp; Range</a><a href="statistics-calculator.html">Statistics Calculator</a></div></section></aside><article class="cp-article"><h2>How to Use the Average Calculator</h2>
+<p>Enter a list of numbers in the calculator above, separating values with commas, spaces, or line breaks. Click <strong>Calculate</strong> to display the arithmetic average and its step-by-step calculation. Edit the numbers and calculate again, or select <strong>Clear</strong> to empty the form. The <strong>Save</strong> control downloads your current results as a plain-text file.</p>
+<h2>Average Formula</h2>
+<p>The arithmetic mean (often called the average) is the sum of all values divided by the number of values. Each observation is weighted equally:</p>
+<p><strong>Average = (x₁ + x₂ + ... + xₙ) / n = Sum / Count</strong></p>
+<h3>Worked Example</h3>
+<p>For the seven numbers <strong>10, 2, 38, 23, 38, 23, 21</strong>, the sum is <strong>155</strong> and the count is <strong>7</strong>. The average is <strong>155 ÷ 7 = 22.142857142857</strong> (shown to about 14 significant digits). The median is <strong>23</strong>, the smallest value is <strong>2</strong>, the largest is <strong>38</strong>, and the range is <strong>36</strong>.</p>
+<h2>Understanding the Results</h2>
+<div class="cp-table-scroll"><table class="cp-content-table"><thead><tr><th>Result</th><th>What it means</th></tr></thead><tbody>
+<tr><td>Average</td><td>The arithmetic mean: sum divided by count.</td></tr>
+<tr><td>Sum and Count</td><td>The total of the numbers and how many numbers you entered.</td></tr>
+<tr><td>Median</td><td>The middle sorted value, or the average of the two middle values when the count is even.</td></tr>
+<tr><td>Geometric Mean</td><td>The n-th root of the product. For positive inputs, the tool uses logarithms for better numerical stability. Zero produces zero; inputs containing negative values are flagged as not defined under the usual nonnegative-data convention.</td></tr>
+<tr><td>Largest, Smallest, Range</td><td>The maximum value, the minimum value, and their difference (largest minus smallest).</td></tr>
+</tbody></table></div>
+<h2>Frequently Asked Questions</h2>
+<h3>Is the average the same as the median?</h3><p>No. The average depends on the sum of every value; the median depends on their sorted positions. Very large or small values can pull the average away from the median.</p>
+<h3>Can I use negative numbers and decimals?</h3><p>Yes. For example, entering <strong>-3, 0, 1.5, 5.5</strong> gives an average of <strong>1</strong>. The conventional geometric mean is not shown for a data set with negative values.</p>
+<h3>Does this calculator include weighted averages?</h3><p>No. Each entered value contributes equally to the arithmetic mean. A weighted average requires a weight for each value.</p>
+<h3>Why does the answer have several decimal places?</h3><p>Some divisions create repeating decimals. The calculator displays up to approximately 14 significant digits, so long answers are rounded for readability.</p>
+<h2>Sources and Further Reading</h2><p>For the definitions of arithmetic mean and median, see the <a href="https://www.itl.nist.gov/div898/handbook/eda/section3/eda351.htm" target="_blank" rel="noopener noreferrer">NIST/SEMATECH Engineering Statistics Handbook: Measures of Location</a>. For the geometric mean definition, see <a href="https://www.itl.nist.gov/div898/software/dataplot/refman2/auxillar/geommean.htm" target="_blank" rel="noopener noreferrer">NIST Dataplot: Geometric Mean</a>.</p>
+<p class="cp-page-footer">CalcPro — calculations are for educational and informational use.</p></article></main></div><script>
+(() => {
+  'use strict';
+  const root = document.getElementById('calcpro-average-tool');
+  if (!root) return;
+  const byId = (suffix) => root.querySelector('#calcpro-average-' + suffix);
+  const form = byId('form');
+  const input = byId('numbers');
+  const panel = byId('result');
+  const errorBox = byId('error');
+  const clearButton = byId('clear');
+  const saveButton = byId('save');
+  let lastCalculation = null;
+
+  // Limit long decimal output to 14 significant digits, as in the reference example.
+  function formatNumber(number) {
+    if (!Number.isFinite(number)) return 'Not available';
+    if (Object.is(number, -0) || number === 0) return '0';
+    return Number(number.toPrecision(14)).toString();
+  }
+  function parseNumbers(rawText) {
+    const text = rawText.trim();
+    if (!text) throw new Error('Please enter at least one number.');
+    const parts = text.split(/[,;\s]+/).filter(Boolean);
+    if (parts.length > 10000) throw new Error('Please enter no more than 10,000 numbers at once.');
+    const pattern = /^[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+)?$/;
+    return parts.map((part, i) => {
+      if (!pattern.test(part)) throw new Error('Invalid number at position ' + (i + 1) + ': "' + part.slice(0, 25) + '". Use numbers separated by commas.');
+      const value = Number(part);
+      if (!Number.isFinite(value)) throw new Error('Number ' + (i + 1) + ' is outside the supported numeric range.');
+      return value;
+    });
+  }
+  function sumCompensated(values) {
+    // Neumaier compensated summation minimizes avoidable decimal round-off.
+    let sum = 0, correction = 0;
+    for (const x of values) {
+      const next = sum + x;
+      correction += Math.abs(sum) >= Math.abs(x) ? (sum - next) + x : (x - next) + sum;
+      sum = next;
+    }
+    return sum + correction;
+  }
+  function calculate(values) {
+    const count = values.length;
+    const sum = sumCompensated(values);
+    if (!Number.isFinite(sum)) throw new Error('The sum is outside the supported numeric range. Try smaller values.');
+    const sorted = [...values].sort((a, b) => a - b);
+    const median = count % 2 ? sorted[(count - 1) / 2] : sorted[count / 2 - 1] / 2 + sorted[count / 2] / 2;
+    const smallest = sorted[0];
+    const largest = sorted[count - 1];
+    const range = largest - smallest;
+    const mean = sum / count;
+    if (!Number.isFinite(range) || !Number.isFinite(mean)) throw new Error('These values exceed the supported calculation range.');
+    let geometric;
+    if (values.some(v => v < 0)) {
+      geometric = 'Not defined (negative values)';
+    } else if (values.some(v => v === 0)) {
+      geometric = '0';
+    } else {
+      const logMean = sumCompensated(values.map(Math.log)) / count;
+      geometric = formatNumber(Math.exp(logMean));
+    }
+    return { count, sum: formatNumber(sum), mean: formatNumber(mean), median: formatNumber(median),
+      geometric, largest: formatNumber(largest), smallest: formatNumber(smallest), range: formatNumber(range) };
+  }
+  function setText(id, value) { byId(id).textContent = value; }
+  function hideError() { errorBox.hidden = true; errorBox.textContent = ''; input.removeAttribute('aria-invalid'); }
+  function showError(message) {
+    lastCalculation = null;
+    panel.hidden = true;
+    errorBox.textContent = message;
+    errorBox.hidden = false;
+    input.setAttribute('aria-invalid', 'true');
+  }
+  function drawResult(stats) {
+    setText('mean', stats.mean);
+    setText('eq-sum', stats.sum);
+    setText('eq-count', String(stats.count));
+    setText('eq-answer', stats.mean);
+    for (const key of ['sum', 'count', 'median', 'geometric', 'largest', 'smallest', 'range']) {
+      setText('stat-' + key, String(stats[key]));
+    }
+    panel.hidden = false;
+  }
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    hideError();
+    try {
+      const values = parseNumbers(input.value);
+      const stats = calculate(values);
+      lastCalculation = { input: input.value, stats };
+      drawResult(stats);
+    } catch (error) { showError(error.message || 'Unable to calculate the average.'); }
+  });
+  clearButton.addEventListener('click', () => {
+    input.value = '';
+    lastCalculation = null;
+    panel.hidden = true;
+    hideError();
+    input.focus();
+  });
+  input.addEventListener('input', () => {
+    // Do not show stale results for input that has not yet been calculated.
+    if (lastCalculation && input.value !== lastCalculation.input) {
+      panel.hidden = true;
+      lastCalculation = null;
+    }
+    hideError();
+  });
+  saveButton.addEventListener('click', () => {
+    if (!lastCalculation) return;
+    const s = lastCalculation.stats;
+    const lines = [
+      'CalcPro Average Calculator',
+      'Input: ' + lastCalculation.input,
+      '',
+      'Average: ' + s.mean,
+      'Average = ' + s.sum + ' / ' + s.count + ' = ' + s.mean,
+      'Sum: ' + s.sum,
+      'Count: ' + s.count,
+      'Median: ' + s.median,
+      'Geometric Mean: ' + s.geometric,
+      'Largest: ' + s.largest,
+      'Smallest: ' + s.smallest,
+      'Range: ' + s.range,
+      '',
+      'Generated locally in your browser.'
+    ];
+    const file = new Blob([lines.join('\n')], { type: 'text/plain;charset=utf-8' });
+    const url = URL.createObjectURL(file);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'average-calculation.txt';
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 2000);
+  });
+})();
+</script></body></html>

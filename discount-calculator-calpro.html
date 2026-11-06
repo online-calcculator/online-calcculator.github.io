@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>Discount Calculator | CalcPro</title><meta content="Calculate discount percentage, sale price, original price, or savings from any two values with this free discount calculator." name="description"/><link href="template-style.css" rel="stylesheet"/><style>
+/* Discount Calculator only: all selectors scoped to the tool root. */
+.calcpro-discount{width:100%;max-width:630px;font:13px/1.4 Arial,Helvetica,sans-serif;color:#111;text-align:left}
+.calcpro-discount [hidden]{display:none!important}
+.calcpro-discount .calcpro-discount-result{margin:0 0 10px}
+.calcpro-discount .calcpro-discount-result-header{display:flex;align-items:center;justify-content:space-between;min-height:32px;background:#518428;color:#fff;padding:3px 8px;font-size:18px;font-weight:700}
+.calcpro-discount .calcpro-discount-save{display:inline-flex;align-items:center;gap:4px;background:none;border:0;color:#fff;cursor:pointer;font:11px Arial,Helvetica,sans-serif;padding:3px 5px;border-radius:2px}
+.calcpro-discount .calcpro-discount-save:hover,.calcpro-discount .calcpro-discount-save:focus-visible{background:#3b681c}
+.calcpro-discount .calcpro-discount-result-body{padding:8px 0 3px}
+.calcpro-discount .calcpro-discount-result-context{font-size:13px;margin:0 0 2px}
+.calcpro-discount .calcpro-discount-result-line{font-size:17px;line-height:1.52;margin:0}
+.calcpro-discount .calcpro-discount-result-line strong{font-weight:700;color:#008000}
+.calcpro-discount .calcpro-discount-error{margin:0 0 10px;padding:9px 11px;border-left:4px solid #bd3d33;background:#fff3f1;color:#75241c;font-size:13px}
+.calcpro-discount .calcpro-discount-instruction{background:#336699;color:#fff;display:flex;align-items:center;justify-content:center;gap:12px;min-height:30px;margin:0 0 4px;padding:4px 9px;text-align:center;font-weight:700}
+.calcpro-discount .calcpro-discount-instruction-icon{width:19px;height:19px;flex:none;display:inline-flex;align-items:center;justify-content:center;border-radius:50%;background:#fff;color:#336699;font-size:17px;line-height:1}
+.calcpro-discount .calcpro-discount-panel{background:#eee;border:1px solid #bcbcbc;padding:7px 8px 6px;width:max-content;max-width:100%}
+.calcpro-discount .calcpro-discount-fields{display:grid;grid-template-columns:137px 105px;column-gap:4px;row-gap:4px;align-items:center}
+.calcpro-discount .calcpro-discount-fields>label{white-space:nowrap;font-size:13px}
+.calcpro-discount .calcpro-discount-value{display:flex;align-items:center;height:25px;width:105px;background:#fff;border:1px solid #326293;box-shadow:inset 0 0 0 1px #d9e6f0;color:#111}
+.calcpro-discount .calcpro-discount-value:focus-within{outline:2px solid #2c75ba;outline-offset:1px}
+.calcpro-discount .calcpro-discount-value.calcpro-discount-invalid{border-color:#c93535;box-shadow:inset 0 0 0 1px #c93535}
+.calcpro-discount .calcpro-discount-prefix,.calcpro-discount .calcpro-discount-suffix{font:13px Arial,Helvetica,sans-serif;color:#111;flex:none}
+.calcpro-discount .calcpro-discount-prefix{padding-left:4px}
+.calcpro-discount .calcpro-discount-suffix{padding-right:5px}
+.calcpro-discount .calcpro-discount-value input{min-width:0;width:100%;height:100%;font:13px Arial,Helvetica,sans-serif;border:0;border-radius:0;box-shadow:none;outline:0!important;background:transparent;padding:2px 3px;color:#111;appearance:none;-webkit-appearance:none}
+.calcpro-discount .calcpro-discount-radio-row{display:grid;grid-template-columns:94px 1fr;column-gap:4px;margin-top:7px;align-items:start}
+.calcpro-discount .calcpro-discount-radio-heading{font-size:13px;padding-top:1px}
+.calcpro-discount .calcpro-discount-radio-group{display:flex;flex-direction:column;gap:5px}
+.calcpro-discount .calcpro-discount-radio-choice{display:flex;align-items:center;gap:6px;white-space:nowrap;font-size:13px;cursor:pointer}
+.calcpro-discount .calcpro-discount-radio-choice input{appearance:auto;-webkit-appearance:radio;margin:0;accent-color:#336699;width:14px;height:14px;flex:none}
+.calcpro-discount .calcpro-discount-actions{display:flex;gap:4px;justify-content:center;align-items:center;margin-top:8px}
+.calcpro-discount .calcpro-discount-calculate{background:#518428;border:1px solid #518428;color:#fff;font:700 13px Arial,Helvetica,sans-serif;cursor:pointer;display:inline-flex;align-items:center;gap:9px;min-height:29px;padding:3px 8px 3px 11px}
+.calcpro-discount .calcpro-discount-go-icon{width:17px;height:17px;line-height:17px;border-radius:50%;text-align:center;background:#9cbd80;color:#fff;font-size:12px}
+.calcpro-discount .calcpro-discount-clear{background:#aaa;color:#fff;border:1px solid #aaa;cursor:pointer;font:700 13px Arial,Helvetica,sans-serif;padding:5px 7px;min-height:29px}
+.calcpro-discount .calcpro-discount-calculate:hover{background:#416d20;border-color:#416d20}
+.calcpro-discount .calcpro-discount-clear:hover{background:#888;border-color:#888}
+.calcpro-discount button:focus-visible,.calcpro-discount input:focus-visible{outline:2px solid #275f98;outline-offset:2px}
+@media(max-width:350px){.calcpro-discount .calcpro-discount-fields{grid-template-columns:128px 99px}.calcpro-discount .calcpro-discount-value{width:99px}.calcpro-discount .calcpro-discount-panel{padding:7px 6px}.calcpro-discount .calcpro-discount-fields>label{font-size:12px}.calcpro-discount .calcpro-discount-radio-choice{font-size:12px}}
+@media print{.calcpro-discount .calcpro-discount-instruction,.calcpro-discount .calcpro-discount-form,.calcpro-discount .calcpro-discount-save,.calcpro-discount .calcpro-discount-error{display:none!important}.calcpro-discount .calcpro-discount-result{display:block!important}.calcpro-discount .calcpro-discount-result-header{print-color-adjust:exact;-webkit-print-color-adjust:exact}}
+</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Discount Calculator</nav><h1 class="cp-page-title">Discount Calculator</h1><p class="cp-intro">Please provide any 2 values below to calculate.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-discount" id="calcpro-discount-tool">
+  <section class="calcpro-discount-result" id="calcpro-discount-result" aria-label="Discount calculation result" aria-live="polite" hidden>
+    <div class="calcpro-discount-result-header"><strong>Result</strong><button class="calcpro-discount-save" id="calcpro-discount-save" type="button" title="Print or save your result"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 7V3h14v4M5 17H3V9h18v8h-2M5 14h14v7H5z"/><path d="M17 11h.01"/></svg>Save</button></div>
+    <div class="calcpro-discount-result-body">
+      <p class="calcpro-discount-result-context" id="calcpro-discount-context"></p>
+      <p class="calcpro-discount-result-line">Price after discount: <strong id="calcpro-discount-out-after"></strong></p>
+      <p class="calcpro-discount-result-line">You saved: <strong id="calcpro-discount-out-saved"></strong></p>
+    </div>
+  </section>
+  <div class="calcpro-discount-error" id="calcpro-discount-error" role="alert" hidden></div>
+  <div class="calcpro-discount-instruction" id="calcpro-discount-instruction"><span class="calcpro-discount-instruction-icon" aria-hidden="true">▼</span><span>Modify the values and click the Calculate button to use</span></div>
+  <form class="calcpro-discount-form" id="calcpro-discount-form" novalidate autocomplete="off">
+    <div class="calcpro-discount-panel">
+      <div class="calcpro-discount-fields">
+        <label for="calcpro-discount-before">Price before discount</label>
+        <div class="calcpro-discount-value"><span class="calcpro-discount-prefix" aria-hidden="true">$</span><input id="calcpro-discount-before" name="before" type="text" inputmode="decimal" value="59.99" aria-label="Price before discount in dollars" spellcheck="false"></div>
+        <label for="calcpro-discount-discount">Discount</label>
+        <div class="calcpro-discount-value"><span class="calcpro-discount-prefix" id="calcpro-discount-prefix" aria-hidden="true" hidden>$</span><input id="calcpro-discount-discount" name="discount" type="text" inputmode="decimal" value="15" aria-label="Discount percentage" spellcheck="false"><span class="calcpro-discount-suffix" id="calcpro-discount-suffix" aria-hidden="true">%</span></div>
+        <label for="calcpro-discount-after">Price after discount</label>
+        <div class="calcpro-discount-value"><span class="calcpro-discount-prefix" aria-hidden="true">$</span><input id="calcpro-discount-after" name="after" type="text" inputmode="decimal" value="" aria-label="Price after discount in dollars" spellcheck="false"></div>
+        <label for="calcpro-discount-saved" id="calcpro-discount-saved-label">You saved</label>
+        <div class="calcpro-discount-value" id="calcpro-discount-saved-wrap"><span class="calcpro-discount-prefix" aria-hidden="true">$</span><input id="calcpro-discount-saved" name="saved" type="text" inputmode="decimal" value="" aria-label="Amount saved in dollars" spellcheck="false"></div>
+      </div>
+      <div class="calcpro-discount-radio-row" role="group" aria-label="Discount type">
+        <span class="calcpro-discount-radio-heading">Discount type</span>
+        <div class="calcpro-discount-radio-group">
+          <label class="calcpro-discount-radio-choice"><input type="radio" name="discount-type" value="percent" checked>Percent off</label>
+          <label class="calcpro-discount-radio-choice"><input type="radio" name="discount-type" value="fixed">Fixed amount off</label>
+        </div>
+      </div>
+      <div class="calcpro-discount-actions"><button type="submit" class="calcpro-discount-calculate">Calculate <span class="calcpro-discount-go-icon" aria-hidden="true">▶</span></button><button type="button" class="calcpro-discount-clear" id="calcpro-discount-clear">Clear</button></div>
+    </div>
+  </form>
+</div></section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><!-- REPLACE these links with real related tools for each calculator; verify live slugs. --><a href="retirement-calculator.html">Retirement</a><a href="roth-ira-calculator.html">Roth IRA</a><a href="investment-calculator.html">Investment</a><a href="compound-interest-calculator.html">Compound Interest</a><a href="annuity-payout-calculator.html">Annuity Payout</a><a href="pension-calculator.html">Pension</a><a href="inflation-calculator.html">Inflation</a><a href="future-value-calculator.html">Future Value</a><a href="income-tax-calculator.html">Income Tax</a><a href="savings-calculator.html">Savings</a><a href="mortgage-calculator.html">Mortgage</a><a href="loan-calculator.html">Loan</a></div></section></aside><article class="cp-article"><h2>How to Use the Discount Calculator</h2>
+<p>Enter any two known values and leave the remaining fields empty. Choose <strong>Percent off</strong> for a percentage discount or <strong>Fixed amount off</strong> for a dollar reduction. Select <strong>Calculate</strong> to see the sale price and your savings directly above the form. You can also use any two known values to find the original price or discount. Select <strong>Clear</strong> to start a new calculation.</p>
+<h2>Discount Calculator Formulas</h2>
+<h3>Percentage Discounts</h3>
+<p>For original price <strong>P</strong> and percentage discount <strong>r</strong>:</p>
+<ul><li><strong>Amount saved</strong> = P × (r ÷ 100)</li><li><strong>Price after discount</strong> = P − amount saved = P × (1 − r ÷ 100)</li><li><strong>Original price</strong> = final price ÷ (1 − r ÷ 100), provided r is less than 100%</li><li><strong>Discount percentage</strong> = (amount saved ÷ original price) × 100, for an original price greater than zero</li></ul>
+<h3>Fixed-Amount Discounts</h3>
+<p>For a fixed dollar discount <strong>D</strong>: <strong>final price = original price − D</strong>. Conversely, original price = final price + D, and D = original price − final price.</p>
+<h2>Worked Examples</h2>
+<p><strong>15% off $59.99:</strong> The unrounded saving is $59.99 × 0.15 = $8.9985, shown as <strong>$9.00</strong>. The final price is $59.99 − $8.9985 = $50.9915, shown as <strong>$50.99</strong>.</p>
+<p><strong>$20 off $95:</strong> Select Fixed amount off, enter 95 as the original price and 20 as the discount. The final price is <strong>$75.00</strong>, and the saving is <strong>$20.00</strong>.</p>
+<h2>Understanding the Results</h2>
+<p>The result shows the price to pay after the discount and the amount saved. Dollar amounts are displayed to two decimal places; calculations retain precision until the final display. Sales tax, shipping, coupon exclusions, and successive/stacked discounts are not included automatically.</p>
+<h2>Frequently Asked Questions</h2>
+<h3>Can I calculate an unknown original price?</h3>
+<p>Yes. In percentage mode, provide the percentage discount and final price. For example, a $75 final price after 25% off implies a $100 original price. A 100% discount with only the final price does not uniquely determine the original price.</p>
+<h3>How do I calculate a discount rate from two prices?</h3>
+<p>Enter the original and final prices and leave the discount field empty. The calculator uses (original price − final price) ÷ original price × 100.</p>
+<h3>Why does the calculator request exactly two values?</h3>
+<p>These discount formulas solve the remaining fields from two independent known values. Clearing the other fields avoids conflicting or ambiguous inputs. Some combinations involving all-zero prices or 0%/100% discounts cannot produce a unique answer, and the calculator explains those cases.</p>
+<h3>Does this calculator include sales tax?</h3>
+<p>No. The amounts shown are pre-tax unless the entered amounts already include tax.</p>
+<h2>Reference</h2>
+<p>For background examples of percentage and fixed-amount discounts, see <a href="https://www.calculator.net/discount-calculator.html" rel="noopener noreferrer">Calculator.net's Discount Calculator</a>.</p><p class="cp-page-footer">CalcPro — calculator estimates are for informational purposes.</p></article></main></div><script>
+(() => {
+  'use strict';
+  const root = document.getElementById('calcpro-discount-tool');
+  if (!root) return;
+  const get = (id) => root.querySelector('#calcpro-discount-' + id);
+  const form = get('form');
+  const fields = { before:get('before'), discount:get('discount'), after:get('after'), saved:get('saved') };
+  const result = get('result');
+  const instruction = get('instruction');
+  const error = get('error');
+  const moneyFormat = new Intl.NumberFormat('en-US', {minimumFractionDigits:2,maximumFractionDigits:2});
+  const percentFormat = new Intl.NumberFormat('en-US', {maximumFractionDigits:6});
+  const money = (value) => '$' + moneyFormat.format(Math.abs(value) < 1e-10 ? 0 : value);
+  const rate = (value) => percentFormat.format(Math.abs(value) < 1e-10 ? 0 : value) + '%';
+  const mode = () => form.querySelector('input[name="discount-type"]:checked').value;
+  // Pure solver: every pair of independent values in either discount mode.
+  function solve(v, type) {
+    let {before:b,discount:d,after:a,saved:s} = v;
+    const has = (x) => x !== null;
+    const eq = (x) => Math.abs(x) <= 1e-10;
+    if (type === 'fixed') {
+      if (has(b) && has(d)) { s = d; a = b - d; }
+      else if (has(b) && has(a)) { d = b - a; s = d; }
+      else if (has(d) && has(a)) { b = a + d; s = d; }
+    } else {
+      if (has(b) && has(d)) { s = b * (d / 100); a = b - s; }
+      else if (has(b) && has(a)) {
+        s = b - a;
+        if (eq(b)) throw Error('A percentage cannot be uniquely calculated when both the original and final prices are zero. Enter the discount percentage instead.');
+        d = (s / b) * 100;
+      } else if (has(b) && has(s)) {
+        a = b - s;
+        if (eq(b)) throw Error('A percentage cannot be uniquely calculated when the original price and savings are zero. Enter the discount percentage instead.');
+        d = (s / b) * 100;
+      } else if (has(d) && has(a)) {
+        if (eq(100 - d)) throw Error('A 100% discount and a final price do not uniquely determine the original price. Enter the original price or the amount saved instead.');
+        b = a / (1 - d / 100);
+        s = b - a;
+      } else if (has(d) && has(s)) {
+        if (eq(d)) throw Error('A 0% discount and an amount saved do not uniquely determine the original price. Enter the original price or final price instead.');
+        b = s / (d / 100);
+        a = b - s;
+      } else if (has(a) && has(s)) {
+        b = a + s;
+        if (eq(b)) throw Error('A percentage cannot be uniquely calculated when the final price and savings are both zero. Enter the original price and a discount percentage instead.');
+        d = (s / b) * 100;
+      }
+    }
+    const nums = [b,d,a,s];
+    if (nums.some((n) => n === null || !Number.isFinite(n))) throw Error('These two values do not produce a finite result. Please check your entries.');
+    if (b < -1e-7 || a < -1e-7 || s < -1e-7 || d < -1e-7 || (type === 'percent' && d > 100 + 1e-7)) {
+      throw Error('The final price and savings cannot be negative or exceed the original price. Enter a valid discount from 0 to 100%, or a fixed discount no larger than the original price.');
+    }
+    if ([b,a,s].some((n) => n > 1e12)) throw Error('Please enter an amount of no more than $1 trillion.');
+    return { before:Math.max(0,b), discount:Math.max(0,d), after:Math.max(0,a), saved:Math.max(0,s) };
+  }
+  function parseField(input, kind) {
+    let raw = input.value.trim();
+    if (!raw) return null;
+    if (kind === 'percent') raw = raw.replace(/%\s*$/, '').trim();
+    else raw = raw.replace(/^\$\s*/, '').trim();
+    // Valid examples: 12, 12.5, .75, 1,234.56. Invalid: 1,2,3, 5e3, 1-2.
+    if (raw.startsWith('-')) throw Error('Enter non-negative numbers only.');
+    if (!/^(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d*)?$|^\.\d+$/.test(raw)) {
+      throw Error('Please enter valid numeric values (for example: 59.99, 15, or 1,250.50).');
+    }
+    const n = Number(raw.replaceAll(',', ''));
+    if (!Number.isFinite(n) || n < 0) throw Error('Enter non-negative, finite numbers only.');
+    if (kind === 'percent' && n > 100) throw Error('The percentage discount must be between 0% and 100%.');
+    if (kind !== 'percent' && n > 1e12) throw Error('Prices and savings must be no more than $1 trillion.');
+    return n;
+  }
+  function markInvalid(input) {
+    input.setAttribute('aria-invalid', 'true');
+    input.parentElement.classList.add('calcpro-discount-invalid');
+  }
+  function clearInvalid() {
+    Object.values(fields).forEach((input) => {
+      input.removeAttribute('aria-invalid');
+      input.parentElement.classList.remove('calcpro-discount-invalid');
+    });
+  }
+  function showError(message) {
+    result.hidden = true;
+    instruction.hidden = false;
+    error.textContent = message;
+    error.hidden = false;
+  }
+  function displayType() {
+    const fixed = mode() === 'fixed';
+    get('prefix').hidden = !fixed;
+    get('suffix').hidden = fixed;
+    get('saved-label').hidden = fixed;
+    get('saved-wrap').hidden = fixed;
+    fields.saved.disabled = fixed;
+    fields.discount.setAttribute('aria-label', fixed ? 'Fixed discount in dollars' : 'Discount percentage');
+    clearInvalid();
+    error.hidden = true;
+    result.hidden = true;
+    instruction.hidden = false;
+  }
+  form.addEventListener('change', (event) => {
+    if (event.target.matches('input[type="radio"]')) displayType();
+  });
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    clearInvalid();
+    error.hidden = true;
+    const type = mode();
+    const values = {before:null,discount:null,after:null,saved:null};
+    const active = type === 'percent' ? ['before','discount','after','saved'] : ['before','discount','after'];
+    let bad = false;
+    for (const name of active) {
+      try { values[name] = parseField(fields[name], name === 'discount' && type === 'percent' ? 'percent' : 'money'); }
+      catch (e) { bad = true; markInvalid(fields[name]); error.textContent = e.message; }
+    }
+    if (bad) {showError(error.textContent);return;}
+    const count = active.filter((name) => values[name] !== null).length;
+    if (count !== 2) {
+      showError('Please provide exactly two values and leave the other ' + (type === 'percent' ? 'two fields' : 'field') + ' blank.');
+      return;
+    }
+    try {
+      const computed = solve(values,type);
+      const discountText = type === 'percent' ? rate(computed.discount) : money(computed.discount) + ' fixed';
+      get('context').textContent = 'With original price ' + money(computed.before) + ' and ' + discountText + ' discount,';
+      get('out-after').textContent = money(computed.after);
+      get('out-saved').textContent = money(computed.saved);
+      result.hidden = false;
+      instruction.hidden = true;
+      error.hidden = true;
+    } catch (e) {showError(e.message);}
+  });
+  get('clear').addEventListener('click', () => {
+    Object.values(fields).forEach((input) => {input.value = '';});
+    form.querySelector('input[value="percent"]').checked = true;
+    displayType();
+    fields.before.focus();
+  });
+  get('save').addEventListener('click', () => window.print());
+  // Expose a non-global, element-scoped solver for deterministic browser QA.
+  root.calcproDiscountSolve = solve;
+  displayType();
+})();
+</script></body></html>

@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>Amortization Calculator | CalcPro</title><meta content="Estimate fixed-rate loan monthly payments, explore annual and monthly amortization schedules, charts, and the impact of extra principal repayments." name="description"/><link href="template-style.css" rel="stylesheet"/><style>
+/* Amortization calculator: all presentation is scoped to this tool only. */
+.calcpro-amort-root{--calcpro-amort-navy:#003366;--calcpro-amort-blue:#336699;--calcpro-amort-green:#418521;--calcpro-amort-lime:#85bc16;--calcpro-amort-line:#cccccc;font:13px/1.35 Arial,Helvetica,sans-serif;color:#111;max-width:728px;width:100%;margin:0 auto;}
+.calcpro-amort-root,.calcpro-amort-root *{box-sizing:border-box;}
+.calcpro-amort-root button,.calcpro-amort-root input,.calcpro-amort-root select{font:inherit;}
+.calcpro-amort-root button{cursor:pointer;}
+.calcpro-amort-root button:focus-visible,.calcpro-amort-root input:focus-visible,.calcpro-amort-root select:focus-visible{outline:2px solid #3273bb;outline-offset:2px;}
+.calcpro-amort-root [hidden]{display:none!important;}
+.calcpro-amort-utility{display:flex;justify-content:flex-end;gap:10px;margin:0 0 6px;}
+.calcpro-amort-text-button{background:none;border:0;color:#006699;text-decoration:underline;padding:0 1px;font-size:12px!important;}
+.calcpro-amort-banner{display:flex;align-items:center;gap:15px;justify-content:center;color:#fff;background:var(--calcpro-amort-blue);min-height:29px;font-size:12px;margin:0 0 8px;padding:4px 10px;font-weight:bold;}
+.calcpro-amort-banner-icon{display:inline-grid;place-items:center;background:#fff;color:#336699;border-radius:50%;font-size:11px;width:17px;height:17px;line-height:1;}
+.calcpro-amort-top{display:grid;grid-template-columns:minmax(240px,0.94fr) minmax(270px,1.06fr);gap:22px;align-items:start;}
+.calcpro-amort-form{background:#ececec;border:1px solid #bcbcbc;padding:9px 9px 10px;min-width:0;}
+.calcpro-amort-field{display:grid;grid-template-columns:94px minmax(0,1fr);align-items:center;gap:5px;margin:0 0 6px;}
+.calcpro-amort-field>label,.calcpro-amort-label{font-size:12px;white-space:nowrap;}
+.calcpro-amort-input-shell{position:relative;min-width:0;}
+.calcpro-amort-input-shell input{display:block;min-width:0;width:100%;border:1px solid #366190;border-radius:0;background:#fff;padding:4px 19px 4px 5px;height:28px;color:#111;}
+.calcpro-amort-input-shell.calcpro-amort-dollar input{padding-left:18px;padding-right:5px;}
+.calcpro-amort-input-shell.calcpro-amort-dollar::before{content:'$';position:absolute;left:7px;top:5px;color:#333;pointer-events:none;}
+.calcpro-amort-input-shell.calcpro-amort-percent::after{content:'%';position:absolute;right:7px;top:5px;color:#333;pointer-events:none;}
+.calcpro-amort-term{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:4px;}
+.calcpro-amort-suffixed{position:relative;min-width:0;}
+.calcpro-amort-suffixed input{width:100%;border:1px solid #366190;background:#fff;height:28px;padding:4px 44px 4px 5px;min-width:0;}
+.calcpro-amort-suffixed>span{position:absolute;right:4px;top:5px;color:#6a6a6a;font-size:11px;pointer-events:none;}
+.calcpro-amort-suffixed.calcpro-amort-suffixed-months input{padding-right:50px;}
+.calcpro-amort-option-label{display:flex;gap:7px;align-items:center;font-size:12px;font-weight:700;margin:10px 0 8px;cursor:pointer;}
+.calcpro-amort-option-label input{width:14px;height:14px;accent-color:#336699;margin:0;flex:none;}
+.calcpro-amort-extra-panel{background:#dedede;border:1px solid #c6c6c6;padding:10px 8px;margin:5px -2px 11px;}
+.calcpro-amort-extra-title{font-size:12px;font-weight:700;margin:9px 0 3px;}
+.calcpro-amort-extra-title:first-child{margin-top:0;}
+.calcpro-amort-date-row{display:flex;align-items:center;gap:4px;flex-wrap:wrap;}
+.calcpro-amort-extra-amount{border:1px solid #366190;background:#fff;width:100px;max-width:38%;height:26px;padding:3px 5px;}
+.calcpro-amort-month-select{border:1px solid #366190;background:#fff;height:26px;min-width:58px;padding:2px;}
+.calcpro-amort-year-input{border:1px solid #366190;background:#fff;height:26px;width:62px;padding:3px 5px;}
+.calcpro-amort-extra-link{display:inline-block;margin:8px 0 0;padding:1px 0;background:none;border:0;color:#006699;text-decoration:underline;font-size:12px!important;}
+.calcpro-amort-one-time-list{display:grid;gap:6px;border-top:1px solid #c5c5c5;margin-top:8px;padding-top:8px;}
+.calcpro-amort-one-time-item{display:flex;align-items:center;gap:4px;}
+.calcpro-amort-action-row{display:flex;justify-content:center;gap:5px;align-items:center;margin-top:9px;}
+.calcpro-amort-calculate{background:#438621;border:1px solid #438621;color:#fff;font-weight:700!important;padding:7px 14px;min-height:32px;}
+.calcpro-amort-calculate:hover{background:#316c15;}
+.calcpro-amort-play{display:inline-grid;place-items:center;margin-left:6px;background:#9fc68e;color:#fff;border-radius:50%;width:16px;height:16px;font-size:10px;vertical-align:1px;}
+.calcpro-amort-clear{background:#aaa;color:#fff;border:1px solid #aaa;padding:7px 10px;min-height:32px;}
+.calcpro-amort-clear:hover{background:#777;}
+.calcpro-amort-error{color:#8b1220;font-size:12px;font-weight:bold;margin:9px 0 0;line-height:1.4;}
+.calcpro-amort-root [aria-invalid=true]{border-color:#b82d2d!important;box-shadow:0 0 0 1px #b82d2d;}
+.calcpro-amort-results{min-width:0;}
+.calcpro-amort-headline{background:#418521;display:flex;justify-content:space-between;align-items:center;color:#fff;gap:6px;padding:5px 7px;font-size:19px;min-height:37px;}
+.calcpro-amort-payment-label{white-space:nowrap;}
+.calcpro-amort-payment-value{font-weight:400;white-space:nowrap;}
+.calcpro-amort-save{border:0;background:transparent;color:#fff;display:flex;align-items:center;flex-direction:column;line-height:1;padding:0 3px;font-size:9px!important;flex:none;min-width:29px;}
+.calcpro-amort-save svg{width:15px;height:15px;fill:currentColor;display:block;}
+.calcpro-amort-save:hover{text-decoration:underline;}
+.calcpro-amort-chart-row{display:flex;justify-content:center;align-items:center;gap:4px;min-height:99px;}
+.calcpro-amort-donut{width:103px;height:101px;flex:0 0 103px;overflow:visible;}
+.calcpro-amort-donut-caption{display:flex;flex-direction:column;font-size:12px;line-height:1.15;}
+.calcpro-amort-legend-item{white-space:nowrap;display:flex;align-items:center;gap:4px;}
+.calcpro-amort-legend-key{display:inline-block;width:15px;height:9px;border-radius:2px;flex:none;}
+.calcpro-amort-summary{border-collapse:collapse;width:100%;margin:4px 0 0;font-size:12px;line-height:1.25;}
+.calcpro-amort-summary td{border:1px solid #ccc;padding:3px 4px;}
+.calcpro-amort-summary td:last-child{text-align:right;white-space:nowrap;}
+.calcpro-amort-summary tr:nth-child(even) td{background:#fafafa;}
+.calcpro-amort-summary-label{white-space:normal;}
+.calcpro-amort-schedule{margin-top:16px;}
+.calcpro-amort-schedule>h2{font-size:19px;color:#003366;font-weight:700;line-height:1.2;margin:0 0 7px;}
+.calcpro-amort-tabs{display:flex;gap:17px;margin:0 0 4px;font-size:12px;font-weight:700;}
+.calcpro-amort-tab{font-weight:700!important;border:0;background:transparent;color:#006699;padding:0;text-decoration:underline;}
+.calcpro-amort-tab[aria-selected=true]{color:#111;text-decoration:none;cursor:default;}
+.calcpro-amort-content-grid{display:grid;grid-template-columns:minmax(0,1.04fr) minmax(0,.96fr);gap:17px;align-items:start;}
+.calcpro-amort-table-wrap{width:100%;max-width:100%;overflow:auto;}
+.calcpro-amort-table{border-collapse:collapse;font-size:12px;line-height:1.1;width:100%;white-space:nowrap;font-variant-numeric:tabular-nums;}
+.calcpro-amort-table th{background:#336699;color:#fff;font-weight:700;padding:5px 4px;border:1px solid #fff;text-align:right;}
+.calcpro-amort-table th:first-child{border-left:1px solid #336699;text-align:center;}
+.calcpro-amort-table td{padding:4px 4px;border:1px solid #ccc;text-align:right;}
+.calcpro-amort-table tbody tr:nth-child(even){background:#f2f2f2;}
+.calcpro-amort-table tbody tr:last-child{font-weight:bold;}
+.calcpro-amort-table-caption{display:block;font-weight:normal;color:#555;margin:4px 0;font-size:11px;}
+.calcpro-amort-linecard{width:100%;max-width:100%;min-width:0;}
+.calcpro-amort-line-chart{width:100%;height:auto;display:block;aspect-ratio:420 / 235;}
+.calcpro-amort-sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
+.calcpro-amort-footnote{font-size:11px;color:#666;margin:8px 0 0;line-height:1.45;}
+.calcpro-amort-empty{padding:16px 10px;background:#f4f7f9;border:1px solid #cbd7e0;color:#3c4e5c;font-size:13px;}
+@media(max-width:670px){.calcpro-amort-top{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px;}.calcpro-amort-field{grid-template-columns:77px minmax(0,1fr);gap:3px;}.calcpro-amort-headline{font-size:17px;}.calcpro-amort-content-grid{grid-template-columns:minmax(0,1fr);}.calcpro-amort-linecard{max-width:480px;margin:auto;}.calcpro-amort-table{font-size:12px;}}
+@media(max-width:540px){.calcpro-amort-top{grid-template-columns:minmax(0,1fr);}.calcpro-amort-form{max-width:400px;width:100%;margin:0 auto;}.calcpro-amort-results{max-width:500px;width:100%;margin:0 auto;}.calcpro-amort-headline{font-size:19px;}.calcpro-amort-field{grid-template-columns:95px minmax(0,1fr);}.calcpro-amort-schedule{margin-top:20px;}.calcpro-amort-banner{font-size:11px;}.calcpro-amort-content-grid{gap:14px;}}
+@media(max-width:350px){.calcpro-amort-headline{font-size:16px;}.calcpro-amort-field{grid-template-columns:82px minmax(0,1fr);}.calcpro-amort-extra-amount{max-width:35%;width:77px;}.calcpro-amort-year-input{width:54px;}.calcpro-amort-month-select{min-width:52px;}.calcpro-amort-table{font-size:11px;}}
+@media print{.calcpro-amort-utility,.calcpro-amort-banner,.calcpro-amort-form,.calcpro-amort-save,.calcpro-amort-tabs{display:none!important;}.calcpro-amort-top{display:block;}.calcpro-amort-results{max-width:500px;}.calcpro-amort-schedule{break-before:avoid;}.calcpro-amort-content-grid{grid-template-columns:1fr 1fr;}.calcpro-amort-root{max-width:none;}.calcpro-amort-table th{print-color-adjust:exact;-webkit-print-color-adjust:exact;}.calcpro-amort-headline{print-color-adjust:exact;-webkit-print-color-adjust:exact;}}
+
+</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Amortization Calculator</nav><h1 class="cp-page-title">Amortization Calculator</h1><p class="cp-intro">Calculate a fixed-rate loan’s monthly payment and explore its principal, interest, and repayment schedule—including optional extra payments.</p><section aria-label="Calculator" class="cp-tool-area"><section class="calcpro-amort-root" aria-label="Fixed-rate amortization calculator">
+  <div class="calcpro-amort-utility"><button id="calcpro-amort-print" type="button" class="calcpro-amort-text-button">Print</button></div>
+  <div class="calcpro-amort-banner"><span class="calcpro-amort-banner-icon" aria-hidden="true">▼</span> Modify the values and click the Calculate button to use</div>
+  <div class="calcpro-amort-top">
+    <form class="calcpro-amort-form" id="calcpro-amort-form" novalidate>
+      <div class="calcpro-amort-field"><label for="calcpro-amort-amount">Loan amount</label><div class="calcpro-amort-input-shell calcpro-amort-dollar"><input id="calcpro-amort-amount" type="text" inputmode="decimal" autocomplete="off" value="200,000" required></div></div>
+      <div class="calcpro-amort-field"><span class="calcpro-amort-label">Loan term</span><div class="calcpro-amort-term">
+        <label class="calcpro-amort-suffixed"><span>years</span><input aria-label="Loan term in years" id="calcpro-amort-years" type="text" inputmode="numeric" value="15"></label>
+        <label class="calcpro-amort-suffixed calcpro-amort-suffixed-months"><span>months</span><input aria-label="Additional loan term in months" id="calcpro-amort-months" type="text" inputmode="numeric" value="0"></label>
+      </div></div>
+      <div class="calcpro-amort-field"><label for="calcpro-amort-rate">Interest rate</label><div class="calcpro-amort-input-shell calcpro-amort-percent"><input id="calcpro-amort-rate" aria-label="Annual interest rate percentage" type="text" inputmode="decimal" autocomplete="off" value="6" required></div></div>
+      <label class="calcpro-amort-option-label" for="calcpro-amort-optional"><input type="checkbox" id="calcpro-amort-optional" aria-controls="calcpro-amort-extras" aria-expanded="false"><span>Optional: make extra payments</span></label>
+      <div id="calcpro-amort-extras" class="calcpro-amort-extra-panel" hidden>
+        <div class="calcpro-amort-extra-title"><label for="calcpro-amort-start-month">Loan start date</label></div>
+        <div class="calcpro-amort-date-row"><select id="calcpro-amort-start-month" class="calcpro-amort-month-select calcpro-amort-default-month " aria-label="Month"><option value="1">Jan</option><option value="2">Feb</option><option value="3">Mar</option><option value="4">Apr</option><option value="5">May</option><option value="6">Jun</option><option value="7">Jul</option><option value="8">Aug</option><option value="9">Sep</option><option value="10">Oct</option><option value="11" selected>Nov</option><option value="12">Dec</option></select><input id="calcpro-amort-start-year" class="calcpro-amort-year-input calcpro-amort-default-year" type="text" inputmode="numeric" autocomplete="off" value="2026" aria-label="Year"></div>
+        <div class="calcpro-amort-extra-title">Extra monthly pay</div>
+        <div class="calcpro-amort-date-row"><input id="calcpro-amort-monthly-extra" class="calcpro-amort-extra-amount" type="text" inputmode="decimal" value="0" aria-label="Extra amount every month">
+        <span>from</span><select id="calcpro-amort-monthly-month" class="calcpro-amort-month-select calcpro-amort-default-month " aria-label="Month"><option value="1">Jan</option><option value="2">Feb</option><option value="3">Mar</option><option value="4">Apr</option><option value="5">May</option><option value="6">Jun</option><option value="7">Jul</option><option value="8">Aug</option><option value="9">Sep</option><option value="10">Oct</option><option value="11" selected>Nov</option><option value="12">Dec</option></select><input id="calcpro-amort-monthly-year" class="calcpro-amort-year-input calcpro-amort-default-year" type="text" inputmode="numeric" autocomplete="off" value="2026" aria-label="Year"></div>
+        <div class="calcpro-amort-extra-title">Extra yearly pay</div>
+        <div class="calcpro-amort-date-row"><input id="calcpro-amort-yearly-extra" class="calcpro-amort-extra-amount" type="text" inputmode="decimal" value="0" aria-label="Extra amount every year">
+        <span>from</span><select id="calcpro-amort-yearly-month" class="calcpro-amort-month-select calcpro-amort-default-month " aria-label="Month"><option value="1">Jan</option><option value="2">Feb</option><option value="3">Mar</option><option value="4">Apr</option><option value="5">May</option><option value="6">Jun</option><option value="7">Jul</option><option value="8">Aug</option><option value="9">Sep</option><option value="10">Oct</option><option value="11" selected>Nov</option><option value="12">Dec</option></select><input id="calcpro-amort-yearly-year" class="calcpro-amort-year-input calcpro-amort-default-year" type="text" inputmode="numeric" autocomplete="off" value="2026" aria-label="Year"></div>
+        <div class="calcpro-amort-extra-title">Extra one-time pay</div>
+        <div class="calcpro-amort-date-row"><input id="calcpro-amort-once-extra" class="calcpro-amort-extra-amount" type="text" inputmode="decimal" value="0" aria-label="One-time extra payment">
+        <span>in</span><select id="calcpro-amort-once-month" class="calcpro-amort-month-select calcpro-amort-default-month " aria-label="Month"><option value="1">Jan</option><option value="2">Feb</option><option value="3">Mar</option><option value="4">Apr</option><option value="5">May</option><option value="6">Jun</option><option value="7">Jul</option><option value="8">Aug</option><option value="9">Sep</option><option value="10">Oct</option><option value="11" selected>Nov</option><option value="12">Dec</option></select><input id="calcpro-amort-once-year" class="calcpro-amort-year-input calcpro-amort-default-year" type="text" inputmode="numeric" autocomplete="off" value="2026" aria-label="Year"></div>
+        <button class="calcpro-amort-extra-link" id="calcpro-amort-more-toggle" type="button" aria-controls="calcpro-amort-extra-list" aria-expanded="false">+ More one-time payments</button>
+        <div id="calcpro-amort-extra-list" class="calcpro-amort-one-time-list" hidden><div class="calcpro-amort-one-time-item"><input id="calcpro-amort-more-amount-1" data-calcpro-amort-extra-amount class="calcpro-amort-extra-amount" type="text" inputmode="decimal" value="0" aria-label="Additional one-time payment 1">
+          <span>in</span><select id="calcpro-amort-more-month-1" class="calcpro-amort-month-select calcpro-amort-default-month " aria-label="Month"><option value="1">Jan</option><option value="2">Feb</option><option value="3">Mar</option><option value="4">Apr</option><option value="5">May</option><option value="6">Jun</option><option value="7">Jul</option><option value="8">Aug</option><option value="9">Sep</option><option value="10">Oct</option><option value="11" selected>Nov</option><option value="12">Dec</option></select><input id="calcpro-amort-more-year-1" class="calcpro-amort-year-input calcpro-amort-default-year" type="text" inputmode="numeric" autocomplete="off" value="2026" aria-label="Year"></div>
+<div class="calcpro-amort-one-time-item"><input id="calcpro-amort-more-amount-2" data-calcpro-amort-extra-amount class="calcpro-amort-extra-amount" type="text" inputmode="decimal" value="0" aria-label="Additional one-time payment 2">
+          <span>in</span><select id="calcpro-amort-more-month-2" class="calcpro-amort-month-select calcpro-amort-default-month " aria-label="Month"><option value="1">Jan</option><option value="2">Feb</option><option value="3">Mar</option><option value="4">Apr</option><option value="5">May</option><option value="6">Jun</option><option value="7">Jul</option><option value="8">Aug</option><option value="9">Sep</option><option value="10">Oct</option><option value="11" selected>Nov</option><option value="12">Dec</option></select><input id="calcpro-amort-more-year-2" class="calcpro-amort-year-input calcpro-amort-default-year" type="text" inputmode="numeric" autocomplete="off" value="2026" aria-label="Year"></div>
+<div class="calcpro-amort-one-time-item"><input id="calcpro-amort-more-amount-3" data-calcpro-amort-extra-amount class="calcpro-amort-extra-amount" type="text" inputmode="decimal" value="0" aria-label="Additional one-time payment 3">
+          <span>in</span><select id="calcpro-amort-more-month-3" class="calcpro-amort-month-select calcpro-amort-default-month " aria-label="Month"><option value="1">Jan</option><option value="2">Feb</option><option value="3">Mar</option><option value="4">Apr</option><option value="5">May</option><option value="6">Jun</option><option value="7">Jul</option><option value="8">Aug</option><option value="9">Sep</option><option value="10">Oct</option><option value="11" selected>Nov</option><option value="12">Dec</option></select><input id="calcpro-amort-more-year-3" class="calcpro-amort-year-input calcpro-amort-default-year" type="text" inputmode="numeric" autocomplete="off" value="2026" aria-label="Year"></div>
+<div class="calcpro-amort-one-time-item"><input id="calcpro-amort-more-amount-4" data-calcpro-amort-extra-amount class="calcpro-amort-extra-amount" type="text" inputmode="decimal" value="0" aria-label="Additional one-time payment 4">
+          <span>in</span><select id="calcpro-amort-more-month-4" class="calcpro-amort-month-select calcpro-amort-default-month " aria-label="Month"><option value="1">Jan</option><option value="2">Feb</option><option value="3">Mar</option><option value="4">Apr</option><option value="5">May</option><option value="6">Jun</option><option value="7">Jul</option><option value="8">Aug</option><option value="9">Sep</option><option value="10">Oct</option><option value="11" selected>Nov</option><option value="12">Dec</option></select><input id="calcpro-amort-more-year-4" class="calcpro-amort-year-input calcpro-amort-default-year" type="text" inputmode="numeric" autocomplete="off" value="2026" aria-label="Year"></div>
+<div class="calcpro-amort-one-time-item"><input id="calcpro-amort-more-amount-5" data-calcpro-amort-extra-amount class="calcpro-amort-extra-amount" type="text" inputmode="decimal" value="0" aria-label="Additional one-time payment 5">
+          <span>in</span><select id="calcpro-amort-more-month-5" class="calcpro-amort-month-select calcpro-amort-default-month " aria-label="Month"><option value="1">Jan</option><option value="2">Feb</option><option value="3">Mar</option><option value="4">Apr</option><option value="5">May</option><option value="6">Jun</option><option value="7">Jul</option><option value="8">Aug</option><option value="9">Sep</option><option value="10">Oct</option><option value="11" selected>Nov</option><option value="12">Dec</option></select><input id="calcpro-amort-more-year-5" class="calcpro-amort-year-input calcpro-amort-default-year" type="text" inputmode="numeric" autocomplete="off" value="2026" aria-label="Year"></div>
+<div class="calcpro-amort-one-time-item"><input id="calcpro-amort-more-amount-6" data-calcpro-amort-extra-amount class="calcpro-amort-extra-amount" type="text" inputmode="decimal" value="0" aria-label="Additional one-time payment 6">
+          <span>in</span><select id="calcpro-amort-more-month-6" class="calcpro-amort-month-select calcpro-amort-default-month " aria-label="Month"><option value="1">Jan</option><option value="2">Feb</option><option value="3">Mar</option><option value="4">Apr</option><option value="5">May</option><option value="6">Jun</option><option value="7">Jul</option><option value="8">Aug</option><option value="9">Sep</option><option value="10">Oct</option><option value="11" selected>Nov</option><option value="12">Dec</option></select><input id="calcpro-amort-more-year-6" class="calcpro-amort-year-input calcpro-amort-default-year" type="text" inputmode="numeric" autocomplete="off" value="2026" aria-label="Year"></div>
+<div class="calcpro-amort-one-time-item"><input id="calcpro-amort-more-amount-7" data-calcpro-amort-extra-amount class="calcpro-amort-extra-amount" type="text" inputmode="decimal" value="0" aria-label="Additional one-time payment 7">
+          <span>in</span><select id="calcpro-amort-more-month-7" class="calcpro-amort-month-select calcpro-amort-default-month " aria-label="Month"><option value="1">Jan</option><option value="2">Feb</option><option value="3">Mar</option><option value="4">Apr</option><option value="5">May</option><option value="6">Jun</option><option value="7">Jul</option><option value="8">Aug</option><option value="9">Sep</option><option value="10">Oct</option><option value="11" selected>Nov</option><option value="12">Dec</option></select><input id="calcpro-amort-more-year-7" class="calcpro-amort-year-input calcpro-amort-default-year" type="text" inputmode="numeric" autocomplete="off" value="2026" aria-label="Year"></div>
+<div class="calcpro-amort-one-time-item"><input id="calcpro-amort-more-amount-8" data-calcpro-amort-extra-amount class="calcpro-amort-extra-amount" type="text" inputmode="decimal" value="0" aria-label="Additional one-time payment 8">
+          <span>in</span><select id="calcpro-amort-more-month-8" class="calcpro-amort-month-select calcpro-amort-default-month " aria-label="Month"><option value="1">Jan</option><option value="2">Feb</option><option value="3">Mar</option><option value="4">Apr</option><option value="5">May</option><option value="6">Jun</option><option value="7">Jul</option><option value="8">Aug</option><option value="9">Sep</option><option value="10">Oct</option><option value="11" selected>Nov</option><option value="12">Dec</option></select><input id="calcpro-amort-more-year-8" class="calcpro-amort-year-input calcpro-amort-default-year" type="text" inputmode="numeric" autocomplete="off" value="2026" aria-label="Year"></div>
+<div class="calcpro-amort-one-time-item"><input id="calcpro-amort-more-amount-9" data-calcpro-amort-extra-amount class="calcpro-amort-extra-amount" type="text" inputmode="decimal" value="0" aria-label="Additional one-time payment 9">
+          <span>in</span><select id="calcpro-amort-more-month-9" class="calcpro-amort-month-select calcpro-amort-default-month " aria-label="Month"><option value="1">Jan</option><option value="2">Feb</option><option value="3">Mar</option><option value="4">Apr</option><option value="5">May</option><option value="6">Jun</option><option value="7">Jul</option><option value="8">Aug</option><option value="9">Sep</option><option value="10">Oct</option><option value="11" selected>Nov</option><option value="12">Dec</option></select><input id="calcpro-amort-more-year-9" class="calcpro-amort-year-input calcpro-amort-default-year" type="text" inputmode="numeric" autocomplete="off" value="2026" aria-label="Year"></div>
+<div class="calcpro-amort-one-time-item"><input id="calcpro-amort-more-amount-10" data-calcpro-amort-extra-amount class="calcpro-amort-extra-amount" type="text" inputmode="decimal" value="0" aria-label="Additional one-time payment 10">
+          <span>in</span><select id="calcpro-amort-more-month-10" class="calcpro-amort-month-select calcpro-amort-default-month " aria-label="Month"><option value="1">Jan</option><option value="2">Feb</option><option value="3">Mar</option><option value="4">Apr</option><option value="5">May</option><option value="6">Jun</option><option value="7">Jul</option><option value="8">Aug</option><option value="9">Sep</option><option value="10">Oct</option><option value="11" selected>Nov</option><option value="12">Dec</option></select><input id="calcpro-amort-more-year-10" class="calcpro-amort-year-input calcpro-amort-default-year" type="text" inputmode="numeric" autocomplete="off" value="2026" aria-label="Year"></div></div>
+      </div>
+      <div class="calcpro-amort-action-row"><button type="submit" class="calcpro-amort-calculate">Calculate <span class="calcpro-amort-play" aria-hidden="true">▶</span></button><button id="calcpro-amort-clear" class="calcpro-amort-clear" type="button">Clear</button></div>
+      <p id="calcpro-amort-error" class="calcpro-amort-error" role="alert" hidden></p>
+    </form>
+    <section id="calcpro-amort-results" class="calcpro-amort-results" aria-label="Amortization results" aria-live="polite">
+      <div class="calcpro-amort-headline"><span class="calcpro-amort-payment-label">Monthly Pay: <span id="calcpro-amort-monthly-pay" class="calcpro-amort-payment-value">$1,687.71</span></span>
+        <button type="button" id="calcpro-amort-save" class="calcpro-amort-save" aria-label="Save amortization schedule as CSV" title="Save schedule as CSV"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M3 2h16l3 3v17H2V2h1zm2 2v6h12V4H5zm7 9a4 4 0 1 0 .001 8A4 4 0 0 0 12 13zM7 4h3v5H7z"/></svg><span>Save</span></button>
+      </div>
+      <div class="calcpro-amort-chart-row">
+        <svg id="calcpro-amort-donut" class="calcpro-amort-donut" viewBox="0 0 120 106" role="img" aria-label="Share of principal and interest"></svg>
+        <div class="calcpro-amort-donut-caption"><span class="calcpro-amort-legend-item"><i class="calcpro-amort-legend-key" style="background:#2678d2" aria-hidden="true"></i>Principal</span><span class="calcpro-amort-legend-item"><i class="calcpro-amort-legend-key" style="background:#85bc16" aria-hidden="true"></i>Interest</span></div>
+      </div>
+      <table class="calcpro-amort-summary" aria-label="Loan payment summary"><tbody>
+        <tr><td class="calcpro-amort-summary-label" id="calcpro-amort-amount-row-label">Total of 180 monthly payments</td><td id="calcpro-amort-total-payments">$303,788.46</td></tr>
+        <tr><td>Total interest</td><td id="calcpro-amort-total-interest">$103,788.46</td></tr>
+      </tbody><tbody id="calcpro-amort-extra-summary"></tbody></table>
+    </section>
+  </div>
+  <div class="calcpro-amort-empty" id="calcpro-amort-empty" hidden>Enter loan details and select Calculate.</div>
+  <section class="calcpro-amort-schedule" id="calcpro-amort-schedule" aria-label="Amortization schedule">
+    <h2>Amortization Schedule</h2>
+    <div class="calcpro-amort-tabs" role="tablist" aria-label="Schedule view">
+      <button class="calcpro-amort-tab" id="calcpro-amort-tab-annual" data-view="annual" role="tab" type="button" aria-controls="calcpro-amort-tab-panel" aria-selected="true">Annual Schedule</button>
+      <button class="calcpro-amort-tab" id="calcpro-amort-tab-monthly" data-view="monthly" role="tab" type="button" aria-controls="calcpro-amort-tab-panel" aria-selected="false" tabindex="-1">Monthly Schedule</button>
+    </div>
+    <div class="calcpro-amort-content-grid">
+      <div id="calcpro-amort-tab-panel" role="tabpanel" aria-labelledby="calcpro-amort-tab-annual">
+        <div class="calcpro-amort-table-wrap"><table class="calcpro-amort-table" aria-label="Annual or monthly principal and interest table"><thead><tr><th id="calcpro-amort-index-header" scope="col">Year</th><th scope="col">Interest</th><th scope="col">Principal</th><th scope="col">Ending Balance</th></tr></thead><tbody id="calcpro-amort-table-body"></tbody></table></div>
+        <small id="calcpro-amort-table-notice" class="calcpro-amort-table-caption">Totals cover consecutive 12-payment periods.</small>
+      </div>
+      <div class="calcpro-amort-linecard"><svg id="calcpro-amort-line-chart" class="calcpro-amort-line-chart" viewBox="0 0 420 232" role="img" aria-labelledby="calcpro-amort-line-title" preserveAspectRatio="xMidYMid meet"></svg></div>
+    </div>
+    <p class="calcpro-amort-footnote">Results assume a fixed annual rate, monthly compounding and end-of-month payments. Displayed amounts are rounded to cents; calculations retain full precision. Extra payments are applied directly to principal.</p>
+  </section>
+</section></section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><!-- REPLACE these links with real related tools for each calculator; verify live slugs. --><a href="retirement-calculator.html">Retirement</a><a href="roth-ira-calculator.html">Roth IRA</a><a href="investment-calculator.html">Investment</a><a href="compound-interest-calculator.html">Compound Interest</a><a href="annuity-payout-calculator.html">Annuity Payout</a><a href="pension-calculator.html">Pension</a><a href="inflation-calculator.html">Inflation</a><a href="future-value-calculator.html">Future Value</a><a href="income-tax-calculator.html">Income Tax</a><a href="savings-calculator.html">Savings</a><a href="mortgage-calculator.html">Mortgage</a><a href="loan-calculator.html">Loan</a></div></section></aside><article class="cp-article"><h2>How to Use the Amortization Calculator</h2>
+<p>Enter your loan amount, repayment term in years and months, and fixed annual interest rate. Select <strong>Calculate</strong> to update the scheduled monthly payment, interest-and-principal breakdown, repayment chart, and full amortization schedule. Switch between the <strong>Annual Schedule</strong> and <strong>Monthly Schedule</strong> views to inspect how each payment reduces the balance. Use <strong>Save</strong> to export the month-by-month schedule as CSV, or <strong>Print</strong> to print the results.</p>
+<p>To model early repayments, check <strong>Optional: make extra payments</strong>. Choose a loan start month and year and enter recurring extra monthly or annual principal payments, a one-time extra payment, or up to ten additional one-time amounts. The first regular repayment is modeled one month after the chosen loan start date. An extra payment is applied to principal in its scheduled month, subject to the remaining loan balance. An extra amount dated in the loan start month is applied with the first scheduled repayment.</p>
+<h2>Monthly Loan Amortization Formula</h2>
+<p>For a fixed-rate fully amortizing loan, the scheduled monthly payment is:</p>
+<p><strong>M = P × r ÷ (1 − (1 + r)<sup>−n</sup>)</strong></p>
+<ul><li><strong>M</strong> = regular monthly payment (principal and interest)</li><li><strong>P</strong> = original loan principal</li><li><strong>r</strong> = annual interest rate ÷ 12, expressed as a decimal</li><li><strong>n</strong> = total number of monthly payments (12 × years + months)</li></ul>
+<p>For a zero-interest loan, the payment is simply <strong>P ÷ n</strong>. Each month’s interest equals the outstanding balance multiplied by <strong>r</strong>. The remainder of the regular payment reduces the principal. Any optional extra payment reduces principal further, so future interest is calculated on a smaller balance.</p>
+<h2>Example: $200,000 at 6% for 15 Years</h2>
+<div class="cp-table-scroll"><table class="cp-content-table"><thead><tr><th>Result</th><th>Amount</th></tr></thead><tbody><tr><td>Loan amount</td><td>$200,000.00</td></tr><tr><td>Monthly payment</td><td>$1,687.71</td></tr><tr><td>Number of payments</td><td>180</td></tr><tr><td>Total paid</td><td>$303,788.46</td></tr><tr><td>Total interest</td><td>$103,788.46</td></tr></tbody></table></div>
+<p>With no additional payments, the first month’s interest is $1,000.00 and the first month’s principal repayment is approximately $687.71. Over time, the interest part decreases and the principal part increases. Annual table rows summarize consecutive 12-payment intervals, not necessarily calendar years.</p>
+<h2>Understanding the Results</h2>
+<h3>Principal vs. Interest</h3><p>The circular chart compares total original principal with the total interest paid over the modeled repayment period. The line chart tracks remaining loan balance, cumulative interest, and cumulative payments across the payoff period.</p>
+<h3>How Extra Payments Change Your Loan</h3><p>Optional payments are applied in addition to the normal installment, without increasing the scheduled base monthly payment. This usually shortens the payoff period and lowers total interest. If more than the outstanding principal remains scheduled to be paid, the calculator caps the final extra amount so the balance does not fall below zero.</p>
+<h2>Frequently Asked Questions</h2>
+<h3>Does the calculator include taxes, insurance, loan fees or APR adjustments?</h3><p>No. This calculator estimates principal and interest on a fixed-rate loan. It does not include origination fees, variable-rate changes, property taxes, insurance, closing costs, or late fees. The input is the nominal annual interest rate, not a fee-inclusive APR.</p>
+<h3>Why can the last payment be slightly different?</h3><p>The remaining balance is paid off in the final scheduled month. Individual values are displayed to two decimal places but the calculation retains more precision, so adding the rounded table cells may differ slightly from the displayed grand totals.</p>
+<h3>Will early principal payments reduce my required payment amount?</h3><p>This model retains the original scheduled monthly payment and reduces the number of months needed to pay off the loan. Some real lenders may instead recast the installment amount, subject to loan terms. Confirm how your lender applies additional principal payments.</p>
+<h3>What if the annual interest rate is zero?</h3><p>The calculator splits principal evenly over the scheduled months. With zero interest and no extra payments, the total repaid equals the original principal.</p>
+<h2>Reference</h2><p>For comparison of the basic schedule and default example, see the <a href="https://www.calculator.net/amortization-calculator.html">Amortization Calculator at Calculator.net</a>. Calculations provided here are estimates; actual lender statements can use different accrual dates and rounding conventions.</p>
+<p class="cp-page-footer">CalcPro — loan estimates are informational, not lending or financial advice.</p></article></main></div><script>
+(() => {
+  'use strict';
+  const root = document.querySelector('.calcpro-amort-root');
+  if (!root) return;
+  const $ = (selector) => root.querySelector(selector);
+  const $$ = (selector) => Array.from(root.querySelectorAll(selector));
+  const form = $('#calcpro-amort-form');
+  const moneyFormat = new Intl.NumberFormat('en-US', {style:'currency', currency:'USD', minimumFractionDigits:2, maximumFractionDigits:2});
+  let calculated = null;
+  let currentTab = 'annual';
+
+  const money = n => moneyFormat.format(Math.abs(n) < 0.0000001 ? 0 : n);
+  const number = value => {
+    const cleaned = String(value).replace(/,/g,'').trim();
+    return cleaned === '' ? NaN : Number(cleaned);
+  };
+  const serial = (year,month) => year*12+(month-1);
+  const toMonth = s => ({year:Math.floor(s/12), month:(s%12)+1});
+  const humanMonths = count => {
+    const years = Math.floor(count/12), months=count%12;
+    return [years ? `${years} year${years===1?'':'s'}` : '', months ? `${months} month${months===1?'':'s'}` : ''].filter(Boolean).join(', ') || '0 months';
+  };
+  const markInvalid = (el, message) => {
+    if (el) el.setAttribute('aria-invalid', 'true');
+    throw new Error(message);
+  };
+  const getPositive = (selector,label,upper=1e12) => {
+    const el = $(selector), v=number(el.value);
+    if (!Number.isFinite(v) || v<=0 || v>upper) markInvalid(el,`${label} must be greater than zero and no more than ${upper.toLocaleString('en-US')}.`);
+    return v;
+  };
+  const getNonnegative = (selector,label,upper=1e12) => {
+    const el = $(selector), value=el.value.trim();
+    const v=value===''?0:number(value);
+    if (!Number.isFinite(v) || v<0 || v>upper) markInvalid(el,`${label} must be a number from 0 to ${upper.toLocaleString('en-US')}.`);
+    return v;
+  };
+  const getWhole = (selector,label,min,max) => {
+    const el=$(selector),v=number(el.value);
+    if (!Number.isInteger(v) || v<min || v>max) markInvalid(el,`${label} must be a whole number between ${min} and ${max}.`);
+    return v;
+  };
+  const yearOf = (selector) => getWhole(selector,'Payment year',1900,2200);
+  const readDate = (monthSelector,yearSelector) => serial(yearOf(yearSelector),getWhole(monthSelector,'Payment month',1,12));
+
+  function collectInputs(){
+    const principal = getPositive('#calcpro-amort-amount','Loan amount');
+    const years = getWhole('#calcpro-amort-years','Loan term in years',0,100);
+    const months = getWhole('#calcpro-amort-months','Loan term in months',0,11);
+    const term = years*12+months;
+    if (term<1 || term>1200) markInvalid($('#calcpro-amort-years'),'The combined loan term must be at least one month and no more than 100 years.');
+    const rate = getNonnegative('#calcpro-amort-rate','Annual interest rate',100);
+    const extra = $('#calcpro-amort-optional').checked;
+    let monthly = {amount:0,start:0},yearly={amount:0,start:0},oneTime=[];
+    let start = null;
+    if(extra){
+      start = readDate('#calcpro-amort-start-month','#calcpro-amort-start-year');
+      monthly.amount=getNonnegative('#calcpro-amort-monthly-extra','Extra monthly payment');
+      yearly.amount=getNonnegative('#calcpro-amort-yearly-extra','Extra yearly payment');
+      if(monthly.amount>0) monthly.start=readDate('#calcpro-amort-monthly-month','#calcpro-amort-monthly-year');
+      if(yearly.amount>0) yearly.start=readDate('#calcpro-amort-yearly-month','#calcpro-amort-yearly-year');
+      const oneAmount=getNonnegative('#calcpro-amort-once-extra','One-time extra payment');
+      if(oneAmount>0) oneTime.push({amount:oneAmount,when:readDate('#calcpro-amort-once-month','#calcpro-amort-once-year')});
+      if ($('#calcpro-amort-extra-list').hidden === false){
+        $$('.calcpro-amort-one-time-item').forEach((node,i) => {
+          const amountEl=node.querySelector('[data-calcpro-amort-extra-amount]');
+          const a=amountEl.value.trim()===''?0:number(amountEl.value);
+          if(!Number.isFinite(a)||a<0||a>1e12) markInvalid(amountEl,`Extra one-time payment ${i+2} must be between 0 and 1,000,000,000,000.`);
+          if(a>0) oneTime.push({amount:a,when:readDate(`#calcpro-amort-more-month-${i+1}`,`#calcpro-amort-more-year-${i+1}`)});
+        });
+      }
+      const firstPayment=start+1;
+      if (oneTime.some(x=>x.when<start)) markInvalid($('#calcpro-amort-once-year'),'One-time extra payments cannot be scheduled before the loan start month.');
+    }
+    return {principal,term,rate,extra,monthly,yearly,oneTime,start};
+  }
+
+  function calculateSchedule(opts, applyExtra){
+    const {principal,term,rate} = opts;
+    const r=rate/1200;
+    const scheduled = r===0 ? principal/term : principal*r / (-Math.expm1(-term*Math.log1p(r)));
+    if(!Number.isFinite(scheduled)||scheduled<=0) throw new Error('Unable to calculate a payment for these inputs.');
+    let balance=principal,interestTotal=0,regularPaid=0,extraPaid=0,paidTotal=0;
+    const rows=[];
+    const oneTimeByMonth = new Map();
+    if(applyExtra && opts.extra){
+      opts.oneTime.forEach(({when,amount}) => {
+        const paymentMonth=Math.max(opts.start+1,when);
+        oneTimeByMonth.set(paymentMonth,(oneTimeByMonth.get(paymentMonth)||0)+amount);
+      });
+    }
+    for(let i=1;i<=term&&balance>1e-7;i++){
+      const when=opts.start===null?null:opts.start+i;
+      const interest=balance*r;
+      const regular=i===term?balance+interest:Math.min(scheduled,balance+interest);
+      const principalRegular=Math.max(0,regular-interest);
+      let desiredExtra=0;
+      if(applyExtra&&opts.extra){
+        if(opts.monthly.amount>0 && when>=opts.monthly.start) desiredExtra+=opts.monthly.amount;
+        if(opts.yearly.amount>0){
+          const annualStart=Math.max(opts.start+1,opts.yearly.start);
+          if(when>=annualStart && (when-annualStart)%12===0) desiredExtra+=opts.yearly.amount;
+        }
+        desiredExtra+=oneTimeByMonth.get(when)||0;
+      }
+      const extra=Math.min(Math.max(0,balance-principalRegular),desiredExtra);
+      let newBalance=balance-principalRegular-extra;
+      if(newBalance<1e-7) newBalance=0;
+      const payment=regular+extra;
+      interestTotal+=interest; regularPaid+=regular; extraPaid+=extra; paidTotal+=payment;
+      rows.push({index:i,when,interest,principal:principalRegular+extra,balance:newBalance,regular,extra,payment,cumulativeInterest:interestTotal,cumulativePaid:paidTotal});
+      balance=newBalance;
+    }
+    return {monthlyPayment:scheduled,rows,interestTotal,regularPaid,extraPaid,paidTotal,months:rows.length};
+  }
+
+  function aggregateAnnual(rows){
+    const years=[];
+    for(let i=0;i<rows.length;i+=12){
+      const group=rows.slice(i,i+12),last=group[group.length-1];
+      years.push({index:years.length+1,interest:group.reduce((s,r)=>s+r.interest,0),principal:group.reduce((s,r)=>s+r.principal,0),balance:last.balance,extra:group.reduce((s,r)=>s+r.extra,0)});
+    }
+    return years;
+  }
+  function paintDonut(principal,interest){
+    const total=principal+interest;
+    const p=total?principal/total:1, i=1-p, circumference=2*Math.PI*40;
+    const pLength=p*circumference, iLength=i*circumference;
+    const label = (fraction,mid)=> {
+      if(fraction<0.08) return '';
+      const rad=mid*Math.PI/180;
+      const x=60+42*Math.cos(rad), y=53+42*Math.sin(rad);
+      return `<text x="${x.toFixed(2)}" y="${y.toFixed(2)}" font-family="Arial" font-weight="bold" font-size="10" fill="#fff" text-anchor="middle" dominant-baseline="central">${Math.round(fraction*100)}%</text>`;
+    };
+    $('#calcpro-amort-donut').innerHTML=`<title>Principal ${Math.round(p*100)} percent; interest ${Math.round(i*100)} percent of total repayments</title>
+      <circle cx="60" cy="53" r="40" fill="none" stroke="#e6e9ed" stroke-width="29"/>
+      <circle cx="60" cy="53" r="40" fill="none" stroke="#2678d2" stroke-width="29" stroke-dasharray="${pLength} ${circumference-pLength}" transform="rotate(-90 60 53)"/>
+      <circle cx="60" cy="53" r="40" fill="none" stroke="#85bc16" stroke-width="29" stroke-dasharray="${iLength} ${circumference-iLength}" stroke-dashoffset="${-pLength}" transform="rotate(-90 60 53)"/>
+      <circle cx="60" cy="53" r="18" fill="#fff"/>
+      ${label(p,-90+180*p)}${label(i,-90+360*p+180*i)}`;
+  }
+  const compactMoney=v=>{
+    const abs=Math.abs(v);
+    if(abs>=1e9)return '$'+(v/1e9).toFixed(abs%1e9?1:0)+'B';
+    if(abs>=1e6)return '$'+(v/1e6).toFixed(abs%1e6?1:0)+'M';
+    if(abs>=1e3)return '$'+Math.round(v/1000)+'K';
+    return '$'+Math.round(v);
+  };
+  function chartSvg(result,principal){
+    const w=420,h=232,L=51,R=12,T=30,B=35,plotW=w-L-R,plotH=h-T-B;
+    const points=[{index:0,balance:principal,cumulativeInterest:0,cumulativePaid:0},...result.rows];
+    const maxValue=Math.max(principal,result.paidTotal,result.interestTotal);
+    const magnitude=Math.pow(10,Math.floor(Math.log10(maxValue||1)));
+    const tickCandidates=[1,2,2.5,5,10].map(x=>x*magnitude/10);
+    const rough=maxValue/5;
+    const step=tickCandidates.find(v=>v>=rough)||magnitude;
+    const yMax=Math.ceil(maxValue/step)*step;
+    const periods=result.months||1;
+    const x=v=>L+v/periods*plotW;
+    const y=v=>T+(1-v/yMax)*plotH;
+    const line=key=>points.map((p,i)=>`${i?'L':'M'}${x(p.index).toFixed(2)},${y(p[key]).toFixed(2)}`).join(' ');
+    let svg=`<title id="calcpro-amort-line-title">Loan balance, cumulative interest, and total payments over the payoff period</title>`;
+    for(let v=0;v<=yMax+step/1e5;v+=step){
+      const py=y(v);
+      svg+=`<line x1="${L}" x2="${w-R}" y1="${py}" y2="${py}" stroke="#d9d9d9" stroke-width="1"/>`;
+      svg+=`<text x="${L-5}" y="${py+3}" text-anchor="end" font-size="10" fill="#606060">${compactMoney(v)}</text>`;
+    }
+    const span=periods/12;
+    const stepX=Math.max(1,Math.ceil(span/3));
+    const xTicks=[];
+    for(let yr=0;yr<=span;yr+=stepX) xTicks.push(yr);
+    if(Math.abs(xTicks[xTicks.length-1]-span)>0.03)xTicks.push(span);
+    xTicks.forEach(yr=>{
+      const px=L+yr/span*plotW;
+      const label=Math.abs(yr-Math.round(yr))<0.02?String(Math.round(yr)):yr.toFixed(1);
+      svg+=`<line x1="${px}" x2="${px}" y1="${T}" y2="${h-B}" stroke="#e0e0e0" stroke-width="1"/>`;
+      svg+=`<text x="${px}" y="${h-B+14}" text-anchor="middle" font-size="10" fill="#666">${label}</text>`;
+    });
+    svg+=`<path d="${line('balance')}" fill="none" stroke="#2678d2" stroke-width="2.6" stroke-linejoin="round"/>`;
+    svg+=`<path d="${line('cumulativeInterest')}" fill="none" stroke="#85bc16" stroke-width="2.6" stroke-linejoin="round"/>`;
+    svg+=`<path d="${line('cumulativePaid')}" fill="none" stroke="#bd160e" stroke-width="2.6" stroke-linejoin="round"/>`;
+    svg+=`<text x="${L+plotW/2}" y="${h-4}" text-anchor="middle" font-size="13" font-weight="bold">Year</text>`;
+    [['Balance','#2678d2'],['Interest','#85bc16'],['Payment','#bd160e']].forEach(([label,color],i)=>{
+      const py=8+i*13;
+      svg+=`<line x1="${L+3}" x2="${L+20}" y1="${py}" y2="${py}" stroke="${color}" stroke-width="4"/><text x="${L+25}" y="${py+4}" font-size="12">${label}</text>`;
+    });
+    $('#calcpro-amort-line-chart').innerHTML=svg;
+  }
+  function tableHtml(rows,mode){
+    if(!rows.length) return '<tr><td colspan="4">No payments to display.</td></tr>';
+    return rows.map(row=>{
+      let title='';
+      if(mode==='monthly'&&row.when!==null){
+        const d=toMonth(row.when);
+        title=` title="${new Date(Date.UTC(d.year,d.month-1,1)).toLocaleDateString('en-US',{month:'short',year:'numeric',timeZone:'UTC'})}"`;
+      }
+      return `<tr><td${title}>${row.index}</td><td>${money(row.interest)}</td><td>${money(row.principal)}</td><td>${money(row.balance)}</td></tr>`;
+    }).join('');
+  }
+  function paintTable(){
+    if(!calculated)return;
+    const mode=currentTab;
+    $$('.calcpro-amort-tab').forEach(tab=>{
+      const active=tab.dataset.view===mode;
+      tab.setAttribute('aria-selected',String(active));
+      tab.tabIndex=active?0:-1;
+    });
+    $('#calcpro-amort-index-header').textContent=mode==='annual'?'Year':'Month';
+    $('#calcpro-amort-table-body').innerHTML=tableHtml(mode==='annual'?calculated.annual:calculated.result.rows,mode);
+    $('#calcpro-amort-table-notice').textContent=mode==='annual'?'Totals cover consecutive 12-payment periods.':'Month numbers are counted from the first repayment; hover over a month to see its date when a start date is set.';
+    $('#calcpro-amort-tab-panel').setAttribute('aria-labelledby',mode==='annual'?'calcpro-amort-tab-annual':'calcpro-amort-tab-monthly');
+  }
+  function paintSummary(opts,result,baseline){
+    $('#calcpro-amort-monthly-pay').textContent=money(result.monthlyPayment);
+    $('#calcpro-amort-amount-row-label').textContent=`Total of ${result.months} monthly payment${result.months===1?'':'s'}`;
+    $('#calcpro-amort-total-payments').textContent=money(result.paidTotal);
+    $('#calcpro-amort-total-interest').textContent=money(result.interestTotal);
+    $('#calcpro-amort-extra-summary').innerHTML = result.extraPaid>0.000001 ?
+      `<tr><td>Total extra principal payments</td><td>${money(result.extraPaid)}</td></tr><tr><td>Interest saved with extra payments</td><td>${money(Math.max(0,baseline.interestTotal-result.interestTotal))}</td></tr><tr><td>Payoff time / time saved</td><td>${humanMonths(result.months)} / ${humanMonths(Math.max(0,opts.term-result.months))}</td></tr>` : '';
+    paintDonut(opts.principal,result.interestTotal);
+    chartSvg(result,opts.principal);
+  }
+  function calculate(event){
+    if(event)event.preventDefault();
+    $$('[aria-invalid="true"]').forEach(el=>el.removeAttribute('aria-invalid'));
+    const error=$('#calcpro-amort-error');
+    error.hidden=true; error.textContent='';
+    try{
+      const opts=collectInputs();
+      const result=calculateSchedule(opts,true);
+      const baseline=calculateSchedule(opts,false);
+      calculated={opts,result,annual:aggregateAnnual(result.rows),baseline};
+      paintSummary(opts,result,baseline);
+      paintTable();
+      $('#calcpro-amort-results').hidden=false;
+      $('#calcpro-amort-schedule').hidden=false;
+      $('#calcpro-amort-empty').hidden=true;
+    }catch(err){
+      error.textContent=err instanceof Error?err.message:'Please review the values and calculate again.';
+      error.hidden=false;
+      calculated=null;
+      $('#calcpro-amort-results').hidden=true;
+      $('#calcpro-amort-schedule').hidden=true;
+      $('#calcpro-amort-empty').hidden=false;
+      $('#calcpro-amort-empty').textContent='Correct the highlighted input and select Calculate.';
+    }
+  }
+  function toggleExtra(){
+    const checked=$('#calcpro-amort-optional').checked;
+    $('#calcpro-amort-extras').hidden=!checked;
+    $('#calcpro-amort-optional').setAttribute('aria-expanded',String(checked));
+  }
+  function clear(){
+    form.querySelectorAll('input[type="text"]').forEach(el=>{el.value='';el.removeAttribute('aria-invalid')});
+    $('#calcpro-amort-optional').checked=false;
+    $('#calcpro-amort-extra-list').hidden=true;
+    $('#calcpro-amort-more-toggle').setAttribute('aria-expanded','false');
+    $('#calcpro-amort-more-toggle').textContent='+ More one-time payments';
+    toggleExtra();
+    calculated=null;
+    $('#calcpro-amort-error').hidden=true;
+    $('#calcpro-amort-results').hidden=true;
+    $('#calcpro-amort-schedule').hidden=true;
+    $('#calcpro-amort-empty').hidden=false;
+    $('#calcpro-amort-empty').textContent='The form is cleared. Enter loan details and select Calculate.';
+    $('#calcpro-amort-amount').focus();
+  }
+  const escapeCsv = value => `"${String(value).replace(/"/g,'""')}"`;
+  function saveCSV(){
+    if(!calculated)return;
+    const {opts,result}=calculated;
+    const output=[['CalcPro Amortization Calculator'],['Loan amount',money(opts.principal)],['Annual interest rate',opts.rate+'%'],['Term',humanMonths(opts.term)],['Scheduled monthly payment',money(result.monthlyPayment)],['Total interest',money(result.interestTotal)],['Total paid',money(result.paidTotal)],[],['Month','Date','Regular payment','Extra payment','Total payment','Interest','Principal','Ending balance']];
+    result.rows.forEach(row=>{
+      const dt=row.when===null?'':(()=>{const d=toMonth(row.when);return `${d.year}-${String(d.month).padStart(2,'0')}`;})();
+      output.push([row.index,dt,row.regular.toFixed(2),row.extra.toFixed(2),row.payment.toFixed(2),row.interest.toFixed(2),row.principal.toFixed(2),row.balance.toFixed(2)]);
+    });
+    const csv='\uFEFF'+output.map(line=>line.map(escapeCsv).join(',')).join('\r\n');
+    const uri=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));
+    const link=document.createElement('a');link.href=uri;link.download='calcpro-amortization-schedule.csv';document.body.appendChild(link);link.click();link.remove();
+    setTimeout(()=>URL.revokeObjectURL(uri),1000);
+  }
+  form.addEventListener('submit',calculate);
+  $('#calcpro-amort-clear').addEventListener('click',clear);
+  $('#calcpro-amort-optional').addEventListener('change',toggleExtra);
+  $('#calcpro-amort-more-toggle').addEventListener('click',()=>{
+    const list=$('#calcpro-amort-extra-list');list.hidden=!list.hidden;
+    const expanded=!list.hidden;
+    $('#calcpro-amort-more-toggle').setAttribute('aria-expanded',String(expanded));
+    $('#calcpro-amort-more-toggle').textContent=expanded?'− Hide additional one-time payments':'+ More one-time payments';
+  });
+  const tabs=$$('.calcpro-amort-tab');
+  tabs.forEach((tab,index)=>{
+    tab.addEventListener('click',()=>{currentTab=tab.dataset.view;paintTable();});
+    tab.addEventListener('keydown',event=>{
+      let next=index;
+      if(event.key==='ArrowRight')next=(index+1)%tabs.length;
+      else if(event.key==='ArrowLeft')next=(index+tabs.length-1)%tabs.length;
+      else if(event.key==='Home')next=0;
+      else if(event.key==='End')next=tabs.length-1;
+      else return;
+      event.preventDefault();tabs[next].focus();tabs[next].click();
+    });
+  });
+  $('#calcpro-amort-print').addEventListener('click',()=>window.print());
+  $('#calcpro-amort-save').addEventListener('click',saveCSV);
+  // Match the reference's initially populated, already calculated sample state.
+  const today=new Date(),m=today.getMonth()+1,y=today.getFullYear();
+  $$('.calcpro-amort-default-month').forEach(el=>el.value=String(m));
+  $$('.calcpro-amort-default-year').forEach(el=>el.value=String(y));
+  toggleExtra();
+  calculate();
+})();
+
+</script></body></html>

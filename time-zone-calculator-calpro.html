@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>Time Zone Calculator | CalcPro</title><meta content="Convert time and date between fixed UTC offsets, with a calendar picker and support for half-hour and quarter-hour differences." name="description"/><link href="template-style.css" rel="stylesheet"/><style>
+/* Scoped Time Zone Calculator styles; no global site selectors changed. */
+.calcpro-tz-root{font:15px/1.4 Arial,Helvetica,sans-serif;color:#111;max-width:100%;min-width:0}
+.calcpro-tz-root *{box-sizing:border-box}
+.calcpro-tz-root .calcpro-tz-prompt{display:flex;align-items:center;justify-content:center;gap:40px;min-height:36px;padding:5px 10px;background:#386b9a;color:#fff;font-size:16px;line-height:1.35;text-align:center;margin:0 0 3px}
+.calcpro-tz-root .calcpro-tz-down{color:#386b9a;background:#fff;border-radius:50%;width:25px;height:25px;flex:0 0 25px;display:inline-flex;align-items:center;justify-content:center;font-size:19px;line-height:1}
+.calcpro-tz-root .calcpro-tz-panel{background:#eee;border:1px solid #bdbdbd;padding:9px 11px 8px;max-width:100%;margin:0}
+.calcpro-tz-root .calcpro-tz-field{display:grid;grid-template-columns:41px minmax(0,1fr);align-items:center;column-gap:0;margin:0 0 3px;min-width:0}
+.calcpro-tz-root .calcpro-tz-label{font-weight:bold;text-align:right;padding-right:5px;white-space:nowrap}
+.calcpro-tz-root .calcpro-tz-input{font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:1.2;height:28px;border:1px solid #888;border-radius:0;background:#fff;color:#111;padding:2px 5px;max-width:100%;min-width:0}
+.calcpro-tz-root select.calcpro-tz-input{padding-right:6px}
+.calcpro-tz-root .calcpro-tz-input:focus-visible,.calcpro-tz-root button:focus-visible{outline:2px solid #2462a2;outline-offset:2px}
+.calcpro-tz-root .calcpro-tz-date-group{position:relative;display:flex;align-items:center;gap:3px;flex-wrap:wrap;min-width:0}
+.calcpro-tz-root .calcpro-tz-month{width:70px}
+.calcpro-tz-root .calcpro-tz-day{width:55px}
+.calcpro-tz-root .calcpro-tz-year{width:88px}
+.calcpro-tz-root .calcpro-tz-calendar-toggle{width:30px;height:29px;display:inline-flex;align-items:center;justify-content:center;border:0;background:transparent;cursor:pointer;padding:2px;flex:0 0 auto}
+.calcpro-tz-root .calcpro-tz-time-group{display:flex;align-items:center;gap:5px;flex-wrap:wrap}
+.calcpro-tz-root .calcpro-tz-time{width:113px}
+.calcpro-tz-root .calcpro-tz-zone{width:min(100%,490px);display:block}
+.calcpro-tz-root .calcpro-tz-action-field{margin-top:8px;margin-bottom:0}
+.calcpro-tz-root .calcpro-tz-calculate{display:inline-flex;align-items:center;gap:13px;background:#518225;color:#fff;border:0;padding:8px 14px;min-height:38px;font-size:15px;font-weight:bold;font-family:Arial,Helvetica,sans-serif;cursor:pointer}
+.calcpro-tz-root .calcpro-tz-calculate:hover{background:#416e1b}
+.calcpro-tz-root .calcpro-tz-play{display:inline-flex;justify-content:center;align-items:center;background:#a9cba4;color:#fff;border-radius:50%;width:21px;height:21px;font-size:13px;padding-left:2px}
+.calcpro-tz-root .calcpro-tz-result{margin:0 0 9px;font-size:15px;line-height:1.45}
+.calcpro-tz-root .calcpro-tz-result-bar{display:flex;align-items:center;justify-content:space-between;min-height:36px;background:#518526;color:#fff;padding:5px 6px;font-size:20px;line-height:1.2}
+.calcpro-tz-root .calcpro-tz-save{border:0;background:transparent;color:#fff;font:9px/1 Arial,Helvetica,sans-serif;display:flex;align-items:center;flex-direction:column;gap:0;cursor:pointer;padding:0 2px}
+.calcpro-tz-root .calcpro-tz-save:hover{text-decoration:underline}
+.calcpro-tz-root .calcpro-tz-result-source{padding-top:5px}
+.calcpro-tz-root .calcpro-tz-same{margin:12px 0}
+.calcpro-tz-root .calcpro-tz-result-dest{font-weight:bold;color:green;margin:0 0 4px}
+.calcpro-tz-root .calcpro-tz-error{padding:9px 10px;margin:0 0 6px;background:#fff1f1;border:1px solid #d98383;color:#8a1111;font-weight:bold}
+.calcpro-tz-root .calcpro-tz-fixed-note{font-size:12px;color:#5b5b5b;margin:7px 1px 0;line-height:1.45}
+.calcpro-tz-root [hidden]{display:none!important}
+.calcpro-tz-root .calcpro-tz-calendar{position:absolute;z-index:20;left:0;top:35px;width:278px;max-width:min(278px,calc(100vw - 36px));padding:9px;border:1px solid #9baab9;background:#fff;box-shadow:0 5px 15px #0002}
+.calcpro-tz-root .calcpro-tz-cal-nav{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:0 0 7px}
+.calcpro-tz-root .calcpro-tz-cal-nav button{background:#e8f1f9;border:1px solid #aab9c6;border-radius:3px;width:31px;height:28px;cursor:pointer;font-size:23px;line-height:1}
+.calcpro-tz-root .calcpro-tz-cal-nav strong{font-size:14px}
+.calcpro-tz-root .calcpro-tz-cal-weekdays,.calcpro-tz-root .calcpro-tz-cal-days{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:3px;text-align:center}
+.calcpro-tz-root .calcpro-tz-cal-weekdays{margin-bottom:4px;color:#4e6071;font-size:11px;font-weight:bold}
+.calcpro-tz-root .calcpro-tz-cal-days button{height:30px;background:#f5f7fa;border:1px solid #d9e0e8;border-radius:2px;font-size:13px;cursor:pointer;color:#111}
+.calcpro-tz-root .calcpro-tz-cal-days button:hover{background:#dcebf7}
+.calcpro-tz-root .calcpro-tz-cal-days button.calcpro-tz-cal-selected{background:#346c9d;color:#fff;border-color:#346c9d}
+.calcpro-tz-root .calcpro-tz-cal-today{font:12px Arial,Helvetica,sans-serif;color:#16517e;border:1px solid #bcccdc;background:#f1f6fa;padding:5px 12px;margin:8px 0 0;cursor:pointer}
+@media(max-width:520px){.calcpro-tz-root .calcpro-tz-prompt{gap:10px;font-size:14px;padding:7px}.calcpro-tz-root .calcpro-tz-panel{padding:9px 8px}.calcpro-tz-root .calcpro-tz-zone{width:100%}}
+@media(max-width:380px){.calcpro-tz-root .calcpro-tz-field{grid-template-columns:minmax(0,1fr);gap:3px;margin-bottom:8px}.calcpro-tz-root .calcpro-tz-label{text-align:left;padding-right:0}.calcpro-tz-root .calcpro-tz-month{width:64px}.calcpro-tz-root .calcpro-tz-day{width:49px}.calcpro-tz-root .calcpro-tz-year{width:78px}.calcpro-tz-root .calcpro-tz-date-group{gap:3px}.calcpro-tz-root .calcpro-tz-action-field>span{display:none}.calcpro-tz-root .calcpro-tz-prompt .calcpro-tz-down{display:none}}
+@media print{.calcpro-tz-root .calcpro-tz-fixed-note{color:#333}.calcpro-tz-root .calcpro-tz-save,.calcpro-tz-root .calcpro-tz-calendar-toggle,.calcpro-tz-root .calcpro-tz-calculate{display:none}}
+</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/other-calculator/">Other Calculators</a> / Time Zone Calculator</nav><h1 class="cp-page-title">Time Zone Calculator</h1><p class="cp-intro">Convert any date and time between fixed UTC offsets, from UTC−12:00 to UTC+14:00. Supports full-hour, half-hour, and quarter-hour differences; the result appears directly above the form.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-tz-root" id="calcpro-tz-app">
+  <div class="calcpro-tz-prompt" id="calcpro-tz-prompt">
+    <span class="calcpro-tz-down" aria-hidden="true">▼</span>
+    <span>Modify the values and click the Calculate button to use</span>
+  </div>
+  <div class="calcpro-tz-result" id="calcpro-tz-result" hidden aria-live="polite" aria-atomic="true">
+    <div class="calcpro-tz-result-bar"><span>Result</span><button class="calcpro-tz-save" type="button" id="calcpro-tz-save" title="Save result as text" aria-label="Save result as text"><svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><path fill="currentColor" d="M4 3h13l3 3v15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Zm2 2v5h11V5h-2v4H8V5H6Zm6 8a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z"/></svg><span>save</span></button></div>
+    <div class="calcpro-tz-result-source" id="calcpro-tz-source-output"></div>
+    <p class="calcpro-tz-same">is the same time as</p>
+    <div class="calcpro-tz-result-dest" id="calcpro-tz-dest-output"></div>
+  </div>
+  <div id="calcpro-tz-error" class="calcpro-tz-error" role="alert" hidden></div>
+  <form id="calcpro-tz-form" class="calcpro-tz-panel" novalidate>
+    <div class="calcpro-tz-field">
+      <label class="calcpro-tz-label" for="calcpro-tz-month">Date:</label>
+      <div class="calcpro-tz-date-group">
+        <select id="calcpro-tz-month" class="calcpro-tz-input calcpro-tz-month" aria-label="Month">                <option value="1">Jan</option>
+                <option value="2">Feb</option>
+                <option value="3">Mar</option>
+                <option value="4">Apr</option>
+                <option value="5">May</option>
+                <option value="6">Jun</option>
+                <option value="7">Jul</option>
+                <option value="8">Aug</option>
+                <option value="9">Sep</option>
+                <option value="10">Oct</option>
+                <option value="11">Nov</option>
+                <option value="12">Dec</option></select>
+        <select id="calcpro-tz-day" class="calcpro-tz-input calcpro-tz-day" aria-label="Day of month">                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+                <option value="24">24</option>
+                <option value="25">25</option>
+                <option value="26">26</option>
+                <option value="27">27</option>
+                <option value="28">28</option>
+                <option value="29">29</option>
+                <option value="30">30</option>
+                <option value="31">31</option></select>
+        <input id="calcpro-tz-year" class="calcpro-tz-input calcpro-tz-year" type="text" inputmode="numeric" maxlength="4" aria-label="Year" autocomplete="off" value="2026" />
+        <button id="calcpro-tz-calendar-toggle" class="calcpro-tz-calendar-toggle" type="button" aria-label="Choose date from calendar" aria-expanded="false" aria-controls="calcpro-tz-calendar"><svg width="23" height="23" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="3" width="20" height="19" rx="1.2" fill="#fff" stroke="#4b667e" stroke-width="1.4"/><path d="M3 3h18v6H3z" fill="#2e5e87"/><path d="M7 1.8v4M17 1.8v4" stroke="#325b7d" stroke-width="2"/><path d="M4.5 12h15M4.5 16h15M9 10v10M14.5 10v10" stroke="#aac6d9" stroke-width=".9"/><rect x="10" y="17" width="4" height="3" fill="#ee645b"/></svg></button>
+        <div id="calcpro-tz-calendar" class="calcpro-tz-calendar" hidden aria-label="Date picker">
+          <div class="calcpro-tz-cal-nav"><button type="button" id="calcpro-tz-cal-prev" aria-label="Previous month">‹</button><strong id="calcpro-tz-cal-title"></strong><button type="button" id="calcpro-tz-cal-next" aria-label="Next month">›</button></div>
+          <div class="calcpro-tz-cal-weekdays" aria-hidden="true"><span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span></div>
+          <div class="calcpro-tz-cal-days" id="calcpro-tz-cal-days"></div>
+          <button type="button" id="calcpro-tz-cal-today" class="calcpro-tz-cal-today">Today</button>
+        </div>
+      </div>
+    </div>
+    <div class="calcpro-tz-field">
+      <label class="calcpro-tz-label" for="calcpro-tz-time">Time:</label>
+      <div class="calcpro-tz-time-group"><input id="calcpro-tz-time" class="calcpro-tz-input calcpro-tz-time" type="text" inputmode="numeric" maxlength="8" placeholder="HH:mm:ss" autocomplete="off" aria-describedby="calcpro-tz-time-help"/><span id="calcpro-tz-time-help">(24 hours, e.g. 15:03:09)</span></div>
+    </div>
+    <div class="calcpro-tz-field">
+      <label class="calcpro-tz-label" for="calcpro-tz-from">From:</label>
+      <select id="calcpro-tz-from" class="calcpro-tz-input calcpro-tz-zone">            <option value="-12:00">(UTC-12) International Date Line West</option>
+            <option value="-11:00">(UTC-11) Midway Island, Samoa</option>
+            <option value="-10:00">(UTC-10) Hawaii</option>
+            <option value="-09:30">(UTC-09:30) Marquesas Islands</option>
+            <option value="-09:00">(UTC-09) Alaska</option>
+            <option value="-08:00">(UTC-08) Pacific Time (US/Canada), Tijuana</option>
+            <option value="-07:00">(UTC-07) Mountain Time (US/Canada), Chihuahua, Mazatlan</option>
+            <option value="-06:00">(UTC-06) Central America, Central Time (US/Canada), Mexico City</option>
+            <option value="-05:00">(UTC-05) Eastern Time (US/Canada), Colombia, Peru, Cuba</option>
+            <option value="-04:00">(UTC-04) Atlantic Time (Canada), Caracas, La Paz, Santiago</option>
+            <option value="-03:30">(UTC-03:30) Newfoundland Standard Time</option>
+            <option value="-03:00">(UTC-03) Brasilia, Rio, Argentina, Greenland</option>
+            <option value="-02:00">(UTC-02) Mid-Atlantic</option>
+            <option value="-01:00">(UTC-01) Azores, Cape Verde Island</option>
+            <option value="0">(UTC) United Kingdom, Iceland, Ghana, Senegal, Mali</option>
+            <option value="+01:00">(UTC+01) France, Germany, Central Europe Time, West Africa Time</option>
+            <option value="+02:00">(UTC+02) Eastern Europe Time, Central Africa Time, Greece, Egypt</option>
+            <option value="+03:00">(UTC+03) East Africa Time, Moscow, Iraq, Kuwait, Kenya</option>
+            <option value="+03:30">(UTC+03:30)  Iran</option>
+            <option value="+04:00">(UTC+04) Armenia, Georgia, Oman, United Arab Emirates</option>
+            <option value="+04:30">(UTC+04:30) Afghanistan</option>
+            <option value="+05:00">(UTC+05) Pakistan, Kazakhstan (west), Uzbekistan</option>
+            <option value="+05:30">(UTC+05:30) India, Sri Lanka</option>
+            <option value="+05:45">(UTC+05:45) Nepal</option>
+            <option value="+06:00">(UTC+06) Bangladesh, Bhutan, Kazakhstan (most)</option>
+            <option value="+06:30">(UTC+06:30) Myanmar</option>
+            <option value="+07:00">(UTC+07) Cambodia, Jakarta, Thailand, Vietnam</option>
+            <option value="+08:00">(UTC+08) China, Malaysia, Philippines, Singapore</option>
+            <option value="+08:45">(UTC+08:45) Eucla, Western Australia</option>
+            <option value="+09:00">(UTC+09) Japan, Korea</option>
+            <option value="+09:30">(UTC+09:30) Australian Central Standard Time</option>
+            <option value="+10:00">(UTC+10) Sydney, Guam, Vladivostok, Melbourne</option>
+            <option value="+10:30">(UTC+10:30) Lord Howe Standard Time</option>
+            <option value="+11:00">(UTC+11) Solomon Island, Vanuatu</option>
+            <option value="+12:00">(UTC+12) New Zealand (most), Fiji, Marshall Island</option>
+            <option value="+12:45">(UTC+12:45) Chatham Islands Standard Time</option>
+            <option value="+13:00">(UTC+13) Tonga, Samoa</option>
+            <option value="+13:45">(UTC+13:45) Chatham Islands Summer Time (manual)</option>
+            <option value="+14:00">(UTC+14) Line Islands, Kiribati</option></select>
+    </div>
+    <div class="calcpro-tz-field">
+      <label class="calcpro-tz-label" for="calcpro-tz-to">To:</label>
+      <select id="calcpro-tz-to" class="calcpro-tz-input calcpro-tz-zone">            <option value="-12:00">(UTC-12) International Date Line West</option>
+            <option value="-11:00">(UTC-11) Midway Island, Samoa</option>
+            <option value="-10:00">(UTC-10) Hawaii</option>
+            <option value="-09:30">(UTC-09:30) Marquesas Islands</option>
+            <option value="-09:00">(UTC-09) Alaska</option>
+            <option value="-08:00">(UTC-08) Pacific Time (US/Canada), Tijuana</option>
+            <option value="-07:00">(UTC-07) Mountain Time (US/Canada), Chihuahua, Mazatlan</option>
+            <option value="-06:00">(UTC-06) Central America, Central Time (US/Canada), Mexico City</option>
+            <option value="-05:00">(UTC-05) Eastern Time (US/Canada), Colombia, Peru, Cuba</option>
+            <option value="-04:00">(UTC-04) Atlantic Time (Canada), Caracas, La Paz, Santiago</option>
+            <option value="-03:30">(UTC-03:30) Newfoundland Standard Time</option>
+            <option value="-03:00">(UTC-03) Brasilia, Rio, Argentina, Greenland</option>
+            <option value="-02:00">(UTC-02) Mid-Atlantic</option>
+            <option value="-01:00">(UTC-01) Azores, Cape Verde Island</option>
+            <option value="0">(UTC) United Kingdom, Iceland, Ghana, Senegal, Mali</option>
+            <option value="+01:00">(UTC+01) France, Germany, Central Europe Time, West Africa Time</option>
+            <option value="+02:00">(UTC+02) Eastern Europe Time, Central Africa Time, Greece, Egypt</option>
+            <option value="+03:00">(UTC+03) East Africa Time, Moscow, Iraq, Kuwait, Kenya</option>
+            <option value="+03:30">(UTC+03:30)  Iran</option>
+            <option value="+04:00">(UTC+04) Armenia, Georgia, Oman, United Arab Emirates</option>
+            <option value="+04:30">(UTC+04:30) Afghanistan</option>
+            <option value="+05:00">(UTC+05) Pakistan, Kazakhstan (west), Uzbekistan</option>
+            <option value="+05:30">(UTC+05:30) India, Sri Lanka</option>
+            <option value="+05:45">(UTC+05:45) Nepal</option>
+            <option value="+06:00">(UTC+06) Bangladesh, Bhutan, Kazakhstan (most)</option>
+            <option value="+06:30">(UTC+06:30) Myanmar</option>
+            <option value="+07:00">(UTC+07) Cambodia, Jakarta, Thailand, Vietnam</option>
+            <option value="+08:00">(UTC+08) China, Malaysia, Philippines, Singapore</option>
+            <option value="+08:45">(UTC+08:45) Eucla, Western Australia</option>
+            <option value="+09:00">(UTC+09) Japan, Korea</option>
+            <option value="+09:30">(UTC+09:30) Australian Central Standard Time</option>
+            <option value="+10:00">(UTC+10) Sydney, Guam, Vladivostok, Melbourne</option>
+            <option value="+10:30">(UTC+10:30) Lord Howe Standard Time</option>
+            <option value="+11:00">(UTC+11) Solomon Island, Vanuatu</option>
+            <option value="+12:00">(UTC+12) New Zealand (most), Fiji, Marshall Island</option>
+            <option value="+12:45">(UTC+12:45) Chatham Islands Standard Time</option>
+            <option value="+13:00">(UTC+13) Tonga, Samoa</option>
+            <option value="+13:45">(UTC+13:45) Chatham Islands Summer Time (manual)</option>
+            <option value="+14:00">(UTC+14) Line Islands, Kiribati</option></select>
+    </div>
+    <div class="calcpro-tz-field calcpro-tz-action-field"><span aria-hidden="true"></span><div class="calcpro-tz-action-row"><button type="submit" class="calcpro-tz-calculate">Calculate <span aria-hidden="true" class="calcpro-tz-play">▶</span></button></div></div>
+  </form>
+  <p class="calcpro-tz-fixed-note">Times use fixed UTC offsets. Select the appropriate offset manually when daylight saving time applies.</p>
+</div></section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><a href="time-calculator.html">Time Calculator</a><a href="date-calculator.html">Date Calculator</a><a href="time-duration-calculator.html">Time Duration</a><a href="day-counter.html">Day Counter</a><a href="day-of-the-week-calculator.html">Day of the Week</a><a href="hours-calculator.html">Hours Calculator</a><a href="time-card-calculator.html">Time Card</a><a href="age-calculator.html">Age Calculator</a><a href="time-zone-calculator-calpro.html">Time Zone</a><a href="conversion-calculator.html">Conversion</a><a href="average-calculator.html">Average Calculator</a><a href="gpa-calculator.html">GPA Calculator</a></div></section></aside><article class="cp-article"><h2>How to Use the Time Zone Calculator</h2>
+<p>Choose the source <strong>date</strong> and enter the local <strong>time</strong> using 24-hour notation, such as 15:03:09 for 3:03:09 PM. Select a fixed <strong>From</strong> UTC offset and a <strong>To</strong> UTC offset, then click <strong>Calculate</strong>. The source and converted time—including the weekday—will appear above the form. Use the calendar button to choose a date or the small Save control in the result bar to save a text copy.</p>
+<h2>Time Zone Conversion Formula</h2>
+<p>The calculator converts the entered wall-clock time into UTC and then applies the destination offset:</p>
+<p><strong>Destination time = source time + (destination UTC offset − source UTC offset).</strong></p>
+<p>Offsets are in hours and minutes. For example, converting <strong>November 5, 2026 at 15:03:09</strong> from <strong>UTC+05:00</strong> to <strong>UTC−05:00</strong> subtracts 10 hours, producing <strong>November 5, 2026 at 05:03:09</strong>. When the difference crosses midnight, the calculator adjusts the calendar date and weekday. A difference as large as 26 hours is possible when converting between UTC−12:00 and UTC+14:00.</p>
+<h2>Understanding Fixed UTC Offsets</h2>
+<p>Coordinated Universal Time (UTC) is the shared reference for time offsets. UTC+05:45 is 5 hours and 45 minutes ahead of UTC; UTC−03:30 is 3 hours and 30 minutes behind it. This calculator uses the numerical offsets chosen in the dropdowns, not the time-zone rules of any particular city.</p>
+<div class="cp-warning"><strong>Daylight saving time:</strong> This calculator does <strong>not</strong> automatically apply seasonal clock changes. If a region observes daylight saving time, select the offset actually in effect for the date being converted. Region names in the dropdowns are examples, not a live location-based lookup.</div>
+<h2>Frequently Asked Questions</h2>
+<h3>Can I convert to another day or year?</h3>
+<p>Yes. The calculation carries the full date across midnight, month endings, leap days, and year boundaries.</p>
+<h3>Can it handle half-hour and quarter-hour time zones?</h3>
+<p>Yes. It includes offsets such as UTC+03:30, UTC+05:30, UTC+05:45, UTC+08:45, UTC+09:30, and UTC+12:45.</p>
+<h3>Does the calculator know if New York, London, or Sydney is on daylight saving time?</h3>
+<p>No. Its inputs are fixed offsets. For actual historical or future local civil time, use the appropriate date-specific offset based on a trusted zone database.</p>
+<h3>What input time format should I use?</h3>
+<p>Use 24-hour time: HH:mm or HH:mm:ss. Examples: 00:00, 09:05, and 23:59:59. Seconds are interpreted as zero if omitted.</p>
+<h2>References</h2>
+<p>See the <a href="https://www.iana.org/time-zones" target="_blank" rel="noopener noreferrer">IANA Time Zone Database</a> for location-specific daylight-saving rules and the <a href="https://www.calculator.net/time-zone-calculator.html" target="_blank" rel="noopener noreferrer">original time zone calculator reference</a> for the fixed-offset approach.</p>
+<p class="cp-page-footer">CalcPro — calculations are for informational and planning purposes. Verify location-specific offset rules when precision is critical.</p></article></main></div><script>
+(() => {
+  'use strict';
+  const root = document.getElementById('calcpro-tz-app');
+  if (!root) return;
+  const el = (suffix) => root.querySelector('#calcpro-tz-' + suffix);
+  const form = el('form');
+  const month = el('month'), day = el('day'), year = el('year'), time = el('time');
+  const from = el('from'), to = el('to');
+  const prompt = el('prompt'), result = el('result'), error = el('error');
+  const sourceOutput = el('source-output'), destOutput = el('dest-output');
+  const calendar = el('calendar'), calendarToggle = el('calendar-toggle');
+  const calTitle = el('cal-title'), calDays = el('cal-days');
+  const monthLong = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  const weekdays = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  const pad = (n) => String(n).padStart(2, '0');
+  let calYear = 2026, calMonth = 0, savedText = '';
+
+  function leap(y) { return y % 4 === 0 && (y % 100 !== 0 || y % 400 === 0); }
+  function daysInMonth(y, m) {
+    if (m === 2) return leap(y) ? 29 : 28;
+    return [4,6,9,11].includes(m) ? 30 : 31;
+  }
+  function updateDays() {
+    const current = Number(day.value) || 1;
+    const y = Number(year.value);
+    const m = Number(month.value);
+    const count = daysInMonth(Number.isInteger(y) && y >= 1 && y <= 9999 ? y : 2000, m);
+    day.replaceChildren();
+    for (let n = 1; n <= count; n++) {
+      const opt = document.createElement('option');
+      opt.value = String(n); opt.textContent = String(n);
+      day.append(opt);
+    }
+    day.value = String(Math.min(current, count));
+  }
+  function setDateFromNative(d) {
+    year.value = String(d.getFullYear());
+    month.value = String(d.getMonth() + 1);
+    updateDays();
+    day.value = String(d.getDate());
+  }
+  function showError(message) {
+    error.textContent = message;
+    error.hidden = false;
+    result.hidden = true;
+    prompt.hidden = false;
+  }
+  function parseOffset(input) {
+    if (input === '0') return 0;
+    const m = /^([+-])(\d{2}):(\d{2})$/.exec(input);
+    if (!m) throw new Error('Please choose a valid UTC offset.');
+    return (m[1] === '-' ? -1 : 1) * (Number(m[2]) * 60 + Number(m[3]));
+  }
+  function printOffset(minutes) {
+    const positive = minutes >= 0;
+    const abs = Math.abs(minutes);
+    return 'UTC ' + (positive ? '+' : '-') + pad(Math.floor(abs / 60)) + ':' + pad(abs % 60);
+  }
+  function formatDateUTC(d) {
+    return monthLong[d.getUTCMonth()] + ', ' + pad(d.getUTCDate()) + ' ' + d.getUTCFullYear() + ' ' +
+      pad(d.getUTCHours()) + ':' + pad(d.getUTCMinutes()) + ':' + pad(d.getUTCSeconds()) +
+      ' (' + weekdays[d.getUTCDay()] + ')';
+  }
+  // Arithmetic is always based on UTC date components, never the viewer's own time zone.
+  function calculate(event) {
+    event.preventDefault();
+    error.hidden = true;
+    const yText = year.value.trim();
+    if (!/^\d{1,4}$/.test(yText) || +yText < 1 || +yText > 9999) {
+      showError('Enter a valid year from 1 to 9999.');
+      year.focus(); return;
+    }
+    const y = Number(yText), m = Number(month.value), d = Number(day.value);
+    if (!Number.isInteger(m) || m < 1 || m > 12 || d < 1 || d > daysInMonth(y,m)) {
+      showError('Choose a valid calendar date.');
+      day.focus(); return;
+    }
+    const tm = /^([01]?\d|2[0-3]):([0-5]\d)(?::([0-5]\d))?$/.exec(time.value.trim());
+    if (!tm) {
+      showError('Enter a valid 24-hour time (HH:mm or HH:mm:ss), for example 15:03:09.');
+      time.focus(); return;
+    }
+    const hour = Number(tm[1]), minute = Number(tm[2]), second = Number(tm[3] || 0);
+    let fromMinutes, toMinutes;
+    try {
+      fromMinutes = parseOffset(from.value);
+      toMinutes = parseOffset(to.value);
+    } catch (exc) {
+      showError(exc.message); return;
+    }
+    // setUTCFullYear avoids Date.UTC's special 1900-1999 interpretation of years 0-99.
+    const input = new Date(0);
+    input.setUTCHours(0, 0, 0, 0);
+    input.setUTCFullYear(y, m - 1, d);
+    input.setUTCHours(hour, minute, second, 0);
+    const converted = new Date(input.getTime() + (toMinutes - fromMinutes) * 60000);
+    if (!Number.isFinite(converted.getTime())) {
+      showError('This date is outside the supported range.'); return;
+    }
+    const src = formatDateUTC(input) + ' at ' + printOffset(fromMinutes) + '.';
+    const dst = formatDateUTC(converted) + ' at ' + printOffset(toMinutes);
+    sourceOutput.textContent = src;
+    destOutput.textContent = dst;
+    savedText = 'Time Zone Calculator — CalcPro\n' + src + '\nis the same time as\n' + dst + '\n' +
+      'Fixed UTC offsets; daylight saving time is not applied automatically.\n';
+    result.hidden = false;
+    prompt.hidden = true;
+  }
+
+  function closeCalendar() {
+    calendar.hidden = true;
+    calendarToggle.setAttribute('aria-expanded','false');
+  }
+  function renderCalendar() {
+    calTitle.textContent = monthLong[calMonth] + ' ' + calYear;
+    calDays.replaceChildren();
+    const first = new Date(0);
+    first.setUTCFullYear(calYear,calMonth,1);
+    for (let i=0; i<first.getUTCDay(); i++) {
+      const blank = document.createElement('span');
+      blank.setAttribute('aria-hidden','true');
+      calDays.append(blank);
+    }
+    const currentYear = Number(year.value), currentMonth = Number(month.value)-1, currentDay = Number(day.value);
+    for (let n=1; n<=daysInMonth(calYear,calMonth+1); n++) {
+      const btn = document.createElement('button');
+      btn.type='button'; btn.textContent=String(n); btn.dataset.day=String(n);
+      btn.setAttribute('aria-label', monthLong[calMonth] + ' ' + n + ', ' + calYear);
+      if (calYear===currentYear && calMonth===currentMonth && n===currentDay) {
+        btn.className='calcpro-tz-cal-selected'; btn.setAttribute('aria-current','date');
+      }
+      calDays.append(btn);
+    }
+  }
+  function shiftCalendar(amount) {
+    const index = calYear*12 + calMonth + amount;
+    if (index < 12 || index > 9999*12+11) return;
+    calYear = Math.floor(index / 12);
+    calMonth = index % 12;
+    renderCalendar();
+  }
+  month.addEventListener('change', () => { updateDays(); if (!calendar.hidden) renderCalendar(); });
+  year.addEventListener('input', () => { updateDays(); if (!calendar.hidden) renderCalendar(); });
+  day.addEventListener('change', () => { if (!calendar.hidden) renderCalendar(); });
+  calendarToggle.addEventListener('click', () => {
+    if (!calendar.hidden) { closeCalendar(); return; }
+    const y = Number(year.value);
+    calYear = Number.isInteger(y) && y>=1 && y<=9999 ? y : new Date().getFullYear();
+    calMonth = Number(month.value)-1;
+    renderCalendar();
+    calendar.hidden = false;
+    calendarToggle.setAttribute('aria-expanded','true');
+  });
+  el('cal-prev').addEventListener('click', () => shiftCalendar(-1));
+  el('cal-next').addEventListener('click', () => shiftCalendar(1));
+  el('cal-today').addEventListener('click', () => { setDateFromNative(new Date()); closeCalendar(); calendarToggle.focus(); });
+  calDays.addEventListener('click', (e) => {
+    const btn=e.target.closest('button[data-day]');
+    if (!btn) return;
+    year.value=String(calYear); month.value=String(calMonth+1);
+    updateDays(); day.value=btn.dataset.day;
+    closeCalendar(); calendarToggle.focus();
+  });
+  document.addEventListener('pointerdown', e => {
+    if (!calendar.hidden && !calendar.contains(e.target) && !calendarToggle.contains(e.target)) closeCalendar();
+  });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && !calendar.hidden) { closeCalendar(); calendarToggle.focus(); } });
+  el('save').addEventListener('click', () => {
+    if (!savedText) return;
+    const blob=new Blob([savedText],{type:'text/plain;charset=utf-8'});
+    const url=URL.createObjectURL(blob);
+    const link=document.createElement('a'); link.href=url; link.download='calcpro-time-zone-result.txt';
+    document.body.append(link); link.click(); link.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  });
+  form.addEventListener('submit', calculate);
+  const now=new Date();
+  setDateFromNative(now);
+  time.value=pad(now.getHours()) + ':' + pad(now.getMinutes()) + ':' + pad(now.getSeconds());
+})();
+</script></body></html>

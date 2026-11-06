@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>Long Division Calculator | CalcPro</title><meta content="Divide integers with visible long division steps, exact quotient and remainder, mixed number, and decimal result." name="description"/><link href="template-style.css" rel="stylesheet"/>
+<style>
+/* Long Division Calculator — isolated component styling */
+.calcpro-ld-root{font:16px/1.45 Arial,Helvetica,sans-serif;color:#101010;max-width:100%;min-width:0}
+.calcpro-ld-root *, .calcpro-ld-root *::before,.calcpro-ld-root *::after{box-sizing:border-box}
+.calcpro-ld-root .calcpro-ld-sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+.calcpro-ld-root .calcpro-ld-instruction{min-height:42px;display:flex;justify-content:center;align-items:center;gap:28px;padding:8px 12px;background:#376798;color:white;font-size:17px;line-height:1.25;text-align:center}
+.calcpro-ld-root .calcpro-ld-down{width:27px;height:27px;border-radius:50%;display:inline-flex;justify-content:center;align-items:center;flex:0 0 27px;background:#fff;color:#376798;font-size:24px;font-weight:bold;line-height:1}
+.calcpro-ld-root .calcpro-ld-panel{width:min(100%,265px);margin:5px auto 0;border:1px solid #bcbcbc;background:#eee;padding:13px 12px 15px;display:block}
+.calcpro-ld-root .calcpro-ld-input-row{display:flex;align-items:flex-start;justify-content:center;gap:15px;min-height:58px}
+.calcpro-ld-root .calcpro-ld-input{width:96px;max-width:100%;min-width:0;height:33px;margin:5px 0 0;padding:4px 6px;border:1px solid #235886;border-radius:2px;background:#fff;color:#111;font-size:17px;font-family:Arial,Helvetica,sans-serif;box-shadow:1px 2px 3px #a5a5a5}
+.calcpro-ld-root .calcpro-ld-dividend-wrap{position:relative;min-width:0;width:126px;padding-left:10px;border-top:2px solid #111}
+.calcpro-ld-root .calcpro-ld-dividend-wrap::before{content:"";position:absolute;left:1px;top:0;width:2px;height:49px;background:#111;transform:skewX(-24deg);transform-origin:top left}
+.calcpro-ld-root .calcpro-ld-dividend-wrap .calcpro-ld-input{width:116px}
+.calcpro-ld-root .calcpro-ld-actions{display:flex;gap:4px;align-items:center;justify-content:center;margin-top:9px}
+.calcpro-ld-root .calcpro-ld-calculate,.calcpro-ld-root .calcpro-ld-clear{appearance:none;border:0;border-radius:0;font:16px Arial,Helvetica,sans-serif;cursor:pointer;min-height:43px}
+.calcpro-ld-root .calcpro-ld-calculate{background:#4d8524;color:white;font-weight:bold;padding:0 12px 0 17px;display:flex;align-items:center;gap:13px}
+.calcpro-ld-root .calcpro-ld-calculate:hover{background:#386b16}
+.calcpro-ld-root .calcpro-ld-play{width:23px;height:23px;border-radius:50%;background:#90bd78;color:white;display:inline-flex;align-items:center;justify-content:center;font-size:15px;line-height:1}
+.calcpro-ld-root .calcpro-ld-clear{background:#aaa;color:white;padding:0 12px}
+.calcpro-ld-root .calcpro-ld-clear:hover{background:#8e8e8e}
+.calcpro-ld-root button:focus-visible,.calcpro-ld-root input:focus-visible,.calcpro-ld-root summary:focus-visible{outline:3px solid #266aa7;outline-offset:3px}
+.calcpro-ld-root .calcpro-ld-error{color:#a52222;font-size:13px;margin:9px 1px 0;line-height:1.4}
+.calcpro-ld-root .calcpro-ld-error:empty{display:none}
+.calcpro-ld-root .calcpro-ld-output{margin:0 0 11px}
+.calcpro-ld-root .calcpro-ld-output[hidden],.calcpro-ld-root .calcpro-ld-instruction[hidden]{display:none!important}
+.calcpro-ld-root .calcpro-ld-result-bar{background:#4d8524;color:white;display:flex;align-items:center;justify-content:space-between;min-height:40px;padding:4px 6px 4px 7px}
+.calcpro-ld-root .calcpro-ld-result-label{font-size:23px;line-height:1.15}
+.calcpro-ld-root .calcpro-ld-save{border:0;background:none;color:white;cursor:pointer;min-width:31px;display:flex;flex-direction:column;align-items:center;gap:0;padding:1px 3px;font-size:9px;line-height:1}
+.calcpro-ld-root .calcpro-ld-save:hover{background:#39691c}
+.calcpro-ld-root .calcpro-ld-save svg{display:block;width:17px;height:17px;fill:#fff}
+.calcpro-ld-root .calcpro-ld-calculations{font-family:Georgia,'Times New Roman',serif;font-size:23px;line-height:1.65;margin:9px 2px 10px;max-width:100%;overflow-wrap:anywhere}
+.calcpro-ld-root .calcpro-ld-equation{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px;min-height:34px}
+.calcpro-ld-root .calcpro-ld-equation-indent{padding-left:65px}
+.calcpro-ld-root .calcpro-ld-equals{font-family:Arial,Helvetica,sans-serif}
+.calcpro-ld-root .calcpro-ld-mixed{display:inline-flex;gap:3px;align-items:center}
+.calcpro-ld-root .calcpro-ld-fraction{display:inline-flex;flex-direction:column;text-align:center;vertical-align:middle;line-height:1.05;font-size:.82em;transform:translateY(4px)}
+.calcpro-ld-root .calcpro-ld-fraction-top{border-bottom:1px solid currentColor;padding:0 2px 1px}
+.calcpro-ld-root .calcpro-ld-fraction-bottom{padding-top:1px}
+.calcpro-ld-root .calcpro-ld-summary{font-size:21px;line-height:1.45;margin:11px 3px 25px;overflow-wrap:anywhere}
+.calcpro-ld-root .calcpro-ld-summary-value{margin-left:12px}
+.calcpro-ld-root .calcpro-ld-steps-title{font-size:19px;font-weight:bold;margin:23px 0 9px}
+.calcpro-ld-root .calcpro-ld-steps-scroll{max-width:100%;overflow:auto;padding:0 0 5px}
+.calcpro-ld-root .calcpro-ld-workspace{font:22px/1.2 'Courier New',monospace;white-space:pre;display:inline-block;margin:0;min-width:max-content;color:#050505;tab-size:2}
+.calcpro-ld-root .calcpro-ld-step-details{margin:9px 0 12px;font-size:14px;max-width:100%}
+.calcpro-ld-root .calcpro-ld-step-details summary{cursor:pointer;color:#225d91;font-weight:bold;max-width:max-content}
+.calcpro-ld-root .calcpro-ld-step-details ol{margin:8px 0 8px 0;padding-left:25px;line-height:1.55}
+.calcpro-ld-root .calcpro-ld-step-details li{padding-bottom:4px;overflow-wrap:anywhere}
+.calcpro-ld-root .calcpro-ld-decimal-note,.calcpro-ld-root .calcpro-ld-sign-note{font-family:Arial,Helvetica,sans-serif;color:#565656;font-size:12px;line-height:1.4;margin:2px 3px 8px}
+.calcpro-ld-root .calcpro-ld-sign-note:empty,.calcpro-ld-root .calcpro-ld-decimal-note:empty{display:none}
+.calcpro-ld-root .calcpro-ld-panel-wrap{max-width:100%}
+@media(max-width:480px){.calcpro-ld-root .calcpro-ld-instruction{font-size:14px;gap:10px;padding:8px}.calcpro-ld-root .calcpro-ld-calculations{font-size:20px}.calcpro-ld-root .calcpro-ld-equation-indent{padding-left:36px}.calcpro-ld-root .calcpro-ld-summary{font-size:18px}.calcpro-ld-root .calcpro-ld-workspace{font-size:19px}}
+@media print{.calcpro-ld-root .calcpro-ld-instruction,.calcpro-ld-root .calcpro-ld-panel-wrap,.calcpro-ld-root .calcpro-ld-save{display:none!important}.calcpro-ld-root .calcpro-ld-output{display:block!important}.calcpro-ld-root .calcpro-ld-steps-scroll{overflow:visible}.calcpro-ld-root .calcpro-ld-result-bar{color:#111;background:none;border-bottom:2px solid #111}}
+
+</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="math-calculator.html">Math</a> / Long Division Calculator</nav><h1 class="cp-page-title">Long Division Calculator</h1><p class="cp-intro">Divide whole numbers with a written long-division solution, including the quotient, remainder, fraction, and decimal result.</p><section aria-label="Calculator" class="cp-tool-area">
+<div class="calcpro-ld-root" id="calcpro-ld-root">
+  <div class="calcpro-ld-instruction" id="calcpro-ld-instruction"><span class="calcpro-ld-down" aria-hidden="true">▾</span><span>Modify the values and click the Calculate button to use</span></div>
+  <section class="calcpro-ld-output" id="calcpro-ld-output" aria-label="Long division result" aria-live="polite" hidden>
+    <div class="calcpro-ld-result-bar">
+      <span class="calcpro-ld-result-label">Result</span>
+      <button class="calcpro-ld-save" id="calcpro-ld-save" type="button" aria-label="Save the calculation as a text file" title="Save result"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 2h14l4 4v16H2V2zm2 2v6h12V4h-3v4H8V4zm6 10a4 4 0 1 0 .001 8.001A4 4 0 0 0 12 14z"/></svg><span>save</span></button>
+    </div>
+    <div class="calcpro-ld-calculations" id="calcpro-ld-calculations"></div>
+    <div class="calcpro-ld-summary" id="calcpro-ld-summary"></div>
+    <h2 class="calcpro-ld-steps-title">Steps:</h2>
+    <div class="calcpro-ld-steps-scroll" tabindex="0" aria-label="Scrollable long division working"><pre class="calcpro-ld-workspace" id="calcpro-ld-workspace"></pre></div>
+    <div class="calcpro-ld-sign-note" id="calcpro-ld-sign-note"></div>
+    <details class="calcpro-ld-step-details" id="calcpro-ld-step-details"><summary>Explain each division step</summary><ol id="calcpro-ld-step-explanations"></ol></details>
+    <p class="calcpro-ld-decimal-note" id="calcpro-ld-decimal-note"></p>
+  </section>
+  <div class="calcpro-ld-panel-wrap">
+    <form class="calcpro-ld-panel" id="calcpro-ld-form" novalidate>
+      <div class="calcpro-ld-input-row">
+        <div><label for="calcpro-ld-divisor" class="calcpro-ld-sr-only">Divisor (number to divide by)</label><input class="calcpro-ld-input" id="calcpro-ld-divisor" name="divisor" value="7" type="text" inputmode="numeric" maxlength="14" autocomplete="off" title="Divisor (number to divide by)" aria-describedby="calcpro-ld-error"></div>
+        <div class="calcpro-ld-dividend-wrap"><label for="calcpro-ld-dividend" class="calcpro-ld-sr-only">Dividend (number being divided)</label><input class="calcpro-ld-input" id="calcpro-ld-dividend" name="dividend" value="100" type="text" inputmode="numeric" maxlength="14" autocomplete="off" title="Dividend (number being divided)" aria-describedby="calcpro-ld-error"></div>
+      </div>
+      <div class="calcpro-ld-actions"><button class="calcpro-ld-calculate" id="calcpro-ld-calculate" type="submit">Calculate <span class="calcpro-ld-play" aria-hidden="true">▶</span></button><button class="calcpro-ld-clear" id="calcpro-ld-clear" type="button">Clear</button></div>
+      <p class="calcpro-ld-error" id="calcpro-ld-error" role="alert"></p>
+    </form>
+  </div>
+</div>
+
+</section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><a href="fraction-calculator.html">Fraction</a><a href="scientific-calculator.html">Scientific</a><a href="binary-calculator.html">Binary</a><a href="ratio-calculator.html">Ratio</a><a href="gcf-calculator.html">Greatest Common Factor</a><a href="lcm-calculator.html">Least Common Multiple</a><a href="rounding-calculator.html">Rounding</a><a href="factor-calculator.html">Factor</a><a href="common-factor-calculator.html">Common Factor</a><a href="average-calculator.html">Average</a><a href="root-calculator.html">Root</a><a href="big-number-calculator.html">Big Number</a></div></section></aside><article class="cp-article">
+<h2>How to Use the Long Division Calculator</h2>
+<p>Enter the <strong>divisor</strong> (the number you divide by) in the left box and the <strong>dividend</strong> (the number being divided) in the right box. Select <strong>Calculate</strong> to see the whole-number quotient, remainder, mixed fraction (when needed), decimal value, and step-by-step long division. The results appear above the input form. Use <strong>Clear</strong> to remove both entries, or <strong>Save</strong> in the result heading to save a text copy.</p>
+<h2>Long Division Formula</h2>
+<p>Integer division follows <strong>dividend = divisor × quotient + remainder</strong>. For positive numbers, the remainder is always less than the divisor. When a division is exact, the remainder is zero.</p>
+<div class="cp-note"><strong>Example:</strong> 100 ÷ 7 = 14 remainder 2 because 7 × 14 + 2 = 100. The same value is the mixed fraction 14 2/7 and the repeating decimal 14.285714285714…</div>
+<h2>How the Written Steps Work</h2>
+<ol>
+  <li>Start with the leftmost digits of the dividend and determine how many times the divisor fits into that portion.</li>
+  <li>Write that quotient digit above the dividend, multiply it by the divisor, and subtract.</li>
+  <li>Bring down the next digit and repeat the divide–multiply–subtract cycle.</li>
+  <li>When no dividend digits remain, the number left is the remainder. To find decimal digits, continue dividing after bringing down zeros.</li>
+</ol>
+<h2>Understanding the Results</h2>
+<p><strong>Quotient</strong> is the whole-number part of the division; <strong>remainder</strong> is what is left after the divisor has been taken out that many times. A <strong>mixed fraction</strong> combines the whole-number quotient with the remaining fraction. Decimal output is computed using exact whole-number arithmetic, up to 12 digits after the decimal point. A nonterminating decimal is truncated, not rounded.</p>
+<h2>Frequently Asked Questions</h2>
+<h3>Does the calculator accept decimal input?</h3>
+<p>This long division workspace accepts whole numbers (integers) of up to 14 characters, including an optional minus sign. If you have decimals, multiply both the divisor and dividend by the same power of 10 to convert them to whole numbers before dividing.</p>
+<h3>What happens when the divisor is zero?</h3>
+<p>Division by zero is undefined. The calculator displays an error message and does not show an invalid result.</p>
+<h3>Can the remainder be negative?</h3>
+<p>For negative inputs, the calculator uses a quotient truncated toward zero. The remainder follows the sign of the dividend, so the identity dividend = divisor × quotient + remainder remains true.</p>
+<h3>Why does the decimal stop after 12 places?</h3>
+<p>Some fractions have infinitely repeating decimals. The tool shows up to 12 decimal places, and the exact quotient-and-remainder result remains available above the written working.</p>
+<h2>Further Reading</h2>
+<p>For another explanation and examples, see <a href="https://www.calculator.net/long-division-calculator.html" rel="noopener noreferrer">Calculator.net’s long division guide</a>.</p>
+
+<p class="cp-page-footer">CalcPro — calculator estimates are for informational purposes.</p></article></main></div><script>
+(() => {
+  'use strict';
+  const root = document.getElementById('calcpro-ld-root');
+  if (!root) return;
+  const $ = (name) => root.querySelector('#calcpro-ld-' + name);
+  const form = $('form');
+  const divisorInput = $('divisor');
+  const dividendInput = $('dividend');
+  const output = $('output');
+  const instruction = $('instruction');
+  const error = $('error');
+  let lastCalculation = null;
+  const MAX_INPUT_LENGTH = 14;
+  const MAX_DECIMALS = 12;
+
+  function parseInteger(input, label) {
+    const value = input.value.trim();
+    if (!value) throw new Error('Enter a ' + label.toLowerCase() + '.');
+    if (!/^[+-]?\d+$/.test(value)) throw new Error(label + ' must be a whole number (no decimals or commas).');
+    if (value.length > MAX_INPUT_LENGTH) throw new Error(label + ' must contain at most 14 characters.');
+    return BigInt(value);
+  }
+  function abs(value) { return value < 0n ? -value : value; }
+  function gcd(a, b) {
+    while (b !== 0n) { const next = a % b; a = b; b = next; }
+    return a;
+  }
+  function formatDecimal(dividend, divisor) {
+    const negative = (dividend < 0n) !== (divisor < 0n);
+    const a = abs(dividend);
+    const b = abs(divisor);
+    const whole = a / b;
+    let remainder = a % b;
+    let digits = '';
+    for (let n = 0; n < MAX_DECIMALS && remainder !== 0n; n++) {
+      remainder *= 10n;
+      digits += String(remainder / b);
+      remainder %= b;
+    }
+    return {value: (negative && a !== 0n ? '-' : '') + whole.toString() + (digits ? '.' + digits : ''), truncated: remainder !== 0n};
+  }
+  function formatMixed(quotient, remainder, divisor, dividend) {
+    if (remainder === 0n) return '';
+    const numerator = abs(remainder);
+    const denominator = abs(divisor);
+    const factor = gcd(numerator, denominator);
+    const a = (numerator / factor).toString();
+    const b = (denominator / factor).toString();
+    const negative = (dividend < 0n) !== (divisor < 0n);
+    return {whole: quotient !== 0n ? quotient.toString() : '', numerator: a, denominator: b, sign: quotient === 0n && negative ? '−' : ''};
+  }
+  function leftPadSpaces(count) { return ' '.repeat(Math.max(0, count)); }
+  function buildLongDivision(dividend, divisor, quotient, remainder) {
+    const number = abs(dividend).toString();
+    const divisorAbs = abs(divisor);
+    const divisorString = divisorAbs.toString();
+    const leftWidth = divisorString.length + 1;
+    const quotientText = abs(quotient).toString();
+    const steps = [];
+    let carry = 0n;
+    let started = false;
+    for (let index = 0; index < number.length; index++) {
+      const partial = carry * 10n + BigInt(number[index]);
+      const quotientDigit = partial / divisorAbs;
+      const product = quotientDigit * divisorAbs;
+      const nextRemainder = partial - product;
+      if (quotientDigit !== 0n || started) {
+        steps.push({index, partial, digit: quotientDigit, product, remainder: nextRemainder});
+        started = true;
+      }
+      carry = nextRemainder;
+    }
+    const lines = [];
+    lines.push(leftPadSpaces(leftWidth + number.length - quotientText.length) + quotientText + (remainder !== 0n ? ' R' + abs(remainder) : ''));
+    lines.push(leftPadSpaces(leftWidth - 1) + '┌' + '─'.repeat(number.length));
+    lines.push(divisorString + '⟌' + number);
+    const explanation = [];
+    if (!steps.length) {
+      lines.push(leftPadSpaces(leftWidth + number.length - abs(remainder).toString().length) + abs(remainder));
+      explanation.push(divisorString + ' does not fit into ' + number + ', so the quotient is 0 and the remainder is ' + abs(remainder) + '.');
+    } else {
+      for (let i = 0; i < steps.length; i++) {
+        const step = steps[i];
+        const partialString = step.partial.toString();
+        if (i > 0) lines.push(leftPadSpaces(leftWidth + step.index - partialString.length + 1) + partialString);
+        if (step.digit !== 0n) {
+          const productString = step.product.toString();
+          const pos = leftWidth + step.index - productString.length + 1;
+          lines.push(leftPadSpaces(pos - 1) + '-' + productString);
+          lines.push(leftPadSpaces(pos) + '─'.repeat(productString.length));
+        }
+        explanation.push('Bring down to make ' + partialString + '. ' + divisorString + ' goes into ' + partialString + ' ' + step.digit + ' time' + (step.digit === 1n ? '' : 's') + '. Subtract ' + step.product + ' to leave ' + step.remainder + '.');
+        if (i === steps.length - 1) {
+          const remainderString = abs(remainder).toString();
+          lines.push(leftPadSpaces(leftWidth + step.index - remainderString.length + 1) + remainderString);
+        }
+      }
+    }
+    if (dividend < 0n || divisor < 0n) {
+      explanation.push('The work uses absolute values. The final quotient and remainder follow signed integer division: dividend = divisor × quotient + remainder.');
+    }
+    return {text: lines.join('\n'), explanation};
+  }
+  function addText(parent, tag, text, className) {
+    const element = document.createElement(tag);
+    if (className) element.className = className;
+    element.textContent = text;
+    parent.appendChild(element);
+    return element;
+  }
+  function renderEquation(parent, parts, indented) {
+    const row = addText(parent, 'div', '', 'calcpro-ld-equation' + (indented ? ' calcpro-ld-equation-indent' : ''));
+    parts.forEach(part => {
+      if (part.type === 'mixed') {
+        const wrapper = addText(row, 'span', '', 'calcpro-ld-mixed');
+        if (part.data.whole) addText(wrapper, 'span', part.data.whole);
+        else if (part.data.sign) addText(wrapper, 'span', part.data.sign);
+        const fraction = addText(wrapper, 'span', '', 'calcpro-ld-fraction');
+        addText(fraction, 'span', part.data.numerator, 'calcpro-ld-fraction-top');
+        addText(fraction, 'span', part.data.denominator, 'calcpro-ld-fraction-bottom');
+      } else {
+        addText(row, 'span', part.text, part.type === 'equals' ? 'calcpro-ld-equals' : '');
+      }
+    });
+  }
+  function render(data) {
+    const calculations = $('calculations');
+    const summary = $('summary');
+    const explanations = $('step-explanations');
+    calculations.replaceChildren();
+    summary.replaceChildren();
+    explanations.replaceChildren();
+    const symbol = data.divisor.toString() + '⟌' + data.dividend.toString();
+    const quotientWithRemainder = data.quotient.toString() + (data.remainder !== 0n ? ' R' + data.remainder.toString() : '');
+    renderEquation(calculations, [{text: symbol}, {type:'equals',text:'='}, {text:quotientWithRemainder}], false);
+    if (data.mixed) renderEquation(calculations, [{type:'equals',text:'='},{type:'mixed',data:data.mixed}], true);
+    renderEquation(calculations, [{type:'equals',text:'='},{text:data.decimal.value}], true);
+    addText(summary, 'div', 'Quotient = ' + data.quotient);
+    addText(summary, 'div', 'Remainder = ' + data.remainder);
+    $('workspace').textContent = data.work.text;
+    data.work.explanation.forEach(line => addText(explanations, 'li', line));
+    $('step-details').open = false;
+    $('decimal-note').textContent = data.decimal.truncated ? 'Decimal shown to 12 places without rounding; the expansion continues.' : '';
+    $('sign-note').textContent = (data.dividend < 0n || data.divisor < 0n) ? 'The written work uses absolute values; signs are applied to the final answers.' : '';
+    instruction.hidden = true;
+    output.hidden = false;
+  }
+  function calculate() {
+    error.textContent = '';
+    divisorInput.removeAttribute('aria-invalid');
+    dividendInput.removeAttribute('aria-invalid');
+    try {
+      const divisor = parseInteger(divisorInput, 'Divisor');
+      const dividend = parseInteger(dividendInput, 'Dividend');
+      if (divisor === 0n) { divisorInput.setAttribute('aria-invalid','true'); throw new Error('The divisor cannot be zero.'); }
+      const quotient = dividend / divisor;
+      const remainder = dividend % divisor;
+      const data = {divisor, dividend, quotient, remainder, decimal: formatDecimal(dividend, divisor), mixed: formatMixed(quotient, remainder, divisor, dividend)};
+      data.work = buildLongDivision(dividend, divisor, quotient, remainder);
+      lastCalculation = data;
+      render(data);
+    } catch (err) {
+      error.textContent = err.message || 'Check both entries and try again.';
+      lastCalculation = null;
+      output.hidden = true;
+      instruction.hidden = false;
+    }
+  }
+  form.addEventListener('submit', event => { event.preventDefault(); calculate(); });
+  $('clear').addEventListener('click', () => {
+    divisorInput.value = '';
+    dividendInput.value = '';
+    error.textContent = '';
+    divisorInput.removeAttribute('aria-invalid');
+    dividendInput.removeAttribute('aria-invalid');
+    lastCalculation = null;
+    output.hidden = true;
+    instruction.hidden = false;
+    divisorInput.focus();
+  });
+  $('save').addEventListener('click', () => {
+    if (!lastCalculation) return;
+    const data = lastCalculation;
+    const content = [
+      'CalcPro — Long Division Calculator',
+      data.dividend + ' / ' + data.divisor + ' = ' + data.quotient + ' R' + data.remainder,
+      'Quotient = ' + data.quotient,
+      'Remainder = ' + data.remainder,
+      'Decimal = ' + data.decimal.value + (data.decimal.truncated ? ' (truncated to 12 decimal places)' : ''),
+      '', 'Long division:', data.work.text, '', 'Step-by-step explanation:',
+      ...data.work.explanation.map((step, i) => (i + 1) + '. ' + step)
+    ].join('\n');
+    const blob = new Blob([content], {type:'text/plain;charset=utf-8'});
+    const url = URL.createObjectURL(blob);
+    const anchor = document.createElement('a');
+    anchor.href = url;
+    anchor.download = 'calcpro-long-division-result.txt';
+    document.body.appendChild(anchor);
+    anchor.click();
+    anchor.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  });
+})();
+
+</script></body></html>

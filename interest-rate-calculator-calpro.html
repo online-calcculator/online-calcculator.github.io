@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>Interest Rate Calculator | CalcPro</title><meta content="Find the implied annual interest rate on a loan from its amount, monthly payment, and term, with payment charts and amortization schedule." name="description"/><link href="template-style.css" rel="stylesheet"/><style>
+/* Scoped Interest Rate Calculator UI — no CalcPro global selectors. */
+.calcpro-ir{--calcpro-ir-blue:#2b7ddb;--calcpro-ir-green:#80bd18;--calcpro-ir-red:#980000;font:15px Arial,Helvetica,sans-serif;color:#101010;max-width:100%;line-height:1.35}
+.calcpro-ir *{box-sizing:border-box}
+.calcpro-ir button,.calcpro-ir input{font:inherit}
+.calcpro-ir-help{display:flex;align-items:center;justify-content:center;gap:14px;text-align:center;background:#366795;color:white;min-height:36px;padding:6px 11px;margin:0 0 6px;font-size:15px}
+.calcpro-ir-help-icon{display:inline-flex;border-radius:50%;width:25px;height:25px;justify-content:center;align-items:center;background:#fff;color:#366795;font-size:15px;flex:none}
+.calcpro-ir-top{display:grid;grid-template-columns:minmax(0,306px) minmax(0,1fr);column-gap:clamp(16px,5vw,52px);align-items:start}
+.calcpro-ir-form{margin:0;min-width:0;background:#eee;border:1px solid #bdbdbd;padding:9px 8px 7px;max-width:306px}
+.calcpro-ir-field{display:grid;grid-template-columns:116px minmax(0,1fr);align-items:center;gap:3px;margin-bottom:4px}
+.calcpro-ir-field>label{font-size:14px;white-space:nowrap}
+.calcpro-ir-text{height:29px;min-width:0;width:100%;border:1px solid #245785;border-radius:2px;background:#fff;padding:3px 6px;box-shadow:1px 2px 3px #0002;font-size:16px!important;color:#111}
+.calcpro-ir-term{display:flex;gap:3px;align-items:center;min-width:0}
+.calcpro-ir-term-unit{position:relative;display:flex;min-width:0;flex:1 1 0}
+.calcpro-ir-term-unit input{padding:3px 35px 3px 6px}
+.calcpro-ir-term-unit span{position:absolute;pointer-events:none;right:4px;top:6px;color:#888;font-size:14px}
+.calcpro-ir-term-unit:last-child input{padding-right:49px}
+.calcpro-ir-term-unit:last-child{flex:1.06 1 0}
+.calcpro-ir-text:focus{outline:2px solid #74a7dd;outline-offset:1px}
+.calcpro-ir-actions{display:flex;align-items:center;justify-content:center;gap:4px;padding:5px 0 0}
+.calcpro-ir-btn{border:0;cursor:pointer;color:#fff;font-size:14px!important;padding:9px 13px;min-height:38px}
+.calcpro-ir-calculate{background:#477d22;font-weight:700;display:inline-flex;align-items:center;gap:15px}
+.calcpro-ir-calculate:hover{background:#37651a}
+.calcpro-ir-btn-arrow{background:#a0c49f;color:#fff;border-radius:50%;width:20px;height:20px;display:inline-grid;place-items:center;font-size:13px}
+.calcpro-ir-clear{background:#aaa}
+.calcpro-ir-clear:hover{background:#898989}
+.calcpro-ir-msg{font-size:13px;margin:6px 0 0;line-height:1.35}
+.calcpro-ir-msg:empty{display:none}
+.calcpro-ir-msg[data-kind=error]{color:#a32119}
+.calcpro-ir-msg[data-kind=info]{color:#35618b}
+.calcpro-ir-results{min-width:0;width:100%;max-width:300px;margin-left:auto;padding:5px 0 0}
+.calcpro-ir-results[hidden],.calcpro-ir-charts[hidden],.calcpro-ir-schedule[hidden],.calcpro-ir-saved[hidden]{display:none!important}
+.calcpro-ir-result-head{display:flex;justify-content:space-between;align-items:center;background:#4b8425;color:white;padding:4px 7px;font-size:20px;line-height:1.3}
+.calcpro-ir-save{display:flex;align-items:center;justify-content:center;flex-direction:column;gap:0;background:transparent;color:#fff;border:0;cursor:pointer;font-size:9px!important;line-height:1.1;min-width:26px;min-height:27px}
+.calcpro-ir-save svg{width:15px;height:15px;fill:currentColor}
+.calcpro-ir-save:hover{text-decoration:underline}
+.calcpro-ir-result-table{width:100%;border-collapse:separate;border-spacing:2px 3px;font-size:14px}
+.calcpro-ir-result-table td{vertical-align:top;padding:2px 3px}
+.calcpro-ir-result-table td:last-child{text-align:right;white-space:nowrap}
+.calcpro-ir-result-table tr:first-child td{background:#ddd;font-weight:700}
+.calcpro-ir-result-table tr td:first-child{width:70%}
+.calcpro-ir-result-note{margin:6px 3px;font-size:12px;color:#7a4b00}
+.calcpro-ir-charts{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:17px;margin-top:16px;align-items:start}
+.calcpro-ir-chart-block{min-width:0;text-align:center}
+.calcpro-ir-chart-title{font-size:16px;font-weight:700;margin:0 0 3px;line-height:1.3}
+.calcpro-ir-chart-svg{display:block;max-width:100%;height:auto;margin:auto;font-family:Arial,Helvetica,sans-serif}
+.calcpro-ir-chart-svg text{font-family:Arial,Helvetica,sans-serif}
+.calcpro-ir-schedule{margin-top:10px;border-top:1px solid #e5e5e5;padding-top:7px}
+.calcpro-ir-schedule summary,.calcpro-ir-saved summary{cursor:pointer;font-size:14px;font-weight:700;color:#144974;padding:5px 0}
+.calcpro-ir-table-scroll{overflow:auto;max-height:320px;max-width:100%;margin-top:6px}
+.calcpro-ir-schedule-table{border-collapse:collapse;width:100%;font-size:12px;white-space:nowrap}
+.calcpro-ir-schedule-table th,.calcpro-ir-schedule-table td{border:1px solid #d1d8df;padding:5px 7px;text-align:right}
+.calcpro-ir-schedule-table th{position:sticky;top:0;background:#e9f1f7;color:#1f3e59}
+.calcpro-ir-schedule-table th:first-child,.calcpro-ir-schedule-table td:first-child{text-align:left}
+.calcpro-ir-saved{margin-top:8px;border-top:1px solid #e5e5e5;padding-top:5px}
+.calcpro-ir-saved-list{padding:0 0 0 19px;margin:5px 0}
+.calcpro-ir-saved-list li{margin-bottom:6px;font-size:13px}
+.calcpro-ir-load{font-size:13px!important;border:0;padding:2px 0;color:#086a97;text-align:left;text-decoration:underline;background:transparent;cursor:pointer}
+.calcpro-ir-footnote{font-size:12px;color:#626262;margin:4px 0}
+@media(max-width:650px){.calcpro-ir-top{grid-template-columns:minmax(0,1fr);row-gap:12px}.calcpro-ir-form{max-width:380px;width:100%}.calcpro-ir-results{max-width:440px;padding:0}.calcpro-ir-charts{gap:16px}}
+@media(max-width:475px){.calcpro-ir-charts{grid-template-columns:minmax(0,1fr)}.calcpro-ir-help{font-size:13px}.calcpro-ir-field{grid-template-columns:115px minmax(0,1fr)}.calcpro-ir-term-unit span{font-size:12px;top:8px}.calcpro-ir-term-unit input{padding-right:30px}.calcpro-ir-term-unit:last-child input{padding-right:43px}.calcpro-ir-chart-block{max-width:400px;width:100%;margin:auto}}
+@media(max-width:335px){.calcpro-ir-form{padding:8px 5px}.calcpro-ir-field{grid-template-columns:100px minmax(0,1fr)}.calcpro-ir-field>label{font-size:12px}.calcpro-ir-term-unit input{font-size:14px!important}}
+@media print{.calcpro-ir-help,.calcpro-ir-actions,.calcpro-ir-save,.calcpro-ir-saved{display:none!important}.calcpro-ir{break-inside:avoid}.calcpro-ir-chart-block{break-inside:avoid}}
+</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Interest Rate Calculator</nav><h1 class="cp-page-title">Interest Rate Calculator</h1><p class="cp-intro">Calculate the implied interest rate for a fixed-term loan when you know the amount borrowed and monthly payment. See the total interest, loan amortization graph, and payment breakdown.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-ir" id="calcpro-ir-root">
+  <div class="calcpro-ir-help"><span class="calcpro-ir-help-icon" aria-hidden="true">▼</span><span>Modify the values and click the Calculate button to use</span></div>
+  <div class="calcpro-ir-top">
+    <form class="calcpro-ir-form" id="calcpro-ir-form" novalidate>
+      <div class="calcpro-ir-field"><label for="calcpro-ir-amount">Loan amount</label><input class="calcpro-ir-text" id="calcpro-ir-amount" name="amount" type="text" value="$32,000" inputmode="decimal" autocomplete="off" aria-describedby="calcpro-ir-input-hint" required></div>
+      <div class="calcpro-ir-field"><label id="calcpro-ir-term-label">Loan term</label><div class="calcpro-ir-term" role="group" aria-labelledby="calcpro-ir-term-label"><label class="calcpro-ir-term-unit"><input class="calcpro-ir-text" id="calcpro-ir-years" name="years" type="text" value="3" inputmode="numeric" aria-label="Loan term in years"><span>years</span></label><label class="calcpro-ir-term-unit"><input class="calcpro-ir-text" id="calcpro-ir-months" name="months" type="text" value="0" inputmode="numeric" aria-label="Additional months"><span>months</span></label></div></div>
+      <div class="calcpro-ir-field"><label for="calcpro-ir-payment">Monthly payment</label><input class="calcpro-ir-text" id="calcpro-ir-payment" name="payment" type="text" value="$960" inputmode="decimal" autocomplete="off" required></div>
+      <div class="calcpro-ir-actions"><button class="calcpro-ir-btn calcpro-ir-calculate" type="submit">Calculate <span class="calcpro-ir-btn-arrow" aria-hidden="true">▶</span></button><button class="calcpro-ir-btn calcpro-ir-clear" type="button" id="calcpro-ir-clear">Clear</button></div>
+      <p class="calcpro-ir-msg" id="calcpro-ir-message" role="status" aria-live="polite"></p>
+      <span id="calcpro-ir-input-hint" hidden>Enter amounts in dollars. Use whole years and 0 to 11 additional months.</span>
+    </form>
+    <section class="calcpro-ir-results" id="calcpro-ir-results" aria-label="Calculated interest rate results">
+      <div class="calcpro-ir-result-head"><span>Results</span><button type="button" class="calcpro-ir-save" id="calcpro-ir-save" title="Save this calculation in this browser" aria-label="Save this calculation"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 2h13l5 5v15H2V2h2zm3 2v6h10V4h-2v4H9V4H7zm5 9a4 4 0 100 8 4 4 0 000-8z"/></svg><span>save</span></button></div>
+      <table class="calcpro-ir-result-table"><tbody><tr><td>Interest rate</td><td><strong id="calcpro-ir-rate">5.065%</strong></td></tr><tr><td id="calcpro-ir-payment-label">Total of 36 monthly payments</td><td id="calcpro-ir-total">$34,560.00</td></tr><tr><td>Total interest paid</td><td id="calcpro-ir-interest">$2,560.00</td></tr></tbody></table>
+      <p class="calcpro-ir-result-note" id="calcpro-ir-result-note" hidden></p>
+    </section>
+  </div>
+  <div class="calcpro-ir-charts" id="calcpro-ir-charts">
+    <div class="calcpro-ir-chart-block"><h2 class="calcpro-ir-chart-title">Loan Amortization Graph</h2><svg class="calcpro-ir-chart-svg" id="calcpro-ir-linechart" viewBox="0 0 360 220" role="img" aria-label="Loan balance, cumulative interest, and cumulative payments over time"></svg></div>
+    <div class="calcpro-ir-chart-block"><h2 class="calcpro-ir-chart-title">Payment Breakdown</h2><svg class="calcpro-ir-chart-svg" id="calcpro-ir-donut" viewBox="0 0 290 155" role="img" aria-label="Proportion of payments going to principal versus interest"></svg></div>
+  </div>
+  <details class="calcpro-ir-schedule" id="calcpro-ir-schedule"><summary>View monthly amortization schedule</summary><div class="calcpro-ir-table-scroll"><table class="calcpro-ir-schedule-table"><thead><tr><th>Payment #</th><th>Payment</th><th>Principal</th><th>Interest</th><th>Balance</th></tr></thead><tbody id="calcpro-ir-schedule-body"></tbody></table></div><p class="calcpro-ir-footnote">Figures are modeled before rounding. Actual lender schedules may differ by a few cents.</p></details>
+  <details class="calcpro-ir-saved" id="calcpro-ir-saved" hidden><summary>Saved calculations (on this device)</summary><ol class="calcpro-ir-saved-list" id="calcpro-ir-saved-list"></ol></details>
+  <p class="calcpro-ir-footnote">Nominal annual interest rate, based on fixed end-of-month payments; excludes additional fees and charges.</p>
+</div></section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><!-- REPLACE these links with real related tools for each calculator; verify live slugs. --><a href="retirement-calculator.html">Retirement</a><a href="roth-ira-calculator.html">Roth IRA</a><a href="investment-calculator.html">Investment</a><a href="compound-interest-calculator.html">Compound Interest</a><a href="annuity-payout-calculator.html">Annuity Payout</a><a href="pension-calculator.html">Pension</a><a href="inflation-calculator.html">Inflation</a><a href="future-value-calculator.html">Future Value</a><a href="income-tax-calculator.html">Income Tax</a><a href="savings-calculator.html">Savings</a><a href="mortgage-calculator.html">Mortgage</a><a href="loan-calculator.html">Loan</a></div></section></aside><article class="cp-article">
+<h2>How to Use the Interest Rate Calculator</h2>
+<p>Enter the amount borrowed, the fixed loan term in years and additional months, and the agreed monthly principal-and-interest payment. Select <strong>Calculate</strong> to find the implied nominal annual interest rate, total paid, and total interest. The loan amortization graph shows the remaining balance, cumulative interest, and cumulative payments; the payment breakdown shows the principal and interest proportions.</p>
+<p>Use <strong>Clear</strong> to empty the fields. The optional amortization schedule breaks the loan down by month. You can also save a calculation locally in the current browser and reload it from the saved calculations list.</p>
+<h2>Interest Rate Formula</h2>
+<p>For a fixed-rate, fully amortizing loan with equal payments made at the end of each month:</p>
+<p><strong>M = P × r / [1 − (1 + r)<sup>−n</sup>]</strong></p>
+<p>Here <strong>P</strong> is the amount borrowed, <strong>M</strong> is the monthly payment, <strong>r</strong> is the monthly interest rate as a decimal, and <strong>n</strong> is the number of monthly payments (12 × years + additional months). Because the unknown rate appears in both the base and exponent, the calculator solves the equation numerically using bisection. The result is <strong>nominal annual interest rate = 12 × r × 100%</strong>.</p>
+<h3>Worked Example: $32,000 Loan</h3>
+<p>Borrow <strong>$32,000</strong> for <strong>3 years</strong> and pay <strong>$960</strong> every month. There are 36 payments, totaling <strong>$34,560</strong>. Subtracting the original $32,000 yields <strong>$2,560</strong> in total interest. Solving the annuity equation gives an annual nominal interest rate of approximately <strong>5.065%</strong>.</p>
+<h2>Understanding Your Results</h2>
+<p><strong>Interest rate</strong> is the implied nominal annual rate for the payment schedule, assuming it stays fixed. <strong>Total of monthly payments</strong> is the monthly payment multiplied by the number of months. <strong>Total interest paid</strong> is the total payments minus the amount borrowed. For each month, interest is the beginning balance multiplied by the monthly rate, and the rest of the payment reduces the principal.</p>
+<h2>Frequently Asked Questions</h2>
+<h3>Is this interest rate the same as APR?</h3>
+<p>Not necessarily. The calculator finds the annual rate implied by principal-and-interest payments. An annual percentage rate (APR) may also reflect certain fees and other finance charges. Fees, insurance, taxes, and irregular payments are not modeled here.</p>
+<h3>What happens with a zero-interest loan?</h3>
+<p>If the total payments exactly equal the original loan amount, the interest rate is 0%. For example, $12,000 repaid in 12 payments of $1,000 incurs no interest.</p>
+<h3>Can a payment imply a negative interest rate?</h3>
+<p>Yes, mathematically. If all payments together add up to less than the loan amount, the model reports a negative interest rate. This represents a subsidy or a nonstandard financing arrangement rather than a typical lending rate.</p>
+<h3>Can I enter an extra number of months?</h3>
+<p>Yes. Enter whole years and an additional 0–11 months. For example, 2 years and 6 months is 30 monthly payments. The calculator supports loan terms from 1 to 1,200 months.</p>
+<h3>Why might my lender's amortization schedule differ slightly?</h3>
+<p>Lenders can use different conventions for the date interest accrues, exact rounding, and the final installment. This calculator models equal end-of-month payments and uses unrounded figures internally, so monthly cent-level differences may occur.</p>
+<h2>References and Further Reading</h2>
+<p>See the <a href="https://www.calculator.net/interest-rate-calculator.html">Calculator.net Interest Rate Calculator</a> for the layout and example, and the <a href="https://www.consumerfinance.gov/ask-cfpb/what-is-the-difference-between-an-interest-rate-and-the-annual-percentage-rate-apr-in-an-auto-loan-en-733/">Consumer Financial Protection Bureau's explanation of interest rate versus APR</a> for additional context.</p>
+<p class="cp-page-footer">CalcPro — calculator estimates are for informational purposes.</p></article></main></div><script>
+(function () {
+  'use strict';
+  const root = document.getElementById('calcpro-ir-root');
+  if (!root) return;
+  const get = id => root.querySelector('#' + id);
+  const amountEl = get('calcpro-ir-amount');
+  const yearsEl = get('calcpro-ir-years');
+  const monthsEl = get('calcpro-ir-months');
+  const paymentEl = get('calcpro-ir-payment');
+  const form = get('calcpro-ir-form');
+  const messageEl = get('calcpro-ir-message');
+  const resultEl = get('calcpro-ir-results');
+  const chartsEl = get('calcpro-ir-charts');
+  const scheduleEl = get('calcpro-ir-schedule');
+  const storeEl = get('calcpro-ir-saved');
+  const storeListEl = get('calcpro-ir-saved-list');
+  const USD = new Intl.NumberFormat('en-US', {style:'currency',currency:'USD',minimumFractionDigits:2,maximumFractionDigits:2});
+  const STORAGE_KEY = 'calcpro-ir-saved-v1';
+  let latest = null;
+  const money = n => USD.format(n);
+  const plainNumber = value => {
+    const s = String(value).trim();
+    if (!/^\$?\s*(?:\d{1,3}(?:,\d{3})+(?:\.\d+)?|\d+(?:\.\d+)?|\.\d+)$/.test(s)) return NaN;
+    return Number(s.replace(/[$,\s]/g, ''));
+  };
+  const wholeNumber = value => /^\d+$/.test(String(value).trim()) ? Number(value) : NaN;
+  function notice(text, kind) {messageEl.textContent = text;messageEl.dataset.kind = kind || 'info';}
+  function ratePayment(principal, rate, periods) {
+    if (Math.abs(rate) < 1e-13) return principal / periods;
+    const denominator = -Math.expm1(-periods * Math.log1p(rate));
+    if (!Number.isFinite(denominator) || denominator === 0) return NaN;
+    return principal * rate / denominator;
+  }
+  // Bisection of the fixed-payment annuity equation; also supports subsidized negative rates.
+  function solveMonthlyRate(principal, payment, periods) {
+    const zeroRate = principal / periods;
+    if (Math.abs(payment-zeroRate) < 1e-12 * Math.max(payment,zeroRate)) return 0;
+    let lo, hi;
+    if (payment > zeroRate) {
+      lo = 0; hi = 0.01;
+      while (ratePayment(principal,hi,periods) < payment && hi < 1e6) hi *= 2;
+      if (ratePayment(principal,hi,periods) < payment) throw new Error('The payment is beyond the supported range.');
+    } else {lo = -0.999999999999; hi = 0;}
+    for (let i=0;i<180;i++) {
+      const mid = (lo + hi)/2;
+      if (ratePayment(principal,mid,periods) > payment) hi=mid;
+      else lo=mid;
+    }
+    return (lo + hi)/2;
+  }
+  function calculate(principal, payment, periods) {
+    const rate = solveMonthlyRate(principal,payment,periods);
+    const total = payment * periods;
+    const interest = total - principal;
+    const rows = [];
+    let balance = principal;
+    rows.push({number:0,balance:principal,interest:0,paid:0});
+    for (let n=1;n<=periods;n++) {
+      const charge = balance * rate;
+      const principalPart = payment - charge;
+      const endingBalance = n===periods ? 0 : Math.max(0,balance-principalPart);
+      rows.push({number:n,interest:charge,principal: n===periods ? balance : principalPart,payment, balance:endingBalance,paid:n*payment,cumulativeInterest:n*payment-(principal-endingBalance)});
+      balance=endingBalance;
+    }
+    return {principal,payment,periods,rate,total,interest,rows};
+  }
+  function inputs() {
+    const principal = plainNumber(amountEl.value), payment = plainNumber(paymentEl.value);
+    const years = wholeNumber(yearsEl.value), months=wholeNumber(monthsEl.value);
+    if (!Number.isFinite(principal) || principal <= 0 || principal > 1e12) throw new Error('Enter a positive loan amount up to $1 trillion.');
+    if (!Number.isInteger(years) || years < 0 || years > 100) throw new Error('Enter a whole number of years from 0 to 100.');
+    if (!Number.isInteger(months) || months < 0 || months > 11) throw new Error('Enter additional months from 0 to 11.');
+    const periods=years*12+months;
+    if (periods<1 || periods>1200) throw new Error('Enter a loan term between 1 and 1,200 months (100 years).');
+    if (!Number.isFinite(payment) || payment <= 0 || payment > 1e12) throw new Error('Enter a positive monthly payment up to $1 trillion.');
+    if (!Number.isFinite(payment*periods)) throw new Error('These values exceed the supported calculation range.');
+    return {principal,payment,periods};
+  }
+  function niceStep(maximum) {
+    if (maximum <= 0) return 1;
+    const rough = maximum / 4;
+    const scale = Math.pow(10,Math.floor(Math.log10(rough)));
+    const k=rough/scale;
+    return (k<=1?1:k<=2?2:k<=2.5?2.5:k<=5?5:10)*scale;
+  }
+  function shortMoney(value) {
+    const abs=Math.abs(value);
+    const compact = abs>=1e9? (value/1e9).toFixed(1).replace(/\.0$/,'')+'B' : abs>=1e6? (value/1e6).toFixed(1).replace(/\.0$/,'')+'M' : abs>=1e3?(value/1e3).toFixed(1).replace(/\.0$/,'')+'K' : value.toFixed(value<10?1:0).replace(/\.0$/,'');
+    return '$'+compact;
+  }
+  function drawLine(data) {
+    const svg=get('calcpro-ir-linechart');
+    const left=57,right=344,top=15,bottom=177,width=right-left,height=bottom-top;
+    const peak=Math.max(data.total,data.principal,0);
+    const lowest=Math.min(0,data.interest);
+    const step=niceStep(peak-lowest);
+    const maxY=Math.max(step,Math.ceil(peak/step)*step);
+    const minY=Math.floor(lowest/step)*step;
+    const yAt=n=>bottom-height*(n-minY)/(maxY-minY);
+    const xAt=i=>left+width*i/data.periods;
+    const tickCount=Math.round((maxY-minY)/step);
+    let out='<title>Loan amortization through '+data.periods+' monthly payments</title>';
+    out+='<desc>Blue: unpaid loan balance; green: cumulative interest; red: cumulative payments.</desc>';
+    for(let i=0;i<=tickCount;i++) {
+      const v=minY+i*step,y=yAt(v);
+      out+='<line x1="'+left+'" x2="'+right+'" y1="'+y+'" y2="'+y+'" stroke="#c6c6c6" stroke-width=".7"/>';
+      out+='<text x="'+(left-5)+'" y="'+(y+4)+'" text-anchor="end" font-size="11" fill="#666">'+shortMoney(v)+'</text>';
+    }
+    const ticks=Math.min(4,Math.max(1,Math.ceil(data.periods/12)));
+    for(let i=0;i<=ticks;i++) {
+      const x=left+width*i/ticks;
+      const years=(data.periods/12)*i/ticks;
+      const label=years.toFixed(years<1 && years!==0 ?2:1).replace(/\.0+$|0+$/g,'').replace(/\.$/,'');
+      out+='<line x1="'+x+'" x2="'+x+'" y1="'+top+'" y2="'+bottom+'" stroke="#c6c6c6" stroke-width=".7"/>';
+      out+='<text x="'+x+'" y="'+(bottom+15)+'" text-anchor="middle" font-size="11" fill="#555">'+(label || '0')+'</text>';
+    }
+    function line(selector,color) {
+      const path=data.rows.map((r,i)=>(i?'L':'M')+xAt(i).toFixed(3)+','+yAt(selector(r)).toFixed(3)).join(' ');
+      out+='<path d="'+path+'" fill="none" stroke="'+color+'" stroke-width="2.5" stroke-linejoin="round"/>';
+    }
+    line(r=>r.balance,'#2b7ddb');
+    line(r=>r.cumulativeInterest||0,'#80bd18');
+    line(r=>r.paid,'#980000');
+    out+='<rect x="'+left+'" y="'+top+'" width="'+width+'" height="'+height+'" fill="none" stroke="#888" stroke-width=".7"/>';
+    [['Balance','#2b7ddb'],['Interest','#80bd18'],['Payment','#980000']].forEach((item,i)=>{
+      const y=top+12+i*17;
+      out+='<rect x="'+(left+5)+'" y="'+(y-7)+'" width="19" height="5" fill="'+item[1]+'"/><text x="'+(left+29)+'" y="'+y+'" font-size="13" fill="#141414">'+item[0]+'</text>';
+    });
+    out+='<text x="'+(left+right)/2+'" y="214" text-anchor="middle" font-size="14">Year</text>';
+    svg.innerHTML=out;
+  }
+  function drawDonut(data) {
+    const svg=get('calcpro-ir-donut');
+    // A doughnut cannot show a negative slice directly. Size the arcs by the
+    // absolute amounts, while preserving their SIGNED percentages in labels.
+    // This recreates the reference's -22% interest / 122% principal scenario.
+    const principalPercent=100*data.principal/data.total;
+    const interestPercent=100*data.interest/data.total;
+    const magnitude=Math.abs(data.principal)+Math.abs(data.interest);
+    const greenShare=magnitude>0 ? Math.abs(data.interest)/magnitude : 0;
+    const blueShare=1-greenShare;
+    const circumference=2*Math.PI*48;
+    const greenSweep=greenShare*360;
+    const description=(data.interest<0 ? 'Negative interest. Segments are sized by absolute amounts; labels use signed percentages. ' : '')
+      +'Principal '+money(data.principal)+' ('+Math.round(principalPercent)+'%), interest '+money(data.interest)+' ('+Math.round(interestPercent)+'%).';
+    svg.setAttribute('aria-label','Payment breakdown: '+description);
+    let out='<title>'+description+'</title>';
+    out+='<circle cx="79" cy="73" r="48" fill="none" stroke="#2b7ddb" stroke-width="30"/>';
+    // Put green at the top-left, ending at 12 o'clock, as in the reference.
+    if(greenShare>1e-11) out+='<circle cx="79" cy="73" r="48" fill="none" stroke="#80bd18" stroke-width="30" stroke-dasharray="'+(circumference*greenShare)+' '+circumference+'" transform="rotate('+(-90-greenSweep)+' 79 73)"/>';
+    out+='<circle cx="79" cy="73" r="31" fill="#fff"/>';
+    function signedLabel(percent,angleDegrees,share) {
+      if(share<0.025) return '';
+      const outside=share<0.10, radius=outside?73:49;
+      const rad=angleDegrees*Math.PI/180;
+      const x=(79+radius*Math.cos(rad)).toFixed(2);
+      const y=(73+radius*Math.sin(rad)).toFixed(2);
+      const pct=Math.round(percent);
+      return '<text x="'+x+'" y="'+y+'" fill="'+(outside?'#333':'#fff')+'" font-size="12" font-weight="bold" text-anchor="middle" dominant-baseline="middle">'+pct+'%</text>';
+    }
+    // Midpoint of each colored arc; percentages remain signed, even when >100%.
+    out+=signedLabel(principalPercent,-90+blueShare*180,blueShare);
+    out+=signedLabel(interestPercent,-90-greenSweep/2,greenShare);
+    out+='<rect x="161" y="22" width="19" height="14" rx="3" fill="#2b7ddb"/><text x="185" y="33" font-size="13">Principal</text>';
+    out+='<text x="185" y="48" font-size="11" fill="#555">'+money(data.principal)+'</text>';
+    out+='<rect x="161" y="60" width="19" height="14" rx="3" fill="#80bd18"/><text x="185" y="71" font-size="13">Interest</text>';
+    out+='<text x="185" y="86" font-size="11" fill="#555">'+money(data.interest)+'</text>';
+    svg.innerHTML=out;
+  }
+  function drawSchedule(data) {
+    const tbody=get('calcpro-ir-schedule-body');
+    const fragment=document.createDocumentFragment();
+    for(let i=1;i<data.rows.length;i++){
+      const item=data.rows[i],tr=document.createElement('tr');
+      [String(i),money(item.payment),money(item.principal),money(item.interest),money(item.balance)].forEach(t=>{
+        const td=document.createElement('td');td.textContent=t;tr.appendChild(td);
+      });
+      fragment.appendChild(tr);
+    }
+    tbody.replaceChildren(fragment);
+  }
+  function showCalculation(data) {
+    latest=data;
+    get('calcpro-ir-rate').textContent=(data.rate*1200).toFixed(3)+'%';
+    get('calcpro-ir-payment-label').textContent='Total of '+data.periods+' monthly payments';
+    get('calcpro-ir-total').textContent=money(data.total);
+    get('calcpro-ir-interest').textContent=money(data.interest);
+    const note=get('calcpro-ir-result-note');
+    note.hidden = data.rate>=0;
+    note.textContent=data.rate<0?'The entered payment implies a negative interest rate (a subsidized loan).':'';
+    drawLine(data);drawDonut(data);drawSchedule(data);
+    resultEl.hidden=false;chartsEl.hidden=false;scheduleEl.hidden=false;
+    notice('','info');
+  }
+  function submit(e) {
+    if (e) e.preventDefault();
+    try {const v=inputs();const data=calculate(v.principal,v.payment,v.periods);showCalculation(data);}
+    catch(err){latest=null;resultEl.hidden=true;chartsEl.hidden=true;scheduleEl.hidden=true;notice(err.message || 'Please check your inputs.','error');}
+  }
+  form.addEventListener('submit',submit);
+  get('calcpro-ir-clear').addEventListener('click',()=>{
+    [amountEl,yearsEl,monthsEl,paymentEl].forEach(el=>el.value='');
+    latest=null;resultEl.hidden=true;chartsEl.hidden=true;scheduleEl.hidden=true;
+    scheduleEl.open=false;notice('Enter loan details and click Calculate.','info');amountEl.focus();
+  });
+  [amountEl,paymentEl].forEach(el=>el.addEventListener('blur',()=>{
+    const n=plainNumber(el.value);
+    if(Number.isFinite(n) && n>=0) el.value=money(n);
+  }));
+  // The save feature stores up to five scenarios locally. No account or server required.
+  function readSaved(){try {const arr=JSON.parse(localStorage.getItem(STORAGE_KEY)||'[]');return Array.isArray(arr)?arr.filter(x=>x && Number.isFinite(x.principal)&&Number.isFinite(x.payment)&&Number.isInteger(x.periods)&&x.periods>=1&&x.periods<=1200).slice(0,5):[];}catch(e){return [];}}
+  function renderSaved(){
+    const saved=readSaved();storeEl.hidden=!saved.length;
+    storeListEl.replaceChildren();
+    saved.forEach(item=>{
+      const li=document.createElement('li'),button=document.createElement('button');
+      button.type='button';button.className='calcpro-ir-load';
+      button.textContent=money(item.principal)+' / '+item.periods+' months / '+money(item.payment)+' per month';
+      button.addEventListener('click',()=>{amountEl.value=money(item.principal);yearsEl.value=Math.floor(item.periods/12);monthsEl.value=item.periods%12;paymentEl.value=money(item.payment);submit();});
+      li.appendChild(button);storeListEl.appendChild(li);
+    });
+  }
+  get('calcpro-ir-save').addEventListener('click',()=>{
+    if(!latest) return;
+    try {
+      const scenario={principal:latest.principal,payment:latest.payment,periods:latest.periods};
+      const saved=readSaved().filter(x=>x.principal!==scenario.principal||x.payment!==scenario.payment||x.periods!==scenario.periods);
+      saved.unshift(scenario);localStorage.setItem(STORAGE_KEY,JSON.stringify(saved.slice(0,5)));
+      renderSaved();notice('Saved on this device. Open “Saved calculations” to load it again.','info');
+    }catch(e){notice('Local saving is unavailable in this browser. Results remain visible on this page.','error');}
+  });
+  renderSaved();
+  submit(); // Populate the exact reference example on first page load.
+})();
+</script></body></html>

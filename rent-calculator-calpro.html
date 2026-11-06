@@ -1,0 +1,245 @@
+<!doctype html>
+
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>Rent Calculator — How Much Rent Can I Afford? | CalcPro</title><meta content="Calculate affordable monthly rent from gross income and debt payments, with safe, acceptable, and aggressive rent ranges." name="description"/><link href="template-style.css" rel="stylesheet"/><!--TOOL CSS INSERT HERE: Paste only calculator-specific CSS here. Use unique class/id prefixes per tool, e.g. bmi-, loan-, age-. Keep header, sidebar and article CSS in style.css.--><style>
+
+/* All rent tool styles are scoped to this calculator only. */
+.calcpro-rent-calculator{font-family:Arial,Helvetica,sans-serif;color:#111;line-height:1.3;max-width:100%;font-size:13px}
+.calcpro-rent-calculator [hidden]{display:none!important}
+.calcpro-rent-calculator *, .calcpro-rent-calculator *::before, .calcpro-rent-calculator *::after{box-sizing:border-box}
+.calcpro-rent-heading{font-size:18px;line-height:1.25;font-weight:700;color:#003366;margin:0 0 6px}
+.calcpro-rent-instruction{background:#38699b;color:#fff;min-height:28px;display:flex;align-items:center;justify-content:flex-start;gap:32px;font-size:12px;font-weight:700;padding:4px 12px 4px 72px;margin:0 0 3px;max-width:100%}
+.calcpro-rent-instruction-icon{display:inline-grid;place-items:center;border-radius:50%;width:19px;height:19px;background:white;color:#38699b;font-size:14px;line-height:1;flex-shrink:0}
+.calcpro-rent-result{max-width:100%;margin:0 0 16px}
+.calcpro-rent-result-header{display:flex;justify-content:space-between;align-items:center;min-height:29px;padding:2px 5px;background:#518a2d;color:#fff;font-size:16px}
+.calcpro-rent-save{display:inline-flex;align-items:center;justify-content:center;gap:4px;border:0;color:#fff;background:transparent;font:700 10px/1.1 Arial,Helvetica,sans-serif;padding:3px 4px;cursor:pointer}
+.calcpro-rent-save svg{width:14px;height:14px;flex:none}
+.calcpro-rent-save:hover{text-decoration:underline}
+.calcpro-rent-summary{font-size:16px;line-height:1.16;margin:8px 0 0}
+.calcpro-rent-summary p{font-size:16px;line-height:1.16;margin:0}
+.calcpro-rent-summary strong{font-weight:700;color:green}
+.calcpro-rent-gauge{width:min(100%,355px);margin:16px auto 12px;padding-top:29px;position:relative;max-width:100%}
+.calcpro-rent-gauge-amount{position:absolute;top:0;transform:translateX(-50%);font-size:16px;font-weight:700;line-height:18px;white-space:nowrap;color:#111}
+.calcpro-rent-gauge-amount--recommended{left:40%;color:green}
+.calcpro-rent-gauge-amount--maximum{left:61%;color:#111}
+.calcpro-rent-gauge-amount::after{content:'';position:absolute;left:50%;transform:translateX(-50%);top:20px;border-left:5px solid transparent;border-right:5px solid transparent;border-top:6px solid #222}
+.calcpro-rent-gauge-bar{display:grid;grid-template-columns:40% 21% 39%;height:20px;width:100%;text-align:center;color:#080808;font-size:12px;line-height:20px}
+.calcpro-rent-gauge-segment--safe{background:#008a42}
+.calcpro-rent-gauge-segment--acceptable{background:#ffdc29}
+.calcpro-rent-gauge-segment--aggressive{background:#bf0606;color:#111}
+.calcpro-rent-gauge-description{font-size:12px;line-height:1.12;margin:12px 0 0;max-width:520px}
+.calcpro-rent-form{width:418px;max-width:100%;border:1px solid #bbb;background:#efefef;padding:7px 5px 6px;margin-top:2px}
+.calcpro-rent-form-row{display:grid;grid-template-columns:152px 86px minmax(0,1fr);gap:3px;align-items:center;margin:0 0 2px;min-height:22px}
+.calcpro-rent-form-label{font-size:11px;line-height:1.2}
+.calcpro-rent-help-toggle{border:1px solid #899bb0;border-radius:50%;background:#fff;color:#356b99;width:14px;height:14px;line-height:12px;font-weight:bold;font-size:10px;padding:0;vertical-align:middle;cursor:pointer}
+.calcpro-rent-input-wrap{width:100%}
+.calcpro-rent-input{font:13px Arial,Helvetica,sans-serif;border:1px solid #35699b;box-shadow:inset 0 0 0 1px #fff;background:#fff;min-width:0;width:100%;height:22px;padding:1px 3px;color:#111;border-radius:0}
+.calcpro-rent-unit{font:12px Arial,Helvetica,sans-serif;width:85px;max-width:100%;height:22px;border:1px solid #35699b;background:#fff;border-radius:0;color:#111;padding-left:2px}
+.calcpro-rent-side-note{font-size:10px;line-height:1.2;white-space:normal}
+.calcpro-rent-help-text{background:#fff;border-left:3px solid #38699b;margin:5px 3px;padding:6px 8px;line-height:1.35;font-size:12px}
+.calcpro-rent-error{font-size:12px;background:#fff2f2;color:#a40000;border-left:3px solid #b20b0b;padding:6px 8px;margin:6px 1px}
+.calcpro-rent-actions{display:flex;align-items:center;justify-content:center;gap:4px;margin-top:6px}
+.calcpro-rent-button{border:0;border-radius:0;color:#fff;font:bold 12px Arial,Helvetica,sans-serif;min-height:27px;padding:4px 7px;cursor:pointer}
+.calcpro-rent-button--calculate{background:#447d2d;min-width:96px;display:flex;align-items:center;justify-content:space-between;gap:11px}
+.calcpro-rent-button--calculate:hover{background:#346624}
+.calcpro-rent-play{display:inline-grid;place-items:center;width:16px;height:16px;background:#8dc386;color:#fff;border-radius:50%;font-size:11px;padding-left:2px;line-height:1}
+.calcpro-rent-button--clear{background:#a9a9a9;min-width:40px}
+.calcpro-rent-button--clear:hover{background:#858585}
+.calcpro-rent-calculator button:focus-visible,.calcpro-rent-calculator input:focus-visible,.calcpro-rent-calculator select:focus-visible{outline:2px solid #003366;outline-offset:2px}
+@media(max-width:480px){
+ .calcpro-rent-instruction{padding-left:9px;gap:10px}
+ .calcpro-rent-form{width:100%}
+ .calcpro-rent-form-row{grid-template-columns:minmax(0,1fr) minmax(90px,1fr);gap:4px 8px;margin-bottom:9px}
+ .calcpro-rent-form-label{grid-column:1/-1;font-size:13px}
+ .calcpro-rent-unit{width:100%}
+ .calcpro-rent-side-note{font-size:11px}
+ .calcpro-rent-summary,.calcpro-rent-summary p{font-size:15px;line-height:1.25}
+ .calcpro-rent-gauge{margin-top:16px;margin-bottom:15px}
+ .calcpro-rent-gauge-amount{font-size:14px}
+}
+@media(max-width:340px){
+ .calcpro-rent-gauge-amount{font-size:12px}
+ .calcpro-rent-gauge-bar{font-size:10px}
+}
+@media print{
+ .calcpro-rent-instruction,.calcpro-rent-form,.calcpro-rent-save{display:none!important}
+ .calcpro-rent-result{break-inside:avoid}
+ .calcpro-rent-result-header{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .calcpro-rent-gauge-segment{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+
+</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Rent Calculator</nav><h1 class="cp-page-title">Rent Calculator</h1><p class="cp-intro">How much rent can you afford? Enter your pre-tax income and monthly debt payments to estimate a comfortable monthly rental budget.</p><section aria-label="Calculator" class="cp-tool-area">
+<div class="calcpro-rent-calculator" id="calcpro-rent-calculator">
+<div class="calcpro-rent-instruction" id="calcpro-rent-instruction"><span aria-hidden="true" class="calcpro-rent-instruction-icon">▼</span>Modify the values and click the Calculate button to use</div>
+<section aria-labelledby="calcpro-rent-result-title" aria-live="polite" class="calcpro-rent-result" hidden="" id="calcpro-rent-result">
+<div class="calcpro-rent-result-header"><span id="calcpro-rent-result-title">Result</span><button class="calcpro-rent-save" id="calcpro-rent-print" title="Print or save this result as PDF" type="button"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><path d="M6 9V3h12v6M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><path d="M6 14h12v7H6z"></path><path d="M18 12h.01"></path></svg><span>Save / Print</span></button></div>
+<div class="calcpro-rent-summary">
+<p>You can afford up to <strong id="calcpro-rent-max-text">$2,400</strong> per month on a rental payment.</p>
+<p>It is recommended to keep your rental payment below <strong id="calcpro-rent-recommend-text">$1,867</strong> per month.</p>
+</div>
+<div aria-label="Affordability chart: green is safe up to the recommended limit, yellow is acceptable up to the upper limit, and red is aggressive" class="calcpro-rent-gauge" id="calcpro-rent-gauge" role="img">
+<span aria-hidden="true" class="calcpro-rent-gauge-amount calcpro-rent-gauge-amount--recommended" id="calcpro-rent-safe-pointer">$1,867</span>
+<span aria-hidden="true" class="calcpro-rent-gauge-amount calcpro-rent-gauge-amount--maximum" id="calcpro-rent-max-pointer">$2,400</span>
+<div aria-hidden="true" class="calcpro-rent-gauge-bar">
+<span class="calcpro-rent-gauge-segment calcpro-rent-gauge-segment--safe">safe</span>
+<span class="calcpro-rent-gauge-segment calcpro-rent-gauge-segment--acceptable">acceptable</span>
+<span class="calcpro-rent-gauge-segment calcpro-rent-gauge-segment--aggressive">aggressive</span>
+</div>
+</div>
+<p class="calcpro-rent-gauge-description" id="calcpro-rent-landlord-note">Some landlords may not accept applications with more than 1/3 of gross income on rent, which is $2,222.</p>
+</section>
+<form class="calcpro-rent-form" id="calcpro-rent-form" novalidate="">
+<div class="calcpro-rent-form-row">
+<label class="calcpro-rent-form-label" for="calcpro-rent-income">Your pre-tax income</label>
+<div class="calcpro-rent-input-wrap"><input aria-describedby="calcpro-rent-error" aria-required="true" autocomplete="off" class="calcpro-rent-input" id="calcpro-rent-income" inputmode="decimal" name="calcpro-rent-income" type="text" value="$80,000"/></div>
+<select aria-label="Income frequency" class="calcpro-rent-unit" id="calcpro-rent-income-unit" name="calcpro-rent-income-unit"><option selected="" value="year">per year</option><option value="month">per month</option></select>
+</div>
+<div class="calcpro-rent-form-row">
+<div class="calcpro-rent-form-label"><label for="calcpro-rent-debt">Your monthly debt payback</label> <button aria-controls="calcpro-rent-help-text" aria-expanded="false" class="calcpro-rent-help-toggle" id="calcpro-rent-help-button" title="What monthly debt payments to include" type="button">?</button></div>
+<div class="calcpro-rent-input-wrap"><input aria-describedby="calcpro-rent-error calcpro-rent-help-text" autocomplete="off" class="calcpro-rent-input" id="calcpro-rent-debt" inputmode="decimal" name="calcpro-rent-debt" type="text" value="$0"/></div>
+<span class="calcpro-rent-side-note">car/student loan, credit cards, etc</span>
+</div>
+<div class="calcpro-rent-help-text" hidden="" id="calcpro-rent-help-text">Include recurring monthly payments on loans, credit cards, and other debts. Use the minimum amount due each month. Do not include the rent you are calculating.</div>
+<div class="calcpro-rent-error" hidden="" id="calcpro-rent-error" role="alert"></div>
+<div class="calcpro-rent-actions">
+<button class="calcpro-rent-button calcpro-rent-button--calculate" type="submit">Calculate <span aria-hidden="true" class="calcpro-rent-play">▶</span></button>
+<button class="calcpro-rent-button calcpro-rent-button--clear" id="calcpro-rent-clear" type="button">Clear</button>
+</div>
+</form>
+</div>
+</section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><a href="rent-vs-buy-calculator.html">Rent vs. Buy</a><a href="budget-calculator.html">Budget</a><a href="house-affordability-calculator.html">House Affordability</a><a href="debt-ratio-calculator.html">Debt Ratio</a><a href="tax-calculator.html">Income Tax</a><a href="mortgage-calculator.html">Mortgage</a><a href="loan-calculator.html">Loan</a><a href="savings-calculator.html">Savings</a><a href="salary-calculator.html">Salary</a><a href="credit-card-calculator.html">Credit Card</a><a href="rental-property-calculator.html">Rental Property</a><a href="investment-calculator.html">Investment</a></div></section></aside><article class="cp-article">
+<h2>How to Use the Rent Calculator</h2>
+<p>Enter your gross (pre-tax) income and choose <strong>per year</strong> or <strong>per month</strong>. Add the payments you make on existing debts every month, such as car loans, student loans, and credit cards. Select <strong>Calculate</strong> to see a suggested rent range instantly, above the input form. Select <strong>Clear</strong> to start over.</p>
+<h2>How Much Rent Can I Afford? Formula</h2>
+<p>This calculator compares two simple debt-adjusted rent budgets: a conservative 28% threshold and a higher 36% threshold. Both calculations use gross monthly income before taxes. These are planning estimates, not a guarantee of rental approval.</p>
+<div class="cp-table-scroll"><table class="cp-content-table"><thead><tr><th>Measurement</th><th>Calculation</th></tr></thead><tbody>
+<tr><td>Monthly gross income</td><td>Annual income ÷ 12, or entered monthly income</td></tr>
+<tr><td>Recommended monthly rent</td><td>Max(0, 28% × monthly income − monthly debt payments)</td></tr>
+<tr><td>Upper monthly rent estimate</td><td>Max(0, 36% × monthly income − monthly debt payments)</td></tr>
+<tr><td>One-third income screening amount</td><td>Monthly gross income ÷ 3</td></tr>
+</tbody></table></div>
+<p>The green <strong>safe</strong> band ends at the recommended amount; the yellow <strong>acceptable</strong> band extends to the upper estimate. The red <strong>aggressive</strong> band represents rent higher than that estimate. The colored bar is a category guide rather than a linear dollar axis.</p>
+<h2>Worked Example</h2>
+<p>For a gross annual income of <strong>$80,000</strong> and <strong>$0</strong> in monthly debt payments, monthly income is $80,000 ÷ 12 = $6,666.67. The recommended rent is 28% × $6,666.67 = <strong>$1,867</strong> per month after rounding; the upper estimate is 36% × $6,666.67 = <strong>$2,400</strong> per month. One-third of monthly income is approximately <strong>$2,222</strong>.</p>
+<p>With $400 in recurring debt payments instead, the calculator gives about <strong>$1,467</strong> recommended and <strong>$2,000</strong> as the upper estimate per month. The debt is deducted from both displayed thresholds in this model.</p>
+<h2>What the Results Do and Do Not Cover</h2>
+<p>These amounts are based on gross income and the entered debt payments. They do not deduct income taxes, utilities, internet, renter's insurance, childcare, groceries, parking, move-in fees, security deposits, or savings contributions. Your comfortable rent budget may be lower. A landlord may also use a different income or credit check.</p>
+<div class="cp-tip"><strong>Budgeting tip:</strong> Compare the estimated rent against your actual take-home pay and keep separate funds for utilities, emergencies, and move-in expenses.</div>
+<h2>Frequently Asked Questions</h2>
+<h3>Do I enter gross or take-home income?</h3><p>Enter income <strong>before</strong> taxes and deductions. If you know only your monthly salary, change the unit selector to <strong>per month</strong>.</p>
+<h3>Which debts should I enter?</h3><p>Enter the total monthly amount due on recurring debt obligations, including car loans, student loans, and credit cards. Do not add the new rent itself to this field.</p>
+<h3>Why do the recommended and maximum figures differ?</h3><p>The recommended amount uses a lower percentage of monthly income (28%), while the upper estimate uses 36%. Both are reduced by the existing monthly debt entered into the form.</p>
+<h3>What if the calculator shows $0?</h3><p>Debt payments can be large enough to exhaust the calculator's selected income-based threshold. In that case, the relevant rent amount is shown as $0 rather than a negative value.</p>
+<h3>Does this estimate mean I will be approved for an apartment?</h3><p>No. Landlords may have their own minimum-income, employment, credit, guarantor, and rental-history requirements. The one-third-of-income figure is provided only as an additional rough screening comparison.</p>
+<h2>Sources and Further Reading</h2>
+<p>See <a href="https://www.calculator.net/rent-calculator.html" rel="noopener noreferrer" target="_blank">Calculator.net's Rent Calculator</a> for the reference layout and <a href="https://www.consumerfinance.gov/ask-cfpb/what-is-a-debt-to-income-ratio-en-1791/" rel="noopener noreferrer" target="_blank">Consumer Financial Protection Bureau: debt-to-income ratio</a> for an explanation of gross income and recurring debt payments.</p>
+<p class="cp-page-footer">CalcPro — results are estimates for informational and budgeting purposes only, not financial or rental-approval advice.</p>
+</article></main></div><script>
+(() => {
+  'use strict';
+  const scope = document.getElementById('calcpro-rent-calculator');
+  if (!scope) return;
+  const byId = (id) => scope.querySelector('#' + id);
+  const form = byId('calcpro-rent-form');
+  const incomeInput = byId('calcpro-rent-income');
+  const debtInput = byId('calcpro-rent-debt');
+  const incomeUnit = byId('calcpro-rent-income-unit');
+  const result = byId('calcpro-rent-result');
+  const instruction = byId('calcpro-rent-instruction');
+  const error = byId('calcpro-rent-error');
+  const helpButton = byId('calcpro-rent-help-button');
+  const helpText = byId('calcpro-rent-help-text');
+  const currency = new Intl.NumberFormat('en-US', {maximumFractionDigits:0});
+
+  function parseAmount(input) {
+    const cleaned = input.trim().replace(/[$,\s]/g, '');
+    if (!/^(?:\d+(?:\.\d*)?|\.\d+)$/.test(cleaned)) return NaN;
+    return Number(cleaned);
+  }
+  function money(value) { return '$' + currency.format(Math.max(0, value)); }
+  function formatField(field) {
+    const n = parseAmount(field.value);
+    if (!Number.isFinite(n) || n < 0) return;
+    const [whole, decimal] = String(field.value.trim().replace(/[$,\s]/g, '')).split('.');
+    const grouped = whole.replace(/\B(?=(\d{3})+(?!\d))/g, ',') || '0';
+    field.value = '$' + grouped + (decimal ? '.' + decimal : '');
+  }
+  function clearError() {
+    error.hidden = true;
+    error.textContent = '';
+    incomeInput.removeAttribute('aria-invalid');
+    debtInput.removeAttribute('aria-invalid');
+  }
+  function showError(message, field) {
+    result.hidden = true;
+    instruction.hidden = false;
+    error.textContent = message;
+    error.hidden = false;
+    field.setAttribute('aria-invalid', 'true');
+    field.focus();
+  }
+  // Debt-adjusted planning-model thresholds: 28% and 36%.
+  // Neither output is allowed below zero, even when debt exceeds the threshold.
+  function calculate(monthlyIncome, monthlyDebt) {
+    const recommended = Math.max(0, monthlyIncome * 0.28 - monthlyDebt);
+    const maximum = Math.max(0, monthlyIncome * 0.36 - monthlyDebt);
+    return { recommended: Math.min(recommended, maximum), maximum, oneThird: monthlyIncome / 3 };
+  }
+
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    clearError();
+    const income = parseAmount(incomeInput.value);
+    const debt = parseAmount(debtInput.value);
+    if (!Number.isFinite(income) || income <= 0 || income > 1e12) {
+      showError('Enter a valid pre-tax income greater than $0.', incomeInput);
+      return;
+    }
+    if (!Number.isFinite(debt) || debt < 0 || debt > 1e12) {
+      showError('Enter a valid monthly debt payment of $0 or more.', debtInput);
+      return;
+    }
+    if (!['year', 'month'].includes(incomeUnit.value)) {
+      showError('Choose a valid income period.', incomeInput);
+      return;
+    }
+    const month = incomeUnit.value === 'year' ? income / 12 : income;
+    const data = calculate(month, debt);
+    byId('calcpro-rent-max-text').textContent = money(data.maximum);
+    byId('calcpro-rent-recommend-text').textContent = money(data.recommended);
+    byId('calcpro-rent-safe-pointer').textContent = money(data.recommended);
+    byId('calcpro-rent-max-pointer').textContent = money(data.maximum);
+    byId('calcpro-rent-landlord-note').textContent =
+      'Some landlords may not accept applications with more than 1/3 of gross income on rent, which is ' + money(data.oneThird) + '.';
+    byId('calcpro-rent-gauge').setAttribute('aria-label',
+      'Recommended rent: ' + money(data.recommended) + ' monthly. Upper limit: ' + money(data.maximum) +
+      '. Green: safe; yellow: acceptable; red: aggressive.');
+    formatField(incomeInput);
+    formatField(debtInput);
+    instruction.hidden = true;
+    result.hidden = false;
+  });
+
+  byId('calcpro-rent-clear').addEventListener('click', () => {
+    form.reset();
+    incomeInput.value = '';
+    debtInput.value = '';
+    incomeUnit.value = 'year';
+    clearError();
+    result.hidden = true;
+    instruction.hidden = false;
+    helpText.hidden = true;
+    helpButton.setAttribute('aria-expanded', 'false');
+    incomeInput.focus();
+  });
+  byId('calcpro-rent-print').addEventListener('click', () => window.print());
+  helpButton.addEventListener('click', () => {
+    helpText.hidden = !helpText.hidden;
+    helpButton.setAttribute('aria-expanded', String(!helpText.hidden));
+  });
+  [incomeInput, debtInput].forEach((field) => {
+    field.addEventListener('input', clearError);
+    field.addEventListener('blur', () => formatField(field));
+  });
+})();
+</script></body></html>

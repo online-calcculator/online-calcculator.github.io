@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>Confidence Interval Calculator | CalcPro</title><meta content="Calculate confidence intervals, error bars, Z-scores, and margins of error for a population mean with step-by-step working." name="description"/><link href="template-style.css" rel="stylesheet"/><style>
+/* All calculator styles are intentionally limited to calcpro-ci-root. */
+.calcpro-ci-root{font-family:Arial,Helvetica,sans-serif;color:#111;width:100%;max-width:100%;line-height:1.4}
+.calcpro-ci-root *{box-sizing:border-box}
+.calcpro-ci-root [hidden]{display:none!important}
+.calcpro-ci-root .calcpro-ci-ready{background:#356699;color:#fff;padding:8px 12px;display:flex;align-items:center;justify-content:center;gap:28px;min-height:42px;margin:0 0 3px;font-size:16px;text-align:center}
+.calcpro-ci-root .calcpro-ci-ready-icon{flex:0 0 auto;width:27px;height:27px;border-radius:50%;background:#fff;color:#336699;font-size:23px;line-height:24px;text-align:center;font-weight:bold}
+.calcpro-ci-root .calcpro-ci-form{background:#eeeeee;border:1px solid #bcbcbc;display:inline-block;max-width:100%;padding:8px 9px 9px;margin:0}
+.calcpro-ci-root .calcpro-ci-fields{display:grid;grid-template-columns:minmax(0,max-content) 97px;column-gap:8px;row-gap:5px;align-items:center}
+.calcpro-ci-root .calcpro-ci-fields label{font-size:16px;white-space:nowrap;line-height:1.25}
+.calcpro-ci-root .calcpro-ci-fields input{height:34px;min-width:0;width:97px;border:1px solid #134b83;border-radius:2px;background:#fff;box-shadow:1px 2px 2px #0003;padding:4px 6px;font-size:16px;color:#111;font-family:inherit;line-height:1.3}
+.calcpro-ci-root .calcpro-ci-fields input:focus{outline:2px solid #2c6799;outline-offset:1px}
+.calcpro-ci-root .calcpro-ci-fields input[aria-invalid="true"]{border-color:#b5212b;outline-color:#b5212b}
+.calcpro-ci-root .calcpro-ci-percent{display:flex;position:relative;max-width:97px}
+.calcpro-ci-root .calcpro-ci-percent input{padding-right:24px}
+.calcpro-ci-root .calcpro-ci-percent span{position:absolute;right:8px;top:7px;pointer-events:none;font-size:16px}
+.calcpro-ci-root .calcpro-ci-actions{display:flex;align-items:center;justify-content:center;gap:5px;padding-top:14px}
+.calcpro-ci-root .calcpro-ci-actions button{border:0;border-radius:0;min-height:43px;padding:8px 13px;font-size:16px;font-family:inherit;cursor:pointer}
+.calcpro-ci-root .calcpro-ci-go{background:#4c8024;color:#fff;font-weight:bold;display:flex;align-items:center;gap:12px}
+.calcpro-ci-root .calcpro-ci-go:hover{background:#3e7119}
+.calcpro-ci-root .calcpro-ci-play{background:#9fc9a8;color:#fff;width:23px;height:23px;border-radius:50%;line-height:23px;font-size:19px;text-align:center}
+.calcpro-ci-root .calcpro-ci-clear{background:#a9a9a9;color:#fff}
+.calcpro-ci-root .calcpro-ci-clear:hover{background:#848484}
+.calcpro-ci-root button:focus-visible{outline:3px solid #0c5ca4;outline-offset:3px}
+.calcpro-ci-root .calcpro-ci-validation{border-left:4px solid #a32925;background:#fff0ed;color:#7c1515;font-size:14px;max-width:560px;padding:8px 10px;margin:10px 0}
+.calcpro-ci-root .calcpro-ci-results{margin-bottom:15px;min-width:0}
+.calcpro-ci-root .calcpro-ci-result-head{display:flex;align-items:center;justify-content:space-between;background:#4d8524;color:#fff;min-height:39px;padding:4px 7px;font-size:22px}
+.calcpro-ci-root .calcpro-ci-save{font-size:11px;background:transparent;border:1px solid transparent;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;padding:0 2px;line-height:1.05}
+.calcpro-ci-root .calcpro-ci-save:hover{border-color:#e2f0da}
+.calcpro-ci-root .calcpro-ci-save svg{width:17px;height:17px;fill:currentColor;display:block}
+.calcpro-ci-root .calcpro-ci-summary{margin:13px 0 10px;font-size:22px;line-height:1.35;overflow-wrap:anywhere}
+.calcpro-ci-root .calcpro-ci-number{color:#008100;font-weight:700}
+.calcpro-ci-root .calcpro-ci-share{font-size:20px;white-space:nowrap}
+.calcpro-ci-root .calcpro-ci-chart-row{display:flex;align-items:flex-start;gap:9px;flex-wrap:wrap;margin:4px 0 10px;font-size:16px}
+.calcpro-ci-root .calcpro-ci-chart-label{padding-top:12px;flex:0 0 auto}
+.calcpro-ci-root .calcpro-ci-chart{width:min(440px,100%);height:auto;display:block;flex:0 1 440px;overflow:visible}
+.calcpro-ci-root .calcpro-ci-svg-guide{stroke:#9eb2c2;stroke-width:2}
+.calcpro-ci-root .calcpro-ci-svg-band{fill:#8aa9cc}
+.calcpro-ci-root .calcpro-ci-svg-edge{stroke:#d52b2d;stroke-width:2.2}
+.calcpro-ci-root .calcpro-ci-svg-mid{fill:#b21c27;stroke:#fff;stroke-width:1.3}
+.calcpro-ci-root .calcpro-ci-svg-text{fill:#4c5660;font-size:11px;font-family:Arial,Helvetica,sans-serif}
+.calcpro-ci-root .calcpro-ci-steps{padding:6px 0 2px;font-size:16px;overflow-wrap:anywhere}
+.calcpro-ci-root .calcpro-ci-steps h3{font-weight:700;margin:7px 0 13px;font-size:16px;color:#111}
+.calcpro-ci-root .calcpro-ci-equation{display:flex;gap:4px;align-items:center;flex-wrap:wrap;margin:7px 0 7px 2px;min-height:30px}
+.calcpro-ci-root .calcpro-ci-equation-indent{padding-left:24px}
+.calcpro-ci-root .calcpro-ci-frac{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;line-height:1.2;font-family:Georgia,serif;min-width:34px}
+.calcpro-ci-root .calcpro-ci-frac>span:first-child{border-bottom:1px solid #111;padding:0 3px 1px}
+.calcpro-ci-root .calcpro-ci-frac>span:last-child{padding:1px 3px 0}
+.calcpro-ci-root .calcpro-ci-caution{margin:12px 0 0;padding:9px 11px;background:#fff8e8;border-left:3px solid #d29c25;font-size:14px;max-width:650px}
+.calcpro-ci-root .calcpro-ci-note{margin:8px 0 0;font-size:13px;color:#555}
+@media(max-width:540px){
+ .calcpro-ci-root .calcpro-ci-summary{font-size:18px}
+ .calcpro-ci-root .calcpro-ci-share{font-size:17px;white-space:normal}
+ .calcpro-ci-root .calcpro-ci-fields{grid-template-columns:minmax(0,1fr) 94px;column-gap:8px}
+ .calcpro-ci-root .calcpro-ci-fields label{white-space:normal;font-size:14px}
+ .calcpro-ci-root .calcpro-ci-fields input,.calcpro-ci-root .calcpro-ci-percent{width:94px}
+ .calcpro-ci-root .calcpro-ci-form{width:min(100%,360px)}
+ .calcpro-ci-root .calcpro-ci-ready{font-size:14px;gap:11px}
+ .calcpro-ci-root .calcpro-ci-chart-row{gap:2px}
+ .calcpro-ci-root .calcpro-ci-chart-label{padding-top:2px}
+ .calcpro-ci-root .calcpro-ci-chart{flex-basis:100%}
+}
+@media print{
+ .calcpro-ci-root .calcpro-ci-ready,.calcpro-ci-root .calcpro-ci-form,.calcpro-ci-root .calcpro-ci-save,.calcpro-ci-root .calcpro-ci-validation{display:none!important}
+ .calcpro-ci-root .calcpro-ci-results{display:block!important}
+}
+</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/math-calculator/">Math</a> / Confidence Interval Calculator</nav><h1 class="cp-page-title">Confidence Interval Calculator</h1><p class="cp-intro">Use this calculator to compute the confidence interval or margin of error for a mean under a normal-distribution approximation. If you only have raw data, try the <a href="standard-deviation-calculator.html">Standard Deviation Calculator</a> first.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-ci-root" id="calcpro-ci-calculator">
+  <div class="calcpro-ci-ready" id="calcpro-ci-ready" role="status"><span class="calcpro-ci-ready-icon" aria-hidden="true">▼</span><span>Modify the values and click the Calculate button to use</span></div>
+  <section class="calcpro-ci-results" id="calcpro-ci-results" aria-label="Confidence interval results" aria-live="polite" hidden>
+    <div class="calcpro-ci-result-head"><span>Result</span><button class="calcpro-ci-save" id="calcpro-ci-save" type="button" title="Save result as text" aria-label="Save confidence interval results"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 2h13l5 5v15H2V2h2zm2 1v7h11V3H6zm6 12a4 4 0 1 0 0 8 4 4 0 0 0 0-8zm-1-12v5h4V3h-4z"/></svg><span>save</span></button></div>
+    <p class="calcpro-ci-summary">Confidence Interval: <strong class="calcpro-ci-number" id="calcpro-ci-mid"></strong> <strong class="calcpro-ci-number" id="calcpro-ci-margin"></strong> <span class="calcpro-ci-share" id="calcpro-ci-percentage"></span> <strong class="calcpro-ci-number" id="calcpro-ci-range"></strong></p>
+    <div class="calcpro-ci-chart-row"><span class="calcpro-ci-chart-label">Error Bar:</span>
+      <svg class="calcpro-ci-chart" viewBox="0 0 440 86" role="img" aria-labelledby="calcpro-ci-error-title calcpro-ci-error-desc" preserveAspectRatio="xMinYMid meet">
+        <title id="calcpro-ci-error-title">Confidence interval error bar</title>
+        <desc id="calcpro-ci-error-desc">The blue band indicates the calculated interval. The red point marks the sample mean.</desc>
+        <line class="calcpro-ci-svg-guide" x1="24" y1="26" x2="416" y2="26"/>
+        <rect class="calcpro-ci-svg-band" id="calcpro-ci-bar" x="74" y="14" width="292" height="24" rx="1"/>
+        <line class="calcpro-ci-svg-edge" id="calcpro-ci-l-edge" x1="74" x2="74" y1="10" y2="42"/>
+        <line class="calcpro-ci-svg-edge" id="calcpro-ci-u-edge" x1="366" x2="366" y1="10" y2="42"/>
+        <circle class="calcpro-ci-svg-mid" id="calcpro-ci-dot" cx="220" cy="26" r="5"/>
+        <text class="calcpro-ci-svg-text" id="calcpro-ci-l-label" x="74" y="63" text-anchor="middle"></text>
+        <text class="calcpro-ci-svg-text" id="calcpro-ci-m-label" x="220" y="80" text-anchor="middle"></text>
+        <text class="calcpro-ci-svg-text" id="calcpro-ci-u-label" x="366" y="63" text-anchor="middle"></text>
+      </svg>
+    </div>
+    <div class="calcpro-ci-steps"><h3>Steps:</h3>
+      <div class="calcpro-ci-equation">CI = <span>x̄</span> ± Z × <span class="calcpro-ci-frac"><span>σ</span><span>√n</span></span></div>
+      <div class="calcpro-ci-equation calcpro-ci-equation-indent">= <span id="calcpro-ci-step-mean"></span> ± <span id="calcpro-ci-step-z"></span> × <span class="calcpro-ci-frac"><span id="calcpro-ci-step-sd"></span><span>√<span id="calcpro-ci-step-n"></span></span></span></div>
+      <div class="calcpro-ci-equation calcpro-ci-equation-indent">= <span id="calcpro-ci-final-mean"></span> ± <span id="calcpro-ci-step-margin"></span></div>
+    </div>
+    <p class="calcpro-ci-caution" id="calcpro-ci-caution" hidden>For a small sample, the Z method generally requires a known population standard deviation and an approximately normal population. If the standard deviation is estimated from the sample, use a Student’s t-interval instead.</p>
+    <p class="calcpro-ci-note">Two-sided normal (Z) confidence interval for the population mean.</p>
+  </section>
+  <div class="calcpro-ci-validation" id="calcpro-ci-validation" role="alert" hidden></div>
+  <form class="calcpro-ci-form" id="calcpro-ci-form" novalidate>
+    <div class="calcpro-ci-fields">
+      <label for="calcpro-ci-size">Sample size (amount), <b>n</b></label><input id="calcpro-ci-size" name="sample_size" inputmode="numeric" type="text" value="50" autocomplete="off" aria-describedby="calcpro-ci-validation"/>
+      <label for="calcpro-ci-mean">Sample Mean (average), <b>x̄</b></label><input id="calcpro-ci-mean" name="sample_mean" inputmode="decimal" type="text" value="20.6" autocomplete="off" aria-describedby="calcpro-ci-validation"/>
+      <label for="calcpro-ci-sd">Standard Deviation, <b>σ</b> or <b>s</b></label><input id="calcpro-ci-sd" name="standard_deviation" inputmode="decimal" type="text" value="3.2" autocomplete="off" aria-describedby="calcpro-ci-validation"/>
+      <label for="calcpro-ci-confidence">Confidence Level</label><div class="calcpro-ci-percent"><input id="calcpro-ci-confidence" name="confidence" inputmode="decimal" type="text" value="95" autocomplete="off" aria-label="Confidence level in percent" aria-describedby="calcpro-ci-validation"/><span aria-hidden="true">%</span></div>
+    </div>
+    <div class="calcpro-ci-actions"><button class="calcpro-ci-go" id="calcpro-ci-submit" type="submit">Calculate <span class="calcpro-ci-play" aria-hidden="true">▶</span></button><button class="calcpro-ci-clear" id="calcpro-ci-clear" type="button">Clear</button></div>
+  </form>
+</div></section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><a href="standard-deviation-calculator.html">Standard Deviation</a><a href="statistics-calculator.html">Statistics</a><a href="z-score-calculator.html">Z-score</a><a href="sample-size-calculator.html">Sample Size</a><a href="average-calculator.html">Average</a><a href="probability-calculator.html">Probability</a><a href="mean-median-mode-range-calculator.html">Mean Median Mode</a><a href="percent-error-calculator.html">Percent Error</a><a href="percent-calculator.html">Percent</a><a href="random-number-generator.html">Random Number</a><a href="ratio-calculator.html">Ratio</a><a href="math-calculator.html">Math Calculators</a></div></section></aside><article class="cp-article"><h2>How to Use the Confidence Interval Calculator</h2>
+<p>Enter your sample size (n), sample mean (x̄), standard deviation (σ or s), and a two-sided confidence level such as 90, 95, or 99. Select <strong>Calculate</strong> to view the confidence interval, margin of error, error bar, and arithmetic steps directly above the form. Select <strong>Clear</strong> to empty all fields. The result panel’s save control exports a text record of the calculation.</p>
+<h2>Confidence Interval Formula</h2>
+<p>For a population mean when the population standard deviation is known, the two-sided normal confidence interval is:</p>
+<p><strong>CI = x̄ ± z<sub>1−α/2</sub> × (σ / √n)</strong>, where α = 1 − confidence level (as a decimal). The quantity <strong>σ / √n</strong> is the standard error; <strong>z<sub>1−α/2</sub> × σ / √n</strong> is the margin of error.</p>
+<div class="cp-table-scroll"><table class="cp-content-table"><thead><tr><th>Confidence level</th><th>Two-sided critical Z</th><th>Interpretation</th></tr></thead><tbody><tr><td>90%</td><td>1.6449</td><td>Narrower interval</td></tr><tr><td>95%</td><td>1.9600</td><td>Common reference level</td></tr><tr><td>99%</td><td>2.5758</td><td>Wider interval</td></tr></tbody></table></div>
+<h2>Worked Example: 95% Confidence Interval</h2>
+<p>Suppose a sample contains <strong>50 observations</strong>, the mean is <strong>20.6</strong>, and the standard deviation is <strong>3.2</strong>. At 95% confidence, z is approximately 1.959964. The standard error is 3.2 / √50 ≈ 0.452548, so the margin of error is about <strong>0.887</strong>. The resulting interval is <strong>20.6 ± 0.887</strong>, or approximately <strong>19.713 to 21.487</strong>. The margin is about 4.3% of the mean.</p>
+<h2>Understanding the Results</h2>
+<p>The lower and upper bounds represent the calculated range for the population mean. The blue error bar spans those bounds, and its red marker indicates the sample mean. A 95% confidence level means this method would capture the true mean in about 95% of repeated samples under its assumptions; it does not assign a 95% probability to the particular interval after its endpoints have been computed.</p>
+<div class="cp-note"><strong>Important:</strong> This calculator follows the reference calculator’s <strong>Z-interval</strong> method. It is most appropriate when the population standard deviation (σ) is known, or when a sufficiently large sample makes the normal approximation reasonable. If σ is unknown and estimated from a small sample, the Student’s t distribution is generally more appropriate. Inputs assume independent observations and an approximately normal sampling distribution.</div>
+<h2>Frequently Asked Questions</h2>
+<h3>What is the margin of error?</h3><p>It is the distance from the estimated mean to either endpoint of the interval. It equals the critical Z-value multiplied by the standard error.</p>
+<h3>What happens if I increase the sample size?</h3><p>With confidence level and standard deviation fixed, the margin of error decreases in proportion to 1 / √n. Multiplying the sample size by four approximately halves the margin.</p>
+<h3>Can I use a negative mean or a standard deviation of zero?</h3><p>Yes. Means may be negative or zero. A nonnegative standard deviation is required; when it is zero, the calculated margin of error is zero. The relative percentage is omitted for a zero mean because it is undefined.</p>
+<h3>Do I have to choose 90%, 95%, or 99%?</h3><p>No. You can enter any valid confidence percentage strictly between 0 and 100; the calculator computes the corresponding normal critical value.</p>
+<h3>Why might my textbook give a different answer?</h3><p>Many textbooks use a Student’s t interval when the standard deviation comes from the sample. A t interval is typically wider than the Z interval, especially for small samples. Rounding the Z-value before calculation can also produce slight differences.</p>
+<h2>Sources and Further Reading</h2>
+<p><a href="https://www.calculator.net/confidence-interval-calculator.html" rel="noopener noreferrer" target="_blank">Calculator.net — Confidence Interval Calculator</a> (layout and Z-method reference); <a href="https://www.itl.nist.gov/div898/handbook/prc/section2/prc222.htm" rel="noopener noreferrer" target="_blank">NIST/SEMATECH — Sample Sizes Required</a> (normal confidence-bound formula and its assumptions).</p>
+<p class="cp-page-footer">CalcPro — statistical calculations are educational estimates and rely on the stated assumptions.</p></article></main></div><script>
+(()=>{
+ 'use strict';
+ const root=document.getElementById('calcpro-ci-calculator');
+ if(!root)return;
+ const get=(id)=>root.querySelector('#calcpro-ci-'+id);
+ const form=get('form'),result=get('results'),ready=get('ready'),error=get('validation');
+ const field={n:get('size'),mean:get('mean'),sd:get('sd'),cl:get('confidence')};
+ let last=null;
+
+ // Peter J. Acklam rational approximation of the inverse standard normal CDF.
+ // Supports continuous two-sided confidence levels, not just lookup-table values.
+ function zQuantile(p){
+   if(!(p>0&&p<1))throw new RangeError('Probability must be strictly between 0 and 1');
+   const a=[-3.969683028665376e1,2.209460984245205e2,-2.759285104469687e2,1.383577518672690e2,-3.066479806614716e1,2.506628277459239];
+   const b=[-5.447609879822406e1,1.615858368580409e2,-1.556989798598866e2,6.680131188771972e1,-1.328068155288572e1];
+   const c=[-7.784894002430293e-3,-3.223964580411365e-1,-2.400758277161838,-2.549732539343734,4.374664141464968,2.938163982698783];
+   const d=[7.784695709041462e-3,3.224671290700398e-1,2.445134137142996,3.754408661907416];
+   const plow=0.02425;
+   if(p<plow){
+     const q=Math.sqrt(-2*Math.log(p));
+     return (((((c[0]*q+c[1])*q+c[2])*q+c[3])*q+c[4])*q+c[5])/((((d[0]*q+d[1])*q+d[2])*q+d[3])*q+1);
+   }
+   if(p>1-plow){
+     const q=Math.sqrt(-2*Math.log1p(-p));
+     return -(((((c[0]*q+c[1])*q+c[2])*q+c[3])*q+c[4])*q+c[5])/((((d[0]*q+d[1])*q+d[2])*q+d[3])*q+1);
+   }
+   const q=p-0.5,r=q*q;
+   return (((((a[0]*r+a[1])*r+a[2])*r+a[3])*r+a[4])*r+a[5])*q/(((((b[0]*r+b[1])*r+b[2])*r+b[3])*r+b[4])*r+1);
+ }
+ function fmt(value){
+   if(!Number.isFinite(value))return 'undefined';
+   if(value===0)return '0';
+   if(Math.abs(value)<0.001)return Number(value.toPrecision(4)).toString();
+   if(Math.abs(value)>=1e15)return value.toExponential(5);
+   return Number(value.toFixed(3)).toString();
+ }
+ function valueOf(input){
+   const s=input.value.trim();
+   return s===''?NaN:Number(s);
+ }
+ function setError(message,input){
+   last=null;result.hidden=true;ready.hidden=false;
+   error.textContent=message;error.hidden=false;
+   if(input){input.setAttribute('aria-invalid','true');input.focus();}
+ }
+ function clearErrors(){
+   error.hidden=true;error.textContent='';
+   Object.values(field).forEach(input=>input.removeAttribute('aria-invalid'));
+ }
+ function calculate(){
+   clearErrors();
+   const n=valueOf(field.n),mean=valueOf(field.mean),sd=valueOf(field.sd),confidence=valueOf(field.cl);
+   if(!Number.isSafeInteger(n)||n<1){setError('Enter a whole-number sample size of at least 1.',field.n);return;}
+   if(!Number.isFinite(mean)){setError('Enter a valid, finite sample mean.',field.mean);return;}
+   if(!Number.isFinite(sd)||sd<0){setError('Enter a valid standard deviation of zero or more.',field.sd);return;}
+   if(!Number.isFinite(confidence)||confidence<=0||confidence>=100){setError('Enter a confidence level greater than 0% and less than 100%.',field.cl);return;}
+   const p=1-(1-confidence/100)/2;
+   if(!(p<1)){setError('This confidence level is too close to 100% for numerical calculation.',field.cl);return;}
+   const z=zQuantile(p),se=sd/Math.sqrt(n),margin=z*se,lower=mean-margin,upper=mean+margin;
+   if([z,se,margin,lower,upper].some(v=>!Number.isFinite(v))){setError('The entered values are too large for a reliable calculation. Try smaller values.');return;}
+   const relative=mean!==0?margin/Math.abs(mean)*100:null;
+   last={n,mean,sd,confidence,z,se,margin,lower,upper,relative};
+   display(last);
+ }
+ function display(v){
+   get('mid').textContent=fmt(v.mean);
+   get('margin').textContent='±'+fmt(v.margin);
+   get('percentage').textContent=v.relative===null||!Number.isFinite(v.relative)?'':'(±'+(Math.abs(v.relative)<0.05&&v.relative!==0?fmt(v.relative):v.relative.toFixed(1))+'%)';
+   get('range').textContent='['+fmt(v.lower)+' – '+fmt(v.upper)+']';
+   get('step-mean').textContent=fmt(v.mean);
+   get('step-z').textContent=v.z.toFixed(4);
+   get('step-sd').textContent=fmt(v.sd);
+   get('step-n').textContent=String(v.n);
+   get('final-mean').textContent=fmt(v.mean);
+   get('step-margin').textContent=fmt(v.margin);
+   get('caution').hidden=v.n>30;
+   // Plot bounds against a common axis centered on the mean. The axis is
+   // at least 8% of |mean| in either direction, with padding for wide CIs.
+   const mid=220,span=Math.max(Math.abs(v.mean)*0.08,v.margin*1.22,1e-12);
+   const halfPixels=(v.margin/span)*190;
+   const left=mid-halfPixels,right=mid+halfPixels;
+   get('bar').setAttribute('x',left);
+   get('bar').setAttribute('width',Math.max(0,right-left));
+   get('l-edge').setAttribute('x1',left);
+   get('l-edge').setAttribute('x2',left);
+   get('u-edge').setAttribute('x1',right);
+   get('u-edge').setAttribute('x2',right);
+   get('dot').setAttribute('cx',mid);
+   get('l-label').setAttribute('x',left);
+   get('m-label').setAttribute('x',mid);
+   get('u-label').setAttribute('x',right);
+   // Avoid overlapping labels for narrow intervals; full bounds remain in summary.
+   const showBounds=halfPixels>=52;
+   get('l-label').textContent=showBounds?fmt(v.lower):'';
+   get('m-label').textContent=fmt(v.mean);
+   get('u-label').textContent=showBounds?fmt(v.upper):'';
+   get('error-desc').textContent='Lower bound '+fmt(v.lower)+', sample mean '+fmt(v.mean)+', upper bound '+fmt(v.upper)+'. Blue bar is the confidence interval and red circle is the sample mean.';
+   ready.hidden=true;
+   result.hidden=false;
+ }
+ form.addEventListener('submit',event=>{event.preventDefault();calculate();});
+ get('clear').addEventListener('click',()=>{
+   form.reset();
+   Object.values(field).forEach(input=>{input.value='';});
+   clearErrors();last=null;result.hidden=true;ready.hidden=false;field.n.focus();
+ });
+ Object.values(field).forEach(input=>input.addEventListener('input',()=>{
+   input.removeAttribute('aria-invalid');
+   error.hidden=true;error.textContent='';
+ }));
+ get('save').addEventListener('click',()=>{
+   if(!last)return;
+   const v=last;
+   const lines=[
+      'CalcPro - Confidence Interval Calculator','',
+      'Sample size (n): '+v.n,
+      'Sample mean: '+v.mean,
+      'Standard deviation: '+v.sd,
+      'Confidence level: '+v.confidence+'%',
+      'Method: two-sided normal (Z) confidence interval','',
+      'Z critical value: '+v.z.toFixed(6),
+      'Standard error: '+v.se.toPrecision(8),
+      'Margin of error: '+v.margin.toPrecision(8),
+      'Confidence interval: ['+v.lower.toPrecision(10)+', '+v.upper.toPrecision(10)+']',
+      'Formula: mean +/- z * standard deviation / sqrt(n)',
+      'Note: A t interval is often preferable if population sigma is unknown and n is small.'
+   ];
+   const blob=new Blob([lines.join('\n')+'\n'],{type:'text/plain;charset=utf-8'});
+   const url=URL.createObjectURL(blob),a=document.createElement('a');
+   a.href=url;a.download='confidence-interval-result.txt';document.body.appendChild(a);a.click();a.remove();
+   window.setTimeout(()=>URL.revokeObjectURL(url),1000);
+ });
+})();
+</script></body></html>

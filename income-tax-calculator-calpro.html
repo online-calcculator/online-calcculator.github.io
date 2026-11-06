@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>Income Tax Calculator 2025 &amp; 2026 | CalcPro</title><meta content="Estimate U.S. federal taxes for 2025 and 2026, including withholding, deductions, tax credits, and possible refunds." name="description"/><link href="template-style.css" rel="stylesheet"/><style>
+/* Tool-specific CSS. Site-wide cp-* classes remain in template-style.css. */
+.calcpro-income-tax-root{font-family:Arial,Helvetica,sans-serif;color:#132536;font-size:13px;max-width:728px;line-height:1.28}
+.calcpro-income-tax-root *, .calcpro-income-tax-root *:before,.calcpro-income-tax-root *:after{box-sizing:border-box}
+.calcpro-income-tax-form{margin:0;border:1px solid #bac3ca;background:#eee}
+.calcpro-income-tax-form-banner{min-height:32px;display:flex;justify-content:center;align-items:center;gap:10px;background:#346495;color:white;font-weight:700;text-align:center;padding:6px 9px;font-size:13px}
+.calcpro-income-tax-form-banner span{background:white;color:#346495;border-radius:50%;font-size:11px;width:19px;height:19px;display:flex;align-items:center;justify-content:center;flex:0 0 19px}
+.calcpro-income-tax-body{padding:10px 12px 8px}
+.calcpro-income-tax-field{display:grid;grid-template-columns:minmax(160px,235px) 126px minmax(0,1fr);align-items:center;column-gap:6px;min-height:31px;padding:2px 0}
+.calcpro-income-tax-field label:first-child{line-height:1.25}
+.calcpro-income-tax-field input[type=text],.calcpro-income-tax-field select{background:#fff;border:1px solid #50779f;outline:none;box-shadow:inset 0 0 0 1px #e2e8f1;border-radius:0;min-width:0;width:100%;height:27px;padding:3px 5px;color:#111;font:13px Arial,sans-serif}
+.calcpro-income-tax-field input:focus,.calcpro-income-tax-field select:focus{outline:2px solid #78a9db;outline-offset:1px}
+.calcpro-income-tax-field select{width:220px;max-width:calc(100vw - 68px);height:28px}
+.calcpro-income-tax-hint{font-size:12px;color:#273642;line-height:1.3;overflow-wrap:break-word}
+.calcpro-income-tax-year{display:grid;grid-template-columns:minmax(160px,235px) 1fr;gap:6px;align-items:start;border:0;padding:4px 0 12px;margin:0;min-width:0}
+.calcpro-income-tax-year legend{float:left;padding:1px 0;width:235px;max-width:50%;font-weight:normal}
+.calcpro-income-tax-year-options{display:flex;flex-direction:column;gap:5px}
+.calcpro-income-tax-year-options label{display:flex;align-items:center;gap:6px}
+.calcpro-income-tax-root input[type=radio]{accent-color:#346b9c;margin:0;vertical-align:middle}
+.calcpro-income-tax-sectitle{font-size:16px!important;color:#fff!important;background:#346495;line-height:1.3;margin:10px 0 5px!important;padding:4px 7px;font-weight:700}
+.calcpro-income-tax-subhead{font-size:13px;color:#244769;font-weight:700;background:#dee3e7;margin:8px 0 4px;padding:4px 6px}
+.calcpro-income-tax-person[data-tax-person="1"]>.calcpro-income-tax-subhead{display:none}
+.calcpro-income-tax-inline{display:flex;gap:16px;align-items:center}
+.calcpro-income-tax-radio{display:inline-flex!important;align-items:center;gap:4px;cursor:pointer}
+.calcpro-income-tax-business-prompt{grid-template-columns:minmax(160px,310px) auto 1fr;margin:3px 0}
+.calcpro-income-tax-business{padding-left:20px}
+.calcpro-income-tax-business[hidden],.calcpro-income-tax-person2[hidden]{display:none}
+.calcpro-income-tax-actions{display:flex;align-items:center;justify-content:center;gap:6px;padding:16px 0 0}
+.calcpro-income-tax-root button{border:0;border-radius:0;cursor:pointer;font:700 13px Arial,sans-serif}
+.calcpro-income-tax-calculate{background:#538827;color:#fff;padding:9px 14px;display:flex;gap:10px;align-items:center}
+.calcpro-income-tax-calculate span{display:flex;align-items:center;justify-content:center;width:17px;height:17px;border-radius:50%;color:#538827;background:white;font-size:11px}
+.calcpro-income-tax-clear{background:#a8a8a8;color:white;padding:9px 12px}
+.calcpro-income-tax-calculate:hover{background:#3d6c18}.calcpro-income-tax-clear:hover{background:#858585}
+.calcpro-income-tax-disclaimer{font-size:12px;color:#596571;margin:10px 0 16px;line-height:1.45}
+.calcpro-income-tax-error{background:#fff3ed;color:#8d291a;border:1px solid #e6a69b;margin:0 0 12px;padding:9px 12px;line-height:1.5}
+.calcpro-income-tax-error[hidden],.calcpro-income-tax-results[hidden]{display:none}
+.calcpro-income-tax-results{padding:0 0 14px;margin:0 0 14px}
+.calcpro-income-tax-result-heading{display:flex;align-items:center;justify-content:space-between;gap:10px;background:#538827;color:#fff;font-size:17px;font-weight:700;padding:9px 10px;line-height:1.3}
+.calcpro-income-tax-result-heading strong{color:#fff7a2}
+.calcpro-income-tax-print{background:transparent!important;color:white;white-space:nowrap;font-size:12px!important;text-decoration:underline;padding:4px}
+.calcpro-income-tax-result-table{width:100%;max-width:560px;border-collapse:collapse;margin:9px 0 8px;font:13px Arial,sans-serif}
+.calcpro-income-tax-result-table td{padding:3px 8px;border-bottom:1px solid #e1e9ef;line-height:1.32}
+.calcpro-income-tax-result-table td:first-child{width:66%;color:#273648}
+.calcpro-income-tax-result-table td:last-child{text-align:right;font-variant-numeric:tabular-nums}
+.calcpro-income-tax-result-table tr.calcpro-income-tax-key td{font-weight:700;background:#e9f0f7}
+.calcpro-income-tax-result-table tr.calcpro-income-tax-final td{font-weight:700;border-top:2px solid #386c9b;color:#224e7b;font-size:15px}
+.calcpro-income-tax-visual{max-width:560px;margin:12px 0 8px;padding:8px 9px;border:1px solid #e0e8ec;background:#f8fafb}
+.calcpro-income-tax-visual .calcpro-income-tax-compare-label{display:flex;justify-content:space-between;margin-bottom:4px;font-size:12px}
+.calcpro-income-tax-bar{height:10px;border-radius:2px;background:#dee6ed;overflow:hidden;margin-bottom:9px}
+.calcpro-income-tax-bar span{display:block;height:100%;background:#4f82ad;min-width:0}
+.calcpro-income-tax-visual .calcpro-income-tax-compare-row:last-child .calcpro-income-tax-bar{margin-bottom:0}
+.calcpro-income-tax-details{font-size:12px;color:#273642;max-width:640px}
+.calcpro-income-tax-details summary{cursor:pointer;font-weight:bold;color:#195f90;padding:6px 0}
+.calcpro-income-tax-breakdown-table{border-collapse:collapse;width:100%;margin:6px 0}
+.calcpro-income-tax-breakdown-table td{border-bottom:1px solid #e3e7eb;padding:4px 5px}
+.calcpro-income-tax-breakdown-table td:last-child{text-align:right;font-variant-numeric:tabular-nums}
+.calcpro-income-tax-result-notes{max-width:660px;color:#59616e;font-size:11px;line-height:1.45;padding-top:6px}
+.calcpro-income-tax-result-notes p{margin:5px 0}
+@media(max-width:630px){.calcpro-income-tax-root{font-size:13px}.calcpro-income-tax-body{padding:8px}.calcpro-income-tax-field{grid-template-columns:minmax(0,1fr) 110px;row-gap:2px;min-height:30px}.calcpro-income-tax-field .calcpro-income-tax-hint{grid-column:2;font-size:11px}.calcpro-income-tax-field select{grid-column:2;max-width:100%;width:100%}.calcpro-income-tax-year{display:block;padding:6px 0 10px}.calcpro-income-tax-year legend{float:none;width:auto;max-width:100%;margin-bottom:5px}.calcpro-income-tax-year-options{margin-left:min(48%,220px)}.calcpro-income-tax-business-prompt{display:flex;flex-wrap:wrap;gap:8px}.calcpro-income-tax-business{padding-left:8px}.calcpro-income-tax-result-heading{font-size:15px}.calcpro-income-tax-result-table{font-size:12px}}
+@media(max-width:360px){.calcpro-income-tax-field{grid-template-columns:minmax(0,1fr) 94px;column-gap:3px}.calcpro-income-tax-year-options{margin-left:0}.calcpro-income-tax-hint{font-size:10.5px!important}}
+@media print{.calcpro-income-tax-form,.calcpro-income-tax-disclaimer,.calcpro-income-tax-print,.calcpro-income-tax-error,.calcpro-income-tax-visual{display:none!important}.calcpro-income-tax-results[hidden]{display:none!important}.calcpro-income-tax-results{display:block!important}.calcpro-income-tax-root{max-width:100%}.calcpro-income-tax-details{display:block}.calcpro-income-tax-details summary{display:none}}
+</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Income Tax Calculator</nav><h1 class="cp-page-title">Income Tax Calculator</h1><p class="cp-intro">Estimate your potential federal refund or tax amount owed for 2025 or 2026, including the new tax deductions for qualifying tips, overtime, car loan interest, and seniors.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-income-tax-root" id="calcpro-income-tax-root">
+  <section class="calcpro-income-tax-results" id="calcpro-income-tax-results" aria-live="polite" aria-atomic="true" hidden>
+    <div class="calcpro-income-tax-result-heading"><span id="calcpro-income-tax-result-head">Tax Estimate</span><button type="button" class="calcpro-income-tax-print" id="calcpro-income-tax-print" title="Print this estimate" aria-label="Print this estimate">&#128424; Print</button></div>
+    <table class="calcpro-income-tax-result-table"><tbody id="calcpro-income-tax-rows"></tbody></table>
+    <div class="calcpro-income-tax-visual" id="calcpro-income-tax-visual" aria-label="Tax comparison"></div>
+    <details class="calcpro-income-tax-details"><summary>Show calculation breakdown and tax assumptions</summary><div id="calcpro-income-tax-breakdown"></div></details>
+    <div class="calcpro-income-tax-result-notes" id="calcpro-income-tax-result-notes"></div>
+  </section>
+  <div class="calcpro-income-tax-error" id="calcpro-income-tax-error" role="alert" hidden></div>
+  <form class="calcpro-income-tax-form" id="calcpro-income-tax-form" novalidate>
+    <div class="calcpro-income-tax-form-banner"><span aria-hidden="true">&#9660;</span> Modify the values and click the Calculate button to use</div>
+    <div class="calcpro-income-tax-body">
+      <div class="calcpro-income-tax-field"><label for="calcpro-income-tax-status">File Status</label>
+        <select id="calcpro-income-tax-status" name="status"><option value="single">Single</option><option value="joint">Married Filing Jointly</option><option value="separate">Married Filing Separately</option><option value="hoh">Head of Household</option><option value="widow">Qualified Widow(er)</option></select><span></span></div>
+      <div class="calcpro-income-tax-field"><label for="calcpro-income-tax-young">No. of Young Dependents</label><input id="calcpro-income-tax-young" name="young" data-tax-input="count" type="text" inputmode="decimal" autocomplete="off" value="0" aria-label="young" /><span class="calcpro-income-tax-hint">Age 0–16</span></div>
+      <div class="calcpro-income-tax-field"><label for="calcpro-income-tax-older">No. of Other Dependents</label><input id="calcpro-income-tax-older" name="older" data-tax-input="count" type="text" inputmode="decimal" autocomplete="off" value="0" aria-label="older" /><span class="calcpro-income-tax-hint">Age 17 or older</span></div>
+      <fieldset class="calcpro-income-tax-year"><legend>Tax Year</legend><div class="calcpro-income-tax-year-options">
+        <label><input type="radio" name="taxYear" value="2026"/>2026 (return filed in 2027)</label>
+        <label><input type="radio" name="taxYear" value="2025" checked/>2025 (return filed in 2026)</label>
+      </div></fieldset>
+      <h2 class="calcpro-income-tax-sectitle">Income</h2>
+      <div class="calcpro-income-tax-person" data-tax-person="1"><h3 class="calcpro-income-tax-subhead">Person 1 Earned Income</h3><div class="calcpro-income-tax-field"><label for="calcpro-income-tax-age1">Age</label><input id="calcpro-income-tax-age1" name="age1" data-tax-input="age" type="text" inputmode="decimal" autocomplete="off" value="30" aria-label="age1" /><span class="calcpro-income-tax-hint"></span></div><div class="calcpro-income-tax-field"><label for="calcpro-income-tax-wages1">Wages, Tips, Other Compensation</label><input id="calcpro-income-tax-wages1" name="wages1" data-tax-input="money" type="text" inputmode="decimal" autocomplete="off" value="80000" aria-label="wages1" /><span class="calcpro-income-tax-hint">(W-2 box 1)</span></div><div class="calcpro-income-tax-field"><label for="calcpro-income-tax-federal1">Federal Income Tax Withheld</label><input id="calcpro-income-tax-federal1" name="federal1" data-tax-input="money" type="text" inputmode="decimal" autocomplete="off" value="9000" aria-label="federal1" /><span class="calcpro-income-tax-hint">(W-2 box 2)</span></div><div class="calcpro-income-tax-field"><label for="calcpro-income-tax-state1">State Income Tax Withheld</label><input id="calcpro-income-tax-state1" name="state1" data-tax-input="money" type="text" inputmode="decimal" autocomplete="off" value="0" aria-label="state1" /><span class="calcpro-income-tax-hint">(W-2 box 17)</span></div><div class="calcpro-income-tax-field"><label for="calcpro-income-tax-local1">Local Income Tax Withheld</label><input id="calcpro-income-tax-local1" name="local1" data-tax-input="money" type="text" inputmode="decimal" autocomplete="off" value="0" aria-label="local1" /><span class="calcpro-income-tax-hint">(W-2 box 19)</span></div><div class="calcpro-income-tax-field calcpro-income-tax-business-prompt"><span>Has Business or Self Employment Income?</span><div class="calcpro-income-tax-inline"><label class="calcpro-income-tax-radio"><input type="radio" name="business1Choice" value="yes" /> yes</label><label class="calcpro-income-tax-radio"><input type="radio" name="business1Choice" value="no" checked/> no</label></div><span></span></div><div class="calcpro-income-tax-business" id="calcpro-income-tax-business-fields1" hidden><div class="calcpro-income-tax-field"><label for="calcpro-income-tax-business1">Business Income</label><input id="calcpro-income-tax-business1" name="business1" data-tax-input="signed" type="text" inputmode="decimal" autocomplete="off" value="0" aria-label="business1" /><span class="calcpro-income-tax-hint">Net self-employment profit</span></div><div class="calcpro-income-tax-field"><label for="calcpro-income-tax-estimated1">Estimated Tax Paid</label><input id="calcpro-income-tax-estimated1" name="estimated1" data-tax-input="money" type="text" inputmode="decimal" autocomplete="off" value="0" aria-label="estimated1" /><span class="calcpro-income-tax-hint">Federal estimated payments</span></div><div class="calcpro-income-tax-field"><label for="calcpro-income-tax-medicare1">Medicare Wages</label><input id="calcpro-income-tax-medicare1" name="medicare1" data-tax-input="money" type="text" inputmode="decimal" autocomplete="off" value="0" aria-label="medicare1" /><span class="calcpro-income-tax-hint">(W-2 box 5, or 0 if no W-2)</span></div></div></div>
+      <div class="calcpro-income-tax-person2" id="calcpro-income-tax-person2" hidden><div class="calcpro-income-tax-person" data-tax-person="2"><h3 class="calcpro-income-tax-subhead">Person 2 Earned Income</h3><div class="calcpro-income-tax-field"><label for="calcpro-income-tax-age2">Age</label><input id="calcpro-income-tax-age2" name="age2" data-tax-input="age" type="text" inputmode="decimal" autocomplete="off" value="30" aria-label="age2" /><span class="calcpro-income-tax-hint"></span></div><div class="calcpro-income-tax-field"><label for="calcpro-income-tax-wages2">Wages, Tips, Other Compensation</label><input id="calcpro-income-tax-wages2" name="wages2" data-tax-input="money" type="text" inputmode="decimal" autocomplete="off" value="0" aria-label="wages2" /><span class="calcpro-income-tax-hint">(W-2 box 1)</span></div><div class="calcpro-income-tax-field"><label for="calcpro-income-tax-federal2">Federal Income Tax Withheld</label><input id="calcpro-income-tax-federal2" name="federal2" data-tax-input="money" type="text" inputmode="decimal" autocomplete="off" value="0" aria-label="federal2" /><span class="calcpro-income-tax-hint">(W-2 box 2)</span></div><div class="calcpro-income-tax-field"><label for="calcpro-income-tax-state2">State Income Tax Withheld</label><input id="calcpro-income-tax-state2" name="state2" data-tax-input="money" type="text" inputmode="decimal" autocomplete="off" value="0" aria-label="state2" /><span class="calcpro-income-tax-hint">(W-2 box 17)</span></div><div class="calcpro-income-tax-field"><label for="calcpro-income-tax-local2">Local Income Tax Withheld</label><input id="calcpro-income-tax-local2" name="local2" data-tax-input="money" type="text" inputmode="decimal" autocomplete="off" value="0" aria-label="local2" /><span class="calcpro-income-tax-hint">(W-2 box 19)</span></div><div class="calcpro-income-tax-field calcpro-income-tax-business-prompt"><span>Has Business or Self Employment Income?</span><div class="calcpro-income-tax-inline"><label class="calcpro-income-tax-radio"><input type="radio" name="business2Choice" value="yes" /> yes</label><label class="calcpro-income-tax-radio"><input type="radio" name="business2Choice" value="no" checked/> no</label></div><span></span></div><div class="calcpro-income-tax-business" id="calcpro-income-tax-business-fields2" hidden><div class="calcpro-income-tax-field"><label for="calcpro-income-tax-business2">Business Income</label><input id="calcpro-income-tax-business2" name="business2" data-tax-input="signed" type="text" inputmode="decimal" autocomplete="off" value="0" aria-label="business2" /><span class="calcpro-income-tax-hint">Net self-employment profit</span></div><div class="calcpro-income-tax-field"><label for="calcpro-income-tax-estimated2">Estimated Tax Paid</label><input id="calcpro-income-tax-estimated2" name="estimated2" data-tax-input="money" type="text" inputmode="decimal" autocomplete="off" value="0" aria-label="estimated2" /><span class="calcpro-income-tax-hint">Federal estimated payments</span></div><div class="calcpro-income-tax-field"><label for="calcpro-income-tax-medicare2">Medicare Wages</label><input id="calcpro-income-tax-medicare2" name="medicare2" data-tax-input="money" type="text" inputmode="decimal" autocomplete="off" value="0" aria-label="medicare2" /><span class="calcpro-income-tax-hint">(W-2 box 5, or 0 if no W-2)</span></div></div></div></div>
+      <h3 class="calcpro-income-tax-subhead" id="calcpro-income-tax-other-income-heading">Other Family Incomes</h3>
+      <div class="calcpro-income-tax-field"><label for="calcpro-income-tax-social">Social Security Income</label><input id="calcpro-income-tax-social" name="social" data-tax-input="money" type="text" inputmode="decimal" autocomplete="off" value="0" aria-label="social" /><span class="calcpro-income-tax-hint">SSA-1099, RRB-1099</span></div><div class="calcpro-income-tax-field"><label for="calcpro-income-tax-interest">Interest Income</label><input id="calcpro-income-tax-interest" name="interest" data-tax-input="money" type="text" inputmode="decimal" autocomplete="off" value="0" aria-label="interest" /><span class="calcpro-income-tax-hint">1099-INT</span></div><div class="calcpro-income-tax-field"><label for="calcpro-income-tax-dividends">Ordinary Dividends</label><input id="calcpro-income-tax-dividends" name="dividends" data-tax-input="money" type="text" inputmode="decimal" autocomplete="off" value="0" aria-label="dividends" /><span class="calcpro-income-tax-hint">1099-DIV, box 1a</span></div><div class="calcpro-income-tax-field"><label for="calcpro-income-tax-qualified">Qualified Dividends</label><input id="calcpro-income-tax-qualified" name="qualified" data-tax-input="money" type="text" inputmode="decimal" autocomplete="off" value="0" aria-label="qualified" /><span class="calcpro-income-tax-hint">1099-DIV, box 1b; included above</span></div><div class="calcpro-income-tax-field"><label for="calcpro-income-tax-passive">Passive Incomes</label><input id="calcpro-income-tax-passive" name="passive" data-tax-input="signed" type="text" inputmode="decimal" autocomplete="off" value="0" aria-label="passive" /><span class="calcpro-income-tax-hint">e.g., rents, royalties (net)</span></div><div class="calcpro-income-tax-field"><label for="calcpro-income-tax-short">Short-term Capital Gains</label><input id="calcpro-income-tax-short" name="short" data-tax-input="signed" type="text" inputmode="decimal" autocomplete="off" value="0" aria-label="short" /><span class="calcpro-income-tax-hint">Net short-term gain or loss</span></div><div class="calcpro-income-tax-field"><label for="calcpro-income-tax-long">Long-term Capital Gains</label><input id="calcpro-income-tax-long" name="long" data-tax-input="signed" type="text" inputmode="decimal" autocomplete="off" value="0" aria-label="long" /><span class="calcpro-income-tax-hint">Net long-term gain or loss</span></div><div class="calcpro-income-tax-field"><label for="calcpro-income-tax-other">Other Income</label><input id="calcpro-income-tax-other" name="other" data-tax-input="signed" type="text" inputmode="decimal" autocomplete="off" value="0" aria-label="other" /><span class="calcpro-income-tax-hint">e.g., taxable retirement / unemployment</span></div><div class="calcpro-income-tax-field"><label for="calcpro-income-tax-stateRate">State+Local Tax Rate</label><input id="calcpro-income-tax-stateRate" name="stateRate" data-tax-input="percent" type="text" inputmode="decimal" autocomplete="off" value="0" aria-label="stateRate" /><span class="calcpro-income-tax-hint">Estimated combined rate</span></div>
+      <h2 class="calcpro-income-tax-sectitle">Deductions &amp; Credits</h2>
+      <div class="calcpro-income-tax-field"><label for="calcpro-income-tax-tips">Tips Income</label><input id="calcpro-income-tax-tips" name="tips" data-tax-input="money" type="text" inputmode="decimal" autocomplete="off" value="0" aria-label="tips" /><span class="calcpro-income-tax-hint">Qualified tips already included in wages/business income</span></div><div class="calcpro-income-tax-field"><label for="calcpro-income-tax-overtime">Overtime Income</label><input id="calcpro-income-tax-overtime" name="overtime" data-tax-input="money" type="text" inputmode="decimal" autocomplete="off" value="0" aria-label="overtime" /><span class="calcpro-income-tax-hint">Enter qualified overtime premium only, not all overtime pay</span></div><div class="calcpro-income-tax-field"><label for="calcpro-income-tax-car">Car Loan Interest</label><input id="calcpro-income-tax-car" name="car" data-tax-input="money" type="text" inputmode="decimal" autocomplete="off" value="0" aria-label="car" /><span class="calcpro-income-tax-hint">Up to $10,000; qualifying new U.S.-assembled vehicle</span></div><div class="calcpro-income-tax-field"><label for="calcpro-income-tax-ira">IRA Contributions</label><input id="calcpro-income-tax-ira" name="ira" data-tax-input="money" type="text" inputmode="decimal" autocomplete="off" value="0" aria-label="ira" /><span class="calcpro-income-tax-hint">Deductible traditional IRA contributions only</span></div><div class="calcpro-income-tax-field"><label for="calcpro-income-tax-property">Real Estate Tax</label><input id="calcpro-income-tax-property" name="property" data-tax-input="money" type="text" inputmode="decimal" autocomplete="off" value="0" aria-label="property" /><span class="calcpro-income-tax-hint">Schedule A property taxes</span></div><div class="calcpro-income-tax-field"><label for="calcpro-income-tax-mortgage">Mortgage Interest</label><input id="calcpro-income-tax-mortgage" name="mortgage" data-tax-input="money" type="text" inputmode="decimal" autocomplete="off" value="0" aria-label="mortgage" /><span class="calcpro-income-tax-hint">Deductible home mortgage interest</span></div><div class="calcpro-income-tax-field"><label for="calcpro-income-tax-charity">Charitable Donations</label><input id="calcpro-income-tax-charity" name="charity" data-tax-input="money" type="text" inputmode="decimal" autocomplete="off" value="0" aria-label="charity" /><span class="calcpro-income-tax-hint">Eligible donations to qualified organizations</span></div><div class="calcpro-income-tax-field"><label for="calcpro-income-tax-studentLoan">Student Loan Interest</label><input id="calcpro-income-tax-studentLoan" name="studentLoan" data-tax-input="money" type="text" inputmode="decimal" autocomplete="off" value="0" aria-label="studentLoan" /><span class="calcpro-income-tax-hint">Up to $2,500 per return, income limits apply</span></div><div class="calcpro-income-tax-field"><label for="calcpro-income-tax-childcare">Child &amp; Dependent Care Expense</label><input id="calcpro-income-tax-childcare" name="childcare" data-tax-input="money" type="text" inputmode="decimal" autocomplete="off" value="0" aria-label="childcare" /><span class="calcpro-income-tax-hint">Up to $3,000 for one or $6,000 for 2+ eligible people</span></div><div class="calcpro-income-tax-field"><label for="calcpro-income-tax-tuition1">College Education Expense</label><input id="calcpro-income-tax-tuition1" name="tuition1" data-tax-input="money" type="text" inputmode="decimal" autocomplete="off" value="0" aria-label="tuition1" /><span class="calcpro-income-tax-hint">Student 1; AOTC eligibility assumed</span></div><div class="calcpro-income-tax-field"><label for="calcpro-income-tax-tuition2">&nbsp;</label><input id="calcpro-income-tax-tuition2" name="tuition2" data-tax-input="money" type="text" inputmode="decimal" autocomplete="off" value="0" aria-label="tuition2" /><span class="calcpro-income-tax-hint">Student 2; AOTC eligibility assumed</span></div><div class="calcpro-income-tax-field"><label for="calcpro-income-tax-tuition3">&nbsp;</label><input id="calcpro-income-tax-tuition3" name="tuition3" data-tax-input="money" type="text" inputmode="decimal" autocomplete="off" value="0" aria-label="tuition3" /><span class="calcpro-income-tax-hint">Student 3; AOTC eligibility assumed</span></div><div class="calcpro-income-tax-field"><label for="calcpro-income-tax-tuition4">&nbsp;</label><input id="calcpro-income-tax-tuition4" name="tuition4" data-tax-input="money" type="text" inputmode="decimal" autocomplete="off" value="0" aria-label="tuition4" /><span class="calcpro-income-tax-hint">Student 4; AOTC eligibility assumed</span></div><div class="calcpro-income-tax-field"><label for="calcpro-income-tax-otherDed">Other Deductibles</label><input id="calcpro-income-tax-otherDed" name="otherDed" data-tax-input="money" type="text" inputmode="decimal" autocomplete="off" value="0" aria-label="otherDed" /><span class="calcpro-income-tax-hint">Other qualifying itemized deductions</span></div>
+      <div class="calcpro-income-tax-actions"><button class="calcpro-income-tax-calculate" type="submit">Calculate <span aria-hidden="true">&#9654;</span></button><button class="calcpro-income-tax-clear" type="button" id="calcpro-income-tax-clear">Clear</button></div>
+    </div>
+  </form>
+  <p class="calcpro-income-tax-disclaimer">Estimate only; not a filed tax return. Enter qualifying amounts that are already included in taxable income where indicated. Amounts are in U.S. dollars. Certain tax benefits require details this tool cannot verify.</p>
+</div></section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><!-- REPLACE these links with real related tools for each calculator; verify live slugs. --><a href="retirement-calculator.html">Retirement</a><a href="roth-ira-calculator.html">Roth IRA</a><a href="investment-calculator.html">Investment</a><a href="compound-interest-calculator.html">Compound Interest</a><a href="annuity-payout-calculator.html">Annuity Payout</a><a href="pension-calculator.html">Pension</a><a href="inflation-calculator.html">Inflation</a><a href="future-value-calculator.html">Future Value</a><a href="income-tax-calculator.html">Income Tax</a><a href="savings-calculator.html">Savings</a><a href="mortgage-calculator.html">Mortgage</a><a href="loan-calculator.html">Loan</a></div></section></aside><article class="cp-article"><h2>How to Use the Income Tax Calculator</h2>
+<p>Select a filing status and tax year (2025 or 2026), then enter federal W-2 wages and withholding. Add other taxable income, dependents, and qualified deductible expenses. For a joint return, the second earner's fields appear automatically; choose <strong>Yes</strong> to add self-employment income and federal estimated payments.</p>
+<p>Press <strong>Calculate</strong> to see your federal tax estimate <em>above</em> the input form, including taxable income, regular income tax, possible additional taxes, credits, and the estimated amount owed or refundable. Select the calculation breakdown for a detailed explanation or <strong>Print</strong> for a printable estimate. <strong>Clear</strong> restores the example inputs.</p>
+<h2>2025 and 2026 Federal Income Tax Formulas</h2>
+<p>The calculation starts from wages, business profit, taxable portions of Social Security, interest, dividends, rental income and net capital gains. Qualified dividends are treated as a subset of ordinary dividends, not a second income amount. The calculator then subtracts eligible above-the-line deductions to estimate adjusted gross income (AGI).</p>
+<div class="cp-note"><strong>Federal taxable income</strong> = max(0, AGI − larger of standard or itemized deductions − qualifying Schedule 1-A deductions − eligible qualified-business-income deduction). <strong>Estimated net tax</strong> = income tax + applicable additional taxes − allowed credits − federal withholding − federal estimated payments − refundable credits.</div>
+<p>For 2026, the estimator also accounts for the expanded child and dependent-care credit (rates up to 50%) and certain charitable-contribution changes, including a limited cash-donation deduction for non-itemizers and the new itemizer floor. Eligibility assumptions still apply.</p>
+<p>Ordinary taxable income is evaluated through the seven progressive rates—10%, 12%, 22%, 24%, 32%, 35%, and 37%. Net long-term capital gains and qualified dividends may receive the preferential 0%, 15%, or 20% rates. Self-employment tax uses estimated net SE earnings of 92.35% of net self-employment profit, subject to the Social Security wage base.</p>
+<h3>How new deductions work</h3>
+<p>Tax years 2025–2028 can offer deductions for qualifying reported tips (up to $25,000), qualifying overtime <em>premium</em> (generally up to $12,500, or $25,000 for joint returns), interest on eligible new-vehicle loans (up to $10,000), and a $6,000-per-qualifying-senior enhanced deduction. Income-based phaseouts and eligibility tests apply. These are deductions, not a blanket exemption from payroll taxes.</p>
+<h2>Worked Example: $80,000 Annual Wages</h2>
+<p>For a single filer aged 30 with $80,000 of wages, no other income or deductions, and $9,000 federal withholding, the 2025 standard deduction is $15,750. Estimated taxable income is $64,250. The progressive-bracket tax is $1,192.50 on the first $11,925, $4,386 on the next $36,550, and $3,470.50 on the remaining $15,775. That is <strong>$9,049 federal income tax</strong> and <strong>$49 owed</strong> after withholding. This is the reference calculator's example result; it excludes individual circumstances and special credits.</p>
+<h2>Understanding the Results</h2>
+<p><strong>Total deductions</strong> includes eligible adjustments and the selected standard or itemized deduction. <strong>Tax pre-payments</strong> includes federal withholding and estimated federal payments—not state/local withholding. <strong>Tax amount owed</strong> or <strong>tax refund</strong> compares federal tax with those prepayments and estimated refundable credits. A state/local tax-rate input provides a separate rough state/local estimate in the expanded breakdown; it does not change the displayed federal refund or balance due.</p>
+<h2>Frequently Asked Questions</h2>
+<h3>Is this an exact IRS tax return?</h3><p>No. It is a planning estimate, not tax-filing software. Real returns may require additional schedules, tax tables, earned-income credit, special AMT adjustments, eligibility proofs, plan-covered IRA limits, NIIT adjustments, and capital-loss carryforwards.</p>
+<h3>Should tips and overtime be entered twice?</h3><p>No. Enter the full amount in W-2 wages or business profit and separately enter only the <em>qualified</em> tips or qualified overtime premium that may generate the deduction. Entering the income again in another income field double counts it.</p>
+<h3>Which deduction does the calculator use?</h3><p>It compares the applicable standard deduction (including an age-65 addition) with the eligible itemized inputs, subject to an estimated state-and-local-tax cap, and selects the larger. New Schedule 1-A deductions may be available in addition to either choice.</p>
+<h3>Why could my estimated refund differ from the IRS result?</h3><p>Actual results depend on taxpayer identity and dependent eligibility, exact Social Security and Medicare wage figures, refundability, credits, carryovers, deductions, tax table rounding and filing requirements unavailable from this simplified form.</p>
+<h2>Official Sources</h2>
+<ul>
+<li><a href="https://www.irs.gov/irb/2024-45_IRB" target="_blank" rel="noopener noreferrer">IRS 2025 inflation-adjusted tax rate tables</a></li>
+<li><a href="https://www.irs.gov/irb/2025-45_IRB" target="_blank" rel="noopener noreferrer">IRS 2026 tax brackets and capital gains thresholds</a></li>
+<li><a href="https://www.irs.gov/newsroom/working-families-tax-cuts-individuals-and-workers" target="_blank" rel="noopener noreferrer">IRS Working Families Tax Cuts for individuals</a></li>
+<li><a href="https://www.irs.gov/credits-deductions/individuals/child-tax-credit" target="_blank" rel="noopener noreferrer">IRS Child Tax Credit guidance</a></li>
+<li><a href="https://www.irs.gov/publications/p970" target="_blank" rel="noopener noreferrer">IRS Publication 970: Education tax benefits</a></li>
+<li><a href="https://www.ssa.gov/OACT/cola/cbb.html" target="_blank" rel="noopener noreferrer">SSA wage base history</a></li>
+<li><a href="https://www.irs.gov/credits-deductions/individuals/child-and-dependent-care-credit-information" target="_blank" rel="noopener noreferrer">IRS dependent-care credit 2026 update</a></li>
+<li><a href="https://www.irs.gov/newsroom/tips-for-tracking-charitable-donations" target="_blank" rel="noopener noreferrer">IRS 2026 charitable deductions</a></li>
+</ul>
+<p class="cp-page-footer">CalcPro — calculations are informational, U.S. federal tax estimates and not professional tax or filing advice.</p></article></main></div><script>
+(function(){
+'use strict';
+const p='calcpro-income-tax-';
+const root=document.getElementById(p+'root'); if(!root) return;
+const get=id=>root.querySelector('#'+p+id);
+const form=get('form'),results=get('results'),error=get('error');
+const dollars=n=>new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0}).format(Math.round(n));
+const fmt=n=>Number.isFinite(n)?dollars(n):'—';
+const clamp=(x,lo,hi)=>Math.max(lo,Math.min(hi,x));
+const safe=x=>Math.max(0,x);
+const BRACKETS={
+2025:{single:[11925,48475,103350,197300,250525,626350],joint:[23850,96950,206700,394600,501050,751600],separate:[11925,48475,103350,197300,250525,375800],hoh:[17000,64850,103350,197300,250500,626350]},
+2026:{single:[12400,50400,105700,201775,256225,640600],joint:[24800,100800,211400,403550,512450,768700],separate:[12400,50400,105700,201775,256225,384350],hoh:[17700,67450,105700,201750,256200,640600]}
+};
+const RATES=[.10,.12,.22,.24,.32,.35,.37];
+const STD={2025:{single:15750,separate:15750,joint:31500,hoh:23625},2026:{single:16100,separate:16100,joint:32200,hoh:24150}};
+const CG={2025:{single:[48350,533400],separate:[48350,300000],joint:[96700,600050],hoh:[64750,566700]},2026:{single:[49450,545500],separate:[49450,306850],joint:[98900,613700],hoh:[66200,579600]}};
+const AMT={2025:{single:88100,hoh:88100,joint:137000,separate:68500,phaseSingle:626350,phaseJoint:1252700,step:239100},2026:{single:90100,hoh:90100,joint:140200,separate:70100,phaseSingle:500000,phaseJoint:1000000,step:244500}};
+const MARGINAL=income=>income;
+function bracketTax(taxable,thresholds){let sum=0,low=0;for(let i=0;i<RATES.length;i++){const upper=i<thresholds.length?thresholds[i]:Infinity;const chunk=Math.max(0,Math.min(taxable,upper)-low);sum+=chunk*RATES[i];if(taxable<=upper)break;low=upper;}return sum;}
+function marginal(taxable,thresholds){for(let i=0;i<thresholds.length;i++)if(taxable<=thresholds[i])return RATES[i];return RATES[6];}
+function capGainsTax(ordinary,pref,thresholds){if(pref<=0)return 0;const zero=clamp(thresholds[0]-ordinary,0,pref);const remaining=pref-zero;const middle=clamp(thresholds[1]-Math.max(ordinary+zero,thresholds[0]),0,remaining);return middle*.15+(remaining-middle)*.20;}
+function parseValue(s){const raw=String(s).trim().replace(/[$,\s%]/g,'');if(raw==='')throw Error('A required input is empty.');if(!/^[+-]?(?:\d+(?:\.\d*)?|\.\d+)$/.test(raw))throw Error('Please enter numeric values only.');const n=Number(raw);if(!Number.isFinite(n)||Math.abs(n)>1e11)throw Error('Enter a number smaller than 100 billion.');return n;}
+function readInputs(){const a={};root.querySelectorAll('[data-tax-input]').forEach(el=>{const n=parseValue(el.value),typ=el.dataset.taxInput;if(typ==='count'&&(!Number.isInteger(n)||n<0||n>99))throw Error('Dependent counts must be whole numbers from 0 to 99.');if(typ==='age'&&(!Number.isInteger(n)||n<0||n>120))throw Error('Ages must be whole numbers from 0 to 120.');if(typ==='percent'&&(n<0||n>100))throw Error('State/local rate must be between 0 and 100%.');if(!['signed','percent','age','count'].includes(typ)&&n<0)throw Error('Use zero or positive amounts except for gains, rental or other income, and business profits.');a[el.name]=n;});a.status=get('status').value;a.year=Number(form.querySelector('input[name="taxYear"]:checked').value);a.hasBusiness1=form.querySelector('input[name="business1Choice"]:checked').value==='yes';a.hasBusiness2=form.querySelector('input[name="business2Choice"]:checked').value==='yes';if(a.status!=='joint'){for(const k of ['wages','federal','state','local','business','estimated','medicare'])a[k+'2']=0;a.hasBusiness2=false;}for(const i of [1,2]){if(!a['hasBusiness'+i]){a['business'+i]=0;a['estimated'+i]=0;a['medicare'+i]=0;}}return a;}
+function socialTaxable(benefits,other,filing){if(benefits<=0)return 0;if(filing==='separate')return .85*benefits;const lower=filing==='joint'?32000:25000,upper=filing==='joint'?44000:34000;const provisional=other+benefits*.5;if(provisional<=lower)return 0;if(provisional<=upper)return Math.min(.5*benefits,.5*(provisional-lower));return Math.min(.85*benefits,.85*(provisional-upper)+Math.min(.5*benefits,.5*(upper-lower)));}
+function phaseLinear(amount,mag,start,end){return amount*clamp((end-mag)/(end-start),0,1);}
+function compute(a){
+const notes=[];const year=a.year,filing=a.status==='widow'?'joint':a.status;
+const joint=filing==='joint',separate=filing==='separate';
+if(a.qualified>a.dividends+0.005)throw Error('Qualified dividends cannot exceed ordinary dividends (they are part of, not additional to, ordinary dividends).');
+if(a.tips>a.wages1+a.wages2+safe(a.business1)+safe(a.business2)+.005)notes.push('Verify that qualified tips are already included in wages or business profit; do not add them as new income.');
+if(a.overtime>0)notes.push('Overtime input is assumed to be only the FLSA-qualified premium portion, already included in wages, not the total overtime paycheck.');
+const wagebase=year===2025?176100:184500;
+let seTax=0,halfSE=0,netSE=0,positiveBusiness=0;
+for(let i=1;i<=(joint?2:1);i++){
+ const profit=a['business'+i];positiveBusiness+=safe(profit);
+ if(profit>400){const se=profit*.9235;netSE+=se;
+  const medicareWages=a['medicare'+i]>0?a['medicare'+i]:a['wages'+i];
+  const social=.124*Math.min(se,Math.max(0,wagebase-medicareWages));const med=.029*se;
+  seTax+=social+med;
+ }
+}
+halfSE=seTax*.5;
+const wages=a.wages1+a.wages2;
+const bus=a.business1+a.business2;
+const st=a.short,lt=a.long;
+const totalCap=st+lt;
+const taxableCapital=totalCap<0?Math.max(totalCap,separate?-1500:-3000):totalCap;
+const netPreferredCap=totalCap>0?Math.max(0,lt+Math.min(st,0)):0;
+const otherBeforeSS=wages+bus+a.interest+a.dividends+a.passive+taxableCapital+a.other;
+const ssTaxable=socialTaxable(a.social,otherBeforeSS-halfSE,filing);
+const totalIncome=otherBeforeSS+ssTaxable;
+const magiBeforeAdjust=totalIncome-halfSE;
+const taxableComp=safe(wages+bus);
+const iraLimitPer=(age)=>year===2025?(age>=50?8000:7000):(age>=50?8600:7500);
+const iraMax=joint?iraLimitPer(a.age1)+iraLimitPer(a.age2):iraLimitPer(a.age1);
+const ira=Math.min(a.ira,iraMax,taxableComp);
+if(a.ira>ira+.01)notes.push('IRA deduction was capped at the annual contribution limit and estimated eligible compensation; employer retirement-plan phaseouts are not determinable from the fields provided.');
+const studStart=joint?170000:85000,studEnd=joint?200000:100000;
+const loan=separate?0:phaseLinear(Math.min(2500,a.studentLoan),magiBeforeAdjust-ira,studStart,studEnd);
+const agi=totalIncome-halfSE-ira-loan;
+const magi=agi;
+const taxWithheld=a.federal1+a.federal2;
+const federalPayments=taxWithheld+a.estimated1+a.estimated2;
+const stateTaxesPaid=a.state1+a.state2+a.local1+a.local2+a.property;
+const saltMax=year===2025?40000:40400;
+const saltHigh=year===2025?500000:505000;
+const saltAllowed=Math.min(stateTaxesPaid, Math.max(separate?5000:10000,(separate?saltMax/2:saltMax)-.30*Math.max(0,magi-(separate?saltHigh/2:saltHigh))));
+const itemizedCharity=year===2026?safe(a.charity-.005*safe(agi)):a.charity;
+const itemized=saltAllowed+a.mortgage+itemizedCharity+a.otherDed;
+const additionalStandard=(a.age1>=65?1:0)+(joint&&a.age2>=65?1:0);
+const seniorStandardAddition=additionalStandard*(joint||separate?(year===2025?1600:1650):(year===2025?2000:2050));
+const normalStandard=STD[year][filing]+seniorStandardAddition;
+const standardCashCharity=(year===2026)?Math.min(a.charity,joint?2000:1000):0;
+const standardPlusCharity=normalStandard+standardCashCharity;
+const deductionMethod=itemized>standardPlusCharity?'Itemized':'Standard';
+const regularDeduction=Math.max(itemized,standardPlusCharity);
+const appliedCashCharity=deductionMethod==='Standard'?standardCashCharity:0;
+const specialMagLimit=joint?300000:150000;
+const qualifiedClaimAllowed=!separate;
+const tips=qualifiedClaimAllowed?Math.max(0,Math.min(a.tips,25000,Math.max(0,wages+bus)) - 100*Math.ceil(Math.max(0,magi-specialMagLimit)/1000)):0;
+const overtime=qualifiedClaimAllowed?Math.max(0,Math.min(a.overtime,joint?25000:12500) - 100*Math.ceil(Math.max(0,magi-specialMagLimit)/1000)):0;
+const carLimit=joint?200000:100000;
+const car=Math.max(0,Math.min(a.car,10000)-200*Math.ceil(Math.max(0,magi-carLimit)/1000));
+const seniorCount=(separate?0: (a.age1>=65?1:0)+(joint&&a.age2>=65?1:0));
+const senior=Math.max(0,6000-.06*Math.max(0,magi-(joint?150000:75000)))*seniorCount;
+const specialDed=tips+overtime+car+senior;
+const preliminaryTaxable=safe(agi-regularDeduction-specialDed);
+const prefIncome=Math.min(preliminaryTaxable,Math.max(0,netPreferredCap+a.qualified));
+// The simplified QBI deduction is allowed where taxable income is below the threshold
+// beyond which Form 8995-A wage/property and specified-service restrictions apply.
+const qbiThreshold=year===2025?(joint?394600:197300):(joint?403550:201775);
+let qbi=0;
+if(positiveBusiness>0){if(preliminaryTaxable<=qbiThreshold){qbi=Math.min(safe(bus-halfSE)*.20,safe(preliminaryTaxable-prefIncome)*.20);}else{notes.push('QBI section 199A deduction not estimated above the simplified income threshold; Form 8995-A business details are required.');}}
+const taxableIncome=safe(preliminaryTaxable-qbi);
+const preferred=Math.min(taxableIncome,safe(a.qualified+netPreferredCap));
+const ordinaryTaxable=safe(taxableIncome-preferred);
+const ordinaryTax=bracketTax(ordinaryTaxable,BRACKETS[year][filing]);
+const preferredTax=capGainsTax(ordinaryTaxable,preferred,CG[year][filing]);
+const regularTax=ordinaryTax+preferredTax;
+const marginalRate=marginal(ordinaryTaxable,BRACKETS[year][filing]);
+// Approximation of AMT: its standard/SALT addbacks are modeled; missing AMT preferences are flagged.
+const amtData=AMT[year];let amtBase=taxableIncome+(deductionMethod==='Standard'?regularDeduction:saltAllowed);
+const amtPhase=joint?amtData.phaseJoint:amtData.phaseSingle;
+const amtExemption=Math.max(0,amtData[filing]-.25*safe(amtBase-amtPhase));
+const amtExcess=safe(amtBase-amtExemption);
+const amtStep=separate?amtData.step/2:amtData.step;
+const amtOrdinary=safe(amtExcess-preferred);
+const tentativeAMT=Math.min(amtOrdinary,amtStep)*.26+safe(amtOrdinary-amtStep)*.28+capGainsTax(amtOrdinary,preferred,CG[year][filing]);
+const amt=safe(tentativeAMT-regularTax);
+let additionalMedicare=0;
+const medThreshold=joint?250000:(separate?125000:200000);
+const medicareWages=(a.medicare1>0?a.medicare1:a.wages1)+(joint?(a.medicare2>0?a.medicare2:a.wages2):0);
+additionalMedicare=safe(medicareWages+netSE-medThreshold)*.009;
+const investments=safe(a.interest)+safe(a.dividends)+safe(a.passive)+safe(totalCap);
+const niitLimit=joint?250000:(separate?125000:200000);
+const niit=Math.min(investments,safe(magi-niitLimit))*.038;
+const childTotal=2200*a.young;
+const otherDep=500*a.older;
+const familyPhase=joint?400000:200000;
+const phasedFamily=safe(childTotal+otherDep-50*Math.ceil(Math.max(0,magi-familyPhase)/1000));
+const ctcAllowed=Math.min(childTotal,phasedFamily);
+const odcAllowed=safe(phasedFamily-ctcAllowed);
+const primaryNonref=safe(regularTax+amt);
+const usedChild=Math.min(ctcAllowed,primaryNonref);
+const usedOther=Math.min(odcAllowed,safe(primaryNonref-usedChild));
+const earnedIncome=safe(wages+bus-halfSE);
+const refundableChild=Math.min(safe(ctcAllowed-usedChild),a.young*1700,safe(earnedIncome-2500)*.15);
+const careEligiblePeople=a.young+a.older;
+const careEarned1=safe(a.wages1+a.business1),careEarned2=safe(a.wages2+a.business2);
+const careEarnedLimit=joint?Math.min(careEarned1,careEarned2):careEarned1;
+const childcareBase=(careEligiblePeople>0)?Math.min(a.childcare,careEligiblePeople>1?6000:3000,careEarnedLimit):0;
+const careRate=year===2025?Math.max(.20,.35-Math.ceil(safe(magi-15000)/2000)*.01):Math.max(.20,Math.max(.35,.50-Math.ceil(safe(magi-15000)/2000)*.01)-Math.ceil(safe(magi-(joint?150000:75000))/(joint?4000:2000))*.01);
+const childcareCredit=(separate?0:childcareBase*careRate);
+let educationCredit=0;
+if(!separate){for(let i=1;i<=4;i++){const v=a['tuition'+i];educationCredit+=Math.min(2000,v)+Math.min(2000,Math.max(0,v-2000))*.25;}
+ const start=joint?160000:80000,end=joint?180000:90000;
+ educationCredit=phaseLinear(educationCredit,magi,start,end);
+}
+const refundableEducation=.40*educationCredit,nonrefundEducation=.60*educationCredit;
+const totalNonref=Math.min(primaryNonref,usedChild+usedOther+childcareCredit+nonrefundEducation);
+const allCredits=totalNonref+refundableChild+refundableEducation;
+const regularAfterCredits=safe(primaryNonref-totalNonref);
+const totalTax=regularAfterCredits+niit+seTax+additionalMedicare;
+const refundable=refundableChild+refundableEducation;
+const taxNet=totalTax-federalPayments-refundable;
+const totalDeductions=safe(totalIncome-taxableIncome);
+const effectiveRate=totalIncome>0?100*totalTax/totalIncome:0;
+const stateLocalEstimated=safe(wages+bus+a.interest+a.dividends+a.passive+a.other+taxableCapital)*a.stateRate/100;
+if(a.childcare>0)notes.push('Dependent-care credit assumes qualifying care expenses and qualifying children under 13 or other eligible dependents. Ages 13–16 are not automatically eligible.');
+if(educationCredit>0)notes.push('Education credits assume eligible students in the first four years, qualified expenses, and all IRS eligibility conditions; each student may claim AOTC only when eligible.');
+if(ira>0)notes.push('IRA deductions assume contributions are traditional and deductible; workplace-plan coverage can lower the allowed deduction.');
+if(a.car>0)notes.push('Vehicle-loan deduction assumes the purchase, loan, VIN, and final U.S. assembly all qualify under IRS rules.');
+if(year===2026&&a.charity>0)notes.push('2026 charitable deduction: non-itemizer amount assumes all donations are eligible cash gifts; itemized gifts are subject to the 0.5% AGI floor.');
+if(joint&&a.childcare>0)notes.push('Married joint dependent-care credit generally requires both spouses to have earned income, except special rules for students or a spouse unable to care for themselves.');
+if(a.young+a.older>0)notes.push('Dependent credits assume the children/dependents and required taxpayer ID numbers meet IRS eligibility rules. EITC is not included because residency and eligibility are not provided.');
+if(a.social>0&&separate)notes.push('Social Security benefits for Married Filing Separately are estimated assuming the spouses lived together during the year.');
+if(amt>0)notes.push('AMT is a screening estimate: ISO stock options, private-activity bonds, credits and other preference items can materially change Form 6251.');
+if(stateLocalEstimated>0)notes.push('State/local liability is a simple separate percentage estimate, not part of federal tax owed or refunded.');
+notes.push('Tax-table rounding, EITC, premium tax credits, state filing rules, personal deductions, withholding of Additional Medicare Tax, carryovers, and other return-specific items may change actual tax.');
+return {year,filing,totalIncome,agi,ssTaxable,regularDeduction,deductionMethod,itemized,itemizedCharity,appliedCashCharity,saltAllowed,normalStandard,ira,loan,halfSE,tips,overtime,car,senior,qbi,specialDed,totalDeductions,taxableIncome,ordinaryTax,preferredTax,regularTax,marginalRate,amt,niit,seTax,additionalMedicare,ctc:usedChild,odc:usedOther,care:childcareCredit,education:nonrefundEducation,refundableChild,refundableEducation,allCredits,totalNonref,totalTax,federalPayments,taxWithheld,refundable,taxNet,effectiveRate,stateLocalEstimated,notes};
+}
+const escapeHTML=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function show(r){
+ const owe=r.taxNet>0.50;const refund=r.taxNet<-.50;const headline=owe?'Tax Amount Owe':refund?'Tax Refund':'No Tax Due';
+ get('result-head').innerHTML=headline+' for '+r.year+': <strong>'+fmt(Math.abs(r.taxNet))+'</strong>';
+ const rows=[
+ ['Total Income',fmt(r.totalIncome),'key'],['Total Deductions',fmt(r.totalDeductions)],['Taxable Income',fmt(r.taxableIncome),'key'],
+ ['Regular Taxes',fmt(r.regularTax)],['Alternative Minimum Tax',fmt(r.amt)],['Net Investment Income Tax',fmt(r.niit)],
+ ['Self-Employment Tax',fmt(r.seTax)],['Additional Medicare Tax',fmt(r.additionalMedicare)],['All Tax Credits',fmt(r.allCredits)],
+ ['Total Tax with Credits',fmt(r.totalTax),'key'],['Marginal Tax Rate',Math.round(r.marginalRate*100)+'%'],
+ ['Effective Federal Tax Rate',r.effectiveRate.toFixed(1)+'%'],
+ ['Tax Pre-payments',fmt(r.federalPayments)],['Refundable Credits',fmt(r.refundable)],
+ [headline,fmt(Math.abs(r.taxNet)),'final']];
+ get('rows').innerHTML=rows.map(row=>'<tr'+(row[2]?' class="'+p+row[2]+'"':'')+'><td>'+escapeHTML(row[0])+'</td><td>'+escapeHTML(row[1])+'</td></tr>').join('');
+ const m=Math.max(1,r.totalTax,r.federalPayments+r.refundable);
+ get('visual').innerHTML=[["Federal tax after credits",r.totalTax],["Payments and refundable credits",r.federalPayments+r.refundable]].map(z=>'<div class="'+p+'compare-row"><div class="'+p+'compare-label"><span>'+z[0]+'</span><b>'+fmt(z[1])+'</b></div><div class="'+p+'bar"><span style="width:'+Math.min(100,100*z[1]/m).toFixed(3)+'%"></span></div></div>').join('');
+ const breakdown=[['Adjusted gross income (AGI)',r.agi],['Standard deduction available',r.normalStandard],['Itemized deductions estimated',r.itemized],['2026 cash charity deduction (non-itemizers)',r.appliedCashCharity],['Deductible charity (if itemizing)',r.itemizedCharity],['Selected '+r.deductionMethod.toLowerCase()+' deduction',r.regularDeduction],['Deductible IRA contributions',r.ira],['Student loan interest deduction',r.loan],['Deductible half of self-employment tax',r.halfSE],['Qualified tips deduction',r.tips],['Qualified overtime deduction',r.overtime],['Qualified car loan interest deduction',r.car],['Senior enhanced deduction',r.senior],['QBI deduction (simplified)',r.qbi],['Ordinary income tax',r.ordinaryTax],['Qualified dividend / long-term gain tax',r.preferredTax],['Child tax credit used',r.ctc],['Other dependent credit used',r.odc],['Child and dependent care credit (estimated)',r.care],['Education credit, nonrefundable portion',r.education],['Refundable child tax credit',r.refundableChild],['Refundable education credit',r.refundableEducation],['Taxable Social Security benefits',r.ssTaxable],['Estimated state/local tax (separate)',r.stateLocalEstimated]];
+ get('breakdown').innerHTML='<table class="'+p+'breakdown-table"><tbody>'+breakdown.map(x=>'<tr><td>'+escapeHTML(x[0])+'</td><td>'+fmt(x[1])+'</td></tr>').join('')+'</tbody></table>';
+ get('result-notes').innerHTML='<p><b>Estimate limitations</b></p>'+r.notes.map(t=>'<p>• '+escapeHTML(t)+'</p>').join('');
+ results.hidden=false;
+ // Reference puts results above the form after calculation. Scroll to them, not to the page header.
+ results.scrollIntoView({behavior:'smooth',block:'start'});
+}
+function toggle(){const joint=get('status').value==='joint';get('person2').hidden=!joint;root.querySelectorAll('[data-tax-person]').forEach(div=>{const i=div.dataset.taxPerson;const isYes=form.querySelector('input[name="business'+i+'Choice"]:checked')?.value==='yes';get('business-fields'+i).hidden=!isYes;});get('other-income-heading').hidden=!joint;}
+function run(){error.hidden=true;try{const r=compute(readInputs());show(r);}catch(ex){error.textContent=ex.message||'Please check your entries.';error.hidden=false;error.scrollIntoView({behavior:'smooth',block:'center'});}}
+form.addEventListener('submit',e=>{e.preventDefault();run();});
+get('status').addEventListener('change',toggle);
+form.querySelectorAll('input[type="radio"]').forEach(el=>el.addEventListener('change',toggle));
+get('clear').addEventListener('click',()=>{form.reset();root.querySelectorAll('input[data-tax-input]').forEach(el=>{if(el.name==='wages1')el.value='80000';else if(el.name==='federal1')el.value='9000';else if(el.name==='age1'||el.name==='age2')el.value='30';else el.value='0';});toggle();results.hidden=true;error.hidden=true;window.scrollTo({top:Math.max(0,form.getBoundingClientRect().top+window.scrollY-15),behavior:'smooth'});});
+get('print').addEventListener('click',()=>window.print());
+root.querySelectorAll('input[data-tax-input]').forEach(el=>el.addEventListener('blur',()=>{try{const n=parseValue(el.value);if(el.dataset.taxInput==='count'||el.dataset.taxInput==='age'){el.value=String(n);}else if(el.dataset.taxInput==='percent'){el.value=Number(n.toFixed(3)).toLocaleString('en-US');}else{el.value=(n<0?'-':'')+'$'+Math.abs(n).toLocaleString('en-US',{maximumFractionDigits:2});}}catch(e){} }));
+toggle();
+// Deliberately namespaced for deterministic browser QA without polluting global functions.
+window.CalcProIncomeTax={compute,bracketTax,capGainsTax,readInputs};
+})();
+</script></body></html>

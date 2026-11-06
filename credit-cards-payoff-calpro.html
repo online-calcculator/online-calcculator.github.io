@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>Credit Cards Payoff Calculator | CalcPro</title><meta content="Calculate your debt avalanche credit card payoff schedule for up to 20 cards, including total interest, payoff date, repayment chart, and monthly payment breakdown." name="description"/><link href="template-style.css" rel="stylesheet"/><style>
+/* All calculator-specific styles are contained within the unique CalcPro CCP root. */
+.calcpro-ccp{--calcpro-ccp-navy:#003366;--calcpro-ccp-blue:#356799;--calcpro-ccp-green:#4c7f21;--calcpro-ccp-border:#bcbcbc;font:16px Arial,Helvetica,sans-serif;color:#111;width:100%;max-width:100%;line-height:1.4}
+.calcpro-ccp *, .calcpro-ccp *::before, .calcpro-ccp *::after{box-sizing:border-box}
+.calcpro-ccp [hidden]{display:none!important}
+.calcpro-ccp-instruction{background:var(--calcpro-ccp-blue);color:#fff;display:flex;justify-content:center;align-items:center;gap:15px;min-height:41px;padding:7px 12px;margin:0 0 4px;text-align:center;font-size:16px}
+.calcpro-ccp-instruction-symbol{background:#fff;color:var(--calcpro-ccp-blue);border-radius:50%;width:26px;height:26px;display:inline-grid;place-items:center;flex:none;font-weight:bold}
+.calcpro-ccp-panel{background:#eee;border:1px solid var(--calcpro-ccp-border);padding:14px 12px 12px}
+.calcpro-ccp-budget-line{display:flex;flex-wrap:wrap;align-items:center;gap:5px;margin:0 0 20px;font-size:16px;font-weight:700}
+.calcpro-ccp-budget-line label{max-width:100%}
+.calcpro-ccp-fieldset{margin:0;border:0;padding:0;min-width:0}
+.calcpro-ccp-fieldset legend{font-weight:700;font-size:16px;margin-bottom:10px;padding:0}
+.calcpro-ccp-table-head,.calcpro-ccp-card-row{display:grid;grid-template-columns:18px 135px 135px 103px 105px;gap:4px;align-items:center;width:max-content;max-width:100%}
+.calcpro-ccp-table-head{margin:0 0 4px;padding:0 0 0 0;align-items:end;line-height:1.1}
+.calcpro-ccp-table-head span{font-size:14px;min-width:0}
+.calcpro-ccp-card-row{margin-bottom:4px}
+.calcpro-ccp-row-num{font-size:15px;text-align:right;padding-right:1px}
+.calcpro-ccp input[type="text"]{display:block;background:#fff;color:#111;border:1px solid #00539d;border-radius:2px;width:100%;height:33px;padding:5px 7px;box-shadow:1px 2px 2px #a9a9a9;font:15px Arial,Helvetica,sans-serif;outline-offset:2px}
+.calcpro-ccp input[type="text"]:focus{border-color:#004a8e;outline:2px solid #c7e5ff}
+.calcpro-ccp input[aria-invalid="true"]{border-color:#b42318;background:#fff8f8}
+.calcpro-ccp-money,.calcpro-ccp-rate{display:block;position:relative;min-width:0}
+.calcpro-ccp-money::before{content:'$';position:absolute;left:7px;top:50%;transform:translateY(-50%);font-size:15px;color:#111;pointer-events:none}
+.calcpro-ccp-money input{padding-left:19px!important}
+.calcpro-ccp-rate::after{content:'%';position:absolute;right:8px;top:50%;transform:translateY(-50%);font-size:15px;color:#111;pointer-events:none}
+.calcpro-ccp-rate input{padding-right:23px!important}
+.calcpro-ccp-budget-input{width:135px}
+.calcpro-ccp-more{display:inline-block;border:0;background:none;color:#006699;text-decoration:underline;font-size:15px;font-family:inherit;cursor:pointer;padding:0;margin:2px 0 8px 52px}
+.calcpro-ccp-actions{display:flex;align-items:center;gap:6px;margin-left:52px;flex-wrap:wrap}
+.calcpro-ccp-button{font:700 15px Arial,Helvetica,sans-serif;border:0;border-radius:0;padding:10px 13px;min-height:42px;color:#fff;cursor:pointer}
+.calcpro-ccp-button:focus-visible,.calcpro-ccp-more:focus-visible,.calcpro-ccp-result-tool:focus-visible{outline:2px solid #004b93;outline-offset:3px}
+.calcpro-ccp-calculate{background:var(--calcpro-ccp-green)}
+.calcpro-ccp-calculate:hover{background:#3e6b1a}
+.calcpro-ccp-play{display:inline-grid;place-items:center;background:#98bd84;color:#fff;border-radius:50%;width:21px;height:21px;margin-left:9px;font-size:12px;line-height:1}
+.calcpro-ccp-clear{background:#a4a4a4}
+.calcpro-ccp-clear:hover{background:#888}
+.calcpro-ccp-error{border:1px solid #db706f;border-left:4px solid #c3312d;background:#fff7f7;color:#8a1d16;padding:10px 12px;margin:0 0 12px;line-height:1.45;font-size:14px}
+.calcpro-ccp-results{margin:0 0 23px;scroll-margin-top:14px}
+.calcpro-ccp-result-bar{background:var(--calcpro-ccp-green);color:#fff;min-height:36px;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:5px 9px;margin-bottom:13px}
+.calcpro-ccp-result-bar h2{font-size:21px;color:#fff;font-weight:400;margin:0;line-height:1.2}
+.calcpro-ccp-result-tools{display:flex;align-items:center;gap:9px}
+.calcpro-ccp-result-tool{background:transparent;color:#fff;border:1px solid #c9e1bb;font:12px Arial,Helvetica,sans-serif;padding:4px 6px;cursor:pointer;border-radius:2px}
+.calcpro-ccp-summary{margin:0 0 13px;font-size:15px;line-height:1.5}
+.calcpro-ccp-summary strong{font-weight:700}
+.calcpro-ccp-chart-wrap{display:flex;justify-content:center;align-items:center;gap:18px;min-height:126px;margin:2px auto 20px}
+.calcpro-ccp-donut{--calcpro-ccp-principal:76.43%;width:118px;height:118px;flex:0 0 118px;border-radius:50%;position:relative;background:conic-gradient(#2682db 0 var(--calcpro-ccp-principal),#82bb09 var(--calcpro-ccp-principal) 100%);display:grid;place-items:center;transform:rotate(-90deg)}
+.calcpro-ccp-donut::before{content:'';display:block;position:absolute;inset:27px;border-radius:50%;background:#fff}
+.calcpro-ccp-donut-inner{position:relative;z-index:1;text-align:center;display:flex;flex-direction:column;justify-content:center;font-size:12px;font-weight:700;line-height:1.3;transform:rotate(90deg)}
+.calcpro-ccp-donut-inner small{font-size:10px;color:#4c4c4c;font-weight:400}
+.calcpro-ccp-chart-key{font-size:13px;line-height:1.6}
+.calcpro-ccp-key-row{display:flex;align-items:center;gap:7px}
+.calcpro-ccp-key-box{width:14px;height:11px;display:inline-block;flex:none;border-radius:1px}
+.calcpro-ccp-key-principal{background:#2682db}
+.calcpro-ccp-key-interest{background:#82bb09}
+.calcpro-ccp-table-intro{margin:0 0 6px;font-size:14px;line-height:1.45}
+.calcpro-ccp-table-scroller{max-width:100%;overflow-x:auto;border:1px solid #c1c1c1;margin-bottom:12px}
+.calcpro-ccp-payoff-table,.calcpro-ccp-month-table{width:100%;border-collapse:collapse;font-size:13px;line-height:1.3}
+.calcpro-ccp-payoff-table{min-width:550px}
+.calcpro-ccp-payoff-table th,.calcpro-ccp-month-table th{text-align:left;background:var(--calcpro-ccp-blue);color:#fff;font-weight:700;vertical-align:top;border-right:1px solid #a6b2bf;padding:7px 6px}
+.calcpro-ccp-payoff-table td,.calcpro-ccp-month-table td{border-right:1px solid #c4c4c4;border-top:1px solid #ddd;padding:7px 6px;vertical-align:top}
+.calcpro-ccp-payoff-table tbody tr:nth-child(even),.calcpro-ccp-month-table tbody tr:nth-child(even){background:#f0f0f0}
+.calcpro-ccp-payoff-table td:nth-child(2),.calcpro-ccp-payoff-table td:nth-child(3),.calcpro-ccp-payoff-table td:nth-child(4){text-align:right}
+.calcpro-ccp-payoff-table th:nth-child(1){width:18%}
+.calcpro-ccp-payoff-table th:nth-child(2){width:22%}
+.calcpro-ccp-payoff-table th:nth-child(3){width:13%}
+.calcpro-ccp-payoff-table th:nth-child(4){width:15%}
+.calcpro-ccp-payoff-table th:nth-child(5){width:32%}
+.calcpro-ccp-card-name{font-weight:700;overflow-wrap:anywhere}
+.calcpro-ccp-payment-lines{display:grid;gap:3px;font-size:12px}
+.calcpro-ccp-details{border:1px solid #c3cbd2;padding:11px 12px;background:#f7f9fb;margin:14px 0 3px}
+.calcpro-ccp-details summary{cursor:pointer;color:#003366;font-size:15px;font-weight:700}
+.calcpro-ccp-detail-controls{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin:13px 0}
+.calcpro-ccp-detail-controls label{font-weight:700;font-size:13px}
+.calcpro-ccp-select{min-width:170px;max-width:100%;padding:5px;font:14px Arial,Helvetica,sans-serif;border:1px solid #768795;border-radius:2px;background:#fff}
+.calcpro-ccp-month-table{min-width:500px;font-variant-numeric:tabular-nums}
+.calcpro-ccp-month-table td:not(:first-child){text-align:right}
+.calcpro-ccp-month-note,.calcpro-ccp-caveat{font-size:12px;color:#444;line-height:1.45;margin:8px 0 0}
+.calcpro-ccp-standalone{max-width:930px;margin:14px auto 45px;padding:0 18px;color:#111;font:16px Arial,Helvetica,sans-serif}
+.calcpro-ccp-standalone h1{font-size:30px;color:#003366;line-height:1.2;margin:12px 0}
+.calcpro-ccp-standalone>p{margin:5px 0 12px;font-size:16px;line-height:1.35}
+.calcpro-ccp-standalone a{color:#006699}
+@media(max-width:620px){
+ .calcpro-ccp-panel{padding:12px 9px}
+ .calcpro-ccp-table-head{display:none}
+ .calcpro-ccp-card-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));width:100%;gap:7px;margin:0 0 12px;border-bottom:1px solid #c9c9c9;padding-bottom:11px}
+ .calcpro-ccp-row-num{grid-column:1/-1;text-align:left;font-weight:700;padding:0}
+ .calcpro-ccp-card-row .calcpro-ccp-entry{min-width:0}
+ .calcpro-ccp-entry:before{content:attr(data-label);display:block;font-size:12px;font-weight:700;line-height:1.3;margin:0 0 3px}
+ .calcpro-ccp-more,.calcpro-ccp-actions{margin-left:0}
+ .calcpro-ccp-budget-line{margin-bottom:16px}
+ .calcpro-ccp-budget-input{width:100%;max-width:210px}
+ .calcpro-ccp-chart-wrap{gap:14px}
+ .calcpro-ccp-summary{font-size:14px}
+ .calcpro-ccp-result-bar h2{font-size:19px}
+ .calcpro-ccp-result-tools{gap:4px}
+ .calcpro-ccp-result-tool{font-size:11px;padding:4px}
+}
+@media(max-width:360px){.calcpro-ccp-card-row{grid-template-columns:1fr}.calcpro-ccp-budget-line .calcpro-ccp-money{width:100%}.calcpro-ccp-standalone{padding:0 10px}}
+@media print{
+ .calcpro-ccp-actions,.calcpro-ccp-more,.calcpro-ccp-instruction,.calcpro-ccp-result-tools,.calcpro-ccp-detail-controls{display:none!important}
+ .calcpro-ccp-results{display:block!important}
+ .calcpro-ccp-table-scroller{overflow:visible}
+ .calcpro-ccp-payoff-table{min-width:0}
+ .calcpro-ccp-results,.calcpro-ccp-panel{break-inside:avoid}
+}
+</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Credit Cards Payoff Calculator</nav><h1 class="cp-page-title">Credit Cards Payoff Calculator</h1><p class="cp-intro">This calculator creates a cost-efficient payback schedule for multiple credit cards using the Debt Avalanche method. To evaluate the repayment of a single credit card, visit our <a href="https://www.calculator.net/credit-card-calculator.html" target="_blank" rel="noopener noreferrer">credit card calculator</a>.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-ccp" id="calcpro-ccp-root">
+  <div class="calcpro-ccp-instruction" id="calcpro-ccp-instruction"><span class="calcpro-ccp-instruction-symbol" aria-hidden="true">▼</span><span>Modify the values and click the Calculate button to use</span></div>
+  <section class="calcpro-ccp-results" id="calcpro-ccp-results" hidden aria-label="Payoff calculation results" aria-live="polite">
+    <div class="calcpro-ccp-result-bar"><h2>Results</h2><div class="calcpro-ccp-result-tools"><button type="button" class="calcpro-ccp-result-tool" id="calcpro-ccp-print" title="Print or save as PDF">Print / Save</button><button type="button" class="calcpro-ccp-result-tool" id="calcpro-ccp-csv" title="Save complete monthly schedule as CSV">CSV</button></div></div>
+    <p class="calcpro-ccp-summary" id="calcpro-ccp-summary"></p>
+    <div class="calcpro-ccp-chart-wrap"><div class="calcpro-ccp-donut" id="calcpro-ccp-donut" role="img" aria-label="Principal and interest share of total payments"><div class="calcpro-ccp-donut-inner"><strong id="calcpro-ccp-donut-pct">76%</strong><small>Principal</small></div></div><div class="calcpro-ccp-chart-key"><div class="calcpro-ccp-key-row"><span class="calcpro-ccp-key-box calcpro-ccp-key-principal"></span><span>Principal: <strong id="calcpro-ccp-principal-value"></strong></span></div><div class="calcpro-ccp-key-row"><span class="calcpro-ccp-key-box calcpro-ccp-key-interest"></span><span>Interest: <strong id="calcpro-ccp-interest-value"></strong></span></div></div></div>
+    <p class="calcpro-ccp-table-intro">The most cost-efficient repayment strategy under these assumptions is to pay the highest-interest credit card first while making minimum payments on the other cards. The following schedules assume no new card charges.</p>
+    <div class="calcpro-ccp-table-scroller" tabindex="0" role="region" aria-label="Credit card payoff results table"><table class="calcpro-ccp-payoff-table"><thead><tr><th scope="col">Credit Card</th><th scope="col">Payoff Length</th><th scope="col">Total Interest</th><th scope="col">Total Payments</th><th scope="col">Payment Schedule</th></tr></thead><tbody id="calcpro-ccp-payoff-body"></tbody></table></div>
+    <details class="calcpro-ccp-details" id="calcpro-ccp-details"><summary>Detailed month-by-month payment schedule</summary><div class="calcpro-ccp-detail-controls"><label for="calcpro-ccp-detail-card">View</label><select id="calcpro-ccp-detail-card" class="calcpro-ccp-select"><option value="all">All cards combined</option></select></div><div class="calcpro-ccp-table-scroller" tabindex="0" role="region" aria-label="Detailed monthly repayment schedule"><table class="calcpro-ccp-month-table"><thead><tr><th scope="col">Month</th><th scope="col">Payment</th><th scope="col">Interest</th><th scope="col">Principal Paid</th><th scope="col">Balance Left</th></tr></thead><tbody id="calcpro-ccp-month-body"></tbody></table></div><p class="calcpro-ccp-month-note">Payments and interest are calculated at full floating-point precision and displayed to the nearest cent. Displayed cents may not add exactly due to rounding.</p></details>
+    <p class="calcpro-ccp-caveat">Estimate only: uses a fixed APR and a simplified monthly interest model. Actual issuers commonly accrue interest daily; fees, changing minimums, payment dates, and new purchases can change your payoff.</p>
+  </section>
+  <div id="calcpro-ccp-error" class="calcpro-ccp-error" role="alert" hidden></div>
+  <form id="calcpro-ccp-form" class="calcpro-ccp-panel" novalidate>
+    <div class="calcpro-ccp-budget-line"><label for="calcpro-ccp-budget">Monthly budget set aside for credit cards:</label><span class="calcpro-ccp-money calcpro-ccp-budget-input"><input type="text" id="calcpro-ccp-budget" name="monthly-budget" inputmode="decimal" autocomplete="off" value="500" aria-label="Monthly credit card payment budget in dollars" /></span></div>
+    <fieldset class="calcpro-ccp-fieldset"><legend>Info of your credit cards:</legend>
+      <div class="calcpro-ccp-table-head" aria-hidden="true"><span></span><span>Credit card</span><span>Balance</span><span>Minimum<br/>payment</span><span>Interest rate</span></div>
+      <div id="calcpro-ccp-rows"></div>
+      <button type="button" id="calcpro-ccp-more" class="calcpro-ccp-more" aria-expanded="false">Show more input fields</button>
+    </fieldset>
+    <div class="calcpro-ccp-actions"><button type="submit" class="calcpro-ccp-button calcpro-ccp-calculate">Calculate <span class="calcpro-ccp-play" aria-hidden="true">▶</span></button><button type="button" id="calcpro-ccp-clear" class="calcpro-ccp-button calcpro-ccp-clear">Clear</button></div>
+  </form>
+</div></section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><!-- REPLACE these links with real related tools for each calculator; verify live slugs. --><a href="retirement-calculator.html">Retirement</a><a href="roth-ira-calculator.html">Roth IRA</a><a href="investment-calculator.html">Investment</a><a href="compound-interest-calculator.html">Compound Interest</a><a href="annuity-payout-calculator.html">Annuity Payout</a><a href="pension-calculator.html">Pension</a><a href="inflation-calculator.html">Inflation</a><a href="future-value-calculator.html">Future Value</a><a href="income-tax-calculator.html">Income Tax</a><a href="savings-calculator.html">Savings</a><a href="mortgage-calculator.html">Mortgage</a><a href="loan-calculator.html">Loan</a></div></section></aside><article class="cp-article">
+<h2>How to Use the Credit Cards Payoff Calculator</h2>
+<p>Enter the monthly amount you can dedicate to all credit card payments, then add the current balance, required monthly minimum payment, and annual percentage rate (APR) for each card. The first three rows contain sample data; replace them with your own. Up to 20 cards can be entered using <strong>Show more input fields</strong>.</p>
+<p>Click <strong>Calculate</strong> to see your projected debt-free date, total interest, total payments, a principal-versus-interest chart, and the payment sequence for each card. Open the detailed monthly schedule to inspect month-by-month balances, and use CSV to save the data. <strong>Clear</strong> empties the form and removes previous results.</p>
+<h2>How the Debt Avalanche Method Works</h2>
+<p>The debt avalanche strategy makes the required minimum payment on each card first, then allocates every remaining dollar in the monthly budget to the card with the highest APR. Once that card is paid off, the unused payment amount is redirected to the card with the next-highest APR. The monthly budget stays the same until the final payment, which may be smaller.</p>
+<h3>Monthly Interest and Balance Formulas</h3>
+<p>The calculation assumes that each card accrues interest monthly at a fixed APR. For a card with beginning balance <em>B</em>, annual rate <em>APR</em>, and monthly payment <em>P</em>:</p>
+<div class="cp-note"><strong>Monthly interest</strong> = B × (APR ÷ 100 ÷ 12)<br/><strong>End-of-month balance</strong> = B + monthly interest − P<br/><strong>Principal repaid</strong> = P − monthly interest</div>
+<p>Each month, the model applies interest to all open cards, makes the minimum payments (capped at each card's outstanding balance), and directs the remaining budget to the highest-rate card. Calculations continue until all card balances reach zero. The displayed values are rounded to cents, although internal calculations retain more precision.</p>
+<h3>Worked Example: Three Credit Cards</h3>
+<p>Suppose Card 1 has a $4,600 balance at 18.99% APR with a $100 minimum payment; Card 2 has $3,900 at 19.99% with a $90 minimum; and Card 3 has $6,000 at 15.99% with a $120 minimum. With a $500 total monthly budget, $310 covers minimums and the initial extra $190 goes to Card 2. That produces a $280 initial payment to Card 2. When it is paid off, extra money is directed to Card 1, then Card 3.</p>
+<p>Under this monthly-interest model and fixed payment assumptions, the sample takes approximately <strong>38 months</strong> and incurs approximately <strong>$4,471</strong> in interest. Actual card statements can differ because of daily interest calculations, payment timing, changes in APR or minimum payments, and fees.</p>
+<h2>Understanding the Results</h2>
+<p><strong>Payoff length</strong> indicates how many monthly billing cycles it takes to eliminate a card. <strong>Total interest</strong> is the estimated financing cost for that card, and <strong>Total payments</strong> is the original principal plus that interest. The principal-versus-interest chart compares the amount of debt you started with against the estimated interest paid. The payment schedule summarizes how the monthly allocation shifts over time.</p>
+<h2>Frequently Asked Questions</h2>
+<h3>What if my budget is below the sum of the minimum payments?</h3>
+<p>The calculator displays a validation warning rather than presenting a repayment plan that would not meet your entered minimums. Consider reviewing your budget or contacting your issuers to discuss available options.</p>
+<h3>Does this calculate daily compounded credit card interest?</h3>
+<p>No. For transparent planning and alignment with the reference example, it uses a simplified fixed monthly rate of APR divided by 12. Many issuers instead calculate interest using a daily periodic rate and an average daily balance, so actual payoff amounts will differ.</p>
+<h3>Can I include a card with 0% APR?</h3>
+<p>Yes. Enter 0 for the interest rate. With the avalanche method, a 0% card typically receives its minimum payment while higher-rate balances remain, unless there is extra monthly budget after higher-rate debts are cleared.</p>
+<h3>What happens if I make new purchases or pay late?</h3>
+<p>New charges, late fees, penalty APRs, variable interest rates, and changing minimums are not modeled. Update your card balances and terms and recalculate whenever your circumstances change.</p>
+<h2>Sources and Further Reading</h2>
+<ul><li><a href="https://www.calculator.net/credit-card-payoff-calculator.html" target="_blank" rel="noopener noreferrer">Calculator.net — Credit Cards Payoff Calculator</a> (reference method and sample).</li><li><a href="https://www.consumerfinance.gov/ask-cfpb/how-does-my-credit-card-company-calculate-the-amount-of-interest-i-owe-en-51/" target="_blank" rel="noopener noreferrer">Consumer Financial Protection Bureau — How credit card companies calculate interest</a>.</li><li><a href="https://www.consumerfinance.gov/ask-cfpb/a-box-on-my-credit-card-bill-says-that-i-will-pay-off-the-balance-in-three-years-if-i-pay-a-certain-amount-what-does-that-mean-do-i-have-to-pay-that-much-if-i-pay-that-much-and-make-new-purchases-will-i-still-owe-nothing-after-three-years-en-36/" target="_blank" rel="noopener noreferrer">Consumer Financial Protection Bureau — Minimum payments and repayment estimates</a>.</li></ul>
+<p class="cp-page-footer">CalcPro — estimates are informational and are not financial advice.</p>
+</article></main></div><script>
+(function () {
+  'use strict';
+  const root = document.getElementById('calcpro-ccp-root');
+  if (!root) return;
+  const $ = id => root.querySelector('#' + id);
+  const form = $('calcpro-ccp-form');
+  const rowsHost = $('calcpro-ccp-rows');
+  const results = $('calcpro-ccp-results');
+  const errorBox = $('calcpro-ccp-error');
+  const instructions = $('calcpro-ccp-instruction');
+  const moreButton = $('calcpro-ccp-more');
+  const detailSelect = $('calcpro-ccp-detail-card');
+  let lastResult = null;
+  const EPS = 1e-7;
+  const DOLLAR = new Intl.NumberFormat('en-US', {style:'currency',currency:'USD',minimumFractionDigits:2,maximumFractionDigits:2});
+  const dollar = value => DOLLAR.format(Math.abs(value) < 0.0000001 ? 0 : value);
+  const parseAmount = raw => {
+    const value = String(raw).trim().replace(/[$,%\s,]/g, '');
+    if (!value || !/^(?:\d+(?:\.\d*)?|\.\d+)$/.test(value)) return NaN;
+    return Number(value);
+  };
+  const term = months => {
+    const years = Math.floor(months / 12), remainder = months % 12;
+    if (years && remainder) return `${months} months (${years} ${years === 1 ? 'year' : 'years'} and ${remainder} ${remainder === 1 ? 'month' : 'months'})`;
+    if (years) return `${months} months (${years} ${years === 1 ? 'year' : 'years'})`;
+    return `${months} ${months === 1 ? 'month' : 'months'}`;
+  };
+  function makeEntry(label, kind, index, value) {
+    const wrap = document.createElement('div');
+    wrap.className = 'calcpro-ccp-entry';
+    wrap.dataset.label = label;
+    const shell = document.createElement('span');
+    if (kind === 'balance' || kind === 'minimum') shell.className = 'calcpro-ccp-money';
+    else if (kind === 'apr') shell.className = 'calcpro-ccp-rate';
+    const input = document.createElement('input');
+    input.type = 'text'; input.id = `calcpro-ccp-${kind}-${index}`;
+    input.name = `${kind}-${index}`;
+    input.value = value;
+    input.autocomplete = 'off';
+    input.setAttribute('aria-label', `Card ${index} ${label.toLowerCase()}`);
+    if (kind !== 'name') input.inputMode = 'decimal';
+    shell.appendChild(input); wrap.appendChild(shell);
+    return wrap;
+  }
+  const defaults = [
+    ['Card 1', '4,600', '100', '18.99'],
+    ['Card 2', '3,900', '90', '19.99'],
+    ['Card 3', '6,000', '120', '15.99']
+  ];
+  for (let index = 1; index <= 20; index++) {
+    const row = document.createElement('div');
+    row.className = 'calcpro-ccp-card-row';
+    row.id = `calcpro-ccp-row-${index}`;
+    if (index > 6) row.hidden = true;
+    const number = document.createElement('span');
+    number.className = 'calcpro-ccp-row-num'; number.textContent = index + '.';
+    row.appendChild(number);
+    const d = defaults[index - 1] || ['', '', '', ''];
+    row.appendChild(makeEntry('Credit card', 'name', index, d[0]));
+    row.appendChild(makeEntry('Balance', 'balance', index, d[1]));
+    row.appendChild(makeEntry('Minimum payment', 'minimum', index, d[2]));
+    row.appendChild(makeEntry('Interest rate (%)', 'apr', index, d[3]));
+    rowsHost.appendChild(row);
+  }
+  function toggleMore(expanded) {
+    for (let i = 7; i <= 20; i++) $(`calcpro-ccp-row-${i}`).hidden = !expanded;
+    moreButton.textContent = expanded ? 'Show fewer input fields' : 'Show more input fields';
+    moreButton.setAttribute('aria-expanded', String(expanded));
+  }
+  moreButton.addEventListener('click', () => toggleMore(moreButton.getAttribute('aria-expanded') !== 'true'));
+  root.addEventListener('blur', event => {
+    const input = event.target;
+    if (!(input instanceof HTMLInputElement) || input.type !== 'text' || input.id.includes('-name-')) return;
+    const v = parseAmount(input.value);
+    if (Number.isFinite(v) && input.value.trim()) input.value = v.toLocaleString('en-US', {maximumFractionDigits:6});
+  }, true);
+  function invalidate(input, message) {
+    input.setAttribute('aria-invalid', 'true');
+    throw new Error(message);
+  }
+  function readInputs() {
+    root.querySelectorAll('input[aria-invalid="true"]').forEach(el => el.removeAttribute('aria-invalid'));
+    const budgetInput = $('calcpro-ccp-budget');
+    const budget = parseAmount(budgetInput.value);
+    if (!Number.isFinite(budget) || budget <= 0 || budget > 1e12) invalidate(budgetInput, 'Enter a monthly budget greater than $0.');
+    const cards = [];
+    for (let i = 1; i <= 20; i++) {
+      const nameEl = $(`calcpro-ccp-name-${i}`);
+      const bEl = $(`calcpro-ccp-balance-${i}`);
+      const mEl = $(`calcpro-ccp-minimum-${i}`);
+      const rEl = $(`calcpro-ccp-apr-${i}`);
+      const hasMoneyData = [bEl.value, mEl.value, rEl.value].some(v => v.trim() !== '');
+      if (!hasMoneyData) continue;
+      if (!bEl.value.trim()) invalidate(bEl, `Enter a balance for Card ${i}, or clear its other numeric fields.`);
+      const balance = parseAmount(bEl.value);
+      if (!Number.isFinite(balance) || balance < 0 || balance > 1e12) invalidate(bEl, `Enter a valid nonnegative balance for Card ${i}.`);
+      if (balance === 0 && !mEl.value.trim() && !rEl.value.trim()) continue;
+      if (!mEl.value.trim()) invalidate(mEl, `Enter a minimum payment for Card ${i} (enter 0 if none applies).`);
+      const minimum = parseAmount(mEl.value);
+      if (!Number.isFinite(minimum) || minimum < 0 || minimum > 1e12) invalidate(mEl, `Enter a valid nonnegative minimum payment for Card ${i}.`);
+      if (!rEl.value.trim()) invalidate(rEl, `Enter an annual interest rate for Card ${i} (enter 0 for a 0% APR).`);
+      const apr = parseAmount(rEl.value);
+      if (!Number.isFinite(apr) || apr < 0 || apr > 1000) invalidate(rEl, `Enter an APR from 0% to 1,000% for Card ${i}.`);
+      if (balance === 0) {
+        if (minimum > 0) invalidate(bEl, `Card ${i} has no balance but has a nonzero minimum payment.`);
+        continue;
+      }
+      cards.push({id: i, name: nameEl.value.trim() || `Card ${i}`, initial: balance, balance, minimum, apr, interest: 0, paid: 0, paidMonth: 0, history: []});
+    }
+    if (!cards.length) throw new Error('Enter a positive balance for at least one credit card.');
+    const minimumSum = cards.reduce((sum,c) => sum + Math.min(c.minimum, c.initial * (1 + c.apr / 1200)), 0);
+    if (budget + EPS < minimumSum) throw new Error(`The monthly budget ${dollar(budget)} is below the combined first-month minimum payments (${dollar(minimumSum)}). Increase the budget or revise the minimums.`);
+    return {cards, budget};
+  }
+  function simulate(cards, budget) {
+    const monthly = [];
+    const ordered = [...cards].sort((a,b) => b.apr - a.apr || a.id - b.id);
+    for (let month = 1; month <= 1200; month++) {
+      const openCards = cards.filter(c => c.balance > EPS);
+      if (!openCards.length) break;
+      let available = budget;
+      const payment = new Map();
+      const interests = new Map();
+      for (const c of openCards) {
+        const charge = c.balance * c.apr / 1200;
+        c.balance += charge;
+        c.interest += charge;
+        interests.set(c.id, charge);
+        payment.set(c.id, 0);
+      }
+      for (const c of openCards) {
+        const amount = Math.min(c.minimum, c.balance);
+        c.balance -= amount;
+        available -= amount;
+        payment.set(c.id, payment.get(c.id) + amount);
+      }
+      if (available < -0.00001) throw new Error('The budget cannot cover the minimum payments for this month.');
+      for (const c of ordered) {
+        if (available <= EPS) break;
+        if (c.balance <= EPS) continue;
+        const extra = Math.min(available, c.balance);
+        c.balance -= extra;
+        available -= extra;
+        payment.set(c.id, (payment.get(c.id) || 0) + extra);
+      }
+      let amountPaid = 0, interestCharged = 0, balanceLeft = 0;
+      for (const c of cards) {
+        const paid = payment.get(c.id) || 0;
+        const interest = interests.get(c.id) || 0;
+        c.paid += paid;
+        if (paid > EPS) c.paidMonth = month;
+        if (c.balance < EPS) c.balance = 0;
+        c.history.push({month, paid, interest, principal: paid - interest, balance: c.balance});
+        amountPaid += paid;
+        interestCharged += interest;
+        balanceLeft += c.balance;
+      }
+      monthly.push({month, paid: amountPaid, interest: interestCharged, principal: amountPaid - interestCharged, balance: balanceLeft});
+      if (balanceLeft <= EPS) break;
+      if (month === 1200) throw new Error('This budget does not repay the balances within 100 years under the fixed-rate assumptions. Increase the monthly payment or check the interest rates.');
+    }
+    const totalPrincipal = cards.reduce((s,c) => s + c.initial, 0);
+    const totalInterest = cards.reduce((s,c) => s + c.interest, 0);
+    const totalPaid = cards.reduce((s,c) => s + c.paid, 0);
+    return {cards, ordered, budget, monthly, totalPrincipal, totalInterest, totalPaid, months: monthly.length};
+  }
+  function el(tag, text, cssClass) {
+    const node = document.createElement(tag);
+    if (text !== undefined) node.textContent = text;
+    if (cssClass) node.className = cssClass;
+    return node;
+  }
+  function scheduleSegments(card) {
+    const history = card.history.filter(h => h.paid > EPS);
+    const groups = [];
+    for (const h of history) {
+      const previous = groups[groups.length - 1];
+      if (previous && Math.abs(previous.amount - h.paid) < 0.004 && previous.end === h.month - 1) previous.end = h.month;
+      else groups.push({start:h.month, end:h.month, amount:h.paid});
+    }
+    return groups.map(g => {
+      const ending = g.end === card.paidMonth;
+      if (ending && g.start === g.end) return `Pay ${dollar(g.amount)} in month #${g.end} to pay off.`;
+      if (ending) return `Pay ${dollar(g.amount)} from month #${g.start} through month #${g.end} to pay off.`;
+      return g.start === g.end ? `Pay ${dollar(g.amount)} in month #${g.end}.` : `Pay ${dollar(g.amount)} until month #${g.end}.`;
+    });
+  }
+  function fillMonthlyTable() {
+    const tbody = $('calcpro-ccp-month-body');
+    tbody.replaceChildren();
+    if (!lastResult) return;
+    const selected = detailSelect.value;
+    const history = selected === 'all' ? lastResult.monthly : lastResult.cards.find(c => String(c.id) === selected).history;
+    const fragment = document.createDocumentFragment();
+    for (const entry of history) {
+      const tr = document.createElement('tr');
+      for (const value of [String(entry.month), dollar(entry.paid), dollar(entry.interest), dollar(entry.principal), dollar(entry.balance)]) tr.appendChild(el('td', value));
+      fragment.appendChild(tr);
+    }
+    tbody.appendChild(fragment);
+  }
+  detailSelect.addEventListener('change', fillMonthlyTable);
+  function addSummaryText(node, pieces) {
+    node.replaceChildren();
+    for (const [value, strong] of pieces) node.appendChild(el(strong ? 'strong' : 'span', value));
+  }
+  function showResults(data) {
+    lastResult = data;
+    const pct = data.totalPaid > EPS ? (data.totalPrincipal / data.totalPaid) * 100 : 100;
+    addSummaryText($('calcpro-ccp-summary'), [
+      ['You can pay off your credit cards in ', false],
+      [term(data.months), true],
+      [' if you pay back ', false],
+      [dollar(data.budget), true],
+      [' every month (except possibly the last). To pay off, you will need to pay a total of ', false],
+      [dollar(data.totalPaid), true],
+      [', within which interest is ', false],
+      [dollar(data.totalInterest) + '.', true]
+    ]);
+    $('calcpro-ccp-donut').style.setProperty('--calcpro-ccp-principal', pct.toFixed(6) + '%');
+    $('calcpro-ccp-donut').setAttribute('aria-label', `${pct.toFixed(1)}% principal, ${(100-pct).toFixed(1)}% interest`);
+    $('calcpro-ccp-donut-pct').textContent = pct.toFixed(0) + '%';
+    $('calcpro-ccp-principal-value').textContent = dollar(data.totalPrincipal);
+    $('calcpro-ccp-interest-value').textContent = dollar(data.totalInterest);
+    const body = $('calcpro-ccp-payoff-body');
+    body.replaceChildren();
+    const fragment = document.createDocumentFragment();
+    for (const card of data.ordered) {
+      const tr = document.createElement('tr');
+      tr.appendChild(el('td', `#${card.id}: ${card.name}`, 'calcpro-ccp-card-name'));
+      tr.appendChild(el('td', term(card.paidMonth)));
+      tr.appendChild(el('td', dollar(card.interest)));
+      tr.appendChild(el('td', dollar(card.paid)));
+      const schedule = document.createElement('td');
+      const lines = el('div', undefined, 'calcpro-ccp-payment-lines');
+      for (const line of scheduleSegments(card)) lines.appendChild(el('div', line));
+      schedule.appendChild(lines); tr.appendChild(schedule);
+      fragment.appendChild(tr);
+    }
+    body.appendChild(fragment);
+    detailSelect.replaceChildren(new Option('All cards combined', 'all'));
+    for (const card of data.cards) detailSelect.appendChild(new Option(`#${card.id}: ${card.name}`, String(card.id)));
+    fillMonthlyTable();
+    errorBox.hidden = true;
+    instructions.hidden = true;
+    results.hidden = false;
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) results.scrollIntoView({behavior:'smooth',block:'start'});
+    else results.scrollIntoView({block:'start'});
+  }
+  function showError(message) {
+    lastResult = null;
+    results.hidden = true;
+    instructions.hidden = false;
+    errorBox.textContent = message;
+    errorBox.hidden = false;
+    errorBox.scrollIntoView({block:'nearest'});
+  }
+  form.addEventListener('submit', event => {
+    event.preventDefault();
+    try {
+      const {cards, budget} = readInputs();
+      const data = simulate(cards, budget);
+      showResults(data);
+    } catch (err) { showError(err.message || 'Unable to calculate this payoff schedule.'); }
+  });
+  $('calcpro-ccp-clear').addEventListener('click', () => {
+    $('calcpro-ccp-budget').value = '';
+    for (let i = 1; i <= 20; i++) for (const field of ['name','balance','minimum','apr']) $(`calcpro-ccp-${field}-${i}`).value = '';
+    root.querySelectorAll('input[aria-invalid="true"]').forEach(input => input.removeAttribute('aria-invalid'));
+    toggleMore(false);
+    lastResult = null;
+    results.hidden = true;
+    errorBox.hidden = true;
+    instructions.hidden = false;
+    $('calcpro-ccp-budget').focus();
+  });
+  $('calcpro-ccp-print').addEventListener('click', () => window.print());
+  $('calcpro-ccp-csv').addEventListener('click', () => {
+    if (!lastResult) return;
+    const escape = value => '"' + String(value).replace(/"/g, '""') + '"';
+    const rows = [['Month', 'Card', 'Payment (USD)', 'Interest (USD)', 'Principal (USD)', 'Balance Left (USD)']];
+    for (let i = 0; i < lastResult.months; i++) {
+      for (const card of lastResult.cards) {
+        const entry = card.history[i];
+        rows.push([i+1, `#${card.id}: ${card.name}`,entry.paid.toFixed(2),entry.interest.toFixed(2),entry.principal.toFixed(2),entry.balance.toFixed(2)]);
+      }
+    }
+    const csv = rows.map(row => row.map(escape).join(',')).join('\r\n');
+    const url = URL.createObjectURL(new Blob(['\ufeff',csv], {type:'text/csv;charset=utf-8'}));
+    const link = document.createElement('a');
+    link.href = url; link.download = 'credit-cards-payoff-schedule.csv';
+    document.body.appendChild(link); link.click(); link.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 3000);
+  });
+})();
+</script></body></html>

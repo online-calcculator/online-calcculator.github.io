@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>Quadratic Formula Calculator | CalcPro</title><meta content="Solve any quadratic equation ax² + bx + c = 0. Enter decimals or fractions to get real or complex roots with step-by-step working." name="description"/><link href="template-style.css" rel="stylesheet"/><style>
+/* CalcPro Quadratic Formula Calculator — scoped tool styling only */
+.calcpro-quadratic{font:16px Arial,Helvetica,sans-serif;line-height:1.5;color:#111;width:100%;min-width:0}
+.calcpro-quadratic *, .calcpro-quadratic *::before,.calcpro-quadratic *::after{box-sizing:border-box}
+.calcpro-quadratic [hidden]{display:none!important}
+.calcpro-quadratic .calcpro-quadratic-equation-prompt{font-size:23px;text-align:center;line-height:1.5;margin:3px 0 22px}
+.calcpro-quadratic .calcpro-quadratic-instruction{min-height:36px;display:flex;align-items:center;justify-content:center;gap:46px;background:#366895;color:#fff;padding:6px 14px;text-align:center;line-height:1.3;margin-bottom:3px;font-size:16px}
+.calcpro-quadratic .calcpro-quadratic-arrow{width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;background:#fff;color:#366895;border-radius:50%;font-size:17px;font-weight:700;line-height:1;flex:none}
+.calcpro-quadratic .calcpro-quadratic-form{background:#eee;border:1px solid #bbb;padding:7px 16px 8px;text-align:center}
+.calcpro-quadratic .calcpro-quadratic-fields{display:flex;align-items:center;justify-content:center;gap:24px;flex-wrap:wrap}
+.calcpro-quadratic .calcpro-quadratic-field{display:inline-flex;align-items:center;gap:5px;font-size:16px;font-weight:700;white-space:nowrap}
+.calcpro-quadratic .calcpro-quadratic-field input{width:114px;height:30px;border:1px solid #3b6994;border-radius:2px;background:#fff;box-shadow:0 1px 3px #0003;padding:3px 6px;font:16px Arial,Helvetica,sans-serif;color:#111;min-width:0;font-weight:400;text-align:left}
+.calcpro-quadratic .calcpro-quadratic-field input:focus{outline:2px solid #2d76b7;outline-offset:1px}
+.calcpro-quadratic .calcpro-quadratic-hint{font-size:15px;margin:5px 0 14px}
+.calcpro-quadratic .calcpro-quadratic-actions{display:flex;justify-content:center;align-items:center;gap:4px;margin-bottom:0}
+.calcpro-quadratic .calcpro-quadratic-calculate,.calcpro-quadratic .calcpro-quadratic-clear{font:700 14px Arial,Helvetica,sans-serif;color:#fff;border:0;border-radius:0;min-height:37px;cursor:pointer;padding:7px 12px}
+.calcpro-quadratic .calcpro-quadratic-calculate{background:#518627;display:inline-flex;gap:12px;align-items:center}
+.calcpro-quadratic .calcpro-quadratic-calculate:hover{background:#3d6b1b}
+.calcpro-quadratic .calcpro-quadratic-clear{background:#a8a8a8;font-weight:400}
+.calcpro-quadratic .calcpro-quadratic-clear:hover{background:#898989}
+.calcpro-quadratic .calcpro-quadratic-play{display:inline-flex;background:#9dbf8b;color:#fff;border-radius:50%;width:21px;height:21px;align-items:center;justify-content:center;font-size:14px}
+.calcpro-quadratic .calcpro-quadratic-error{color:#a01919;background:#fff5f5;border:1px solid #cf7777;margin:10px 0 0;padding:8px 10px;text-align:left;font-size:14px}
+.calcpro-quadratic .calcpro-quadratic-result{margin:0 0 16px}
+.calcpro-quadratic .calcpro-quadratic-result-bar{background:#508725;color:#fff;min-height:35px;display:flex;align-items:center;justify-content:space-between;padding:2px 6px;font-size:21px;font-weight:400}
+.calcpro-quadratic .calcpro-quadratic-save{border:0;background:none;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;min-width:30px;min-height:30px;font:10px Arial,Helvetica,sans-serif;cursor:pointer;padding:0 2px}
+.calcpro-quadratic .calcpro-quadratic-save:hover,.calcpro-quadratic .calcpro-quadratic-save:focus-visible{background:#3e6e1a}
+.calcpro-quadratic .calcpro-quadratic-result-body{font-size:15px;padding:12px 0 0;overflow-wrap:anywhere}
+.calcpro-quadratic .calcpro-quadratic-result-body p{margin:0 0 15px;font-size:15px}
+.calcpro-quadratic .calcpro-quadratic-solution{font-weight:700}
+.calcpro-quadratic .calcpro-quadratic-steps{margin-top:18px;display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:9px;row-gap:8px;align-items:start}
+.calcpro-quadratic .calcpro-quadratic-steps-title{padding-top:5px}
+.calcpro-quadratic .calcpro-quadratic-steps-lines{min-width:0;overflow-x:auto;padding:0 0 6px;display:flex;flex-direction:column;gap:7px;align-items:flex-start}
+.calcpro-quadratic .calcpro-quadratic-step{display:flex;align-items:center;gap:6px;min-height:26px;font-size:16px;white-space:nowrap}
+.calcpro-quadratic .calcpro-quadratic-step-prefix{min-width:10px}
+.calcpro-quadratic .calcpro-quadratic-frac{display:inline-flex;flex-direction:column;vertical-align:middle;align-items:stretch;text-align:center;line-height:1.12;white-space:nowrap;max-width:100%}
+.calcpro-quadratic .calcpro-quadratic-frac-top{display:block;padding:0 4px 3px;border-bottom:1px solid currentColor}
+.calcpro-quadratic .calcpro-quadratic-frac-bottom{display:block;padding:3px 4px 0}
+.calcpro-quadratic .calcpro-quadratic-result-meta{padding-top:6px;color:#4b4b4b;font-size:14px}
+.calcpro-quadratic .calcpro-quadratic-result-meta p{font-size:14px;margin:0 0 5px}
+.calcpro-quadratic .calcpro-quadratic-graph-details{border:1px solid #ccd7e0;border-radius:3px;margin:13px 0 0;padding:8px 10px;background:#f9fbfd}
+.calcpro-quadratic .calcpro-quadratic-graph-details summary{cursor:pointer;color:#164e7e;font-weight:700;user-select:none}
+.calcpro-quadratic .calcpro-quadratic-graph{width:100%;height:auto;display:block;margin:10px auto 0;border:1px solid #e1e1e1;background:#fff}
+.calcpro-quadratic .calcpro-quadratic-graph-desc{font-size:13px!important;color:#555;margin:6px 0 0!important}
+.calcpro-quadratic .calcpro-quadratic-graph-grid{stroke:#e6e9ed;stroke-width:1}
+.calcpro-quadratic .calcpro-quadratic-graph-axis{stroke:#777;stroke-width:1.4}
+.calcpro-quadratic .calcpro-quadratic-graph-curve{stroke:#256699;stroke-width:2.6;fill:none;stroke-linejoin:round;stroke-linecap:round}
+.calcpro-quadratic .calcpro-quadratic-graph-point{fill:#4d8326;stroke:#fff;stroke-width:1.5}
+.calcpro-quadratic .calcpro-quadratic-graph-label{fill:#555;font-size:12px;font-family:Arial,Helvetica,sans-serif}
+@media(max-width:600px){.calcpro-quadratic .calcpro-quadratic-instruction{gap:12px;font-size:14px;padding:7px 9px}.calcpro-quadratic .calcpro-quadratic-fields{gap:10px 16px}.calcpro-quadratic .calcpro-quadratic-field input{width:100px}.calcpro-quadratic .calcpro-quadratic-form{padding:10px}.calcpro-quadratic .calcpro-quadratic-steps{grid-template-columns:1fr;gap:3px}.calcpro-quadratic .calcpro-quadratic-result-body{font-size:14px}}
+@media(max-width:390px){.calcpro-quadratic .calcpro-quadratic-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));justify-items:center;gap:12px 8px}.calcpro-quadratic .calcpro-quadratic-field{width:100%;justify-content:center}.calcpro-quadratic .calcpro-quadratic-field input{width:min(105px,calc(100% - 37px))}.calcpro-quadratic .calcpro-quadratic-hint{font-size:13px}}
+@media print{.calcpro-quadratic .calcpro-quadratic-form,.calcpro-quadratic .calcpro-quadratic-instruction,.calcpro-quadratic .calcpro-quadratic-save{display:none!important}.calcpro-quadratic .calcpro-quadratic-result{display:block!important}.calcpro-quadratic .calcpro-quadratic-graph-details:not([open]){display:none}}
+
+</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="math-calculator.html">Math</a> / Quadratic Formula Calculator</nav><h1 class="cp-page-title">Quadratic Formula Calculator</h1><p class="cp-intro">The calculator below solves the quadratic equation of</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-quadratic" id="calcpro-quadratic-root">
+  <div class="calcpro-quadratic-equation-prompt" aria-label="a x squared plus b x plus c equals zero"><i>a</i>x<sup>2</sup> + <i>b</i>x + <i>c</i> = 0</div>
+  <div class="calcpro-quadratic-instruction" id="calcpro-quadratic-instruction"><span class="calcpro-quadratic-arrow" aria-hidden="true">▼</span><span>Modify the values and click the Calculate button to use</span></div>
+  <section class="calcpro-quadratic-result" id="calcpro-quadratic-result" aria-label="Quadratic formula result" aria-live="polite" hidden>
+    <div class="calcpro-quadratic-result-bar"><span>Result</span><button type="button" class="calcpro-quadratic-save" id="calcpro-quadratic-save" aria-label="Save the calculation results as a text file" title="Save result"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 3h13l3 3v15H4z"/><path d="M7 3v7h9V3M8 21v-8h8v8"/></svg><span>save</span></button></div>
+    <div class="calcpro-quadratic-result-body">
+      <p><span>Equation: </span><span id="calcpro-quadratic-result-equation"></span></p>
+      <p>Solution: <strong class="calcpro-quadratic-solution" id="calcpro-quadratic-solution"></strong></p>
+      <div class="calcpro-quadratic-steps"><span class="calcpro-quadratic-steps-title">Steps:</span><div class="calcpro-quadratic-steps-lines" id="calcpro-quadratic-steps-lines"></div></div>
+      <div class="calcpro-quadratic-result-meta"><p id="calcpro-quadratic-discriminant"></p><p id="calcpro-quadratic-root-type"></p></div>
+      <details class="calcpro-quadratic-graph-details" id="calcpro-quadratic-graph-details"><summary>Show graph of the quadratic function</summary><svg id="calcpro-quadratic-graph" class="calcpro-quadratic-graph" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 660 280" role="img" aria-labelledby="calcpro-quadratic-graph-title calcpro-quadratic-graph-description"><title id="calcpro-quadratic-graph-title">Graph of the quadratic function</title><desc id="calcpro-quadratic-graph-description">The graph of the current quadratic function, showing any real roots.</desc><g id="calcpro-quadratic-graph-grid-layer"></g><path id="calcpro-quadratic-graph-curve" class="calcpro-quadratic-graph-curve" d=""></path><g id="calcpro-quadratic-graph-point-layer"></g></svg><p class="calcpro-quadratic-graph-desc" id="calcpro-quadratic-graph-desc"></p></details>
+    </div>
+  </section>
+  <form class="calcpro-quadratic-form" id="calcpro-quadratic-form" novalidate>
+    <div class="calcpro-quadratic-fields">
+      <label class="calcpro-quadratic-field" for="calcpro-quadratic-a">a = <input type="text" id="calcpro-quadratic-a" name="a" value="1" inputmode="decimal" autocomplete="off" aria-label="Quadratic coefficient a" required /></label>
+      <label class="calcpro-quadratic-field" for="calcpro-quadratic-b">b = <input type="text" id="calcpro-quadratic-b" name="b" value="1" inputmode="decimal" autocomplete="off" aria-label="Linear coefficient b" required /></label>
+      <label class="calcpro-quadratic-field" for="calcpro-quadratic-c">c = <input type="text" id="calcpro-quadratic-c" name="c" value="1/4" inputmode="decimal" autocomplete="off" aria-label="Constant coefficient c" required /></label>
+    </div>
+    <p class="calcpro-quadratic-hint">Fractional values such as 3/4 can be used.</p>
+    <div class="calcpro-quadratic-actions"><button class="calcpro-quadratic-calculate" type="submit">Calculate <span class="calcpro-quadratic-play" aria-hidden="true">▶</span></button><button class="calcpro-quadratic-clear" id="calcpro-quadratic-clear" type="button">Clear</button></div>
+    <p class="calcpro-quadratic-error" id="calcpro-quadratic-error" role="alert" hidden></p>
+  </form>
+</div>
+</section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><a href="scientific-calculator.html">Scientific</a><a href="fraction-calculator.html">Fraction</a><a href="exponent-calculator.html">Exponent</a><a href="root-calculator.html">Root</a><a href="factor-calculator.html">Factor</a><a href="log-calculator.html">Logarithm</a><a href="slope-calculator.html">Slope</a><a href="math-calculator.html">Math</a><a href="long-division-calculator.html">Long Division</a><a href="triangle-calculator.html">Triangle</a><a href="average-calculator.html">Average</a><a href="standard-deviation-calculator.html">Standard Deviation</a></div></section></aside><article class="cp-article"><h2>How to Use the Quadratic Formula Calculator</h2>
+<p>Enter the coefficients <strong>a</strong>, <strong>b</strong>, and <strong>c</strong> from an equation in the form <strong>ax<sup>2</sup> + bx + c = 0</strong>. The value of <strong>a</strong> cannot be zero. You may enter integers, decimals, negative numbers, or fractions such as <strong>3/4</strong> and <strong>-5/2</strong>.</p>
+<ol><li>Rewrite the equation with zero on the right.</li><li>Enter each coefficient with its sign.</li><li>Choose <strong>Calculate</strong> to see the roots, discriminant, and substitution steps above the form.</li><li>Open <strong>Show graph</strong> to see the parabola and real x-intercepts; select <strong>save</strong> to export the calculation as text. <strong>Clear</strong> empties the inputs and hides the result.</li></ol>
+<h2>Quadratic Formula and Discriminant</h2>
+<p>For a quadratic equation where a ≠ 0, the solutions are given by <strong>x = (−b ± √(b<sup>2</sup> − 4ac)) / (2a)</strong>. The discriminant is <strong>Δ = b<sup>2</sup> − 4ac</strong>.</p>
+<div class="cp-table-scroll"><table class="cp-content-table"><thead><tr><th>Discriminant</th><th>Type of solution</th></tr></thead><tbody><tr><td>Δ &gt; 0</td><td>Two distinct real roots</td></tr><tr><td>Δ = 0</td><td>One repeated real root</td></tr><tr><td>Δ &lt; 0</td><td>Two complex conjugate roots, with no real x-intercepts</td></tr></tbody></table></div>
+<h3>Worked Example: One Repeated Root</h3>
+<p>For <strong>x<sup>2</sup> + x + 1/4 = 0</strong>, use a = 1, b = 1, and c = 1/4. Then Δ = 1<sup>2</sup> − 4(1)(1/4) = 0. The equation has a repeated root: <strong>x = −1/2 = −0.5</strong>.</p>
+<h3>Worked Example: Two Distinct Real Roots</h3>
+<p>For <strong>x<sup>2</sup> − 3x + 2 = 0</strong>, Δ = (−3)<sup>2</sup> − 4(1)(2) = 1. Using the quadratic formula gives <strong>x = 1</strong> or <strong>x = 2</strong>.</p>
+<h3>Worked Example: Complex Roots</h3>
+<p>For <strong>x<sup>2</sup> + 1 = 0</strong>, Δ = −4. Its solutions are <strong>x = i</strong> and <strong>x = −i</strong>, where i<sup>2</sup> = −1. The parabola does not intersect the real x-axis.</p>
+<h2>Frequently Asked Questions</h2>
+<h3>Can the calculator use fractions and negative coefficients?</h3>
+<p>Yes. Enter a fraction using a slash, such as 1/4, or use values such as −2, 0.75, or 2e-3. Do not put a variable in a coefficient box.</p>
+<h3>What if the discriminant is negative?</h3>
+<p>The equation has two complex conjugate solutions. They contain an imaginary component written using <strong>i</strong>, the square root of −1.</p>
+<h3>What happens when a = 0?</h3>
+<p>The quadratic formula is undefined when a = 0 because the denominator is 2a. A zero value for a produces a linear or constant equation instead; this tool asks for a nonzero a.</p>
+<h3>Are the displayed decimal roots exact?</h3>
+<p>Where exact rational roots can be recognized, the calculation may display their fractional form. Otherwise, the numeric roots are rounded for display. An exact irrational solution can have infinitely many decimal digits.</p>
+<h2>References</h2>
+<p>For a derivation of the formula and the role of the discriminant, see <a href="https://www.mas.ncl.ac.uk/ask/numeracy-maths-statistics/core-mathematics/pure-maths/algebra/the-quadratic-formula.html" target="_blank" rel="noopener noreferrer">Newcastle University: The Quadratic Formula</a> and the <a href="https://www.calculator.net/quadratic-formula-calculator.html" target="_blank" rel="noopener noreferrer">reference quadratic formula calculator</a>.</p>
+<p class="cp-page-footer">CalcPro — calculator estimates are for informational purposes.</p></article></main></div><script>
+(() => {
+  'use strict';
+  const root = document.getElementById('calcpro-quadratic-root');
+  if (!root) return;
+  const byId = (name) => root.querySelector('#calcpro-quadratic-' + name);
+  const aInput = byId('a'), bInput = byId('b'), cInput = byId('c');
+  const form = byId('form'), result = byId('result'), instruction = byId('instruction');
+  const error = byId('error'), equationEl = byId('result-equation');
+  const solutionEl = byId('solution'), stepsEl = byId('steps-lines');
+  const discEl = byId('discriminant'), typeEl = byId('root-type');
+  let exportText = '';
+
+  const esc = (s) => String(s).replace(/[&<>"']/g, (ch) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+  const finiteStr = /^[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:e[+-]?\d+)?$/i;
+  function parseCoefficient(input) {
+    const t = input.value.trim();
+    if (!t || t.length > 75) throw new Error('Enter a valid number or fraction for ' + input.name + '.');
+    const parts = t.split('/');
+    if (parts.length > 2 || parts.some(p => !finiteStr.test(p.trim()))) {
+      throw new Error('Use a number or fraction (such as -3/4) for ' + input.name + '.');
+    }
+    const n = Number(parts[0]);
+    const d = parts.length === 2 ? Number(parts[1]) : 1;
+    if (!Number.isFinite(n) || !Number.isFinite(d) || d === 0) {
+      throw new Error('Coefficient ' + input.name + ' needs finite values and a nonzero denominator.');
+    }
+    const value = n / d;
+    if (!Number.isFinite(value) || (value === 0 && n !== 0)) {
+      throw new Error('Coefficient ' + input.name + ' is outside the supported numeric range.');
+    }
+    return { raw:t, value, exact: parseRational(t) };
+  }
+  function gcd(a,b) { a = a < 0n ? -a : a; b = b < 0n ? -b : b; while (b !== 0n) [a,b] = [b,a % b]; return a; }
+  function rat(n,d=1n) { if (d === 0n) return null; if (d < 0n) {n=-n;d=-d;} const g = gcd(n,d); return {n:n/g,d:d/g}; }
+  function add(x,y) {return rat(x.n*y.d+y.n*x.d,x.d*y.d);}
+  function neg(x) {return {n:-x.n,d:x.d};}
+  function sub(x,y) {return add(x,neg(y));}
+  function mul(x,y) {return rat(x.n*y.n,x.d*y.d);}
+  function div(x,y) {return y.n === 0n ? null : rat(x.n*y.d,x.d*y.n);}
+  function decimalRat(s) {
+    const m = /^([+-]?)(\d*)(?:\.(\d*))?(?:e([+-]?\d+))?$/i.exec(s);
+    if (!m || !(m[2] || m[3])) return null;
+    const digits = (m[2] || '') + (m[3] || '');
+    const power = Number(m[4] || 0) - (m[3] || '').length;
+    if (digits.length > 45 || !Number.isInteger(power) || Math.abs(power) > 35) return null;
+    const n = BigInt((m[1] === '-' ? '-' : '') + (digits || '0'));
+    return power >= 0 ? rat(n*10n**BigInt(power)) : rat(n,10n**BigInt(-power));
+  }
+  function parseRational(raw) {
+    const pieces = raw.split('/');
+    const x = decimalRat(pieces[0].trim());
+    if (!x) return null;
+    return pieces.length === 1 ? x : (decimalRat(pieces[1].trim()) ? div(x,decimalRat(pieces[1].trim())) : null);
+  }
+  function integerSqrt(n) {
+    if (n < 0n) return null;
+    if (n < 2n) return n;
+    let x = n, y = (x + 1n) >> 1n;
+    while (y < x) {x = y;y = (x + n/x) >> 1n;}
+    return x;
+  }
+  function sqrtRat(r) {
+    if (r.n < 0n) return null;
+    const n = integerSqrt(r.n), d = integerSqrt(r.d);
+    return n*n === r.n && d*d === r.d ? rat(n,d) : null;
+  }
+  function fmt(x) {
+    if (Object.is(x,-0) || x === 0) return '0';
+    if (!Number.isFinite(x)) return 'undefined';
+    return String(Number(x.toPrecision(13))).replace(/e\+/, 'e+');
+  }
+  function rationalText(r) {
+    if (!r) return null;
+    const n = r.n.toString(), d = r.d.toString();
+    return n.length + d.length < 44 ? (d === '1' ? n : n+'/'+d) : null;
+  }
+  function frac(top,bottom) {
+    return '<span class="calcpro-quadratic-frac"><span class="calcpro-quadratic-frac-top">' + top + '</span><span class="calcpro-quadratic-frac-bottom">' + bottom + '</span></span>';
+  }
+  function printableInput(coef, absolute=false) {
+    const t = coef.raw.replace(/\s+/g,'');
+    if (t.includes('/')) {
+      const parts = t.split('/');
+      const sign = !absolute && coef.value < 0 ? '−' : '';
+      return sign + frac(esc(parts[0].replace(/^[+-]/,'')),esc(parts[1].replace(/^[+-]/,'')));
+    }
+    return esc(absolute ? t.replace(/^[+-]/,'') : t);
+  }
+  function coefficientTerm(coef,variable,isFirst) {
+    const value = coef.value;
+    if (value === 0 && variable) return '';
+    const sign = value < 0 ? (isFirst ? '−' : ' − ') : (isFirst ? '' : ' + ');
+    const absCoef = printableInput(coef,true);
+    const number = variable && Math.abs(value) === 1 ? '' : absCoef;
+    return sign + number + variable;
+  }
+  function equationHtml(a,b,c) {
+    const terms = [[a,'x<sup>2</sup>'],[b,'x'],[c,'']].filter(([o,v]) => !v || o.value !== 0);
+    let out = '';
+    terms.forEach(([coef,v]) => {if (coef.value===0 && v==='') { if (!out) out='0'; return; } out += coefficientTerm(coef,v,!out);});
+    return (out || '0') + ' = 0';
+  }
+  function step(content) {return '<div class="calcpro-quadratic-step"><span class="calcpro-quadratic-step-prefix">=</span>' + content + '</div>';}
+  function showError(message,input) {
+    error.textContent = message;
+    error.hidden = false;
+    result.hidden = true;
+    instruction.hidden = false;
+    exportText = '';
+    if (input) input.focus();
+  }
+  function clearError() {error.hidden = true;error.textContent = '';}
+  function rootOutput(x, exact) {
+    const exactText = rationalText(exact);
+    return exactText && !exactText.includes('/') ? exactText : fmt(x);
+  }
+  function resultFormat(x,ex) {const t = rationalText(ex);return t && !t.includes('/') ? t : fmt(x);}
+  function exactRootMarkup(x,ex) {
+    const txt=rationalText(ex);
+    if (!txt) return esc(fmt(x));
+    if (!txt.includes('/')) return esc(txt);
+    const parts=txt.split('/');
+    return frac(esc(parts[0]),esc(parts[1]));
+  }
+  function solveQuadratic(a,b,c) {
+    // Scale coefficients first so the discriminant avoids overflow for ordinary finite inputs.
+    const size = Math.max(Math.abs(a.value),Math.abs(b.value),Math.abs(c.value));
+    const A=a.value/size, B=b.value/size, C=c.value/size;
+    let D=B*B-4*A*C;
+    let dexact=null, rPlus=null, rMinus=null;
+    if (a.exact && b.exact && c.exact) {
+      dexact=sub(mul(b.exact,b.exact),mul(rat(4n),mul(a.exact,c.exact)));
+      const exactSign = dexact.n < 0n ? -1 : (dexact.n > 0n ? 1 : 0);
+      if (exactSign === 0) D=0;
+      else if (D === 0 || Math.sign(D) !== exactSign) {
+        // The exact rational sign protects decimal and fractional coefficients from
+        // false repeated roots caused by floating-point cancellation.
+        const originalD = Number(dexact.n)/Number(dexact.d);
+        const scaled = originalD/(size*size);
+        if (Number.isFinite(scaled) && scaled !== 0) D=scaled;
+      }
+      if (D >= 0 && dexact.n >= 0n) {
+        const r = sqrtRat(dexact);
+        if (r) {
+          const denom=mul(rat(2n),a.exact);
+          rPlus=div(add(neg(b.exact),r),denom);
+          rMinus=div(sub(neg(b.exact),r),denom);
+        }
+      }
+    }
+    if (D === 0) {
+      const x=-B/(2*A);
+      return { kind:'double',x1:x,x2:x,d:D,dOriginal:dexact,ex1:rPlus,ex2:rMinus,A,B,C };
+    }
+    if (D < 0) {
+      const re=-B/(2*A), im=Math.sqrt(-D)/Math.abs(2*A);
+      return { kind:'complex', re,im,d:D,dOriginal:dexact,A,B,C };
+    }
+    const sd=Math.sqrt(D);
+    const q = -0.5*(B + (B >= 0 ? sd : -sd));
+    // q/A and C/q avoid subtracting two almost-equal numbers when roots differ greatly.
+    const plus = B < 0 ? q/A : C/q;
+    const minus = B < 0 ? C/q : q/A;
+    return { kind:'real',x1:plus,x2:minus,d:D,dOriginal:dexact,ex1:rPlus,ex2:rMinus,A,B,C };
+  }
+  function drawGraph(a,b,c,sol) {
+    const NS='http://www.w3.org/2000/svg';
+    const grid=byId('graph-grid-layer'),points=byId('graph-point-layer'),curve=byId('graph-curve');
+    grid.replaceChildren();points.replaceChildren();
+    const vertexX=-sol.B/(2*sol.A);
+    const xValues=[0];
+    if (Number.isFinite(vertexX) && Math.abs(vertexX) < 1e8) xValues.push(vertexX);
+    if (sol.kind !== 'complex') for (const x of [sol.x1,sol.x2]) if (Number.isFinite(x) && Math.abs(x) < 1e8) xValues.push(x);
+    const minImportant=Math.min(...xValues),maxImportant=Math.max(...xValues);
+    const midpoint=(minImportant+maxImportant)/2;
+    const span=Math.max(6,(maxImportant-minImportant)*1.65);
+    const xMin=midpoint-span/2,xMax=midpoint+span/2;
+    const yfn = x => sol.A*x*x+sol.B*x+sol.C;
+    const samples=Array.from({length:181},(_,i) => ({x:xMin+(xMax-xMin)*i/180}));
+    for (const p of samples) p.y=yfn(p.x);
+    let yMin=Math.min(0,...samples.map(p=>p.y)), yMax=Math.max(0,...samples.map(p=>p.y));
+    const ySpan=Math.max(1e-14,yMax-yMin),pad=ySpan*0.13;
+    yMin-=pad;yMax+=pad;
+    const L=48,R=646,T=17,BT=248;
+    const px = x=>L+(x-xMin)/(xMax-xMin)*(R-L);
+    const py = y=>BT-(y-yMin)/(yMax-yMin)*(BT-T);
+    function el(tag,attrs,parent) {const node=document.createElementNS(NS,tag);for (const [k,v] of Object.entries(attrs||{})) node.setAttribute(k,String(v));parent.appendChild(node);return node;}
+    for (let i=0;i<=5;i++) {
+      const gx=L+(R-L)*i/5,gy=T+(BT-T)*i/5;
+      el('line',{x1:gx,x2:gx,y1:T,y2:BT,class:'calcpro-quadratic-graph-grid'},grid);
+      el('line',{x1:L,x2:R,y1:gy,y2:gy,class:'calcpro-quadratic-graph-grid'},grid);
+    }
+    if (xMin <= 0 && xMax >= 0) el('line',{x1:px(0),x2:px(0),y1:T,y2:BT,class:'calcpro-quadratic-graph-axis'},grid);
+    if (yMin <= 0 && yMax >= 0) el('line',{x1:L,x2:R,y1:py(0),y2:py(0),class:'calcpro-quadratic-graph-axis'},grid);
+    for (const [x,y,label] of [[L,267,fmt(xMin)],[R,267,fmt(xMax)]]) {const tx=el('text',{x,y,'text-anchor':x===L?'start':'end',class:'calcpro-quadratic-graph-label'},grid);tx.textContent='x: '+label;}
+    const yHigh=el('text',{x:6,y:14,class:'calcpro-quadratic-graph-label'},grid);yHigh.textContent='y: '+fmt(yMax);
+    const yLow=el('text',{x:6,y:BT,class:'calcpro-quadratic-graph-label'},grid);yLow.textContent=fmt(yMin);
+    curve.setAttribute('d',samples.map((p,i) => (i?'L':'M')+px(p.x).toFixed(2)+' '+py(p.y).toFixed(2)).join(' '));
+    const roots=sol.kind==='complex'?[]:(sol.kind==='double'?[sol.x1]:[sol.x1,sol.x2]);
+    for (const x of roots) if (Number.isFinite(x) && x>=xMin && x<=xMax) el('circle',{cx:px(x),cy:py(0),r:5,class:'calcpro-quadratic-graph-point'},points);
+    const description = sol.kind==='complex' ? 'The parabola does not cross the x-axis (no real roots).' : sol.kind==='double' ? 'The parabola touches the x-axis once at x = '+fmt(sol.x1)+'.' : 'The parabola intersects the x-axis at x = '+fmt(sol.x1)+' and x = '+fmt(sol.x2)+'.';
+    byId('graph-desc').textContent=description+' The graph rescales the function for visibility.';
+    byId('graph-description').textContent=description;
+  }
+  function calculate() {
+    clearError();
+    let a,b,c;
+    try {a=parseCoefficient(aInput);b=parseCoefficient(bInput);c=parseCoefficient(cInput);}
+    catch(ex) { showError(ex.message);return; }
+    if (a.value === 0) {showError('a must not be 0. When a = 0, this is not a quadratic equation.',aInput);return;}
+    const s=solveQuadratic(a,b,c);
+    const originalD=b.value*b.value-4*a.value*c.value;
+    const discDisplay = s.dOriginal && rationalText(s.dOriginal) || fmt(originalD);
+    const discNumerical = Number.isFinite(originalD) ? fmt(originalD) : (s.d === 0 ? '0' : 'too large to display directly');
+    if ((s.kind === 'complex' && !Number.isFinite(s.im)) || (s.kind !== 'complex' && (!Number.isFinite(s.x1)||!Number.isFinite(s.x2)))) {
+      showError('The coefficients create a solution outside the supported numeric range. Try rescaling the coefficients.');return;
+    }
+    const raw=[a.raw,b.raw,c.raw];
+    equationEl.innerHTML=equationHtml(a,b,c);
+    let solPlain='',solHtml='',nature='';
+    if (s.kind === 'double') {
+      const root=fmt(s.x1);const exact=rationalText(s.ex1);
+      solPlain='x = '+root;
+      solHtml='x = '+esc(root);
+      nature='One repeated real root (discriminant = 0).';
+    } else if (s.kind === 'real') {
+      const x1=resultFormat(s.x1,s.ex1),x2=resultFormat(s.x2,s.ex2);
+      solPlain='x₁ = '+x1+'; x₂ = '+x2;
+      solHtml='x<sub>1</sub> = '+esc(x1)+'; x<sub>2</sub> = '+esc(x2);
+      nature='Two distinct real roots (discriminant > 0).';
+    } else {
+      const re=fmt(s.re),im=fmt(s.im),imagPart=(im==='1' ? '' : im)+'i';
+      const onlyImag=re==='0';
+      solPlain='x₁ = '+(onlyImag?'':re+' + ')+imagPart+'; x₂ = '+(onlyImag?'-':re+' − ')+imagPart;
+      solHtml='x<sub>1</sub> = '+(onlyImag?'':esc(re)+' + ')+esc(imagPart)+'; x<sub>2</sub> = '+(onlyImag?'−':esc(re)+' − ')+esc(imagPart);
+      nature='Two complex conjugate roots (no real roots; discriminant < 0).';
+    }
+    solutionEl.innerHTML=solHtml;
+    const lhsSub='('+printableInput(b)+')<sup>2</sup> − 4 × ('+printableInput(a)+') × ('+printableInput(c)+')';
+    const numerator='−('+printableInput(b)+') ± √<span style="white-space:nowrap">('+lhsSub+')</span>';
+    const denominator='2 × ('+printableInput(a)+')';
+    const steps = [
+      '<div class="calcpro-quadratic-step"><span>x = </span>'+frac('−b ± √(b<sup>2</sup> − 4ac)','2a')+'</div>',
+      step(frac(numerator,denominator)),
+      step(frac(esc(fmt(-b.value))+' ± √('+esc(discDisplay)+')',esc(fmt(2*a.value))))
+    ];
+    if (s.kind === 'double') {
+      const exact=rationalText(s.ex1);
+      if (exact && exact.includes('/')) {
+        const [n,d]=exact.split('/');steps.push(step(frac(esc(n),esc(d))));
+      }
+      steps.push(step('<strong>'+esc(fmt(s.x1))+'</strong>'));
+    } else if (s.kind === 'real') {
+      const x1=resultFormat(s.x1,s.ex1),x2=resultFormat(s.x2,s.ex2);
+      steps.push(step('x<sub>1</sub> = '+exactRootMarkup(s.x1,s.ex1)));
+      steps.push(step('x<sub>2</sub> = '+exactRootMarkup(s.x2,s.ex2)));
+      if ((s.ex1 && rationalText(s.ex1)?.includes('/')) || (s.ex2 && rationalText(s.ex2)?.includes('/'))) {
+        steps.push(step('Decimal approximations: '+esc(fmt(s.x1))+' and '+esc(fmt(s.x2))));
+      }
+    } else {
+      steps.push(step('√('+esc(discDisplay)+') = i√('+esc(fmt(Math.abs(originalD)))+')'));
+      steps.push(step('x = '+esc(fmt(s.re))+' ± '+esc(fmt(s.im))+'i'));
+    }
+    stepsEl.innerHTML=steps.join('');
+    discEl.textContent='Discriminant: Δ = b² − 4ac = '+discDisplay+'.';
+    typeEl.textContent=nature;
+    exportText='CalcPro — Quadratic Formula Calculator\nEquation: '+raw[0]+'x^2 + ('+raw[1]+')x + ('+raw[2]+') = 0\n'+solPlain+'\nDiscriminant: '+discDisplay+'\n'+nature+'\n\nFormula: x = (-b ± sqrt(b^2 - 4ac)) / (2a)\nCoefficients: a = '+raw[0]+', b = '+raw[1]+', c = '+raw[2]+'\n';
+    drawGraph(a,b,c,s);
+    result.hidden=false;
+    instruction.hidden=true;
+  }
+  form.addEventListener('submit',(evt)=>{evt.preventDefault();calculate();});
+  byId('clear').addEventListener('click',()=>{form.reset();aInput.value='';bInput.value='';cInput.value='';clearError();result.hidden=true;instruction.hidden=false;byId('graph-details').open=false;exportText='';aInput.focus();});
+  byId('save').addEventListener('click',()=>{
+    if (!exportText) return;
+    const file=new Blob([exportText],{type:'text/plain;charset=utf-8'});
+    const url=URL.createObjectURL(file);const anchor=document.createElement('a');
+    anchor.href=url;anchor.download='quadratic-formula-result.txt';document.body.appendChild(anchor);anchor.click();anchor.remove();
+    setTimeout(()=>URL.revokeObjectURL(url),3000);
+  });
+})();
+
+</script></body></html>

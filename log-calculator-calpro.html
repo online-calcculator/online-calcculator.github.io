@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>Log Calculator (Logarithm) | CalcPro</title><meta content="Calculate logarithms or solve for the argument or base, including natural logarithms using e." name="description"/><link href="template-style.css" rel="stylesheet"/><style>
+/* CalcPro logarithm calculator — all styles scoped to the tool. */
+.calcpro-log-tool{width:100%;max-width:100%;font:16px/1.35 Arial,Helvetica,sans-serif;color:#111;text-align:left}
+.calcpro-log-tool *, .calcpro-log-tool *::before, .calcpro-log-tool *::after{box-sizing:border-box}
+.calcpro-log-tool [hidden]{display:none!important}
+.calcpro-log-tool .calcpro-log-hint{width:100%;min-height:42px;display:flex;align-items:center;justify-content:center;gap:15px;padding:6px 10px;margin:8px 0 3px;background:#356699;color:#fff;font-size:18px;line-height:1.25;text-align:center}
+.calcpro-log-tool .calcpro-log-hint-arrow{width:27px;height:27px;flex:0 0 27px;border-radius:50%;background:#fff;display:inline-flex;align-items:center;justify-content:center}
+.calcpro-log-tool .calcpro-log-hint-arrow::after{content:"";display:block;width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-top:10px solid #356699;transform:translateY(2px)}
+.calcpro-log-tool .calcpro-log-form{width:350px;max-width:100%;margin:0;padding:8px 9px 9px;background:#eee;border:1px solid #bcbcbc}
+.calcpro-log-tool .calcpro-log-equation{display:grid;grid-template-columns:30px minmax(0,128px) 20px minmax(0,128px);column-gap:6px;align-items:center;max-width:100%;margin:0}
+.calcpro-log-tool .calcpro-log-symbol,.calcpro-log-tool .calcpro-log-equals{font-size:23px;font-weight:700;line-height:1.2;white-space:nowrap}
+.calcpro-log-tool .calcpro-log-fields{min-width:0;display:flex;flex-direction:column;gap:3px}
+.calcpro-log-tool .calcpro-log-input{display:block;width:100%;min-width:0;height:34px;border:1px solid #356699;border-radius:1px;background:#fff;box-shadow:1px 2px 3px #0003;padding:4px 6px;color:#111;font:16px Arial,Helvetica,sans-serif;text-align:left}
+.calcpro-log-tool .calcpro-log-input:focus-visible,.calcpro-log-tool .calcpro-log-btn:focus-visible,.calcpro-log-tool .calcpro-log-save:focus-visible{outline:2px solid #14559a;outline-offset:2px}
+.calcpro-log-tool .calcpro-log-actionbar{display:flex;justify-content:center;align-items:stretch;gap:4px;margin-top:12px}
+.calcpro-log-tool .calcpro-log-btn{min-height:43px;border:0;border-radius:0;padding:8px 12px;font:16px Arial,Helvetica,sans-serif;cursor:pointer}
+.calcpro-log-tool .calcpro-log-calculate{min-width:146px;background:#4d8124;color:#fff;font-weight:700;display:flex;justify-content:space-between;align-items:center;gap:14px}
+.calcpro-log-tool .calcpro-log-calculate:hover{background:#396b17}
+.calcpro-log-tool .calcpro-log-calc-arrow{background:#97bf82;border-radius:50%;width:23px;height:23px;flex:0 0 23px;display:inline-flex;align-items:center;justify-content:center}
+.calcpro-log-tool .calcpro-log-calc-arrow::after{content:"";display:block;border-top:7px solid transparent;border-bottom:7px solid transparent;border-left:8px solid #fff;margin-left:2px}
+.calcpro-log-tool .calcpro-log-clear{background:#aaa;color:#fff}
+.calcpro-log-tool .calcpro-log-clear:hover{background:#878787}
+.calcpro-log-tool .calcpro-log-error{margin:0 0 12px;padding:11px 13px;border-left:4px solid #c13030;background:#fff0ee;color:#8c1414;line-height:1.45}
+.calcpro-log-tool .calcpro-log-result{margin:4px 0 30px;max-width:100%}
+.calcpro-log-tool .calcpro-log-result-head{min-height:39px;background:#4d811f;color:white;display:flex;align-items:center;justify-content:space-between;padding:3px 7px;font-size:22px;line-height:1.2}
+.calcpro-log-tool .calcpro-log-save{align-self:stretch;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;min-width:32px;border:0;padding:2px 1px 0;background:transparent;color:#fff;cursor:pointer;font:9px/1 Arial,Helvetica,sans-serif}
+.calcpro-log-tool .calcpro-log-save:hover{background:#ffffff26}
+.calcpro-log-tool .calcpro-log-save svg{display:block;width:17px;height:17px;fill:currentColor;stroke:none}
+.calcpro-log-tool .calcpro-log-answer{margin:5px 0 32px;font-size:22px;line-height:1.35;overflow-wrap:anywhere}
+.calcpro-log-tool .calcpro-log-highlight{color:#008800;font-weight:700}
+.calcpro-log-tool .calcpro-log-steps{font-size:16px;line-height:1.4;overflow-wrap:anywhere}
+.calcpro-log-tool .calcpro-log-steps>div{min-height:20px}
+.calcpro-log-tool .calcpro-log-steps sub,.calcpro-log-tool .calcpro-log-steps sup{font-size:.72em}
+.calcpro-log-tool .calcpro-log-feedback{font-size:12px;margin:4px 0 0;color:#426522}
+@media (max-width:395px){
+  .calcpro-log-tool .calcpro-log-hint{font-size:15px;gap:9px}
+  .calcpro-log-tool .calcpro-log-form{width:100%;padding:8px 7px 9px}
+  .calcpro-log-tool .calcpro-log-equation{grid-template-columns:31px minmax(0,1fr) 20px minmax(0,1fr);column-gap:4px}
+  .calcpro-log-tool .calcpro-log-symbol,.calcpro-log-tool .calcpro-log-equals{font-size:21px}
+  .calcpro-log-tool .calcpro-log-input{font-size:16px}
+}
+@media print{
+  .calcpro-log-tool .calcpro-log-hint,.calcpro-log-tool .calcpro-log-actionbar,.calcpro-log-tool .calcpro-log-save{display:none!important}
+  .calcpro-log-tool .calcpro-log-result{break-inside:avoid}
+}
+
+</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="math-calculator.html">Math</a> / Log Calculator</nav><h1 class="cp-page-title">Log Calculator (Logarithm)</h1><p class="cp-intro">Please provide any two values to calculate the third in <strong>log<sub>b</sub>x = y</strong>. You can enter <strong>e</strong> as a base for natural logarithms.</p><section aria-label="Calculator" class="cp-tool-area">
+<div class="calcpro-log-tool" id="calcpro-log-tool">
+  <div class="calcpro-log-hint" id="calcpro-log-hint"><span class="calcpro-log-hint-arrow" aria-hidden="true"></span><span>Modify the values and click the Calculate button to use</span></div>
+  <div class="calcpro-log-error" id="calcpro-log-error" role="alert" hidden></div>
+  <section class="calcpro-log-result" id="calcpro-log-result" aria-label="Logarithm calculation result" aria-live="polite" hidden>
+    <div class="calcpro-log-result-head"><span>Result</span>
+      <button class="calcpro-log-save" id="calcpro-log-save" type="button" title="Save calculation as a text file" aria-label="Save calculation as a text file">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 2h15l4 4v16H2V3a1 1 0 0 1 1-1zm3 1v6h12V3h-3v4H9V3H6zm6 9a4 4 0 1 0 0 8 4 4 0 0 0 0-8zm-2 1v6h4v-6h-4z"/></svg><span>save</span>
+      </button>
+    </div>
+    <p class="calcpro-log-answer">Answer: <span id="calcpro-log-answer-label"></span> = <strong class="calcpro-log-highlight" id="calcpro-log-answer-value"></strong></p>
+    <div class="calcpro-log-steps" id="calcpro-log-steps" aria-label="Calculation equations">
+      <div id="calcpro-log-log-equation"></div><div id="calcpro-log-power-equation"></div>
+    </div>
+  </section>
+  <form class="calcpro-log-form" id="calcpro-log-form" autocomplete="off" novalidate>
+    <div class="calcpro-log-equation" aria-label="log base b of x equals y">
+      <div class="calcpro-log-symbol" aria-hidden="true">log</div>
+      <div class="calcpro-log-fields">
+        <input class="calcpro-log-input" id="calcpro-log-x" name="argument" type="text" inputmode="decimal" value="100" aria-label="Argument x" spellcheck="false" />
+        <input class="calcpro-log-input" id="calcpro-log-base" name="base" type="text" inputmode="text" value="e" aria-label="Base b, a number or e" spellcheck="false" />
+      </div>
+      <div class="calcpro-log-equals" aria-hidden="true">=</div>
+      <input class="calcpro-log-input" id="calcpro-log-y" name="exponent" type="text" inputmode="decimal" value="" aria-label="Exponent or logarithm y" spellcheck="false" />
+    </div>
+    <div class="calcpro-log-actionbar"><button class="calcpro-log-btn calcpro-log-calculate" type="submit"><span>Calculate</span><span class="calcpro-log-calc-arrow" aria-hidden="true"></span></button><button class="calcpro-log-btn calcpro-log-clear" type="button" id="calcpro-log-clear">Clear</button></div>
+  </form>
+</div>
+</section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><a href="scientific-calculator.html">Scientific</a><a href="exponent-calculator.html">Exponent</a><a href="fraction-calculator.html">Fraction</a><a href="percent-calculator.html">Percent</a><a href="binary-calculator.html">Binary</a><a href="scientific-notation-calculator.html">Scientific Notation</a><a href="average-calculator.html">Average</a><a href="standard-deviation-calculator.html">Standard Deviation</a><a href="ratio-calculator.html">Ratio</a><a href="probability-calculator.html">Probability</a><a href="factor-calculator.html">Factor</a><a href="rounding-calculator.html">Rounding</a></div></section></aside><article class="cp-article"><h2>How to Use the Log Calculator</h2>
+<p>Enter any two known quantities in <strong>log<sub>b</sub>(x) = y</strong>: the argument <strong>x</strong> (top input), the base <strong>b</strong> (bottom input), or the logarithm <strong>y</strong> (right input). Leave exactly one field empty, then select <strong>Calculate</strong>. The answer and a corresponding exponential equation appear above the form. Select <strong>Clear</strong> to empty all three inputs, or <strong>save</strong> in the result bar to download the result as a text file.</p>
+<h2>Logarithm Formulas</h2>
+<p>A logarithm answers the question: “What power of the base produces the argument?” Its exponential equivalent is <strong>b<sup>y</sup> = x</strong>. You can rearrange this relationship to solve for any one of the three quantities.</p>
+<div class="cp-table-scroll"><table class="cp-content-table"><thead><tr><th>Unknown quantity</th><th>Formula</th><th>Conditions</th></tr></thead><tbody>
+<tr><td>Logarithm y</td><td>y = ln(x) / ln(b)</td><td>x &gt; 0; b &gt; 0; b ≠ 1</td></tr>
+<tr><td>Argument x</td><td>x = b<sup>y</sup></td><td>b &gt; 0; b ≠ 1</td></tr>
+<tr><td>Base b</td><td>b = x<sup>1/y</sup></td><td>x &gt; 0, x ≠ 1; y ≠ 0; computed b ≠ 1</td></tr>
+</tbody></table></div>
+<p>For natural logarithms, enter <strong>e</strong> as the base, where e ≈ 2.718281828459045. For common logarithms, enter 10. For binary logarithms, enter 2. Calculations use JavaScript's double-precision floating-point arithmetic; displayed results are rounded to about 14 significant digits.</p>
+<h2>Worked Examples</h2>
+<h3>Find a logarithm</h3>
+<p>With x = 100 and b = e, the missing value is y = ln(100) ≈ <strong>4.6051701859881</strong>. This means e<sup>4.6051701859881</sup> ≈ 100.</p>
+<h3>Find the argument</h3>
+<p>If b = 2 and y = 5, then x = 2<sup>5</sup> = <strong>32</strong>. Leave the upper-left input empty to solve for x.</p>
+<h3>Find the base</h3>
+<p>If x = 81 and y = 4, then b = 81<sup>1/4</sup> = <strong>3</strong>. Leave the lower-left input empty to solve for b.</p>
+<h2>Basic Logarithm Rules</h2>
+<p>For positive arguments u and v, with a valid common base b:</p>
+<ul><li><strong>Product:</strong> log<sub>b</sub>(uv) = log<sub>b</sub>(u) + log<sub>b</sub>(v).</li>
+<li><strong>Quotient:</strong> log<sub>b</sub>(u/v) = log<sub>b</sub>(u) − log<sub>b</sub>(v).</li>
+<li><strong>Power:</strong> log<sub>b</sub>(u<sup>k</sup>) = k · log<sub>b</sub>(u).</li>
+<li><strong>Special values:</strong> log<sub>b</sub>(1) = 0 and log<sub>b</sub>(b) = 1.</li></ul>
+<h2>Frequently Asked Questions</h2>
+<h3>Can the logarithm result be negative?</h3>
+<p>Yes. For instance, log<sub>10</sub>(0.01) = −2, because 10<sup>−2</sup> = 0.01. The argument remains positive even when the logarithm is negative.</p>
+<h3>Why can't the base be 1 or a negative number?</h3>
+<p>For real logarithms, the base must be positive and different from 1. A base of 1 cannot produce values other than 1; a negative base does not define a logarithm for every positive real argument.</p>
+<h3>Why can't I enter zero or a negative argument?</h3>
+<p>The real logarithm log<sub>b</sub>(x) is defined only for x &gt; 0. This calculator works with real values, not complex logarithms.</p>
+<h3>Can I calculate the base when y = 0?</h3>
+<p>No unique base can be calculated. If x = 1, every valid base produces y = 0. If x is not 1, there is no solution, since b<sup>0</sup> = 1 for all valid bases.</p>
+<h3>Does the calculator support scientific notation?</h3>
+<p>Yes. Type entries such as <strong>1e6</strong> or <strong>2.5e-4</strong>. A standalone <strong>e</strong> is also recognized as Euler's number in the base input.</p>
+<h2>Reference</h2>
+<p>For the underlying logarithm conventions and reference interface, see <a href="https://www.calculator.net/log-calculator.html" target="_blank" rel="noopener noreferrer">Calculator.net Log Calculator</a>. The CalcPro calculator runs locally in your browser and does not send input values to the reference website.</p>
+<p class="cp-page-footer">CalcPro — calculations are numerical estimates and may reflect floating-point rounding.</p></article></main></div><script>
+/* Self-contained logarithm calculator; no global variables or external dependencies. */
+(() => {
+  'use strict';
+  const root = document.getElementById('calcpro-log-tool');
+  if (!root) return;
+  const elem = (id) => root.querySelector('#' + id);
+  const form = elem('calcpro-log-form');
+  const xInput = elem('calcpro-log-x');
+  const bInput = elem('calcpro-log-base');
+  const yInput = elem('calcpro-log-y');
+  const hint = elem('calcpro-log-hint');
+  const result = elem('calcpro-log-result');
+  const error = elem('calcpro-log-error');
+  const answerLabel = elem('calcpro-log-answer-label');
+  const answerValue = elem('calcpro-log-answer-value');
+  const logEquation = elem('calcpro-log-log-equation');
+  const powerEquation = elem('calcpro-log-power-equation');
+  let lastCalculation = null;
+
+  const numericPattern = /^[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+)?$/;
+  function read(input, allowEuler) {
+    const text = input.value.trim().replace(/\u2212/g, '-');
+    if (text === '') return { blank: true };
+    if (allowEuler && /^e$/i.test(text)) return { blank: false, value: Math.E, euler: true };
+    if (!numericPattern.test(text)) throw Error('Enter a valid number' + (allowEuler ? ' or e' : '') + ' for ' + input.getAttribute('aria-label') + '.');
+    const number = Number(text);
+    if (!Number.isFinite(number)) throw Error('Please use finite numeric values.');
+    return { blank: false, value: number, euler: false };
+  }
+  function fmt(num) {
+    if (!Number.isFinite(num)) return String(num);
+    if (Object.is(num, -0) || num === 0) return '0';
+    return Number(num.toPrecision(14)).toString();
+  }
+  function span(text, highlight) {
+    const el = document.createElement('span');
+    el.textContent = text;
+    if (highlight) el.className = 'calcpro-log-highlight';
+    return el;
+  }
+  function script(tag, text, highlight) {
+    const el = document.createElement(tag);
+    el.textContent = text;
+    if (highlight) el.className = 'calcpro-log-highlight';
+    return el;
+  }
+  function showError(message) {
+    lastCalculation = null;
+    result.hidden = true;
+    hint.hidden = true;
+    error.textContent = message;
+    error.hidden = false;
+  }
+  function resetOutput() {
+    lastCalculation = null;
+    result.hidden = true;
+    error.hidden = true;
+    error.textContent = '';
+    hint.hidden = false;
+  }
+  function showResult(solution) {
+    const xText = fmt(solution.x);
+    const bText = solution.euler ? 'e' : fmt(solution.b);
+    const yText = fmt(solution.y);
+    const solved = solution.solved;
+    const valueText = solved === 'x' ? xText : solved === 'b' ? bText : yText;
+    answerLabel.textContent = solved;
+    answerValue.textContent = valueText;
+    logEquation.replaceChildren(
+      document.createTextNode('log'), script('sub', bText, solved === 'b'),
+      document.createTextNode('('), span(xText, solved === 'x'),
+      document.createTextNode(') = '), span(yText, solved === 'y')
+    );
+    powerEquation.replaceChildren(
+      span(bText, solved === 'b'), script('sup', yText, solved === 'y'),
+      document.createTextNode(' = '), span(xText, solved === 'x')
+    );
+    lastCalculation = {
+      answer: 'Answer: ' + solved + ' = ' + valueText,
+      log: 'log_(' + bText + ')(' + xText + ') = ' + yText,
+      power: bText + '^(' + yText + ') = ' + xText
+    };
+    error.hidden = true;
+    hint.hidden = true;
+    result.hidden = false;
+  }
+  function calculate() {
+    const x = read(xInput, false);
+    const b = read(bInput, true);
+    const y = read(yInput, false);
+    const missing = [x, b, y].filter(item => item.blank).length;
+    if (missing !== 1) throw Error('Enter exactly two values and leave the value you want to calculate blank.');
+    if (!x.blank && x.value <= 0) throw Error('The logarithm argument x must be greater than 0.');
+    if (!b.blank && (b.value <= 0 || b.value === 1)) throw Error('The base b must be greater than 0 and cannot equal 1.');
+    let xValue = x.value;
+    let bValue = b.value;
+    let yValue = y.value;
+    let solved;
+    let euler = Boolean(b.euler);
+    if (y.blank) {
+      solved = 'y';
+      if (xValue === 1) yValue = 0;
+      else if (xValue === bValue) yValue = 1;
+      else yValue = Math.log(xValue) / Math.log(bValue);
+    } else if (x.blank) {
+      solved = 'x';
+      xValue = Math.pow(bValue, yValue);
+      if (!(xValue > 0) || !Number.isFinite(xValue)) throw Error('The calculated x is outside the supported finite positive number range.');
+    } else {
+      solved = 'b';
+      if (yValue === 0) {
+        if (xValue === 1) throw Error('No unique base exists: every positive base other than 1 satisfies log₍b₎(1) = 0.');
+        throw Error('No real base exists: b⁰ is always 1, not ' + fmt(xValue) + '.');
+      }
+      if (xValue === 1) throw Error('No valid base exists: x = 1 requires y = 0 for any logarithm base.');
+      bValue = Math.exp(Math.log(xValue) / yValue);
+      euler = false;
+      if (!(bValue > 0) || !Number.isFinite(bValue)) throw Error('The calculated base is outside the supported finite positive number range.');
+      if (bValue === 1) throw Error('The calculated base rounds to 1 at JavaScript numeric precision; try values farther from 1.');
+    }
+    if (!Number.isFinite(yValue)) throw Error('The calculated result is outside the supported finite number range.');
+    showResult({ x: xValue, b: bValue, y: yValue, solved, euler });
+  }
+  form.addEventListener('submit', event => {
+    event.preventDefault();
+    try { calculate(); }
+    catch (problem) { showError(problem.message || 'Calculation could not be completed.'); }
+  });
+  [xInput, bInput, yInput].forEach(input => input.addEventListener('input', resetOutput));
+  elem('calcpro-log-clear').addEventListener('click', () => {
+    xInput.value = '';
+    bInput.value = '';
+    yInput.value = '';
+    resetOutput();
+    xInput.focus();
+  });
+  elem('calcpro-log-save').addEventListener('click', () => {
+    if (!lastCalculation) return;
+    const body = ['Log Calculator (Logarithm)', lastCalculation.answer, '', lastCalculation.log, lastCalculation.power, ''].join('\n');
+    const blob = new Blob([body], { type: 'text/plain;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'log-calculation.txt';
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    window.setTimeout(() => URL.revokeObjectURL(url), 2000);
+  });
+})();
+</script></body></html>

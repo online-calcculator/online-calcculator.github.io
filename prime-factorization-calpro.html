@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>Prime Factorization Calculator | CalcPro</title><meta content="Find prime factors, prime-power form, and an interactive SVG factor tree for an integer with the free CalcPro Prime Factorization Calculator." name="description"/><link href="template-style.css" rel="stylesheet"/><style>
+
+/* Prime Factorization Calculator: isolated component styles. */
+.calcpro-prime{font-family:Arial,Helvetica,sans-serif;font-size:16px;color:#171717;line-height:1.5;width:100%;max-width:100%;min-width:0}
+.calcpro-prime *{box-sizing:border-box}
+.calcpro-prime [hidden]{display:none!important}
+.calcpro-prime-result{margin:0 0 20px}
+.calcpro-prime-result-header{display:flex;justify-content:space-between;align-items:center;gap:10px;background:#4d8326;color:white;min-height:37px;padding:4px 7px 4px 9px}
+.calcpro-prime-result-heading{font-size:22px;line-height:1.2;font-weight:400;margin:0;color:white}
+.calcpro-prime-result-actions{display:flex;align-items:center;gap:5px}
+.calcpro-prime-icon-button{border:0;color:white;background:transparent;cursor:pointer;display:inline-flex;flex-direction:column;align-items:center;gap:0;font:11px/1 Arial,Helvetica,sans-serif;border-radius:2px;padding:2px 6px}
+.calcpro-prime-icon-button:hover,.calcpro-prime-icon-button:focus-visible{background:rgba(255,255,255,.17)}
+.calcpro-prime-icon-button svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.calcpro-prime-result-content{padding:10px 0 0}
+.calcpro-prime-result-lead{margin:0 0 11px;font-size:16px;overflow-wrap:anywhere}
+.calcpro-prime-result-lead strong{font-weight:700}
+.calcpro-prime-equations{margin:0 0 14px;line-height:1.75;overflow-wrap:anywhere}
+.calcpro-prime-equations div{min-height:23px}
+.calcpro-prime-equations sup{font-size:.74em;vertical-align:super;line-height:0}
+.calcpro-prime-tree-heading{font-size:16px;font-weight:700;margin:14px 0 6px}
+.calcpro-prime-tree-viewport{max-height:460px;overflow-y:auto;overflow-x:hidden;max-width:100%;padding:3px 0 7px;overscroll-behavior:contain}
+.calcpro-prime-tree-viewport svg{display:block;max-width:100%;width:405px;height:auto;overflow:visible}
+.calcpro-prime-tree-note{margin:5px 0 13px;color:#4e5860;font-size:13px}
+.calcpro-prime-tree-empty{font-size:14px;color:#465563;margin:6px 0}
+.calcpro-prime-form-panel{background:#eee;border:1px solid #bdbdbd;padding:20px 14px;margin:0}
+.calcpro-prime-form{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:8px}
+.calcpro-prime-input-label{font-size:14px;font-weight:700;margin-right:2px}
+.calcpro-prime-input{width:214px;max-width:100%;height:32px;border:1px solid #3571a5;background:#fff;color:#111;padding:4px 7px;box-shadow:0 1px 3px #ccc;border-radius:2px;font:15px Arial,Helvetica,sans-serif}
+.calcpro-prime-input:focus{outline:2px solid #3a6f9f;outline-offset:2px}
+.calcpro-prime-input[aria-invalid=true]{border-color:#b72d30;box-shadow:0 0 0 1px #b72d30}
+.calcpro-prime-button{appearance:none;border:0;border-radius:0;color:white;font:700 14px Arial,Helvetica,sans-serif;height:38px;padding:0 12px;cursor:pointer;white-space:nowrap}
+.calcpro-prime-calculate{background:#4d8326}
+.calcpro-prime-calculate:hover{background:#396c18}
+.calcpro-prime-calculate .calcpro-prime-play{display:inline-grid;place-items:center;width:21px;height:21px;border-radius:50%;background:#9bbc87;margin-left:9px;vertical-align:middle;font-size:14px}
+.calcpro-prime-clear{background:#a7a7a7;font-weight:400}
+.calcpro-prime-clear:hover{background:#7c7c7c}
+.calcpro-prime-button:focus-visible{outline:2px solid #164f8b;outline-offset:3px}
+.calcpro-prime-error{background:#fff4f3;color:#99252d;padding:8px 11px;border-left:3px solid #af333b;margin:11px 0 0;font-size:14px}
+.calcpro-prime-helper{font-size:12px;color:#596572;margin:9px 0 0;text-align:center}
+.calcpro-prime-result-caption{color:#555;font-size:13px;margin:9px 0 0}
+@media(max-width:520px){.calcpro-prime-form-panel{padding:16px 12px}.calcpro-prime-form{justify-content:stretch;gap:9px}.calcpro-prime-input-label{width:100%}.calcpro-prime-input{width:100%;flex:1 1 100%}.calcpro-prime-calculate{flex:1 1 auto}.calcpro-prime-clear{flex:0 0 auto}.calcpro-prime-result-heading{font-size:20px}.calcpro-prime-result-content{padding-top:11px}.calcpro-prime-icon-button{padding:3px}}
+@media print{.calcpro-prime-form-panel{display:none}.calcpro-prime-result{break-inside:avoid}.calcpro-prime-result-actions{display:none}.calcpro-prime-tree-viewport{max-height:none;overflow:visible}}
+
+</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / Math / Prime Factorization Calculator</nav><h1 class="cp-page-title">Prime Factorization Calculator</h1><p class="cp-intro">Please provide an integer to find its prime factors and a factor tree. Results appear above the form after you calculate.</p><section aria-label="Calculator" class="cp-tool-area">
+
+<div class="calcpro-prime" id="calcpro-prime-root">
+  <section class="calcpro-prime-result" id="calcpro-prime-results" aria-label="Prime factorization result" aria-live="polite" hidden>
+    <header class="calcpro-prime-result-header">
+      <h2 class="calcpro-prime-result-heading">Result</h2>
+      <div class="calcpro-prime-result-actions">
+        <button class="calcpro-prime-icon-button" id="calcpro-prime-save" type="button" title="Save result as text file" aria-label="Save result as text file">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 3h13l3 3v15H4zM7 3v7h10V3M7 21v-8h10v8M10 3v5h4"/></svg><span>Save</span>
+        </button>
+        <button class="calcpro-prime-icon-button" id="calcpro-prime-print" type="button" title="Print result" aria-label="Print result">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9V3h12v6M6 18H4V9h16v9h-2M6 14h12v7H6zM17 12h.01"/></svg><span>Print</span>
+        </button>
+      </div>
+    </header>
+    <div class="calcpro-prime-result-content">
+      <p id="calcpro-prime-lead" class="calcpro-prime-result-lead"></p>
+      <div id="calcpro-prime-equations" class="calcpro-prime-equations"></div>
+      <h3 class="calcpro-prime-tree-heading">Factor tree:</h3>
+      <div class="calcpro-prime-tree-viewport" id="calcpro-prime-tree" aria-label="Factor tree chart"></div>
+      <p class="calcpro-prime-tree-note" id="calcpro-prime-tree-note"></p>
+    </div>
+  </section>
+  <div class="calcpro-prime-form-panel">
+    <form id="calcpro-prime-form" class="calcpro-prime-form" novalidate>
+      <label class="calcpro-prime-input-label" for="calcpro-prime-integer">Integer</label>
+      <input id="calcpro-prime-integer" name="number" class="calcpro-prime-input" type="text" value="100" inputmode="numeric" autocomplete="off" spellcheck="false" aria-describedby="calcpro-prime-helper" placeholder="e.g. 100" />
+      <button class="calcpro-prime-button calcpro-prime-calculate" type="submit">Calculate <span class="calcpro-prime-play" aria-hidden="true">▶</span></button>
+      <button class="calcpro-prime-button calcpro-prime-clear" id="calcpro-prime-clear" type="button">Clear</button>
+    </form>
+    <p id="calcpro-prime-error" class="calcpro-prime-error" role="alert" hidden></p>
+    <p id="calcpro-prime-helper" class="calcpro-prime-helper">Enter any whole number up to 9,007,199,254,740,991 in absolute value. No units are required.</p>
+  </div>
+</div>
+</section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><a href="factor-calculator.html">Factor Calculator</a><a href="common-factor-calculator.html">Common Factor Calculator</a><a href="lcm-calculator.html">LCM Calculator</a><a href="exponent-calculator.html">Exponent Calculator</a><a href="root-calculator.html">Root Calculator</a><a href="fraction-calculator.html">Fraction Calculator</a><a href="scientific-calculator.html">Scientific Calculator</a><a href="basic-calculator.html">Basic Calculator</a><a href="average-calculator.html">Average Calculator</a><a href="binary-calculator.html">Binary Calculator</a><a href="big-number-calculator.html">Big Number Calculator</a><a href="scientific-notation-calculator.html">Scientific Notation</a></div></section></aside><article class="cp-article">
+<h2>What Is Prime Factorization?</h2>
+<p>Prime factorization expresses an integer greater than 1 as a product of prime numbers. A prime number has exactly two positive divisors: 1 and itself. Composite numbers can be broken into smaller factors until only primes remain.</p>
+<p>The fundamental theorem of arithmetic states that every integer greater than 1 has a unique prime factorization, apart from the order in which the prime factors are written.</p>
+<h2>How to Use the Prime Factorization Calculator</h2>
+<ol>
+<li>Type an integer, such as <strong>100</strong>, in the input field.</li>
+<li>Select <strong>Calculate</strong> or press Enter to display the prime factors and factor tree above the form.</li>
+<li>Read the repeated prime factors, the expression using exponents, and the branching factor tree.</li>
+<li>Use <strong>Save</strong> to export a plain-text result, <strong>Print</strong> for a printed copy, or <strong>Clear</strong> to start again.</li>
+</ol>
+<h2>Prime Factorization Formula and Example</h2>
+<p>Write a positive integer as <strong>n = p₁ × p₂ × … × pₖ</strong>, where every <strong>p</strong> is prime. Repeated factors can be combined using exponents.</p>
+<div class="cp-note"><strong>Example: 100</strong><p>100 ÷ 2 = 50; 50 ÷ 2 = 25; 25 ÷ 5 = 5; and 5 ÷ 5 = 1.</p><p><strong>100 = 2 × 2 × 5 × 5 = 2<sup>2</sup> × 5<sup>2</sup>.</strong></p></div>
+<h3>How to Read a Factor Tree</h3>
+<p>A factor tree starts with the number being factored and repeatedly splits it into two factors. This tool places the remaining quotient on the left and the extracted prime factor on the right. When every branch ends at a prime, the tree is complete.</p>
+<h3>How the Calculator Finds Prime Factors</h3>
+<p>The calculation tests for small prime divisors, checks primality with a deterministic Miller–Rabin test, and uses Pollard's rho algorithm to split larger composite numbers. Integer arithmetic is performed with JavaScript BigInt, so accepted integer values are exact rather than rounded.</p>
+<h2>Frequently Asked Questions</h2>
+<h3>What are the prime factors of 60?</h3>
+<p>The prime factors are <strong>2, 2, 3, 5</strong>. In exponent form, <strong>60 = 2<sup>2</sup> × 3 × 5</strong>.</p>
+<h3>What if my number is already prime?</h3>
+<p>The result shows the number itself as its only prime factor, and the factor tree contains a single node.</p>
+<h3>Can I factor 0, 1, or negative numbers?</h3>
+<p>Zero and the units 1 and −1 have no prime factors. For a negative integer other than −1, the tool factors its absolute value and includes −1 in the signed multiplication expression. The value −1 itself is not a prime number.</p>
+<h3>Is there an input size limit?</h3>
+<p>Yes. The calculator accepts exact signed integers whose absolute value does not exceed <strong>9,007,199,254,740,991</strong>. Very large composite inputs can take longer to factor.</p>
+<h2>Reference</h2>
+<p>For a general explanation of the underlying method, see the <a href="https://www.calculator.net/prime-factorization-calculator.html" rel="noopener noreferrer">prime factorization reference calculator</a>. This CalcPro calculator uses its own local implementation and does not submit input to the reference website.</p>
+<p class="cp-page-footer">CalcPro — mathematical results are provided for informational and educational use.</p>
+</article></main></div><script>
+
+(()=>{'use strict';
+  const root=document.getElementById('calcpro-prime-root');
+  if(!root)return;
+  const form=root.querySelector('#calcpro-prime-form');
+  const input=root.querySelector('#calcpro-prime-integer');
+  const error=root.querySelector('#calcpro-prime-error');
+  const results=root.querySelector('#calcpro-prime-results');
+  const lead=root.querySelector('#calcpro-prime-lead');
+  const equations=root.querySelector('#calcpro-prime-equations');
+  const tree=root.querySelector('#calcpro-prime-tree');
+  const treeNote=root.querySelector('#calcpro-prime-tree-note');
+  const saveButton=root.querySelector('#calcpro-prime-save');
+  const printButton=root.querySelector('#calcpro-prime-print');
+  const clearButton=root.querySelector('#calcpro-prime-clear');
+  const MAX=9007199254740991n;
+  const SMALL_PRIMES=[2n,3n,5n,7n,11n,13n,17n,19n,23n,29n,31n,37n];
+  const MR_BASES=[2n,325n,9375n,28178n,450775n,9780504n,1795265022n];
+  const SVG_NS='http://www.w3.org/2000/svg';
+  let exportText='';
+  let exportName='';
+  const abs=n=>n<0n?-n:n;
+  function gcd(a,b){while(b!==0n){const t=a%b;a=b;b=t;}return a;}
+  function powMod(base,exp,mod){let out=1n;base%=mod;while(exp>0n){if(exp&1n)out=(out*base)%mod;base=(base*base)%mod;exp>>=1n;}return out;}
+  /* Deterministic Miller-Rabin for the entire 64-bit range (input is <= 2^53-1). */
+  function isPrime(n){
+    if(n<2n)return false;
+    for(const p of SMALL_PRIMES){if(n===p)return true;if(n%p===0n)return false;}
+    let d=n-1n,s=0;
+    while((d&1n)===0n){d>>=1n;s++;}
+    for(const base of MR_BASES){
+      const a=base%n;if(a===0n)continue;
+      let x=powMod(a,d,n);
+      if(x===1n||x===n-1n)continue;
+      let passed=false;
+      for(let r=1;r<s;r++){x=(x*x)%n;if(x===n-1n){passed=true;break;}}
+      if(!passed)return false;
+    }
+    return true;
+  }
+  /* Pollard rho finds a nontrivial divisor efficiently, including large semiprimes. */
+  function findDivisor(n){
+    for(const p of SMALL_PRIMES)if(n%p===0n)return p;
+    for(let c=1n;c<=60n;c++){
+      let x=2n+c,y=x,d=1n;
+      const step=z=>(z*z+c)%n;
+      for(let k=0;k<350000&&d===1n;k++){
+        x=step(x);y=step(step(y));d=gcd(abs(x-y),n);
+      }
+      if(d>1n&&d<n)return d;
+    }
+    throw new Error('This number could not be factored in the current calculation. Please try a smaller integer.');
+  }
+  function primeFactors(n){
+    const factors=[],pending=[n];
+    while(pending.length){
+      const current=pending.pop();
+      if(current===1n)continue;
+      if(isPrime(current)){factors.push(current);continue;}
+      const divisor=findDivisor(current);
+      pending.push(divisor,current/divisor);
+    }
+    factors.sort((a,b)=>a<b?-1:a>b?1:0);
+    return factors;
+  }
+  function parseInteger(raw){
+    const value=raw.trim();
+    if(!value)throw new Error('Please enter an integer.');
+    if(!/^[+-]?(?:\d+|\d{1,3}(?:,\d{3})+)$/.test(value))throw new Error('Enter a valid whole number without decimals or fractions. Commas are optional.');
+    const n=BigInt(value.replace(/,/g,''));
+    if(abs(n)>MAX)throw new Error('Enter an integer between -9,007,199,254,740,991 and 9,007,199,254,740,991.');
+    return n;
+  }
+  function el(tag,attrs={},value){
+    const node=document.createElement(tag);
+    Object.entries(attrs).forEach(([key,val])=>node.setAttribute(key,val));
+    if(value!==undefined)node.textContent=value;
+    return node;
+  }
+  function svgEl(tag,attrs={},value){
+    const node=document.createElementNS(SVG_NS,tag);
+    Object.entries(attrs).forEach(([key,val])=>node.setAttribute(key,String(val)));
+    if(value!==undefined)node.textContent=value;
+    return node;
+  }
+  function nodeWidth(value){return Math.min(176,Math.max(50,String(value).length*9.2+30));}
+  function chartNode(svg,n,x,y,isLeaf){
+    const val=String(n),w=nodeWidth(val);
+    svg.append(svgEl('rect',{x:x-w/2,y:y-18,width:w,height:36,rx:5,fill:isLeaf?'#e5f2db':'#e9f0f7',stroke:isLeaf?'#6b9e50':'#93aabe','stroke-width':1}));
+    svg.append(svgEl('text',{x,y:y+5,'text-anchor':'middle','font-family':'Arial, sans-serif','font-size':val.length>13?12:15,'font-weight':isLeaf?'700':'500',fill:'#192c3a'},val));
+  }
+  function createTree(n,factors){
+    tree.replaceChildren();
+    if(n<=1n){tree.append(el('p',{class:'calcpro-prime-tree-empty'},'No factor tree is defined for 0 or 1.'));return '';}
+    const rows=[];let current=n;
+    for(let i=0;i<factors.length-1;i++){
+      const p=factors[i],cofactor=current/p;
+      rows.push({parent:current,left:cofactor,right:p});current=cofactor;
+    }
+    const height=73+rows.length*75;
+    const svg=svgEl('svg',{viewBox:`0 0 405 ${height}`,width:405,height,role:'img','aria-label':`Factor tree for ${n}: ${rows.length?rows.map(r=>`${r.parent} splits into ${r.left} and ${r.right}`).join('; '):`${n} is prime`}`});
+    svg.append(svgEl('title',{},`Factor tree for ${n}`));
+    for(let i=0;i<rows.length;i++){
+      const y=35+i*75,ny=y+75;
+      svg.append(svgEl('line',{x1:112,y1:y+18,x2:112,y2:ny-19,stroke:'#708b9f','stroke-width':2}));
+      svg.append(svgEl('line',{x1:112,y1:y+18,x2:300,y2:ny-19,stroke:'#708b9f','stroke-width':2}));
+    }
+    nodeWidth(n);
+    chartNode(svg,n,112,35,factors.length===1);
+    for(let i=0;i<rows.length;i++){
+      const y=35+(i+1)*75;
+      chartNode(svg,rows[i].left,112,y,i===rows.length-1);
+      chartNode(svg,rows[i].right,300,y,true);
+    }
+    tree.append(svg);
+    return rows.length?rows.map(r=>`${r.parent} = ${r.left} × ${r.right}`).join('\n'):`${n} (prime)`;
+  }
+  function clearError(){error.hidden=true;error.textContent='';input.removeAttribute('aria-invalid');}
+  function showError(message){
+    results.hidden=true;clearError();error.textContent=message;error.hidden=false;input.setAttribute('aria-invalid','true');
+  }
+  function render(){
+    clearError();let n;
+    try{n=parseInteger(input.value);}catch(e){showError(e.message);return;}
+    const magnitude=abs(n);
+    let factors=[];
+    try{if(magnitude>1n)factors=primeFactors(magnitude);}catch(e){showError(e.message);return;}
+    const negative=n<0n;
+    const primeOnly=magnitude>1n&&factors.length===1;
+    const display=n.toString();
+    lead.replaceChildren();equations.replaceChildren();treeNote.textContent='';
+    if(magnitude<=1n){
+      const sentence=n===0n?'0 has no prime factorization because every nonzero integer divides 0.':`${display} has no prime factors; only integers with absolute value greater than 1 have prime factors.`;
+      lead.append(el('strong',{},`Prime factors of ${display}: `),document.createTextNode('none'));
+      equations.append(el('div',{},sentence));
+      createTree(magnitude,factors);
+      exportText=`Prime factorization of ${display}\n${sentence}\n`;
+    }else{
+      lead.append(el('strong',{},`Prime factors of ${display}: `),document.createTextNode(factors.join(', ')));
+      const plainParts=[...(negative?['-1']:[]),...factors.map(String)];
+      const product=plainParts.join(' × ');
+      const compressed=[];
+      if(negative)compressed.push('-1');
+      for(let i=0;i<factors.length;){
+        let j=i+1;while(j<factors.length&&factors[j]===factors[i])j++;
+        compressed.push({base:factors[i].toString(),exponent:j-i});i=j;
+      }
+      const plain=el('div');plain.append(document.createTextNode(`${display} = ${product}`));equations.append(plain);
+      const hasExponents=compressed.some(v=>typeof v!=='string'&&v.exponent>1);
+      if(hasExponents){
+        const power=el('div',{class:'calcpro-prime-power-line'});
+        power.append(document.createTextNode('= '));
+        compressed.forEach((part,i)=>{
+          if(i)power.append(document.createTextNode(' × '));
+          if(typeof part==='string')power.append(document.createTextNode(part));
+          else{power.append(document.createTextNode(part.base));if(part.exponent>1)power.append(el('sup',{},String(part.exponent)));}
+        });
+        equations.append(power);
+      }
+      const graphText=createTree(magnitude,factors);
+      if(primeOnly){treeNote.textContent=`${magnitude} is prime, so the tree consists of one node.`;}
+      else if(negative){treeNote.textContent=`The factor tree shows |${display}|. The factor -1 gives the original negative sign and is not prime.`;}
+      const compactText=compressed.map(p=>typeof p==='string'?p:(p.exponent===1?p.base:`${p.base}^${p.exponent}`)).join(' × ');
+      exportText=`Prime factors of ${display}: ${factors.join(', ')}\n${display} = ${product}\n${display} = ${compactText}\nFactor tree for ${magnitude}:\n${graphText}\n`;
+    }
+    exportName=`prime-factorization-${String(n).replace('-','negative-')}.txt`;
+    results.hidden=false;
+  }
+  form.addEventListener('submit',e=>{e.preventDefault();render();});
+  input.addEventListener('input',()=>{if(!error.hidden)clearError();});
+  clearButton.addEventListener('click',()=>{input.value='';results.hidden=true;exportText='';clearError();input.focus();});
+  saveButton.addEventListener('click',()=>{
+    if(!exportText||results.hidden)return;
+    const blob=new Blob([exportText],{type:'text/plain;charset=utf-8'});
+    const url=URL.createObjectURL(blob);
+    const a=el('a',{href:url,download:exportName});
+    document.body.append(a);a.click();a.remove();
+    setTimeout(()=>URL.revokeObjectURL(url),1000);
+  });
+  printButton.addEventListener('click',()=>{if(!results.hidden)window.print();});
+})();
+
+</script></body></html>

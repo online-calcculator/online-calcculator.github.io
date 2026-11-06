@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>Credit Card Calculator — Payoff Time &amp; Interest | CalcPro</title><meta content="Calculate credit card payoff time, monthly payment, and total interest. View graphs and a detailed payment schedule using CalcPro." name="description"/><link href="template-style.css" rel="stylesheet"/><style>
+/* Credit Card Calculator — isolated CalcPro tool styles. */
+.calcpro-creditcard-widget{--calcpro-creditcard-green:#4f8727;--calcpro-creditcard-blue:#376797;--calcpro-creditcard-principal:#2e80dc;--calcpro-creditcard-interest:#86b719;font:16px Arial,Helvetica,sans-serif;color:#111;max-width:100%;min-width:0;text-align:left}
+.calcpro-creditcard-widget *{box-sizing:border-box}
+.calcpro-creditcard-widget button,.calcpro-creditcard-widget input{font:inherit}
+.calcpro-creditcard-widget button{cursor:pointer}
+.calcpro-creditcard-widget button:focus-visible,.calcpro-creditcard-widget input:focus-visible,.calcpro-creditcard-widget a:focus-visible,.calcpro-creditcard-widget summary:focus-visible{outline:3px solid #1d6aa2;outline-offset:2px}
+.calcpro-creditcard-widget [hidden]{display:none!important}
+.calcpro-creditcard-hint{display:flex;align-items:center;justify-content:center;gap:18px;min-height:44px;background:var(--calcpro-creditcard-blue);color:#fff;font-size:17px;text-align:center;padding:7px 14px;margin-bottom:3px}
+.calcpro-creditcard-hint-arrow{flex:0 0 29px;width:29px;height:29px;background:#fff;border-radius:50%;display:grid;place-items:center;color:var(--calcpro-creditcard-blue);font-size:20px;line-height:1}
+.calcpro-creditcard-form{background:#eee;border:1px solid #bcbcbc;padding:10px 17px 14px;width:100%;margin:0}
+.calcpro-creditcard-field{display:grid;grid-template-columns:170px minmax(0,1fr);align-items:center;gap:4px 4px;min-height:41px}
+.calcpro-creditcard-field>label{font-size:16px}
+.calcpro-creditcard-inputwrap{display:inline-flex;position:relative;align-items:center;border:1px solid #376b9d;border-radius:2px;box-shadow:1px 2px 4px #0002;background:#fff;height:35px;max-width:100%;width:126px;vertical-align:middle}
+.calcpro-creditcard-inputwrap:focus-within{outline:2px solid #87aed2;outline-offset:0}
+.calcpro-creditcard-inputwrap input{height:100%;width:100%;min-width:0;border:0;background:transparent;padding:5px 8px;color:#111;font-size:17px;outline:none;box-shadow:none}
+.calcpro-creditcard-inputwrap input:focus-visible{outline:none}
+.calcpro-creditcard-inputprefix{padding-left:5px;white-space:nowrap;font-size:17px}
+.calcpro-creditcard-inputsuffix{padding-right:7px;font-size:17px}
+.calcpro-creditcard-inputwrap.calcpro-creditcard-short{width:110px}
+.calcpro-creditcard-inputwrap.calcpro-creditcard-duration{width:75px}
+.calcpro-creditcard-question{margin:10px 0 6px;font-size:16px}
+.calcpro-creditcard-option{display:flex;align-items:center;gap:10px;margin:6px 0;font-size:17px;width:fit-content;max-width:100%;cursor:pointer}
+.calcpro-creditcard-option input{width:21px;height:21px;accent-color:#376b9d;margin:0;flex-shrink:0}
+.calcpro-creditcard-option-body{margin:4px 0 11px 31px;font-size:16px}
+.calcpro-creditcard-payment-row{display:flex;align-items:center;gap:5px;flex-wrap:wrap}
+.calcpro-creditcard-presets{line-height:1.45;margin:2px 0 0 0}
+.calcpro-creditcard-presets button{border:0;background:none;padding:0;color:#006ba4;text-decoration:underline;font-size:16px;cursor:pointer}
+.calcpro-creditcard-presets button:hover{color:#003d65;text-decoration:none}
+.calcpro-creditcard-time-row{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.calcpro-creditcard-time-row .calcpro-creditcard-time-label{margin-right:1px}
+.calcpro-creditcard-form-actions{display:flex;align-items:center;justify-content:center;gap:5px;margin-top:14px}
+.calcpro-creditcard-calculate{min-height:46px;background:#4e8625;color:#fff;font-weight:700;border:0;padding:9px 14px 9px 17px;display:inline-flex;align-items:center;gap:13px;font-size:16px}
+.calcpro-creditcard-calculate:hover{background:#3b6e1c}
+.calcpro-creditcard-button-arrow{display:inline-grid;place-items:center;width:25px;height:25px;border-radius:50%;color:#fff;background:#8eb87b;font-size:20px}
+.calcpro-creditcard-clear{min-height:46px;background:#aaa;color:#fff;border:0;font-size:16px;padding:9px 11px}
+.calcpro-creditcard-clear:hover{background:#858585}
+.calcpro-creditcard-error{background:#fff2ef;color:#9d2514;border:1px solid #d58980;padding:9px 11px;margin-bottom:8px;font-size:14px}
+.calcpro-creditcard-result{margin:0 0 27px}
+.calcpro-creditcard-resultbar{display:flex;align-items:center;justify-content:space-between;min-height:42px;background:var(--calcpro-creditcard-green);color:#fff;font-size:22px;padding:4px 9px;margin-bottom:3px}
+.calcpro-creditcard-save{border:0;background:transparent;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:9px;line-height:1.1;min-width:31px;padding:2px}
+.calcpro-creditcard-save svg{width:17px;height:17px;fill:currentColor}
+.calcpro-creditcard-save:hover{text-decoration:underline}
+.calcpro-creditcard-resulttext{font-size:22px;line-height:1.35;margin:6px 0 13px}
+.calcpro-creditcard-resulttext strong{color:#078500;font-weight:700}
+.calcpro-creditcard-charts{display:grid;grid-template-columns:minmax(215px,0.8fr) minmax(0,1.2fr);gap:8px 8px;align-items:start;min-height:216px;margin:4px 0 6px}
+.calcpro-creditcard-donut-panel{display:flex;align-items:flex-start;justify-content:center;gap:9px;padding-top:22px;min-width:0}
+.calcpro-creditcard-donut{width:132px;height:132px;border-radius:50%;position:relative;flex:0 0 132px;background:conic-gradient(var(--calcpro-creditcard-principal) 0 65%,var(--calcpro-creditcard-interest) 65% 100%)}
+.calcpro-creditcard-donut::before{content:"";position:absolute;inset:29%;border-radius:50%;background:#fff}
+.calcpro-creditcard-donutlabel{position:absolute;color:#fff;z-index:1;font-size:13px;font-weight:600;transform:translate(-50%,-50%);pointer-events:none}
+.calcpro-creditcard-pielegend{font-size:15px;padding-top:1px;min-width:74px}
+.calcpro-creditcard-pielegend span{display:block;white-space:nowrap;margin-bottom:4px}
+.calcpro-creditcard-key{display:inline-block;width:20px;height:13px;margin-right:6px;vertical-align:-1px;border-radius:2px}
+.calcpro-creditcard-key-principal{background:var(--calcpro-creditcard-principal)}
+.calcpro-creditcard-key-interest{background:var(--calcpro-creditcard-interest)}
+.calcpro-creditcard-graphwrap{min-width:0}
+.calcpro-creditcard-chart{display:block;width:100%;max-width:430px;height:auto;margin:auto}
+.calcpro-creditcard-breakdown{border:1px solid #c8d2d8;margin-top:4px;background:#fff}
+.calcpro-creditcard-breakdown>summary{padding:9px 11px;color:#006699;font-size:14px;cursor:pointer;font-weight:600}
+.calcpro-creditcard-breakdown[open]>summary{border-bottom:1px solid #dde3e8}
+.calcpro-creditcard-tabletools{padding:10px 11px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:6px}
+.calcpro-creditcard-stats{font-size:14px;color:#333}
+.calcpro-creditcard-print{background:#f1f5f8;border:1px solid #b6c7d2;color:#10496f;border-radius:3px;padding:5px 9px;font-size:13px!important}
+.calcpro-creditcard-table-scroll{max-width:100%;overflow-x:auto}
+.calcpro-creditcard-table{width:100%;border-collapse:collapse;font-size:13px;white-space:nowrap}
+.calcpro-creditcard-table th,.calcpro-creditcard-table td{padding:7px 8px;border:1px solid #d8e0e6;text-align:right}
+.calcpro-creditcard-table th{background:#376797;color:#fff}
+.calcpro-creditcard-table th:first-child,.calcpro-creditcard-table td:first-child{text-align:center}
+.calcpro-creditcard-table tbody tr:nth-child(even){background:#f3f7fa}
+.calcpro-creditcard-pager{display:flex;justify-content:center;align-items:center;gap:11px;padding:9px}
+.calcpro-creditcard-pager button{border:1px solid #b7c8d5;background:#f4f8fc;color:#06527d;padding:5px 10px;border-radius:3px;font-size:13px}
+.calcpro-creditcard-pager button:disabled{color:#999;cursor:not-allowed}
+.calcpro-creditcard-pager span{font-size:13px}
+.calcpro-creditcard-form-note{font-size:12px;color:#555;margin:9px 0 0;text-align:center}
+@media(max-width:690px){.calcpro-creditcard-charts{grid-template-columns:1fr;gap:0}.calcpro-creditcard-donut-panel{padding-top:5px;justify-content:center}.calcpro-creditcard-chart{max-width:430px}.calcpro-creditcard-resulttext{font-size:20px}}
+@media(max-width:450px){.calcpro-creditcard-hint{font-size:15px;gap:8px}.calcpro-creditcard-form{padding:11px 10px}.calcpro-creditcard-field{grid-template-columns:1fr;gap:2px;margin:0 0 9px}.calcpro-creditcard-option{font-size:15px}.calcpro-creditcard-option-body{margin-left:30px;font-size:15px}.calcpro-creditcard-presets button{font-size:14px}.calcpro-creditcard-resulttext{font-size:19px}.calcpro-creditcard-resultbar{font-size:20px}}
+@media print{.calcpro-creditcard-hint,.calcpro-creditcard-form-actions,.calcpro-creditcard-save,.calcpro-creditcard-print,.calcpro-creditcard-pager{display:none!important}.calcpro-creditcard-breakdown{break-inside:avoid}.calcpro-creditcard-result{margin-bottom:12px}}
+</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Credit Card Calculator</nav><h1 class="cp-page-title">Credit Card Calculator</h1><p class="cp-intro">Calculate how long it will take to pay off a credit card balance, or find the monthly payment needed to be debt-free by your chosen date. Compare interest costs and review a month-by-month payment schedule.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-creditcard-widget" id="calcpro-creditcard-widget">
+  <div class="calcpro-creditcard-result" id="calcpro-creditcard-result" hidden aria-live="polite">
+    <div class="calcpro-creditcard-resultbar"><span>Result:</span>
+      <button class="calcpro-creditcard-save" id="calcpro-creditcard-save" type="button" aria-label="Save calculation as CSV" title="Save calculation and payment schedule as CSV">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V7l-4-4ZM12 19a3 3 0 1 1 0-6 3 3 0 0 1 0 6Zm3-9H6V5h9v5Z"/></svg><span>save</span>
+      </button>
+    </div>
+    <p class="calcpro-creditcard-resulttext" id="calcpro-creditcard-resulttext"></p>
+    <div class="calcpro-creditcard-charts">
+      <div class="calcpro-creditcard-donut-panel" aria-label="Principal and interest share of total paid">
+        <div class="calcpro-creditcard-donut" id="calcpro-creditcard-donut" role="img" aria-label="Principal versus interest donut chart">
+          <span class="calcpro-creditcard-donutlabel" id="calcpro-creditcard-principalpct"></span>
+          <span class="calcpro-creditcard-donutlabel" id="calcpro-creditcard-interestpct"></span>
+        </div>
+        <div class="calcpro-creditcard-pielegend"><span><i class="calcpro-creditcard-key calcpro-creditcard-key-principal"></i>Principal</span><span><i class="calcpro-creditcard-key calcpro-creditcard-key-interest"></i>Interest</span></div>
+      </div>
+      <div class="calcpro-creditcard-graphwrap"><svg class="calcpro-creditcard-chart" id="calcpro-creditcard-chart" viewBox="0 0 430 250" role="img" aria-label="Remaining balance and cumulative interest by month"></svg></div>
+    </div>
+    <details class="calcpro-creditcard-breakdown" id="calcpro-creditcard-breakdown">
+      <summary>View monthly payment schedule</summary>
+      <div class="calcpro-creditcard-tabletools"><span class="calcpro-creditcard-stats" id="calcpro-creditcard-stats"></span><button class="calcpro-creditcard-print" id="calcpro-creditcard-print" type="button">Print calculation</button></div>
+      <div class="calcpro-creditcard-table-scroll"><table class="calcpro-creditcard-table"><thead><tr><th scope="col">Month</th><th scope="col">Starting balance</th><th scope="col">Payment</th><th scope="col">Interest</th><th scope="col">Principal</th><th scope="col">Remaining balance</th></tr></thead><tbody id="calcpro-creditcard-tablebody"></tbody></table></div>
+      <div class="calcpro-creditcard-pager"><button id="calcpro-creditcard-prev" type="button">Previous</button><span id="calcpro-creditcard-pagenum"></span><button id="calcpro-creditcard-next" type="button">Next</button></div>
+    </details>
+  </div>
+  <div class="calcpro-creditcard-hint" id="calcpro-creditcard-hint"><span class="calcpro-creditcard-hint-arrow" aria-hidden="true">▼</span><span>Modify the values and click the Calculate button to use</span></div>
+  <div class="calcpro-creditcard-error" id="calcpro-creditcard-error" role="alert" hidden></div>
+  <form class="calcpro-creditcard-form" id="calcpro-creditcard-form" novalidate>
+    <div class="calcpro-creditcard-field"><label for="calcpro-creditcard-balance">Credit card balance</label><span class="calcpro-creditcard-inputwrap"><span class="calcpro-creditcard-inputprefix" aria-hidden="true">$</span><input id="calcpro-creditcard-balance" name="balance" type="text" inputmode="decimal" value="8,000" autocomplete="off" aria-describedby="calcpro-creditcard-unit-note"></span></div>
+    <div class="calcpro-creditcard-field"><label for="calcpro-creditcard-rate">Interest rate</label><span class="calcpro-creditcard-inputwrap"><input id="calcpro-creditcard-rate" name="rate" type="text" inputmode="decimal" value="18" autocomplete="off"><span class="calcpro-creditcard-inputsuffix" aria-hidden="true">%</span></span></div>
+    <div class="calcpro-creditcard-question" id="calcpro-creditcard-mode-label">How do you plan to pay off?</div>
+    <div role="radiogroup" aria-labelledby="calcpro-creditcard-mode-label">
+      <label class="calcpro-creditcard-option"><input type="radio" name="calcpro-creditcard-mode" value="amount" id="calcpro-creditcard-mode-amount" checked>Pay a certain amount</label>
+      <div class="calcpro-creditcard-option-body" id="calcpro-creditcard-amount-fields">
+        <div class="calcpro-creditcard-payment-row"><label for="calcpro-creditcard-payment">pay</label><span class="calcpro-creditcard-inputwrap"><span class="calcpro-creditcard-inputprefix" aria-hidden="true">$</span><input id="calcpro-creditcard-payment" name="payment" type="text" inputmode="decimal" value="200" autocomplete="off"></span><span>per month</span></div>
+        <div class="calcpro-creditcard-presets">or use <button type="button" data-calcpro-creditcard-preset="1">Interest + 1% of Balance</button>, <button type="button" data-calcpro-creditcard-preset="2">2%</button>, <button type="button" data-calcpro-creditcard-preset="3">3%</button>, <button type="button" data-calcpro-creditcard-preset="4">4%</button>, <button type="button" data-calcpro-creditcard-preset="5">5%</button></div>
+      </div>
+      <label class="calcpro-creditcard-option"><input type="radio" name="calcpro-creditcard-mode" value="time" id="calcpro-creditcard-mode-time">Pay off within a certain timeframe</label>
+      <div class="calcpro-creditcard-option-body" id="calcpro-creditcard-time-fields" hidden>
+        <div class="calcpro-creditcard-time-row"><span class="calcpro-creditcard-time-label">pay off in</span><span class="calcpro-creditcard-inputwrap calcpro-creditcard-duration"><input id="calcpro-creditcard-years" name="years" type="text" inputmode="numeric" value="2" autocomplete="off" aria-label="Payoff years"></span><label for="calcpro-creditcard-years">years</label><span class="calcpro-creditcard-inputwrap calcpro-creditcard-duration"><input id="calcpro-creditcard-months" name="months" type="text" inputmode="numeric" value="0" autocomplete="off" aria-label="Additional payoff months"></span><label for="calcpro-creditcard-months">months</label></div>
+      </div>
+    </div>
+    <div class="calcpro-creditcard-form-actions"><button class="calcpro-creditcard-calculate" type="submit">Calculate <span class="calcpro-creditcard-button-arrow" aria-hidden="true">▶</span></button><button class="calcpro-creditcard-clear" id="calcpro-creditcard-clear" type="button">Clear</button></div>
+    <p class="calcpro-creditcard-form-note" id="calcpro-creditcard-unit-note">Estimates assume a fixed APR, no new purchases or fees, and monthly interest at APR ÷ 12.</p>
+  </form>
+</div></section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><!-- REPLACE these links with real related tools for each calculator; verify live slugs. --><a href="retirement-calculator.html">Retirement</a><a href="roth-ira-calculator.html">Roth IRA</a><a href="investment-calculator.html">Investment</a><a href="compound-interest-calculator.html">Compound Interest</a><a href="annuity-payout-calculator.html">Annuity Payout</a><a href="pension-calculator.html">Pension</a><a href="inflation-calculator.html">Inflation</a><a href="future-value-calculator.html">Future Value</a><a href="income-tax-calculator.html">Income Tax</a><a href="savings-calculator.html">Savings</a><a href="mortgage-calculator.html">Mortgage</a><a href="loan-calculator.html">Loan</a></div></section></aside><article class="cp-article">
+<h2>How to Use This Credit Card Calculator</h2>
+<p>Enter the current unpaid credit card balance and your annual interest rate (APR). Then choose either <strong>Pay a certain amount</strong> to estimate how long repayment will take, or <strong>Pay off within a certain timeframe</strong> to calculate the monthly payment required. Click <strong>Calculate</strong> to see the result above the form, the cost breakdown, and the balance and interest graph.</p>
+<p>Choose a quick-payment link to populate a fixed payment based on the starting balance. The Interest + 1% option adds one percent of the original balance to one month's interest. The 2%, 3%, 4%, and 5% options use those percentages of the initial balance. These are starting-payment shortcuts, <strong>not</strong> dynamic issuer minimum-payment rules. When applicable, the shortcut uses at least $15, or the full balance if the starting balance is below $15.</p>
+<p>Open <strong>View monthly payment schedule</strong> for the detailed amortization table, use Previous/Next to review every installment, and select <strong>save</strong> to export the schedule as CSV. Use <strong>Clear</strong> to empty the fields and start a new estimate.</p>
+<h2>Credit Card Payoff Formulas</h2>
+<p>This estimator uses a constant monthly interest rate of <strong>r = APR ÷ 12</strong>, where the APR is expressed as a decimal (for example, 18% becomes 0.18). Let <strong>B</strong> be the starting balance, <strong>P</strong> the monthly payment, and <strong>n</strong> the number of months.</p>
+<h3>How long will a fixed monthly payment take?</h3>
+<p>For a positive monthly rate and a payment that exceeds the monthly interest, the estimated fractional number of months is <strong>n = −ln(1 − Br/P) ÷ ln(1 + r)</strong>. At 0% APR, <strong>n = B ÷ P</strong>. The payoff time displayed rounds up to a whole payment month. To match the reference calculator's total-interest estimate, the calculator models the last part of a month fractionally: <strong>total interest = P × n − B</strong>. The resulting final payment in the schedule is adjusted to reconcile to that estimate.</p>
+<h3>What payment will finish in a chosen timeframe?</h3>
+<p>For a positive interest rate, the payment formula is <strong>P = Br ÷ [1 − (1 + r)<sup>−n</sup>]</strong>. When APR is 0%, it simplifies to <strong>P = B ÷ n</strong>. The displayed payment is rounded to cents, while the calculation retains additional precision for accurate totals.</p>
+<h2>Worked Examples</h2>
+<div class="cp-table-scroll"><table class="cp-content-table"><thead><tr><th>Balance</th><th>APR</th><th>Repayment plan</th><th>Estimated result</th></tr></thead><tbody>
+<tr><td>$8,000</td><td>18%</td><td>Pay $200 each month</td><td>5 years and 2 months; $4,308.61 interest</td></tr>
+<tr><td>$3,000</td><td>16%</td><td>Pay off in 24 months</td><td>$146.89 per month; $525.34 interest</td></tr>
+<tr><td>$2,400</td><td>0%</td><td>Pay $200 each month</td><td>12 months; $0 interest</td></tr>
+</tbody></table></div>
+<h2>Understanding the Results</h2>
+<p>The blue share of the doughnut chart represents the original amount borrowed (principal); green represents the estimated interest paid. The line graph shows the remaining balance decreasing toward zero while cumulative interest increases. The schedule lists each modeled payment, principal portion, interest charge, and outstanding balance. It assumes the rate and payments stay constant, and that there are no new purchases, fees, or missed payments.</p>
+<div class="cp-note"><strong>Important:</strong> This is a simplified monthly-compounding payoff model, not a billing-statement calculator. Many issuers use a daily periodic rate and an average daily balance. Actual interest may vary with payment dates, billing-cycle lengths, compounding policies, fees, changes in APR, and new charges. Consult your card agreement and statements for exact amounts.</div>
+<h2>Frequently Asked Questions</h2>
+<h3>Why won't my balance be paid off at the amount I entered?</h3>
+<p>If your payment is equal to or less than the estimated interest charged each month, the balance will not decrease. Raise the monthly payment above the interest amount. The calculator shows an error instead of reporting an impossible payoff date.</p>
+<h3>Are the percentage quick-payments the same as my card's minimum payment?</h3>
+<p>No. Every issuer can have its own minimum-payment formula and a minimum dollar amount. The shortcuts only fill in a fixed payment amount calculated from your initial balance. You can edit that amount before calculating.</p>
+<h3>Will paying more each month save money?</h3>
+<p>Under the same balance and interest-rate assumptions, a larger payment reduces the outstanding principal faster, shortening the payoff period and generally reducing the total interest.</p>
+<h3>Does the calculator handle multiple cards or new purchases?</h3>
+<p>This calculator models one balance at one fixed APR, with no additional charges. To plan several balances or interest rates, calculate each separately or use a dedicated multi-card payoff planner.</p>
+<h2>Sources and Further Reading</h2>
+<ul><li><a href="https://www.consumerfinance.gov/ask-cfpb/how-does-my-credit-card-company-calculate-the-amount-of-interest-i-owe-en-51/" target="_blank" rel="noopener noreferrer">Consumer Financial Protection Bureau — How credit card companies calculate interest</a></li>
+<li><a href="https://www.consumerfinance.gov/ask-cfpb/what-is-a-daily-periodic-rate-on-a-credit-card-en-46/" target="_blank" rel="noopener noreferrer">Consumer Financial Protection Bureau — Daily periodic interest rate</a></li>
+<li><a href="https://www.calculator.net/credit-card-calculator.html" target="_blank" rel="noopener noreferrer">Reference: Credit Card Calculator</a></li></ul>
+<p class="cp-page-footer">CalcPro — calculator estimates are for informational purposes.</p></article></main></div><script>
+(function () {
+  'use strict';
+  const root = document.getElementById('calcpro-creditcard-widget');
+  if (!root) return;
+  const el = (name) => root.querySelector('#calcpro-creditcard-' + name);
+  const form = el('form'), balance = el('balance'), rate = el('rate'), payment = el('payment');
+  const years = el('years'), months = el('months'), modeAmount = el('mode-amount'), modeTime = el('mode-time');
+  const result = el('result'), resultText = el('resulttext'), error = el('error'), hint = el('hint');
+  const money = (amount) => '$' + Number(amount).toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2});
+  const amountStr = (amount) => Number(amount).toLocaleString('en-US', {maximumFractionDigits:2});
+  const integer = (n) => Number(n).toLocaleString('en-US');
+  let last = null, page = 0;
+  const rowsPerPage = 24;
+
+  function parseAmount(input) {
+    const raw = input.value.trim().replace(/[,$\s]/g, '');
+    if (!/^(?:\d+(?:\.\d*)?|\.\d+)$/.test(raw)) return NaN;
+    return Number(raw);
+  }
+  function parseInteger(input) {
+    const raw = input.value.trim();
+    if (!/^\d+$/.test(raw)) return NaN;
+    return Number(raw);
+  }
+  function hideError() { error.hidden = true; error.textContent = ''; }
+  function showError(message, target) {
+    error.textContent = message;
+    error.hidden = false;
+    result.hidden = true;
+    hint.hidden = false;
+    last = null;
+    if (target) target.focus();
+  }
+  function toggleMode() {
+    el('amount-fields').hidden = !modeAmount.checked;
+    el('time-fields').hidden = !modeTime.checked;
+    hideError();
+  }
+  modeAmount.addEventListener('change', toggleMode);
+  modeTime.addEventListener('change', toggleMode);
+  [balance, payment].forEach((input) => input.addEventListener('blur', () => {
+    const value = parseAmount(input);
+    if (Number.isFinite(value) && value >= 0 && value <= 1e12) input.value = amountStr(value);
+  }));
+  root.querySelectorAll('[data-calcpro-creditcard-preset]').forEach((button) => {
+    button.addEventListener('click', () => {
+      const b = parseAmount(balance), annual = parseAmount(rate), multiple = Number(button.dataset.calcproCreditcardPreset);
+      if (!Number.isFinite(b) || b < 0 || b > 1e12) return showError('Enter a valid credit card balance before selecting a quick payment.', balance);
+      if (!Number.isFinite(annual) || annual < 0 || annual > 1000) return showError('Enter a valid annual interest rate before selecting a quick payment.', rate);
+      let minimum = multiple === 1 ? b * (annual / 1200 + .01) : b * (.01 * multiple);
+      if (minimum < 15) minimum = b < 15 ? b : 15;
+      payment.value = minimum.toFixed(2);
+      modeAmount.checked = true;
+      toggleMode();
+    });
+  });
+  function duration(n) {
+    n = Math.max(0, Math.floor(n));
+    const y = Math.floor(n / 12), m = n % 12;
+    const parts = [];
+    if (y) parts.push(integer(y) + (y === 1 ? ' year' : ' years'));
+    if (m) parts.push(m + (m === 1 ? ' month' : ' months'));
+    return parts.length ? parts.join(' and ') : '0 months';
+  }
+  function makeSchedule(B, r, P, count, analyticInterest, fractionalFinal) {
+    let current = B, interestTotal = 0;
+    const entries = [{month:0, balance:B, cumulativeInterest:0}];
+    for (let month = 1; month <= count; month++) {
+      const start = current;
+      let interest, pay;
+      if (month === count) {
+        // The reference uses a fractional final payment month in its fixed-payment
+        // result formula. Adjust that final month's interest so the schedule and
+        // reference-matched analytic total reconcile exactly.
+        interest = Math.max(0, analyticInterest - interestTotal);
+        pay = start + interest;
+        current = 0;
+      } else {
+        interest = start * r;
+        pay = Math.min(P, start + interest);
+        current = Math.max(0, start + interest - pay);
+      }
+      const principal = Math.max(0, pay - interest);
+      interestTotal += interest;
+      entries.push({month, start, payment:pay, interest, principal, balance:current, cumulativeInterest:interestTotal});
+    }
+    return entries;
+  }
+  function compute(B, annual, choice, fixedPayment, targetMonths) {
+    const r = annual / 1200;
+    if (B === 0) return {B, annual, P:0, count:0, exactMonths:0, totalInterest:0, totalPaid:0, choice, entries:[{month:0, balance:0, cumulativeInterest:0}]};
+    let P, exactMonths, count;
+    if (choice === 'amount') {
+      P = fixedPayment;
+      if (P <= B * r + 1e-12) throw new Error('The monthly payment does not cover the monthly interest. Enter more than ' + money(B * r) + ' to pay off this balance.');
+      if (r === 0) exactMonths = B / P;
+      else exactMonths = -Math.log1p(-B * r / P) / Math.log1p(r);
+      if (!Number.isFinite(exactMonths) || exactMonths > 12000) throw new Error('At this payment, payoff would take more than 1,000 years. Increase the monthly payment.');
+      count = Math.ceil(exactMonths - 1e-10);
+      // Like the reference, the final partial month is represented fractionally.
+    } else {
+      count = targetMonths;
+      exactMonths = count;
+      if (r > 0 && -count * Math.log1p(r) < Math.log(1e-12)) throw new Error('This payoff period is too long relative to the interest rate to estimate reliably. Choose a shorter timeframe.');
+      P = r === 0 ? B / count : B * r / (-Math.expm1(-count * Math.log1p(r)));
+      if (!Number.isFinite(P) || P <= 0) throw new Error('These inputs produced an unsupported monthly payment. Choose a shorter term.');
+    }
+    const totalInterest = Math.max(0, P * exactMonths - B);
+    const entries = makeSchedule(B, r, P, count, totalInterest, choice === 'amount');
+    return {B, annual, P, count, exactMonths, totalInterest, totalPaid:B + totalInterest, choice, entries};
+  }
+  function donutLabel(target, percent, midpointDegrees) {
+    const radius = 34;
+    const angle = midpointDegrees * Math.PI / 180;
+    target.textContent = Math.round(percent) + '%';
+    target.style.left = (50 + radius * Math.sin(angle)) + '%';
+    target.style.top = (50 - radius * Math.cos(angle)) + '%';
+    target.hidden = percent < 7;
+  }
+  function updateDonut(data) {
+    const p = data.totalPaid > 0 ? 100 * data.B / data.totalPaid : 100;
+    el('donut').style.background = 'conic-gradient(#2e80dc 0 ' + p + '%,#86b719 ' + p + '% 100%)';
+    donutLabel(el('principalpct'), p, p * 360 / 200);
+    donutLabel(el('interestpct'), 100 - p, p * 3.6 + (100 - p) * 360 / 200);
+    el('donut').setAttribute('aria-label', 'Principal ' + Math.round(p) + ' percent; interest ' + Math.round(100 - p) + ' percent.');
+  }
+  function safeAxis(v) {
+    if (!v) return '$0';
+    if (Math.abs(v) >= 1e9) return '$' + (v / 1e9).toFixed(v % 1e9 ? 1 : 0) + 'B';
+    if (Math.abs(v) >= 1e6) return '$' + (v / 1e6).toFixed(v % 1e6 ? 1 : 0) + 'M';
+    if (Math.abs(v) >= 1000) return '$' + (v / 1000).toFixed(v % 1000 ? 1 : 0) + 'K';
+    return '$' + Number(v.toFixed(2)).toString();
+  }
+  function niceStep(target) {
+    if (!(target > 0)) return 1;
+    const power = Math.pow(10, Math.floor(Math.log10(target)));
+    const normalized = target / power;
+    return (normalized <= 1 ? 1 : normalized <= 2 ? 2 : normalized <= 2.5 ? 2.5 : normalized <= 5 ? 5 : 10) * power;
+  }
+  function drawGraph(data) {
+    const svg = el('chart'), W = 430, left = 58, right = 313, top = 35, bottom = 206;
+    const h = bottom - top, w = right - left, count = Math.max(data.count, 1);
+    const maxValue = Math.max(data.B, data.totalInterest, 1e-9);
+    const tick = niceStep(maxValue / 4), cap = Math.max(tick, Math.ceil(maxValue / tick) * tick);
+    const x = (n) => left + (n / count) * w;
+    const y = (v) => bottom - v / cap * h;
+    const escNum = (num) => Number(num.toFixed(2));
+    let grid = '';
+    const horizontalTicks = Math.ceil(cap / tick);
+    for (let i=0; i<=horizontalTicks; i++) {
+      const value = i * tick, pos = y(value);
+      grid += '<line x1="' + left + '" y1="' + pos + '" x2="' + right + '" y2="' + pos + '" stroke="#b9c2c8" stroke-width=".8"/>';
+      grid += '<text x="' + (left - 7) + '" y="' + (pos + 4) + '" text-anchor="end" fill="#666" font-size="12">' + safeAxis(value) + '</text>';
+    }
+    const step = Math.max(1, Math.ceil(count / 6));
+    let indices = [0];
+    for (let n=step; n<count; n+=step) indices.push(n);
+    if (!indices.includes(count)) indices.push(count);
+    for (const m of indices) {
+      const pos=x(m);
+      grid += '<line x1="'+pos+'" y1="'+top+'" x2="'+pos+'" y2="'+bottom+'" stroke="#c6cdd2" stroke-width=".8"/>';
+      grid += '<text x="'+pos+'" y="'+(bottom+16)+'" text-anchor="middle" fill="#555" font-size="12">'+m+'</text>';
+    }
+    // Bound the SVG path cost even when the user estimates a very long payoff.
+    const stride = Math.max(1, Math.ceil(data.entries.length / 600));
+    const sampled = data.entries.filter((entry,index) => index===0 || index===data.entries.length-1 || index%stride===0);
+    const balanceLine = sampled.map((d,i) => (i?'L':'M')+escNum(x(d.month))+','+escNum(y(d.balance))).join(' ');
+    const interestLine = sampled.map((d,i) => (i?'L':'M')+escNum(x(d.month))+','+escNum(y(d.cumulativeInterest))).join(' ');
+    svg.innerHTML = '<title>Balance and interest during credit card payoff</title>' +
+      '<text x="218" y="22" fill="#111" font-weight="700" font-size="19" text-anchor="middle">Balance/interest graph</text>' +
+      grid + '<rect x="'+left+'" y="'+top+'" width="'+w+'" height="'+h+'" fill="none" stroke="#888" stroke-width="1"/>' +
+      '<path d="'+balanceLine+'" fill="none" stroke="#2e80dc" stroke-width="3" stroke-linejoin="round"/>' +
+      '<path d="'+interestLine+'" fill="none" stroke="#86b719" stroke-width="3" stroke-linejoin="round"/>' +
+      '<rect x="321" y="47" width="21" height="6" rx="1" fill="#2e80dc"/><text x="346" y="54" font-size="15">Balance</text>' +
+      '<rect x="321" y="66" width="21" height="6" rx="1" fill="#86b719"/><text x="346" y="73" font-size="15">Interest</text>' +
+      '<text x="'+((left+right)/2)+'" y="245" text-anchor="middle" fill="#111" font-size="15">Month</text>';
+    svg.setAttribute('aria-label', 'Balance begins at '+money(data.B)+' and reaches zero after '+data.count+' monthly payments. Total interest '+money(data.totalInterest)+'.');
+  }
+  function renderPage() {
+    if (!last) return;
+    const tbody = el('tablebody');
+    const entries = last.entries.slice(1);
+    const pages = Math.max(1, Math.ceil(entries.length/rowsPerPage));
+    page = Math.min(Math.max(0,page),pages-1);
+    tbody.innerHTML = entries.slice(page * rowsPerPage, (page+1)*rowsPerPage).map((entry) =>
+      '<tr><td>'+integer(entry.month)+'</td><td>'+money(entry.start)+'</td><td>'+money(entry.payment)+'</td><td>'+money(entry.interest)+'</td><td>'+money(entry.principal)+'</td><td>'+money(entry.balance)+'</td></tr>'
+    ).join('') || '<tr><td colspan="6">No payments needed.</td></tr>';
+    el('pagenum').textContent = 'Page '+(page+1)+' of '+pages;
+    el('prev').disabled = page===0;
+    el('next').disabled = page>=pages-1;
+    el('stats').textContent = integer(last.count)+' payments · '+money(last.totalPaid)+' paid in total';
+  }
+  function render(data) {
+    last = data; page = 0;
+    if (data.B === 0) resultText.innerHTML = 'The balance is already paid off. <strong>No further payments or interest are needed.</strong>';
+    else if (data.choice === 'amount') resultText.innerHTML = 'It will take <strong>'+duration(data.count)+'</strong> to pay off the balance. The total interest is <strong>'+money(data.totalInterest)+'</strong>.';
+    else resultText.innerHTML = '<strong>'+money(data.P)+' per month</strong> is needed to pay off the balance in <strong>'+duration(data.count)+'</strong>. The total interest is <strong>'+money(data.totalInterest)+'</strong>.';
+    updateDonut(data);
+    drawGraph(data);
+    renderPage();
+    hint.hidden = true;
+    result.hidden = false;
+    el('breakdown').open = false;
+    hideError();
+  }
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    hideError();
+    const B = parseAmount(balance), annual = parseAmount(rate);
+    if (!Number.isFinite(B) || B < 0 || B > 1e12) return showError('Enter a credit card balance between $0 and $1 trillion.', balance);
+    if (!Number.isFinite(annual) || annual < 0 || annual > 1000) return showError('Enter an annual interest rate between 0% and 1,000%.', rate);
+    let monthly = NaN, target = NaN;
+    if (modeAmount.checked) {
+      monthly = parseAmount(payment);
+      if (!Number.isFinite(monthly) || monthly <= 0 || monthly > 1e12) return showError('Enter a monthly payment greater than $0.', payment);
+    } else {
+      const y = parseInteger(years), m = parseInteger(months);
+      if (!Number.isSafeInteger(y) || y < 0 || y > 1000) return showError('Enter whole years from 0 to 1,000.', years);
+      if (!Number.isSafeInteger(m) || m < 0 || m > 12000) return showError('Enter whole additional months from 0 to 12,000.', months);
+      target = 12 * y + m;
+      if (target < 1 || target > 12000) return showError('Enter a payoff period of at least one month and at most 1,000 years.', years);
+    }
+    try { render(compute(B, annual, modeAmount.checked ? 'amount' : 'time', monthly, target)); }
+    catch (err) { showError(err.message); }
+  });
+  el('clear').addEventListener('click', () => {
+    [balance,rate,payment,years,months].forEach((input) => { input.value=''; });
+    modeAmount.checked = true;
+    toggleMode();
+    last = null; result.hidden = true; hint.hidden = false; el('breakdown').open = false;
+    hideError(); balance.focus();
+  });
+  el('breakdown').addEventListener('toggle', () => { if (el('breakdown').open && last) renderPage(); });
+  el('prev').addEventListener('click', () => { if (page>0) { page--; renderPage(); } });
+  el('next').addEventListener('click', () => { if (last && page < Math.ceil(last.count/rowsPerPage)-1) { page++; renderPage(); } });
+  el('print').addEventListener('click', () => window.print());
+  el('save').addEventListener('click', () => {
+    if (!last) return;
+    const columns = ['Month','Starting balance','Payment','Interest','Principal','Remaining balance'];
+    const lines = [ ['Credit Card Calculator - CalcPro'], ['Balance',last.B.toFixed(2)], ['Annual interest rate (%)',last.annual.toFixed(4)],
+      ['Payoff mode',last.choice === 'amount' ? 'Fixed monthly payment' : 'Target timeframe'],
+      ['Monthly payment',last.P.toFixed(2)], ['Payoff months',String(last.count)], ['Total interest',last.totalInterest.toFixed(2)], ['Total paid',last.totalPaid.toFixed(2)], [], columns ];
+    for (const e of last.entries.slice(1)) lines.push([String(e.month),e.start.toFixed(2),e.payment.toFixed(2),e.interest.toFixed(2),e.principal.toFixed(2),e.balance.toFixed(2)]);
+    const csv = lines.map((row) => row.map((value) => '"'+String(value).replace(/"/g,'""')+'"').join(',')).join('\r\n');
+    const url = URL.createObjectURL(new Blob(['\ufeff'+csv], {type:'text/csv;charset=utf-8'}));
+    const link = document.createElement('a');link.href = url; link.download = 'credit-card-calculation.csv';
+    document.body.appendChild(link);link.click();link.remove();
+    window.setTimeout(() => URL.revokeObjectURL(url), 1000);
+  });
+  toggleMode();
+})();
+</script></body></html>

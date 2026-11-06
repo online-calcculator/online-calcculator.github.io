@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>Conception Calculator | CalcPro</title><meta content="Estimate likely conception days, ovulation windows, pregnancy testing dates, next periods, and possible due dates with the CalcPro Conception Calculator." name="description"/><link href="template-style.css" rel="stylesheet"/><style>
+/* All calculator styles are isolated from the CalcPro global layout. */
+.calcpro-conception{font:16px/1.38 Arial,Helvetica,sans-serif;color:#111;max-width:100%;min-width:0}
+.calcpro-conception [hidden]{display:none!important}
+.calcpro-conception button,.calcpro-conception input,.calcpro-conception select{font:inherit}
+.calcpro-conception button{cursor:pointer}
+.calcpro-conception button:focus-visible,.calcpro-conception input:focus-visible,.calcpro-conception select:focus-visible{outline:2px solid #16578d;outline-offset:2px}
+.calcpro-conception-prompt{display:flex;align-items:center;justify-content:center;gap:44px;min-height:43px;background:#376b9d;color:#fff;padding:5px 12px;text-align:center;font-size:18px}
+.calcpro-conception-circle{background:#fff;border-radius:50%;color:#376b9d;font-size:17px;line-height:27px;width:27px;height:27px;flex:0 0 27px;text-align:center}
+.calcpro-conception-form{position:relative;background:#efefef;border:1px solid #bbb;padding:12px 14px 11px;margin-top:3px;max-width:100%}
+.calcpro-conception-input-row{display:grid;grid-template-columns:minmax(0,49%) minmax(0,51%);align-items:center;gap:0;margin:0 0 11px}
+.calcpro-conception-label{padding-right:10px;text-align:right;font-size:18px;white-space:normal}
+.calcpro-conception-date-inputs{position:relative;display:flex;align-items:center;gap:3px;min-width:0;flex-wrap:wrap}
+.calcpro-conception-date-inputs select,.calcpro-conception-date-inputs input,.calcpro-conception-cycle-wrap select{background:#fff;border:1px solid #155083;border-radius:2px;min-height:34px;box-shadow:1px 1px 1px #777;padding:3px 6px;color:#000}
+.calcpro-conception-date-inputs select{min-width:62px;max-width:77px}
+#calcpro-conception-month{width:75px}
+#calcpro-conception-day{width:59px;min-width:59px}
+#calcpro-conception-year{width:96px;max-width:96px;appearance:textfield;-moz-appearance:textfield}
+#calcpro-conception-year::-webkit-outer-spin-button,#calcpro-conception-year::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.calcpro-conception-calendar-toggle{height:33px;width:33px;border:0;padding:0;background:linear-gradient(#396d9b 0 29%,#fff 29% 100%);box-shadow:0 0 0 1px #92a2af inset;color:#df4b44;font-size:28px;line-height:1}
+.calcpro-conception-cycle-wrap{display:flex;align-items:center}
+.calcpro-conception-cycle-wrap select{width:auto;min-width:96px}
+.calcpro-conception-action-row{display:grid;grid-template-columns:49% 51%;align-items:start;margin-top:9px}
+.calcpro-conception-calculate{background:#4b821e;border:0;color:#fff;font-weight:700!important;min-height:43px;padding:7px 12px 7px 18px;display:inline-flex;align-items:center;gap:16px;box-shadow:none}
+.calcpro-conception-calculate:hover{background:#3d7015}
+.calcpro-conception-play{display:inline-flex;align-items:center;justify-content:center;color:#fff;background:#a5cc99;border-radius:50%;width:23px;height:23px;font-size:15px;padding-left:2px}
+.calcpro-conception-reset{margin-left:10px;padding:5px 8px;border:1px solid #888;background:#fff;font-size:14px!important}
+.calcpro-conception-error{color:#a31313;background:#fff6f6;border:1px solid #d7a1a1;padding:8px 10px;margin:10px 0 0;font-size:14px}
+.calcpro-conception-calendar-popup{position:absolute;top:39px;left:0;z-index:10;width:258px;background:#fff;border:1px solid #91a9b8;box-shadow:0 5px 13px #0003;padding:9px;border-radius:3px}
+.calcpro-conception-picker-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:7px;color:#003366}
+.calcpro-conception-picker-head button{border:1px solid #c8d4de;background:#eef3f9;border-radius:3px;font-size:24px;height:28px;width:32px;line-height:1}
+.calcpro-conception-picker-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));text-align:center;gap:2px}
+.calcpro-conception-picker-grid span{font-size:12px;font-weight:700;color:#355878;padding:4px 0}
+.calcpro-conception-picker-grid button{background:#fff;border:1px solid transparent;font-size:13px;padding:5px 0;min-height:28px}
+.calcpro-conception-picker-grid button:hover{background:#e0eefe}
+.calcpro-conception-picker-grid button[aria-current="date"]{background:#efbfd9;border-color:#cd7bac}
+.calcpro-conception-results{margin-bottom:20px;max-width:100%}
+.calcpro-conception-results-bar{display:flex;align-items:center;justify-content:space-between;background:#4f8425;color:#fff;padding:5px 7px;min-height:39px;font-size:23px}
+.calcpro-conception-save{background:transparent;border:0;color:#fff;display:flex;flex-direction:column;align-items:center;line-height:1;padding:0 1px;min-width:25px}
+.calcpro-conception-save>span{font-size:20px;font-weight:700}
+.calcpro-conception-save small{font-size:10px}
+.calcpro-conception-subheading{font-size:16px;margin:5px 0 7px}
+.calcpro-conception-results-layout{display:grid;grid-template-columns:max-content 185px;gap:6px;align-items:start}
+.calcpro-conception-table-scroll{max-width:100%;overflow-x:auto}
+.calcpro-conception-table{font-size:16px;border-collapse:collapse;white-space:nowrap;width:max-content;max-width:none;line-height:1.3}
+.calcpro-conception-table th,.calcpro-conception-table td{border:1px solid #c8c8c8;padding:4px 5px;text-align:left}
+.calcpro-conception-table th{background:#376b9d;color:#fff;font-weight:700}
+.calcpro-conception-table tbody tr:nth-child(even){background:#ececec}
+.calcpro-conception-primary-table td:first-child{min-width:285px}
+.calcpro-conception-primary-table tr:first-child td:first-child{background:#f4bed9;font-weight:700}
+.calcpro-conception-primary-table tr:first-child td:nth-child(2){background:#f4bed9;font-weight:700}
+.calcpro-conception-primary-table tr:first-child{background:#f4bed9}
+.calcpro-conception-six-table th,.calcpro-conception-six-table td{padding:5px 5px}
+.calcpro-conception-result-calendars{display:flex;flex-wrap:wrap;gap:10px;max-width:100%}
+.calcpro-conception-mini-calendar{width:185px;max-width:100%;border:1px solid #c7c7c7}
+.calcpro-conception-mini-title{text-align:center;background:#f1f1f1;padding:3px 2px;font-weight:700;font-size:16px}
+.calcpro-conception-mini-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));text-align:center}
+.calcpro-conception-mini-grid span{border-right:1px solid #d0d0d0;border-bottom:1px solid #d0d0d0;padding:3px 1px;min-height:27px;font-size:14px;line-height:1.3}
+.calcpro-conception-mini-grid span:nth-child(7n){border-right:0}
+.calcpro-conception-mini-grid .calcpro-conception-mini-weekday{background:#376b9d;color:#fff;font-weight:700;min-height:27px}
+.calcpro-conception-mini-grid .calcpro-conception-mini-fertile{background:#f5bcd7}
+.calcpro-conception-next-title{margin-top:11px}
+.calcpro-conception-disclaimer{font-size:12px;color:#626262;margin:11px 0 0}
+.calcpro-conception-head{display:flex;align-items:flex-start;justify-content:space-between;gap:20px}
+.calcpro-conception-print-control{background:none;border:0;padding:0;color:#006699;text-decoration:underline;cursor:pointer;font:16px Arial,Helvetica,sans-serif;white-space:nowrap;margin-top:10px}
+.calcpro-conception-print-control:hover{text-decoration:none}
+@media(max-width:700px){.calcpro-conception-results-layout{grid-template-columns:minmax(0,1fr)}.calcpro-conception-result-calendars{margin-top:5px}.calcpro-conception-mini-calendar{width:185px}.calcpro-conception-label{font-size:16px}.calcpro-conception-prompt{gap:10px;font-size:16px}}
+@media(max-width:480px){.calcpro-conception-form{padding:12px 9px}.calcpro-conception-input-row{display:block;margin-bottom:13px}.calcpro-conception-label{display:block;text-align:left;padding:0;margin-bottom:5px}.calcpro-conception-action-row{display:block}.calcpro-conception-date-inputs{gap:3px}.calcpro-conception-prompt{font-size:14px}.calcpro-conception-table{font-size:14px}.calcpro-conception-primary-table td:first-child{min-width:180px}.calcpro-conception-results-bar{font-size:20px}}
+@media print{.calcpro-conception-prompt,.calcpro-conception-form,.calcpro-conception-print-control,.calcpro-conception-save,.calcpro-conception-disclaimer{display:none!important}.calcpro-conception-results{display:block!important}.calcpro-conception-table-scroll{overflow:visible}.calcpro-conception-results-layout{grid-template-columns:minmax(0,1fr) 185px}.calcpro-conception-table{font-size:12px}.calcpro-conception-mini-grid span{font-size:11px}}
+
+</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <span>Fitness &amp; Health</span> / Conception Calculator</nav><div class="calcpro-conception-head"><h1 class="cp-page-title">Conception Calculator</h1><button type="button" class="calcpro-conception-print-control">Print</button></div><p class="cp-intro">Estimate your most probable conception days, ovulation window, best intercourse days, pregnancy testing date, next expected period, and an estimated pregnancy due date based on your last period and average cycle length.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-conception" id="calcpro-conception-root">
+  <div class="calcpro-conception-prompt" id="calcpro-conception-prompt"><span class="calcpro-conception-circle" aria-hidden="true">▼</span><span>Modify the values and click the Calculate button to use</span></div>
+  <div class="calcpro-conception-results" id="calcpro-conception-results" hidden aria-live="polite">
+    <div class="calcpro-conception-results-bar"><span>Result</span><button type="button" class="calcpro-conception-save" id="calcpro-conception-save" title="Save your results as a text file"><span aria-hidden="true">▣</span><small>save</small></button></div>
+    <p class="calcpro-conception-subheading">Important dates for this cycle:</p>
+    <div class="calcpro-conception-results-layout">
+      <div class="calcpro-conception-table-scroll"><table class="calcpro-conception-table calcpro-conception-primary-table" aria-label="Important dates for this cycle"><tbody id="calcpro-conception-dates"></tbody></table></div>
+      <div id="calcpro-conception-result-calendars" class="calcpro-conception-result-calendars" aria-label="Calendar of probable conception dates"></div>
+    </div>
+    <p class="calcpro-conception-subheading calcpro-conception-next-title">Important dates for the next 6 cycles:</p>
+    <div class="calcpro-conception-table-scroll"><table class="calcpro-conception-table calcpro-conception-six-table" aria-label="Important dates for the next six cycles"><thead><tr><th scope="col">Period Start</th><th scope="col">Conception Window</th><th scope="col">Due Date</th></tr></thead><tbody id="calcpro-conception-cycles"></tbody></table></div>
+    <p class="calcpro-conception-disclaimer">These are calendar-based estimates, not confirmation of ovulation, conception, or pregnancy. Cycles and ovulation can vary.</p>
+  </div>
+  <form class="calcpro-conception-form" id="calcpro-conception-form" novalidate>
+    <div class="calcpro-conception-input-row">
+      <label class="calcpro-conception-label" for="calcpro-conception-month"><strong>First Day</strong> of Your Last Period:</label>
+      <div class="calcpro-conception-date-inputs">
+        <select id="calcpro-conception-month" aria-label="Month of last menstrual period" required></select>
+        <select id="calcpro-conception-day" aria-label="Day of last menstrual period" required></select>
+        <input id="calcpro-conception-year" aria-label="Year of last menstrual period" type="number" inputmode="numeric" min="1900" max="2100" step="1" required>
+        <button type="button" class="calcpro-conception-calendar-toggle" id="calcpro-conception-calendar-toggle" aria-label="Open date picker" aria-expanded="false" aria-controls="calcpro-conception-calendar-popup"><span aria-hidden="true">▦</span></button>
+        <div class="calcpro-conception-calendar-popup" id="calcpro-conception-calendar-popup" hidden>
+          <div class="calcpro-conception-picker-head"><button type="button" id="calcpro-conception-previous-month" aria-label="Previous month">‹</button><strong id="calcpro-conception-picker-month"></strong><button type="button" id="calcpro-conception-next-month" aria-label="Next month">›</button></div>
+          <div class="calcpro-conception-picker-grid" id="calcpro-conception-picker-grid"></div>
+        </div>
+      </div>
+    </div>
+    <div class="calcpro-conception-input-row">
+      <label class="calcpro-conception-label" for="calcpro-conception-cycle">Average Length of Cycles:</label>
+      <div class="calcpro-conception-cycle-wrap"><select id="calcpro-conception-cycle" required></select></div>
+    </div>
+    <div class="calcpro-conception-action-row"><span aria-hidden="true"></span><div><button class="calcpro-conception-calculate" type="submit">Calculate <span class="calcpro-conception-play" aria-hidden="true">▶</span></button><button type="button" class="calcpro-conception-reset" id="calcpro-conception-reset" hidden>Reset</button></div></div>
+    <p class="calcpro-conception-error" id="calcpro-conception-error" role="alert" hidden></p>
+  </form>
+</div>
+</section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><a href="pregnancy-calculator.html">Pregnancy</a><a href="due-date-calculator.html">Due Date</a><a href="ovulation-calculator.html">Ovulation</a><a href="period-calculator.html">Period</a><a href="pregnancy-conception-calculator.html">Pregnancy Conception</a><a href="pregnancy-weight-gain-calculator.html">Pregnancy Weight Gain</a><a href="bmi-calculator.html">BMI</a><a href="bmr-calculator.html">BMR</a><a href="calorie-calculator.html">Calorie</a><a href="body-fat-calculator.html">Body Fat</a><a href="ideal-weight-calculator.html">Ideal Weight</a><a href="age-calculator.html">Age</a></div></section></aside><article class="cp-article"><h2>How to Use the Conception Calculator</h2>
+<p>Enter the first day of your most recent menstrual period, then choose your average menstrual cycle length (22–44 days). Select <strong>Calculate</strong> to see estimated conception days, an ovulation window, days for intercourse, a pregnancy test date, the next period, and a possible due date. Results appear immediately above the form. The six-cycle table predicts the same dates for the next five cycles.</p>
+<h2>How the Dates Are Estimated</h2>
+<p>A menstrual cycle begins on the first day of menstrual bleeding. Ovulation often occurs approximately 14 days before the next period. This calculator uses the reference calculator’s approximate date windows and adjusts them for the selected cycle length; it does not detect actual ovulation.</p>
+<ul>
+<li><strong>Estimated ovulation day:</strong> period start + (cycle length − 14) days.</li>
+<li><strong>Most probable conception-day range:</strong> period start + (cycle length − 16) through + (cycle length − 11) days, inclusive, following the reference display convention.</li>
+<li><strong>Ovulation window:</strong> period start + (cycle length − 16) through + (cycle length − 12) days.</li>
+<li><strong>Best intercourse days:</strong> period start + (cycle length − 19) through + (cycle length − 12) days.</li>
+<li><strong>Early pregnancy test date:</strong> five days before the anticipated next period. Negative results this early do not rule out pregnancy; consider retesting after a missed period.</li>
+<li><strong>Next period:</strong> period start + cycle length; <strong>due date:</strong> period start + 280 days + (cycle length − 28 days).</li>
+</ul>
+<h3>Worked Example</h3>
+<p>With November 4, 2026 as the first day of the last period and a 28-day cycle, the estimated most probable conception dates are November 16–21, 2026, the next expected period is December 2, 2026, and the estimated due date is August 11, 2027. These match the supplied reference example.</p>
+<h2>Understanding the Results</h2>
+<p>The shaded calendar dates show the predicted probable conception-day range, while the six-cycle table projects repeating cycles using the entered average length. The actual fertile window depends on when ovulation occurs: sperm may survive for up to five days, while an egg generally remains fertilizable for around a day. Calendar calculations alone cannot confirm a fertile day or provide reliable contraception.</p>
+<h2>Frequently Asked Questions</h2>
+<h3>Can my conception date be determined exactly?</h3><p>No. Even a regular cycle can have variable ovulation timing. Ovulation predictor kits, cervical mucus observations, and clinical assessments may improve timing information, but these estimates are not a diagnosis.</p>
+<h3>What if my periods are irregular?</h3><p>One average cycle length may not describe an irregular cycle well, so the predicted windows may be inaccurate. Discuss cycle irregularities or difficulty conceiving with a qualified healthcare professional.</p>
+<h3>Is the due date guaranteed?</h3><p>No. A last-period estimate commonly uses 280 days for a 28-day cycle. Clinicians may use first-trimester ultrasound to confirm or revise the expected delivery date.</p>
+<h3>When should I take a pregnancy test?</h3><p>The displayed date is an early estimate. Home urine tests are generally more reliable from the first day of a missed period; follow the manufacturer’s instructions and retest if needed.</p>
+<h2>Medical References</h2>
+<p>For medical context, see <a href="https://www.acog.org/womens-health/experts-and-stories/the-latest/trying-to-get-pregnant-heres-when-to-have-sex" target="_blank" rel="noopener noreferrer">ACOG: Timing Intercourse Around Ovulation</a>, <a href="https://www.acog.org/clinical/clinical-guidance/committee-opinion/articles/2017/05/methods-for-estimating-the-due-date" target="_blank" rel="noopener noreferrer">ACOG: Methods for Estimating the Due Date</a>, and <a href="https://www.hopkinsmedicine.org/health/wellness-and-prevention/calculating-a-due-date" target="_blank" rel="noopener noreferrer">Johns Hopkins Medicine: Calculating a Due Date</a>.</p>
+<p class="cp-page-footer">CalcPro — calendar estimates are for informational and educational purposes and are not medical advice.</p></article></main></div><script>(() => {
+  'use strict';
+  const prefix = 'calcpro-conception-';
+  const el = id => document.getElementById(prefix + id);
+  const root = el('root');
+  if (!root) return;
+  const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  const SHORT = MONTHS.map(m => m.slice(0,3));
+  const WEEKDAYS = ['S','M','T','W','T','F','S'];
+  const monthEl = el('month'), dayEl = el('day'), yearEl = el('year'), cycleEl = el('cycle');
+  const popup = el('calendar-popup'), popupToggle = el('calendar-toggle');
+  const prompt = el('prompt'), results = el('results'), error = el('error');
+  let activeModel = null, pickerYear = 2026, pickerMonth = 10;
+  function dateUTC(year, month, day) { return new Date(Date.UTC(year, month, day, 12)); }
+  function addDays(date, offset) { const result = new Date(date.getTime()); result.setUTCDate(result.getUTCDate() + offset); return result; }
+  function daysInMonth(year, month) { return dateUTC(year, month + 1, 0).getUTCDate(); }
+  function sameDay(a,b) { return a.getUTCFullYear() === b.getUTCFullYear() && a.getUTCMonth() === b.getUTCMonth() && a.getUTCDate() === b.getUTCDate(); }
+  function formatDate(date) { return SHORT[date.getUTCMonth()] + ' ' + date.getUTCDate() + ', ' + date.getUTCFullYear(); }
+  function formatRange(start, end) { return SHORT[start.getUTCMonth()] + ' ' + start.getUTCDate() + ' - ' + SHORT[end.getUTCMonth()] + ' ' + end.getUTCDate(); }
+  function option(text, value) { const element=document.createElement('option'); element.value=String(value); element.textContent=text; return element; }
+  function showError(message) { error.hidden = !message; error.textContent = message || ''; }
+  function populateDays() {
+    const year = Number(yearEl.value), month = Number(monthEl.value);
+    if (!Number.isInteger(year) || year < 1900 || year > 2100 || !Number.isInteger(month)) return;
+    const old = Number(dayEl.value) || 1;
+    const total = daysInMonth(year,month);
+    dayEl.replaceChildren();
+    for(let day=1;day<=total;day++) dayEl.append(option(String(day),day));
+    dayEl.value=String(Math.min(old,total));
+  }
+  function setSelectedDate(date) {
+    yearEl.value=String(date.getUTCFullYear());
+    monthEl.value=String(date.getUTCMonth());
+    populateDays();
+    dayEl.value=String(date.getUTCDate());
+  }
+  function selectedDate() {
+    const year=Number(yearEl.value), month=Number(monthEl.value), day=Number(dayEl.value);
+    if (!yearEl.value.trim() || !Number.isInteger(year) || year<1900 || year>2100) throw new Error('Enter a valid year between 1900 and 2100.');
+    if(!Number.isInteger(month) || month<0 || month>11 || !Number.isInteger(day) || day<1 || day>daysInMonth(year,month)) throw new Error('Enter a valid first day of your last period.');
+    return dateUTC(year,month,day);
+  }
+  function compute(periodStart,cycleLength) {
+    if (!(periodStart instanceof Date) || !Number.isInteger(cycleLength) || cycleLength < 22 || cycleLength > 44) throw new Error('Choose an average cycle length between 22 and 44 days.');
+    // Match the reference's displayed estimation windows, offset to cycle length.
+    // Exact ovulation cannot be inferred from calendar dates alone.
+    const offset = cycleLength - 28;
+    return {
+      periodStart, cycleLength,
+      mostStart: addDays(periodStart, 12 + offset), mostEnd: addDays(periodStart, 17 + offset),
+      ovulationStart: addDays(periodStart, 12 + offset), ovulationEnd: addDays(periodStart, 16 + offset),
+      intercourseStart: addDays(periodStart, 9 + offset), intercourseEnd: addDays(periodStart, 16 + offset),
+      pregnancyTest: addDays(periodStart, cycleLength - 5),
+      nextPeriod: addDays(periodStart, cycleLength),
+      dueDate: addDays(periodStart, 280 + offset)
+    };
+  }
+  function addTableRow(parent,cells) {
+    const row=document.createElement('tr');
+    cells.forEach(value=>{const cell=document.createElement('td');cell.textContent=value;row.append(cell);});
+    parent.append(row);
+  }
+  function createMiniCalendar(year,month,start,end) {
+    const outer=document.createElement('div');outer.className=prefix+'mini-calendar';
+    const title=document.createElement('div');title.className=prefix+'mini-title'; title.textContent=MONTHS[month]+' '+year;
+    const grid=document.createElement('div');grid.className=prefix+'mini-grid';
+    WEEKDAYS.forEach(label=>{const day=document.createElement('span');day.className=prefix+'mini-weekday';day.textContent=label;grid.append(day);});
+    const firstWeekday=dateUTC(year,month,1).getUTCDay();
+    const count=daysInMonth(year,month);
+    const totalCells=Math.ceil((firstWeekday+count)/7)*7;
+    for(let idx=0;idx<totalCells;idx++) {
+      const cell=document.createElement('span');
+      const num=idx-firstWeekday+1;
+      if(num>=1 && num<=count){
+        cell.textContent=String(num);
+        const date=dateUTC(year,month,num);
+        if(date>=start && date<=end){cell.className=prefix+'mini-fertile';cell.title='Most probable conception days';}
+      }
+      grid.append(cell);
+    }
+    outer.append(title,grid);return outer;
+  }
+  function renderResults(model) {
+    const dates=el('dates');dates.replaceChildren();
+    [
+      ['Most Probable Conception Days',formatRange(model.mostStart,model.mostEnd)],
+      ['Ovulation Window',formatRange(model.ovulationStart,model.ovulationEnd)],
+      ['Best Intercourse Days for Pregnancy',formatRange(model.intercourseStart,model.intercourseEnd)],
+      ['Pregnancy Test',formatDate(model.pregnancyTest)],
+      ['Next Period Start',formatDate(model.nextPeriod)],
+      ['Due Date If Pregnant',formatDate(model.dueDate)]
+    ].forEach(row=>addTableRow(dates,row));
+    const months=el('result-calendars');months.replaceChildren();
+    let year=model.mostStart.getUTCFullYear(),month=model.mostStart.getUTCMonth();
+    months.append(createMiniCalendar(year,month,model.mostStart,model.mostEnd));
+    if(year!==model.mostEnd.getUTCFullYear() || month!==model.mostEnd.getUTCMonth()){
+      months.append(createMiniCalendar(model.mostEnd.getUTCFullYear(),model.mostEnd.getUTCMonth(),model.mostStart,model.mostEnd));
+    }
+    const cycles=el('cycles');cycles.replaceChildren();
+    for(let i=0;i<6;i++){
+      const p=addDays(model.periodStart,i*model.cycleLength);
+      const m=compute(p,model.cycleLength);
+      addTableRow(cycles,[formatDate(m.periodStart),formatRange(m.mostStart,m.mostEnd),formatDate(m.dueDate)]);
+    }
+    activeModel=model;
+    prompt.hidden=true;
+    results.hidden=false;
+    el('reset').hidden=false;
+  }
+  function buildPicker() {
+    el('picker-month').textContent=MONTHS[pickerMonth]+' '+pickerYear;
+    const grid=el('picker-grid');grid.replaceChildren();
+    WEEKDAYS.forEach(label=>{const span=document.createElement('span');span.textContent=label;grid.append(span);});
+    const weekday=dateUTC(pickerYear,pickerMonth,1).getUTCDay();
+    for(let i=0;i<weekday;i++){const blank=document.createElement('span');grid.append(blank);}
+    let highlighted=null;
+    try{highlighted=selectedDate();}catch(e){/* invalid manual entries need not block picker */}
+    for(let day=1;day<=daysInMonth(pickerYear,pickerMonth);day++){
+      const btn=document.createElement('button');btn.type='button';btn.textContent=String(day);
+      const date=dateUTC(pickerYear,pickerMonth,day);
+      btn.setAttribute('aria-label',MONTHS[pickerMonth]+' '+day+', '+pickerYear);
+      if(highlighted && sameDay(highlighted,date))btn.setAttribute('aria-current','date');
+      btn.addEventListener('click',()=>{setSelectedDate(date);togglePicker(false);showError('');monthEl.focus();});
+      grid.append(btn);
+    }
+  }
+  function togglePicker(open) {
+    if(open){
+      try{const selected=selectedDate();pickerYear=selected.getUTCFullYear();pickerMonth=selected.getUTCMonth();}
+      catch(e){const now=new Date();pickerYear=now.getFullYear();pickerMonth=now.getMonth();}
+      buildPicker();
+    }
+    popup.hidden=!open;popupToggle.setAttribute('aria-expanded',String(open));
+  }
+  function movePicker(direction) {
+    const next=dateUTC(pickerYear,pickerMonth+direction,1);
+    if(next.getUTCFullYear()<1900 || next.getUTCFullYear()>2100)return;
+    pickerYear=next.getUTCFullYear();pickerMonth=next.getUTCMonth();buildPicker();
+  }
+  function reset() {
+    const today=new Date();
+    setSelectedDate(dateUTC(today.getFullYear(),today.getMonth(),today.getDate()));
+    cycleEl.value='28';activeModel=null;results.hidden=true;prompt.hidden=false;el('reset').hidden=true;
+    showError('');togglePicker(false);
+  }
+  MONTHS.forEach((name,i)=>monthEl.append(option(SHORT[i],i)));
+  for(let c=22;c<=44;c++)cycleEl.append(option(c+' days',c));
+  monthEl.addEventListener('change',()=>{populateDays();showError('');});
+  yearEl.addEventListener('change',()=>{populateDays();showError('');});
+  dayEl.addEventListener('change',()=>showError(''));
+  cycleEl.addEventListener('change',()=>showError(''));
+  popupToggle.addEventListener('click',()=>togglePicker(popup.hidden));
+  el('previous-month').addEventListener('click',()=>movePicker(-1));
+  el('next-month').addEventListener('click',()=>movePicker(1));
+  document.addEventListener('pointerdown',event=>{if(!popup.hidden && !popup.contains(event.target) && !popupToggle.contains(event.target))togglePicker(false);});
+  document.addEventListener('keydown',event=>{if(event.key==='Escape' && !popup.hidden){togglePicker(false);popupToggle.focus();}});
+  el('form').addEventListener('submit',event=>{
+    event.preventDefault();
+    try{const model=compute(selectedDate(),Number(cycleEl.value));renderResults(model);showError('');togglePicker(false);}
+    catch(err){activeModel=null;results.hidden=true;prompt.hidden=false;el('reset').hidden=true;showError(err.message);}
+  });
+  el('reset').addEventListener('click',reset);
+  el('save').addEventListener('click',()=>{
+    if(!activeModel)return;
+    const m=activeModel;
+    const lines=['Conception Calculator — CalcPro','Last period started: '+formatDate(m.periodStart),'Average cycle: '+m.cycleLength+' days','','Important dates for this cycle:',
+      'Most probable conception days: '+formatRange(m.mostStart,m.mostEnd),
+      'Ovulation window: '+formatRange(m.ovulationStart,m.ovulationEnd),
+      'Best intercourse days for pregnancy: '+formatRange(m.intercourseStart,m.intercourseEnd),
+      'Pregnancy test: '+formatDate(m.pregnancyTest),'Next period start: '+formatDate(m.nextPeriod),
+      'Due date if pregnant: '+formatDate(m.dueDate),'','Important dates for the next 6 cycles:'];
+    for(let i=0;i<6;i++){
+      const part=compute(addDays(m.periodStart,i*m.cycleLength),m.cycleLength);
+      lines.push(formatDate(part.periodStart)+' | '+formatRange(part.mostStart,part.mostEnd)+' | '+formatDate(part.dueDate));
+    }
+    lines.push('','Calendar-based estimates, not a medical diagnosis.');
+    const url=URL.createObjectURL(new Blob([lines.join('\n')],{type:'text/plain;charset=utf-8'}));
+    const link=document.createElement('a');link.href=url;link.download='conception-calculator-results.txt';
+    document.body.append(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
+  });
+  document.querySelectorAll('.calcpro-conception-print-control').forEach(button=>button.addEventListener('click',()=>{
+    if(results.hidden){el('form').requestSubmit();if(results.hidden)return;}
+    window.print();
+  }));
+  reset();
+})();
+</script></body></html>

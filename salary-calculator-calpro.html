@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>Salary Calculator | CalcPro</title><meta content="Calculate equivalent salary rates by hour, day, week, bi-week, semi-month, month, quarter, or year, including holiday and vacation adjustments." name="description"/><link href="template-style.css" rel="stylesheet"/><style>
+
+/* Salary Calculator component: deliberately scoped to avoid CalcPro style conflicts. */
+.calcpro-salary{--calcpro-salary-blue:#356998;--calcpro-salary-green:#4c8626;--calcpro-salary-border:#b9b9b9;--calcpro-salary-ink:#101820;font-family:Arial,Helvetica,sans-serif;color:var(--calcpro-salary-ink);font-size:15px;max-width:100%;line-height:1.3}
+.calcpro-salary *{box-sizing:border-box}
+.calcpro-salary .calcpro-salary-banner{background:var(--calcpro-salary-blue);color:#fff;text-align:center;padding:8px 12px;margin:0 0 6px;font-size:15px;display:flex;justify-content:center;align-items:center;gap:15px;min-height:36px}
+.calcpro-salary .calcpro-salary-banner-symbol{border-radius:50%;background:#fff;color:var(--calcpro-salary-blue);width:23px;height:23px;line-height:23px;font-size:17px;flex:0 0 23px;font-weight:700}
+.calcpro-salary .calcpro-salary-grid{display:grid;grid-template-columns:minmax(265px,0.89fr) minmax(335px,1.11fr);gap:26px;align-items:start}
+.calcpro-salary .calcpro-salary-input-panel{background:#f1f1f1;border:1px solid var(--calcpro-salary-border);padding:10px 9px 12px;min-width:0}
+.calcpro-salary .calcpro-salary-form{margin:0}
+.calcpro-salary .calcpro-salary-amount-group{margin-bottom:7px}
+.calcpro-salary .calcpro-salary-label{display:block;font-size:14px;margin-bottom:3px;line-height:1.3}
+.calcpro-salary .calcpro-salary-rate-row{display:flex;align-items:center;gap:5px;min-width:0}
+.calcpro-salary .calcpro-salary-money{height:29px;border:1px solid #276496;background:#fff;box-shadow:1px 2px 2px #a5a5a5;display:flex;align-items:center;flex:0 0 104px;min-width:0}
+.calcpro-salary .calcpro-salary-dollar{padding-left:4px;font-size:15px;flex:0 0 auto}
+.calcpro-salary .calcpro-salary-money input{width:100%;min-width:0;border:0!important;box-shadow:none!important;padding:3px 3px 3px 0!important;height:25px!important;outline-offset:1px}
+.calcpro-salary .calcpro-salary-per{font-size:14px;flex:none}
+.calcpro-salary .calcpro-salary-rate-row select{width:100%;min-width:0;flex:1 1 110px}
+.calcpro-salary .calcpro-salary-field-row{display:grid;grid-template-columns:minmax(0,1fr) 86px;align-items:center;gap:7px;margin:6px 0}
+.calcpro-salary .calcpro-salary-field-row label{margin:0;font-size:14px;line-height:1.25}
+.calcpro-salary .calcpro-salary-field-row input,.calcpro-salary .calcpro-salary-rate-row select{height:29px;border:1px solid #276496;background:#fff;border-radius:0;padding:3px 5px;box-shadow:1px 2px 2px #aaa;color:#111;font:15px Arial,Helvetica,sans-serif}
+.calcpro-salary input:focus-visible,.calcpro-salary select:focus-visible,.calcpro-salary button:focus-visible{outline:2px solid #1551ad;outline-offset:2px}
+.calcpro-salary input[aria-invalid="true"]{border-color:#be2935!important;background:#fff9f9}
+.calcpro-salary .calcpro-salary-buttons{display:flex;justify-content:center;gap:5px;margin-top:20px;align-items:center}
+.calcpro-salary .calcpro-salary-calculate{border:0;background:#4c8426;color:#fff;padding:0 9px 0 15px;font-size:14px;font-weight:700;min-height:37px;cursor:pointer;display:inline-flex;align-items:center;gap:12px;justify-content:center}
+.calcpro-salary .calcpro-salary-arrow{font-size:14px;background:#9abc89;border-radius:50%;color:#fff;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center}
+.calcpro-salary .calcpro-salary-clear{border:0;background:#a7aaad;color:#fff;min-height:37px;padding:0 10px;cursor:pointer;font-size:14px}
+.calcpro-salary .calcpro-salary-calculate:hover{background:#376a17}
+.calcpro-salary .calcpro-salary-clear:hover{background:#777f87}
+.calcpro-salary .calcpro-salary-error{color:#9a1122;background:#fff4f5;border:1px solid #d59aa2;padding:8px;margin:12px 0 0;font-size:13px}
+.calcpro-salary [hidden]{display:none!important}
+.calcpro-salary .calcpro-salary-result{min-width:0}
+.calcpro-salary .calcpro-salary-result-bar{background:var(--calcpro-salary-green);color:#fff;min-height:37px;padding:4px 7px;display:flex;justify-content:space-between;align-items:center}
+.calcpro-salary .calcpro-salary-result-bar h2{font-size:20px;font-weight:400;line-height:1.2;color:#fff;margin:0}
+.calcpro-salary .calcpro-salary-save{border:0;background:transparent;color:#fff;cursor:pointer;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:0;min-width:32px;padding:1px 2px;font-family:Arial,Helvetica,sans-serif}
+.calcpro-salary .calcpro-salary-save svg{width:16px;height:16px;fill:#fff;display:block}
+.calcpro-salary .calcpro-salary-save small{font-size:9px;line-height:1}
+.calcpro-salary .calcpro-salary-save:disabled{opacity:.45;cursor:not-allowed}
+.calcpro-salary .calcpro-salary-table-scroll{overflow-x:auto;max-width:100%}
+.calcpro-salary .calcpro-salary-result-table{border-collapse:collapse;font-size:14px;width:100%;min-width:325px;line-height:1.16;font-variant-numeric:tabular-nums}
+.calcpro-salary .calcpro-salary-result-table thead th{background:var(--calcpro-salary-blue);color:#fff;font-size:14px;font-weight:700;text-align:center;vertical-align:bottom;padding:7px 3px;border:1px solid #27587f;line-height:1.1}
+.calcpro-salary .calcpro-salary-result-table th:first-child{width:27%}
+.calcpro-salary .calcpro-salary-result-table th:nth-child(2){width:25%}
+.calcpro-salary .calcpro-salary-result-table th:nth-child(3){width:48%}
+.calcpro-salary .calcpro-salary-result-table tbody td{padding:4px 5px;text-align:right;border:1px solid #cacaca;white-space:nowrap;background:#fff}
+.calcpro-salary .calcpro-salary-result-table tbody tr:nth-child(even) td{background:#ececec}
+.calcpro-salary .calcpro-salary-result-table tbody td:first-child{font-size:14px}
+.calcpro-salary .calcpro-salary-saved-feedback{margin:7px 0 0;font-size:12px;color:#315f20}
+.calcpro-salary .calcpro-salary-assumptions{margin:10px 0 4px;font-size:14px;line-height:1.32}
+@media(max-width:700px){.calcpro-salary .calcpro-salary-grid{grid-template-columns:minmax(0,1fr);gap:15px}.calcpro-salary .calcpro-salary-input-panel{width:100%;max-width:420px}.calcpro-salary .calcpro-salary-field-row{grid-template-columns:minmax(0,1fr) 100px}.calcpro-salary .calcpro-salary-result{width:100%}}
+@media(max-width:380px){.calcpro-salary .calcpro-salary-banner{font-size:13px;gap:7px;padding:7px}.calcpro-salary .calcpro-salary-result-table{font-size:13px}.calcpro-salary .calcpro-salary-result-table thead th{font-size:12px}.calcpro-salary .calcpro-salary-field-row{grid-template-columns:minmax(0,1fr) 83px}}
+@media print{.calcpro-salary .calcpro-salary-banner,.calcpro-salary .calcpro-salary-buttons,.calcpro-salary .calcpro-salary-save{display:none!important}.calcpro-salary .calcpro-salary-input-panel{border:1px solid #bbb;print-color-adjust:exact}.calcpro-salary .calcpro-salary-result-table{min-width:0}}
+
+.calcpro-salary .calcpro-salary-sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Salary Calculator</nav><h1 class="cp-page-title">Salary Calculator</h1><p class="cp-intro">Convert salary and wages across eight payment frequencies. See unadjusted pay and estimated pay after holidays and vacation days.</p><section aria-label="Calculator" class="cp-tool-area">
+
+<div class="calcpro-salary" id="calcpro-salary-root">
+  <div class="calcpro-salary-banner"><span class="calcpro-salary-banner-symbol" aria-hidden="true">▼</span><span>Modify the values and click the Calculate button to use</span></div>
+  <div class="calcpro-salary-grid">
+    <div class="calcpro-salary-input-panel">
+      <form class="calcpro-salary-form" id="calcpro-salary-form" novalidate>
+        <div class="calcpro-salary-amount-group"><label class="calcpro-salary-label" for="calcpro-salary-amount">Salary amount</label>
+          <div class="calcpro-salary-rate-row"><div class="calcpro-salary-money"><span class="calcpro-salary-dollar" aria-hidden="true">$</span><input id="calcpro-salary-amount" name="salaryAmount" type="text" inputmode="decimal" autocomplete="off" value="50" aria-label="Salary amount in US dollars" required></div>
+            <span class="calcpro-salary-per">per</span><select id="calcpro-salary-frequency" name="frequency" aria-label="Salary payment frequency">
+              <option value="Hourly" selected>Hour</option><option value="Daily">Day</option><option value="Weekly">Week</option><option value="Bi-weekly">Bi-week</option><option value="Semi-monthly">Semi-month</option><option value="Monthly">Month</option><option value="Quarterly">Quarter</option><option value="Annual">Year</option>
+            </select></div></div>
+        <div class="calcpro-salary-field-row"><label for="calcpro-salary-hours">Hours per week</label><input id="calcpro-salary-hours" name="hoursPerWeek" type="text" inputmode="decimal" value="40" required></div>
+        <div class="calcpro-salary-field-row"><label for="calcpro-salary-days">Days per week</label><input id="calcpro-salary-days" name="daysPerWeek" type="text" inputmode="decimal" value="5" required></div>
+        <div class="calcpro-salary-field-row"><label for="calcpro-salary-holidays">Holidays per year</label><input id="calcpro-salary-holidays" name="holidays" type="text" inputmode="decimal" value="10" required></div>
+        <div class="calcpro-salary-field-row"><label for="calcpro-salary-vacation">Vacation days per year</label><input id="calcpro-salary-vacation" name="vacation" type="text" inputmode="decimal" value="15" required></div>
+        <div class="calcpro-salary-buttons"><button type="submit" class="calcpro-salary-calculate">Calculate <span class="calcpro-salary-arrow" aria-hidden="true">▶</span></button><button type="button" class="calcpro-salary-clear" id="calcpro-salary-clear">Clear</button></div>
+        <p class="calcpro-salary-error" id="calcpro-salary-error" role="alert" hidden></p>
+      </form>
+    </div>
+    <section class="calcpro-salary-result" aria-labelledby="calcpro-salary-result-heading">
+      <div class="calcpro-salary-result-bar"><h2 id="calcpro-salary-result-heading">Result</h2><button type="button" id="calcpro-salary-save" class="calcpro-salary-save" aria-label="Save results as CSV file" title="Save results as CSV file"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 2h13l3 3v17H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2Zm2 1v7h11V3H6Zm6 11a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z"/></svg><small>save</small></button></div>
+      <div class="calcpro-salary-table-scroll" role="region" aria-label="Salary conversion results" tabindex="0"><table class="calcpro-salary-result-table"><thead><tr><th scope="col"><span class="calcpro-salary-sr-only">Frequency</span></th><th scope="col">Unadjusted</th><th scope="col">Holidays &amp; vacation days adjusted</th></tr></thead><tbody>
+<tr data-calcpro-salary-period="Hourly"><td>Hourly</td><td data-calcpro-salary-output="unadjusted">$50.00</td><td data-calcpro-salary-output="adjusted">$45.19</td></tr>
+<tr data-calcpro-salary-period="Daily"><td>Daily</td><td data-calcpro-salary-output="unadjusted">$400.00</td><td data-calcpro-salary-output="adjusted">$361.54</td></tr>
+<tr data-calcpro-salary-period="Weekly"><td>Weekly</td><td data-calcpro-salary-output="unadjusted">$2,000</td><td data-calcpro-salary-output="adjusted">$1,808</td></tr>
+<tr data-calcpro-salary-period="Bi-weekly"><td>Bi-weekly</td><td data-calcpro-salary-output="unadjusted">$4,000</td><td data-calcpro-salary-output="adjusted">$3,615</td></tr>
+<tr data-calcpro-salary-period="Semi-monthly"><td>Semi-monthly</td><td data-calcpro-salary-output="unadjusted">$4,333</td><td data-calcpro-salary-output="adjusted">$3,917</td></tr>
+<tr data-calcpro-salary-period="Monthly"><td>Monthly</td><td data-calcpro-salary-output="unadjusted">$8,667</td><td data-calcpro-salary-output="adjusted">$7,833</td></tr>
+<tr data-calcpro-salary-period="Quarterly"><td>Quarterly</td><td data-calcpro-salary-output="unadjusted">$26,000</td><td data-calcpro-salary-output="adjusted">$23,500</td></tr>
+<tr data-calcpro-salary-period="Annual"><td>Annual</td><td data-calcpro-salary-output="unadjusted">$104,000</td><td data-calcpro-salary-output="adjusted">$94,000</td></tr>
+      </tbody></table></div><p id="calcpro-salary-save-status" class="calcpro-salary-saved-feedback" role="status" hidden></p>
+    </section>
+  </div>
+  <p class="calcpro-salary-assumptions">Hourly and daily inputs are treated as unadjusted pay. Other pay-frequency inputs are treated as holidays-and-vacation-adjusted pay. The calculator assumes 52 weeks per year and deducts holidays and vacation days from the annual working-day total only for the adjusted figures.</p>
+</div>
+
+</section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><!-- REPLACE these links with real related tools for each calculator; verify live slugs. --><a href="retirement-calculator.html">Retirement</a><a href="roth-ira-calculator.html">Roth IRA</a><a href="investment-calculator.html">Investment</a><a href="compound-interest-calculator.html">Compound Interest</a><a href="annuity-payout-calculator.html">Annuity Payout</a><a href="pension-calculator.html">Pension</a><a href="inflation-calculator.html">Inflation</a><a href="future-value-calculator.html">Future Value</a><a href="income-tax-calculator.html">Income Tax</a><a href="savings-calculator.html">Savings</a><a href="mortgage-calculator.html">Mortgage</a><a href="loan-calculator.html">Loan</a></div></section></aside><article class="cp-article">
+<h2>How to Use the Salary Calculator</h2>
+<p>Enter the amount you earn and select whether that amount is paid by the hour, day, week, bi-week, semi-month, month, quarter, or year. Next, provide your typical hours and days worked per week, plus annual holidays and vacation days. Select <strong>Calculate</strong> to update all eight pay periods without leaving the page.</p>
+<p>The two result columns show equivalent pay without deductions for days off and pay adjusted for the days off you entered. Select <strong>Save</strong> in the result heading to download the current calculation as a CSV file.</p>
+<h2>Salary Conversion Formulas</h2>
+<p>The calculator uses 52 weeks per year. Annual working days = days worked per week × 52; annual working hours = hours worked per week × 52. Annual pay is divided by the relevant number of periods:</p>
+<div class="cp-table-scroll"><table class="cp-content-table"><thead><tr><th>Pay frequency</th><th>Periods or units per year</th><th>Conversion from annual pay</th></tr></thead><tbody><tr><td>Hourly</td><td>Hours per week × 52</td><td>Annual ÷ annual working hours</td></tr><tr><td>Daily</td><td>Days per week × 52</td><td>Annual ÷ annual working days</td></tr><tr><td>Weekly</td><td>52</td><td>Annual ÷ 52</td></tr><tr><td>Bi-weekly</td><td>26</td><td>Annual ÷ 26</td></tr><tr><td>Semi-monthly</td><td>24</td><td>Annual ÷ 24</td></tr><tr><td>Monthly</td><td>12</td><td>Annual ÷ 12</td></tr><tr><td>Quarterly</td><td>4</td><td>Annual ÷ 4</td></tr><tr><td>Annual</td><td>1</td><td>Annual amount</td></tr></tbody></table></div>
+<h3>Adjustment for Holidays and Vacation</h3>
+<p><strong>Working-day fraction</strong> = (52 × days per week − holidays − vacation days) ÷ (52 × days per week). For an <strong>hourly or daily input</strong>, adjusted annual pay = unadjusted annual pay × working-day fraction. For a <strong>weekly or longer input</strong>, the entered salary is treated as already adjusted: unadjusted annual pay = adjusted annual pay ÷ working-day fraction. This distinction follows the source calculator's input convention.</p>
+<h2>Worked Example</h2>
+<p>At <strong>$50 per hour</strong>, 40 hours a week and five days a week, annual pay without time-off adjustments equals $50 × 40 × 52 = <strong>$104,000</strong>. With 10 holidays and 15 vacation days, 235 out of 260 planned working days remain. Adjusted annual pay is $104,000 × (235 ÷ 260) = <strong>$94,000</strong>. The corresponding adjusted monthly amount is $94,000 ÷ 12 = <strong>$7,833</strong> when rounded to the nearest dollar.</p>
+<h2>Understanding the Results</h2>
+<p>Hourly and daily amounts display to two decimal places; other frequencies are displayed to the nearest dollar, while calculations use unrounded intermediate values. <strong>Bi-weekly</strong> means every two weeks (26 times a year). <strong>Semi-monthly</strong> means twice a month (24 times a year); these amounts are therefore different.</p>
+<div class="cp-note">This is a gross-pay frequency converter, not a take-home-pay or tax calculator. The holiday and vacation adjustment models days with no earnings. When your holiday or vacation time is fully paid, your actual contractual salary may not fall by the amounts shown in the adjusted column. Overtime, bonuses, taxes, deductions, and leap-year effects are not included.</div>
+<h2>Frequently Asked Questions</h2>
+<h3>How do I convert an hourly wage into an annual salary?</h3>
+<p>Multiply the hourly wage by hours worked per week and then by 52. For example, $25 an hour at 40 hours a week corresponds to $52,000 annually before accounting for days off.</p>
+<h3>Why are bi-weekly and semi-monthly different?</h3>
+<p>Bi-weekly refers to 26 pay periods in a 52-week year, whereas semi-monthly refers to 24 pay periods each year. The former divides annual pay by 26; the latter divides it by 24.</p>
+<h3>Why can the unadjusted amount exceed my entered monthly or annual salary?</h3>
+<p>Following the reference calculator's convention, inputs from weekly through annual are considered already adjusted for time off. The unadjusted column reverses that adjustment, which can produce a larger figure.</p>
+<h3>Does this calculator account for income tax?</h3>
+<p>No. These are gross compensation equivalents. Use an income-tax or take-home-pay calculator for after-tax estimates.</p>
+<h2>Reference</h2>
+<p>Salary-conversion methodology and input assumptions were checked against the <a href="https://www.calculator.net/salary-calculator.html" rel="noopener noreferrer" target="_blank">Calculator.net Salary Calculator</a>.</p>
+<p class="cp-page-footer">CalcPro — calculator estimates are for informational purposes.</p>
+</article></main></div><script>
+
+(function () {
+  'use strict';
+  const root = document.getElementById('calcpro-salary-root');
+  if (!root) return;
+  const form = root.querySelector('#calcpro-salary-form');
+  const amount = root.querySelector('#calcpro-salary-amount');
+  const unit = root.querySelector('#calcpro-salary-frequency');
+  const hours = root.querySelector('#calcpro-salary-hours');
+  const days = root.querySelector('#calcpro-salary-days');
+  const holidays = root.querySelector('#calcpro-salary-holidays');
+  const vacation = root.querySelector('#calcpro-salary-vacation');
+  const error = root.querySelector('#calcpro-salary-error');
+  const save = root.querySelector('#calcpro-salary-save');
+  const saveStatus = root.querySelector('#calcpro-salary-save-status');
+  const periods = ['Hourly', 'Daily', 'Weekly', 'Bi-weekly', 'Semi-monthly', 'Monthly', 'Quarterly', 'Annual'];
+  const moneyFormatter = [
+    new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0, maximumFractionDigits: 0 }),
+    new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2, maximumFractionDigits: 2 })
+  ];
+  let lastCalculated = null;
+
+  function parseNumber(field, name, min, max, allowZero) {
+    const original = field.value.trim();
+    const clean = original.replace(/[$,\s]/g, '');
+    if (!clean || !/^(?:\d+(?:\.\d*)?|\.\d+)$/.test(clean)) {
+      throw { field, message: 'Enter a valid number for ' + name + '.' };
+    }
+    const value = Number(clean);
+    if (!Number.isFinite(value) || value < min || value > max || (!allowZero && value === 0)) {
+      throw { field, message: name + ' must be ' + (allowZero ? 'between ' + min + ' and ' + max : 'greater than 0 and no more than ' + max) + '.' };
+    }
+    return value;
+  }
+
+  function readInputs() {
+    const values = {
+      amount: parseNumber(amount, 'salary amount', 0, 1e12, true),
+      frequency: unit.value,
+      hours: parseNumber(hours, 'hours per week', 0, 168, false),
+      days: parseNumber(days, 'days per week', 0, 7, false),
+      holidays: parseNumber(holidays, 'holidays per year', 0, 365, true),
+      vacation: parseNumber(vacation, 'vacation days per year', 0, 365, true)
+    };
+    if (!periods.includes(values.frequency)) {
+      throw { field: unit, message: 'Choose a supported pay frequency.' };
+    }
+    const annualWorkingDays = 52 * values.days;
+    if (values.holidays + values.vacation > annualWorkingDays + 1e-10) {
+      throw { field: vacation, message: 'Total holidays and vacation days cannot exceed ' + annualWorkingDays.toLocaleString('en-US', { maximumFractionDigits: 2 }) + ' workdays per year.' };
+    }
+    if (values.holidays + values.vacation >= annualWorkingDays - 1e-10 && values.frequency !== 'Hourly' && values.frequency !== 'Daily') {
+      throw { field: vacation, message: 'At least one working day must remain when the input is weekly, bi-weekly, semi-monthly, monthly, quarterly, or annual.' };
+    }
+    return values;
+  }
+
+  // There are 52 weekly, 26 bi-weekly, 24 semi-monthly, 12 monthly,
+  // four quarterly, and one annual salary periods per year.
+  function yearlyPeriods(v) {
+    return {
+      'Hourly': v.hours * 52,
+      'Daily': v.days * 52,
+      'Weekly': 52,
+      'Bi-weekly': 26,
+      'Semi-monthly': 24,
+      'Monthly': 12,
+      'Quarterly': 4,
+      'Annual': 1
+    };
+  }
+
+  function calculate(v) {
+    const counts = yearlyPeriods(v);
+    const workingDays = v.days * 52;
+    const availableDays = workingDays - v.holidays - v.vacation;
+    const adjustedFraction = availableDays / workingDays;
+    const inputAnnual = v.amount * counts[v.frequency];
+    // Match the reference convention: hourly and daily inputs are pre-time-off;
+    // other input frequencies are already time-off-adjusted.
+    const annualUnadjusted = (v.frequency === 'Hourly' || v.frequency === 'Daily')
+      ? inputAnnual : inputAnnual / adjustedFraction;
+    const annualAdjusted = (v.frequency === 'Hourly' || v.frequency === 'Daily')
+      ? inputAnnual * adjustedFraction : inputAnnual;
+    return {
+      source: { ...v },
+      annualUnadjusted,
+      annualAdjusted,
+      rows: periods.map(name => ({
+        name,
+        unadjusted: annualUnadjusted / counts[name],
+        adjusted: annualAdjusted / counts[name]
+      }))
+    };
+  }
+
+  function render(calculation) {
+    calculation.rows.forEach(row => {
+      const tr = Array.from(root.querySelectorAll('[data-calcpro-salary-period]'))
+        .find(element => element.getAttribute('data-calcpro-salary-period') === row.name);
+      if (!tr) return;
+      const decimals = (row.name === 'Hourly' || row.name === 'Daily') ? 1 : 0;
+      tr.querySelector('[data-calcpro-salary-output="unadjusted"]').textContent = moneyFormatter[decimals].format(row.unadjusted);
+      tr.querySelector('[data-calcpro-salary-output="adjusted"]').textContent = moneyFormatter[decimals].format(row.adjusted);
+    });
+  }
+
+  function showError(problem) {
+    const field = problem.field || amount;
+    error.textContent = problem.message || 'Please check your inputs.';
+    error.hidden = false;
+    field.setAttribute('aria-invalid', 'true');
+    field.focus();
+  }
+
+  form.addEventListener('submit', function (event) {
+    event.preventDefault();
+    error.hidden = true;
+    saveStatus.hidden = true;
+    [amount, hours, days, holidays, vacation, unit].forEach(field => field.removeAttribute('aria-invalid'));
+    try {
+      const result = calculate(readInputs());
+      if (!Number.isFinite(result.annualUnadjusted) || !Number.isFinite(result.annualAdjusted)) {
+        throw { field: amount, message: 'The calculation is too large; enter a smaller salary amount.' };
+      }
+      lastCalculated = result;
+      render(result);
+      save.disabled = false;
+    } catch (problem) {
+      showError(problem);
+    }
+  });
+
+  root.querySelector('#calcpro-salary-clear').addEventListener('click', function () {
+    [amount, hours, days, holidays, vacation].forEach(field => { field.value = ''; field.removeAttribute('aria-invalid'); });
+    unit.value = 'Hourly';
+    unit.removeAttribute('aria-invalid');
+    error.hidden = true;
+    saveStatus.hidden = true;
+    root.querySelectorAll('[data-calcpro-salary-output]').forEach(cell => cell.textContent = '—');
+    lastCalculated = null;
+    save.disabled = true;
+    amount.focus();
+  });
+
+  save.addEventListener('click', function () {
+    if (!lastCalculated) return;
+    const src = lastCalculated.source;
+    const lines = [
+      ['Salary Calculator — CalcPro'],
+      ['Salary amount (USD)', String(src.amount)], ['Input frequency', src.frequency],
+      ['Hours per week', String(src.hours)], ['Days per week', String(src.days)],
+      ['Holidays per year', String(src.holidays)], ['Vacation days per year', String(src.vacation)],
+      [], ['Pay period', 'Unadjusted (USD)', 'Holidays and vacation adjusted (USD)'],
+      ...lastCalculated.rows.map(row => [row.name, row.unadjusted.toFixed(2), row.adjusted.toFixed(2)])
+    ];
+    const csv = lines.map(cols => cols.map(value => '"' + String(value).replace(/"/g, '""') + '"').join(',')).join('\r\n');
+    const blob = new Blob(['\uFEFF', csv], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const anchor = document.createElement('a');
+    anchor.href = url;
+    anchor.download = 'calcpro-salary-results.csv';
+    document.body.appendChild(anchor);
+    anchor.click();
+    anchor.remove();
+    window.setTimeout(() => URL.revokeObjectURL(url), 3000);
+    saveStatus.textContent = 'Result saved as a CSV file.';
+    saveStatus.hidden = false;
+  });
+
+  // The initial example is deliberately calculated, not stored as fixed JS outputs.
+  try {
+    lastCalculated = calculate(readInputs());
+    render(lastCalculated);
+    save.disabled = false;
+  } catch (problem) {
+    lastCalculated = null;
+    save.disabled = true;
+  }
+})();
+</script></body></html>

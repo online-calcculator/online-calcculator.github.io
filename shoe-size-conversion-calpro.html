@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>Shoe Size Conversion Calculator | CalcPro</title><meta content="Convert adult, kids, and toddler shoe sizes across US, UK, EU, Japan/Mexico, and China systems or by foot length." name="description"/><link href="template-style.css" rel="stylesheet"/><style>
+
+/* Scoped shoe-size tool: no template-level selectors. */
+.calcpro-shoe { --calcpro-shoe-green:#4c8127; font:16px Arial,Helvetica,sans-serif; color:#111; max-width:100%; line-height:1.35; }
+.calcpro-shoe, .calcpro-shoe * {box-sizing:border-box;}
+.calcpro-shoe .calcpro-shoe-results[hidden], .calcpro-shoe .calcpro-shoe-row[hidden], .calcpro-shoe .calcpro-shoe-feedback[hidden] {display:none;}
+.calcpro-shoe .calcpro-shoe-results { margin:4px 0 18px; max-width:100%; }
+.calcpro-shoe .calcpro-shoe-result-head {display:flex;align-items:center;justify-content:space-between;min-height:36px;background:var(--calcpro-shoe-green);color:#fff;padding:5px 7px;gap:10px;}
+.calcpro-shoe .calcpro-shoe-result-head h2 {font-size:20px;color:#fff;margin:0;font-weight:400;line-height:1.2;}
+.calcpro-shoe .calcpro-shoe-save {border:0;background:transparent;color:#fff;cursor:pointer;font:10px Arial,sans-serif;display:flex;flex-direction:column;align-items:center;gap:0;padding:0 4px;min-width:32px;}
+.calcpro-shoe .calcpro-shoe-save svg {display:block;width:16px;height:16px;fill:currentColor;}
+.calcpro-shoe .calcpro-shoe-save:hover {text-decoration:underline;}
+.calcpro-shoe .calcpro-shoe-result-summary {font-size:14px;margin:5px 0 7px;font-weight:700;}
+.calcpro-shoe .calcpro-shoe-result-table {border-collapse:collapse;font:14px Arial,Helvetica,sans-serif;margin:0;max-width:100%;}
+.calcpro-shoe .calcpro-shoe-result-table th,.calcpro-shoe .calcpro-shoe-result-table td {border:1px solid #c7c7c7;padding:3px 5px;line-height:1.18;vertical-align:top;}
+.calcpro-shoe .calcpro-shoe-result-table th {font-weight:400;text-align:left;min-width:137px;}
+.calcpro-shoe .calcpro-shoe-result-table td {min-width:75px;text-align:center;white-space:nowrap;}
+.calcpro-shoe .calcpro-shoe-result-table tbody tr:nth-child(2n) {background:#ededed;}
+.calcpro-shoe .calcpro-shoe-foot-stack {display:block;text-align:right;line-height:1.25;}
+.calcpro-shoe .calcpro-shoe-panel {width:330px;max-width:100%;border:1px solid #bfbfbf;background:#efefef;padding:9px 8px 8px;}
+.calcpro-shoe .calcpro-shoe-age {display:grid;grid-template-columns:83px minmax(0,1fr);gap:3px;margin:0 0 9px;align-items:start;}
+.calcpro-shoe .calcpro-shoe-age-title {font-size:14px;padding-top:4px;white-space:nowrap;}
+.calcpro-shoe .calcpro-shoe-age-options {display:flex;flex-direction:column;gap:5px;}
+.calcpro-shoe .calcpro-shoe-age-options label {display:flex;align-items:center;gap:8px;font-size:14px;cursor:pointer;line-height:1.3;}
+.calcpro-shoe .calcpro-shoe-age-options input {accent-color:#34669b;width:17px;height:17px;margin:0;flex:0 0 auto;cursor:pointer;}
+.calcpro-shoe .calcpro-shoe-row {display:grid;grid-template-columns:132px 111px minmax(0,1fr);gap:3px;align-items:center;min-height:30px;}
+.calcpro-shoe .calcpro-shoe-field-label {font-size:14px;line-height:1.2;cursor:pointer;white-space:nowrap;}
+.calcpro-shoe .calcpro-shoe-field {height:29px;min-width:0;width:100%;border:1px solid #376b99;border-radius:0;background:white;font:16px Arial,Helvetica,sans-serif;color:#111;padding:3px 5px;box-shadow:0 1px 2px #00000020;}
+.calcpro-shoe .calcpro-shoe-field:focus,.calcpro-shoe .calcpro-shoe-unit:focus {outline:2px solid #366998;outline-offset:1px;}
+.calcpro-shoe .calcpro-shoe-range {font-size:13px;line-height:1.15;overflow-wrap:anywhere;padding-left:1px;}
+.calcpro-shoe .calcpro-shoe-foot-controls {grid-column:2 / 4;display:grid;grid-template-columns:85px minmax(0,1fr);gap:5px;}
+.calcpro-shoe .calcpro-shoe-unit {width:100%;height:29px;min-width:0;border:1px solid #376b99;background:#fff;border-radius:0;padding:2px 3px;color:#111;font:14px Arial,Helvetica,sans-serif;}
+.calcpro-shoe .calcpro-shoe-feedback {width:100%;margin:8px 0 4px;font-size:13px;color:#a02424;line-height:1.4;}
+.calcpro-shoe .calcpro-shoe-actions {display:flex;justify-content:center;align-items:center;gap:5px;margin-top:8px;}
+.calcpro-shoe .calcpro-shoe-convert {cursor:pointer;background:#4e8627;border:0;color:white;min-height:37px;padding:6px 9px 6px 15px;font-size:14px;font-family:Arial,Helvetica,sans-serif;font-weight:700;display:flex;align-items:center;gap:17px;}
+.calcpro-shoe .calcpro-shoe-convert svg {width:22px;height:22px;flex:0 0 22px;}
+.calcpro-shoe .calcpro-shoe-convert:hover {background:#3b6d1c;}
+.calcpro-shoe .calcpro-shoe-clear {cursor:pointer;border:0;background:#9a9a9a;color:#fff;font:14px Arial,sans-serif;min-height:37px;padding:6px 9px;}
+.calcpro-shoe .calcpro-shoe-clear:hover {background:#777;}
+.calcpro-shoe .calcpro-shoe-note {font-size:12px;color:#555;margin:7px 0 0;max-width:570px;}
+@media(max-width:360px) {.calcpro-shoe .calcpro-shoe-panel{padding:9px 6px}.calcpro-shoe .calcpro-shoe-row{grid-template-columns:minmax(102px,1.25fr) minmax(76px,.95fr) minmax(40px,.58fr)}.calcpro-shoe .calcpro-shoe-field-label{font-size:12.5px}.calcpro-shoe .calcpro-shoe-range{font-size:11px}.calcpro-shoe .calcpro-shoe-age{grid-template-columns:80px 1fr}.calcpro-shoe .calcpro-shoe-foot-controls{grid-template-columns:minmax(65px,1fr) minmax(73px,1fr)}}
+@media print {.calcpro-shoe .calcpro-shoe-actions,.calcpro-shoe .calcpro-shoe-save {display:none!important}.calcpro-shoe .calcpro-shoe-results {break-inside:avoid}}
+
+</style><!--TOOL CSS INSERT HERE: Paste only calculator-specific CSS here. Use unique class/id prefixes per tool, e.g. bmi-, loan-, age-. Keep header, sidebar and article CSS in style.css.--></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="other-calculator.html">Other Calculators</a> / Shoe Size Conversion</nav><h1 class="cp-page-title">Shoe Size Conversion</h1><p class="cp-intro">Please provide a shoe or foot size below to convert to the shoe sizes of other countries.</p><section aria-label="Calculator" class="cp-tool-area">
+<div class="calcpro-shoe" id="calcpro-shoe-root">
+  <section class="calcpro-shoe-results" id="calcpro-shoe-results" aria-live="polite" aria-label="Shoe size conversion results" hidden>
+    <div class="calcpro-shoe-result-head"><h2 id="calcpro-shoe-result-title" tabindex="-1">Result</h2>
+      <button class="calcpro-shoe-save" id="calcpro-shoe-save" type="button" aria-label="Save results as text" title="Save results">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 2h15l3 3v17H3V2zm3 2v6h11V4h-2v4H8V4H6zm6 9a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"/></svg><span>save</span>
+      </button>
+    </div>
+    <p class="calcpro-shoe-result-summary" id="calcpro-shoe-summary"></p>
+    <table class="calcpro-shoe-result-table" aria-label="Converted shoe sizes"><tbody id="calcpro-shoe-results-body"></tbody></table>
+    <p class="calcpro-shoe-note" id="calcpro-shoe-qualifier">Approximate sizing; actual fit varies by manufacturer and shoe model.</p>
+  </section>
+  <form id="calcpro-shoe-form" class="calcpro-shoe-panel" novalidate>
+    <div class="calcpro-shoe-age" role="group" aria-label="Convert for age group">
+      <span class="calcpro-shoe-age-title">Convert for</span>
+      <div class="calcpro-shoe-age-options">
+        <label><input type="radio" name="calcpro-shoe-age" value="adult" checked>Adults</label>
+        <label><input type="radio" name="calcpro-shoe-age" value="kid">Kids (age 5-12)</label>
+        <label><input type="radio" name="calcpro-shoe-age" value="infant">Infants/Toddlers (age 0-4)</label>
+      </div>
+    </div>
+    <div class="calcpro-shoe-row" id="calcpro-shoe-row-usw">
+      <label class="calcpro-shoe-field-label" for="calcpro-shoe-usw">US/Canada women</label>
+      <input class="calcpro-shoe-field" id="calcpro-shoe-usw" name="usw" type="text" inputmode="decimal" autocomplete="off" aria-describedby="calcpro-shoe-range-usw">
+      <span class="calcpro-shoe-range" id="calcpro-shoe-range-usw">(1–15)</span>
+    </div>
+    <div class="calcpro-shoe-row">
+      <label class="calcpro-shoe-field-label" id="calcpro-shoe-label-usm" for="calcpro-shoe-usm">US/Canada men</label>
+      <input class="calcpro-shoe-field" id="calcpro-shoe-usm" name="usm" type="text" inputmode="decimal" autocomplete="off" aria-describedby="calcpro-shoe-range-usm">
+      <span class="calcpro-shoe-range" id="calcpro-shoe-range-usm">(1–14)</span>
+    </div>
+    <div class="calcpro-shoe-row">
+      <label class="calcpro-shoe-field-label" id="calcpro-shoe-label-uk" for="calcpro-shoe-uk">UK/India</label>
+      <input class="calcpro-shoe-field" id="calcpro-shoe-uk" name="uk" type="text" inputmode="decimal" autocomplete="off" aria-describedby="calcpro-shoe-range-uk">
+      <span class="calcpro-shoe-range" id="calcpro-shoe-range-uk">(0–15)</span>
+    </div>
+    <div class="calcpro-shoe-row">
+      <label class="calcpro-shoe-field-label" for="calcpro-shoe-eu">EU</label>
+      <input class="calcpro-shoe-field" id="calcpro-shoe-eu" name="eu" type="text" inputmode="decimal" autocomplete="off" aria-describedby="calcpro-shoe-range-eu">
+      <span class="calcpro-shoe-range" id="calcpro-shoe-range-eu">(15–50)</span>
+    </div>
+    <div class="calcpro-shoe-row">
+      <label class="calcpro-shoe-field-label" for="calcpro-shoe-jp">Japan/Mexico</label>
+      <input class="calcpro-shoe-field" id="calcpro-shoe-jp" name="jp" type="text" inputmode="decimal" autocomplete="off" aria-describedby="calcpro-shoe-range-jp">
+      <span class="calcpro-shoe-range" id="calcpro-shoe-range-jp">(8–32)</span>
+    </div>
+    <div class="calcpro-shoe-row">
+      <label class="calcpro-shoe-field-label" for="calcpro-shoe-cn">China</label>
+      <input class="calcpro-shoe-field" id="calcpro-shoe-cn" name="cn" type="text" inputmode="decimal" autocomplete="off" aria-describedby="calcpro-shoe-range-cn">
+      <span class="calcpro-shoe-range" id="calcpro-shoe-range-cn">(8–55)</span>
+    </div>
+    <div class="calcpro-shoe-row">
+      <label class="calcpro-shoe-field-label" for="calcpro-shoe-fl">Foot length</label>
+      <div class="calcpro-shoe-foot-controls"><input class="calcpro-shoe-field" id="calcpro-shoe-fl" name="fl" type="text" inputmode="decimal" autocomplete="off" value="25">
+      <select class="calcpro-shoe-unit" id="calcpro-shoe-flu" name="flu" aria-label="Foot length unit">
+        <option value="cm" selected>cm</option><option value="mm">mm</option><option value="in">inches</option>
+      </select></div>
+    </div>
+    <p class="calcpro-shoe-feedback" id="calcpro-shoe-feedback" role="alert" hidden></p>
+    <div class="calcpro-shoe-actions">
+      <button class="calcpro-shoe-convert" type="submit">Convert
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#9dc29a"/><path d="M10 5.5 16 12l-6 6.5z" fill="white"/></svg>
+      </button><button type="button" class="calcpro-shoe-clear" id="calcpro-shoe-clear">Clear</button>
+    </div>
+  </form>
+</div>
+</section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><!-- REPLACE these links with real related tools for each calculator; verify live slugs. --><a href="height-calculator.html">Height</a><a href="bmi-calculator.html">BMI</a><a href="body-fat-calculator.html">Body Fat</a><a href="ideal-weight-calculator.html">Ideal Weight</a><a href="healthy-weight-calculator.html">Healthy Weight</a><a href="age-calculator.html">Age</a><a href="conversion-calculator.html">Unit Conversion</a><a href="calorie-calculator.html">Calorie</a><a href="bmr-calculator.html">BMR</a><a href="pace-calculator.html">Pace</a><a href="bra-size-calculator.html">Bra Size</a><a href="distance-calculator.html">Distance</a></div></section></aside><article class="cp-article">
+<h2>How to Use the Shoe Size Converter</h2>
+<p>Choose <strong>Adults</strong>, <strong>Kids (age 5–12)</strong>, or <strong>Infants/Toddlers (age 0–4)</strong>. Enter one shoe size in any available regional system, or type your foot length and select centimeters, millimeters, or inches. Select <strong>Convert</strong> to view the estimated equivalent sizes above the form. Entering a new value clears the other source fields automatically.</p>
+<p>For the best estimate, measure both feet while standing, from the back of the heel to the tip of the longest toe, and use the longer foot. Check the footwear brand's width and fit chart before ordering.</p>
+<h2>How Shoe Size Conversion Is Calculated</h2>
+<p>Sizing charts are not perfectly standardized internationally. This tool estimates sizes using foot length as a common measurement and rounds to the usual size increments. Set <em>L</em> to foot length in inches and <em>C</em> to foot length in centimeters.</p>
+<ul>
+<li>US/Canada women's (adult) ≈ 3 × L − 21; men's (adult) ≈ 3 × L − 22.</li>
+<li>UK/India adult ≈ 3 × L − 23.</li>
+<li>US/Canada big kids ≈ 3 × L − 22.75; UK/India big kids ≈ 3 × L − 23.75, with the child-size numbering cycle 13.5 → 1.</li>
+<li>US/Canada infants/toddlers ≈ 3 × L − 9.75; UK/India infants/toddlers ≈ 3 × L − 10.75.</li>
+<li>European size ≈ 1.5 × C + 2, rounded to a whole EU size.</li>
+<li>Japan/Mexico ≈ C, rounded to a half size; China ≈ 2 × C − 10, rounded to a whole size.</li>
+</ul>
+<p>Length conversions: <strong>1 inch = 2.54 cm = 25.4 mm</strong>. US, UK, and Japanese results are rounded to half sizes; EU and China results are rounded to whole sizes. Entering a shoe size reverses the corresponding formula to estimate foot length before converting into other scales. Due to rounding, reversing a shoe size may not reproduce the exact value from a previous conversion.</p>
+<h2>Example: Converting a 25 cm Foot</h2>
+<p>A 25 cm foot measures about 9.8425 inches. The approximate US women's size is 3 × 9.8425 − 21 = 8.53 (rounded to 8.5), while the US men's size is about 7.53 (rounded to 7.5), and the UK/India adult size is about 6.53 (rounded to 6.5). The EU estimate is 1.5 × 25 + 2 = 39.5 (rounded to 40); Japan/Mexico is 25, and China is 2 × 25 − 10 = 40.</p>
+<h2>International Shoe Size Charts</h2><p>These reference tables offer a quick overview of each sizing scale. Actual manufacturer size tables may vary, especially for children's shoes and regional labels. Use the calculator above for other values.</p>
+<h3>Women</h3><div class="cp-table-scroll"><table class="cp-content-table"><thead><tr><th scope="col">US/CA</th><th scope="col">UK/India</th><th scope="col">EU</th><th scope="col">Japan/Mexico</th><th scope="col">China</th><th scope="col">Foot (in)</th><th scope="col">Foot (cm)</th></tr></thead><tbody><tr><td>4</td><td>2</td><td>34</td><td>21</td><td>32</td><td>8.3</td><td>21.2</td></tr><tr><td>4.5</td><td>2.5</td><td>34</td><td>21.5</td><td>33</td><td>8.5</td><td>21.6</td></tr><tr><td>5</td><td>3</td><td>35</td><td>22</td><td>34</td><td>8.7</td><td>22</td></tr><tr><td>5.5</td><td>3.5</td><td>36</td><td>22.5</td><td>35</td><td>8.8</td><td>22.4</td></tr><tr><td>6</td><td>4</td><td>36</td><td>23</td><td>36</td><td>9</td><td>22.9</td></tr><tr><td>6.5</td><td>4.5</td><td>37</td><td>23.5</td><td>37</td><td>9.2</td><td>23.3</td></tr><tr><td>7</td><td>5</td><td>38</td><td>23.5</td><td>37</td><td>9.3</td><td>23.7</td></tr><tr><td>7.5</td><td>5.5</td><td>38</td><td>24</td><td>38</td><td>9.5</td><td>24.1</td></tr><tr><td>8</td><td>6</td><td>39</td><td>24.5</td><td>39</td><td>9.7</td><td>24.6</td></tr><tr><td>8.5</td><td>6.5</td><td>39</td><td>25</td><td>40</td><td>9.8</td><td>25</td></tr><tr><td>9</td><td>7</td><td>40</td><td>25.5</td><td>41</td><td>10</td><td>25.4</td></tr><tr><td>9.5</td><td>7.5</td><td>41</td><td>26</td><td>42</td><td>10.2</td><td>25.8</td></tr><tr><td>10</td><td>8</td><td>41</td><td>26</td><td>42</td><td>10.3</td><td>26.2</td></tr><tr><td>10.5</td><td>8.5</td><td>42</td><td>26.5</td><td>43</td><td>10.5</td><td>26.7</td></tr><tr><td>11</td><td>9</td><td>43</td><td>27</td><td>44</td><td>10.7</td><td>27.1</td></tr><tr><td>11.5</td><td>9.5</td><td>43</td><td>27.5</td><td>45</td><td>10.8</td><td>27.5</td></tr><tr><td>12</td><td>10</td><td>44</td><td>28</td><td>46</td><td>11</td><td>27.9</td></tr></tbody></table></div>
+<h3>Men</h3><div class="cp-table-scroll"><table class="cp-content-table"><thead><tr><th scope="col">US/CA</th><th scope="col">UK/India</th><th scope="col">EU</th><th scope="col">Japan/Mexico</th><th scope="col">China</th><th scope="col">Foot (in)</th><th scope="col">Foot (cm)</th></tr></thead><tbody><tr><td>6</td><td>5</td><td>38</td><td>23.5</td><td>37</td><td>9.3</td><td>23.7</td></tr><tr><td>6.5</td><td>5.5</td><td>38</td><td>24</td><td>38</td><td>9.5</td><td>24.1</td></tr><tr><td>7</td><td>6</td><td>39</td><td>24.5</td><td>39</td><td>9.7</td><td>24.6</td></tr><tr><td>7.5</td><td>6.5</td><td>39</td><td>25</td><td>40</td><td>9.8</td><td>25</td></tr><tr><td>8</td><td>7</td><td>40</td><td>25.5</td><td>41</td><td>10</td><td>25.4</td></tr><tr><td>8.5</td><td>7.5</td><td>41</td><td>26</td><td>42</td><td>10.2</td><td>25.8</td></tr><tr><td>9</td><td>8</td><td>41</td><td>26</td><td>42</td><td>10.3</td><td>26.2</td></tr><tr><td>9.5</td><td>8.5</td><td>42</td><td>26.5</td><td>43</td><td>10.5</td><td>26.7</td></tr><tr><td>10</td><td>9</td><td>43</td><td>27</td><td>44</td><td>10.7</td><td>27.1</td></tr><tr><td>10.5</td><td>9.5</td><td>43</td><td>27.5</td><td>45</td><td>10.8</td><td>27.5</td></tr><tr><td>11</td><td>10</td><td>44</td><td>28</td><td>46</td><td>11</td><td>27.9</td></tr><tr><td>11.5</td><td>10.5</td><td>45</td><td>28.5</td><td>47</td><td>11.2</td><td>28.4</td></tr><tr><td>12</td><td>11</td><td>45</td><td>29</td><td>48</td><td>11.3</td><td>28.8</td></tr><tr><td>12.5</td><td>11.5</td><td>46</td><td>29</td><td>48</td><td>11.5</td><td>29.2</td></tr><tr><td>13</td><td>12</td><td>46</td><td>29.5</td><td>49</td><td>11.7</td><td>29.6</td></tr><tr><td>13.5</td><td>12.5</td><td>47</td><td>30</td><td>50</td><td>11.8</td><td>30.1</td></tr><tr><td>14</td><td>13</td><td>48</td><td>30.5</td><td>51</td><td>12</td><td>30.5</td></tr></tbody></table></div>
+<h3>Kids (5–12)</h3><div class="cp-table-scroll"><table class="cp-content-table"><thead><tr><th scope="col">US/CA</th><th scope="col">UK/India</th><th scope="col">EU</th><th scope="col">Japan/Mexico</th><th scope="col">China</th><th scope="col">Foot (in)</th><th scope="col">Foot (cm)</th></tr></thead><tbody><tr><td>10.5</td><td>9.5</td><td>28</td><td>17</td><td>24</td><td>6.8</td><td>17.1</td></tr><tr><td>11</td><td>10</td><td>28</td><td>17.5</td><td>25</td><td>6.9</td><td>17.6</td></tr><tr><td>11.5</td><td>10.5</td><td>29</td><td>18</td><td>26</td><td>7.1</td><td>18</td></tr><tr><td>12</td><td>11</td><td>30</td><td>18.5</td><td>27</td><td>7.3</td><td>18.4</td></tr><tr><td>12.5</td><td>11.5</td><td>30</td><td>19</td><td>28</td><td>7.4</td><td>18.8</td></tr><tr><td>13</td><td>12</td><td>31</td><td>19.5</td><td>29</td><td>7.6</td><td>19.3</td></tr><tr><td>13.5</td><td>12.5</td><td>32</td><td>19.5</td><td>29</td><td>7.8</td><td>19.7</td></tr><tr><td>1</td><td>13</td><td>32</td><td>20</td><td>30</td><td>7.9</td><td>20.1</td></tr><tr><td>1.5</td><td>13.5</td><td>33</td><td>20.5</td><td>31</td><td>8.1</td><td>20.5</td></tr><tr><td>2</td><td>1</td><td>33</td><td>21</td><td>32</td><td>8.3</td><td>21</td></tr><tr><td>2.5</td><td>1.5</td><td>34</td><td>21.5</td><td>33</td><td>8.4</td><td>21.4</td></tr><tr><td>3</td><td>2</td><td>35</td><td>22</td><td>34</td><td>8.6</td><td>21.8</td></tr><tr><td>3.5</td><td>2.5</td><td>35</td><td>22</td><td>34</td><td>8.8</td><td>22.2</td></tr><tr><td>4</td><td>3</td><td>36</td><td>22.5</td><td>35</td><td>8.9</td><td>22.6</td></tr><tr><td>4.5</td><td>3.5</td><td>37</td><td>23</td><td>36</td><td>9.1</td><td>23.1</td></tr><tr><td>5</td><td>4</td><td>37</td><td>23.5</td><td>37</td><td>9.3</td><td>23.5</td></tr><tr><td>5.5</td><td>4.5</td><td>38</td><td>24</td><td>38</td><td>9.4</td><td>23.9</td></tr><tr><td>6</td><td>5</td><td>39</td><td>24.5</td><td>39</td><td>9.6</td><td>24.3</td></tr><tr><td>6.5</td><td>5.5</td><td>39</td><td>25</td><td>40</td><td>9.8</td><td>24.8</td></tr><tr><td>7</td><td>6</td><td>40</td><td>25</td><td>40</td><td>9.9</td><td>25.2</td></tr></tbody></table></div>
+<h3>Infants/Toddlers (0–4)</h3><div class="cp-table-scroll"><table class="cp-content-table"><thead><tr><th scope="col">US/CA</th><th scope="col">UK/India</th><th scope="col">EU</th><th scope="col">Japan/Mexico</th><th scope="col">China</th><th scope="col">Foot (in)</th><th scope="col">Foot (cm)</th></tr></thead><tbody><tr><td>2</td><td>1</td><td>17</td><td>10</td><td>10</td><td>3.9</td><td>9.9</td></tr><tr><td>2.5</td><td>1.5</td><td>18</td><td>10.5</td><td>11</td><td>4.1</td><td>10.4</td></tr><tr><td>3</td><td>2</td><td>18</td><td>11</td><td>12</td><td>4.3</td><td>10.8</td></tr><tr><td>3.5</td><td>2.5</td><td>19</td><td>11</td><td>12</td><td>4.4</td><td>11.2</td></tr><tr><td>4</td><td>3</td><td>19</td><td>11.5</td><td>13</td><td>4.6</td><td>11.6</td></tr><tr><td>4.5</td><td>3.5</td><td>20</td><td>12</td><td>14</td><td>4.8</td><td>12.1</td></tr><tr><td>5</td><td>4</td><td>21</td><td>12.5</td><td>15</td><td>4.9</td><td>12.5</td></tr><tr><td>5.5</td><td>4.5</td><td>21</td><td>13</td><td>16</td><td>5.1</td><td>12.9</td></tr><tr><td>6</td><td>5</td><td>22</td><td>13.5</td><td>17</td><td>5.3</td><td>13.3</td></tr><tr><td>6.5</td><td>5.5</td><td>23</td><td>14</td><td>18</td><td>5.4</td><td>13.8</td></tr><tr><td>7</td><td>6</td><td>23</td><td>14</td><td>18</td><td>5.6</td><td>14.2</td></tr><tr><td>7.5</td><td>6.5</td><td>24</td><td>14.5</td><td>19</td><td>5.8</td><td>14.6</td></tr><tr><td>8</td><td>7</td><td>25</td><td>15</td><td>20</td><td>5.9</td><td>15</td></tr><tr><td>8.5</td><td>7.5</td><td>25</td><td>15.5</td><td>21</td><td>6.1</td><td>15.5</td></tr><tr><td>9</td><td>8</td><td>26</td><td>16</td><td>22</td><td>6.3</td><td>15.9</td></tr><tr><td>9.5</td><td>8.5</td><td>26</td><td>16.5</td><td>23</td><td>6.4</td><td>16.3</td></tr><tr><td>10</td><td>9</td><td>27</td><td>16.5</td><td>23</td><td>6.6</td><td>16.7</td></tr></tbody></table></div>
+<h2>Frequently Asked Questions</h2>
+<h3>Can I convert from any region rather than foot length?</h3><p>Yes. Enter a single size in US/Canada, UK/India, EU, Japan/Mexico, or China. The converter estimates the corresponding foot length and then displays the equivalent sizes in the other systems.</p>
+<h3>Why does a kids' shoe size change from 13.5 to 1?</h3><p>The traditional child-size scale cycles after 13.5 into youth sizes beginning at 1. The converter handles this separately from adult and infant/toddler sizes.</p>
+<h3>Is a 25 cm foot always an EU size 40?</h3><p>It is approximately EU 40 using this converter's rounding method. Because shoes vary in shape and manufacturer sizing, the label and optimal fit can differ.</p>
+<h3>Are Japan/Mexico and China sizes always standardized?</h3><p>No. This tool follows the foot-length-based approximations used by the reference chart. Some manufacturers and regions use other labeling conventions, including millimeter-based markings.</p>
+<h3>Should I size up if I'm between sizes?</h3><p>Use the brand-specific measurement guide and consider foot width, sock thickness, toe space, and the intended activity. Trying both neighboring sizes when possible is preferable to relying only on a numeric conversion.</p>
+<h2>Reference and Limitations</h2>
+<p>Calculation conventions and approximate conversions are based on the <a href="https://www.calculator.net/shoe-size-conversion.html" rel="noopener noreferrer">Calculator.net Shoe Size Conversion reference</a>. This is a general estimation tool, not an official footwear fitting standard.</p>
+<p class="cp-page-footer">CalcPro — shoe size estimates are informational; always confirm sizing with the footwear manufacturer.</p>
+</article></main></div><script>
+(function () {
+  'use strict';
+  const root = document.getElementById('calcpro-shoe-root');
+  if (!root) return;
+  const form = root.querySelector('#calcpro-shoe-form');
+  const ids = ['usw', 'usm', 'uk', 'eu', 'jp', 'cn', 'fl'];
+  const fields = Object.fromEntries(ids.map(id => [id, root.querySelector('#calcpro-shoe-' + id)]));
+  const unit = root.querySelector('#calcpro-shoe-flu');
+  const results = root.querySelector('#calcpro-shoe-results');
+  const resultHead = root.querySelector('#calcpro-shoe-result-title');
+  const summary = root.querySelector('#calcpro-shoe-summary');
+  const body = root.querySelector('#calcpro-shoe-results-body');
+  const feedback = root.querySelector('#calcpro-shoe-feedback');
+  const qualifier = root.querySelector('#calcpro-shoe-qualifier');
+  let source = 'fl';
+  let previousUnit = 'cm';
+  let savedText = '';
+  const cmPerUnit = { cm: 1, mm: 0.1, in: 2.54 };
+  const approx = n => Math.round((n + Number.EPSILON) * 2) / 2;
+  const whole = n => Math.round(n + Number.EPSILON);
+  const fmt = n => String(Math.round(n * 1000000) / 1000000);
+  const cmLabel = cm => Number(cm.toFixed(3)).toString();
+  const age = () => root.querySelector('input[name="calcpro-shoe-age"]:checked').value;
+  const grade = () => ({adult:'Adults', kid:'Kids', infant:'Infants/Toddlers'})[age()];
+  const labels = () => ({
+    usw: 'US/Canada women',
+    usm: age() === 'adult' ? 'US/Canada men' : age() === 'kid' ? 'US/Canada kids' : 'US/Canada babies',
+    uk: age() === 'adult' ? 'UK/India' : age() === 'kid' ? 'UK/India kids' : 'UK/India babies',
+    eu: 'EU', jp: 'Japan/Mexico', cn: 'China', fl: 'Foot length'
+  });
+  function hideResults() { results.hidden = true; savedText = ''; }
+  function error(message, field) {
+    feedback.textContent = message;
+    feedback.hidden = false;
+    hideResults();
+    if (field) { field.setAttribute('aria-invalid','true'); field.focus(); }
+  }
+  function resetErrors() {
+    feedback.hidden = true;
+    feedback.textContent = '';
+    Object.values(fields).forEach(field => field.removeAttribute('aria-invalid'));
+  }
+  function useAgeGroup() {
+    const group = age();
+    root.querySelector('#calcpro-shoe-row-usw').hidden = group !== 'adult';
+    root.querySelector('#calcpro-shoe-label-usm').textContent = labels().usm;
+    root.querySelector('#calcpro-shoe-label-uk').textContent = labels().uk;
+    root.querySelector('#calcpro-shoe-range-usm').textContent = group === 'adult' ? '(1–14)' : group === 'kid' ? '(8–13.5, 1–7)' : '(0–13.5)';
+    root.querySelector('#calcpro-shoe-range-uk').textContent = group === 'adult' ? '(0–15)' : group === 'kid' ? '(8–13.5, 1–6)' : '(0–13.5)';
+    if (group !== 'adult' && source === 'usw') {fields.usw.value=''; source=null;}
+    resetErrors(); hideResults();
+  }
+  root.querySelectorAll('input[name="calcpro-shoe-age"]').forEach(el => el.addEventListener('change',useAgeGroup));
+  Object.entries(fields).forEach(([key, field]) => {
+    field.addEventListener('input', () => {
+      resetErrors(); hideResults();
+      if (field.value.trim() !== '') {
+        source = key;
+        Object.entries(fields).forEach(([other, el]) => {if (other !== key) el.value = '';});
+      } else if (source === key) source = null;
+    });
+  });
+  unit.addEventListener('change', () => {
+    if (fields.fl.value.trim() !== '' && /^\d+(?:\.\d+)?$/.test(fields.fl.value.trim())) {
+      const cm = Number(fields.fl.value) * cmPerUnit[previousUnit];
+      if (Number.isFinite(cm)) {
+        fields.fl.value = Number((cm / cmPerUnit[unit.value]).toFixed(unit.value === 'mm' ? 2 : 4)).toString();
+      }
+    }
+    previousUnit = unit.value; resetErrors(); hideResults();
+  });
+  function limits(key, group) {
+    const shared = {eu:[15,50,1], jp:[8,32,0.5], cn:[8,55,1]};
+    if (shared[key]) return shared[key];
+    if (group === 'adult') return {usw:[1,15,0.5],usm:[1,14,0.5],uk:[0,15,0.5]}[key];
+    if (group === 'kid') return {usm:[1,13.5,0.5],uk:[1,13.5,0.5]}[key];
+    return {usm:[0,13.5,0.5],uk:[0,13.5,0.5]}[key];
+  }
+  function validate(key, text, group) {
+    if (!/^\d+(?:\.\d+)?$/.test(text)) return 'Enter a positive numeric value using a decimal point.';
+    const n = Number(text);
+    if (!Number.isFinite(n)) return 'Enter a finite numeric value.';
+    if (key === 'fl') {
+      if (n <= 0 || n * cmPerUnit[unit.value] < 5 || n * cmPerUnit[unit.value] > 40) return 'Foot length must be between 5 and 40 cm (or the equivalent in your selected unit).';
+      return '';
+    }
+    const limit = limits(key,group);
+    if (!limit) return 'This size system is not available for the chosen age group.';
+    if (n < limit[0] || n > limit[1] || (group === 'kid' && (key === 'usm' || key === 'uk') && n > (key === 'usm' ? 7 : 6) && n < 8)) {
+      if (group === 'kid' && (key === 'usm' || key === 'uk')) return 'For kids, enter a size from 8 to 13.5 or 1 to ' + (key === 'usm' ? '7' : '6') + '.';
+      return labels()[key] + ' sizes must be between ' + limit[0] + ' and ' + limit[1] + '.';
+    }
+    if (Math.abs(n / limit[2] - Math.round(n / limit[2])) > 0.000001) return 'Use ' + (limit[2] === 1 ? 'whole' : 'half') + '-size increments for ' + labels()[key] + '.';
+    return '';
+  }
+  function toCentimeters(key, n, group) {
+    const inch = 2.54;
+    if (key === 'fl') return n * cmPerUnit[unit.value];
+    if (key === 'eu') return (n - 2) / 1.5;
+    if (key === 'jp') return n;
+    if (key === 'cn') return (n + 10) / 2;
+    if (group === 'adult') return (n + ({usw:21,usm:22,uk:23})[key]) / 3 * inch;
+    if (group === 'infant') return (n + (key === 'usm' ? 9.75 : 10.75)) / 3 * inch;
+    // Kids sizing wraps from 13.5 back to 1; sizes 8–13.5 are the pre-wrap segment.
+    const unwrapped = n >= 8 ? n - 13 : n;
+    return (unwrapped + (key === 'usm' ? 22.75 : 23.75)) / 3 * inch;
+  }
+  function kidSize(raw) {return approx(raw < 0.75 ? raw + 13 : raw);}
+  function fromCentimeters(cm, group) {
+    const inches = cm / 2.54;
+    const values = {eu:whole(1.5 * cm + 2),jp:approx(cm),cn:whole(2 * cm - 10)};
+    if (group === 'adult') {
+      values.usw = approx(3 * inches - 21);
+      values.usm = approx(3 * inches - 22);
+      values.uk = approx(3 * inches - 23);
+    } else if (group === 'kid') {
+      values.usm = kidSize(3 * inches - 22.75);
+      values.uk = kidSize(3 * inches - 23.75);
+    } else {
+      values.usm = approx(3 * inches - 9.75);
+      values.uk = approx(3 * inches - 10.75);
+    }
+    return values;
+  }
+  function addRow(name, value, isFoot) {
+    const tr = document.createElement('tr');
+    const th = document.createElement('th'); th.scope = 'row'; th.textContent=name;
+    const td = document.createElement('td');
+    if (isFoot) {
+      const stack = document.createElement('span'); stack.className='calcpro-shoe-foot-stack';
+      // Using textContent protects the table from arbitrary input markup.
+      stack.textContent = value.join('\n'); stack.style.whiteSpace='pre-line'; td.appendChild(stack);
+    } else td.textContent=fmt(value);
+    tr.append(th,td); body.appendChild(tr);
+  }
+  form.addEventListener('submit', e => {
+    e.preventDefault();resetErrors();
+    const group = age();
+    const filled = Object.entries(fields).filter(([key, field]) => field.value.trim() !== '' && !(group !== 'adult' && key === 'usw'));
+    if (filled.length === 0) {error('Enter one shoe size or a foot length before converting.', fields.fl); return;}
+    if (filled.length > 1) {error('Enter a value in only one field. The converter will calculate all the others.',filled[1][1]);return;}
+    const [key,field]=filled[0]; const input=field.value.trim();
+    const message=validate(key,input,group);
+    if (message) {error(message,field);return;}
+    const cm=toCentimeters(key,Number(input),group);
+    if (!Number.isFinite(cm) || cm<=0) {error('This size cannot be converted to a positive foot length.',field);return;}
+    const converted=fromCentimeters(cm,group);
+    const fieldNames=labels();body.replaceChildren();
+    ['usw','usm','uk','eu','jp','cn'].forEach(id => {if (group === 'adult' || id !== 'usw') addRow(fieldNames[id],converted[id]);});
+    const footList=[(cm/2.54).toFixed(1)+' inches',cm.toFixed(1)+' cm',String(Math.round(cm*10))+' mm'];
+    addRow('Foot length', footList, true);
+    const subject=key === 'fl' ? 'Foot length of ' + fmt(Number(input)) + ' ' + (unit.value==='in' ? 'inches' : unit.value) : fieldNames[key] + ' size ' + fmt(Number(input));
+    summary.textContent=subject+' is equivalent to the following sizes:';
+    const typical=group === 'adult' ? [18,33] : group === 'kid' ? [16.5,26] : [8.5,19];
+    qualifier.textContent=(cm < typical[0] || cm > typical[1] ? 'This foot length is outside the typical range for '+grade().toLowerCase()+'. Check the age group and size.' : 'Shoe sizes are approximate; actual fit varies by brand, width, and model.');
+    savedText=['Shoe Size Conversion — CalcPro',summary.textContent,'',...Array.from(body.rows).map(row=>row.cells[0].textContent+': '+row.cells[1].textContent), '',qualifier.textContent].join('\n');
+    results.hidden=false;
+    requestAnimationFrame(() => {resultHead.focus({preventScroll:true});results.scrollIntoView({behavior:'smooth',block:'start'});});
+  });
+  root.querySelector('#calcpro-shoe-clear').addEventListener('click', () => {
+    Object.values(fields).forEach(field=>field.value='');
+    root.querySelector('input[name="calcpro-shoe-age"][value="adult"]').checked=true;
+    unit.value='cm';previousUnit='cm';source=null;useAgeGroup();resetErrors();hideResults();fields.fl.focus();
+  });
+  root.querySelector('#calcpro-shoe-save').addEventListener('click', () => {
+    if (!savedText) return;
+    const blob=new Blob([savedText], {type:'text/plain;charset=utf-8'});
+    const url=URL.createObjectURL(blob);const link=document.createElement('a');
+    link.href=url;link.download='shoe-size-conversion-result.txt';link.style.display='none';
+    document.body.appendChild(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
+  });
+  useAgeGroup();
+})();
+</script></body></html>

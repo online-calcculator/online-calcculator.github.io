@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>Electricity Calculator | CalcPro</title><meta content="Calculate appliance electricity consumption in kWh and estimated daily, weekly, monthly, and yearly cost by power, capacity, usage, and electricity price." name="description"/><link href="template-style.css" rel="stylesheet"/><style>
+/* All calculator UI rules are isolated from the CalcPro global styles. */
+.calcpro-electricity { width:100%; min-width:0; max-width:100%; font:13px/1.28 Arial,Helvetica,sans-serif; color:#111; text-align:left; }
+.calcpro-electricity *, .calcpro-electricity *::before, .calcpro-electricity *::after {box-sizing:border-box;}
+.calcpro-electricity [hidden] { display:none !important; }
+.calcpro-electricity .calcpro-electricity-result {width:100%; margin:0 0 12px;}
+.calcpro-electricity .calcpro-electricity-result-head {display:flex; justify-content:space-between; align-items:center; min-height:29px; background:#51832b; color:white; padding:3px 7px; font-size:16px; font-weight:400;}
+.calcpro-electricity .calcpro-electricity-save {border:0; background:transparent; color:white; font:9px/1 Arial,sans-serif; min-width:32px; display:flex; flex-direction:column; align-items:center; gap:0; padding:0 2px; cursor:pointer;}
+.calcpro-electricity .calcpro-electricity-save svg {display:block; width:15px; height:15px; fill:white;}
+.calcpro-electricity .calcpro-electricity-save:hover {opacity:.84;}
+.calcpro-electricity .calcpro-electricity-lead {margin:10px 0 12px; font-size:13px; line-height:1.35;}
+.calcpro-electricity .calcpro-electricity-table-wrap {max-width:100%; overflow-x:auto; margin:0 auto 2px;}
+.calcpro-electricity .calcpro-electricity-table {border-collapse:collapse; margin:0 auto; font-size:11px; white-space:nowrap;}
+.calcpro-electricity .calcpro-electricity-table th {text-align:left; background:#336699; color:#fff; border:1px solid #bac7d0; padding:2px 4px; font-weight:700;}
+.calcpro-electricity .calcpro-electricity-table td {border:1px solid #ccc; padding:1px 4px;}
+.calcpro-electricity .calcpro-electricity-table tbody tr:nth-child(even) {background:#eee;}
+.calcpro-electricity .calcpro-electricity-table .calcpro-electricity-num {text-align:right; font-variant-numeric:tabular-nums;}
+.calcpro-electricity .calcpro-electricity-note {font-size:11px; line-height:1.4; margin:6px 0 0;}
+.calcpro-electricity .calcpro-electricity-panel {width:340px; max-width:100%; background:#eee; border:1px solid #bdbdbd; padding:6px 6px 7px;}
+.calcpro-electricity .calcpro-electricity-fields {display:grid;grid-template-columns:92px minmax(0,1fr);align-items:center;gap:2px 3px;}
+.calcpro-electricity .calcpro-electricity-label {text-align:right; font-size:12px; font-weight:400; white-space:nowrap;}
+.calcpro-electricity input, .calcpro-electricity select {font:13px Arial,Helvetica,sans-serif; height:21px; min-height:21px; border:2px solid #325d86; border-radius:0; background:#fff; color:#050505; padding:1px 4px; vertical-align:middle;}
+.calcpro-electricity select {padding-right:1px; cursor:pointer;}
+.calcpro-electricity input:focus-visible,.calcpro-electricity select:focus-visible,.calcpro-electricity button:focus-visible {outline:2px solid #d39122;outline-offset:2px;}
+.calcpro-electricity input[type=number] {appearance:textfield; -moz-appearance:textfield;}
+.calcpro-electricity input[type=number]::-webkit-outer-spin-button,.calcpro-electricity input[type=number]::-webkit-inner-spin-button {-webkit-appearance:none;margin:0;}
+.calcpro-electricity .calcpro-electricity-select-appliance {width:185px; max-width:100%;}
+.calcpro-electricity .calcpro-electricity-control-row {display:flex; align-items:center; flex-wrap:nowrap; gap:3px; min-width:0;}
+.calcpro-electricity .calcpro-electricity-small-input {width:78px;min-width:0;}
+.calcpro-electricity .calcpro-electricity-select-power {width:155px;max-width:100%;min-width:0;flex:1 1 auto;}
+.calcpro-electricity .calcpro-electricity-select-usage {width:116px; min-width:0;flex:1 1 auto;max-width:116px;}
+.calcpro-electricity .calcpro-electricity-inline-copy {white-space:nowrap; font-size:12px;}
+.calcpro-electricity .calcpro-electricity-help {border:1px solid #999; color:#666; border-radius:50%;font-size:9px; font-weight:700; cursor:help; display:inline-flex; align-items:center; justify-content:center; width:12px; height:12px;vertical-align:1px;}
+.calcpro-electricity .calcpro-electricity-price-wrap {display:inline-flex; height:21px; align-items:center; border:2px solid #325d86; background:#fff; padding-left:3px; width:78px;}
+.calcpro-electricity .calcpro-electricity-price-wrap:focus-within {outline:2px solid #d39122;outline-offset:2px;}
+.calcpro-electricity .calcpro-electricity-price-wrap input {border:0;outline:0; min-width:0; width:100%; height:17px; min-height:17px;padding-left:0;padding-right:0;}
+.calcpro-electricity .calcpro-electricity-price-wrap input:focus-visible {outline:0;}
+.calcpro-electricity .calcpro-electricity-error {background:#fff7e8; border:1px solid #bb6541; color:#8f260e; margin:7px 0 0; padding:6px 8px; line-height:1.35; font-size:12px;}
+.calcpro-electricity .calcpro-electricity-actions {display:flex;justify-content:center;align-items:center; gap:4px;margin:9px 0 0;}
+.calcpro-electricity .calcpro-electricity-actions button {border:0; border-radius:0; font:700 12px Arial,Helvetica,sans-serif; min-height:29px;cursor:pointer;}
+.calcpro-electricity .calcpro-electricity-calculate {background:#4b8227; color:#fff; padding:5px 8px 5px 12px; min-width:95px; display:inline-flex;align-items:center;justify-content:space-between;gap:8px;}
+.calcpro-electricity .calcpro-electricity-calculate:hover {background:#3c711b;}
+.calcpro-electricity .calcpro-electricity-arrow {background:#a9cba1; border-radius:50%; height:16px;width:16px;display:inline-flex;align-items:center;justify-content:center;color:white;font-size:11px;line-height:1; padding-left:1px;}
+.calcpro-electricity .calcpro-electricity-clear {background:#aaa;color:#fff;padding:5px 9px;}
+.calcpro-electricity .calcpro-electricity-clear:hover {background:#888;}
+@media (max-width:380px) {
+ .calcpro-electricity .calcpro-electricity-panel {width:100%;padding:8px;}
+ .calcpro-electricity .calcpro-electricity-fields {grid-template-columns:minmax(0,1fr);gap:3px;}
+ .calcpro-electricity .calcpro-electricity-label {text-align:left;margin-top:4px;}
+ .calcpro-electricity .calcpro-electricity-select-appliance {width:100%;}
+ .calcpro-electricity .calcpro-electricity-select-power {width:100%;}
+ .calcpro-electricity .calcpro-electricity-control-row {width:100%;}
+ .calcpro-electricity .calcpro-electricity-table {font-size:11px;}
+}
+@media print {
+ .calcpro-electricity .calcpro-electricity-save, .calcpro-electricity .calcpro-electricity-actions {display:none!important;}
+ .calcpro-electricity .calcpro-electricity-panel {print-color-adjust:exact;-webkit-print-color-adjust:exact;}
+}
+</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="other-calculator.html">Other Calculators</a> / Electricity Calculator</nav><h1 class="cp-page-title">Electricity Calculator</h1><p class="cp-intro">Use the calculator below to estimate electricity usage and cost based on the power requirements and usage of appliances. The amount of time and power that each appliance is used varies significantly between households, so for the best results, adjust the usage for each appliance to most accurately reflect your personal usage.</p><section aria-label="Calculator" class="cp-tool-area"><section class="calcpro-electricity" id="calcpro-electricity-tool" aria-label="Electricity cost and usage calculator">
+  <section class="calcpro-electricity-result" id="calcpro-electricity-result" aria-label="Calculation result" aria-live="polite" hidden>
+    <div class="calcpro-electricity-result-head"><span id="calcpro-electricity-result-title" tabindex="-1">Result</span>
+      <button type="button" class="calcpro-electricity-save" id="calcpro-electricity-save" title="Save this calculation as a text file" aria-label="Save this calculation as a text file">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 2h13l5 5v15H2V2h2zm0 2v16h16V8.1L16.2 4H16v6H6V4H4zm4 0v4h6V4H8zm4 9a4 4 0 1 1 0 8 4 4 0 0 1 0-8zm0 2a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"/></svg>Save
+      </button>
+    </div>
+    <p class="calcpro-electricity-lead">The following is the estimated average electricity usage for this appliance along with the cost of the electricity over varying spans of time.</p>
+    <div class="calcpro-electricity-table-wrap">
+      <table class="calcpro-electricity-table" aria-label="Electricity use and cost by time period">
+        <thead><tr><th scope="col">Electricity usage</th><th scope="col">Cost</th><th scope="col">Time span</th></tr></thead>
+        <tbody id="calcpro-electricity-result-rows"></tbody>
+      </table>
+    </div>
+    <p class="calcpro-electricity-note">This calculator assumes there are 30.44 days in a month and 365.25 days in a year on average.</p>
+  </section>
+  <form class="calcpro-electricity-panel" id="calcpro-electricity-form" novalidate>
+    <div class="calcpro-electricity-fields">
+      <label class="calcpro-electricity-label" for="calcpro-electricity-appliance">Typical appliance:</label>
+      <select id="calcpro-electricity-appliance" name="appliance" class="calcpro-electricity-select-appliance">
+<option value="">Define your own</option>
+<optgroup label="House">
+<option value="hvac:5:kW:24:hpd:30" data-power="5" data-unit="kW" data-usage="24" data-usage-unit="hpd" data-capacity="30">Air conditioner (HVAC)</option>
+<option value="ac:6000:btu:8:hpd:100" data-power="6000" data-unit="btu" data-usage="8" data-usage-unit="hpd" data-capacity="100">Air conditioner (window unit)</option>
+<option value="heater:5:kW:24:hpd:50" data-power="5" data-unit="kW" data-usage="24" data-usage-unit="hpd" data-capacity="50">Heater (home)</option>
+<option value="heater:1500:W:8:hpd:100" data-power="1500" data-unit="W" data-usage="8" data-usage-unit="hpd" data-capacity="100">Heater (portable)</option>
+<option value="humidifier:200:W:8:hpd:100" data-power="200" data-unit="W" data-usage="8" data-usage-unit="hpd" data-capacity="100">Humidifier</option>
+<option value="dehumidifier:300:W:8:hpd:100" data-power="300" data-unit="W" data-usage="8" data-usage-unit="hpd" data-capacity="100">Dehumidifier</option>
+<option value="fan:25:W:8:hpd:50" data-power="25" data-unit="W" data-usage="8" data-usage-unit="hpd" data-capacity="50">Fan (ceiling, table)</option>
+<option value="light:7:W:8:hpd:100" data-power="7" data-unit="W" data-usage="8" data-usage-unit="hpd" data-capacity="100">Light bulb (LED)</option>
+<option value="light:60:W:8:hpd:100" data-power="60" data-unit="W" data-usage="8" data-usage-unit="hpd" data-capacity="100">Light bulb (incandescent)</option>
+<option value="waterheater:4:kW:1.5:hpd:100" data-power="4" data-unit="kW" data-usage="1.5" data-usage-unit="hpd" data-capacity="100">Electric water heater</option>
+</optgroup>
+<optgroup label="Kitchen">
+<option value="refrigerator:750:W:24:hpd:20" data-power="750" data-unit="W" data-usage="24" data-usage-unit="hpd" data-capacity="20">Refrigerator</option>
+<option value="oven:2400:W:1:hpd:50" data-power="2400" data-unit="W" data-usage="1" data-usage-unit="hpd" data-capacity="50">Electric range/oven</option>
+<option value="cooktop:5000:W:1:hpd:30" data-power="5000" data-unit="W" data-usage="1" data-usage-unit="hpd" data-capacity="30">Electric cooktop/stove</option>
+<option value="Microwave:1000:W:10:mpd:75" data-power="1000" data-unit="W" data-usage="10" data-usage-unit="mpd" data-capacity="75">Microwave oven</option>
+<option value="Dishwashers:1500:W:1:hpd:60" data-power="1500" data-unit="W" data-usage="1" data-usage-unit="hpd" data-capacity="60">Dishwashers</option>
+<option value="Coffee:1000:W:3:hpd:30" data-power="1000" data-unit="W" data-usage="3" data-usage-unit="hpd" data-capacity="30">Coffee maker</option>
+<option value="Toaster:1000:W:15:mpd:100" data-power="1000" data-unit="W" data-usage="15" data-usage-unit="mpd" data-capacity="100">Toaster</option>
+<option value="kettle:1000:W:30:mpd:100" data-power="1000" data-unit="W" data-usage="30" data-usage-unit="mpd" data-capacity="100">Electric kettle</option>
+<option value="cooker:1000:W:45:mpd:50" data-power="1000" data-unit="W" data-usage="45" data-usage-unit="mpd" data-capacity="50">Electric cooker</option>
+</optgroup>
+<optgroup label="Other">
+<option value="vehicle:10:kW:1.5:hpd:100" data-power="10" data-unit="kW" data-usage="1.5" data-usage-unit="hpd" data-capacity="100">Electric vehicle charger</option>
+<option value="tv:100:W:2:hpd:80" data-power="100" data-unit="W" data-usage="2" data-usage-unit="hpd" data-capacity="80">Television</option>
+<option value="washer:800:W:2:hpw:80" data-power="800" data-unit="W" data-usage="2" data-usage-unit="hpw" data-capacity="80">Clothes washer</option>
+<option value="dryer:3000:W:2:hpw:50" data-power="3000" data-unit="W" data-usage="2" data-usage-unit="hpw" data-capacity="50">Clothes dryer</option>
+<option value="iron:1000:W:2:hpw:50" data-power="1000" data-unit="W" data-usage="2" data-usage-unit="hpw" data-capacity="50">Clothes iron</option>
+<option value="dryer:1500:W:10:mpd:50" data-power="1500" data-unit="W" data-usage="10" data-usage-unit="mpd" data-capacity="50">Hair dryer</option>
+<option value="computer:150:W:10:hpd:30" data-power="150" data-unit="W" data-usage="10" data-usage-unit="hpd" data-capacity="30">Desktop computer</option>
+<option value="Laptop:60:W:10:hpd:30" data-power="60" data-unit="W" data-usage="10" data-usage-unit="hpd" data-capacity="30">Laptop computer</option>
+<option value="phone:15:W:3:hpd:50" data-power="15" data-unit="W" data-usage="3" data-usage-unit="hpd" data-capacity="50">Phone</option>
+<option value="pump:1.5:hp:10:hpd:50" data-power="1.5" data-unit="hp" data-usage="10" data-usage-unit="hpd" data-capacity="50">Water pump/motor</option>
+</optgroup>
+      </select>
+      <label class="calcpro-electricity-label" for="calcpro-electricity-power">Appliance power:</label>
+      <div class="calcpro-electricity-control-row">
+        <input id="calcpro-electricity-power" name="power" type="number" min="0" step="any" inputmode="decimal" class="calcpro-electricity-small-input" value="1000" aria-label="Appliance power" required>
+        <select id="calcpro-electricity-power-unit" name="powerunit" class="calcpro-electricity-select-power" aria-label="Appliance power unit">
+          <option value="W">watt (W)</option><option value="kW">kilowatt (kW)</option><option value="btu">BTU/hour (BTU/h)</option><option value="hp">horsepower (metric) (hp)</option><option value="ton">ton (refrigeration)</option>
+        </select>
+      </div>
+      <label class="calcpro-electricity-label" for="calcpro-electricity-capacity">Use/run at:</label>
+      <div class="calcpro-electricity-control-row">
+        <input id="calcpro-electricity-capacity" name="capacity" type="number" min="0" max="100" step="any" inputmode="decimal" class="calcpro-electricity-small-input" value="100" aria-label="Percent of rated power" required>
+        <span class="calcpro-electricity-inline-copy">% capacity <span class="calcpro-electricity-help" title="Average percentage of rated power drawn while the appliance is in use. Example: 50% means half of the rated wattage." aria-label="Capacity help">?</span></span>
+      </div>
+      <label class="calcpro-electricity-label" for="calcpro-electricity-usage">Usage:</label>
+      <div class="calcpro-electricity-control-row">
+        <input id="calcpro-electricity-usage" name="usage" type="number" min="0" step="any" inputmode="decimal" class="calcpro-electricity-small-input" value="24" aria-label="Usage duration" required>
+        <select id="calcpro-electricity-usage-unit" name="usageunit" class="calcpro-electricity-select-usage" aria-label="Usage duration unit">
+          <option value="mpd">minutes per day</option><option value="hpd" selected>hours per day</option><option value="hpw">hours per week</option><option value="hpm">hours per month</option><option value="dpw">days per week</option><option value="dpm">days per month</option><option value="dpy">days per year</option><option value="mpy">months per year</option>
+        </select>
+      </div>
+      <label class="calcpro-electricity-label" for="calcpro-electricity-price">Electricity Price:</label>
+      <div class="calcpro-electricity-control-row">
+        <span class="calcpro-electricity-price-wrap"><span aria-hidden="true">$</span><input id="calcpro-electricity-price" name="price" type="number" min="0" step="any" inputmode="decimal" value="0.15" aria-label="Electricity price in dollars per kilowatt-hour" required></span>
+        <span class="calcpro-electricity-inline-copy">per kWh</span>
+      </div>
+    </div>
+    <p id="calcpro-electricity-error" class="calcpro-electricity-error" role="alert" hidden></p>
+    <div class="calcpro-electricity-actions">
+      <button type="submit" class="calcpro-electricity-calculate">Calculate <span class="calcpro-electricity-arrow" aria-hidden="true">&#9654;</span></button>
+      <button type="reset" class="calcpro-electricity-clear">Clear</button>
+    </div>
+  </form>
+</section></section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><a href="ohms-law-calculator.html">Ohm&#x27;s Law</a><a href="voltage-drop-calculator.html">Voltage Drop</a><a href="btu-calculator.html">BTU</a><a href="horsepower-calculator.html">Horsepower</a><a href="engine-horsepower-calculator.html">Engine Horsepower</a><a href="conversion-calculator.html">Unit Conversion</a><a href="fuel-cost-calculator.html">Fuel Cost</a><a href="gas-mileage-calculator.html">Gas Mileage</a><a href="time-calculator.html">Time</a><a href="hours-calculator.html">Hours</a><a href="percent-calculator.html">Percentage</a><a href="currency-calculator.html">Currency</a></div></section></aside><article class="cp-article"><h2>How to Use the Electricity Calculator</h2>
+<p>Choose a common appliance to load typical power, running time, and capacity values, or select <strong>Define your own</strong> to enter the electrical power rating from your device. Select watts, kilowatts, BTU per hour, metric horsepower, or tons of refrigeration as the power unit. Set the percentage of rated power the appliance draws on average, how long you use it, and your electricity rate per kilowatt-hour.</p>
+<p>Choose <strong>Calculate</strong> for estimated electricity consumption and cost per day, week, month, and year. The results appear above the input form. Choose <strong>Save</strong> to download a text summary, or <strong>Clear</strong> to restore the starting inputs and hide the result.</p>
+<h2>Electricity Consumption Formula</h2>
+<p><strong>Energy (kWh) = power (W) &times; capacity fraction &times; hours of use &divide; 1,000.</strong> The estimated energy charge is <strong>kWh &times; price per kWh</strong>. For a usage period given per week, month, or year, the calculator converts its duration into an average number of hours per day.</p>
+<h3>Worked Example: 1,000-Watt Appliance</h3>
+<p>An appliance using 1,000 W continuously at 100% capacity for 24 hours a day consumes 1 &times; 24 = <strong>24 kWh per day</strong>. At $0.15/kWh, the energy costs <strong>$3.60/day</strong>, <strong>$25.20/week</strong>, <strong>$109.58/month</strong>, and <strong>$1,314.90/year</strong>. Month and year estimates use 30.44 and 365.25 days, respectively.</p>
+<h3>Power Unit Conversions</h3>
+<div class="cp-table-scroll"><table class="cp-content-table"><thead><tr><th>Input power unit</th><th>Approximate watts</th></tr></thead><tbody><tr><td>1 kilowatt (kW)</td><td>1,000 W</td></tr><tr><td>1 BTU/hour (BTU/h)</td><td>0.293071 W</td></tr><tr><td>1 metric horsepower (hp)</td><td>735.499 W</td></tr><tr><td>1 refrigeration ton</td><td>3,516.85 W</td></tr></tbody></table></div>
+<p class="cp-warning"><strong>Important:</strong> For air conditioners, BTU/h and refrigeration tons usually describe <em>cooling capacity</em>, not the electricity drawn from the outlet. Motor horsepower can also describe mechanical output rather than electrical input. For accurate operating cost, use the device's actual electrical-input wattage or a measured running average. Appliance presets are illustrative, not guarantees.</p>
+<h2>Understanding Results</h2>
+<p>The estimate reports energy in kilowatt-hours (kWh), also called electricity “units” on many utility bills, and the corresponding energy charge at the selected flat rate. The use/run percentage adjusts the average power drawn: 50% of a 1,000-W rating is treated as an average 500-W draw during the entered usage period. It does not change the duration entered.</p>
+<p>The calculator uses 7 days per week, 30.44 days per month, and 365.25 days per year. Selecting days of use assumes up to 24 hours of operation per selected day. Selecting months per year distributes full 24-hour days over the indicated fraction of a year. Actual bills may include tiered tariffs, minimum charges, taxes, demand charges, and seasonal differences, none of which are included in this flat-rate estimate.</p>
+<h2>Frequently Asked Questions</h2>
+<h3>What is the difference between watts and kWh?</h3>
+<p>Watts express the rate of electricity use (power). Kilowatt-hours measure energy over time. For example, a 100-W light running for 10 hours consumes 1 kWh.</p>
+<h3>How do I estimate the cost of running an appliance for one hour?</h3>
+<p>Convert its average operating power to kilowatts (watts divided by 1,000), then multiply by your utility's per-kWh energy rate. A 1,500-W device used at full power for one hour draws 1.5 kWh and costs $0.225 at $0.15/kWh, approximately $0.23.</p>
+<h3>Why can the real electricity bill differ?</h3>
+<p>The nameplate wattage may be a peak rating, thermostats and variable-speed equipment change the actual draw, and your electricity provider may charge different prices by time or usage tier. For better estimates, use measured average consumption and a rate reflecting your bill.</p>
+<h3>Does Clear erase my custom inputs?</h3>
+<p>Clear resets the calculator to its initial example (1,000 W, 100% capacity, 24 hours/day, and $0.15/kWh). It also clears the displayed result and any validation messages.</p>
+<h2>Source and Reference</h2>
+<p>This calculator follows the inputs, time-span presentation, and unit choices of <a href="https://www.calculator.net/electricity-calculator.html" target="_blank" rel="noopener noreferrer">Calculator.net's Electricity Calculator</a>. The calculations are performed locally in your browser by an independent implementation.</p>
+<p class="cp-page-footer">CalcPro — electricity consumption and cost estimates are informational and do not include taxes, fixed fees, or tariff tiers.</p></article></main></div><script>
+(function () {
+  'use strict';
+  const root = document.getElementById('calcpro-electricity-tool');
+  if (!root) return;
+  const find = id => document.getElementById('calcpro-electricity-' + id);
+  const form = find('form');
+  const appliance = find('appliance');
+  const power = find('power');
+  const powerUnit = find('power-unit');
+  const capacity = find('capacity');
+  const usage = find('usage');
+  const usageUnit = find('usage-unit');
+  const price = find('price');
+  const error = find('error');
+  const result = find('result');
+  const rows = find('result-rows');
+  const saveButton = find('save');
+  const wattPerUnit = Object.freeze({ W:1, kW:1000, btu:0.29307107, hp:735.49875, ton:3516.85284 });
+  const maxUsage = Object.freeze({ mpd:1440, hpd:24, hpw:168, hpm:730.56, dpw:7, dpm:30.44, dpy:365.25, mpy:12 });
+  const formatEnergy = new Intl.NumberFormat('en-US', { maximumSignificantDigits:4 });
+  const formatMoney = new Intl.NumberFormat('en-US', { style:'currency', currency:'USD', minimumFractionDigits:2, maximumFractionDigits:2 });
+  let lastCalculation = null;
+
+  function getHoursPerDay(amount, unit) {
+    switch (unit) {
+      case 'mpd': return amount / 60;
+      case 'hpd': return amount;
+      case 'hpw': return amount / 7;
+      case 'hpm': return amount / 30.44;
+      case 'dpw': return amount * 24 / 7;
+      case 'dpm': return amount * 24 / 30.44;
+      case 'dpy': return amount * 24 / 365.25;
+      case 'mpy': return amount * 24 / 12;
+      default: return NaN;
+    }
+  }
+
+  function showError(message) {
+    error.textContent = message;
+    error.hidden = false;
+  }
+  function clearError() { error.hidden = true; error.textContent = ''; }
+  function parseNonnegative(input, label) {
+    const value = input.value.trim();
+    if (value === '') throw new Error('Please enter ' + label + '.');
+    const num = Number(value);
+    if (!Number.isFinite(num) || num < 0) throw new Error(label + ' must be a valid non-negative number.');
+    return num;
+  }
+  function estimate() {
+    const watts = parseNonnegative(power, 'appliance power') * wattPerUnit[powerUnit.value];
+    const duty = parseNonnegative(capacity, 'capacity');
+    const duration = parseNonnegative(usage, 'usage duration');
+    const rate = parseNonnegative(price, 'electricity price');
+    if (duty > 100) throw new Error('Capacity must be between 0% and 100%.');
+    if (duration > maxUsage[usageUnit.value] + 1e-9) {
+      const label = usageUnit.options[usageUnit.selectedIndex].textContent;
+      throw new Error('Usage cannot exceed ' + maxUsage[usageUnit.value] + ' ' + label + '.');
+    }
+    const hoursPerDay = getHoursPerDay(duration, usageUnit.value);
+    const perDay = (watts / 1000) * (duty / 100) * hoursPerDay;
+    const energy = [perDay, perDay*7, perDay*30.44, perDay*365.25];
+    const costs = energy.map(kwh => kwh * rate);
+    if (![watts, hoursPerDay, ...energy, ...costs].every(Number.isFinite)) {
+      throw new Error('The values are too large. Please enter smaller numbers.');
+    }
+    return { energy, costs, watts, duty, duration, rate, unit:usageUnit.value,
+      appliance:appliance.value ? appliance.options[appliance.selectedIndex].textContent : 'Define your own',
+      powerValue:power.value, powerUnit:powerUnit.value };
+  }
+  function render(output) {
+    const spans = ['per day', 'per week', 'per month', 'per year'];
+    rows.replaceChildren();
+    output.energy.forEach((kwh, i) => {
+      const tr = document.createElement('tr');
+      const usageCell = document.createElement('td');
+      usageCell.className = 'calcpro-electricity-num';
+      usageCell.textContent = formatEnergy.format(kwh) + ' kWh';
+      const costCell = document.createElement('td');
+      costCell.className = 'calcpro-electricity-num';
+      costCell.textContent = formatMoney.format(output.costs[i]);
+      const spanCell = document.createElement('td');
+      spanCell.textContent = spans[i];
+      tr.append(usageCell, costCell, spanCell);
+      rows.appendChild(tr);
+    });
+    lastCalculation = output;
+    result.hidden = false;
+  }
+
+  appliance.addEventListener('change', function () {
+    const selected = appliance.selectedOptions[0];
+    if (!selected || !selected.dataset.power) return;
+    power.value = selected.dataset.power;
+    powerUnit.value = selected.dataset.unit;
+    capacity.value = selected.dataset.capacity;
+    usage.value = selected.dataset.usage;
+    usageUnit.value = selected.dataset.usageUnit;
+    clearError();
+  });
+  // If a preset is customized, don't misleadingly keep its name selected.
+  [power, powerUnit, capacity, usage, usageUnit].forEach(control => {
+    control.addEventListener(control.tagName === 'SELECT' ? 'change' : 'input', () => {
+      if (appliance.value) appliance.value = '';
+      clearError();
+    });
+  });
+  price.addEventListener('input', clearError);
+
+  form.addEventListener('submit', function (event) {
+    event.preventDefault();
+    clearError();
+    try { render(estimate()); }
+    catch (ex) { result.hidden = true; rows.replaceChildren(); lastCalculation = null; showError(ex.message || 'Please check your inputs.'); }
+  });
+  form.addEventListener('reset', function () {
+    // Native form reset restores default values before the queued microtask runs.
+    queueMicrotask(function () {
+      clearError();
+      result.hidden = true;
+      rows.replaceChildren();
+      lastCalculation = null;
+    });
+  });
+  saveButton.addEventListener('click', function () {
+    if (!lastCalculation) return;
+    const names = ['Day', 'Week', 'Month (30.44 days)', 'Year (365.25 days)'];
+    const summary = [
+      'CalcPro Electricity Calculator',
+      'Appliance: ' + lastCalculation.appliance,
+      'Appliance power: ' + lastCalculation.powerValue + ' ' + lastCalculation.powerUnit,
+      'Use/run at: ' + lastCalculation.duty + '% capacity',
+      'Usage: ' + lastCalculation.duration + ' ' + usageUnitLabel(lastCalculation.unit),
+      'Electricity price: ' + formatMoney.format(lastCalculation.rate) + ' per kWh', '',
+      'Electricity use and estimated cost:'
+    ];
+    lastCalculation.energy.forEach((kwh,i) => {
+      summary.push(names[i] + ': ' + formatEnergy.format(kwh) + ' kWh | ' + formatMoney.format(lastCalculation.costs[i]));
+    });
+    summary.push('', 'Month = 30.44 days; year = 365.25 days. Energy price only, excluding taxes and fixed fees.');
+    const blob = new Blob([summary.join('\n') + '\n'], { type:'text/plain;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const anchor = document.createElement('a');
+    anchor.href = url;
+    anchor.download = 'electricity-calculation.txt';
+    document.body.appendChild(anchor);
+    anchor.click();
+    anchor.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  });
+  function usageUnitLabel(key) {
+    const option = Array.from(usageUnit.options).find(o => o.value === key);
+    return option ? option.textContent : key;
+  }
+})();
+</script></body></html>

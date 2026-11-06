@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>Take-Home-Paycheck Calculator (2026) | CalcPro</title><meta content="Calculate 2026 take-home paycheck by pay frequency with federal, state and payroll taxes, deductions, and W-4 adjustments." name="description"/><link href="template-style.css" rel="stylesheet"/><style>/* CalcPro Take-Home-Paycheck component. All rules are scoped and template-safe. */
+.calcpro-thp{--thp-navy:#003366;--thp-blue:#386995;--thp-green:#4d862a;--thp-border:#b9c5d1;font:15px Arial,Helvetica,sans-serif;color:#111;line-height:1.4;max-width:100%;}
+.calcpro-thp *{box-sizing:border-box}
+.calcpro-thp .calcpro-thp-toolbar{display:flex;justify-content:flex-end;margin:0 0 6px;min-height:20px}
+.calcpro-thp .calcpro-thp-print{color:#006699;background:none;border:none;text-decoration:underline;cursor:pointer;padding:0 2px;font:inherit}
+.calcpro-thp .calcpro-thp-instruction{background:var(--thp-blue);color:white;min-height:36px;padding:7px 10px;display:flex;align-items:center;justify-content:center;gap:10px;margin:7px 0 20px;text-align:center}
+.calcpro-thp .calcpro-thp-disc{font-size:15px;display:grid;place-items:center;width:25px;height:25px;flex:none;border-radius:50%;background:white;color:var(--thp-blue);font-weight:bold}
+.calcpro-thp .calcpro-thp-panel{background:#eee;border:1px solid #bbb;padding:7px 7px 8px;margin:0 0 16px;}
+.calcpro-thp .calcpro-thp-field{display:grid;grid-template-columns:240px 160px minmax(0,1fr);column-gap:7px;min-height:31px;align-items:center;margin:0 0 1px}
+.calcpro-thp .calcpro-thp-field>label,.calcpro-thp .calcpro-thp-field>.calcpro-thp-fieldlabel{font-size:15px;line-height:1.22}
+.calcpro-thp .calcpro-thp-inputwrap{position:relative;width:160px;max-width:100%}
+.calcpro-thp input[type=text],.calcpro-thp input[type=number],.calcpro-thp select{width:100%;height:29px;border:1px solid #245d93;border-radius:2px;background:#fff;box-shadow:0 1px 2px #0002;font:15px Arial,Helvetica,sans-serif;padding:3px 7px;color:#111;min-width:0}
+.calcpro-thp input[type=text]:focus,.calcpro-thp input[type=number]:focus,.calcpro-thp select:focus{outline:2px solid #73a5d3;outline-offset:1px}
+.calcpro-thp .calcpro-thp-inputwrap input{padding-right:50px}
+.calcpro-thp .calcpro-thp-inputwrap.calcpro-thp-pctwrap input{padding-right:25px}
+.calcpro-thp .calcpro-thp-suffix{position:absolute;right:6px;top:6px;pointer-events:none;color:#777;white-space:nowrap;font-size:14px}
+.calcpro-thp .calcpro-thp-pctwrap .calcpro-thp-suffix{color:#111}
+.calcpro-thp .calcpro-thp-hint{font-size:12px;line-height:1.2;overflow-wrap:anywhere}
+.calcpro-thp .calcpro-thp-field select{width:160px}
+.calcpro-thp .calcpro-thp-field .calcpro-thp-longselect{width:248px;max-width:100%}
+.calcpro-thp .calcpro-thp-inline{margin:6px 0 8px;display:flex;gap:7px;align-items:center;flex-wrap:wrap;min-height:24px}
+.calcpro-thp .calcpro-thp-inline .calcpro-thp-label{margin-right:2px}
+.calcpro-thp .calcpro-thp-choice{display:inline-flex;gap:5px;align-items:center;margin-right:7px;white-space:nowrap;cursor:pointer}
+.calcpro-thp .calcpro-thp-choice input{margin:0;accent-color:#356997;width:16px;height:16px}
+.calcpro-thp .calcpro-thp-addjobs{padding:7px 10px 8px;border:1px solid #c6ced5;background:#f9fbfd;margin:0 0 9px 0}
+.calcpro-thp .calcpro-thp-addjobs .calcpro-thp-field{grid-template-columns:240px 160px minmax(0,1fr)}
+.calcpro-thp .calcpro-thp-err{color:#a11f27;background:#fff3f3;border:1px solid #d99797;padding:10px;margin:0 0 10px;display:none}
+.calcpro-thp .calcpro-thp-err:not(:empty){display:block}
+.calcpro-thp .calcpro-thp-actions{display:flex;justify-content:center;gap:5px;margin:12px 0 0}
+.calcpro-thp .calcpro-thp-btn{border:0;color:white;font-weight:bold;font-size:14px;padding:9px 14px;min-height:39px;cursor:pointer}
+.calcpro-thp .calcpro-thp-btn-primary{background:#4e862b}
+.calcpro-thp .calcpro-thp-btn-primary:hover{background:#3d6d21}
+.calcpro-thp .calcpro-thp-btn-muted{background:#a3a3a3}
+.calcpro-thp .calcpro-thp-btn-muted:hover{background:#7f7f7f}
+.calcpro-thp .calcpro-thp-arrow{display:inline-grid;place-items:center;border-radius:50%;background:#a4cb95;color:white;height:20px;width:20px;margin-left:8px}
+.calcpro-thp .calcpro-thp-results{margin:0 0 18px;display:none;}
+.calcpro-thp .calcpro-thp-results.calcpro-thp-visible{display:block}
+.calcpro-thp .calcpro-thp-resultshead{display:flex;align-items:center;justify-content:space-between;background:var(--thp-green);color:white;padding:7px 10px;font-size:16px;font-weight:bold;margin:0 0 10px}
+.calcpro-thp .calcpro-thp-resultshead .calcpro-thp-print{color:white;font-size:12px}
+.calcpro-thp .calcpro-thp-resulttitle{color:var(--thp-navy);font-size:18px;margin:5px 0 12px;font-weight:700}
+.calcpro-thp .calcpro-thp-resulttable{width:min(100%,430px);border-collapse:collapse;line-height:1.35;font-size:14px}
+.calcpro-thp .calcpro-thp-resulttable th{font-size:13px;text-align:left;color:#555;border-bottom:1px solid #d7d7d7;padding:3px 5px 3px 0}
+.calcpro-thp .calcpro-thp-resulttable th:last-child{text-align:right}
+.calcpro-thp .calcpro-thp-resulttable td{padding:3px 5px 3px 0;border-bottom:1px solid #eee;vertical-align:top}
+.calcpro-thp .calcpro-thp-resulttable td:last-child{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.calcpro-thp .calcpro-thp-resulttable .calcpro-thp-netrow td{background:#edf5e8;border-top:2px solid #4d862a;font-size:16px;font-weight:700;padding:9px 5px}
+.calcpro-thp .calcpro-thp-caption{font-size:12px;color:#535353;margin:8px 0 13px}
+.calcpro-thp .calcpro-thp-sectiontitle{font-size:14px;font-weight:bold;background:#386995;color:white;padding:4px 7px;margin:10px 0 5px;max-width:360px}
+.calcpro-thp .calcpro-thp-w4{border-collapse:collapse;font-size:13px;width:min(100%,410px);margin-bottom:8px}
+.calcpro-thp .calcpro-thp-w4 td{padding:3px 8px}
+.calcpro-thp .calcpro-thp-w4 td:last-child{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+.calcpro-thp .calcpro-thp-w4 .calcpro-thp-total td{border-top:1px solid #bfd0dc;font-weight:bold}
+.calcpro-thp .calcpro-thp-breakdown{margin:16px 0 8px;padding:12px;border:1px solid #c9d5df;background:#f7fafc}
+.calcpro-thp .calcpro-thp-breakdown h3{font-size:15px;color:var(--thp-navy);margin:0 0 9px}
+.calcpro-thp .calcpro-thp-bar{display:flex;overflow:hidden;height:19px;background:#d9e4eb;border-radius:3px;width:100%}
+.calcpro-thp .calcpro-thp-bar>span{display:block;height:100%;transition:width .35s ease}
+.calcpro-thp .calcpro-thp-bar-net{background:#53882d}.calcpro-thp .calcpro-thp-bar-tax{background:#4078ad}.calcpro-thp .calcpro-thp-bar-other{background:#9eacb8}
+.calcpro-thp .calcpro-thp-legend{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:12px;margin:8px 0 0}
+.calcpro-thp .calcpro-thp-legend-item{display:inline-flex;align-items:center;gap:5px}
+.calcpro-thp .calcpro-thp-swatch{display:inline-block;width:11px;height:11px;border-radius:2px}
+.calcpro-thp .calcpro-thp-disclaimer{font-size:12px;line-height:1.5;color:#444;margin:9px 0}
+.calcpro-thp .calcpro-thp-note{color:#744400;background:#fff6df;border-left:3px solid #c49b34;padding:7px 9px;margin:8px 0;font-size:12px}
+.calcpro-thp [hidden]{display:none!important}
+@media(max-width:710px){.calcpro-thp .calcpro-thp-field{grid-template-columns:minmax(175px,44%) minmax(130px,1fr);column-gap:9px;row-gap:1px;margin-bottom:4px}.calcpro-thp .calcpro-thp-hint{grid-column:2;align-self:start;padding-bottom:2px}.calcpro-thp .calcpro-thp-addjobs .calcpro-thp-field{grid-template-columns:minmax(175px,44%) minmax(130px,1fr)}.calcpro-thp .calcpro-thp-longselect{width:100%}}
+@media(max-width:510px){.calcpro-thp{font-size:14px}.calcpro-thp .calcpro-thp-panel{padding:10px}.calcpro-thp .calcpro-thp-field,.calcpro-thp .calcpro-thp-addjobs .calcpro-thp-field{grid-template-columns:minmax(0,1fr);gap:4px;margin:0 0 12px}.calcpro-thp .calcpro-thp-field>label{font-weight:600}.calcpro-thp .calcpro-thp-hint{grid-column:1}.calcpro-thp .calcpro-thp-inputwrap{width:100%}.calcpro-thp .calcpro-thp-field select,.calcpro-thp .calcpro-thp-field .calcpro-thp-longselect{width:100%}.calcpro-thp .calcpro-thp-inline{gap:8px 10px}.calcpro-thp .calcpro-thp-label{flex-basis:100%}.calcpro-thp .calcpro-thp-resulttitle{font-size:16px}}
+@media(prefers-reduced-motion:reduce){.calcpro-thp .calcpro-thp-bar>span{transition:none}}
+@media print{.calcpro-thp .calcpro-thp-toolbar,.calcpro-thp .calcpro-thp-instruction,.calcpro-thp .calcpro-thp-panel,.calcpro-thp .calcpro-thp-print{display:none!important}.calcpro-thp .calcpro-thp-results{display:block!important}.calcpro-thp .calcpro-thp-breakdown{break-inside:avoid}.calcpro-thp .calcpro-thp-resultshead,.calcpro-thp .calcpro-thp-sectiontitle{print-color-adjust:exact;-webkit-print-color-adjust:exact}}
+</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Take-Home-Paycheck Calculator</nav><h1 class="cp-page-title">Take-Home-Paycheck Calculator</h1><p class="cp-intro">Use this calculator to estimate a U.S. take-home paycheck after 2026 federal withholding, Social Security, Medicare, state and city taxes, and payroll deductions. You can also review estimated Form W-4 Step 3 and Step 4 amounts. Tax calculations are estimates, not payroll or tax-filing advice.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-thp" id="calcpro-thp-root">
+<div class="calcpro-thp-toolbar"><button type="button" class="calcpro-thp-print" data-thp-print>Print</button></div>
+<div class="calcpro-thp-results" id="calcpro-thp-results" aria-live="polite" aria-label="Paycheck calculation results">
+<div class="calcpro-thp-resultshead"><span>Results:</span><button type="button" class="calcpro-thp-print" data-thp-print aria-label="Print results">Print</button></div>
+<h2 class="calcpro-thp-resulttitle" id="calcpro-thp-resulttitle"></h2>
+<table class="calcpro-thp-resulttable"><thead><tr><th>Paycheck item</th><th>Amount</th></tr></thead><tbody id="calcpro-thp-resultbody"></tbody></table>
+<p class="calcpro-thp-caption" id="calcpro-thp-periodnote"></p>
+<div class="calcpro-thp-sectiontitle">Step 3: Claim Dependents</div>
+<table class="calcpro-thp-w4"><tbody id="calcpro-thp-step3"></tbody></table>
+<div class="calcpro-thp-sectiontitle">Step 4: Other Adjustments</div>
+<table class="calcpro-thp-w4"><tbody id="calcpro-thp-step4"></tbody></table>
+<div class="calcpro-thp-breakdown"><h3>Paycheck breakdown</h3><div class="calcpro-thp-bar" role="img" id="calcpro-thp-bar" aria-label="Net pay, taxes and withheld deductions as portions of gross pay"><span class="calcpro-thp-bar-net" id="calcpro-thp-bar-net"></span><span class="calcpro-thp-bar-tax" id="calcpro-thp-bar-tax"></span><span class="calcpro-thp-bar-other" id="calcpro-thp-bar-other"></span></div><div class="calcpro-thp-legend"><span class="calcpro-thp-legend-item"><i class="calcpro-thp-swatch calcpro-thp-bar-net"></i><span id="calcpro-thp-legend-net"></span></span><span class="calcpro-thp-legend-item"><i class="calcpro-thp-swatch calcpro-thp-bar-tax"></i><span id="calcpro-thp-legend-tax"></span></span><span class="calcpro-thp-legend-item"><i class="calcpro-thp-swatch calcpro-thp-bar-other"></i><span id="calcpro-thp-legend-other"></span></span></div></div>
+<div class="calcpro-thp-note" id="calcpro-thp-resultsnote"></div><p class="calcpro-thp-disclaimer">* This is an annualized estimate for tax year 2026. Payroll timing, eligible deductions and credits, actual W-4 elections and local laws can change the amount paid or owed. This is not an IRS form or payroll advice.</p>
+</div>
+<div class="calcpro-thp-instruction"><span class="calcpro-thp-disc" aria-hidden="true">▼</span>Modify the values and click the Calculate button to use</div>
+<form id="calcpro-thp-form" class="calcpro-thp-panel" novalidate><div id="calcpro-thp-error" class="calcpro-thp-err" role="alert"></div>
+<div class="calcpro-thp-field"><label for="calcpro-thp-salary">Your job income (salary)</label><div class="calcpro-thp-inputwrap"><input id="calcpro-thp-salary" name="salary" type="text" inputmode="decimal" value="$80,000" autocomplete="off" data-thp-money="1" aria-label="Your job income (salary)" /><span class="calcpro-thp-suffix">/year</span></div><small class="calcpro-thp-hint"></small></div><div class="calcpro-thp-field"><label for="calcpro-thp-frequency">Pay frequency</label><select id="calcpro-thp-frequency" name="frequency"><option value="260">Daily</option><option value="52">Weekly</option><option value="26" selected>Bi-weekly</option><option value="24">Semi-monthly</option><option value="12">Monthly</option><option value="4">Quarterly</option><option value="2">Semi-annually</option><option value="1">Annually</option></select></div>
+<div class="calcpro-thp-field"><label for="calcpro-thp-status">File status</label><select class="calcpro-thp-longselect" id="calcpro-thp-status" name="status"><option value="single">Single</option><option value="joint">Filing Jointly or Qualified Widow</option><option value="separate">Married Filing Separately</option><option value="head">Head of Household</option></select></div><div class="calcpro-thp-field"><label for="calcpro-thp-children">Number of children under age 17</label><div class="calcpro-thp-inputwrap"><input id="calcpro-thp-children" name="children" type="text" inputmode="decimal" value="0" autocomplete="off" aria-label="Number of children under age 17" /><span class="calcpro-thp-suffix"></span></div><small class="calcpro-thp-hint"></small></div><div class="calcpro-thp-field"><label for="calcpro-thp-dependents">Number of other dependents</label><div class="calcpro-thp-inputwrap"><input id="calcpro-thp-dependents" name="dependents" type="text" inputmode="decimal" value="0" autocomplete="off" aria-label="Number of other dependents" /><span class="calcpro-thp-suffix"></span></div><small class="calcpro-thp-hint"></small></div><div class="calcpro-thp-field"><label for="calcpro-thp-nonjob">Other income (not from jobs)</label><div class="calcpro-thp-inputwrap"><input id="calcpro-thp-nonjob" name="nonjob" type="text" inputmode="decimal" value="$0" autocomplete="off" data-thp-money="1" aria-label="Other income (not from jobs)" /><span class="calcpro-thp-suffix">/year</span></div><small class="calcpro-thp-hint">interest, dividends, retirement income, etc.</small></div><div class="calcpro-thp-field"><label for="calcpro-thp-pretax" title="Annual employer payroll deductions. Some affect Social Security and Medicare wages; this estimate assumes they do not.">Pretax deductions withheld <span aria-hidden="true" style="color:#888">ⓘ</span></label><div class="calcpro-thp-inputwrap"><input id="calcpro-thp-pretax" name="pretax" type="text" inputmode="decimal" value="$6,000" autocomplete="off" data-thp-money="1" aria-label="Pretax deductions withheld" /><span class="calcpro-thp-suffix">/year</span></div><small class="calcpro-thp-hint">401(k), health insurance, HSA, etc.</small></div><div class="calcpro-thp-field"><label for="calcpro-thp-notwithheld" title="Annual eligible adjustments that reduce taxable income, but not the amount deposited in this paycheck.">Deductions not withheld <span aria-hidden="true" style="color:#888">ⓘ</span></label><div class="calcpro-thp-inputwrap"><input id="calcpro-thp-notwithheld" name="notwithheld" type="text" inputmode="decimal" value="$0" autocomplete="off" data-thp-money="1" aria-label="Deductions not withheld" /><span class="calcpro-thp-suffix">/year</span></div><small class="calcpro-thp-hint">eligible IRA, student loan interest, etc.</small></div><div class="calcpro-thp-field"><label for="calcpro-thp-itemized" title="Eligible annual itemized deductions. Do not include the separate cash gifts field here if taking the standard deduction.">Itemized deductions <span aria-hidden="true" style="color:#888">ⓘ</span></label><div class="calcpro-thp-inputwrap"><input id="calcpro-thp-itemized" name="itemized" type="text" inputmode="decimal" value="$0" autocomplete="off" data-thp-money="1" aria-label="Itemized deductions" /><span class="calcpro-thp-suffix">/year</span></div><small class="calcpro-thp-hint">mortgage interest, gifts, eligible taxes, etc.</small></div><div class="calcpro-thp-inline" role="group" aria-label="Has 2nd, 3rd job income or spouse has income?"><span class="calcpro-thp-label">Has 2nd, 3rd job income or spouse has income?</span><label class="calcpro-thp-choice"><input type="radio" name="multiple" value="yes" > Yes</label><label class="calcpro-thp-choice"><input type="radio" name="multiple" value="no" checked> No</label></div><div class="calcpro-thp-addjobs" id="calcpro-thp-jobpanel" hidden><div style="font-size:13px;margin-bottom:5px;font-weight:bold">Please list these income(s):</div><div class="calcpro-thp-field"><label for="calcpro-thp-job2">Income #2</label><div class="calcpro-thp-inputwrap"><input id="calcpro-thp-job2" name="job2" type="text" inputmode="decimal" value="$0" autocomplete="off" data-thp-money="1" aria-label="Income #2" /><span class="calcpro-thp-suffix">/year</span></div><small class="calcpro-thp-hint"></small></div><div class="calcpro-thp-field"><label for="calcpro-thp-job3">Income #3</label><div class="calcpro-thp-inputwrap"><input id="calcpro-thp-job3" name="job3" type="text" inputmode="decimal" value="$0" autocomplete="off" data-thp-money="1" aria-label="Income #3" /><span class="calcpro-thp-suffix">/year</span></div><small class="calcpro-thp-hint"></small></div></div><div class="calcpro-thp-field"><label for="calcpro-thp-state">State income tax rate</label><div class="calcpro-thp-inputwrap calcpro-thp-pctwrap"><input id="calcpro-thp-state" name="state" type="text" inputmode="decimal" value="0" autocomplete="off" aria-label="State income tax rate" /><span class="calcpro-thp-suffix">%</span></div><small class="calcpro-thp-hint"><a href="https://en.wikipedia.org/wiki/State_income_tax" target="_blank" rel="noopener noreferrer">click here</a> to find out</small></div><div class="calcpro-thp-field"><label for="calcpro-thp-city">City income tax rate</label><div class="calcpro-thp-inputwrap calcpro-thp-pctwrap"><input id="calcpro-thp-city" name="city" type="text" inputmode="decimal" value="0" autocomplete="off" aria-label="City income tax rate" /><span class="calcpro-thp-suffix">%</span></div><small class="calcpro-thp-hint"></small></div><div class="calcpro-thp-inline" role="group" aria-label="Are you age 65 or older?"><span class="calcpro-thp-label">Are you age 65 or older?</span><label class="calcpro-thp-choice"><input type="radio" name="age65" value="yes" > Yes</label><label class="calcpro-thp-choice"><input type="radio" name="age65" value="no" checked> No</label></div><div id="calcpro-thp-spousepanel" hidden><div class="calcpro-thp-inline" role="group" aria-label="Is your spouse age 65 or older?"><span class="calcpro-thp-label">Is your spouse age 65 or older?</span><label class="calcpro-thp-choice"><input type="radio" name="spouse65" value="yes" > Yes</label><label class="calcpro-thp-choice"><input type="radio" name="spouse65" value="no" checked> No</label></div></div><div class="calcpro-thp-field"><label for="calcpro-thp-tips">Qualified tips income</label><div class="calcpro-thp-inputwrap"><input id="calcpro-thp-tips" name="tips" type="text" inputmode="decimal" value="$0" autocomplete="off" data-thp-money="1" aria-label="Qualified tips income" /><span class="calcpro-thp-suffix">/year</span></div><small class="calcpro-thp-hint">already included in your salary; eligible tips only</small></div><div class="calcpro-thp-field"><label for="calcpro-thp-overtime">Qualified overtime compensation</label><div class="calcpro-thp-inputwrap"><input id="calcpro-thp-overtime" name="overtime" type="text" inputmode="decimal" value="$0" autocomplete="off" data-thp-money="1" aria-label="Qualified overtime compensation" /><span class="calcpro-thp-suffix">/year</span></div><small class="calcpro-thp-hint">qualified premium portion already in salary</small></div><div class="calcpro-thp-field"><label for="calcpro-thp-car">Qualified passenger vehicle loan interest</label><div class="calcpro-thp-inputwrap"><input id="calcpro-thp-car" name="car" type="text" inputmode="decimal" value="$0" autocomplete="off" data-thp-money="1" aria-label="Qualified passenger vehicle loan interest" /><span class="calcpro-thp-suffix">/year</span></div><small class="calcpro-thp-hint">eligible interest paid on a qualifying vehicle loan</small></div><div class="calcpro-thp-field"><label for="calcpro-thp-charity">Cash gifts to charities</label><div class="calcpro-thp-inputwrap"><input id="calcpro-thp-charity" name="charity" type="text" inputmode="decimal" value="$0" autocomplete="off" data-thp-money="1" aria-label="Cash gifts to charities" /><span class="calcpro-thp-suffix">/year</span></div><small class="calcpro-thp-hint">eligible gifts if taking standard deduction</small></div><div class="calcpro-thp-inline" role="group" aria-label="Are you self-employed or an independent contractor?"><span class="calcpro-thp-label">Are you self-employed or an independent contractor?</span><label class="calcpro-thp-choice"><input type="radio" name="selfemployed" value="yes" > Yes</label><label class="calcpro-thp-choice"><input type="radio" name="selfemployed" value="no" checked> No</label></div><div class="calcpro-thp-actions"><button class="calcpro-thp-btn calcpro-thp-btn-primary" type="submit">Calculate<span class="calcpro-thp-arrow" aria-hidden="true">▶</span></button><button type="reset" class="calcpro-thp-btn calcpro-thp-btn-muted">Clear</button></div></form></div></section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><!-- REPLACE these links with real related tools for each calculator; verify live slugs. --><a href="retirement-calculator.html">Retirement</a><a href="roth-ira-calculator.html">Roth IRA</a><a href="investment-calculator.html">Investment</a><a href="compound-interest-calculator.html">Compound Interest</a><a href="annuity-payout-calculator.html">Annuity Payout</a><a href="pension-calculator.html">Pension</a><a href="inflation-calculator.html">Inflation</a><a href="future-value-calculator.html">Future Value</a><a href="income-tax-calculator.html">Income Tax</a><a href="savings-calculator.html">Savings</a><a href="mortgage-calculator.html">Mortgage</a><a href="loan-calculator.html">Loan</a></div></section></aside><article class="cp-article"><h2>How to Use the Take-Home-Paycheck Calculator</h2>
+<p>Enter your annual gross salary and select how often you are paid. Choose your federal filing status, then enter dependents, other non-job income, employer-withheld pretax deductions, additional deductible expenses, and any applicable state or local tax rates. Click <strong>Calculate</strong> to see the paycheck breakdown above the form.</p>
+<p>If you have multiple jobs or your spouse works, select Yes and enter the additional annual job incomes. These are used only to estimate household income tax; their earnings are not added to the gross amount on <em>your</em> paycheck. For self-employment, the calculator estimates how much income to reserve for tax rather than actual employer withholding.</p>
+<h2>2026 Take-Home Pay Formula</h2>
+<p><strong>Net paycheck ≈ gross paycheck − estimated federal income-tax withholding − Social Security − Medicare − state income tax − city income tax − deductions withheld.</strong> Annual amounts are divided by the selected pay-period count (26 for biweekly, 24 for semimonthly, 52 for weekly).</p>
+<p>Federal tax uses progressive 2026 U.S. income tax brackets after the larger of the standard deduction or eligible itemized deductions, plus qualifying adjustments and applicable dependent credits. For employees, Social Security is 6.2% of covered wages up to the 2026 annual $184,500 wage base; Medicare is 1.45% of covered wages, with an additional 0.9% withholding on wages exceeding $200,000. The state and city entries apply simple flat rates and are not a substitute for specific local tax tables.</p>
+<h3>2026 Deduction and Credit Rules Used</h3>
+<p>The base standard deduction is $16,100 for single and separate filers, $32,200 for joint filers, or $24,150 for heads of household. The calculator also estimates the age-related standard deduction and the additional senior deduction; $2,200 per eligible child and $500 per other dependent before income phaseouts; eligible tips up to $25,000; qualified overtime premium up to $12,500 ($25,000 joint); qualifying vehicle-loan interest up to $10,000; and up to $1,000 in eligible cash gifts for non-itemizers ($2,000 joint). Eligibility and phaseouts apply.</p>
+<h2>Worked Example</h2>
+<p>For $80,000 annual salary paid biweekly, gross pay is $80,000 ÷ 26 = <strong>$3,076.92</strong> per paycheck. With $6,000 in annual payroll deductions, the withheld deductions average $230.77 per check. The calculator applies 2026 tax rules and then subtracts estimated federal, payroll, state, and city taxes to calculate net pay. The figures shown in the live results above may differ from other calculators because of withholding assumptions.</p>
+<h2>Understanding Your Results</h2>
+<p>The result table lists every paycheck deduction and your estimated final paycheck. The Step 3 estimate relates to qualifying dependent credits; Step 4 summarizes other income and additional deductions. These values are explanatory estimates and not a completed or legally equivalent Form W-4. When income comes from several jobs, actual withholding depends on the W-4 selections submitted to each employer.</p>
+<h2>Frequently Asked Questions</h2>
+<h3>Is a biweekly paycheck the same as semimonthly?</h3><p>No. Biweekly usually means 26 paychecks annually, while semimonthly means 24. If annual pay remains unchanged, each biweekly payment is smaller.</p>
+<h3>Do 401(k) contributions reduce Social Security and Medicare taxes?</h3><p>Traditional 401(k) salary deferrals generally reduce income subject to federal income tax but not Social Security and Medicare. Some health and HSA payroll deductions can reduce both. Because the form has one shared pretax-deduction field, this estimate conservatively assumes all gross wages remain subject to FICA.</p>
+<h3>Is the federal income tax shown my final tax bill?</h3><p>No. The calculator estimates paycheck withholding using an annualized tax calculation. Your actual tax return may include capital gains, refundable credits, deductions, state-specific rules, other earnings, or additional Medicare and self-employment tax obligations.</p>
+<h3>What does qualified overtime income mean?</h3><p>It generally refers to the eligible overtime <em>premium</em> above regular pay, not the entire overtime paycheck. Enter only qualifying amounts already included in your annual salary; doing so prevents income from being counted twice.</p>
+<h2>Official Sources</h2>
+<ul><li><a href="https://www.irs.gov/publications/p15t" rel="noopener noreferrer" target="_blank">IRS Publication 15-T (2026): federal withholding methods</a></li><li><a href="https://www.irs.gov/irb/2025-45_IRB" rel="noopener noreferrer" target="_blank">IRS: 2026 federal tax brackets and standard deductions</a></li><li><a href="https://www.irs.gov/pub/irs-pdf/fw4.pdf" rel="noopener noreferrer" target="_blank">IRS Form W-4 (2026)</a></li><li><a href="https://www.irs.gov/publications/p15" rel="noopener noreferrer" target="_blank">IRS Publication 15 (2026): payroll taxes and wage base</a></li><li><a href="https://www.irs.gov/newsroom/working-families-tax-cuts-individuals-and-workers" rel="noopener noreferrer" target="_blank">IRS: new worker and senior deductions</a></li><li><a href="https://www.irs.gov/taxtopics/tc554" rel="noopener noreferrer" target="_blank">IRS: self-employment tax</a></li></ul>
+<p class="cp-page-footer">CalcPro — 2026 paycheck estimates are for informational purposes only.</p></article></main></div><script>(function(){
+'use strict';
+const root=document.getElementById('calcpro-thp-root');if(!root)return;
+const form=root.querySelector('#calcpro-thp-form'), $=id=>root.querySelector('#calcpro-thp-'+id);
+const BRACKETS={
+ single:[12400,50400,105700,201775,256225,640600],
+ separate:[12400,50400,105700,201775,256225,384350],
+ joint:[24800,100800,211400,403550,512450,768700],
+ head:[17700,67450,105700,201750,256200,640600]
+};
+const RATES=[.10,.12,.22,.24,.32,.35,.37];
+const STANDARD={single:16100,separate:16100,joint:32200,head:24150};
+const PERIODS={260:'Daily',52:'Weekly',26:'Bi-weekly',24:'Semi-monthly',12:'Monthly',4:'Quarterly',2:'Semi-annual',1:'Annual'};
+const money=n=>'$'+(Math.round((n+Number.EPSILON)*100)/100).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+const dollar=n=>'$'+Math.round(n).toLocaleString('en-US');
+const num=(name)=>{const el=form.elements.namedItem(name);if(!el)return 0;const s=String(el.value).replace(/[,$%\s]/g,'');return s===''?NaN:Number(s)};
+const picked=name=>{let el=form.querySelector('input[name="'+name+'"]:checked');return el?el.value:'no'};
+function progressive(income,status){let left=Math.max(0,income),prev=0,tax=0;for(let i=0;i<RATES.length;i++){let limit=(BRACKETS[status][i]===undefined?Infinity:BRACKETS[status][i]);let share=Math.max(0,Math.min(left,limit-prev));tax+=share*RATES[i];left-=share;prev=limit;if(left<=0)break;}return tax;}
+const clamp=(v,a,b)=>Math.max(a,Math.min(v,b));
+function phased(moneyValue,income,limit,step){return Math.max(0,moneyValue-(income>limit?Math.ceil((income-limit)/1000-1e-10)*step:0));}
+function estimate(input){
+ const {salary,nonjob,pretax,notwithheld,itemized,children,dependents,job2,job3,state,city,tips,overtime,car,charity,frequency,status,multiple,age65,spouse65,selfemployed}=input;
+ const jobs=(multiple?job2+job3:0), joint=status==='joint', marriedSeparate=status==='separate';
+ const wage=Math.max(0,salary-pretax);
+ let ss,medicare,extraMedicare=0,seHalf=0;
+ if(selfemployed){
+   const netSE=salary*.9235;
+   ss=Math.min(netSE,184500)*.124;
+   medicare=netSE*.029;
+   const medThreshold=joint?250000:(marriedSeparate?125000:200000);
+   extraMedicare=Math.max(0,netSE-medThreshold)*.009;
+   seHalf=(ss+medicare)/2;
+ }else{
+   ss=Math.min(salary,184500)*.062;
+   medicare=salary*.0145;
+   // This is a full-year effective average. Actual employers start the additional 0.9% when wages pass $200k YTD.
+   extraMedicare=Math.max(0,salary-200000)*.009;
+ }
+ const magi=Math.max(0,wage+jobs+nonjob-notwithheld-seHalf);
+ const std=STANDARD[status];
+ const olderCount=(age65?1:0)+(joint&&spouse65?1:0);
+ const normalSenior=olderCount*(joint?1650:2050);
+ const stdWithAge=std+normalSenior;
+ const deductibleCash=Math.min(charity,joint?2000:1000);
+ const useItemize=itemized>stdWithAge+deductibleCash;
+ const basicDeduction=useItemize?itemized:stdWithAge+deductibleCash;
+ const marriedNotJoint=marriedSeparate;
+ const tipsDeduction=marriedNotJoint?0:phased(Math.min(tips,25000),magi,joint?300000:150000,100);
+ const overtimeDeduction=marriedNotJoint?0:phased(Math.min(overtime,joint?25000:12500),magi,joint?300000:150000,100);
+ const carDeduction=phased(Math.min(car,10000),magi,joint?200000:100000,200);
+ const seniorDeduction=marriedNotJoint?0:olderCount*Math.max(0,6000-.06*Math.max(0,magi-(joint?150000:75000)));
+ const special=tipsDeduction+overtimeDeduction+carDeduction+seniorDeduction;
+ const taxable=Math.max(0,magi-basicDeduction-special);
+ const grossCredit=children*2200+dependents*500;
+ const dependentCredit=Math.max(0,grossCredit-50*Math.ceil(Math.max(0,magi-(joint?400000:200000))/1000));
+ const federalTotal=Math.max(0,progressive(taxable,status)-dependentCredit);
+ // Household allocation for multiple jobs is an estimate: true amounts depend on each employer's Form W-4.
+ const federal=selfemployed?federalTotal:(multiple&&jobs>0?federalTotal*(salary/(salary+jobs)):federalTotal);
+ const stateTax=Math.max(0,wage)*state/100;
+ const cityTax=Math.max(0,wage)*city/100;
+ const annualTax=federal+ss+medicare+extraMedicare+stateTax+cityTax;
+ const annualNet=salary-pretax-annualTax;
+ return {frequency,status,salary,wage,jobs,nonjob,pretax,notwithheld,basicDeduction,normalSenior,extraItemize:Math.max(0,basicDeduction-std),tipsDeduction,overtimeDeduction,carDeduction,seniorDeduction,special,magi,taxable,dependentCredit,grossCredit,federalTotal,federal,ss,medicare,extraMedicare,stateTax,cityTax,annualTax,annualNet,seHalf,useItemize,selfemployed,multiple};
+}
+function inputs(){
+ let values={},fields=['salary','children','dependents','nonjob','pretax','notwithheld','itemized','job2','job3','state','city','tips','overtime','car','charity'];
+ for(const name of fields){let val=num(name);if(!Number.isFinite(val)||val<0||val>1e12)throw Error('Please enter a valid, nonnegative number for '+form.elements.namedItem(name).getAttribute('aria-label')+'.');values[name]=val;}
+ for(const name of ['children','dependents'])if(!Number.isInteger(values[name])||values[name]>100)throw Error('Number of children and dependents must be whole numbers from 0 to 100.');
+ for(const name of ['state','city'])if(values[name]>100)throw Error('State and city tax rates must each be between 0% and 100%.');
+ if(values.pretax>values.salary)throw Error('Pretax deductions withheld cannot exceed your job salary.');
+ if(values.tips+values.overtime>values.salary+0.001)throw Error('Qualified tips and qualified overtime must be included in the salary amount, and their sum cannot exceed salary.');
+ values.frequency=Number(form.elements.namedItem('frequency').value);values.status=form.elements.namedItem('status').value;
+ values.multiple=picked('multiple')==='yes';values.age65=picked('age65')==='yes';values.spouse65=picked('spouse65')==='yes';values.selfemployed=picked('selfemployed')==='yes';
+ return values;
+}
+function tr(label,value,cls=''){return '<tr'+(cls?' class="'+cls+'"':'')+'><td>'+label+'</td><td>'+money(value)+'</td></tr>';}
+function simpleRow(a,b,c=''){return '<tr'+(c?' class="'+c+'"':'')+'><td>'+a+'</td><td>'+b+'</td></tr>';}
+function render(r){const n=r.frequency,per=x=>x/n;
+ const label=PERIODS[n],taxTotal=r.federal+r.ss+r.medicare+r.extraMedicare+r.stateTax+r.cityTax;
+ const ssLabel=r.selfemployed?'Self-employment Social Security tax':'Social Security tax';
+ const medLabel=r.selfemployed?'Self-employment Medicare tax':'Medicare tax';
+ $('resulttitle').textContent='2026 '+label+' '+(r.selfemployed?'Net Income Estimate':'Paycheck')+' Based on Income of '+dollar(r.salary)+'/year';
+ let rows=tr('Gross pay',per(r.salary))+tr('Federal income tax',per(r.federal))+tr(ssLabel,per(r.ss))+tr(medLabel,per(r.medicare));
+ if(r.extraMedicare>0)rows+=tr('Additional Medicare tax',per(r.extraMedicare));
+ rows+=tr('State income tax',per(r.stateTax))+tr('City income tax',per(r.cityTax))+tr('Deductions withheld',per(r.pretax))+tr(r.selfemployed?'Income after estimated taxes':'Final Paycheck',per(r.annualNet),'calcpro-thp-netrow');
+ $('resultbody').innerHTML=rows;
+ $('periodnote').textContent='Based on '+n+' pay periods per year. Estimated annual net: '+money(r.annualNet)+'. Federal tax calculation uses the 2026 filing-year brackets; amounts are averaged over pay periods.';
+ $('step3').innerHTML=simpleRow('(a) Qualifying children under 17',dollar(inputs().children*2200))+simpleRow('(b) Other dependents',dollar(inputs().dependents*500))+simpleRow('Income-based credit adjustment',money(r.dependentCredit-r.grossCredit))+simpleRow('Total claimed dependent credits',money(r.dependentCredit),'calcpro-thp-total');
+ $('step4').innerHTML=simpleRow('(a) Other income (not from jobs)',money(r.nonjob))+simpleRow('(b) Deductions not withheld',money(r.notwithheld))+simpleRow('Additional itemized/age/charity deduction',money(r.extraItemize))+simpleRow('Qualified tips, overtime, car and senior deductions',money(r.special))+simpleRow('Total estimated Step 4(b) deductions',money(r.notwithheld+r.extraItemize+r.special),'calcpro-thp-total')+simpleRow('(c) Extra withholding per period',money(0));
+ const gross=r.salary,net=r.annualNet,other=r.pretax;const netPart=gross?Math.max(0,net)/gross*100:0;const otherPart=gross?other/gross*100:0;const taxPart=gross?taxTotal/gross*100:0;
+ $('bar-net').style.width=Math.max(0,Math.min(100,netPart))+'%';$('bar-tax').style.width=Math.max(0,Math.min(100,taxPart))+'%';$('bar-other').style.width=Math.max(0,Math.min(100,otherPart))+'%';
+ $('legend-net').textContent='Take-home: '+money(per(r.annualNet));$('legend-tax').textContent='Taxes: '+money(per(taxTotal));$('legend-other').textContent='Withheld deductions: '+money(per(other));
+ $('bar').setAttribute('aria-label','Estimated '+label+' gross pay '+money(per(gross))+', take-home '+money(per(net))+', taxes '+money(per(taxTotal))+', withheld deductions '+money(per(other)));
+ let notes=[];
+ if(r.multiple&&r.jobs>0)notes.push('Multiple jobs: the combined household federal tax is allocated by gross job income; actual Form W-4 multiple-jobs withholding may differ. Use the IRS multiple-jobs worksheet for precise employer entries.');
+ if(r.multiple&&r.jobs===0)notes.push('Multiple jobs is selected but the additional job incomes are zero. Enter their annual incomes for a household estimate.');
+ if(r.selfemployed)notes.push('Self-employed results represent estimated income remaining after tax reserves, not employer withholding or a guaranteed paycheck. Self-employment tax is calculated on 92.35% of earnings. Business expense details, qualified business income deductions, and quarterly timing are not modeled.');
+ if(r.useItemize)notes.push('Itemized deductions were used because they exceed the standard deduction plus eligible cash contributions. The input is assumed already eligible and net of applicable limits.');
+ if(r.salary>184500)notes.push('Social Security is averaged using the 2026 annual wage base; individual payroll-period withholding will vary after the wage cap is reached.');
+ if(r.salary>200000&&!r.selfemployed)notes.push('Additional Medicare tax is averaged annually; employers normally start withholding it only after wages cross $200,000 during the year.');
+ if(r.annualNet<0)notes.push('Estimated tax obligations exceed the entered salary. A negative net estimate indicates that additional funds may be needed; this is not a negative payroll deposit.');
+ notes.push('Eligible pretax contributions may have different FICA treatment. State and city taxes are simplified flat-rate estimates; not all income types have identical tax treatment.');
+ $('resultsnote').textContent=notes.join(' ');
+ $('results').classList.add('calcpro-thp-visible');
+}
+function update(){ $('jobpanel').hidden=picked('multiple')!=='yes';$('spousepanel').hidden=form.elements.namedItem('status').value!=='joint';}
+form.addEventListener('change',update);
+form.addEventListener('submit',e=>{e.preventDefault();$('error').textContent='';try{const v=inputs(),r=estimate(v);render(r);$('results').scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});}catch(err){$('error').textContent=err.message;$('results').classList.remove('calcpro-thp-visible');}});
+form.addEventListener('reset',()=>{setTimeout(()=>{$('error').textContent='';$('results').classList.remove('calcpro-thp-visible');update();},0)});
+form.querySelectorAll('[data-thp-money]').forEach(el=>{el.addEventListener('blur',()=>{let n=Number(el.value.replace(/[,$\s]/g,''));if(Number.isFinite(n)&&n>=0)el.value='$'+n.toLocaleString('en-US',{maximumFractionDigits:2});});});
+root.querySelectorAll('[data-thp-print]').forEach(b=>b.addEventListener('click',()=>window.print()));update();
+// Opt-in read-only test API for automated verification (not a global calculator function).
+root.calcproThpTest={estimate,progressive};
+})();</script></body></html>

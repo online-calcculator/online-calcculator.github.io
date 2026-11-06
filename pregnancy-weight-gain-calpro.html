@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>Pregnancy Weight Gain Calculator | CalcPro</title><meta content="Estimate pregnancy weight gain by week from pre-pregnancy BMI, with twin-pregnancy options, unit conversions, a chart and a full 40-week table." name="description"/><link href="template-style.css" rel="stylesheet"/><style>
+/* All component selectors are scoped to its unique calcpro-pwg root. */
+.calcpro-pwg{--calcpro-pwg-blue:#336699;--calcpro-pwg-green:#43851d;--calcpro-pwg-soft:#bcd8f3;--calcpro-pwg-text:#172637;font:15px/1.42 Arial,Helvetica,sans-serif;color:#111;max-width:100%;text-align:left}
+.calcpro-pwg *{box-sizing:border-box}
+.calcpro-pwg [hidden]{display:none!important}
+.calcpro-pwg button,.calcpro-pwg input,.calcpro-pwg select{font:inherit}
+.calcpro-pwg button{cursor:pointer}
+.calcpro-pwg button:focus-visible,.calcpro-pwg input:focus-visible,.calcpro-pwg select:focus-visible{outline:2px solid #0057aa;outline-offset:2px}
+.calcpro-pwg .calcpro-pwg-top{display:flex;justify-content:flex-end;min-height:23px}
+.calcpro-pwg .calcpro-pwg-print{border:0;background:transparent;text-decoration:underline;color:#006699;padding:0 3px 3px}
+.calcpro-pwg .calcpro-pwg-results{margin:1px 0 13px}
+.calcpro-pwg .calcpro-pwg-results-heading{background:#43851d;color:#fff;display:flex;justify-content:space-between;align-items:center;padding:5px 9px;font-size:16px;line-height:1.3}
+.calcpro-pwg .calcpro-pwg-summary{font-size:15px;margin:7px 0 5px}
+.calcpro-pwg .calcpro-pwg-summary strong,.calcpro-pwg .calcpro-pwg-range-line strong,.calcpro-pwg .calcpro-pwg-bmi strong{color:#23750f}
+.calcpro-pwg .calcpro-pwg-summary .calcpro-pwg-status{color:#16632c}
+.calcpro-pwg .calcpro-pwg-summary .calcpro-pwg-status-out{color:#865019}
+.calcpro-pwg .calcpro-pwg-range-line,.calcpro-pwg .calcpro-pwg-bmi{font-size:14px;margin:5px 0}
+.calcpro-pwg .calcpro-pwg-disclaimer{font-size:11px;margin:6px 0 13px;color:#5f6b76}
+.calcpro-pwg .calcpro-pwg-chart-title{font-size:15px;text-align:center;color:#003366;font-weight:400;margin:10px 0 4px}
+.calcpro-pwg .calcpro-pwg-chart-wrap{position:relative;width:100%;max-width:700px;margin:0 auto}
+.calcpro-pwg .calcpro-pwg-chart{width:100%;height:auto;display:block;overflow:visible}
+.calcpro-pwg .calcpro-pwg-tooltip{position:absolute;z-index:2;pointer-events:none;background:#fff;border:1px solid #7aa5ce;box-shadow:0 2px 6px #0002;color:#07375c;font-size:12px;padding:7px 9px;max-width:175px;white-space:nowrap}
+.calcpro-pwg .calcpro-pwg-chart-caption{font-size:12px;color:#677585;text-align:center;margin:0 0 7px}
+.calcpro-pwg .calcpro-pwg-table-intro{margin:8px 0 5px;font-size:14px}
+.calcpro-pwg .calcpro-pwg-table-scroll{overflow-x:auto;max-width:100%;margin:0 0 4px}
+.calcpro-pwg .calcpro-pwg-table{border-collapse:collapse;font-size:13px;line-height:1.3;margin:0 auto;width:74%;min-width:min(460px,100%);color:#111}
+.calcpro-pwg .calcpro-pwg-table th{background:var(--calcpro-pwg-blue);color:white;border:1px solid #a3afba;padding:3px 6px;text-align:left;font-weight:700}
+.calcpro-pwg .calcpro-pwg-table td{border:1px solid #bcbcbc;padding:2px 6px;white-space:nowrap}
+.calcpro-pwg .calcpro-pwg-table tbody tr:nth-child(even){background:#f0f0f0}
+.calcpro-pwg .calcpro-pwg-table tbody tr.calcpro-pwg-row-current{background:#f8bbdb}
+.calcpro-pwg .calcpro-pwg-table tbody tr:hover{background:#e2f1fb}
+.calcpro-pwg .calcpro-pwg-small-note{font-size:11px;color:#67717a;margin:5px 0 11px}
+.calcpro-pwg .calcpro-pwg-form-area{margin:0 0 6px}
+.calcpro-pwg .calcpro-pwg-tabs{display:flex;align-items:stretch;gap:3px;position:relative;z-index:1}
+.calcpro-pwg .calcpro-pwg-tab{border:1px solid #aaa;border-bottom:0;background:#fff;padding:8px 12px;font-size:15px;font-weight:700;color:#111;border-radius:0}
+.calcpro-pwg .calcpro-pwg-tab-on{background:var(--calcpro-pwg-blue);color:#fff;border-color:var(--calcpro-pwg-blue)}
+.calcpro-pwg .calcpro-pwg-form{background:#eee;border:1px solid #bcbcbc;padding:10px 12px 9px;max-width:100%}
+.calcpro-pwg .calcpro-pwg-field{display:grid;grid-template-columns:minmax(205px, 33%) minmax(0,1fr);align-items:center;gap:12px;min-height:38px;margin:0 0 4px}
+.calcpro-pwg .calcpro-pwg-field>label{line-height:1.3}
+.calcpro-pwg .calcpro-pwg-twins{border:0;padding:0;min-width:0}
+.calcpro-pwg .calcpro-pwg-twins>span{line-height:1.3}
+.calcpro-pwg .calcpro-pwg-options{display:flex;gap:15px;align-items:center;white-space:nowrap}
+.calcpro-pwg .calcpro-pwg-options label{display:inline-flex;align-items:center;gap:4px;cursor:pointer}
+.calcpro-pwg .calcpro-pwg-options input{accent-color:#336699;width:16px;height:16px;margin:0}
+.calcpro-pwg .calcpro-pwg-control{width:min(100%,300px);position:relative}
+.calcpro-pwg .calcpro-pwg-input{display:block;height:34px;width:min(100%,300px);background:white;color:#111;border:1px solid #336699;border-radius:2px;padding:5px 9px;box-shadow:1px 2px 3px #0002;min-width:0}
+.calcpro-pwg .calcpro-pwg-control .calcpro-pwg-input{padding-right:47px}
+.calcpro-pwg .calcpro-pwg-unit{position:absolute;right:9px;top:50%;transform:translateY(-50%);color:#777;pointer-events:none}
+.calcpro-pwg .calcpro-pwg-height-us{display:flex;gap:12px;max-width:300px}
+.calcpro-pwg .calcpro-pwg-height-us .calcpro-pwg-control{width:50%;min-width:0}
+.calcpro-pwg .calcpro-pwg-height-us .calcpro-pwg-input{width:100%;padding-right:55px}
+.calcpro-pwg .calcpro-pwg-error{max-width:620px;border-left:4px solid #b33231;background:#fff6f5;color:#8b2020;padding:9px;margin:7px 0}
+.calcpro-pwg .calcpro-pwg-buttons{display:flex;justify-content:center;gap:5px;align-items:center;padding:7px 0 0}
+.calcpro-pwg .calcpro-pwg-calculate{background:#47851a;border:0;color:#fff;font-weight:700;padding:10px 12px;min-height:38px}
+.calcpro-pwg .calcpro-pwg-play{display:inline-grid;place-items:center;margin-left:10px;width:21px;height:21px;background:#a5caa0;border-radius:50%;font-size:11px;color:#fff}
+.calcpro-pwg .calcpro-pwg-clear{background:#a8a8a8;border:0;color:#fff;min-height:38px;padding:9px 11px}
+.calcpro-pwg .calcpro-pwg-calculate:hover{background:#32650b}
+.calcpro-pwg .calcpro-pwg-clear:hover{background:#777}
+@media(max-width:570px){
+ .calcpro-pwg{font-size:14px}
+ .calcpro-pwg .calcpro-pwg-field{grid-template-columns:minmax(0,1fr);gap:3px;margin-bottom:10px}
+ .calcpro-pwg .calcpro-pwg-twins>span{margin:0;padding:0}
+ .calcpro-pwg .calcpro-pwg-options{padding-top:2px}
+ .calcpro-pwg .calcpro-pwg-input,.calcpro-pwg .calcpro-pwg-control{width:100%;max-width:100%}
+ .calcpro-pwg .calcpro-pwg-height-us{max-width:100%}
+ .calcpro-pwg .calcpro-pwg-form{padding:12px}
+ .calcpro-pwg .calcpro-pwg-tab{font-size:13px;padding:8px 10px}
+ .calcpro-pwg .calcpro-pwg-table{font-size:12px}
+ .calcpro-pwg .calcpro-pwg-table th,.calcpro-pwg .calcpro-pwg-table td{padding:5px 5px}
+ .calcpro-pwg .calcpro-pwg-chart-title{font-size:14px}
+}
+@media print{
+ .calcpro-pwg .calcpro-pwg-top,.calcpro-pwg .calcpro-pwg-buttons{display:none!important}
+ .calcpro-pwg .calcpro-pwg-results{break-inside:auto}
+ .calcpro-pwg .calcpro-pwg-results-heading,.calcpro-pwg .calcpro-pwg-table th{print-color-adjust:exact;-webkit-print-color-adjust:exact}
+ .calcpro-pwg .calcpro-pwg-table tbody tr{break-inside:avoid}
+ .calcpro-pwg .calcpro-pwg-chart-wrap{break-inside:avoid}
+}
+
+</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/fitness-and-health-calculator/">Fitness &amp; Health</a> / Pregnancy Weight Gain Calculator</nav><h1 class="cp-page-title">Pregnancy Weight Gain Calculator</h1><p class="cp-intro">Estimate a recommended pregnancy weight gain schedule based on pre-pregnancy BMI and Institute of Medicine guidance. View your weekly range, chart, and 40-week table, in metric or US units.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-pwg" id="calcpro-pwg-root">
+  <div class="calcpro-pwg-top"><button class="calcpro-pwg-print" type="button" id="calcpro-pwg-print"><span aria-hidden="true">⎙</span> Print</button></div>
+  <section class="calcpro-pwg-results" id="calcpro-pwg-results" aria-label="Pregnancy weight gain results" tabindex="-1" hidden>
+    <div class="calcpro-pwg-results-heading"><strong>Result</strong><span aria-hidden="true">▣</span></div>
+    <div class="calcpro-pwg-summary" id="calcpro-pwg-summary" aria-live="polite"></div>
+    <p class="calcpro-pwg-range-line" id="calcpro-pwg-delivery"></p>
+    <p class="calcpro-pwg-bmi" id="calcpro-pwg-bmi"></p>
+    <div class="calcpro-pwg-chart-section">
+      <h2 class="calcpro-pwg-chart-title">Your Recommended Body Weight Range</h2>
+      <div class="calcpro-pwg-chart-wrap" id="calcpro-pwg-chart-wrap">
+        <svg class="calcpro-pwg-chart" id="calcpro-pwg-chart" viewBox="0 0 660 290" role="img" aria-label="Suggested weekly weight range from week 1 to week 40, showing your current weight at the selected pregnancy week"></svg>
+        <div class="calcpro-pwg-tooltip" id="calcpro-pwg-tooltip" hidden></div>
+      </div>
+    </div>
+    <p class="calcpro-pwg-table-intro">The following is a recommended body weight table for your entire pregnancy period.</p>
+    <div class="calcpro-pwg-table-scroll"><table class="calcpro-pwg-table" aria-label="Recommended weight gain by pregnancy week">
+      <thead><tr><th scope="col">Week</th><th scope="col">Recommended Weight Range</th><th scope="col">Recommended Weight Gain</th></tr></thead>
+      <tbody id="calcpro-pwg-table-body"></tbody></table></div>
+    <p class="calcpro-pwg-disclaimer" id="calcpro-pwg-caution"></p>
+  </section>
+
+  <section class="calcpro-pwg-form-area" aria-label="Pregnancy weight gain inputs">
+    <div class="calcpro-pwg-tabs" role="tablist" aria-label="Measurement system">
+      <button type="button" id="calcpro-pwg-us-tab" role="tab" aria-selected="false" aria-controls="calcpro-pwg-form" class="calcpro-pwg-tab">US Units</button>
+      <button type="button" id="calcpro-pwg-metric-tab" role="tab" aria-selected="true" aria-controls="calcpro-pwg-form" class="calcpro-pwg-tab calcpro-pwg-tab-on">Metric Units</button>
+    </div>
+    <form id="calcpro-pwg-form" class="calcpro-pwg-form" novalidate>
+      <div class="calcpro-pwg-field"><label for="calcpro-pwg-week">Your Current Pregnancy Stage</label>
+        <select id="calcpro-pwg-week" name="pregnancy-week" class="calcpro-pwg-input"></select>
+      </div>
+      <div class="calcpro-pwg-field calcpro-pwg-twins" role="group" aria-labelledby="calcpro-pwg-twins-label"><span id="calcpro-pwg-twins-label">Pregnant with Twins</span><div class="calcpro-pwg-options">
+        <label><input type="radio" name="calcpro-pwg-twins" value="no" checked> No</label>
+        <label><input type="radio" name="calcpro-pwg-twins" value="yes"> Yes</label>
+      </div></div>
+      <div class="calcpro-pwg-field calcpro-pwg-metric-field"><label for="calcpro-pwg-height-cm">Your Height</label><div class="calcpro-pwg-control"><input class="calcpro-pwg-input" id="calcpro-pwg-height-cm" name="height-cm" type="number" inputmode="decimal" step="any" value="165"><span class="calcpro-pwg-unit">cm</span></div></div>
+      <div class="calcpro-pwg-field calcpro-pwg-us-field" hidden><label for="calcpro-pwg-height-ft">Your Height</label><div class="calcpro-pwg-height-us"><div class="calcpro-pwg-control"><input class="calcpro-pwg-input" id="calcpro-pwg-height-ft" name="height-ft" type="number" inputmode="numeric" step="1" value="5"><span class="calcpro-pwg-unit">feet</span></div><div class="calcpro-pwg-control"><input class="calcpro-pwg-input" id="calcpro-pwg-height-in" name="height-in" type="number" inputmode="decimal" step="any" value="5"><span class="calcpro-pwg-unit">inches</span></div></div></div>
+      <div class="calcpro-pwg-field calcpro-pwg-metric-field"><label for="calcpro-pwg-before-kg">Your Weight Before Pregnancy</label><div class="calcpro-pwg-control"><input class="calcpro-pwg-input" id="calcpro-pwg-before-kg" name="before-kg" type="number" inputmode="decimal" step="any" value="50"><span class="calcpro-pwg-unit">kg</span></div></div>
+      <div class="calcpro-pwg-field calcpro-pwg-us-field" hidden><label for="calcpro-pwg-before-lb">Your Weight Before Pregnancy</label><div class="calcpro-pwg-control"><input class="calcpro-pwg-input" id="calcpro-pwg-before-lb" name="before-lb" type="number" inputmode="decimal" step="any" value="110.2"><span class="calcpro-pwg-unit">lbs</span></div></div>
+      <div class="calcpro-pwg-field calcpro-pwg-metric-field"><label for="calcpro-pwg-now-kg">Your Weight Now</label><div class="calcpro-pwg-control"><input class="calcpro-pwg-input" id="calcpro-pwg-now-kg" name="now-kg" type="number" inputmode="decimal" step="any" value="55"><span class="calcpro-pwg-unit">kg</span></div></div>
+      <div class="calcpro-pwg-field calcpro-pwg-us-field" hidden><label for="calcpro-pwg-now-lb">Your Weight Now</label><div class="calcpro-pwg-control"><input class="calcpro-pwg-input" id="calcpro-pwg-now-lb" name="now-lb" type="number" inputmode="decimal" step="any" value="121.3"><span class="calcpro-pwg-unit">lbs</span></div></div>
+      <div class="calcpro-pwg-error" id="calcpro-pwg-error" role="alert" hidden></div>
+      <div class="calcpro-pwg-buttons"><button class="calcpro-pwg-calculate" type="submit">Calculate <span aria-hidden="true" class="calcpro-pwg-play">▶</span></button><button class="calcpro-pwg-clear" type="button" id="calcpro-pwg-clear">Clear</button></div>
+    </form>
+  </section>
+</div>
+</section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><a href="pregnancy-calculator.html">Pregnancy</a><a href="due-date-calculator.html">Due Date</a><a href="pregnancy-conception-calculator.html">Pregnancy Conception</a><a href="conception-calculator.html">Conception</a><a href="ovulation-calculator.html">Ovulation</a><a href="period-calculator.html">Period</a><a href="bmi-calculator.html">BMI</a><a href="healthy-weight-calculator.html">Healthy Weight</a><a href="ideal-weight-calculator.html">Ideal Weight</a><a href="calorie-calculator.html">Calorie</a><a href="bmr-calculator.html">BMR</a><a href="body-fat-calculator.html">Body Fat</a></div></section></aside><article class="cp-article"><h2>How to Use the Pregnancy Weight Gain Calculator</h2>
+<p>Choose the week of pregnancy, select whether you are expecting twins, and enter your height, pre-pregnancy weight, and current weight. Switch between US units (feet, inches, and pounds) and metric units (centimeters and kilograms) without losing your measurements. Select <strong>Calculate</strong> to see your pre-pregnancy BMI, suggested weight range for the current week and week 40, a chart, and a 40-week comparison table.</p>
+<p>The estimate is based primarily on the 2009 Institute of Medicine (IOM; now the National Academy of Medicine) total gestational weight-gain recommendations. Results are general educational guidance, not a diagnosis or an individualized prenatal plan.</p>
+<h2>Pregnancy Weight Gain Recommendations</h2>
+<div class="cp-table-scroll"><table class="cp-content-table"><thead><tr><th>Pre-pregnancy BMI</th><th>Category</th><th>One baby</th><th>Twins</th></tr></thead><tbody>
+<tr><td>Less than 18.5</td><td>Underweight</td><td>28–40 lb</td><td>No IOM range*</td></tr>
+<tr><td>18.5–24.9</td><td>Normal weight</td><td>25–35 lb</td><td>37–54 lb</td></tr>
+<tr><td>25.0–29.9</td><td>Overweight</td><td>15–25 lb</td><td>31–50 lb</td></tr>
+<tr><td>30.0 or higher</td><td>Obesity</td><td>11–20 lb</td><td>25–42 lb</td></tr>
+</tbody></table></div>
+<p><small>*IOM 2009 did not set an underweight-twin recommendation because of insufficient evidence. CDC lists 50–62 lb for this category; the calculator labels this separately when applicable. Twin recommendations are provisional and should be discussed with your prenatal clinician.</small></p>
+<h2>How the Calculation Works</h2>
+<h3>1. Find the pre-pregnancy BMI</h3>
+<p><strong>BMI = pre-pregnancy weight (kg) ÷ [height (m)]².</strong> The BMI category determines which full-term gain range applies. The estimated weight at delivery is your pre-pregnancy weight plus that category's lower or upper recommended total gain.</p>
+<h3>2. Estimate the weight range at each week</h3>
+<p>The calculator starts at zero cumulative gain in week 1, interpolates to a range of 0.5–2 kg by week 13, then spreads the remaining recommended gain evenly through week 40. For week <em>w</em> after week 13, the estimated gain is:</p>
+<p><strong>Gain(w) = first-trimester gain + [(w − 13) ÷ 27] × (full-term gain − first-trimester gain).</strong> This formula is applied separately to the lower and upper bounds. This produces an easy-to-read planning curve; published IOM recommendations do not prescribe exact individual weight ranges for all 40 weeks, especially in twin pregnancies.</p>
+<h3>Worked Example</h3>
+<p>At a height of 165 cm and a pre-pregnancy weight of 50 kg, BMI is approximately 18.4 (underweight). For a pregnancy with one baby, the IOM total recommended gain is 28–40 lb (about 12.7–18.1 kg). At week 20, this tool estimates a body-weight range of <strong>53.7–56.2 kg</strong>. The week-40 range is <strong>62.7–68.1 kg</strong>. A current weight of 55 kg lies within the week-20 estimated range.</p>
+<h2>Understanding the Chart and Weight Table</h2>
+<p>The blue shaded region represents the illustrative range of recommended body weight at each week. The green dot marks your current weight at the week you selected. In the table, the highlighted row is the selected week. The “Recommended Weight Gain” column shows cumulative gain <em>since before pregnancy</em>, not the gain for that week alone.</p>
+<div class="cp-note">Weight does not increase at a perfectly steady rate in real pregnancies. A single reading outside the shaded area is not enough to evaluate maternal health or fetal development. Review overall patterns, symptoms, and any medical concerns with a qualified prenatal care professional.</div>
+<h2>Frequently Asked Questions</h2>
+<h3>Should I be gaining weight every week?</h3>
+<p>Not necessarily. First-trimester weight changes are often small, and the timing of later weight gain varies. Your clinician may assess your overall trend and circumstances rather than treating a single weekly number as a pass-or-fail target.</p>
+<h3>Does the calculator support twins?</h3>
+<p>Yes. Select <strong>Yes</strong> under “Pregnant with Twins.” The tool uses the published provisional total twin weight-gain ranges. The 40-week line between those endpoints is illustrative and cannot replace twin-specific clinical monitoring.</p>
+<h3>What if my current weight is above or below the shown range?</h3>
+<p>The message describes how the entered value compares with the calculated range, not whether your pregnancy is healthy or unhealthy. Ask your prenatal care professional about meaningful changes or concerns rather than attempting rapid weight changes on the basis of this tool.</p>
+<h3>Do US and metric units change the formula?</h3>
+<p>No. Measurements are converted internally using 1 kg = 2.20462262185 lb and 1 inch = 2.54 cm. Small displayed differences may occur because of rounding.</p>
+<h2>Sources and Further Reading</h2>
+<ul>
+<li><a href="https://www.cdc.gov/maternal-infant-health/pregnancy-weight/index.html" target="_blank" rel="noopener noreferrer">CDC — Weight Gain During Pregnancy</a></li>
+<li><a href="https://www.ncbi.nlm.nih.gov/books/NBK51341/table/background.t2/" target="_blank" rel="noopener noreferrer">NIH / NCBI Bookshelf — IOM gestational weight gain ranges</a></li>
+<li><a href="https://www.canada.ca/en/health-canada/services/food-nutrition/healthy-eating/healthy-weights/prenatal-guidelines-professionals-gestational-weight-gain.html" target="_blank" rel="noopener noreferrer">Health Canada — Gestational Weight Gain Guidelines</a></li>
+<li><a href="https://www.acog.org/clinical/clinical-guidance/committee-opinion/articles/2013/01/weight-gain-during-pregnancy" target="_blank" rel="noopener noreferrer">ACOG — Weight Gain During Pregnancy</a></li>
+</ul>
+<p class="cp-page-footer">CalcPro — educational estimates only; consult your prenatal care professional for personalized guidance.</p>
+</article></main></div><script>(() => {
+  'use strict';
+  const root = document.getElementById('calcpro-pwg-root');
+  if (!root) return;
+  const find = (id) => root.querySelector('#' + id);
+  const el = {
+    results: find('calcpro-pwg-results'), summary: find('calcpro-pwg-summary'),
+    delivery: find('calcpro-pwg-delivery'), bmi: find('calcpro-pwg-bmi'),
+    caution: find('calcpro-pwg-caution'), week: find('calcpro-pwg-week'),
+    chart: find('calcpro-pwg-chart'), wrap: find('calcpro-pwg-chart-wrap'),
+    tooltip: find('calcpro-pwg-tooltip'), tbody: find('calcpro-pwg-table-body'),
+    form: find('calcpro-pwg-form'), error: find('calcpro-pwg-error'),
+    metricTab: find('calcpro-pwg-metric-tab'), usTab: find('calcpro-pwg-us-tab'),
+    cm: find('calcpro-pwg-height-cm'), ft: find('calcpro-pwg-height-ft'),
+    inch: find('calcpro-pwg-height-in'), beforeKg: find('calcpro-pwg-before-kg'),
+    nowKg: find('calcpro-pwg-now-kg'), beforeLb: find('calcpro-pwg-before-lb'),
+    nowLb: find('calcpro-pwg-now-lb')
+  };
+  const KG_TO_LB = 2.20462262185;
+  const CM_TO_IN = 1 / 2.54;
+  const round = (value, digits = 1) => Number(value.toFixed(digits));
+  const fixed = (value) => value.toFixed(1);
+  let system = 'metric';
+  let lastCalculation = null;
+
+  for (let w = 1; w <= 40; w++) {
+    const option = document.createElement('option');
+    option.value = String(w);
+    option.textContent = 'Week ' + w;
+    option.selected = w === 20;
+    el.week.appendChild(option);
+  }
+
+  // IOM (2009) singleton and provisional twin total gain ranges, in pounds.
+  // Underweight-twin range is a CDC supplementary estimate, not an IOM guideline.
+  const ranges = {
+    underweight: { single: [28, 40], twin: [50, 62] },
+    normal: { single: [25, 35], twin: [37, 54] },
+    overweight: { single: [15, 25], twin: [31, 50] },
+    obese: { single: [11, 20], twin: [25, 42] }
+  };
+  const names = {
+    underweight: 'Underweight', normal: 'Normal weight',
+    overweight: 'Overweight', obese: 'Obese'
+  };
+
+  function showError(message, input) {
+    el.error.textContent = message;
+    el.error.hidden = false;
+    if (input) input.focus();
+  }
+  function clearError() { el.error.textContent = ''; el.error.hidden = true; }
+  function readNum(input) {
+    if (input.value.trim() === '') return NaN;
+    return Number(input.value);
+  }
+
+  function readInputs() {
+    const week = Number(el.week.value);
+    const twin = root.querySelector('input[name="calcpro-pwg-twins"]:checked').value === 'yes';
+    let heightCm, beforeKg, nowKg;
+    if (system === 'metric') {
+      heightCm = readNum(el.cm);
+      beforeKg = readNum(el.beforeKg);
+      nowKg = readNum(el.nowKg);
+    } else {
+      const ft = readNum(el.ft);
+      const inches = readNum(el.inch);
+      if (!Number.isInteger(ft) || ft < 0 || !Number.isFinite(inches) || inches < 0 || inches >= 12) {
+        showError('Enter a whole number of feet and inches from 0 to less than 12.', el.ft);
+        return null;
+      }
+      heightCm = (ft * 12 + inches) * 2.54;
+      beforeKg = readNum(el.beforeLb) / KG_TO_LB;
+      nowKg = readNum(el.nowLb) / KG_TO_LB;
+    }
+    if (!Number.isFinite(heightCm) || heightCm < 80 || heightCm > 250) {
+      showError('Enter a height between 80 and 250 cm (approximately 2 ft 7 in to 8 ft 2 in).', system === 'metric' ? el.cm : el.ft);
+      return null;
+    }
+    if (!Number.isFinite(beforeKg) || beforeKg < 20 || beforeKg > 600) {
+      showError('Enter a valid pre-pregnancy weight between 20 and 600 kg (44 to 1,323 lb).', system === 'metric' ? el.beforeKg : el.beforeLb);
+      return null;
+    }
+    if (!Number.isFinite(nowKg) || nowKg < 20 || nowKg > 600) {
+      showError('Enter a valid current weight between 20 and 600 kg (44 to 1,323 lb).', system === 'metric' ? el.nowKg : el.nowLb);
+      return null;
+    }
+    if (!Number.isInteger(week) || week < 1 || week > 40) {
+      showError('Select a pregnancy stage between week 1 and week 40.', el.week);
+      return null;
+    }
+    clearError();
+    return { week, twin, heightCm, beforeKg, nowKg };
+  }
+
+  function getCategory(bmi) {
+    if (bmi < 18.5) return 'underweight';
+    if (bmi < 25) return 'normal';
+    if (bmi < 30) return 'overweight';
+    return 'obese';
+  }
+
+  // To mimic the reference's week-20 example, the lower/upper cumulative gain
+  // is interpolated from 0 at week 1 to 0.5/2 kg at week 13, then linearly
+  // to the IOM-recommended *total* gain range at week 40.
+  // Intermediate weekly ranges are estimates, not published IOM weekly targets.
+  function gainForWeek(week, minTotalKg, maxTotalKg) {
+    if (week <= 13) {
+      const progress = (week - 1) / 12;
+      return { low: 0.5 * progress, high: 2 * progress };
+    }
+    const progress = (week - 13) / 27;
+    return {
+      low: 0.5 + (minTotalKg - 0.5) * progress,
+      high: 2 + (maxTotalKg - 2) * progress
+    };
+  }
+
+  function calculate(data) {
+    const bmi = data.beforeKg / Math.pow(data.heightCm / 100, 2);
+    const category = getCategory(bmi);
+    const pounds = ranges[category][data.twin ? 'twin' : 'single'];
+    const totalsKg = pounds.map(lb => lb / KG_TO_LB);
+    const rows = Array.from({ length: 40 }, (_, i) => {
+      const week = i + 1;
+      const gain = gainForWeek(week, totalsKg[0], totalsKg[1]);
+      return { week, gainLow: gain.low, gainHigh: gain.high,
+        low: data.beforeKg + gain.low, high: data.beforeKg + gain.high };
+    });
+    return { ...data, bmi, category, pounds, totalsKg, rows };
+  }
+  function unit() { return system === 'metric' ? 'kg' : 'lbs'; }
+  function toUnit(kg) { return system === 'metric' ? kg : kg * KG_TO_LB; }
+  function rangeStr(lowKg, highKg) {
+    return `${fixed(toUnit(lowKg))} - ${fixed(toUnit(highKg))} ${unit()}`;
+  }
+  function makeSvg(tag, attrs, parent, text) {
+    const node = document.createElementNS('http://www.w3.org/2000/svg', tag);
+    Object.entries(attrs || {}).forEach(([key, value]) => node.setAttribute(key, String(value)));
+    if (text !== undefined) node.textContent = String(text);
+    parent.appendChild(node);
+    return node;
+  }
+
+  function drawChart(result) {
+    const svg = el.chart;
+    svg.replaceChildren();
+    el.tooltip.hidden = true;
+    const xLeft = 57, xRight = 640, yTop = 18, yBottom = 244;
+    const xAt = (week) => xLeft + week / 40 * (xRight - xLeft);
+    const allValues = result.rows.flatMap(row => [toUnit(row.low), toUnit(row.high)]);
+    allValues.push(toUnit(result.nowKg));
+    const step = (Math.max(...allValues) - Math.min(...allValues)) > 50 ? 10 : 5;
+    const ymin = Math.floor((Math.min(...allValues) - step * 0.65) / step) * step;
+    const ymax = Math.ceil((Math.max(...allValues) + step * 0.25) / step) * step;
+    const yAt = (value) => yBottom - (value - ymin) / (ymax - ymin) * (yBottom - yTop);
+    makeSvg('title', {}, svg, 'Suggested body weight range by pregnancy week');
+    makeSvg('desc', {}, svg, 'Shaded lower and upper weight guidance from week 1 to week 40, with a green dot for the entered current weight. Refer to the accessible data table for exact values.');
+    for (let v = ymin; v <= ymax + 0.0001; v += step) {
+      const y = yAt(v);
+      makeSvg('line', { x1: xLeft, x2: xRight, y1: y, y2: y, stroke: '#cbd3da', 'stroke-width': '1' }, svg);
+      makeSvg('text', { x: xLeft - 11, y: y + 4, 'font-size': 11, 'text-anchor': 'end', fill: '#465260' }, svg, String(v));
+    }
+    for (const week of [0, 5, 10, 15, 20, 25, 30, 35, 40]) {
+      const x = xAt(week);
+      makeSvg('text', { x, y: 260, 'font-size': 11, 'text-anchor': 'middle', fill: '#465260' }, svg, String(week));
+    }
+    makeSvg('text', { x: 350, y: 280, 'font-size': 12, 'text-anchor': 'middle', fill: '#003366' }, svg, 'Weeks');
+    makeSvg('text', { x: 17, y: 142, transform: 'rotate(-90 17 142)', 'font-size': 12, 'text-anchor': 'middle', fill: '#003366' }, svg, `Weight (${unit()})`);
+    const upper = [`${xAt(0)},${yAt(toUnit(result.beforeKg))}`, ...result.rows.map(r => `${xAt(r.week)},${yAt(toUnit(r.high))}`)].join(' ');
+    const lower = [...result.rows].reverse().map(r => `${xAt(r.week)},${yAt(toUnit(r.low))}`).concat(`${xAt(0)},${yAt(toUnit(result.beforeKg))}`).join(' ');
+    makeSvg('polygon', { points: `${upper} ${lower}`, fill: '#bcd8f3', stroke: 'none' }, svg);
+    const current = result.rows[result.week - 1];
+    const px = xAt(result.week), py = yAt(toUnit(result.nowKg));
+    makeSvg('circle', { cx: px, cy: py, r: 5, fill: '#188e34', stroke: '#fff', 'stroke-width': '2' }, svg);
+    // Pointer exploration does not modify the underlying calculated results.
+    const hitZone = makeSvg('rect', { x: xLeft, y: yTop, width: xRight - xLeft,
+      height: yBottom - yTop, fill: 'transparent', 'pointer-events': 'all' }, svg);
+    hitZone.addEventListener('pointermove', (event) => {
+      const box = svg.getBoundingClientRect();
+      const x = (event.clientX - box.left) * 660 / box.width;
+      const w = Math.max(1, Math.min(40, Math.round(1 + (x - xLeft) / (xRight - xLeft) * 39)));
+      const row = result.rows[w - 1];
+      el.tooltip.textContent = `Week ${w}: ${rangeStr(row.low, row.high)}`;
+      el.tooltip.hidden = false;
+      el.tooltip.style.left = Math.max(0, Math.min(el.wrap.clientWidth - 165, (xAt(w) * box.width / 660) + 12)) + 'px';
+      el.tooltip.style.top = Math.max(0, Math.min(el.wrap.clientHeight - 32, 12)) + 'px';
+    });
+    hitZone.addEventListener('pointerleave', () => { el.tooltip.hidden = true; });
+  }
+
+  function render(result) {
+    const at = result.rows[result.week - 1];
+    const status = result.nowKg < at.low - 0.05 ? 'below' : result.nowKg > at.high + 0.05 ? 'above' : 'within';
+    const statusText = status === 'within' ? 'Your current weight is in this range.'
+      : `Your current weight is ${status} this illustrative range.`;
+    el.summary.innerHTML = `Recommended weight range for <b>week ${result.week}:</b> <strong>${rangeStr(at.low, at.high)}</strong>. <span class="${status === 'within' ? 'calcpro-pwg-status' : 'calcpro-pwg-status-out'}">${statusText}</span>`;
+    const last = result.rows[39];
+    el.delivery.innerHTML = `Recommended weight range when delivering (<b>40th week</b>): <strong>${rangeStr(last.low, last.high)}</strong>.`;
+    el.bmi.innerHTML = `Your BMI before pregnancy: <b>${fixed(result.bmi)} kg/m²</b> (${names[result.category]}).`;
+    el.caution.textContent = result.twin
+      ? (result.category === 'underweight'
+        ? 'The underweight twin-pregnancy estimate is not an official IOM range. All weekly ranges are illustrative; consult your prenatal care professional for individual advice.'
+        : 'Twin-pregnancy total-gain recommendations are provisional; intermediate weeks are illustrative and do not replace individualized prenatal care.')
+      : 'Intermediate weeks are illustrative estimates based on total pregnancy weight-gain guidance, not official week-specific targets.';
+    const fragment = document.createDocumentFragment();
+    result.rows.forEach(r => {
+      const tr = document.createElement('tr');
+      if (r.week === result.week) {
+        tr.className = 'calcpro-pwg-row-current';
+        tr.setAttribute('aria-current', 'true');
+      }
+      [ `Week ${r.week}`, rangeStr(r.low, r.high),
+        rangeStr(r.gainLow, r.gainHigh) ].forEach(value => {
+          const td = document.createElement('td'); td.textContent = value; tr.appendChild(td);
+        });
+      fragment.appendChild(tr);
+    });
+    el.tbody.replaceChildren(fragment);
+    drawChart(result);
+    el.results.hidden = false;
+    lastCalculation = result;
+  }
+
+  function updateSystem(newSystem) {
+    if (newSystem === system) return;
+    clearError();
+    if (newSystem === 'us') {
+      const heightCm = readNum(el.cm), before = readNum(el.beforeKg), now = readNum(el.nowKg);
+      if (Number.isFinite(heightCm) && heightCm > 0) {
+        const totalIn = round(heightCm * CM_TO_IN, 2);
+        const feet = Math.floor(totalIn / 12);
+        el.ft.value = String(feet);
+        el.inch.value = String(round(totalIn - feet * 12, 2));
+      }
+      if (Number.isFinite(before)) el.beforeLb.value = String(round(before * KG_TO_LB, 2));
+      if (Number.isFinite(now)) el.nowLb.value = String(round(now * KG_TO_LB, 2));
+    } else {
+      const feet = readNum(el.ft), inches = readNum(el.inch);
+      const before = readNum(el.beforeLb), now = readNum(el.nowLb);
+      if (Number.isFinite(feet) && Number.isFinite(inches)) el.cm.value = String(round((feet * 12 + inches) * 2.54, 2));
+      if (Number.isFinite(before)) el.beforeKg.value = String(round(before / KG_TO_LB, 3));
+      if (Number.isFinite(now)) el.nowKg.value = String(round(now / KG_TO_LB, 3));
+    }
+    system = newSystem;
+    el.metricTab.setAttribute('aria-selected', String(system === 'metric'));
+    el.usTab.setAttribute('aria-selected', String(system === 'us'));
+    el.metricTab.classList.toggle('calcpro-pwg-tab-on', system === 'metric');
+    el.usTab.classList.toggle('calcpro-pwg-tab-on', system === 'us');
+    root.querySelectorAll('.calcpro-pwg-metric-field').forEach(field => { field.hidden = system !== 'metric'; });
+    root.querySelectorAll('.calcpro-pwg-us-field').forEach(field => { field.hidden = system !== 'us'; });
+    if (lastCalculation) render(lastCalculation);
+  }
+  el.metricTab.addEventListener('click', () => updateSystem('metric'));
+  el.usTab.addEventListener('click', () => updateSystem('us'));
+  el.form.addEventListener('input', clearError);
+  el.form.addEventListener('change', clearError);
+  el.form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const input = readInputs();
+    if (!input) return;
+    render(calculate(input));
+    el.results.focus({ preventScroll: true });
+    // Reference displays the report above the form, not in another page or a sidebar.
+    el.results.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+  find('calcpro-pwg-clear').addEventListener('click', () => {
+    system = 'us';
+    el.cm.value = '165'; el.ft.value = '5'; el.inch.value = '6';
+    el.beforeKg.value = '50'; el.nowKg.value = '55';
+    el.beforeLb.value = '120'; el.nowLb.value = '130';
+    el.week.value = '20';
+    root.querySelector('input[name="calcpro-pwg-twins"][value="no"]').checked = true;
+    updateSystem('metric');
+    clearError();
+    el.results.hidden = true;
+    el.tbody.replaceChildren();
+    lastCalculation = null;
+    el.cm.value = '165'; el.beforeKg.value = '50'; el.nowKg.value = '55';
+    el.week.focus();
+  });
+  find('calcpro-pwg-print').addEventListener('click', () => window.print());
+})();
+</script></body></html>

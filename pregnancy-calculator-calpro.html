@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>Pregnancy Calculator | CalcPro</title><meta content="Estimate your pregnancy due date, gestational age, trimester, and weekly timeline using a due date, last period, ultrasound, conception date, or IVF transfer date." name="description"/><link href="template-style.css" rel="stylesheet"/><style>
+/* Unique, self-contained pregnancy tool styles; does not modify CalcPro global classes. */
+.calcpro-pregnancy{font:15px/1.38 Arial,Helvetica,sans-serif;color:#111;max-width:100%;min-width:0;text-align:left}
+.calcpro-pregnancy *,.calcpro-pregnancy *::before,.calcpro-pregnancy *::after{box-sizing:border-box}
+.calcpro-pregnancy [hidden]{display:none!important}
+.calcpro-pregnancy button,.calcpro-pregnancy select,.calcpro-pregnancy input{font:inherit}
+.calcpro-pregnancy-instructions{position:relative;min-height:36px;background:#336699;color:#fff;padding:7px 12px 7px 42px;text-align:center;margin-bottom:3px}
+.calcpro-pregnancy-down{position:absolute;top:5px;left:calc(16% - 12px);color:#326599;background:#fff;border-radius:50%;font-size:15px;width:24px;height:24px;display:flex;justify-content:center;align-items:center;line-height:1}
+.calcpro-pregnancy-form{background:#eee;border:1px solid #bfbfbf;padding:13px 15px 15px;margin:0}
+.calcpro-pregnancy-field{display:grid;grid-template-columns:minmax(170px,1fr) minmax(0,1.12fr);align-items:center;column-gap:10px;max-width:540px;margin:0 auto 11px}
+.calcpro-pregnancy-method-field{margin-bottom:16px}
+.calcpro-pregnancy-label{text-align:right;line-height:1.3;font-weight:400}
+.calcpro-pregnancy-method{max-width:250px;width:100%;height:30px;border:1px solid #37679a;background:#fff;padding:2px 7px}
+.calcpro-pregnancy-date{display:flex;gap:3px;align-items:center;max-width:100%;min-width:0}
+.calcpro-pregnancy-date select,.calcpro-pregnancy-date input[type=number]{height:31px;padding:3px 5px;background:#fff;border:1px solid #37679a;border-radius:0;min-width:0}
+.calcpro-pregnancy-month{width:70px}.calcpro-pregnancy-day{width:55px}.calcpro-pregnancy-year{width:81px;appearance:textfield;-moz-appearance:textfield}
+.calcpro-pregnancy-date input[type=number]::-webkit-outer-spin-button,.calcpro-pregnancy-date input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.calcpro-pregnancy-calendar{display:block;width:33px;min-width:32px;height:31px;padding:2px;border:1px solid #778da5;background:#fff;color:transparent;cursor:pointer;font-size:12px}
+.calcpro-pregnancy-calendar::-webkit-datetime-edit{display:none}
+.calcpro-pregnancy-calendar::-webkit-calendar-picker-indicator{width:18px;height:19px;margin:0;opacity:1;cursor:pointer}
+.calcpro-pregnancy-small-select{width:110px;height:31px;border:1px solid #37679a;background:white;padding:3px 5px}
+.calcpro-pregnancy-ages,.calcpro-pregnancy-radio{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.calcpro-pregnancy-ages label{white-space:nowrap}
+.calcpro-pregnancy-ages input{width:53px;height:30px;border:1px solid #37679a;padding:3px 4px;border-radius:0;background:white}
+.calcpro-pregnancy-ivf-field{border:0;padding:0;min-width:0}
+.calcpro-pregnancy-ivf-field legend{float:left;width:calc(47.17% - 5px);padding:0;margin:0 10px 0 0}
+.calcpro-pregnancy-radio{gap:12px}
+.calcpro-pregnancy-radio label{white-space:nowrap}
+.calcpro-pregnancy-radio input{vertical-align:middle;accent-color:#336699}
+.calcpro-pregnancy-actions{display:flex;align-items:center;justify-content:center;gap:12px;margin:14px 0 0}
+.calcpro-pregnancy-calculate{background:#4c8527;border:1px solid #3c6c1e;color:#fff;padding:8px 13px 8px 17px;font-weight:bold;cursor:pointer;border-radius:0}
+.calcpro-pregnancy-calculate:hover{background:#356b17}
+.calcpro-pregnancy-calculate span{background:#9bc88b;display:inline-flex;align-items:center;justify-content:center;border-radius:50%;height:21px;width:21px;margin-left:8px;color:white;font-size:12px}
+.calcpro-pregnancy-reset{background:#fff;border:1px solid #9c9c9c;color:#333;padding:8px 13px;cursor:pointer}
+.calcpro-pregnancy-reset:hover{background:#e0e0e0}
+.calcpro-pregnancy-error{color:#971d15;background:#fff1ef;border:1px solid #ce958d;margin:4px auto 10px;padding:9px;max-width:530px}
+.calcpro-pregnancy-results{margin:0 0 17px;scroll-margin-top:15px}
+.calcpro-pregnancy-results-bar{background:#4b8729;min-height:34px;padding:6px 10px;display:flex;justify-content:space-between;align-items:center;color:white;font-weight:bold;font-size:17px}
+.calcpro-pregnancy-print{border:1px solid #dbebd5;background:transparent;color:white;padding:3px 7px;cursor:pointer;font-size:12px!important}
+.calcpro-pregnancy-print:hover{background:#2b6018}
+.calcpro-pregnancy-output{padding-top:9px}
+.calcpro-pregnancy-headline{font-weight:bold;font-size:18px;line-height:1.4;margin:0 0 4px}
+.calcpro-pregnancy-status{margin:0 0 13px;font-size:14px}
+.calcpro-pregnancy-meta{margin:3px 0 12px;line-height:1.6;font-size:14px}
+.calcpro-pregnancy-summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin:12px 0}
+.calcpro-pregnancy-kpi{background:#f1f6fa;border:1px solid #d5e0e7;padding:9px}
+.calcpro-pregnancy-kpi small{display:block;color:#4a5d6a;font-size:12px;margin-bottom:4px}
+.calcpro-pregnancy-kpi strong{display:block;color:#173e5e;font-size:15px;overflow-wrap:anywhere}
+.calcpro-pregnancy-progress-label{font-size:14px;margin:4px 0 5px}
+.calcpro-pregnancy-progress{height:17px;position:relative;overflow:hidden;background:#d4d6d8;border-radius:0;margin:0 0 15px}
+.calcpro-pregnancy-progress-fill{background:#c9009e;height:100%;min-width:0;display:flex;align-items:center;justify-content:center;color:#fff;font-size:11px;white-space:nowrap;font-weight:bold;transition:width .35s ease}
+.calcpro-pregnancy-swipe{display:none;font-size:12px;color:#596b7a;margin:0 0 5px}
+.calcpro-pregnancy-table-wrap{max-width:100%;overflow-x:auto;margin:0 0 5px;border:1px solid #a0a0a0}
+.calcpro-pregnancy-table{border-collapse:collapse;width:100%;min-width:530px;font-size:12px;line-height:1.22}
+.calcpro-pregnancy-table th{background:#336699;color:white;font-weight:bold;text-align:left;border:1px solid #d5d5d5;padding:6px 6px}
+.calcpro-pregnancy-table td{border:1px solid #c6c6c6;padding:4px 6px;vertical-align:middle}
+.calcpro-pregnancy-table tbody tr:nth-child(even){background:#f1f1f1}
+.calcpro-pregnancy-week-col{width:62px;white-space:nowrap}
+.calcpro-pregnancy-date-col{width:41%}
+.calcpro-pregnancy-trimester{background:#dedede;vertical-align:middle!important;text-align:center;color:#333;font-size:12px;width:92px}
+.calcpro-pregnancy-table .calcpro-pregnancy-milestone{background:#dffbe3;font-size:12px}
+.calcpro-pregnancy-table .calcpro-pregnancy-current td:not(.calcpro-pregnancy-trimester){background:#e8f0fe;font-weight:bold}
+.calcpro-pregnancy-today{font-size:11px;color:#be004f;white-space:nowrap}
+.calcpro-pregnancy-note{margin:9px 0 15px;font-size:12px;color:#5c5555;line-height:1.4}
+.calcpro-pregnancy-print-note{font-size:13px;color:#555;margin:8px 0 12px}
+@media(max-width:600px){
+ .calcpro-pregnancy{font-size:14px}
+ .calcpro-pregnancy-form{padding:12px 10px}
+ .calcpro-pregnancy-swipe{display:block}
+ .calcpro-pregnancy-field{grid-template-columns:1fr;gap:5px;margin-bottom:13px}
+ .calcpro-pregnancy-label{text-align:left}
+ .calcpro-pregnancy-method{max-width:100%}
+ .calcpro-pregnancy-date{gap:4px}
+ .calcpro-pregnancy-month{width:80px}.calcpro-pregnancy-day{width:64px}.calcpro-pregnancy-year{width:91px}
+ .calcpro-pregnancy-ivf-field legend{float:none;width:100%;margin:0 0 6px}
+ .calcpro-pregnancy-instructions{padding-left:38px;font-size:13px}
+ .calcpro-pregnancy-down{left:8px}
+ .calcpro-pregnancy-summary{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .calcpro-pregnancy-headline{font-size:17px}
+}
+@media(max-width:380px){.calcpro-pregnancy-month{width:65px}.calcpro-pregnancy-day{width:55px}.calcpro-pregnancy-year{width:75px}.calcpro-pregnancy-calendar{min-width:30px;width:30px}}
+@media(prefers-reduced-motion:reduce){.calcpro-pregnancy-progress-fill{transition:none}}
+@media print{
+ .calcpro-pregnancy-instructions,.calcpro-pregnancy-form,.calcpro-pregnancy-print{display:none!important}
+ .calcpro-pregnancy-results{display:block!important;margin:0}
+ .calcpro-pregnancy-table-wrap{overflow:visible}
+ .calcpro-pregnancy-table{min-width:0;font-size:10px}
+ .calcpro-pregnancy-table td{padding:3px}
+ .calcpro-pregnancy-kpi{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/">Fitness &amp; Health</a> / Pregnancy Calculator</nav><h1 class="cp-page-title">Pregnancy Calculator</h1><p class="cp-intro">The Pregnancy Calculator estimates your due date and week-by-week pregnancy schedule based on a due date, last period date, ultrasound, conception date, or IVF transfer date.</p><section aria-label="Calculator" class="cp-tool-area"><section class="calcpro-pregnancy" id="calcpro-pregnancy-root" aria-label="Pregnancy calculator">
+  <section class="calcpro-pregnancy-results" id="calcpro-pregnancy-results" hidden aria-label="Pregnancy result">
+    <div class="calcpro-pregnancy-results-bar"><strong>Result</strong><button type="button" class="calcpro-pregnancy-print" id="calcpro-pregnancy-print" aria-label="Print pregnancy schedule" title="Print schedule">🖨 Print</button></div>
+    <div id="calcpro-pregnancy-output" class="calcpro-pregnancy-output" aria-live="polite"></div>
+  </section>
+  <div id="calcpro-pregnancy-instructions" class="calcpro-pregnancy-instructions"><span class="calcpro-pregnancy-down" aria-hidden="true">▼</span> Modify the values and click the Calculate button to use</div>
+  <form id="calcpro-pregnancy-form" class="calcpro-pregnancy-form" novalidate>
+    <div class="calcpro-pregnancy-field calcpro-pregnancy-method-field">
+       <label class="calcpro-pregnancy-label" for="calcpro-pregnancy-method">Calculate Based On:</label>
+       <select id="calcpro-pregnancy-method" class="calcpro-pregnancy-method" name="method">
+          <option value="due">Due Date</option><option value="lmp">Last Period</option><option value="us">Ultrasound</option><option value="conception">Conception Date</option><option value="ivf">IVF Transfer Date</option>
+       </select>
+    </div>
+    <div class="calcpro-pregnancy-panel" data-method="due">
+       <div class="calcpro-pregnancy-field"><label class="calcpro-pregnancy-label" for="calcpro-pregnancy-due-month">Your Due Date:</label><div class="calcpro-pregnancy-date" data-date-key="due" aria-label="Your Due Date date">
+       <select id="calcpro-pregnancy-due-month" class="calcpro-pregnancy-month" data-piece="month" aria-label="Your Due Date month"><option value="1">Jan</option><option value="2">Feb</option><option value="3">Mar</option><option value="4">Apr</option><option value="5">May</option><option value="6">Jun</option><option value="7">Jul</option><option value="8">Aug</option><option value="9">Sep</option><option value="10">Oct</option><option value="11">Nov</option><option value="12">Dec</option></select>
+       <select id="calcpro-pregnancy-due-day" class="calcpro-pregnancy-day" data-piece="day" aria-label="Your Due Date day"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option></select>
+       <input id="calcpro-pregnancy-due-year" class="calcpro-pregnancy-year" data-piece="year" type="number" inputmode="numeric" min="1900" max="2100" step="1" aria-label="Your Due Date year" required>
+       <input class="calcpro-pregnancy-calendar" type="date" data-piece="calendar" min="1900-01-01" max="2100-12-31" aria-label="Select Your Due Date using calendar" title="Open calendar" />
+    </div></div>
+    </div>
+    <div class="calcpro-pregnancy-panel" data-method="lmp" hidden>
+       <div class="calcpro-pregnancy-field"><label class="calcpro-pregnancy-label" for="calcpro-pregnancy-lmp-month">First Day of Your Last Period:</label><div class="calcpro-pregnancy-date" data-date-key="lmp" aria-label="First Day of Your Last Period date">
+       <select id="calcpro-pregnancy-lmp-month" class="calcpro-pregnancy-month" data-piece="month" aria-label="First Day of Your Last Period month"><option value="1">Jan</option><option value="2">Feb</option><option value="3">Mar</option><option value="4">Apr</option><option value="5">May</option><option value="6">Jun</option><option value="7">Jul</option><option value="8">Aug</option><option value="9">Sep</option><option value="10">Oct</option><option value="11">Nov</option><option value="12">Dec</option></select>
+       <select id="calcpro-pregnancy-lmp-day" class="calcpro-pregnancy-day" data-piece="day" aria-label="First Day of Your Last Period day"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option></select>
+       <input id="calcpro-pregnancy-lmp-year" class="calcpro-pregnancy-year" data-piece="year" type="number" inputmode="numeric" min="1900" max="2100" step="1" aria-label="First Day of Your Last Period year" required>
+       <input class="calcpro-pregnancy-calendar" type="date" data-piece="calendar" min="1900-01-01" max="2100-12-31" aria-label="Select First Day of Your Last Period using calendar" title="Open calendar" />
+    </div></div>
+       <div class="calcpro-pregnancy-field"><label class="calcpro-pregnancy-label" for="calcpro-pregnancy-cycle">Average Length of Your Cycles:</label><select id="calcpro-pregnancy-cycle" class="calcpro-pregnancy-small-select"><option value="22">22 days</option><option value="23">23 days</option><option value="24">24 days</option><option value="25">25 days</option><option value="26">26 days</option><option value="27">27 days</option><option value="28" selected>28 days</option><option value="29">29 days</option><option value="30">30 days</option><option value="31">31 days</option><option value="32">32 days</option><option value="33">33 days</option><option value="34">34 days</option><option value="35">35 days</option><option value="36">36 days</option><option value="37">37 days</option><option value="38">38 days</option><option value="39">39 days</option><option value="40">40 days</option><option value="41">41 days</option><option value="42">42 days</option><option value="43">43 days</option><option value="44">44 days</option></select></div>
+    </div>
+    <div class="calcpro-pregnancy-panel" data-method="us" hidden>
+       <div class="calcpro-pregnancy-field"><label class="calcpro-pregnancy-label" for="calcpro-pregnancy-us-month">Ultrasound Date:</label><div class="calcpro-pregnancy-date" data-date-key="us" aria-label="Ultrasound Date date">
+       <select id="calcpro-pregnancy-us-month" class="calcpro-pregnancy-month" data-piece="month" aria-label="Ultrasound Date month"><option value="1">Jan</option><option value="2">Feb</option><option value="3">Mar</option><option value="4">Apr</option><option value="5">May</option><option value="6">Jun</option><option value="7">Jul</option><option value="8">Aug</option><option value="9">Sep</option><option value="10">Oct</option><option value="11">Nov</option><option value="12">Dec</option></select>
+       <select id="calcpro-pregnancy-us-day" class="calcpro-pregnancy-day" data-piece="day" aria-label="Ultrasound Date day"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option></select>
+       <input id="calcpro-pregnancy-us-year" class="calcpro-pregnancy-year" data-piece="year" type="number" inputmode="numeric" min="1900" max="2100" step="1" aria-label="Ultrasound Date year" required>
+       <input class="calcpro-pregnancy-calendar" type="date" data-piece="calendar" min="1900-01-01" max="2100-12-31" aria-label="Select Ultrasound Date using calendar" title="Open calendar" />
+    </div></div>
+       <div class="calcpro-pregnancy-field"><label class="calcpro-pregnancy-label" for="calcpro-pregnancy-usweeks">Length of Pregnancy at the Time:</label><div class="calcpro-pregnancy-ages"><label><input id="calcpro-pregnancy-usweeks" type="number" inputmode="numeric" min="0" max="42" step="1" value="22" required> weeks</label><label><input id="calcpro-pregnancy-usdays" type="number" inputmode="numeric" min="0" max="6" step="1" value="6" required> days</label></div></div>
+    </div>
+    <div class="calcpro-pregnancy-panel" data-method="conception" hidden>
+       <div class="calcpro-pregnancy-field"><label class="calcpro-pregnancy-label" for="calcpro-pregnancy-conception-month">Conception Date:</label><div class="calcpro-pregnancy-date" data-date-key="conception" aria-label="Conception Date date">
+       <select id="calcpro-pregnancy-conception-month" class="calcpro-pregnancy-month" data-piece="month" aria-label="Conception Date month"><option value="1">Jan</option><option value="2">Feb</option><option value="3">Mar</option><option value="4">Apr</option><option value="5">May</option><option value="6">Jun</option><option value="7">Jul</option><option value="8">Aug</option><option value="9">Sep</option><option value="10">Oct</option><option value="11">Nov</option><option value="12">Dec</option></select>
+       <select id="calcpro-pregnancy-conception-day" class="calcpro-pregnancy-day" data-piece="day" aria-label="Conception Date day"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option></select>
+       <input id="calcpro-pregnancy-conception-year" class="calcpro-pregnancy-year" data-piece="year" type="number" inputmode="numeric" min="1900" max="2100" step="1" aria-label="Conception Date year" required>
+       <input class="calcpro-pregnancy-calendar" type="date" data-piece="calendar" min="1900-01-01" max="2100-12-31" aria-label="Select Conception Date using calendar" title="Open calendar" />
+    </div></div>
+    </div>
+    <div class="calcpro-pregnancy-panel" data-method="ivf" hidden>
+       <div class="calcpro-pregnancy-field"><label class="calcpro-pregnancy-label" for="calcpro-pregnancy-ivf-month">Transfer Date:</label><div class="calcpro-pregnancy-date" data-date-key="ivf" aria-label="Transfer Date date">
+       <select id="calcpro-pregnancy-ivf-month" class="calcpro-pregnancy-month" data-piece="month" aria-label="Transfer Date month"><option value="1">Jan</option><option value="2">Feb</option><option value="3">Mar</option><option value="4">Apr</option><option value="5">May</option><option value="6">Jun</option><option value="7">Jul</option><option value="8">Aug</option><option value="9">Sep</option><option value="10">Oct</option><option value="11">Nov</option><option value="12">Dec</option></select>
+       <select id="calcpro-pregnancy-ivf-day" class="calcpro-pregnancy-day" data-piece="day" aria-label="Transfer Date day"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option></select>
+       <input id="calcpro-pregnancy-ivf-year" class="calcpro-pregnancy-year" data-piece="year" type="number" inputmode="numeric" min="1900" max="2100" step="1" aria-label="Transfer Date year" required>
+       <input class="calcpro-pregnancy-calendar" type="date" data-piece="calendar" min="1900-01-01" max="2100-12-31" aria-label="Select Transfer Date using calendar" title="Open calendar" />
+    </div></div>
+       <fieldset class="calcpro-pregnancy-field calcpro-pregnancy-ivf-field"><legend class="calcpro-pregnancy-label">Embryo Age:</legend><div class="calcpro-pregnancy-radio"><label><input type="radio" name="calcpro-pregnancy-embryo" value="3"> day 3</label><label><input type="radio" name="calcpro-pregnancy-embryo" value="5" checked> day 5</label><label><input type="radio" name="calcpro-pregnancy-embryo" value="6"> day 6</label></div></fieldset>
+    </div>
+    <div class="calcpro-pregnancy-error" id="calcpro-pregnancy-error" role="alert" hidden></div>
+    <div class="calcpro-pregnancy-actions"><button class="calcpro-pregnancy-calculate" type="submit">Calculate <span aria-hidden="true">▶</span></button><button class="calcpro-pregnancy-reset" type="reset">Reset</button></div>
+  </form>
+</section></section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><a href="pregnancy-conception-calculator.html">Pregnancy Conception</a><a href="due-date-calculator.html">Due Date</a><a href="ovulation-calculator.html">Ovulation</a><a href="conception-calculator.html">Conception</a><a href="pregnancy-weight-gain-calculator.html">Pregnancy Weight Gain</a><a href="period-calculator.html">Period</a><a href="bmi-calculator.html">BMI</a><a href="calorie-calculator.html">Calorie</a><a href="ideal-weight-calculator.html">Ideal Weight</a><a href="body-fat-calculator.html">Body Fat</a><a href="calories-burned-calculator.html">Calories Burned</a><a href="pregnancy-calculator.html">Pregnancy</a></div></section></aside><article class="cp-article"><h2>How to Use the Pregnancy Calculator</h2>
+<p>Choose the date information you have, enter it in the calculator above, and select <strong>Calculate</strong>. Results appear above the form on the same page and include the estimated due date, gestational age today, trimester, conception estimate, and a 42-week schedule.</p>
+<h3>Choose the best available dating method</h3>
+<ul><li><strong>Due date:</strong> enter an estimated delivery date already provided to you.</li><li><strong>Last period:</strong> enter the first day of your most recent menstrual period and your usual cycle length (22–44 days).</li><li><strong>Ultrasound:</strong> enter the scan date and the number of pregnancy weeks and days reported at that scan.</li><li><strong>Conception date:</strong> enter the estimated date of fertilization.</li><li><strong>IVF transfer:</strong> enter the embryo transfer date and the embryo's age (day 3, 5, or 6).</li></ul>
+<h2>Pregnancy Due Date Formulas</h2>
+<p>The standard 40-week convention counts <strong>280 days from the first day of the last menstrual period (LMP)</strong>, while conception-based dating assumes approximately <strong>266 days from fertilization</strong>. The formulas are:</p>
+<div class="cp-table-scroll"><table class="cp-content-table"><thead><tr><th>Method</th><th>Estimated due date</th></tr></thead><tbody><tr><td>Known due date</td><td>Use the entered date</td></tr><tr><td>LMP</td><td>LMP + 280 days + (usual cycle length − 28 days)</td></tr><tr><td>Known conception date</td><td>Conception + 266 days</td></tr><tr><td>Ultrasound dating</td><td>Scan date + 280 days − gestational age on scan (in days)</td></tr><tr><td>IVF transfer</td><td>Transfer date + (266 − age of embryo in days)</td></tr></tbody></table></div>
+<p>The cycle-length adjustment is a simplified estimate suitable for regularly varying cycle lengths. Ultrasound dating uses the gestational age reported by the scan; the calculator does not interpret ultrasound images or fetal measurements.</p>
+<h3>Example</h3>
+<p>For an estimated due date of <strong>March 5, 2027</strong>, the LMP-equivalent gestational starting date is <strong>May 29, 2026</strong> (280 days earlier), and approximate conception date is <strong>June 12, 2026</strong> (266 days earlier). On November 5, 2026, that corresponds to <strong>22 weeks and 6 days</strong> of gestation, within pregnancy week 23.</p>
+<h2>Understanding the Week-by-Week Results</h2>
+<p>Medical gestational age starts on the first day of the last menstrual period, not at fertilization. The calculator groups weeks into the first trimester (before 14 weeks), second trimester (14–27 weeks, 6 days), and third trimester (28 weeks onward). Each timeline row covers seven calendar days. Milestones are general educational guideposts, not appointment instructions or guarantees.</p>
+<p><strong>Term labels:</strong> early term means 37 weeks to 38 weeks, 6 days; full term is 39 weeks to 40 weeks, 6 days; late term is 41 weeks to 41 weeks, 6 days; and postterm begins at 42 weeks, according to ACOG.</p>
+<h2>Frequently Asked Questions</h2>
+<h3>Is an estimated due date the exact day the baby will be born?</h3><p>No. A due date is a clinical estimate, and delivery can happen before or after it. Use your clinician's assigned date for care decisions.</p>
+<h3>Which dating method is most accurate?</h3><p>Accurately performed early ultrasound can establish or confirm gestational age, and IVF pregnancies should be dated from the embryo transfer date and embryo age. A healthcare professional should determine which date to use when methods disagree.</p>
+<h3>Why does my gestational age differ from the date of conception?</h3><p>Gestational age is conventionally counted from the last period and is approximately two weeks greater than time since conception in a typical 28-day cycle.</p>
+<h3>Does a long or irregular cycle affect the date?</h3><p>It can. This calculator adjusts a recorded last-period date by the difference between the entered cycle length and 28 days. Irregular cycles and uncertain dates may require clinical confirmation.</p>
+<h2>Medical References</h2>
+<ul><li><a href="https://www.acog.org/clinical/clinical-guidance/committee-opinion/articles/2017/05/methods-for-estimating-the-due-date" rel="noopener noreferrer" target="_blank">ACOG — Methods for Estimating the Due Date (Committee Opinion No. 700)</a></li><li><a href="https://www.acog.org/clinical/clinical-guidance/committee-opinion/articles/2013/11/definition-of-term-pregnancy" rel="noopener noreferrer" target="_blank">ACOG — Definition of Term Pregnancy</a></li></ul>
+<p class="cp-note">This calculator provides educational estimates only; it cannot establish a diagnosis, monitor a pregnancy, or replace prenatal care. If a date conflicts with your clinician's assessment, follow their dating plan.</p><p class="cp-page-footer">CalcPro — calculator estimates are for informational purposes.</p></article></main></div><script>(() => {
+  "use strict";
+  const root=document.getElementById('calcpro-pregnancy-root');
+  if(!root) return;
+  const $=(id)=>root.querySelector('#calcpro-pregnancy-'+id);
+  const form=$('form'), method=$('method'), results=$('results'), instructions=$('instructions');
+  const output=$('output'), error=$('error');
+  const MS=86400000;
+  const makeDate=(y,m,d)=>new Date(Date.UTC(y,m-1,d));
+  const add=(date,days)=>new Date(date.getTime()+days*MS);
+  const diff=(a,b)=>Math.round((a.getTime()-b.getTime())/MS);
+  const fmt=(d,short=false)=>d.toLocaleDateString('en-US',{timeZone:'UTC',month:short?'short':'long',day:'numeric',year:'numeric'});
+  const fmtRangeEnd=(d)=>d.toLocaleDateString('en-US',{timeZone:'UTC',month:'short',day:'numeric',year:'numeric'});
+  const todayUTC=()=>{const n=new Date();return makeDate(n.getFullYear(),n.getMonth()+1,n.getDate());};
+  const iso=(d)=>d.toISOString().slice(0,10);
+  const inputs={};
+  for(const dateGroup of root.querySelectorAll('.calcpro-pregnancy-date')){
+    const key=dateGroup.dataset.dateKey;
+    const find=(type)=>dateGroup.querySelector('[data-piece="'+type+'"]');
+    const parts={month:find('month'),day:find('day'),year:find('year'),calendar:find('calendar')};
+    inputs[key]=parts;
+    const updateDays=()=>{
+      const y=Number(parts.year.value),m=Number(parts.month.value);
+      const n=(Number.isInteger(y)&&y>=1900&&y<=2100)?new Date(Date.UTC(y,m,0)).getUTCDate():31;
+      const old=Number(parts.day.value);
+      parts.day.innerHTML=Array.from({length:n},(_,i)=>'<option value="'+(i+1)+'">'+(i+1)+'</option>').join('');
+      parts.day.value=String(Math.min(Math.max(old||1,1),n));
+    };
+    const syncCalendar=()=>{try {parts.calendar.value=iso(readDate(key));}catch(e){parts.calendar.value='';}};
+    parts.month.addEventListener('change',()=>{updateDays();syncCalendar();});
+    parts.year.addEventListener('change',()=>{updateDays();syncCalendar();});
+    parts.day.addEventListener('change',syncCalendar);
+    parts.calendar.addEventListener('change',()=>{
+      if(!parts.calendar.value) return;
+      const [y,m,d]=parts.calendar.value.split('-').map(Number);
+      if(Number.isInteger(y))setDate(key,makeDate(y,m,d));
+    });
+  }
+  function readDate(key){
+    const f=inputs[key];const y=Number(f.year.value),m=Number(f.month.value),d=Number(f.day.value);
+    if(!f.year.value.trim()||!Number.isInteger(y)||y<1900||y>2100||!Number.isInteger(m)||m<1||m>12||!Number.isInteger(d)||d<1||d>31)throw Error('Please enter a valid date (years 1900–2100).');
+    const date=makeDate(y,m,d);
+    if(date.getUTCFullYear()!==y||date.getUTCMonth()!==m-1||date.getUTCDate()!==d)throw Error('The selected date does not exist. Check the month, day, and year.');
+    return date;
+  }
+  function setDate(key,date){
+    const f=inputs[key];f.year.value=String(date.getUTCFullYear());f.month.value=String(date.getUTCMonth()+1);
+    const max=new Date(Date.UTC(date.getUTCFullYear(),date.getUTCMonth()+1,0)).getUTCDate();
+    f.day.innerHTML=Array.from({length:max},(_,i)=>'<option value="'+(i+1)+'">'+(i+1)+'</option>').join('');
+    f.day.value=String(date.getUTCDate());f.calendar.value=iso(date);
+  }
+  function defaults(){
+    const t=todayUTC(),due=add(t,120),lmp=add(due,-280);
+    setDate('due',due);setDate('lmp',lmp);setDate('conception',add(due,-266));
+    setDate('us',t);setDate('ivf',add(due,-261));
+    $('cycle').value='28';
+    const ga=Math.max(0,Math.min(42*7,diff(t,lmp)));
+    $('usweeks').value=String(Math.floor(ga/7));$('usdays').value=String(ga%7);
+    root.querySelector('input[name="calcpro-pregnancy-embryo"][value="5"]').checked=true;
+    method.value='due';selectMethod();
+  }
+  function selectMethod(){
+    root.querySelectorAll('.calcpro-pregnancy-panel').forEach(p=>{p.hidden=p.dataset.method!==method.value;});
+    error.hidden=true;
+  }
+  method.addEventListener('change',selectMethod);
+  function intField(id,label,lo,hi){
+    const field=$(id),value=Number(field.value);
+    if(!field.value.trim()||!Number.isInteger(value)||value<lo||value>hi)throw Error('Please enter '+label+' from '+lo+' to '+hi+'.');
+    return value;
+  }
+  function calc(){
+    const m=method.value;
+    if(m==='due')return readDate('due');
+    if(m==='lmp')return add(readDate('lmp'),280+intField('cycle','cycle length',22,44)-28);
+    if(m==='conception')return add(readDate('conception'),266);
+    if(m==='ivf'){
+      const age=Number(root.querySelector('input[name="calcpro-pregnancy-embryo"]:checked')?.value);
+      if(![3,5,6].includes(age))throw Error('Please select the embryo age.');
+      return add(readDate('ivf'),266-age);
+    }
+    if(m==='us'){
+      const date=readDate('us'),w=intField('usweeks','ultrasound weeks',0,42),d=intField('usdays','ultrasound days',0,6);
+      if(w===42&&d!==0)throw Error('Ultrasound gestational age must not exceed 42 weeks.');
+      if(diff(date,todayUTC())>0)throw Error('Ultrasound date cannot be in the future.');
+      return add(date,280-(w*7+d));
+    }
+    throw Error('Please choose a calculation method.');
+  }
+  const milestone={
+    4:'Home pregnancy tests may start to show a positive result.',
+    7:'Cardiac activity may be detectable on an early ultrasound.',
+    14:'The first trimester ends (13 weeks 6 days).',
+    15:'The second trimester begins at 14 weeks.',
+    19:'Routine anatomy ultrasound is often offered around 18–22 weeks.',
+    21:'Fetal movement can become more noticeable; timing varies.',
+    29:'The third trimester begins at 28 weeks.',
+    38:'Early term starts at 37 weeks.',
+    40:'Full term begins at 39 weeks.',
+    41:'Estimated due date falls at 40 weeks.',
+    42:'Late term begins at 41 weeks.'
+  };
+  const esc=(s)=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  function render(due){
+    const now=todayUTC(),lmp=add(due,-280),conception=add(due,-266),days=diff(now,lmp);
+    const weeks=Math.floor(days/7),dayR=days>=0?days%7:0,remaining=diff(due,now);
+    const trimester=days<0?'Not started':days<98?'First trimester':days<196?'Second trimester':'Third trimester';
+    const progress=Math.max(0,Math.min(100,100*days/280));
+    let headline,status;
+    if(days<0){headline='The estimated pregnancy has not started yet.';status='The estimated gestational starting date is '+fmt(lmp)+'.';}
+    else if(days<=294){headline='You are currently at week #'+(weeks+1)+' ('+weeks+' weeks '+dayR+' days) of pregnancy.';
+      status='You are in the '+trimester.toLowerCase()+'.';}
+    else{headline='This estimated pregnancy schedule has reached '+weeks+' weeks '+dayR+' days.';
+      status='This date is beyond the usual pregnancy timeline. If this is a current pregnancy, contact your maternity care team.';}
+    const countdown=remaining>0?remaining+' days remaining':remaining===0?'Estimated due date is today':Math.abs(remaining)+' days since estimated due date';
+    let table='';
+    for(let i=0;i<42;i++){
+      const n=i+1,start=add(lmp,i*7),end=add(start,6),current=days>=i*7&&days<(i+1)*7;
+      const first=i===0||i===14||i===28;
+      const trimesterCell=first?'<td class="calcpro-pregnancy-trimester" rowspan="14">'+(i===0?'First trimester':i===14?'Second trimester':'Third trimester')+'</td>':'';
+      const milestoneText=milestone[n]||'';
+      table+='<tr'+(current?' class="calcpro-pregnancy-current"':'')+'><td class="calcpro-pregnancy-week-col">Week '+n+(current?' <span class="calcpro-pregnancy-today">(today)</span>':'')+'</td><td class="calcpro-pregnancy-date-col">'+esc(fmt(start,true))+' – '+esc(fmtRangeEnd(end))+'</td>'+trimesterCell+'<td'+(milestoneText?' class="calcpro-pregnancy-milestone"':'')+'>'+esc(milestoneText)+'</td></tr>';
+    }
+    output.innerHTML='<p class="calcpro-pregnancy-headline">'+esc(headline)+'</p><p class="calcpro-pregnancy-status">'+esc(status)+'</p>'+
+      '<div class="calcpro-pregnancy-summary">'+
+        '<div class="calcpro-pregnancy-kpi"><small>Estimated due date</small><strong>'+esc(fmt(due))+'</strong></div>'+
+        '<div class="calcpro-pregnancy-kpi"><small>Estimated conception</small><strong>'+esc(fmt(conception))+'</strong></div>'+
+        '<div class="calcpro-pregnancy-kpi"><small>Gestational start (LMP-equivalent)</small><strong>'+esc(fmt(lmp))+'</strong></div>'+
+      '</div><p class="calcpro-pregnancy-progress-label">'+esc(countdown)+' · '+Math.round(progress)+'% of a 40-week pregnancy timeline</p>'+
+      '<div class="calcpro-pregnancy-progress" role="progressbar" aria-label="Pregnancy progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="'+Math.round(progress)+'"><div class="calcpro-pregnancy-progress-fill" style="width:'+progress.toFixed(3)+'%">'+(progress>=13?Math.round(progress)+'%':'')+'</div></div>'+
+      '<p class="calcpro-pregnancy-swipe">Swipe horizontally to see the trimester and milestone columns.</p><div class="calcpro-pregnancy-table-wrap" tabindex="0" aria-label="Scrollable pregnancy week-by-week schedule"><table class="calcpro-pregnancy-table"><thead><tr><th>Week</th><th>Date</th><th>Trimester</th><th>Important milestones</th></tr></thead><tbody>'+table+'</tbody></table></div>'+
+      '<p class="calcpro-pregnancy-note"><strong>Note:</strong> This is a date estimate, not a diagnosis or a prediction of birth day. Milestones describe general timing and vary by pregnancy. The estimated conception date is approximate. Clinical ultrasound or assisted-reproduction dating may be more appropriate than period-based estimates.</p>';
+    results.hidden=false;instructions.hidden=true;
+  }
+  form.addEventListener('submit',e=>{
+    e.preventDefault();error.hidden=true;
+    try{
+      const due=calc();render(due);
+      if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches)results.scrollIntoView({behavior:'smooth',block:'start'});
+      else results.scrollIntoView({block:'start'});
+    }catch(ex){error.textContent=ex.message||'Please check your inputs.';error.hidden=false;results.hidden=true;instructions.hidden=false;}
+  });
+  form.addEventListener('reset',()=>{
+    window.setTimeout(()=>{defaults();results.hidden=true;output.innerHTML='';instructions.hidden=false;error.hidden=true;},0);
+  });
+  $('print').addEventListener('click',()=>window.print());
+  defaults();
+})();
+</script></body></html>

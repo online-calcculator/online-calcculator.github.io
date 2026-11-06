@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>BMR Calculator | CalcPro</title><meta content="Estimate basal metabolic rate and daily calorie needs with US, metric and other units, three BMR formulas, and an activity-level table." name="description"/><link href="template-style.css" rel="stylesheet"/><style>
+
+/* BMR calculator component — exclusively scoped; CalcPro globals untouched. */
+.calcpro-bmr{font:14px/1.38 Arial,Helvetica,sans-serif;color:#172536;width:100%;max-width:800px}
+.calcpro-bmr *{box-sizing:border-box}
+.calcpro-bmr button,.calcpro-bmr input,.calcpro-bmr select{font:inherit}
+.calcpro-bmr button{cursor:pointer}
+.calcpro-bmr [hidden]{display:none!important}
+.calcpro-bmr-notice{display:flex;align-items:center;gap:10px;background:#386891;color:white;margin:0 0 8px;padding:7px 12px;min-height:36px;font-size:13px;font-weight:600}
+.calcpro-bmr-notice-icon{border-radius:50%;background:#fff;color:#386891;display:inline-grid;place-items:center;width:18px;height:18px;flex:0 0 18px;font-size:12px}
+.calcpro-bmr-layout{display:grid;grid-template-columns:minmax(236px,260px) minmax(0,1fr);gap:18px;align-items:start}
+.calcpro-bmr-left,.calcpro-bmr-results{min-width:0}
+.calcpro-bmr-tabs{display:flex;gap:3px;align-items:end;padding-left:0;white-space:nowrap}
+.calcpro-bmr-tab{appearance:none;border:1px solid #285889;background:#376da1;color:#fff;padding:7px 8px;border-radius:2px 2px 0 0;font-size:12px!important;line-height:1.25;font-weight:bold;flex:1 1 auto}
+.calcpro-bmr-tab[aria-selected="true"]{background:#fff;color:#153b67;border-color:#b6c1cb;border-bottom-color:#f1f1f1;position:relative;z-index:1}
+.calcpro-bmr-panel{background:#f1f1f1;border:1px solid #b6b6b6;padding:13px 9px 11px;min-height:238px}
+.calcpro-bmr-row{display:grid;grid-template-columns:55px minmax(0,1fr);gap:6px;align-items:center;margin-bottom:9px;min-height:25px}
+.calcpro-bmr-row>label,.calcpro-bmr-row>.calcpro-bmr-row-title{font-size:13px;color:#111}
+.calcpro-bmr-entry{display:flex;align-items:center;gap:5px;min-width:0}
+.calcpro-bmr-input{height:27px;width:100%;min-width:0;padding:4px 7px;border:1px solid #54769d;background:#fff;color:#101b28;border-radius:1px;box-shadow:inset 0 1px 2px #00000010;font-size:14px}
+.calcpro-bmr-input:focus,.calcpro-bmr-select:focus{outline:2px solid #7ca6d0;outline-offset:1px}
+.calcpro-bmr-input[aria-invalid="true"]{border-color:#bd2727}
+.calcpro-bmr-age{max-width:84px}
+.calcpro-bmr-hint{font-size:11px;white-space:nowrap;color:#333}
+.calcpro-bmr-radio-line{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.calcpro-bmr-radio-label{display:inline-flex;align-items:center;gap:3px;white-space:nowrap;font-size:12px;cursor:pointer}
+.calcpro-bmr input[type="radio"]{margin:0;accent-color:#326da5;width:14px;height:14px}
+.calcpro-bmr-unit-wrap{display:flex;position:relative;flex:1;min-width:0}
+.calcpro-bmr-unit-wrap .calcpro-bmr-input{padding-right:46px}
+.calcpro-bmr-unit-label{position:absolute;right:8px;top:50%;transform:translateY(-50%);font-size:11px;color:#647482;pointer-events:none}
+.calcpro-bmr-us-pair{display:grid;grid-template-columns:1fr 1fr;gap:6px;min-width:0;width:100%}
+.calcpro-bmr-us-pair .calcpro-bmr-input{padding-right:28px}
+.calcpro-bmr-us-pair .calcpro-bmr-unit-label{right:5px;font-size:10px}
+.calcpro-bmr-other-line{display:grid;grid-template-columns:minmax(0,1fr) 92px;gap:5px;min-width:0}
+.calcpro-bmr-select{width:100%;height:27px;border:1px solid #54769d;background:white;color:#101b28;border-radius:1px;padding:3px 2px;font-size:12px!important;min-width:0}
+.calcpro-bmr-settings-toggle{display:block;margin:11px auto 6px;border:0;padding:2px 0;color:#006699;background:none;text-decoration:underline;font-size:12px!important;font-weight:700}
+.calcpro-bmr-settings{border-top:1px solid #ccc;padding:10px 5px 4px;margin-top:7px;font-size:12px}
+.calcpro-bmr-settings-group{margin-bottom:12px}
+.calcpro-bmr-settings-label{display:block;font-weight:bold;margin:0 0 6px}
+.calcpro-bmr-settings .calcpro-bmr-radio-line{gap:9px}
+.calcpro-bmr-settings .calcpro-bmr-radio-stack{display:grid;gap:8px;margin:6px 0 8px}
+.calcpro-bmr-fat-line{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.calcpro-bmr-fat-line .calcpro-bmr-input{width:66px;flex:none}
+.calcpro-bmr-fat-hint{display:block;color:#626c76;font-size:11px;margin-top:4px}
+.calcpro-bmr-error{padding:7px;background:#fff0ef;border:1px solid #ce4c4c;border-radius:2px;color:#9b1010;margin:8px 0;font-size:12px}
+.calcpro-bmr-actions{display:flex;justify-content:center;gap:6px;padding-top:11px}
+.calcpro-bmr-calc{background:#548a25;border:1px solid #467719;color:#fff;font-weight:bold;padding:8px 12px;display:inline-flex;align-items:center;gap:9px;font-size:13px!important}
+.calcpro-bmr-arrow{background:#fff8;color:#fff;width:17px;height:17px;border-radius:50%;display:inline-grid;place-items:center;font-size:11px}
+.calcpro-bmr-clear{background:#999;border:1px solid #888;color:#fff;font-weight:bold;padding:8px 11px;font-size:13px!important}
+.calcpro-bmr-calc:hover{background:#426f1d}
+.calcpro-bmr-clear:hover{background:#777}
+.calcpro-bmr-result-header{display:flex;align-items:center;justify-content:space-between;background:#548b24;color:#fff;padding:5px 9px;min-height:30px;font-size:18px;line-height:1.2}
+.calcpro-bmr-save{border:1px solid transparent;border-radius:2px;background:transparent;color:#fff;display:flex;gap:5px;align-items:center;font-weight:bold;font-size:11px!important;padding:2px 3px}
+.calcpro-bmr-save svg{width:17px;height:17px;fill:currentColor}
+.calcpro-bmr-save:hover:not(:disabled){background:#356915}
+.calcpro-bmr-save:disabled{opacity:.5;cursor:not-allowed}
+.calcpro-bmr-result-body{padding:11px 0 0}
+.calcpro-bmr-result-number{font-size:19px;line-height:1.3;color:#111;margin-bottom:13px;white-space:normal}
+.calcpro-bmr-number{font-weight:bold;color:#00850c}
+.calcpro-bmr-section-name{font-weight:bold;font-size:13px;color:#151515;margin:0 0 3px}
+.calcpro-bmr-table-scroll{max-width:100%;overflow-x:auto}
+.calcpro-bmr-table{width:100%;border-collapse:collapse;font-size:12px;line-height:1.25}
+.calcpro-bmr-table th{background:#32689c;color:#fff;text-align:left;font-weight:bold;border:1px solid #a2b2c3;padding:5px 5px}
+.calcpro-bmr-table th:last-child,.calcpro-bmr-table td:last-child{text-align:right;white-space:nowrap;width:75px}
+.calcpro-bmr-table td{border:1px solid #c6c6c6;padding:4px 5px;vertical-align:top}
+.calcpro-bmr-table tr:nth-child(even) td{background:#eeeeee}
+.calcpro-bmr-table tr:nth-child(odd) td{background:#fff}
+.calcpro-bmr-footnotes{margin-top:6px;font-size:11px;line-height:1.32;color:#222}
+.calcpro-bmr-footnotes p{margin:2px 0}
+.calcpro-bmr-empty{padding:22px 7px;color:#57677a;font-size:13px}
+@media (max-width:660px){.calcpro-bmr-layout{grid-template-columns:1fr;gap:16px}.calcpro-bmr-left{max-width:410px}.calcpro-bmr-panel{min-height:0}.calcpro-bmr-tabs{max-width:410px}.calcpro-bmr-row{grid-template-columns:80px 1fr}.calcpro-bmr-results{width:100%}.calcpro-bmr-table{font-size:12px}}
+@media (max-width:360px){.calcpro-bmr-row{grid-template-columns:65px 1fr}.calcpro-bmr-other-line{grid-template-columns:minmax(0,1fr) 82px}.calcpro-bmr-tab{padding:7px 5px;font-size:11px!important}}
+@media print{.calcpro-bmr-notice,.calcpro-bmr-save,.calcpro-bmr-actions,.calcpro-bmr-settings-toggle{display:none!important}.calcpro-bmr-layout{display:block}.calcpro-bmr-left{margin-bottom:18px}}
+
+</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="fitness-and-health-calculator.html">Fitness &amp; Health</a> / BMR Calculator</nav><h1 class="cp-page-title">BMR Calculator</h1><p class="cp-intro">The Basal Metabolic Rate (BMR) Calculator estimates your resting energy expenditure and approximate daily energy needs for six activity levels.</p><section aria-label="Calculator" class="cp-tool-area">
+<div class="calcpro-bmr" id="calcpro-bmr-root">
+  <div class="calcpro-bmr-notice"><span class="calcpro-bmr-notice-icon" aria-hidden="true">▼</span><span>Modify the values and click Calculate to update your BMR.</span></div>
+  <div class="calcpro-bmr-layout">
+    <div class="calcpro-bmr-left">
+      <div class="calcpro-bmr-tabs" role="tablist" aria-label="Measurement units">
+        <button type="button" role="tab" class="calcpro-bmr-tab" id="calcpro-bmr-tab-us" aria-controls="calcpro-bmr-units-us" aria-selected="false" tabindex="-1" data-bmr-tab="us">US Units</button>
+        <button type="button" role="tab" class="calcpro-bmr-tab" id="calcpro-bmr-tab-metric" aria-controls="calcpro-bmr-units-metric" aria-selected="true" tabindex="0" data-bmr-tab="metric">Metric Units</button>
+        <button type="button" role="tab" class="calcpro-bmr-tab" id="calcpro-bmr-tab-other" aria-controls="calcpro-bmr-units-other" aria-selected="false" tabindex="-1" data-bmr-tab="other">Other Units</button>
+      </div>
+      <form class="calcpro-bmr-panel" id="calcpro-bmr-form" novalidate>
+        <div class="calcpro-bmr-row"><label for="calcpro-bmr-age">Age</label><div class="calcpro-bmr-entry"><input class="calcpro-bmr-input calcpro-bmr-age" id="calcpro-bmr-age" inputmode="numeric" type="number" min="15" max="80" step="1" value="25" required/><span class="calcpro-bmr-hint">ages 15 - 80</span></div></div>
+        <div class="calcpro-bmr-row"><span class="calcpro-bmr-row-title">Gender</span><div class="calcpro-bmr-radio-line" role="group" aria-label="Sex used by the prediction equations"><label class="calcpro-bmr-radio-label"><input type="radio" name="calcpro-bmr-sex" value="male" checked/> male</label><label class="calcpro-bmr-radio-label"><input type="radio" name="calcpro-bmr-sex" value="female"/> female</label></div></div>
+        <div id="calcpro-bmr-units-metric" role="tabpanel" aria-labelledby="calcpro-bmr-tab-metric" data-bmr-unit-panel="metric">
+          <div class="calcpro-bmr-row"><label for="calcpro-bmr-height-cm">Height</label><span class="calcpro-bmr-unit-wrap"><input class="calcpro-bmr-input" id="calcpro-bmr-height-cm" type="number" inputmode="decimal" step="any" value="180"/><span class="calcpro-bmr-unit-label">cm</span></span></div>
+          <div class="calcpro-bmr-row"><label for="calcpro-bmr-weight-kg">Weight</label><span class="calcpro-bmr-unit-wrap"><input class="calcpro-bmr-input" id="calcpro-bmr-weight-kg" type="number" inputmode="decimal" step="any" value="60"/><span class="calcpro-bmr-unit-label">kg</span></span></div>
+        </div>
+        <div id="calcpro-bmr-units-us" role="tabpanel" aria-labelledby="calcpro-bmr-tab-us" data-bmr-unit-panel="us" hidden>
+          <div class="calcpro-bmr-row"><span class="calcpro-bmr-row-title">Height</span><div class="calcpro-bmr-us-pair"><label class="calcpro-bmr-unit-wrap"><span class="calcpro-bmr-unit-label">ft</span><input class="calcpro-bmr-input" id="calcpro-bmr-height-ft" aria-label="Height in feet" type="number" inputmode="numeric" step="1" value="5"/></label><label class="calcpro-bmr-unit-wrap"><span class="calcpro-bmr-unit-label">in</span><input class="calcpro-bmr-input" id="calcpro-bmr-height-in" aria-label="Additional inches" type="number" inputmode="decimal" step="any" value="10.87"/></label></div></div>
+          <div class="calcpro-bmr-row"><label for="calcpro-bmr-weight-lb">Weight</label><span class="calcpro-bmr-unit-wrap"><input class="calcpro-bmr-input" id="calcpro-bmr-weight-lb" type="number" inputmode="decimal" step="any" value="132.28"/><span class="calcpro-bmr-unit-label">lb</span></span></div>
+        </div>
+        <div id="calcpro-bmr-units-other" role="tabpanel" aria-labelledby="calcpro-bmr-tab-other" data-bmr-unit-panel="other" hidden>
+          <div class="calcpro-bmr-row"><label for="calcpro-bmr-height-other">Height</label><div class="calcpro-bmr-other-line"><input class="calcpro-bmr-input" id="calcpro-bmr-height-other" type="number" inputmode="decimal" step="any" value="180"/><select class="calcpro-bmr-select" id="calcpro-bmr-height-unit" aria-label="Height unit"><option value="cm">cm</option><option value="m">meters</option><option value="in">inches</option><option value="ft">feet</option></select></div></div>
+          <div class="calcpro-bmr-row"><label for="calcpro-bmr-weight-other">Weight</label><div class="calcpro-bmr-other-line"><input class="calcpro-bmr-input" id="calcpro-bmr-weight-other" type="number" inputmode="decimal" step="any" value="60"/><select class="calcpro-bmr-select" id="calcpro-bmr-weight-unit" aria-label="Weight unit"><option value="kg">kg</option><option value="lb">pounds</option><option value="st">stone</option></select></div></div>
+        </div>
+        <button type="button" id="calcpro-bmr-settings-toggle" class="calcpro-bmr-settings-toggle" aria-controls="calcpro-bmr-settings" aria-expanded="false">+ Settings</button>
+        <div id="calcpro-bmr-settings" class="calcpro-bmr-settings" hidden>
+          <div class="calcpro-bmr-settings-group"><span class="calcpro-bmr-settings-label">Results unit:</span><div class="calcpro-bmr-radio-line" role="group" aria-label="Results unit"><label class="calcpro-bmr-radio-label"><input type="radio" name="calcpro-bmr-output-unit" value="cal" checked/> Calories</label><label class="calcpro-bmr-radio-label"><input type="radio" name="calcpro-bmr-output-unit" value="kj"/> Kilojoules</label></div></div>
+          <div class="calcpro-bmr-settings-group"><span class="calcpro-bmr-settings-label">BMR estimation formula:</span><div class="calcpro-bmr-radio-stack" role="group" aria-label="BMR estimation formula"><label class="calcpro-bmr-radio-label"><input type="radio" name="calcpro-bmr-formula" value="mifflin" checked/> Mifflin St Jeor</label><label class="calcpro-bmr-radio-label"><input type="radio" name="calcpro-bmr-formula" value="harris"/> Revised Harris-Benedict</label><label class="calcpro-bmr-radio-label"><input type="radio" name="calcpro-bmr-formula" value="katch"/> Katch-McArdle</label></div><div class="calcpro-bmr-fat-line"><label for="calcpro-bmr-fat">Body Fat:</label><input class="calcpro-bmr-input" id="calcpro-bmr-fat" type="number" min="0" max="99.99" step="any" value="20"/><span>%</span></div><span class="calcpro-bmr-fat-hint">Body fat is used only for Katch-McArdle.</span></div>
+        </div>
+        <div class="calcpro-bmr-error" id="calcpro-bmr-error" role="alert" hidden></div>
+        <div class="calcpro-bmr-actions"><button type="submit" class="calcpro-bmr-calc">Calculate <span class="calcpro-bmr-arrow" aria-hidden="true">▶</span></button><button type="button" class="calcpro-bmr-clear" id="calcpro-bmr-clear">Clear</button></div>
+      </form>
+    </div>
+    <section class="calcpro-bmr-results" id="calcpro-bmr-results" aria-label="BMR results" aria-live="polite">
+      <div class="calcpro-bmr-result-header"><span>Result</span><button type="button" class="calcpro-bmr-save" id="calcpro-bmr-save" title="Save result as a PNG image" aria-label="Save result as a PNG image" disabled><svg viewBox="0 0 24 24" role="img" aria-hidden="true"><path d="M3 2h15l3 3v17H3V2zm3 2v6h11V4H6zm6 1v4h3V5h-3zM6 13v7h12v-7H6zm2 2h8v3H8v-3z"/></svg><span>Save</span></button></div>
+      <div id="calcpro-bmr-result-content" class="calcpro-bmr-result-body">
+        <div class="calcpro-bmr-result-number">BMR = <output id="calcpro-bmr-number" class="calcpro-bmr-number">—</output> <span id="calcpro-bmr-result-unit">Calories/day</span></div>
+        <p class="calcpro-bmr-section-name" id="calcpro-bmr-activity-label">Daily calorie needs based on activity level</p>
+        <div class="calcpro-bmr-table-scroll"><table class="calcpro-bmr-table"><thead><tr><th scope="col">Activity Level</th><th scope="col" id="calcpro-bmr-table-unit">Calorie</th></tr></thead><tbody id="calcpro-bmr-tbody"><tr><td>Sedentary: little or no exercise</td><td>—</td></tr><tr><td>Exercise 1-3 times/week</td><td>—</td></tr><tr><td>Exercise 4-5 times/week</td><td>—</td></tr><tr><td>Daily exercise or intense exercise 3-4 times/week</td><td>—</td></tr><tr><td>Intense exercise 6-7 times/week</td><td>—</td></tr><tr><td>Very intense exercise daily, or physical job</td><td>—</td></tr></tbody></table></div>
+        <div class="calcpro-bmr-footnotes"><p>Exercise: 15-30 minutes of elevated heart rate activity.</p><p>Intense exercise: 45-120 minutes of elevated heart rate activity.</p><p>Very intense exercise: 2+ hours of elevated heart rate activity.</p></div>
+      </div>
+      <p class="calcpro-bmr-empty" id="calcpro-bmr-empty" hidden>Enter your details and select Calculate to see your estimate.</p>
+    </section>
+  </div>
+</div>
+</section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><a href="body-fat-calculator.html">Body Fat Calculator</a><a href="calorie-calculator.html">Calorie Calculator</a><a href="bmi-calculator.html">BMI Calculator</a><a href="ideal-weight-calculator.html">Ideal Weight Calculator</a><a href="macro-calculator.html">Macro Calculator</a><a href="calories-burned-calculator.html">Calories Burned Calculator</a></div></section></aside><article class="cp-article">
+<h2>What Is Basal Metabolic Rate (BMR)?</h2>
+<p>Basal metabolic rate estimates the energy your body would use at complete rest to maintain breathing, circulation, temperature regulation, and other essential functions. It is different from your total daily energy expenditure (TDEE), which also includes physical activity and food digestion. This calculator gives a prediction, not a direct measurement of your metabolism.</p>
+<h2>How to Use the BMR Calculator</h2>
+<ol>
+<li>Choose <strong>US Units</strong>, <strong>Metric Units</strong>, or <strong>Other Units</strong>. Values convert when you switch tabs.</li>
+<li>Enter your age, sex used by the equations, height, and weight.</li>
+<li>Open <strong>Settings</strong> to choose Calories or kilojoules and one of three BMR estimation equations. Enter your body-fat percentage if using Katch-McArdle.</li>
+<li>Press <strong>Calculate</strong>. Your BMR and six daily energy estimates appear beside the form on larger screens and below it on phones. Use <strong>Save</strong> to export a PNG of the result.</li>
+</ol>
+<h2>BMR Calculation Formulas</h2>
+<p>For these equations, <strong>W</strong> is weight in kilograms, <strong>H</strong> is height in centimeters, and <strong>A</strong> is age in years. BMR is reported in nutritional Calories (kcal) per day.</p>
+<h3>Mifflin-St Jeor (default)</h3>
+<p><strong>Male:</strong> BMR = 10W + 6.25H − 5A + 5.<br/><strong>Female:</strong> BMR = 10W + 6.25H − 5A − 161.</p>
+<h3>Revised Harris-Benedict</h3>
+<p><strong>Male:</strong> BMR = 88.362 + 13.397W + 4.799H − 5.677A.<br/><strong>Female:</strong> BMR = 447.593 + 9.247W + 3.098H − 4.330A.</p>
+<h3>Katch-McArdle</h3>
+<p><strong>Lean mass (kg)</strong> = W × (1 − body-fat % ÷ 100).<br/><strong>BMR</strong> = 370 + 21.6 × lean mass (kg). This method requires a body-fat estimate and does not use the sex, age, or height inputs in its equation.</p>
+<h2>Worked Example</h2>
+<p>For a 25-year-old male who is 180 cm tall and weighs 60 kg, Mifflin-St Jeor calculates <strong>10 × 60 + 6.25 × 180 − 5 × 25 + 5 = 1,605 Calories/day</strong>. Multiplying the unrounded BMR by 1.2 gives <strong>1,926 Calories/day</strong> for the sedentary activity level. With 1.55, the estimate becomes approximately <strong>2,488 Calories/day</strong>. Results are rounded to the nearest whole unit.</p>
+<h2>Understanding the Activity Table</h2>
+<p>The six activity estimates use multipliers of <strong>1.2, 1.375, 1.465, 1.55, 1.725, and 1.9</strong>, respectively. These are rough maintenance-energy estimates, not recommended calorie targets for every person. The table is calculated from your unrounded BMR. For kilojoule output, the calculator uses <strong>1 kcal = 4.184 kJ</strong>.</p>
+<div class="cp-note"><strong>Important:</strong> A predictive equation cannot account for every difference in body composition, health, or metabolism. Individuals outside the reference age range, pregnant people, or anyone making clinical nutrition decisions should seek professional guidance.</div>
+<h2>Frequently Asked Questions</h2>
+<h3>What is the difference between BMR and TDEE?</h3>
+<p>BMR estimates resting energy requirements. TDEE estimates energy used across a normal day, including activity and other processes. The table provides activity-adjusted estimates based on BMR.</p>
+<h3>Which formula should I choose?</h3>
+<p>Mifflin-St Jeor is the default and uses age, sex, height, and weight. Revised Harris-Benedict is another traditional weight-and-height-based model. Katch-McArdle uses lean mass and requires a body-fat estimate.</p>
+<h3>Will switching between inches and centimeters change the result?</h3>
+<p>No significant change is expected: the calculator converts measurements using 1 inch = 2.54 cm and 1 pound = 0.45359237 kg. Very small differences can occur when displayed input values are rounded during conversion.</p>
+<h3>Does a BMR estimate tell me how much to eat?</h3>
+<p>Not by itself. BMR excludes much of your daily activity, and actual energy requirements vary. Interpret it as one starting point rather than an individualized diet prescription.</p>
+<h2>Sources</h2>
+<ul>
+<li><a href="https://pubmed.ncbi.nlm.nih.gov/2305711/" rel="noopener noreferrer" target="_blank">Mifflin et al. (1990), <em>A new predictive equation for resting energy expenditure in healthy individuals</em></a>.</li>
+<li><a href="https://pubmed.ncbi.nlm.nih.gov/6741850/" rel="noopener noreferrer" target="_blank">Roza &amp; Shizgal (1984), <em>The Harris Benedict equation reevaluated</em></a>.</li>
+<li><a href="https://www.calculator.net/bmr-calculator.html" rel="noopener noreferrer" target="_blank">BMR Calculator reference page, Calculator.net</a>.</li>
+</ul>
+<p class="cp-page-footer">CalcPro — calculator estimates are for informational purposes and do not replace professional medical advice.</p>
+</article></main></div><script>
+(() => {
+  'use strict';
+  const root = document.getElementById('calcpro-bmr-root');
+  if (!root) return;
+  const get = (id) => root.querySelector('#calcpro-bmr-' + id);
+  const form = get('form');
+  const panels = Array.from(root.querySelectorAll('[data-bmr-unit-panel]'));
+  const tabs = Array.from(root.querySelectorAll('[data-bmr-tab]'));
+  const factors = [1.2, 1.375, 1.465, 1.55, 1.725, 1.9];
+  const activityLabels = [
+    'Sedentary: little or no exercise',
+    'Exercise 1-3 times/week',
+    'Exercise 4-5 times/week',
+    'Daily exercise or intense exercise 3-4 times/week',
+    'Intense exercise 6-7 times/week',
+    'Very intense exercise daily, or physical job'
+  ];
+  let activeUnit = 'metric';
+  let lastResult = null;
+  const formatter = new Intl.NumberFormat('en-US', { maximumFractionDigits: 0 });
+  const readNumber = (id) => {
+    const raw = get(id).value.trim();
+    return raw === '' ? NaN : Number(raw);
+  };
+  const fixed = (n, places = 2) => String(Number(n.toFixed(places)));
+  const selected = (name) => root.querySelector('input[name="calcpro-bmr-' + name + '"]:checked').value;
+  const heightToCm = (value, unit) => ({ cm: value, m: value * 100, in: value * 2.54, ft: value * 30.48 })[unit];
+  const weightToKg = (value, unit) => ({ kg: value, lb: value * 0.45359237, st: value * 6.35029318 })[unit];
+  function readMeasurements() {
+    let heightCm, weightKg;
+    if (activeUnit === 'metric') {
+      heightCm = readNumber('height-cm');
+      weightKg = readNumber('weight-kg');
+    } else if (activeUnit === 'us') {
+      const ft = readNumber('height-ft');
+      const inch = readNumber('height-in');
+      heightCm = (ft * 12 + inch) * 2.54;
+      weightKg = weightToKg(readNumber('weight-lb'), 'lb');
+      if (!Number.isInteger(ft) || ft < 0 || inch < 0 || inch >= 12) heightCm = NaN;
+    } else {
+      heightCm = heightToCm(readNumber('height-other'), get('height-unit').value);
+      weightKg = weightToKg(readNumber('weight-other'), get('weight-unit').value);
+    }
+    return { heightCm, weightKg };
+  }
+  function setMeasurementFields(unit, measurements) {
+    const { heightCm, weightKg } = measurements;
+    if (!Number.isFinite(heightCm) || !Number.isFinite(weightKg)) return;
+    if (unit === 'metric') {
+      get('height-cm').value = fixed(heightCm);
+      get('weight-kg').value = fixed(weightKg);
+    } else if (unit === 'us') {
+      const totalInches = heightCm / 2.54;
+      let feet = Math.floor(totalInches / 12);
+      let inches = Number((totalInches - feet * 12).toFixed(2));
+      if (inches >= 12) { feet++; inches = 0; }
+      get('height-ft').value = String(feet);
+      get('height-in').value = String(inches);
+      get('weight-lb').value = fixed(weightKg / 0.45359237);
+    } else {
+      const heightUnit = get('height-unit').value;
+      const weightUnit = get('weight-unit').value;
+      const height = ({ cm: heightCm, m: heightCm / 100, in: heightCm / 2.54, ft: heightCm / 30.48 })[heightUnit];
+      const weight = ({ kg: weightKg, lb: weightKg / 0.45359237, st: weightKg / 6.35029318 })[weightUnit];
+      get('height-other').value = fixed(height, heightUnit === 'm' ? 4 : 2);
+      get('weight-other').value = fixed(weight, weightUnit === 'st' ? 3 : 2);
+    }
+  }
+  function error(message) {
+    const box = get('error');
+    box.textContent = message;
+    box.hidden = false;
+  }
+  function clearError() {
+    get('error').textContent = '';
+    get('error').hidden = true;
+    root.querySelectorAll('[aria-invalid="true"]').forEach(el => el.removeAttribute('aria-invalid'));
+  }
+  function setTab(unit, convert = true) {
+    if (unit === activeUnit) return;
+    const current = convert ? readMeasurements() : null;
+    const allBlank = activeUnit === 'metric'
+      ? !get('height-cm').value && !get('weight-kg').value
+      : activeUnit === 'us'
+        ? !get('height-ft').value && !get('height-in').value && !get('weight-lb').value
+        : !get('height-other').value && !get('weight-other').value;
+    if (convert && current && !allBlank && (!Number.isFinite(current.heightCm) || !Number.isFinite(current.weightKg))) {
+      error('Enter valid height and weight values before changing units.');
+      return;
+    }
+    clearError();
+    if (allBlank) {
+      ['height-cm','weight-kg','height-ft','height-in','weight-lb','height-other','weight-other'].forEach(id => get(id).value = '');
+    } else if (current) setMeasurementFields(unit, current);
+    activeUnit = unit;
+    panels.forEach(panel => { panel.hidden = panel.dataset.bmrUnitPanel !== unit; });
+    tabs.forEach(tab => {
+      const active = tab.dataset.bmrTab === unit;
+      tab.setAttribute('aria-selected', String(active));
+      tab.tabIndex = active ? 0 : -1;
+    });
+  }
+  tabs.forEach((tab, index) => {
+    tab.addEventListener('click', () => setTab(tab.dataset.bmrTab));
+    tab.addEventListener('keydown', (ev) => {
+      if (!['ArrowLeft','ArrowRight','Home','End'].includes(ev.key)) return;
+      ev.preventDefault();
+      const idx = ev.key === 'Home' ? 0 : ev.key === 'End' ? tabs.length - 1 : (index + (ev.key === 'ArrowRight' ? 1 : -1) + tabs.length) % tabs.length;
+      setTab(tabs[idx].dataset.bmrTab);
+      if (activeUnit === tabs[idx].dataset.bmrTab) tabs[idx].focus();
+    });
+  });
+  get('settings-toggle').addEventListener('click', () => {
+    const opened = get('settings-toggle').getAttribute('aria-expanded') === 'true';
+    get('settings-toggle').setAttribute('aria-expanded', String(!opened));
+    get('settings-toggle').textContent = opened ? '+ Settings' : '− Settings';
+    get('settings').hidden = opened;
+  });
+  // Convert the "Other Units" input in place when its unit dropdown changes.
+  for (const axis of ['height','weight']) {
+    const selector = get(axis + '-unit');
+    selector.addEventListener('focus', () => { selector.dataset.before = selector.value; });
+    selector.addEventListener('change', () => {
+      const field = get(axis + '-other');
+      const num = Number(field.value);
+      const before = selector.dataset.before || (axis === 'height' ? 'cm' : 'kg');
+      if (field.value.trim() && Number.isFinite(num) && num >= 0) {
+        if (axis === 'height') {
+          const cm = heightToCm(num, before);
+          field.value = fixed(({cm, m: cm/100, in:cm/2.54, ft:cm/30.48})[selector.value], selector.value === 'm' ? 4 : 2);
+        } else {
+          const kg = weightToKg(num, before);
+          field.value = fixed(({kg, lb:kg/0.45359237, st:kg/6.35029318})[selector.value], selector.value === 'st' ? 3 : 2);
+        }
+      }
+      selector.dataset.before = selector.value;
+    });
+  }
+  function showResults(visible) {
+    get('result-content').hidden = !visible;
+    get('empty').hidden = visible;
+    get('save').disabled = !visible;
+  }
+  function calculate() {
+    clearError();
+    const age = readNumber('age');
+    const { heightCm, weightKg } = readMeasurements();
+    const sex = selected('sex');
+    const formula = selected('formula');
+    const outputUnit = selected('output-unit');
+    const fat = readNumber('fat');
+    if (!Number.isInteger(age) || age < 15 || age > 80) {
+      get('age').setAttribute('aria-invalid','true'); error('Please enter a whole-number age between 15 and 80.'); return false;
+    }
+    if (!Number.isFinite(heightCm) || heightCm <= 0 || heightCm > 400) {
+      error('Please enter a valid height greater than 0 and no more than 400 cm. In US units, use 0–11.99 additional inches.'); return false;
+    }
+    if (!Number.isFinite(weightKg) || weightKg <= 0 || weightKg > 1000) {
+      error('Please enter a valid weight greater than 0 and no more than 1,000 kg.'); return false;
+    }
+    if (formula === 'katch' && (!Number.isFinite(fat) || fat < 0 || fat >= 100)) {
+      get('fat').setAttribute('aria-invalid','true');
+      error('Please enter body fat between 0% and less than 100% for the Katch-McArdle equation.');
+      get('settings').hidden = false;
+      get('settings-toggle').setAttribute('aria-expanded','true');
+      get('settings-toggle').textContent = '− Settings';
+      return false;
+    }
+    let bmr;
+    if (formula === 'mifflin') {
+      bmr = 10 * weightKg + 6.25 * heightCm - 5 * age + (sex === 'male' ? 5 : -161);
+    } else if (formula === 'harris') {
+      bmr = sex === 'male'
+        ? 13.397 * weightKg + 4.799 * heightCm - 5.677 * age + 88.362
+        : 9.247 * weightKg + 3.098 * heightCm - 4.330 * age + 447.593;
+    } else {
+      bmr = 370 + 21.6 * weightKg * (1 - fat / 100);
+    }
+    if (!Number.isFinite(bmr) || bmr <= 0) {
+      error('These inputs do not produce a positive BMR. Please check your entries.'); return false;
+    }
+    const conversion = outputUnit === 'kj' ? 4.184 : 1;
+    const values = factors.map(f => Math.round(bmr * f * conversion));
+    const value = Math.round(bmr * conversion);
+    get('number').textContent = formatter.format(value);
+    get('result-unit').textContent = outputUnit === 'kj' ? 'Kilojoules/day' : 'Calories/day';
+    get('table-unit').textContent = outputUnit === 'kj' ? 'Kilojoule' : 'Calorie';
+    get('activity-label').textContent = outputUnit === 'kj' ? 'Daily energy needs based on activity level' : 'Daily calorie needs based on activity level';
+    get('tbody').replaceChildren(...activityLabels.map((label, i) => {
+      const tr = document.createElement('tr');
+      const td1 = document.createElement('td');
+      const td2 = document.createElement('td');
+      td1.textContent = label;
+      td2.textContent = formatter.format(values[i]);
+      tr.append(td1, td2);
+      return tr;
+    }));
+    lastResult = { value, bmr, values, outputUnit, formula, age, sex, heightCm, weightKg, fat };
+    showResults(true);
+    return true;
+  }
+  form.addEventListener('submit', (event) => { event.preventDefault(); calculate(); });
+  get('clear').addEventListener('click', () => {
+    form.reset();
+    ['age','height-cm','weight-kg','height-ft','height-in','weight-lb','height-other','weight-other','fat'].forEach(id => get(id).value = '');
+    activeUnit = 'metric';
+    panels.forEach(panel => { panel.hidden = panel.dataset.bmrUnitPanel !== 'metric'; });
+    tabs.forEach(tab => { const on = tab.dataset.bmrTab === 'metric'; tab.setAttribute('aria-selected',String(on)); tab.tabIndex = on ? 0 : -1; });
+    get('height-unit').value = 'cm'; get('weight-unit').value = 'kg';
+    get('height-unit').dataset.before = 'cm'; get('weight-unit').dataset.before = 'kg';
+    get('settings').hidden = true;
+    get('settings-toggle').textContent = '+ Settings'; get('settings-toggle').setAttribute('aria-expanded','false');
+    clearError(); lastResult = null; showResults(false); get('age').focus();
+  });
+  function saveImage() {
+    if (!lastResult) return;
+    const r = lastResult;
+    const canvas = document.createElement('canvas');
+    canvas.width = 1020; canvas.height = 610;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+    ctx.fillStyle = '#ffffff'; ctx.fillRect(0,0,1020,610);
+    ctx.fillStyle = '#003366'; ctx.fillRect(0,0,1020,90);
+    ctx.fillStyle = '#ffffff'; ctx.font = 'bold 34px Arial'; ctx.fillText('CalcPro · BMR Calculator',34,57);
+    ctx.fillStyle = '#172536'; ctx.font = '18px Arial';
+    ctx.fillText(`Age: ${r.age}   Sex: ${r.sex}   Height: ${fixed(r.heightCm)} cm   Weight: ${fixed(r.weightKg)} kg`,34,129);
+    const name = {mifflin:'Mifflin-St Jeor',harris:'Revised Harris-Benedict',katch:'Katch-McArdle'}[r.formula];
+    ctx.font='16px Arial'; ctx.fillText(`Equation: ${name}${r.formula==='katch' ? ' · Body fat: '+r.fat+'%' : ''}`,34,160);
+    ctx.fillStyle='#548b24'; ctx.fillRect(34,184,952,65);
+    ctx.fillStyle='#ffffff'; ctx.font='bold 28px Arial';
+    ctx.fillText(`BMR = ${formatter.format(r.value)} ${r.outputUnit==='kj'?'Kilojoules':'Calories'}/day`,52,226);
+    ctx.fillStyle='#003366';ctx.font='bold 20px Arial';ctx.fillText('Daily energy needs by activity level',34,290);
+    ctx.fillStyle='#32689c';ctx.fillRect(34,310,952,34);ctx.fillStyle='#fff';ctx.font='bold 16px Arial';ctx.fillText('Activity level',46,333);ctx.fillText(r.outputUnit==='kj'?'kJ/day':'Calories/day',820,333);
+    activityLabels.forEach((label,i)=>{
+      const y=344+i*34;ctx.fillStyle=i%2?'#edf1f5':'#f8fafc';ctx.fillRect(34,y,952,34);
+      ctx.fillStyle='#172536';ctx.font='15px Arial';ctx.fillText(label,46,y+23);
+      ctx.font='bold 16px Arial';ctx.fillText(formatter.format(r.values[i]),835,y+23);
+    });
+    ctx.fillStyle='#546174';ctx.font='13px Arial';ctx.fillText('Estimates only; not a medical measurement. · Saved from CalcPro',34,581);
+    const anchor=document.createElement('a');
+    anchor.href=canvas.toDataURL('image/png');
+    anchor.download='calcpro-bmr-result.png';
+    document.body.appendChild(anchor);anchor.click();anchor.remove();
+  }
+  get('save').addEventListener('click', saveImage);
+  get('height-unit').dataset.before = 'cm'; get('weight-unit').dataset.before = 'kg';
+  calculate(); // Reference initially displays an example result.
+})();
+</script></body></html>

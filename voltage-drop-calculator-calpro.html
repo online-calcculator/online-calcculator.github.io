@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>Voltage Drop Calculator | CalcPro</title><meta content="Calculate voltage drop, percentage voltage loss, and final voltage for single-phase, 3-phase, or DC circuits using NEC wire tables and custom impedance." name="description"/><link href="template-style.css" rel="stylesheet"/><!--TOOL CSS INSERT HERE: Paste only calculator-specific CSS here. Use unique class/id prefixes per tool, e.g. bmi-, loan-, age-. Keep header, sidebar and article CSS in style.css.--><style>
+/* Voltage Drop Calculator — isolated tool-specific styles. */
+.calcpro-vdrop{font:14px/1.45 Arial,Helvetica,sans-serif;color:#202b33;max-width:100%;text-align:left}
+.calcpro-vdrop *{box-sizing:border-box}
+.calcpro-vdrop [hidden]{display:none!important}
+.calcpro-vdrop-hint{background:#33699b;color:#fff;font-size:12px;line-height:1.45;padding:8px 12px;text-align:center;margin:2px 0 12px;border-radius:2px}
+.calcpro-vdrop-result{margin:0 0 18px;max-width:100%}
+.calcpro-vdrop-result-header{display:flex;align-items:center;justify-content:space-between;gap:12px;background:#51892c;color:#fff;padding:7px 11px;font-size:15px}
+.calcpro-vdrop-result-actions{display:flex;gap:10px}
+.calcpro-vdrop-result-action{color:#fff;background:transparent;border:0;font:inherit;font-size:12px;cursor:pointer;padding:1px 4px;text-decoration:underline}
+.calcpro-vdrop-result-action:hover{background:#33631e}
+.calcpro-vdrop-result-inner{padding:12px 5px 0;font-size:14px;line-height:1.7}
+.calcpro-vdrop-output{color:#176b13;font-weight:700}
+.calcpro-vdrop-unit{color:#176b13;font-weight:700}
+.calcpro-vdrop-explanation{margin:12px 0 7px;max-width:620px;font-size:12px;line-height:1.55;color:#46515b}
+.calcpro-vdrop-details{max-width:560px;margin:8px 0 3px;border:1px solid #dbe3eb;border-radius:3px;font-size:12px}
+.calcpro-vdrop-details summary{padding:7px 9px;cursor:pointer;color:#185b8a;font-weight:700}
+.calcpro-vdrop-details dl{margin:0;padding:2px 9px 8px}
+.calcpro-vdrop-details dl>div{display:flex;gap:12px;justify-content:space-between;flex-wrap:wrap;border-top:1px solid #e9ecef;padding:5px 0}
+.calcpro-vdrop-details dt{font-weight:700}
+.calcpro-vdrop-details dd{margin:0;max-width:100%;overflow-wrap:anywhere;text-align:right}
+.calcpro-vdrop-error{max-width:510px;margin-bottom:12px;background:#fff2f0;border:1px solid #c94a37;color:#8d271b;padding:10px 12px;border-radius:3px;font-size:13px}
+.calcpro-vdrop-tabs{display:flex;align-items:flex-end;flex-wrap:wrap;gap:2px;margin:0;max-width:520px}
+.calcpro-vdrop-tab{background:#33699b;color:#fff;border:1px solid #33699b;border-bottom:0;border-radius:3px 3px 0 0;font:700 12px/1.4 Arial,Helvetica,sans-serif;padding:9px 11px;cursor:pointer}
+.calcpro-vdrop-tab.is-active{background:#f1f3f5;border-color:#b9c1c7;color:#172938;position:relative;z-index:1}
+.calcpro-vdrop-tab:hover:not(.is-active){background:#235585}
+.calcpro-vdrop-tab:focus-visible,.calcpro-vdrop button:focus-visible,.calcpro-vdrop select:focus-visible,.calcpro-vdrop input:focus-visible{outline:2px solid #145e91;outline-offset:2px}
+.calcpro-vdrop-panel{width:100%;max-width:520px;padding:15px 15px 12px;background:#f1f3f5;border:1px solid #b9c1c7}
+.calcpro-vdrop-mode{margin:0}
+.calcpro-vdrop-field{display:grid;grid-template-columns:minmax(145px,42%) minmax(0,1fr);gap:6px 13px;align-items:center;margin:0 0 9px}
+.calcpro-vdrop-field>label{font-size:13px;line-height:1.3}
+.calcpro-vdrop-field select,.calcpro-vdrop-field input{font:14px Arial,Helvetica,sans-serif;height:32px;border:1px solid #346396;background:#fff;border-radius:2px;color:#101922;padding:5px 7px;width:100%;min-width:0}
+.calcpro-vdrop-field select{padding-right:2px}
+.calcpro-vdrop-combo{display:flex;min-width:0;align-items:center;gap:6px}
+.calcpro-vdrop-combo input{width:43%;flex:1 1 42%}
+.calcpro-vdrop-combo select{width:54%;flex:1 1 54%}
+.calcpro-vdrop-inline-unit{width:60px;flex:0 0 60px;font-size:12px}
+.calcpro-vdrop-help{color:#52606c;font-size:12px;margin:-1px 0 12px;line-height:1.45}
+.calcpro-vdrop-controls{display:flex;gap:8px;justify-content:center;padding:8px 0 1px}
+.calcpro-vdrop-controls button{border:0;padding:8px 14px;font:700 13px Arial,Helvetica,sans-serif;cursor:pointer;color:#fff;border-radius:2px}
+.calcpro-vdrop-calculate{background:#51892c}.calcpro-vdrop-calculate:hover{background:#3f6d21}
+.calcpro-vdrop-calculate span{padding-left:5px}
+.calcpro-vdrop-clear{background:#9a9fa4}.calcpro-vdrop-clear:hover{background:#747b80}
+.calcpro-vdrop-footnote{max-width:610px;margin:10px 0 2px;color:#59626e;font-size:12px;line-height:1.55}
+@media(max-width:480px){.calcpro-vdrop-panel{padding:12px 10px}.calcpro-vdrop-field{grid-template-columns:minmax(0,1fr);gap:4px;margin-bottom:11px}.calcpro-vdrop-tab{font-size:11px;padding:8px 7px}.calcpro-vdrop-hint{font-size:11px}.calcpro-vdrop-combo input{flex:1 1 40%}.calcpro-vdrop-combo select{flex:1 1 52%}}
+@media print{.calcpro-vdrop-hint,.calcpro-vdrop-controls,.calcpro-vdrop-result-actions{display:none!important}.calcpro-vdrop-result,.calcpro-vdrop-panel{break-inside:avoid}.calcpro-vdrop-result-header{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+
+</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/other-calculator/">Other</a> / Voltage Drop Calculator</nav><h1 class="cp-page-title">Voltage Drop Calculator</h1><p class="cp-intro">Estimate voltage lost along a DC, single-phase AC, or three-phase AC circuit. Select NEC tabulated data, estimated wire resistance, or a custom impedance and calculate instantly on this page.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-vdrop" data-calculator="voltage-drop">
+<div class="calcpro-vdrop-hint">Modify the values and click <strong>Calculate</strong> to see the voltage drop.</div>
+<section aria-label="Calculation results" aria-live="polite" class="calcpro-vdrop-result" hidden="">
+<div class="calcpro-vdrop-result-header"><strong>Result</strong><div class="calcpro-vdrop-result-actions"><button aria-label="Print calculation" class="calcpro-vdrop-result-action" data-action="print" title="Print calculation" type="button">Print</button><button aria-label="Save calculation" class="calcpro-vdrop-result-action" data-action="save" title="Save calculation as text" type="button">Save <span aria-hidden="true">▣</span></button></div></div>
+<div class="calcpro-vdrop-result-inner">
+<div>Voltage drop: <strong class="calcpro-vdrop-output" data-out="drop">—</strong> <span class="calcpro-vdrop-unit">V</span></div>
+<div>Voltage drop percentage: <strong class="calcpro-vdrop-output" data-out="percent">—</strong><strong class="calcpro-vdrop-output">%</strong></div>
+<div>Voltage at the end: <strong class="calcpro-vdrop-output" data-out="end">—</strong> <span class="calcpro-vdrop-unit">V</span></div>
+<p class="calcpro-vdrop-explanation" data-out="explanation"></p>
+<details class="calcpro-vdrop-details"><summary>Calculation details</summary><dl>
+<div><dt>Method</dt><dd data-out="method">—</dd></div>
+<div><dt>One-way distance</dt><dd data-out="meters">—</dd></div>
+<div><dt>Resistance / effective impedance</dt><dd data-out="impedance">—</dd></div>
+<div><dt>Voltage-drop equation</dt><dd data-out="equation">—</dd></div>
+</dl></details>
+</div>
+</section>
+<div class="calcpro-vdrop-error" hidden="" role="alert"></div>
+<div aria-label="Calculation method" class="calcpro-vdrop-tabs" role="tablist">
+<button aria-controls="calcpro-vdrop-pane-nec" aria-selected="true" class="calcpro-vdrop-tab is-active" data-mode="nec" id="calcpro-vdrop-tab-nec" role="tab" type="button">NEC data</button>
+<button aria-controls="calcpro-vdrop-pane-estimated" aria-selected="false" class="calcpro-vdrop-tab" data-mode="estimated" id="calcpro-vdrop-tab-estimated" role="tab" tabindex="-1" type="button">Estimated resistance</button>
+<button aria-controls="calcpro-vdrop-pane-other" aria-selected="false" class="calcpro-vdrop-tab" data-mode="other" id="calcpro-vdrop-tab-other" role="tab" tabindex="-1" type="button">Other</button>
+</div>
+<form class="calcpro-vdrop-form" novalidate="">
+<div class="calcpro-vdrop-panel">
+<div aria-labelledby="calcpro-vdrop-tab-nec" class="calcpro-vdrop-mode" data-pane="nec" id="calcpro-vdrop-pane-nec" role="tabpanel">
+<div class="calcpro-vdrop-field"><label for="calcpro-vdrop-nec-material">Wire material</label><select id="calcpro-vdrop-nec-material" name="necMaterial"><option selected="" value="copper">Copper</option><option value="aluminum">Aluminum</option></select></div>
+<div class="calcpro-vdrop-field"><label for="calcpro-vdrop-nec-size">Wire size</label><select id="calcpro-vdrop-nec-size" name="necSize"><option value="0">14 AWG</option><option value="1">12 AWG</option><option value="2">10 AWG</option><option value="3">8 AWG</option><option value="4">6 AWG</option><option value="5">4 AWG</option><option selected="" value="6">3 AWG</option><option value="7">2 AWG</option><option value="8">1 AWG</option><option value="9">1/0 AWG</option><option value="10">2/0 AWG</option><option value="11">3/0 AWG</option><option value="12">4/0 AWG</option><option value="13">250 kcmil</option><option value="14">300 kcmil</option><option value="15">350 kcmil</option><option value="16">400 kcmil</option><option value="17">500 kcmil</option><option value="18">600 kcmil</option><option value="19">750 kcmil</option><option value="20">1000 kcmil</option></select></div>
+<div class="calcpro-vdrop-field"><label for="calcpro-vdrop-conduit">Material of conduit</label><select id="calcpro-vdrop-conduit" name="conduit"><option value="pvc">PVC</option><option value="aluminum">Aluminum</option><option selected="" value="steel">Steel</option></select></div>
+<div class="calcpro-vdrop-field"><label for="calcpro-vdrop-pf">Power factor (PF)</label><input id="calcpro-vdrop-pf" inputmode="decimal" max="1" min="0" name="pf" step="any" type="number" value="0.85"/></div>
+</div>
+<div aria-labelledby="calcpro-vdrop-tab-estimated" class="calcpro-vdrop-mode" data-pane="estimated" hidden="" id="calcpro-vdrop-pane-estimated" role="tabpanel">
+<div class="calcpro-vdrop-field"><label for="calcpro-vdrop-est-material">Wire material</label><select id="calcpro-vdrop-est-material" name="estMaterial"><option selected="" value="copper">Copper</option><option value="aluminum">Aluminum</option><option value="silver">Silver</option><option value="gold">Gold</option></select></div>
+<div class="calcpro-vdrop-field"><label for="calcpro-vdrop-est-size">Wire size</label><select id="calcpro-vdrop-est-size" name="estSize"><option value="0.05671">600 kcmil</option><option value="0.06805">500 kcmil</option><option value="0.08507">400 kcmil</option><option value="0.09722">350 kcmil</option><option value="0.1134">300 kcmil</option><option value="0.1361">250 kcmil</option><option value="0.1608">4/0 AWG (212 kcmil)</option><option value="0.2028">3/0 AWG (168 kcmil)</option><option value="0.2557">2/0 AWG (133 kcmil)</option><option value="0.3224">1/0 AWG (106 kcmil)</option><option selected="" value="0.4066">1 AWG (83.7 kcmil)</option><option value="0.5127">2 AWG (66.4 kcmil)</option><option value="0.6465">3 AWG (52.6 kcmil)</option><option value="0.8152">4 AWG (41.7 kcmil)</option><option value="1.028">5 AWG (33.1 kcmil)</option><option value="1.296">6 AWG (26.3 kcmil)</option><option value="1.634">7 AWG (20.8 kcmil)</option><option value="2.061">8 AWG (16.5 kcmil)</option><option value="2.599">9 AWG (13.1 kcmil)</option><option value="3.277">10 AWG (10.4 kcmil)</option><option value="4.132">11 AWG (8.23 kcmil)</option><option value="5.211">12 AWG (6.53 kcmil)</option><option value="6.571">13 AWG (5.18 kcmil)</option><option value="8.286">14 AWG (4.11 kcmil)</option><option value="10.45">15 AWG (3.26 kcmil)</option><option value="13.17">16 AWG (2.58 kcmil)</option><option value="16.61">17 AWG (2.05 kcmil)</option><option value="20.95">18 AWG (1.62 kcmil)</option><option value="26.42">19 AWG (1.29 kcmil)</option><option value="33.31">20 AWG (1.02 kcmil)</option><option value="42.00">21 AWG (0.810 kcmil)</option><option value="52.96">22 AWG (0.642 kcmil)</option><option value="66.79">23 AWG (0.509 kcmil)</option><option value="84.22">24 AWG (0.404 kcmil)</option><option value="106.2">25 AWG (0.320 kcmil)</option><option value="133.9">26 AWG (0.254 kcmil)</option><option value="168.9">27 AWG (0.202 kcmil)</option><option value="212.9">28 AWG (0.160 kcmil)</option><option value="268.5">29 AWG (0.127 kcmil)</option><option value="338.6">30 AWG (0.101 kcmil)</option><option value="426.9">31 AWG (0.0797 kcmil)</option><option value="538.3">32 AWG (0.0632 kcmil)</option><option value="678.8">33 AWG (0.0501 kcmil)</option><option value="856.0">34 AWG (0.0398 kcmil)</option><option value="1079">35 AWG (0.0315 kcmil)</option><option value="1361">36 AWG (0.0250 kcmil)</option><option value="1716">37 AWG (0.0198 kcmil)</option><option value="2164">38 AWG (0.0157 kcmil)</option><option value="2729">39 AWG (0.0125 kcmil)</option><option value="3441">40 AWG (0.00989 kcmil)</option></select></div>
+<p class="calcpro-vdrop-help">Estimated from wire area and metal resistivity at 20°C. AC reactance and skin effects are not included.</p>
+</div>
+<div aria-labelledby="calcpro-vdrop-tab-other" class="calcpro-vdrop-mode" data-pane="other" hidden="" id="calcpro-vdrop-pane-other" role="tabpanel">
+<div class="calcpro-vdrop-field"><label for="calcpro-vdrop-resistance">Wire impedance or resistance</label><div class="calcpro-vdrop-combo"><input id="calcpro-vdrop-resistance" inputmode="decimal" min="0" name="resistance" step="any" type="number" value="1.2"/><select aria-label="Impedance or resistance unit" name="resistanceUnit"><option selected="" value="okm">Ω/km</option><option value="om">Ω/m</option><option value="mom">mΩ/m</option><option value="okf">Ω/1000ft</option><option value="of">Ω/ft</option><option value="mof">mΩ/ft</option></select></div></div>
+<p class="calcpro-vdrop-help">Enter the effective impedance for AC, or resistance for DC, per chosen length unit.</p>
+</div>
+<div class="calcpro-vdrop-field"><label for="calcpro-vdrop-voltage">Voltage</label><div class="calcpro-vdrop-combo"><input id="calcpro-vdrop-voltage" inputmode="decimal" min="0" name="voltage" step="any" type="number" value="120"/><span class="calcpro-vdrop-inline-unit">Volts</span></div></div>
+<div class="calcpro-vdrop-field"><label for="calcpro-vdrop-phase">Phase</label><select id="calcpro-vdrop-phase" name="phase"><option value="dc">DC</option><option selected="" value="ac">AC single phase</option><option value="ac3">AC 3-phase</option></select></div>
+<div class="calcpro-vdrop-field"><label for="calcpro-vdrop-parallel">Number of conductors</label><select id="calcpro-vdrop-parallel" name="parallel"><option selected="" value="1">single set of conductors</option><option value="2">2 conductors per phase in parallel</option><option value="3">3 conductors per phase in parallel</option><option value="4">4 conductors per phase in parallel</option><option value="5">5 conductors per phase in parallel</option><option value="6">6 conductors per phase in parallel</option><option value="7">7 conductors per phase in parallel</option><option value="8">8 conductors per phase in parallel</option><option value="9">9 conductors per phase in parallel</option></select></div>
+<div class="calcpro-vdrop-field"><label for="calcpro-vdrop-distance">Distance (one-way)</label><div class="calcpro-vdrop-combo"><input id="calcpro-vdrop-distance" inputmode="decimal" min="0" name="distance" step="any" type="number" value="500"/><select aria-label="Distance unit" name="distanceUnit"><option value="feet">feet</option><option selected="" value="meters">meters</option><option value="miles">miles</option><option value="kilometers">kilometers</option></select></div></div>
+<div class="calcpro-vdrop-field"><label for="calcpro-vdrop-amperes">Load current</label><div class="calcpro-vdrop-combo"><input id="calcpro-vdrop-amperes" inputmode="decimal" min="0" name="amperes" step="any" type="number" value="1"/><span class="calcpro-vdrop-inline-unit">Amps</span></div></div>
+<div class="calcpro-vdrop-controls"><button class="calcpro-vdrop-calculate" type="submit">Calculate <span aria-hidden="true">▶</span></button><button class="calcpro-vdrop-clear" data-action="clear" type="button">Clear</button></div>
+</div>
+</form>
+<p class="calcpro-vdrop-footnote">Length is one-way. Single-phase AC and DC include the return path; three-phase AC uses the √3 factor. This is a voltage-drop estimate, not a conductor ampacity or electrical-code compliance check.</p>
+</div></section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><a href="ohms-law-calculator.html">Ohm’s Law</a><a href="resistor-calculator.html">Resistor</a><a href="electricity-calculator.html">Electricity</a><a href="scientific-calculator.html">Scientific</a><a href="conversion-calculator.html">Unit Conversion</a><a href="ratio-calculator.html">Ratio</a></div></section></aside><article class="cp-article"><h2>How to Use the Voltage Drop Calculator</h2>
+<p>Choose <strong>NEC data</strong> for conductor and conduit-specific resistance and reactance, <strong>Estimated resistance</strong> for approximate values derived from wire size and metal, or <strong>Other</strong> to enter the manufacturer’s impedance or resistance directly. Select the phase, supply voltage, number of equal conductors installed in parallel per phase, one-way cable run and load current. Click <strong>Calculate</strong> to see the voltage drop, its percentage, and the estimated voltage available at the load.</p>
+<h2>Voltage Drop Formulas</h2>
+<p>For single-phase AC or DC, estimated voltage drop is <strong>V<sub>drop</sub> = 2 × I × L × Z</strong>. For balanced three-phase AC, <strong>V<sub>drop</sub> = √3 × I × L × Z</strong>. I is current in amperes, L is the one-way conductor length, and Z is the conductor’s effective impedance per unit length (or resistance for DC). L and Z must use matching length units. When multiple equal sets are in parallel, divide the drop by the number of sets. The percentage is 100 × V<sub>drop</sub> ÷ V<sub>source</sub>; final voltage is V<sub>source</sub> − V<sub>drop</sub>.</p>
+<h3>AC Impedance and Power Factor</h3>
+<p>In the NEC data mode for AC, the effective impedance is <strong>Z = R × PF + X × √(1 − PF²)</strong>, where R is AC resistance and X is inductive reactance (both in Ω/1,000 ft), and PF is the load power factor. The calculator uses conduit-specific Chapter 9 Table 9 values for 60 Hz and a 75°C conductor temperature. The DC setting instead uses conductor resistance from Chapter 9 Table 8. In estimated mode, conductor resistance is estimated at 20°C and does not include AC reactance. The custom mode accepts an already effective impedance value for AC, so it does not reapply the power factor.</p>
+<h2>Worked Example</h2>
+<p>For 3 AWG copper in steel conduit, 0.85 power factor, 120 V single-phase AC, 1 A, and a 500 m one-way run, the selected NEC Table 9 resistance is about 0.25 Ω/1,000 ft and reactance about 0.059 Ω/1,000 ft. Effective impedance is approximately 0.2436 Ω/1,000 ft; 500 m is approximately 1,640.4 ft. Voltage drop is about <strong>0.80 V</strong>, or <strong>0.67%</strong>, leaving approximately <strong>119.2 V</strong> at the load.</p>
+<h2>Interpreting the Result</h2>
+<p>More current or length generally creates a larger drop. Increasing conductor area or adding matched parallel sets decreases resistance and drop. For general low-voltage designs, the often-cited NEC informational recommendations are around 3% for an individual branch circuit and 5% combined feeder-plus-branch-circuit drop; these recommendations do not replace applicable mandatory rules. Check conductor ampacity, short-circuit performance, protection, termination ratings, and local adoption of electrical codes separately.</p>
+<h2>Frequently Asked Questions</h2>
+<h3>Why enter the one-way distance?</h3>
+<p>The formulas include the return path for single-phase and DC circuits via the factor of 2, or the phase relationship of balanced three-phase circuits via √3. Entering round-trip distance would double-count the length.</p>
+<h3>Which mode is most accurate?</h3>
+<p>NEC data is a useful standard-based estimate for the modeled conductor sizes and raceways. Manufacturer-provided AC impedance in <strong>Other</strong> can better reflect a specific cable. Temperature, frequency, conductor layout, connections and actual load characteristics affect real-world results.</p>
+<h3>Can I enter cable length in feet or kilometers?</h3>
+<p>Yes. Feet, meters, miles and kilometers are converted internally before calculation. Custom resistance supports Ω/km, Ω/m, mΩ/m, Ω/1,000 ft, Ω/ft and mΩ/ft.</p>
+<h3>What if the calculated voltage at the load is negative?</h3>
+<p>That means the simplified voltage-drop estimate is larger than the entered source voltage. It signals an unsuitable assumption or circuit design, not a physically usable negative supply voltage. Reassess the length, current, conductor sizing and system configuration.</p>
+<h2>References and Limitations</h2>
+<p>Numerical NEC AC resistance and reactance values follow NFPA 70, Chapter 9 Table 9 (2017 edition), for three single conductors in conduit, 60 Hz and 75°C; DC values follow Chapter 9 Table 8. This tool is not affiliated with NFPA. Consult the currently adopted code and conductor manufacturer data for engineering decisions. See <a href="https://www.calculator.net/voltage-drop-calculator.html">the reference voltage drop calculator</a>, <a href="https://necwire.com/voltage-drop-calculator">NEC voltage drop methodology</a>, and <a href="https://www.copper.org/applications/electrical/building/pdf/copper-wire-install-standard.pdf">Copper Development Association guidance</a>.</p>
+<p class="cp-page-footer">CalcPro — electrical calculations are estimates for informational use. Verify safety and code compliance with a qualified professional.</p></article></main></div><script>(() => {
+ 'use strict';
+ const nec = [[0.058,0.073,3.1,3.1,3.1,null,null,null],[0.054,0.068,2.0,2.0,2.0,3.2,3.2,3.2],[0.05,0.063,1.2,1.2,1.2,2.0,2.0,2.0],[0.052,0.065,0.78,0.78,0.78,1.3,1.3,1.3],[0.051,0.064,0.49,0.49,0.49,0.81,0.81,0.81],[0.048,0.06,0.31,0.31,0.31,0.51,0.51,0.51],[0.047,0.059,0.25,0.25,0.25,0.4,0.41,0.4],[0.045,0.057,0.19,0.2,0.2,0.32,0.32,0.32],[0.046,0.057,0.15,0.16,0.16,0.25,0.26,0.25],[0.044,0.055,0.12,0.13,0.12,0.2,0.21,0.2],[0.043,0.054,0.1,0.1,0.1,0.16,0.16,0.16],[0.042,0.052,0.077,0.082,0.079,0.13,0.13,0.13],[0.041,0.051,0.062,0.067,0.063,0.1,0.11,0.1],[0.041,0.052,0.052,0.057,0.054,0.085,0.09,0.086],[0.041,0.051,0.044,0.049,0.045,0.071,0.076,0.072],[0.04,0.05,0.038,0.043,0.039,0.061,0.066,0.063],[0.04,0.049,0.033,0.038,0.035,0.054,0.059,0.055],[0.039,0.048,0.027,0.032,0.029,0.043,0.048,0.045],[0.039,0.048,0.023,0.028,0.025,0.036,0.041,0.038],[0.038,0.048,0.019,0.024,0.021,0.029,0.034,0.031],[0.037,0.046,0.015,0.019,0.018,0.023,0.027,0.025]];
+ const necDC = [[3.07,null],[1.93,3.17],[1.21,1.99],[0.778,1.28],[0.491,0.808],[0.308,0.508],[0.245,0.404],[0.194,0.319],[0.154,0.253],[0.122,0.201],[0.0967,0.159],[0.0766,0.126],[0.0608,0.1],[0.0515,0.0847],[0.0435,0.0715],[0.0378,0.062],[0.0336,0.0551],[0.0276,0.0453],[0.0223,0.0366],[0.0176,0.0289],[0.0132,0.0216]];
+ const feetPerMeter = 3.280839895013123;
+ const factorDistance = {feet:0.3048,meters:1,miles:1609.344,kilometers:1000};
+ const resistanceUnits = {okm:1/1000,om:1,mom:.001,okf:1/304.8,of:1/.3048,mof:.001/.3048};
+ const resistivityRatio = {copper:1,aluminum:0.028264/0.017241,silver:0.01587/0.017241,gold:0.0244/0.017241};
+ const number = (value, digits=2, trim=false) => {if (!Number.isFinite(value)) return '—'; const t=value.toFixed(digits);return trim ? t.replace(/\.?0+$/,'') : t;};
+ const measured = (value, defaultDigits=2) => Math.abs(value) > 0 && Math.abs(value) < .1 ? number(value,Math.abs(value)<.01?6:4,true) : number(value,defaultDigits);
+ document.querySelectorAll('.calcpro-vdrop').forEach(root => {
+  const form=root.querySelector('.calcpro-vdrop-form');
+  const out=name=>root.querySelector('[data-out="'+name+'"]');
+  const input=name=>form.elements.namedItem(name);
+  const results=root.querySelector('.calcpro-vdrop-result');
+  const err=root.querySelector('.calcpro-vdrop-error');
+  const tabs=[...root.querySelectorAll('.calcpro-vdrop-tab')];
+  let mode='nec'; let savedText='';
+  const showError=msg=>{err.textContent=msg;err.hidden=false;results.hidden=true;};
+  const clearError=()=>{err.hidden=true;err.textContent='';};
+  const markChanged=()=>{if (!results.hidden){results.hidden=true;} clearError();};
+  function switchMode(next, shouldFocus=false) {
+   mode=next;
+   tabs.forEach(tab=>{const isActive=tab.dataset.mode===next;tab.classList.toggle('is-active',isActive);tab.setAttribute('aria-selected',String(isActive));tab.tabIndex=isActive?0:-1;if(shouldFocus&&isActive)tab.focus();});
+   root.querySelectorAll('[data-pane]').forEach(p=>{p.hidden=p.dataset.pane!==next;});
+   markChanged();
+  }
+  tabs.forEach((tab,index)=>{
+   tab.addEventListener('click',()=>switchMode(tab.dataset.mode));
+   tab.addEventListener('keydown',ev=>{if(!['ArrowLeft','ArrowRight','Home','End'].includes(ev.key))return;ev.preventDefault();const n=ev.key==='Home'?0:ev.key==='End'?tabs.length-1:(index+(ev.key==='ArrowRight'?1:-1)+tabs.length)%tabs.length;switchMode(tabs[n].dataset.mode,true);});
+  });
+  form.addEventListener('input',markChanged);form.addEventListener('change',markChanged);
+  function getFinite(name,label,{positive=false,nonnegative=false,min=null,max=null}={}){
+   const el=input(name);const raw=el.value.trim();const value=Number(raw);
+   if (raw===''||!Number.isFinite(value)|| (positive&&value<=0)||(nonnegative&&value<0)||(min!==null&&value<min)||(max!==null&&value>max)){
+    throw new Error('Enter a valid '+label+(positive?' greater than zero':nonnegative?' of zero or greater':'')+(min!==null&&max!==null?' (between '+min+' and '+max+')':'')+'.');
+   }
+   return value;
+  }
+  function calc(){
+   const voltage=getFinite('voltage','voltage',{positive:true});
+   const current=getFinite('amperes','load current',{nonnegative:true});
+   const distance=getFinite('distance','one-way distance',{nonnegative:true});
+   const count=Number(input('parallel').value);
+   const phase=input('phase').value;
+   const factor=phase==='ac3'?Math.sqrt(3):2;
+   const meters=distance*factorDistance[input('distanceUnit').value];
+   const ft=meters*feetPerMeter;
+   let rPerFt=0, method='', desc='', note='';
+   if(mode==='nec'){
+    const index=Number(input('necSize').value);const material=input('necMaterial').value;const conduit=input('conduit').value;
+    const row=nec[index];
+    if(!row)throw new Error('Choose a valid NEC wire size.');
+    if(phase==='dc'){
+     const dc=necDC[index][material==='copper'?0:1];
+     if(dc===null)throw new Error('The NEC table does not provide DC resistance for this material and wire size. Select a supported combination or use Other.');
+     rPerFt=dc/1000;
+     method='NEC Chapter 9 Table 8 (DC resistance, 75°C)';
+     note='DC resistance values are tabulated at 75°C; actual conductor temperature and connections affect the result.';
+    }else{
+     const pf=getFinite('pf','power factor',{min:0,max:1});
+     const conduitIndex=conduit==='pvc'?0:conduit==='aluminum'?1:2;
+     const R=row[(material==='copper'?2:5)+conduitIndex];
+     if(R===null)throw new Error('NEC Table 9 has no AC resistance value for this wire-material/size combination. Choose another wire size or use Other.');
+     const X=row[conduit==='steel'?1:0];
+     const Z=R*pf+X*Math.sqrt(Math.max(0,1-pf*pf));
+     rPerFt=Z/1000;
+     method='NEC Chapter 9 Table 9 (75°C, 60 Hz), effective impedance';
+     note='Based on NEC Chapter 9 Table 9 AC resistance and reactance at 75°C and 60 Hz; actual installation conditions and frequency can change the voltage drop.';
+     desc='R='+R+' Ω/1,000ft, X='+X+' Ω/1,000ft, PF='+pf+'; Z = R × PF + X × √(1 − PF²). ';
+    }
+   } else if(mode==='estimated'){
+    const ohmPerKmCopper=getFinite('estSize','wire size resistance',{positive:true});
+    const material=input('estMaterial').value;
+    rPerFt=(ohmPerKmCopper*resistivityRatio[material])/1000/feetPerMeter;
+    method='Estimated metal resistance at 20°C (area/resistivity approximation)';
+    note='Based on typical wire cross-section and resistivity at 20°C. AC reactance, skin effect, conductor temperature and connector resistance are not included.';
+   } else {
+    const value=getFinite('resistance','custom impedance/resistance',{nonnegative:true});
+    rPerFt=value*resistanceUnits[input('resistanceUnit').value]/feetPerMeter;
+    method='Custom resistance / effective impedance';
+    note='Uses your supplied effective impedance for AC or resistance for DC; no additional power-factor correction is applied.';
+   }
+   if(!Number.isFinite(rPerFt)||rPerFt<0)throw new Error('The resistance value is not supported.');
+   const zeKft=rPerFt*1000;
+   const drop=factor*current*(ft/1000)*zeKft/count;
+   if(!Number.isFinite(drop))throw new Error('The resulting voltage drop is too large. Try smaller input values.');
+   const pct=100*drop/voltage;
+   const end=voltage-drop;
+   return {drop,pct,end,voltage,phase,count,meters,ft,zeKft,factor,current,method,note,desc};
+  }
+  form.addEventListener('submit',event=>{
+   event.preventDefault();clearError();
+   try{
+    const c=calc();
+    out('drop').textContent=measured(c.drop);
+    out('percent').textContent=measured(c.pct);
+    out('end').textContent=number(c.end,Math.abs(c.drop)>0&&Math.abs(c.drop)<.01?6:2,true);
+    out('method').textContent=c.method;
+    out('meters').textContent=number(c.meters,4,true)+' meters ('+number(c.ft,4,true)+' feet)';
+    out('impedance').textContent=number(c.zeKft,6,true)+' Ω/1,000 feet, before parallel division';
+    out('equation').textContent=(c.phase==='ac3'?'√3':'2')+' × '+number(c.current,6,true)+' A × '+number(c.ft/1000,6,true)+' kft × '+number(c.zeKft,6,true)+' Ω/kft ÷ '+c.count;
+    out('explanation').textContent=c.note;
+    results.hidden=false;
+    savedText='Voltage Drop Calculator — CalcPro\n'+
+     'Mode: '+c.method+'\n'+c.desc+'\nVoltage: '+c.voltage+' V\nPhase: '+(c.phase==='ac3'?'AC 3-phase':c.phase==='ac'?'AC single phase':'DC')+'\n'+
+     'One-way distance: '+c.meters+' meters\nLoad current: '+c.current+' A\nParallel sets: '+c.count+'\n'+
+     'Voltage drop: '+out('drop').textContent+' V\nVoltage drop percentage: '+out('percent').textContent+'%\nVoltage at the end: '+out('end').textContent+' V\n'+c.note;
+   }catch(e){showError(e.message);}
+  });
+  root.querySelector('[data-action="clear"]').addEventListener('click',()=>{form.reset();results.hidden=true;clearError();savedText='';switchMode('nec');root.querySelector('.calcpro-vdrop-details').open=false;});
+  root.querySelector('[data-action="print"]').addEventListener('click',()=>{if(!results.hidden)window.print();});
+  root.querySelector('[data-action="save"]').addEventListener('click',()=>{if(results.hidden||!savedText)return;const blob=new Blob([savedText],{type:'text/plain;charset=utf-8'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='voltage-drop-calculation.txt';root.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),200);});
+ });
+})();</script></body></html>
