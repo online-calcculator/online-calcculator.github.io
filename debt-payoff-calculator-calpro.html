@@ -109,7 +109,8 @@
  .calcpro-debt-report-table{min-width:0}
 }
 
-</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Debt Payoff Calculator</nav><h1 class="cp-page-title">Debt Payoff Calculator</h1><p class="cp-intro">Estimate how long it will take to pay off multiple debts, the interest you will pay, and the most cost-efficient repayment sequence using the debt avalanche method. Adjust payments, annual extras, and one-time contributions to compare scenarios.</p><section aria-label="Calculator" class="cp-tool-area">
+</style><link rel="stylesheet" href="calcpro-tools-sidebar.css">
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Debt Payoff Calculator</nav><h1 class="cp-page-title">Debt Payoff Calculator</h1><p class="cp-intro">Estimate how long it will take to pay off multiple debts, the interest you will pay, and the most cost-efficient repayment sequence using the debt avalanche method. Adjust payments, annual extras, and one-time contributions to compare scenarios.</p><section aria-label="Calculator" class="cp-tool-area">
 <div class="calcpro-debt-root" id="calcpro-debt-root">
   <section id="calcpro-debt-result" class="calcpro-debt-result" aria-live="polite" aria-label="Debt payoff results" hidden>
     <div class="calcpro-debt-result-header"><span>Results</span><button class="calcpro-debt-print" type="button" id="calcpro-debt-print" title="Print calculated results">Print results</button></div>
@@ -403,4 +404,6 @@
   });
   id('print').addEventListener('click',()=>window.print());
 })();
-</script></body></html>
+</script><script defer src="calcpro-tools-sidebar-data.js"></script>
+<script defer src="calcpro-tools-sidebar.js"></script>
+</body></html>

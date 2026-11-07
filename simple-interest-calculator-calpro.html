@@ -66,7 +66,8 @@
 @media(max-width:680px){.calcpro-si .calcpro-si-overview{grid-template-columns:1fr;gap:16px}.calcpro-si .calcpro-si-panel{min-height:0}.calcpro-si .calcpro-si-charts{grid-template-columns:minmax(0,1fr) minmax(120px,.42fr);column-gap:9px}.calcpro-si .calcpro-si-chart h3{font-size:15px}}
 @media(max-width:440px){.calcpro-si .calcpro-si-guide{gap:9px;font-size:12px}.calcpro-si .calcpro-si-row{grid-template-columns:88px minmax(0,1fr);column-gap:4px}.calcpro-si .calcpro-si-field>select{width:97px}.calcpro-si .calcpro-si-charts{grid-template-columns:1fr;gap:15px}.calcpro-si .calcpro-si-graph svg{max-height:none}.calcpro-si .calcpro-si-donut{max-width:195px}.calcpro-si .calcpro-si-summaries{font-size:14px}}
 @media print{.calcpro-si .calcpro-si-guide,.calcpro-si .calcpro-si-actions,.calcpro-si .calcpro-si-save{display:none!important}.calcpro-si .calcpro-si-charts{break-inside:avoid}.calcpro-si .calcpro-si-table tbody tr{break-inside:avoid}}
-</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Simple Interest Calculator</nav><h1 class="cp-page-title">Simple Interest Calculator</h1><p class="cp-intro">Use this simple interest calculator to find the ending balance, starting principal, term, or interest rate. Switch tabs to solve for each variable and view the updated schedule and charts.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-si" id="calcpro-si-root">
+</style><link rel="stylesheet" href="calcpro-tools-sidebar.css">
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Simple Interest Calculator</nav><h1 class="cp-page-title">Simple Interest Calculator</h1><p class="cp-intro">Use this simple interest calculator to find the ending balance, starting principal, term, or interest rate. Switch tabs to solve for each variable and view the updated schedule and charts.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-si" id="calcpro-si-root">
   <div class="calcpro-si-guide"><span class="calcpro-si-guide-icon" aria-hidden="true">▼</span><span>Modify the values and click the Calculate button to use.</span></div>
   <div class="calcpro-si-overview">
     <div class="calcpro-si-input-side">
@@ -245,4 +246,6 @@
  });
  setTab('balance');calculate();
 })();
-</script></body></html>
+</script><script defer src="calcpro-tools-sidebar-data.js"></script>
+<script defer src="calcpro-tools-sidebar.js"></script>
+</body></html>

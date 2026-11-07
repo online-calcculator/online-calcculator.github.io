@@ -57,7 +57,8 @@
 @media(max-width:715px){.calcpro-lbm .calcpro-lbm-grid{grid-template-columns:1fr;gap:17px}.calcpro-lbm .calcpro-lbm-left{max-width:430px}.calcpro-lbm .calcpro-lbm-right{max-width:100%;}.calcpro-lbm .calcpro-lbm-results-table{margin-left:0;}.calcpro-lbm .calcpro-lbm-result-intro{margin-bottom:9px;}}
 @media(max-width:400px){.calcpro-lbm .calcpro-lbm-instruction{font-size:13px}.calcpro-lbm .calcpro-lbm-instruction-icon{width:22px;height:22px}.calcpro-lbm .calcpro-lbm-tab{font-size:13px;padding:8px 6px}.calcpro-lbm .calcpro-lbm-panel{padding:9px 7px}.calcpro-lbm .calcpro-lbm-radio,.calcpro-lbm .calcpro-lbm-age-prompt{font-size:14px}.calcpro-lbm .calcpro-lbm-field{grid-template-columns:52px 1fr;gap:6px}.calcpro-lbm .calcpro-lbm-results-table{font-size:13px}.calcpro-lbm .calcpro-lbm-results-table td,.calcpro-lbm .calcpro-lbm-results-table th{padding:5px 3px;}}
 @media print{.calcpro-lbm .calcpro-lbm-save,.calcpro-lbm .calcpro-lbm-actions,.calcpro-lbm .calcpro-lbm-instruction{display:none!important}.calcpro-lbm .calcpro-lbm-grid{grid-template-columns:45% 1fr;gap:15px}.calcpro-lbm .calcpro-lbm-results-table{font-size:12px}}
-</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="fitness-and-health-calculator.html">Fitness &amp; Health</a> / Lean Body Mass Calculator</nav><h1 class="cp-page-title">Lean Body Mass Calculator</h1><p class="cp-intro">The Lean Body Mass Calculator computes a person's estimated lean body mass (LBM) based on body weight, height, gender, and age. For comparison purposes, the calculator provides results from multiple formulas.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-lbm" id="calcpro-lbm-root">
+</style><link rel="stylesheet" href="calcpro-tools-sidebar.css">
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="fitness-and-health-calculator.html">Fitness &amp; Health</a> / Lean Body Mass Calculator</nav><h1 class="cp-page-title">Lean Body Mass Calculator</h1><p class="cp-intro">The Lean Body Mass Calculator computes a person's estimated lean body mass (LBM) based on body weight, height, gender, and age. For comparison purposes, the calculator provides results from multiple formulas.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-lbm" id="calcpro-lbm-root">
   <div class="calcpro-lbm-instruction"><span class="calcpro-lbm-instruction-icon" aria-hidden="true">▼</span><span>Modify the values and click the Calculate button to use</span></div>
   <div class="calcpro-lbm-grid">
     <div class="calcpro-lbm-left">
@@ -300,4 +301,6 @@
     savedStatus.textContent='Your result file is ready to save.';savedStatus.hidden=false;
   });
   calculate();
-})();</script></body></html>
+})();</script><script defer src="calcpro-tools-sidebar-data.js"></script>
+<script defer src="calcpro-tools-sidebar.js"></script>
+</body></html>

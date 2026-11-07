@@ -42,7 +42,8 @@
 @media(max-width:360px) {.calcpro-shoe .calcpro-shoe-panel{padding:9px 6px}.calcpro-shoe .calcpro-shoe-row{grid-template-columns:minmax(102px,1.25fr) minmax(76px,.95fr) minmax(40px,.58fr)}.calcpro-shoe .calcpro-shoe-field-label{font-size:12.5px}.calcpro-shoe .calcpro-shoe-range{font-size:11px}.calcpro-shoe .calcpro-shoe-age{grid-template-columns:80px 1fr}.calcpro-shoe .calcpro-shoe-foot-controls{grid-template-columns:minmax(65px,1fr) minmax(73px,1fr)}}
 @media print {.calcpro-shoe .calcpro-shoe-actions,.calcpro-shoe .calcpro-shoe-save {display:none!important}.calcpro-shoe .calcpro-shoe-results {break-inside:avoid}}
 
-</style><!--TOOL CSS INSERT HERE: Paste only calculator-specific CSS here. Use unique class/id prefixes per tool, e.g. bmi-, loan-, age-. Keep header, sidebar and article CSS in style.css.--></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="other-calculator.html">Other Calculators</a> / Shoe Size Conversion</nav><h1 class="cp-page-title">Shoe Size Conversion</h1><p class="cp-intro">Please provide a shoe or foot size below to convert to the shoe sizes of other countries.</p><section aria-label="Calculator" class="cp-tool-area">
+</style><!--TOOL CSS INSERT HERE: Paste only calculator-specific CSS here. Use unique class/id prefixes per tool, e.g. bmi-, loan-, age-. Keep header, sidebar and article CSS in style.css.--><link rel="stylesheet" href="calcpro-tools-sidebar.css">
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="other-calculator.html">Other Calculators</a> / Shoe Size Conversion</nav><h1 class="cp-page-title">Shoe Size Conversion</h1><p class="cp-intro">Please provide a shoe or foot size below to convert to the shoe sizes of other countries.</p><section aria-label="Calculator" class="cp-tool-area">
 <div class="calcpro-shoe" id="calcpro-shoe-root">
   <section class="calcpro-shoe-results" id="calcpro-shoe-results" aria-live="polite" aria-label="Shoe size conversion results" hidden>
     <div class="calcpro-shoe-result-head"><h2 id="calcpro-shoe-result-title" tabindex="-1">Result</h2>
@@ -313,4 +314,6 @@
   });
   useAgeGroup();
 })();
-</script></body></html>
+</script><script defer src="calcpro-tools-sidebar-data.js"></script>
+<script defer src="calcpro-tools-sidebar.js"></script>
+</body></html>

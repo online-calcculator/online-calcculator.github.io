@@ -53,7 +53,8 @@
 .calcpro-currency-root .calcpro-currency-empty{text-align:center!important;color:#6c7b84;font-style:italic}
 @media(max-width:590px){.calcpro-currency-root .calcpro-currency-fields{grid-template-columns:1fr;gap:4px}.calcpro-currency-root .calcpro-currency-fields label.calcpro-currency-field-label{text-align:left;margin-top:7px}.calcpro-currency-root .calcpro-currency-custom-fields{grid-template-columns:1fr}.calcpro-currency-root .calcpro-currency-fields input:not([type=checkbox]),.calcpro-currency-root .calcpro-currency-fields select{max-width:100%}.calcpro-currency-root .calcpro-currency-hint{max-width:100%}.calcpro-currency-root .calcpro-currency-answer{font-size:20px}.calcpro-currency-root .calcpro-currency-panel{padding:11px}.calcpro-currency-root .calcpro-currency-status{align-items:flex-start}}
 @media print{.calcpro-currency-root .calcpro-currency-btn,.calcpro-currency-root .calcpro-currency-search{display:none}.calcpro-currency-root .calcpro-currency-table-outer{overflow:visible}.calcpro-currency-root .calcpro-currency-table{font-size:10px}}
-</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Currency Calculator</nav><h1 class="cp-page-title">Currency Calculator</h1><p class="cp-intro">Convert currencies using the latest available published daily rates, compare world exchange rates, or enter a customized exchange rate.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-currency-root" id="calcpro-currency-root">
+</style><link rel="stylesheet" href="calcpro-tools-sidebar.css">
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Currency Calculator</nav><h1 class="cp-page-title">Currency Calculator</h1><p class="cp-intro">Convert currencies using the latest available published daily rates, compare world exchange rates, or enter a customized exchange rate.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-currency-root" id="calcpro-currency-root">
   <section class="calcpro-currency-section" aria-labelledby="calcpro-currency-live-title">
     <h2 class="calcpro-currency-title" id="calcpro-currency-live-title">With Live Exchange Rate</h2>
     <div class="calcpro-currency-result" id="calcpro-currency-live-result" aria-live="polite" hidden>
@@ -413,4 +414,6 @@
   });
 })();
 </script>
+<script defer src="calcpro-tools-sidebar-data.js"></script>
+<script defer src="calcpro-tools-sidebar.js"></script>
 </body></html>

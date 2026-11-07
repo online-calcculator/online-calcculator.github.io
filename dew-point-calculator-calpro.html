@@ -42,7 +42,8 @@
 @media(max-width:335px){.calcpro-dew-field{grid-template-columns:minmax(0,1fr) minmax(65px,.8fr);gap:3px 5px}.calcpro-dew-field label{font-size:12px}.calcpro-dew-unit{grid-column:2;width:100%}.calcpro-dew-field:nth-child(2) .calcpro-dew-unit{display:none}}
 @media print{.calcpro-dew-actions,.calcpro-dew-save,.calcpro-dew-tipbar{display:none!important}.calcpro-dew-result[hidden]{display:none!important}}
 
-</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / Dew Point Calculator</nav><h1 class="cp-page-title">Dew Point Calculator</h1><p class="cp-intro">Calculate the dew point, relative humidity, or air temperature from any two of these values. The result includes moisture and vapor-pressure details.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-dew-tool" id="calcpro-dew-root">
+</style><link rel="stylesheet" href="calcpro-tools-sidebar.css">
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / Dew Point Calculator</nav><h1 class="cp-page-title">Dew Point Calculator</h1><p class="cp-intro">Calculate the dew point, relative humidity, or air temperature from any two of these values. The result includes moisture and vapor-pressure details.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-dew-tool" id="calcpro-dew-root">
   <div class="calcpro-dew-tipbar" id="calcpro-dew-tipbar">Modify the values and click the Calculate button to use</div>
   <section class="calcpro-dew-result" id="calcpro-dew-result" aria-label="Calculation results" aria-live="polite" hidden>
     <div class="calcpro-dew-resultbar"><span class="calcpro-dew-resultbar-title">Result</span>
@@ -198,4 +199,6 @@
    const link=document.createElement('a');link.href=url;link.download='dew-point-calculation.txt';link.style.display='none';document.body.appendChild(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
  });
 })();
-</script></body></html>
+</script><script defer src="calcpro-tools-sidebar-data.js"></script>
+<script defer src="calcpro-tools-sidebar.js"></script>
+</body></html>

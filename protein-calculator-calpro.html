@@ -89,7 +89,8 @@
 @media(max-width:500px){.calcpro-protein-converter{padding:9px 8px 10px}.calcpro-protein-converter-tabs{padding-left:0;gap:2px;margin-bottom:12px}.calcpro-protein-converter-tabs button{font-size:12px;padding:3px 5px}.calcpro-protein-converter-fields{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.calcpro-protein .calcpro-protein-converter-column input,.calcpro-protein .calcpro-protein-converter-column select{font-size:14px}.calcpro-protein-converter-intro{font-size:14px}}
 @media(max-width:320px){.calcpro-protein-converter-fields{grid-template-columns:1fr}.calcpro-protein-converter-tabs button{font-size:11px;padding:4px}}
 @media print{.calcpro-protein-converter{display:none!important}}
-</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/fitness-and-health-calculator/">Fitness &amp; Health</a> / Protein Calculator</nav><h1 class="cp-page-title">Protein Calculator</h1><p class="cp-intro">Estimate daily dietary protein intake using your weight, activity level, and age. Compare weight-based, calorie-based, and WHO/FAO/UNU reference methods; adjust units and optional metabolic settings.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-protein" id="calcpro-protein-root">
+</style><link rel="stylesheet" href="calcpro-tools-sidebar.css">
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/fitness-and-health-calculator/">Fitness &amp; Health</a> / Protein Calculator</nav><h1 class="cp-page-title">Protein Calculator</h1><p class="cp-intro">Estimate daily dietary protein intake using your weight, activity level, and age. Compare weight-based, calorie-based, and WHO/FAO/UNU reference methods; adjust units and optional metabolic settings.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-protein" id="calcpro-protein-root">
 <div class="calcpro-protein-utilities"><button class="calcpro-protein-print" id="calcpro-protein-print" type="button">Print</button></div>
 <section aria-label="Protein intake results" aria-live="polite" class="calcpro-protein-result" hidden="" id="calcpro-protein-result">
 <div class="calcpro-protein-result-heading"><h2>Result</h2><button aria-label="Save results to a text file" class="calcpro-protein-save" id="calcpro-protein-save" title="Save the current calculation as a text file" type="button">▣ <small>Save</small></button></div>
@@ -457,4 +458,6 @@
   });
   activateConverterType('length');
   activateTab('metric',false);
-})();</script></body></html>
+})();</script><script defer src="calcpro-tools-sidebar-data.js"></script>
+<script defer src="calcpro-tools-sidebar.js"></script>
+</body></html>

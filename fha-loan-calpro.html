@@ -86,7 +86,8 @@
 @media(max-width:390px){.calcpro-fha-topline{flex-direction:column;align-items:flex-start}.calcpro-fha-field{grid-template-columns:minmax(106px,40%) minmax(0,60%)}.calcpro-fha-value{gap:3px}.calcpro-fha-field>label{font-size:11px}.calcpro-fha-breakdown,.calcpro-fha-facts{font-size:11px}.calcpro-fha-result-head strong{font-size:18px}.calcpro-fha-value input{padding:3px 4px}}
 @media print{.calcpro-fha-topactions,.calcpro-fha-form,.calcpro-fha-actions,.calcpro-fha-amort-head button,.calcpro-fha-tabs,.calcpro-fha-input-note{display:none!important}.calcpro-fha-grid,.calcpro-fha-schedule-grid{display:block}.calcpro-fha-calculator{font-size:12px}.calcpro-fha-table-scroll{max-height:none;overflow:visible}.calcpro-fha-chart-area{max-width:420px;margin:15px auto}.calcpro-fha-breakdown,.calcpro-fha-facts{font-size:12px}.calcpro-fha-results{width:100%}}
 
-</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / FHA Loan Calculator</nav><h1 class="cp-page-title">FHA Loan Calculator</h1><p class="cp-intro">Calculate an estimated FHA mortgage payment and total housing costs, including FHA mortgage insurance premiums, property tax, homeowners insurance, extra principal payments, and a detailed amortization schedule.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-fha-calculator" id="calcpro-fha-calculator">
+</style><link rel="stylesheet" href="calcpro-tools-sidebar.css">
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / FHA Loan Calculator</nav><h1 class="cp-page-title">FHA Loan Calculator</h1><p class="cp-intro">Calculate an estimated FHA mortgage payment and total housing costs, including FHA mortgage insurance premiums, property tax, homeowners insurance, extra principal payments, and a detailed amortization schedule.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-fha-calculator" id="calcpro-fha-calculator">
  <div class="calcpro-fha-topline"><span>Modify the values and select Calculate to update your estimate</span><div class="calcpro-fha-topactions"><button type="button" id="calcpro-fha-print">Print</button><button type="button" id="calcpro-fha-save">Save estimate</button></div></div>
  <div class="calcpro-fha-grid">
   <form class="calcpro-fha-form" id="calcpro-fha-form" novalidate><h2 class="calcpro-fha-form-title">Loan and property details</h2>
@@ -475,4 +476,6 @@
  field('down_payment').dataset.prevUnit='percent';field('property_tax').dataset.prevUnit='percent';
  syncOptional();run();
 })();
-</script></body></html>
+</script><script defer src="calcpro-tools-sidebar-data.js"></script>
+<script defer src="calcpro-tools-sidebar.js"></script>
+</body></html>

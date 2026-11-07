@@ -105,7 +105,8 @@
  .calcpro-debt-form{break-inside:avoid;background:#fff}
  .calcpro-debt-details:not([open]){display:none}
 }
-</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Debt Consolidation Calculator</nav><h1 class="cp-page-title">Debt Consolidation Calculator</h1><p class="cp-intro">Compare the annual percentage rate (APR), monthly payments, payoff duration, interest, and loan fees when replacing several debts with one consolidation loan. This calculator includes the effect of upfront fees in its estimated APR and total costs.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-debt" id="calcpro-debt-root">
+</style><link rel="stylesheet" href="calcpro-tools-sidebar.css">
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Debt Consolidation Calculator</nav><h1 class="cp-page-title">Debt Consolidation Calculator</h1><p class="cp-intro">Compare the annual percentage rate (APR), monthly payments, payoff duration, interest, and loan fees when replacing several debts with one consolidation loan. This calculator includes the effect of upfront fees in its estimated APR and total costs.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-debt" id="calcpro-debt-root">
   <section id="calcpro-debt-results" class="calcpro-debt-results" aria-label="Debt consolidation results" aria-live="polite" hidden>
     <div class="calcpro-debt-results-heading"><h2>Results</h2><button id="calcpro-debt-print" type="button" title="Print or save results as PDF" aria-label="Print or save results as PDF"><span aria-hidden="true">▣</span> Print / Save</button></div>
     <div id="calcpro-debt-summary" class="calcpro-debt-summary"></div>
@@ -567,4 +568,6 @@
   });
   el('print').addEventListener('click',()=>window.print());
 })();
-</script></body></html>
+</script><script defer src="calcpro-tools-sidebar-data.js"></script>
+<script defer src="calcpro-tools-sidebar.js"></script>
+</body></html>

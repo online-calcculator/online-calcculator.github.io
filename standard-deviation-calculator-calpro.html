@@ -57,7 +57,8 @@
 .calcpro-sd .calcpro-sd-freq td:nth-child(3){text-align:right}
 @media(max-width:580px){.calcpro-sd .calcpro-sd-primary{font-size:15px}.calcpro-sd .calcpro-sd-results{font-size:13px}.calcpro-sd .calcpro-sd-results p{font-size:13px}.calcpro-sd .calcpro-sd-table{font-size:12px}.calcpro-sd .calcpro-sd-table th,.calcpro-sd .calcpro-sd-table td{padding:6px 7px}.calcpro-sd .calcpro-sd-choice-row{gap:6px}.calcpro-sd .calcpro-sd-form{padding:7px}}
 @media print{.calcpro-sd .calcpro-sd-form,.calcpro-sd .calcpro-sd-print,.calcpro-sd .calcpro-sd-error{display:none!important}.calcpro-sd .calcpro-sd-results{display:block!important}.calcpro-sd .calcpro-sd-results[hidden]{display:none!important}.calcpro-sd .calcpro-sd-scroll{overflow:visible}.calcpro-sd .calcpro-sd-table{font-size:10px}}
-</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/math-calculator/">Math</a> / Standard Deviation Calculator</nav><h1 class="cp-page-title">Standard Deviation Calculator</h1><p class="cp-intro">Please provide numbers separated by commas to calculate the standard deviation, variance, mean, sum, and margin of error.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-sd" id="calcpro-sd-root">
+</style><link rel="stylesheet" href="calcpro-tools-sidebar.css">
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/math-calculator/">Math</a> / Standard Deviation Calculator</nav><h1 class="cp-page-title">Standard Deviation Calculator</h1><p class="cp-intro">Please provide numbers separated by commas to calculate the standard deviation, variance, mean, sum, and margin of error.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-sd" id="calcpro-sd-root">
   <section class="calcpro-sd-results" id="calcpro-sd-results" aria-label="Standard deviation results" aria-live="polite" hidden>
     <div class="calcpro-sd-result-title"><strong>Result</strong><button class="calcpro-sd-print" type="button" id="calcpro-sd-print" aria-label="Print standard deviation results">▣ Print</button></div>
     <p class="calcpro-sd-primary" id="calcpro-sd-primary"></p>
@@ -294,4 +295,6 @@
     input.focus();
   });
   root.querySelector('#calcpro-sd-print').addEventListener('click',()=>window.print());
-})();</script></body></html>
+})();</script><script defer src="calcpro-tools-sidebar-data.js"></script>
+<script defer src="calcpro-tools-sidebar.js"></script>
+</body></html>

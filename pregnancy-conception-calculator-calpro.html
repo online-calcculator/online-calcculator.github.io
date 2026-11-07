@@ -47,7 +47,8 @@
 @media(max-width:340px){.calcpro-pc .calcpro-pc-panel{padding-left:7px;padding-right:7px}.calcpro-pc .calcpro-pc-date{gap:2px}.calcpro-pc .calcpro-pc-month{width:63px}.calcpro-pc .calcpro-pc-day{width:48px}.calcpro-pc .calcpro-pc-year{width:70px}}
 @media print{.calcpro-pc .calcpro-pc-panel,.calcpro-pc .calcpro-pc-instruction,.calcpro-pc .calcpro-pc-save{display:none!important}.calcpro-pc .calcpro-pc-result:not([hidden]){display:block!important}}
 
-</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/fitness-and-health-calculator/">Fitness &amp; Health</a> / Pregnancy Conception Calculator</nav><h1 class="cp-page-title">Pregnancy Conception Calculator</h1><p class="cp-intro">Estimate conception dates from an expected due date, last menstrual period, or ultrasound gestational age. See potential intercourse dates that could have led to pregnancy. All dates are approximate.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-pc" id="calcpro-pc-root">
+</style><link rel="stylesheet" href="calcpro-tools-sidebar.css">
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/fitness-and-health-calculator/">Fitness &amp; Health</a> / Pregnancy Conception Calculator</nav><h1 class="cp-page-title">Pregnancy Conception Calculator</h1><p class="cp-intro">Estimate conception dates from an expected due date, last menstrual period, or ultrasound gestational age. See potential intercourse dates that could have led to pregnancy. All dates are approximate.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-pc" id="calcpro-pc-root">
   <div class="calcpro-pc-instruction" id="calcpro-pc-instruction"><span class="calcpro-pc-arrow" aria-hidden="true">▼</span><span>Modify the values and click the Calculate button to use</span></div>
   <section id="calcpro-pc-result" class="calcpro-pc-result" aria-label="Conception estimate results" aria-live="polite" hidden>
     <div class="calcpro-pc-result-head"><h2>Result</h2><button id="calcpro-pc-save" class="calcpro-pc-save" type="button" title="Save result as text" aria-label="Save result as a text file"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 2h14l4 4v16H2V2h2zm2 2v6h11V4h-2v5H8V4H6zm6 10a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"/></svg><span>save</span></button></div>
@@ -259,4 +260,6 @@
   });
   setInitialValues();
 })();
-</script></body></html>
+</script><script defer src="calcpro-tools-sidebar-data.js"></script>
+<script defer src="calcpro-tools-sidebar.js"></script>
+</body></html>

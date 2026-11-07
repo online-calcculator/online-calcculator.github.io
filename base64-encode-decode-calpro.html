@@ -44,7 +44,8 @@
 .calcpro-base64-note{color:#485462;font-size:12px;line-height:1.4;margin-top:9px}
 @media(max-width:600px){.calcpro-base64-card{padding:11px}.calcpro-base64-root textarea{min-height:114px}.calcpro-base64-root h2{font-size:19px}.calcpro-base64-result-head{align-items:flex-start}.calcpro-base64-root select{min-width:0;max-width:100%}}
 @media print{.calcpro-base64-root .calcpro-base64-actions,.calcpro-base64-root .calcpro-base64-result-actions,.calcpro-base64-root .calcpro-base64-file-picker{display:none}}
-</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="other-calculator.html">Other</a> / Base64 Encode / Decode</nav><h1 class="cp-page-title">Base64 Encode / Decode</h1><p class="cp-intro">Encode or decode Base64 text, images, and files entirely in your browser. Choose a character encoding for text conversion, or use the file tool to convert binary data safely without uploading it.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-base64-root" id="calcpro-base64-root">
+</style><link rel="stylesheet" href="calcpro-tools-sidebar.css">
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="other-calculator.html">Other</a> / Base64 Encode / Decode</nav><h1 class="cp-page-title">Base64 Encode / Decode</h1><p class="cp-intro">Encode or decode Base64 text, images, and files entirely in your browser. Choose a character encoding for text conversion, or use the file tool to convert binary data safely without uploading it.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-base64-root" id="calcpro-base64-root">
   <form class="calcpro-base64-card" id="calcpro-base64-text-form" novalidate>
     <div class="calcpro-base64-field"><label for="calcpro-base64-text-input">Text to encode or decode:</label><textarea id="calcpro-base64-text-input" rows="3" spellcheck="false" autocomplete="off"></textarea></div>
     <div class="calcpro-base64-field calcpro-base64-inline"><label for="calcpro-base64-text-charset">Character:</label><select id="calcpro-base64-text-charset"><option value="utf-8">UTF-8</option>
@@ -521,4 +522,6 @@
   });
 })();
 </script>
+<script defer src="calcpro-tools-sidebar-data.js"></script>
+<script defer src="calcpro-tools-sidebar.js"></script>
 </body></html>

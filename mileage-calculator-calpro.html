@@ -37,7 +37,8 @@
 @media(max-width:360px){.calcpro-mileage-actions{flex-direction:column;gap:1px}.calcpro-mileage-submit{width:100%}}
 @media print{.calcpro-mileage-footnote,.calcpro-mileage-reset{display:none}.calcpro-mileage-form{border-color:#bbb}}
 
-</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/">Other Calculators</a> / Mileage Calculator</nav><h1 class="cp-page-title">Mileage Calculator</h1><p class="cp-intro">Calculate driving distance in miles and driving time between places worldwide, excluding live traffic. Google Maps routes are available when configured; otherwise OpenStreetMap routes are used.</p><section aria-label="Calculator" class="cp-tool-area">
+</style><link rel="stylesheet" href="calcpro-tools-sidebar.css">
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/">Other Calculators</a> / Mileage Calculator</nav><h1 class="cp-page-title">Mileage Calculator</h1><p class="cp-intro">Calculate driving distance in miles and driving time between places worldwide, excluding live traffic. Google Maps routes are available when configured; otherwise OpenStreetMap routes are used.</p><section aria-label="Calculator" class="cp-tool-area">
 <div class="calcpro-mileage-root" id="calcpro-mileage-calculator">
   <section class="calcpro-mileage-result" id="calcpro-mileage-result" aria-label="Mileage result" aria-live="polite" hidden>
     <h2 class="calcpro-mileage-result-title">Result</h2>
@@ -293,4 +294,6 @@
   resetButton.addEventListener('click',reset);
 })();
 
-</script></body></html>
+</script><script defer src="calcpro-tools-sidebar-data.js"></script>
+<script defer src="calcpro-tools-sidebar.js"></script>
+</body></html>

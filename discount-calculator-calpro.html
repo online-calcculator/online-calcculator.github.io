@@ -38,7 +38,8 @@
 .calcpro-discount button:focus-visible,.calcpro-discount input:focus-visible{outline:2px solid #275f98;outline-offset:2px}
 @media(max-width:350px){.calcpro-discount .calcpro-discount-fields{grid-template-columns:128px 99px}.calcpro-discount .calcpro-discount-value{width:99px}.calcpro-discount .calcpro-discount-panel{padding:7px 6px}.calcpro-discount .calcpro-discount-fields>label{font-size:12px}.calcpro-discount .calcpro-discount-radio-choice{font-size:12px}}
 @media print{.calcpro-discount .calcpro-discount-instruction,.calcpro-discount .calcpro-discount-form,.calcpro-discount .calcpro-discount-save,.calcpro-discount .calcpro-discount-error{display:none!important}.calcpro-discount .calcpro-discount-result{display:block!important}.calcpro-discount .calcpro-discount-result-header{print-color-adjust:exact;-webkit-print-color-adjust:exact}}
-</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Discount Calculator</nav><h1 class="cp-page-title">Discount Calculator</h1><p class="cp-intro">Please provide any 2 values below to calculate.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-discount" id="calcpro-discount-tool">
+</style><link rel="stylesheet" href="calcpro-tools-sidebar.css">
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Discount Calculator</nav><h1 class="cp-page-title">Discount Calculator</h1><p class="cp-intro">Please provide any 2 values below to calculate.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-discount" id="calcpro-discount-tool">
   <section class="calcpro-discount-result" id="calcpro-discount-result" aria-label="Discount calculation result" aria-live="polite" hidden>
     <div class="calcpro-discount-result-header"><strong>Result</strong><button class="calcpro-discount-save" id="calcpro-discount-save" type="button" title="Print or save your result"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 7V3h14v4M5 17H3V9h18v8h-2M5 14h14v7H5z"/><path d="M17 11h.01"/></svg>Save</button></div>
     <div class="calcpro-discount-result-body">
@@ -239,4 +240,6 @@
   root.calcproDiscountSolve = solve;
   displayType();
 })();
-</script></body></html>
+</script><script defer src="calcpro-tools-sidebar-data.js"></script>
+<script defer src="calcpro-tools-sidebar.js"></script>
+</body></html>

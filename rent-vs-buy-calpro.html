@@ -63,7 +63,8 @@
 @media(max-width:350px){.calcpro-rvb-field{grid-template-columns:minmax(0,1fr) minmax(108px,45%)}.calcpro-rvb-grid{padding:9px}.calcpro-rvb-legend{gap:7px;font-size:11px}}
 @media print{.calcpro-rvb-form-shell,.calcpro-rvb-result-actions{display:none!important}.calcpro-rvb-results{break-inside:avoid;border:none;box-shadow:none}.calcpro-rvb-result-header{-webkit-print-color-adjust:exact;print-color-adjust:exact}.calcpro-rvb-table th{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
 
-</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Rent vs. Buy Calculator</nav><h1 class="cp-page-title">Rent vs. Buy Calculator</h1><p class="cp-intro">Compare the total cost of buying a home versus renting over the next 30 years, including mortgage costs, appreciation, rent increases, taxes, and potential investment returns.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-rvb-shell" id="calcpro-rvb-root">
+</style><link rel="stylesheet" href="calcpro-tools-sidebar.css">
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Rent vs. Buy Calculator</nav><h1 class="cp-page-title">Rent vs. Buy Calculator</h1><p class="cp-intro">Compare the total cost of buying a home versus renting over the next 30 years, including mortgage costs, appreciation, rent increases, taxes, and potential investment returns.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-rvb-shell" id="calcpro-rvb-root">
   <section class="calcpro-rvb-results" id="calcpro-rvb-results" aria-label="Rent versus buy comparison results" hidden>
     <div class="calcpro-rvb-result-header"><span>Result</span><div class="calcpro-rvb-result-actions"><button type="button" id="calcpro-rvb-export">Save CSV</button><button type="button" id="calcpro-rvb-print">Print</button></div></div>
     <div class="calcpro-rvb-result-body"><p class="calcpro-rvb-summary" id="calcpro-rvb-summary" aria-live="polite"></p><p class="calcpro-rvb-details" id="calcpro-rvb-details"></p>
@@ -385,4 +386,6 @@
   });
 })();
 
-</script></body></html>
+</script><script defer src="calcpro-tools-sidebar-data.js"></script>
+<script defer src="calcpro-tools-sidebar.js"></script>
+</body></html>

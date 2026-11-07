@@ -89,7 +89,8 @@
 @media print{.calcpro-ideal-converter{display:none!important}}
 @media print{.calcpro-ideal-tablist,.calcpro-ideal-actions,.calcpro-ideal-hint,.calcpro-ideal-save,.calcpro-ideal-error{display:none!important}.calcpro-ideal-panel{border:1px solid #ccc}.calcpro-ideal-grid{grid-template-columns:306px 1fr}.calcpro-ideal-result-title,.calcpro-ideal-table th{print-color-adjust:exact;-webkit-print-color-adjust:exact}}
 
-</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="fitness-and-health-calculator.html">Fitness &amp; Health</a> / Ideal Weight Calculator</nav><h1 class="cp-page-title">Ideal Weight Calculator</h1><p class="cp-intro">Compare ideal body weight estimates from the Robinson, Miller, Devine, and Hamwi formulas using your height and sex, plus an adult healthy BMI range. Switch between metric and US inputs, or open the five-category Other Units converter.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-ideal-root" id="calcpro-ideal-root">
+</style><link rel="stylesheet" href="calcpro-tools-sidebar.css">
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="fitness-and-health-calculator.html">Fitness &amp; Health</a> / Ideal Weight Calculator</nav><h1 class="cp-page-title">Ideal Weight Calculator</h1><p class="cp-intro">Compare ideal body weight estimates from the Robinson, Miller, Devine, and Hamwi formulas using your height and sex, plus an adult healthy BMI range. Switch between metric and US inputs, or open the five-category Other Units converter.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-ideal-root" id="calcpro-ideal-root">
   <section class="calcpro-ideal-converter" id="calcpro-ideal-converter" aria-label="Unit converter" hidden>
     <p class="calcpro-ideal-converter-intro">Use this converter to convert to the unit accepted by the calculator</p>
     <div class="calcpro-ideal-converter-tabs" role="tablist" aria-label="Conversion category">
@@ -391,4 +392,6 @@
   // Compute the displayed initial sample from formulas (no static hard-coded output dependency).
   calculate(false);
 })();
-</script></body></html>
+</script><script defer src="calcpro-tools-sidebar-data.js"></script>
+<script defer src="calcpro-tools-sidebar.js"></script>
+</body></html>

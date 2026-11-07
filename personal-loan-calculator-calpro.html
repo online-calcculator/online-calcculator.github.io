@@ -101,7 +101,8 @@
 .calcpro-personal-loan .calcpro-personal-loan-linechart{max-width:420px}
 }
 
-</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Personal Loan Calculator</nav><h1 class="cp-page-title">Personal Loan Calculator</h1><p class="cp-intro">Estimate your fixed-rate personal loan payment, total interest, payoff date, and optional fees or insurance. Review the full amortization schedule and charts below.</p><section aria-label="Calculator" class="cp-tool-area">
+</style><link rel="stylesheet" href="calcpro-tools-sidebar.css">
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Personal Loan Calculator</nav><h1 class="cp-page-title">Personal Loan Calculator</h1><p class="cp-intro">Estimate your fixed-rate personal loan payment, total interest, payoff date, and optional fees or insurance. Review the full amortization schedule and charts below.</p><section aria-label="Calculator" class="cp-tool-area">
 <div id="calcpro-personal-loan-root" class="calcpro-personal-loan">
   <div class="calcpro-personal-loan-topline"><button type="button" id="calcpro-personal-loan-print" class="calcpro-personal-loan-print">Print</button></div>
   <div class="calcpro-personal-loan-hint"><span class="calcpro-personal-loan-hinticon" aria-hidden="true">▼</span><span>Modify the values and click the Calculate button to use</span></div>
@@ -368,4 +369,6 @@
   amount.addEventListener('blur',()=>{const v=num(amount);if(finite(v)&&v>=0)amount.value=inputAmount(v)});
   toggleExtras();availableSave();calculate();
 })();
-</script></body></html>
+</script><script defer src="calcpro-tools-sidebar-data.js"></script>
+<script defer src="calcpro-tools-sidebar.js"></script>
+</body></html>

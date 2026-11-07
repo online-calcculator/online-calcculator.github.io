@@ -55,7 +55,8 @@
  .calcpro-gas-mileage-result{display:block!important}
  .calcpro-gas-mileage-result-header{print-color-adjust:exact;-webkit-print-color-adjust:exact}
 }
-</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / Other Calculators / Gas Mileage Calculator</nav><h1 class="cp-page-title">Gas Mileage Calculator</h1><p class="cp-intro">Measure real-world fuel efficiency using two odometer readings and the fuel added at your latest fill-up. Calculate miles per gallon (mpg), kilometers per liter (km/L), liters per 100 km (L/100 km), and optional fuel cost.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-gas-mileage" id="calcpro-gas-mileage-root">
+</style><link rel="stylesheet" href="calcpro-tools-sidebar.css">
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / Other Calculators / Gas Mileage Calculator</nav><h1 class="cp-page-title">Gas Mileage Calculator</h1><p class="cp-intro">Measure real-world fuel efficiency using two odometer readings and the fuel added at your latest fill-up. Calculate miles per gallon (mpg), kilometers per liter (km/L), liters per 100 km (L/100 km), and optional fuel cost.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-gas-mileage" id="calcpro-gas-mileage-root">
   <section class="calcpro-gas-mileage-result" id="calcpro-gas-mileage-result" aria-label="Calculated gas mileage result" aria-live="polite" hidden>
     <div class="calcpro-gas-mileage-result-header">
       <strong>Result</strong>
@@ -388,4 +389,6 @@
   el('print').addEventListener('click', () => window.print());
   renderMode();
 })();
-</script></body></html>
+</script><script defer src="calcpro-tools-sidebar-data.js"></script>
+<script defer src="calcpro-tools-sidebar.js"></script>
+</body></html>

@@ -22,7 +22,8 @@
 @media (max-width:370px){.calcpro-basic-root .calcpro-basic-calculator{margin-inline:auto;width:min(301px,100%)}.calcpro-basic-root .calcpro-basic-key{height:36px;font-size:15px}}
 @media print{.calcpro-basic-root .calcpro-basic-key{print-color-adjust:exact;-webkit-print-color-adjust:exact}.calcpro-basic-root .calcpro-basic-display{print-color-adjust:exact;-webkit-print-color-adjust:exact}}
 
-</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="math-calculator.html">Math</a> / Basic Calculator</nav><h1 class="cp-page-title">Basic Calculator</h1><p class="cp-intro">Perform addition, subtraction, multiplication, and division with a simple keypad calculator. Use Ans, memory, EXP, and RND for more calculations.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-basic-root" id="calcpro-basic-root">
+</style><link rel="stylesheet" href="calcpro-tools-sidebar.css">
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="math-calculator.html">Math</a> / Basic Calculator</nav><h1 class="cp-page-title">Basic Calculator</h1><p class="cp-intro">Perform addition, subtraction, multiplication, and division with a simple keypad calculator. Use Ans, memory, EXP, and RND for more calculations.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-basic-root" id="calcpro-basic-root">
   <div class="calcpro-basic-calculator" role="group" aria-label="Basic arithmetic calculator">
     <div class="calcpro-basic-expression" id="calcpro-basic-expression" aria-label="Current expression"></div>
     <div class="calcpro-basic-display" id="calcpro-basic-display" role="status" aria-live="polite" aria-atomic="true">0</div>
@@ -306,4 +307,6 @@
   paint();
 })();
 
-</script></body></html>
+</script><script defer src="calcpro-tools-sidebar-data.js"></script>
+<script defer src="calcpro-tools-sidebar.js"></script>
+</body></html>

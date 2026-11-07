@@ -46,7 +46,8 @@
 @media(max-width:520px){.calcpro-tz-root .calcpro-tz-prompt{gap:10px;font-size:14px;padding:7px}.calcpro-tz-root .calcpro-tz-panel{padding:9px 8px}.calcpro-tz-root .calcpro-tz-zone{width:100%}}
 @media(max-width:380px){.calcpro-tz-root .calcpro-tz-field{grid-template-columns:minmax(0,1fr);gap:3px;margin-bottom:8px}.calcpro-tz-root .calcpro-tz-label{text-align:left;padding-right:0}.calcpro-tz-root .calcpro-tz-month{width:64px}.calcpro-tz-root .calcpro-tz-day{width:49px}.calcpro-tz-root .calcpro-tz-year{width:78px}.calcpro-tz-root .calcpro-tz-date-group{gap:3px}.calcpro-tz-root .calcpro-tz-action-field>span{display:none}.calcpro-tz-root .calcpro-tz-prompt .calcpro-tz-down{display:none}}
 @media print{.calcpro-tz-root .calcpro-tz-fixed-note{color:#333}.calcpro-tz-root .calcpro-tz-save,.calcpro-tz-root .calcpro-tz-calendar-toggle,.calcpro-tz-root .calcpro-tz-calculate{display:none}}
-</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/other-calculator/">Other Calculators</a> / Time Zone Calculator</nav><h1 class="cp-page-title">Time Zone Calculator</h1><p class="cp-intro">Convert any date and time between fixed UTC offsets, from UTC−12:00 to UTC+14:00. Supports full-hour, half-hour, and quarter-hour differences; the result appears directly above the form.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-tz-root" id="calcpro-tz-app">
+</style><link rel="stylesheet" href="calcpro-tools-sidebar.css">
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/other-calculator/">Other Calculators</a> / Time Zone Calculator</nav><h1 class="cp-page-title">Time Zone Calculator</h1><p class="cp-intro">Convert any date and time between fixed UTC offsets, from UTC−12:00 to UTC+14:00. Supports full-hour, half-hour, and quarter-hour differences; the result appears directly above the form.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-tz-root" id="calcpro-tz-app">
   <div class="calcpro-tz-prompt" id="calcpro-tz-prompt">
     <span class="calcpro-tz-down" aria-hidden="true">▼</span>
     <span>Modify the values and click the Calculate button to use</span>
@@ -407,4 +408,6 @@
   setDateFromNative(now);
   time.value=pad(now.getHours()) + ':' + pad(now.getMinutes()) + ':' + pad(now.getSeconds());
 })();
-</script></body></html>
+</script><script defer src="calcpro-tools-sidebar-data.js"></script>
+<script defer src="calcpro-tools-sidebar.js"></script>
+</body></html>

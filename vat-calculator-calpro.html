@@ -51,7 +51,8 @@
 @media(max-width:610px){.calcpro-vat-results-body{align-items:flex-start;flex-wrap:wrap;gap:10px}.calcpro-vat-chart-area{margin-left:0}.calcpro-vat-output-row{font-size:17px}}
 @media(max-width:380px){.calcpro-vat-form-panel{padding:11px 8px}.calcpro-vat-form-grid{grid-template-columns:minmax(88px,1fr) minmax(0,1.1fr);gap:7px}.calcpro-vat-form-label{font-size:12px}.calcpro-vat-pie{width:100px;height:100px}.calcpro-vat-chart-legend{min-width:75px;font-size:12px}}
 @media print{.calcpro-vat-form-panel,.calcpro-vat-guidance,.calcpro-vat-print,.calcpro-vat-error{display:none!important}.calcpro-vat-results{border-color:#999;break-inside:avoid}.calcpro-vat-pie-net,.calcpro-vat-pie-tax,.calcpro-vat-results-header,.calcpro-vat-swatch{print-color-adjust:exact;-webkit-print-color-adjust:exact}}
-</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / VAT Calculator</nav><h1 class="cp-page-title">VAT Calculator</h1><p class="cp-intro">Please provide any two values from the following inputs to calculate the remaining values.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-vat-tool" id="calcpro-vat-tool">
+</style><link rel="stylesheet" href="calcpro-tools-sidebar.css">
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / VAT Calculator</nav><h1 class="cp-page-title">VAT Calculator</h1><p class="cp-intro">Please provide any two values from the following inputs to calculate the remaining values.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-vat-tool" id="calcpro-vat-tool">
   <div class="calcpro-vat-error" id="calcpro-vat-error" role="alert" hidden></div>
   <section class="calcpro-vat-results" id="calcpro-vat-results" aria-label="VAT calculation results" aria-live="polite" hidden>
     <div class="calcpro-vat-results-header"><span>Result</span><button class="calcpro-vat-print" id="calcpro-vat-print" type="button" title="Print or save the result as PDF" aria-label="Print or save the result as PDF"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M6 9V3h12v6M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v7H6z"/><circle cx="18" cy="12" r=".5" fill="currentColor"/></svg></button></div>
@@ -265,4 +266,6 @@
     this.removeAttribute('aria-invalid');errorBox.hidden=true;resultBox.hidden=true;
   }));
 })();
-</script></body></html>
+</script><script defer src="calcpro-tools-sidebar-data.js"></script>
+<script defer src="calcpro-tools-sidebar.js"></script>
+</body></html>

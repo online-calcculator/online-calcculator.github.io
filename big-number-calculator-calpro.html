@@ -34,7 +34,8 @@
 @media(max-width:540px){.calcpro-big-panel{padding:8px}.calcpro-big-buttons{margin-left:0;gap:5px}.calcpro-big-buttons button{flex:1 0 auto;font-size:15px;min-height:39px}.calcpro-big-precision-row{margin:15px 0 21px}.calcpro-big-input-row{grid-template-columns:29px minmax(0,1fr)}.calcpro-big-result-heading{font-size:21px}}
 @media(max-width:370px){.calcpro-big-precision-row{align-items:flex-start}.calcpro-big-precision-row span{width:100%}.calcpro-big-result-tools{gap:0}}
 @media print{.calcpro-big-buttons,.calcpro-big-utilities,.calcpro-big-result-tools{display:none!important}.calcpro-big-panel{break-inside:avoid}.calcpro-big-result{break-inside:avoid}.calcpro-big-result-number{max-height:none}}
-</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/math-calculator/">Math</a> / Big Number Calculator</nav><h1 class="cp-page-title">Big Number Calculator</h1><p class="cp-intro">Calculate very large numbers using integers, decimals, or E-notation scientific notation (such as 23E18 and 3.5e19). Choose an operation to see its result above the input form.</p><section aria-label="Calculator" class="cp-tool-area"><section class="calcpro-big-calculator" id="calcpro-big-calculator" aria-label="Big Number Calculator">
+</style><link rel="stylesheet" href="calcpro-tools-sidebar.css">
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/math-calculator/">Math</a> / Big Number Calculator</nav><h1 class="cp-page-title">Big Number Calculator</h1><p class="cp-intro">Calculate very large numbers using integers, decimals, or E-notation scientific notation (such as 23E18 and 3.5e19). Choose an operation to see its result above the input form.</p><section aria-label="Calculator" class="cp-tool-area"><section class="calcpro-big-calculator" id="calcpro-big-calculator" aria-label="Big Number Calculator">
   <div class="calcpro-big-result" id="calcpro-big-result" hidden>
     <div class="calcpro-big-result-header">
       <h2 class="calcpro-big-result-heading">Result</h2>
@@ -316,4 +317,6 @@
     setTimeout(()=>URL.revokeObjectURL(url),1000);
     flash('Result saved as big-number-result.txt.');
   });
-})();</script></body></html>
+})();</script><script defer src="calcpro-tools-sidebar-data.js"></script>
+<script defer src="calcpro-tools-sidebar.js"></script>
+</body></html>

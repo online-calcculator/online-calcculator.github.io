@@ -9,7 +9,7 @@
 .calcpro-auto-lease .calcpro-auto-lease-instruction-icon{display:inline-grid;place-items:center;flex:none;width:26px;height:26px;border-radius:50%;background:#fff;color:var(--al-blue);font-size:18px;line-height:1}
 .calcpro-auto-lease .calcpro-auto-lease-results[hidden],.calcpro-auto-lease .calcpro-auto-lease-error[hidden],.calcpro-auto-lease [hidden]{display:none!important}
 .calcpro-auto-lease .calcpro-auto-lease-results{max-width:100%;margin:0 0 30px}
-.calcpro-auto-lease .calcpro-auto-lease-summary{display:flex;justify-content:space-between;align-items:center;gap:12px;background:var(--al-green);color:#fff;padding:8px 11px;margin:0 0 5px;min-height:43px}
+.calcpro-auto-lease .calcpro-auto-lease-summary{display:flex;justify-content:space-between;align-items:center;gap:12px;background:#003366;color:#fff;padding:8px 11px;margin:0 0 5px;min-height:43px}
 .calcpro-auto-lease .calcpro-auto-lease-summary-line{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;font-size:21px;line-height:1.2}
 .calcpro-auto-lease .calcpro-auto-lease-summary-line strong{font-weight:500;font-variant-numeric:tabular-nums}
 .calcpro-auto-lease .calcpro-auto-lease-save{display:flex;align-items:center;gap:4px;border:1px solid transparent;color:#fff;background:transparent;font-size:12px;padding:3px 6px;border-radius:3px;flex:none}
@@ -52,7 +52,8 @@
 .calcpro-auto-lease .calcpro-auto-lease-disclaimer{font-size:12px;color:#5d6671;margin:15px 0 0;max-width:680px}
 @media(max-width:440px){.calcpro-auto-lease .calcpro-auto-lease-instruction{font-size:14px;gap:9px}.calcpro-auto-lease .calcpro-auto-lease-form{min-width:0;width:100%;padding:10px 8px}.calcpro-auto-lease .calcpro-auto-lease-fields{grid-template-columns:minmax(0,1fr) minmax(0,120px);gap:8px 6px}.calcpro-auto-lease .calcpro-auto-lease-field-label{font-size:14px;white-space:normal}.calcpro-auto-lease .calcpro-auto-lease-tab{font-size:14px;padding:6px 7px}.calcpro-auto-lease .calcpro-auto-lease-summary-line{font-size:18px;gap:5px 12px}.calcpro-auto-lease .calcpro-auto-lease-data-table{font-size:13px}.calcpro-auto-lease .calcpro-auto-lease-data-table th,.calcpro-auto-lease .calcpro-auto-lease-data-table td{padding-right:8px}}
 @media print{.calcpro-auto-lease .calcpro-auto-lease-instruction,.calcpro-auto-lease .calcpro-auto-lease-shell,.calcpro-auto-lease .calcpro-auto-lease-result-buttons,.calcpro-auto-lease .calcpro-auto-lease-save,.calcpro-auto-lease .calcpro-auto-lease-disclaimer{display:none!important}.calcpro-auto-lease .calcpro-auto-lease-results{display:block!important;margin:0}.calcpro-auto-lease .calcpro-auto-lease-summary{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
-</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Auto Lease Calculator</nav><h1 class="cp-page-title">Auto Lease Calculator</h1><p class="cp-intro">Estimate a monthly vehicle lease payment from its price—or calculate the vehicle price that fits your target payment. Review depreciation, interest, sales tax, and a comparable auto purchase.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-auto-lease" id="calcpro-auto-lease-root">
+</style><link rel="stylesheet" href="calcpro-tools-sidebar.css">
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Auto Lease Calculator</nav><h1 class="cp-page-title">Auto Lease Calculator</h1><p class="cp-intro">Estimate a monthly vehicle lease payment from its price—or calculate the vehicle price that fits your target payment. Review depreciation, interest, sales tax, and a comparable auto purchase.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-auto-lease" id="calcpro-auto-lease-root">
   <div class="calcpro-auto-lease-instruction"><span class="calcpro-auto-lease-instruction-icon" aria-hidden="true">▼</span><span>Modify the values and click the Calculate button to use</span></div>
   <div id="calcpro-auto-lease-error" class="calcpro-auto-lease-error" role="alert" hidden></div>
   <!-- Important: results intentionally render ABOVE the form, as on the reference website. -->
@@ -313,4 +314,6 @@
     catch(e) {btn.textContent='Copy unavailable';setTimeout(()=>btn.textContent='Copy Results',1700);}
   });
 })();
-</script></body></html>
+</script><script defer src="calcpro-tools-sidebar-data.js"></script>
+<script defer src="calcpro-tools-sidebar.js"></script>
+</body></html>

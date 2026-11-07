@@ -45,7 +45,8 @@
 @media(max-width:340px){.calcpro-density-field{grid-template-columns:minmax(0,1fr)}.calcpro-density-entry,.calcpro-density-field select{grid-column:1}.calcpro-density-tabs{gap:1px}.calcpro-density-tab{font-size:11px}}
 @media print{.calcpro-density-notice,.calcpro-density-tabs,.calcpro-density-fields,.calcpro-density-print{display:none!important}.calcpro-density-result{border:0}.calcpro-density-result-heading{-webkit-print-color-adjust:exact;print-color-adjust:exact}.calcpro-density-result[hidden]{display:none!important}}
 
-</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/other-calculator/">Other</a> / Density Calculator</nav><h1 class="cp-page-title">Density Calculator</h1><p class="cp-intro">Provide any two values in the equation <strong>ρ = m / V</strong> to calculate density, volume, or mass. Choose the units you prefer.</p><section aria-label="Calculator" class="cp-tool-area">
+</style><link rel="stylesheet" href="calcpro-tools-sidebar.css">
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/other-calculator/">Other</a> / Density Calculator</nav><h1 class="cp-page-title">Density Calculator</h1><p class="cp-intro">Provide any two values in the equation <strong>ρ = m / V</strong> to calculate density, volume, or mass. Choose the units you prefer.</p><section aria-label="Calculator" class="cp-tool-area">
 <div class="calcpro-density" id="calcpro-density-root">
   <div class="calcpro-density-result" id="calcpro-density-result" role="status" aria-live="polite" hidden>
     <div class="calcpro-density-result-heading">
@@ -302,4 +303,6 @@
   el('print').addEventListener('click',()=>{if(lastResult)window.print();});
   selectMode('density',false);
 })();
-</script></body></html>
+</script><script defer src="calcpro-tools-sidebar-data.js"></script>
+<script defer src="calcpro-tools-sidebar.js"></script>
+</body></html>

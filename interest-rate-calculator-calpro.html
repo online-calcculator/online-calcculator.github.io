@@ -62,7 +62,8 @@
 @media(max-width:475px){.calcpro-ir-charts{grid-template-columns:minmax(0,1fr)}.calcpro-ir-help{font-size:13px}.calcpro-ir-field{grid-template-columns:115px minmax(0,1fr)}.calcpro-ir-term-unit span{font-size:12px;top:8px}.calcpro-ir-term-unit input{padding-right:30px}.calcpro-ir-term-unit:last-child input{padding-right:43px}.calcpro-ir-chart-block{max-width:400px;width:100%;margin:auto}}
 @media(max-width:335px){.calcpro-ir-form{padding:8px 5px}.calcpro-ir-field{grid-template-columns:100px minmax(0,1fr)}.calcpro-ir-field>label{font-size:12px}.calcpro-ir-term-unit input{font-size:14px!important}}
 @media print{.calcpro-ir-help,.calcpro-ir-actions,.calcpro-ir-save,.calcpro-ir-saved{display:none!important}.calcpro-ir{break-inside:avoid}.calcpro-ir-chart-block{break-inside:avoid}}
-</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Interest Rate Calculator</nav><h1 class="cp-page-title">Interest Rate Calculator</h1><p class="cp-intro">Calculate the implied interest rate for a fixed-term loan when you know the amount borrowed and monthly payment. See the total interest, loan amortization graph, and payment breakdown.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-ir" id="calcpro-ir-root">
+</style><link rel="stylesheet" href="calcpro-tools-sidebar.css">
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Interest Rate Calculator</nav><h1 class="cp-page-title">Interest Rate Calculator</h1><p class="cp-intro">Calculate the implied interest rate for a fixed-term loan when you know the amount borrowed and monthly payment. See the total interest, loan amortization graph, and payment breakdown.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-ir" id="calcpro-ir-root">
   <div class="calcpro-ir-help"><span class="calcpro-ir-help-icon" aria-hidden="true">▼</span><span>Modify the values and click the Calculate button to use</span></div>
   <div class="calcpro-ir-top">
     <form class="calcpro-ir-form" id="calcpro-ir-form" novalidate>
@@ -346,4 +347,6 @@
   renderSaved();
   submit(); // Populate the exact reference example on first page load.
 })();
-</script></body></html>
+</script><script defer src="calcpro-tools-sidebar-data.js"></script>
+<script defer src="calcpro-tools-sidebar.js"></script>
+</body></html>

@@ -75,7 +75,8 @@
 .calcpro-date-explanation{color:#54616c;font-size:12px;margin:6px 0 0}
 @media(max-width:570px){.calcpro-date-tool h2{font-size:19px}.calcpro-date-panel{padding:13px 7px}.calcpro-date-date-row{grid-template-columns:1fr;gap:3px;justify-items:center}.calcpro-date-date-row>label{width:100%;text-align:center}.calcpro-date-date-fields select{width:60px}.calcpro-date-date-fields select[data-date-part=day]{width:46px}.calcpro-date-date-fields input[type=number]{width:70px}.calcpro-date-picker-btn{width:27px}.calcpro-date-holiday-grid{grid-template-columns:1fr}.calcpro-date-settings{padding:10px 7px}.calcpro-date-custom-head,.calcpro-date-custom-row{grid-template-columns:minmax(95px,1fr) 60px 55px;gap:3px}.calcpro-date-check{font-size:13px}.calcpro-date-result-tools button{font-size:11px}}
 @media print{.calcpro-date-tool .calcpro-date-panel,.calcpro-date-tool-related,.calcpro-date-tip,.calcpro-date-result-tools{display:none!important}.calcpro-date-tool .calcpro-date-result[hidden]{display:none!important}.calcpro-date-tool .calcpro-date-result{break-inside:avoid}}
-</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/other-calculator/">Other</a> / Date Calculator</nav><h1 class="cp-page-title">Date Calculator</h1><p class="cp-intro">Compare dates, count the days between them, or add and subtract calendar and business days with customizable holidays.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-date-tool" id="calcpro-date-tool">
+</style><link rel="stylesheet" href="calcpro-tools-sidebar.css">
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/other-calculator/">Other</a> / Date Calculator</nav><h1 class="cp-page-title">Date Calculator</h1><p class="cp-intro">Compare dates, count the days between them, or add and subtract calendar and business days with customizable holidays.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-date-tool" id="calcpro-date-tool">
  <div id="calcpro-date-tip" class="calcpro-date-tip"> <span aria-hidden="true">●</span> Modify the values and click Calculate to see the result.</div>
  <section class="calcpro-date-section" aria-labelledby="calcpro-date-between-title">
   <h2 id="calcpro-date-between-title">Days Between Two Dates</h2><p class="calcpro-date-description">Find years, months, weeks and days between two dates. Open Settings to define holidays.</p>
@@ -349,4 +350,6 @@ root.addEventListener('click',(e)=>{const save=e.target.closest('[data-save-resu
   });
 })();
 </script>
+<script defer src="calcpro-tools-sidebar-data.js"></script>
+<script defer src="calcpro-tools-sidebar.js"></script>
 </body></html>

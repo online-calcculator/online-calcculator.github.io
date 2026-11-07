@@ -72,7 +72,8 @@
 @media(max-width:360px){.calcpro-thr-radio-row{align-items:start;gap:9px;}.calcpro-thr-radio-row label{font-size:11px;}.calcpro-thr-zones{min-width:330px;font-size:11px;}.calcpro-thr-zones th,.calcpro-thr-zones td{padding:3px;}}
 @media print{.calcpro-thr-guide,.calcpro-thr-form,.calcpro-thr-save,.calcpro-thr-chart-details,.calcpro-thr-error{display:none!important;}.calcpro-thr-results{max-width:100%;}.calcpro-thr-zones{min-width:0;width:100%;print-color-adjust:exact;-webkit-print-color-adjust:exact;}}
 
-</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/fitness-and-health-calculator/">Fitness &amp; Health</a> / Target Heart Rate Calculator</nav><h1 class="cp-page-title">Target Heart Rate Calculator</h1><p class="cp-intro">Estimate your aerobic training zones from your age or tested maximum heart rate. Add your resting pulse for heart rate reserve, or compare Borg perceived-exertion scales.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-thr-root" id="calcpro-thr-tool">
+</style><link rel="stylesheet" href="calcpro-tools-sidebar.css">
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/fitness-and-health-calculator/">Fitness &amp; Health</a> / Target Heart Rate Calculator</nav><h1 class="cp-page-title">Target Heart Rate Calculator</h1><p class="cp-intro">Estimate your aerobic training zones from your age or tested maximum heart rate. Add your resting pulse for heart rate reserve, or compare Borg perceived-exertion scales.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-thr-root" id="calcpro-thr-tool">
   <div class="calcpro-thr-guide" id="calcpro-thr-guide"><span class="calcpro-thr-guide-icon" aria-hidden="true">▼</span> Modify the values and click the Calculate button to use</div>
   <div class="calcpro-thr-error" id="calcpro-thr-error" role="alert" hidden></div>
   <!-- The reference shows calculated output above the inputs, not beside or below them. -->
@@ -362,4 +363,6 @@
   byId('calcpro-thr-save').addEventListener('click', () => window.print());
   syncSource();
   resetOutput();
-})();</script></body></html>
+})();</script><script defer src="calcpro-tools-sidebar-data.js"></script>
+<script defer src="calcpro-tools-sidebar.js"></script>
+</body></html>

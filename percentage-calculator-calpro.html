@@ -69,7 +69,8 @@
 }
 @media print{.calcpro-percent-root .calcpro-percent-button,.calcpro-percent-root .calcpro-percent-clear,.calcpro-percent-root .calcpro-percent-save{display:none!important}}
 
-</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/math-calculator/">Math</a> / Percentage Calculator</nav><h1 class="cp-page-title">Percentage Calculator</h1><p class="cp-intro">Please provide any two values below and click the “Calculate” button to get the third value.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-percent-root" id="calcpro-percent-root">
+</style><link rel="stylesheet" href="calcpro-tools-sidebar.css">
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/math-calculator/">Math</a> / Percentage Calculator</nav><h1 class="cp-page-title">Percentage Calculator</h1><p class="cp-intro">Please provide any two values below and click the “Calculate” button to get the third value.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-percent-root" id="calcpro-percent-root">
 <section class="calcpro-percent-section" aria-label="Find the missing percentage value">
 <div class="calcpro-percent-result" id="calcpro-percent-general-result" role="status" aria-live="polite" hidden>
         <div class="calcpro-percent-resultbar"><span class="calcpro-percent-resulttitle"></span><button type="button" class="calcpro-percent-save" aria-label="Save general result as text" title="Save result as text"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 3h13l3 3v15H4zM7 4v7h10V4zm2 0v5h6V4zM7 13v6h10v-6z"/></svg><span>save</span></button></div>
@@ -355,4 +356,6 @@ for(const key of ['general','common','difference','change']){$(key+'-result').qu
   });
 })();
 </script>
+<script defer src="calcpro-tools-sidebar-data.js"></script>
+<script defer src="calcpro-tools-sidebar.js"></script>
 </body></html>

@@ -83,7 +83,8 @@
  .calcpro-collegecost .calcpro-collegecost-result{break-inside:avoid}
 }
 
-</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / College Cost Calculator</nav><h1 class="cp-page-title">College Cost Calculator</h1><h2 style="font-size:22px;line-height:1.3;color:#003366;margin:12px 0 5px">How Much Does College Cost?</h2><p class="cp-intro">Estimate college tuition, fees, housing, and other annual costs with projected price increases. Compare the full education budget with the portion you plan to pay from savings, and see how much to save monthly. This planner uses U.S. dollars and U.S. college-cost averages.</p><section aria-label="Calculator" class="cp-tool-area">
+</style><link rel="stylesheet" href="calcpro-tools-sidebar.css">
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / College Cost Calculator</nav><h1 class="cp-page-title">College Cost Calculator</h1><h2 style="font-size:22px;line-height:1.3;color:#003366;margin:12px 0 5px">How Much Does College Cost?</h2><p class="cp-intro">Estimate college tuition, fees, housing, and other annual costs with projected price increases. Compare the full education budget with the portion you plan to pay from savings, and see how much to save monthly. This planner uses U.S. dollars and U.S. college-cost averages.</p><section aria-label="Calculator" class="cp-tool-area">
 <div class="calcpro-collegecost" id="calcpro-collegecost-tool">
   <div class="calcpro-collegecost-instruction" id="calcpro-collegecost-instruction"><span class="calcpro-collegecost-chevron" aria-hidden="true">▼</span><span>Modify the values and click the Calculate button to use</span></div>
   <div class="calcpro-collegecost-result" id="calcpro-collegecost-result" role="region" aria-label="College cost calculation results" hidden>
@@ -298,4 +299,6 @@
  $('print').addEventListener('click',()=>{if(latest)window.print();});
  markErrors([]);
 })();
-</script></body></html>
+</script><script defer src="calcpro-tools-sidebar-data.js"></script>
+<script defer src="calcpro-tools-sidebar.js"></script>
+</body></html>

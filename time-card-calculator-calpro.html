@@ -113,7 +113,8 @@
  .cp-site .cp-layout{display:block!important;margin:0!important;width:100%!important}
 }
 
-</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="other-calculator.html">Other</a> / Time Card Calculator</nav><h1 class="cp-page-title">Time Card Calculator</h1><p class="cp-intro">Generate a printable weekly time report from your daily work hours and unpaid breaks. Enter times as 8:30AM, 8.30 or 15:30; optionally calculate gross pay and overtime, then save your entries in this browser.</p><section aria-label="Calculator" class="cp-tool-area"><section id="calcpro-timecard" class="calcpro-timecard" aria-label="Weekly time card calculator">
+</style><link rel="stylesheet" href="calcpro-tools-sidebar.css">
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="other-calculator.html">Other</a> / Time Card Calculator</nav><h1 class="cp-page-title">Time Card Calculator</h1><p class="cp-intro">Generate a printable weekly time report from your daily work hours and unpaid breaks. Enter times as 8:30AM, 8.30 or 15:30; optionally calculate gross pay and overtime, then save your entries in this browser.</p><section aria-label="Calculator" class="cp-tool-area"><section id="calcpro-timecard" class="calcpro-timecard" aria-label="Weekly time card calculator">
   <section id="calcpro-timecard-result" class="calcpro-timecard-result" aria-label="Time card results" aria-live="polite" hidden>
     <div class="calcpro-timecard-result-heading"><span>Result</span>
       <button type="button" id="calcpro-timecard-save" class="calcpro-timecard-save" aria-label="Save report as CSV" title="Save as CSV">
@@ -532,4 +533,6 @@
   loadSaved();updatePayVisibility();
 })();
 
-</script></body></html>
+</script><script defer src="calcpro-tools-sidebar-data.js"></script>
+<script defer src="calcpro-tools-sidebar.js"></script>
+</body></html>

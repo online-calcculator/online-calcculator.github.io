@@ -73,7 +73,8 @@
 @media(max-width:560px){.calcpro-tip .calcpro-tip-hint{font-size:12px}.calcpro-tip .calcpro-tip-section-title{font-size:18px}.calcpro-tip .calcpro-tip-share-panel .calcpro-tip-fields{grid-template-columns:126px minmax(100px,1fr)}.calcpro-tip .calcpro-tip-share-metrics{grid-template-columns:minmax(120px,1fr) minmax(0,1fr);font-size:16px}.calcpro-tip .calcpro-tip-form-panel{width:100%;max-width:370px}.calcpro-tip .calcpro-tip-fields{grid-template-columns:minmax(95px,1fr) minmax(115px,1.3fr)}.calcpro-tip-standalone-content{padding:0 12px}.calcpro-tip-guide .calcpro-tip-advice-table{font-size:12px}}
 @media(max-width:350px){.calcpro-tip .calcpro-tip-fields,.calcpro-tip .calcpro-tip-share-panel .calcpro-tip-fields{grid-template-columns:1fr;gap:3px}.calcpro-tip .calcpro-tip-field-label{margin-top:5px}.calcpro-tip .calcpro-tip-form-panel{width:100%}}
 @media print{.calcpro-tip .calcpro-tip-save,.calcpro-tip .calcpro-tip-calculate,.calcpro-tip .calcpro-tip-clear,.calcpro-tip .calcpro-tip-hint{display:none!important}.calcpro-tip .calcpro-tip-form-panel{border:1px solid #ccc}.calcpro-tip-standalone-header{display:none}}
-</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/other-calculator/">Other</a> / Tip Calculator</nav><h1 class="cp-page-title">Tip Calculator</h1><p class="cp-intro">Calculate tips at popular percentages or split a bill with friends. Enter a service price to compare tip amounts, or calculate each person’s share of the total bill.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-tip" id="calcpro-tip-root">
+</style><link rel="stylesheet" href="calcpro-tools-sidebar.css">
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/other-calculator/">Other</a> / Tip Calculator</nav><h1 class="cp-page-title">Tip Calculator</h1><p class="cp-intro">Calculate tips at popular percentages or split a bill with friends. Enter a service price to compare tip amounts, or calculate each person’s share of the total bill.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-tip" id="calcpro-tip-root">
   <section class="calcpro-tip-section-primary" aria-label="Tip percentage table calculator">
     <div class="calcpro-tip-hint" id="calcpro-tip-hint"><span class="calcpro-tip-hint-symbol" aria-hidden="true">▼</span><span>Modify the values and click the Calculate button to use</span></div>
     <div class="calcpro-tip-result" id="calcpro-tip-primary-result" hidden aria-live="polite">
@@ -367,4 +368,6 @@
   });
 })();
 </script>
+<script defer src="calcpro-tools-sidebar-data.js"></script>
+<script defer src="calcpro-tools-sidebar.js"></script>
 </body></html>

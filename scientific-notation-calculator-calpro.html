@@ -63,6 +63,7 @@
 }
 @media print{.calcpro-sci__save{display:none}}
 </style>
+<link rel="stylesheet" href="calcpro-tools-sidebar.css">
 </head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/math-calculator/">Math</a> / Scientific Notation Calculator</nav><h1 class="cp-page-title">Scientific Notation Calculator</h1><p class="cp-intro">Convert numbers to scientific, engineering, E-notation, and standard decimal form, or calculate with powers of ten using adjustable precision.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-sci" data-calcpro-sci-root>
   <section class="calcpro-sci__section" aria-labelledby="calcpro-sci-converter-heading">
     <h2 class="calcpro-sci__heading" id="calcpro-sci-converter-heading">Scientific Notation Converter</h2>
@@ -433,4 +434,6 @@
   el('calcpro-sci-save-calc').addEventListener('click',()=>saveFile(calculationText,'scientific-notation-calculation.txt'));
 })();
 </script>
+<script defer src="calcpro-tools-sidebar-data.js"></script>
+<script defer src="calcpro-tools-sidebar.js"></script>
 </body></html>

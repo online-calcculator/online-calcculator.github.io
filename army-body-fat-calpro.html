@@ -78,7 +78,8 @@
 @media (prefers-reduced-motion:reduce) { .calcpro-army * { scroll-behavior:auto!important; } }
 @media print { .calcpro-army .calcpro-army-measurement-tools,.calcpro-army .calcpro-army-buttons,.calcpro-army .calcpro-army-save { display:none!important; } }
 
-</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="fitness-and-health-calculator.html">Fitness &amp; Health</a> / Army Body Fat Calculator</nav><h1 class="cp-page-title">Army Body Fat Calculator</h1><p class="cp-intro">Estimate your body-fat percentage using the Army’s former 2023 one-site tape-test formula. Enter weight and abdominal circumference at the navel, then compare the result with the historic age-based standards. The current Army assessment changed in July 2026.</p><section aria-label="Calculator" class="cp-tool-area">
+</style><link rel="stylesheet" href="calcpro-tools-sidebar.css">
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="fitness-and-health-calculator.html">Fitness &amp; Health</a> / Army Body Fat Calculator</nav><h1 class="cp-page-title">Army Body Fat Calculator</h1><p class="cp-intro">Estimate your body-fat percentage using the Army’s former 2023 one-site tape-test formula. Enter weight and abdominal circumference at the navel, then compare the result with the historic age-based standards. The current Army assessment changed in July 2026.</p><section aria-label="Calculator" class="cp-tool-area">
 <div class="calcpro-army" id="calcpro-army-root">
   <section class="calcpro-army-result" id="calcpro-army-result" aria-live="polite" aria-label="Calculated body fat result" hidden>
     <div class="calcpro-army-result-title"><span>Result</span><button class="calcpro-army-save" type="button" id="calcpro-army-save" aria-label="Save result as a text report" title="Save result as a text report"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 2h13l5 5v15H2V4a2 2 0 0 1 2-2zm1 2v7h13V4h-3v5H7V4H5zm7 10a4 4 0 1 0 .001 8.001A4 4 0 0 0 12 14z"/></svg><span>save</span></button></div>
@@ -260,4 +261,6 @@
     feedback.textContent=`Applied ${Math.round(lb)} lb and ${waist.toFixed(1)} in using the historical rounding rules.`;
   });
 })();
-</script></body></html>
+</script><script defer src="calcpro-tools-sidebar-data.js"></script>
+<script defer src="calcpro-tools-sidebar.js"></script>
+</body></html>

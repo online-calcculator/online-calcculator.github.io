@@ -74,7 +74,8 @@
 @media(max-width:620px){.calcpro-due-root{font-size:14px}.calcpro-due-form-panel{padding:12px 10px}.calcpro-due-method-row{grid-template-columns:1fr;gap:4px;margin:9px 0}.calcpro-due-method-row>label:first-child,.calcpro-due-row-heading{text-align:left}.calcpro-due-method-select-row{justify-content:flex-start;flex-wrap:wrap}.calcpro-due-due-line{font-size:17px}.calcpro-due-result-heading{font-size:17px}.calcpro-due-table{font-size:11.5px}.calcpro-due-table td{padding:4px 5px}}
 @media(prefers-reduced-motion:reduce){.calcpro-due-progress-fill{transition:none}}
 @media print{.calcpro-due-start-banner,.calcpro-due-form-panel,.calcpro-due-result-buttons{display:none!important}.calcpro-due-root .calcpro-due-results{display:block!important}.calcpro-due-table-wrap{overflow:visible}.calcpro-due-table{min-width:0;font-size:10px;break-inside:auto}.calcpro-due-table tr{break-inside:avoid}}
-</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://www.calculator.net/fitness-and-health-calculator.html">Fitness &amp; Health</a> / Due Date Calculator</nav><h1 class="cp-page-title">Due Date Calculator</h1><p class="cp-intro">The Due Date Calculator estimates a pregnancy's delivery date from the last menstrual period (LMP), ultrasound, conception date, or IVF transfer date.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-due-root" id="calcpro-due-root">
+</style><link rel="stylesheet" href="calcpro-tools-sidebar.css">
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://www.calculator.net/fitness-and-health-calculator.html">Fitness &amp; Health</a> / Due Date Calculator</nav><h1 class="cp-page-title">Due Date Calculator</h1><p class="cp-intro">The Due Date Calculator estimates a pregnancy's delivery date from the last menstrual period (LMP), ultrasound, conception date, or IVF transfer date.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-due-root" id="calcpro-due-root">
 <div class="calcpro-due-start-banner" id="calcpro-due-start-banner"><span aria-hidden="true" class="calcpro-due-start-icon">▼</span><span>Modify the values and click the Calculate button to use</span></div>
 <section aria-label="Due date results" aria-live="polite" class="calcpro-due-results" hidden="" id="calcpro-due-results">
 <div class="calcpro-due-result-heading"><strong>Result</strong><div class="calcpro-due-result-buttons"><button id="calcpro-due-save" title="Save this result as a text file" type="button">▣ Save</button><button id="calcpro-due-print" title="Print these results" type="button">▤ Print</button></div></div>
@@ -416,4 +417,6 @@
     setTimeout(()=>URL.revokeObjectURL(url),1000);
   });
 })();
-</script></body></html>
+</script><script defer src="calcpro-tools-sidebar-data.js"></script>
+<script defer src="calcpro-tools-sidebar.js"></script>
+</body></html>

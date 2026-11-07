@@ -76,7 +76,8 @@
 .calcpro-commission-guide code{font-family:Consolas,monospace}
 @media(max-width:430px){.calcpro-commission-tier h2{font-size:19px}.calcpro-commission-panel{padding:11px 9px}.calcpro-commission-basic-grid{grid-template-columns:minmax(115px,1fr) minmax(112px,134px);gap:6px}.calcpro-commission-tier-panel{padding:10px 7px}.calcpro-commission-tier-table td{padding:2px 1px}.calcpro-commission-tier-table th:nth-child(1){width:24%}.calcpro-commission-tier-table th:nth-child(2){width:31%}.calcpro-commission-tier-table th:nth-child(3){width:45%}.calcpro-commission-rate-group select{width:42px;flex-basis:42px}.calcpro-commission-result-lead{font-size:16px}}
 @media print{.calcpro-commission-panel,.calcpro-commission-result-head button,.calcpro-commission-error{display:none!important}.calcpro-commission-result[hidden]{display:none!important}.calcpro-commission-result{break-inside:avoid}.calcpro-commission-result-head{print-color-adjust:exact;-webkit-print-color-adjust:exact}}
-</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Commission Calculator</nav><h1 class="cp-page-title">Commission Calculator</h1><p class="cp-intro">Calculate any one of sales price, commission rate, or commission using the other two inputs. The tiered calculator also supports progressive commission brackets and an optional base payment.</p><section aria-label="Calculator" class="cp-tool-area">
+</style><link rel="stylesheet" href="calcpro-tools-sidebar.css">
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Commission Calculator</nav><h1 class="cp-page-title">Commission Calculator</h1><p class="cp-intro">Calculate any one of sales price, commission rate, or commission using the other two inputs. The tiered calculator also supports progressive commission brackets and an optional base payment.</p><section aria-label="Calculator" class="cp-tool-area">
 <div class="calcpro-commission" id="calcpro-commission">
   <section class="calcpro-commission-simple" aria-label="Simple commission">
     <div class="calcpro-commission-result" id="calcpro-commission-simple-result" hidden aria-live="polite">
@@ -476,4 +477,6 @@
   });
 })();
 </script>
+<script defer src="calcpro-tools-sidebar-data.js"></script>
+<script defer src="calcpro-tools-sidebar.js"></script>
 </body></html>

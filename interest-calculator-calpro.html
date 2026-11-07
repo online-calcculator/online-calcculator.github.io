@@ -75,7 +75,8 @@
 @media(max-width:355px){.calcpro-interest-field{grid-template-columns:1fr}.calcpro-interest-summary{font-size:13px}.calcpro-interest-donut-container svg{width:112px;height:112px}.calcpro-interest-legend{font-size:12px}}
 @media print{.calcpro-interest-tools,.calcpro-interest-notice,.calcpro-interest-form-actions,.calcpro-interest-save,.calcpro-interest-tabs{display:none!important}.calcpro-interest-top{grid-template-columns:1fr 1fr;gap:20px}.calcpro-interest-form{background:#fff}.calcpro-interest-accumulation{break-before:auto}.calcpro-interest-table-scroll{max-height:none;overflow:visible}.calcpro-interest-donut-container svg{width:110px}.calcpro-interest-accumulation,.calcpro-interest-top{break-inside:avoid}}
 
-</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Interest Calculator</nav><h1 class="cp-page-title">Interest Calculator</h1><p class="cp-intro">Estimate compound interest, future investment value, contributions, and inflation-adjusted buying power. Review annual or monthly accumulation schedules.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-interest" id="calcpro-interest-app">
+</style><link rel="stylesheet" href="calcpro-tools-sidebar.css">
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Interest Calculator</nav><h1 class="cp-page-title">Interest Calculator</h1><p class="cp-intro">Estimate compound interest, future investment value, contributions, and inflation-adjusted buying power. Review annual or monthly accumulation schedules.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-interest" id="calcpro-interest-app">
   <div class="calcpro-interest-tools"><button type="button" id="calcpro-interest-print" class="calcpro-interest-print"><span aria-hidden="true">▤</span> Print</button></div>
   <div class="calcpro-interest-notice"><span class="calcpro-interest-notice-icon" aria-hidden="true">▼</span>Modify the values and click the Calculate button to use</div>
   <div class="calcpro-interest-top">
@@ -424,4 +425,6 @@
   calculate();
 })();
 
-</script></body></html>
+</script><script defer src="calcpro-tools-sidebar-data.js"></script>
+<script defer src="calcpro-tools-sidebar.js"></script>
+</body></html>

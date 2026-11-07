@@ -36,7 +36,8 @@
 @media(max-width:490px){.calcpro-pvalue-form{width:100%}.calcpro-pvalue-formrow{grid-template-columns:minmax(0,1fr) minmax(90px,110px) 40px;gap:4px}.calcpro-pvalue-resultlabel{font-size:clamp(15px,4vw,20px)}.calcpro-pvalue-resultrow{gap:7px}.calcpro-pvalue-resulthead{font-size:18px}}
 @media(max-width:350px){.calcpro-pvalue-formrow{grid-template-columns:minmax(0,1fr) 40px;gap:3px 7px;padding:3px 0}.calcpro-pvalue-formrow label{grid-column:1/-1}.calcpro-pvalue-formrow input{grid-column:1}.calcpro-pvalue-inputchart{grid-column:2}.calcpro-pvalue-resultrow{grid-template-columns:minmax(0,1fr) 44px;gap:3px}.calcpro-pvalue-resultrow svg{width:44px}}
 @media print{.calcpro-pvalue-tool .calcpro-pvalue-buttons,.calcpro-pvalue-tool .calcpro-pvalue-save{display:none!important}.calcpro-pvalue-resulthead{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
-</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/math-calculator/">Math</a> / P-value Calculator</nav><h1 class="cp-page-title">P-value Calculator</h1><p class="cp-intro">Please provide any one value below to compute p-value from z-score or vice versa for a normal distribution.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-pvalue-tool" id="calcpro-pvalue-tool">
+</style><link rel="stylesheet" href="calcpro-tools-sidebar.css">
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/math-calculator/">Math</a> / P-value Calculator</nav><h1 class="cp-page-title">P-value Calculator</h1><p class="cp-intro">Please provide any one value below to compute p-value from z-score or vice versa for a normal distribution.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-pvalue-tool" id="calcpro-pvalue-tool">
   <!-- The reference displays its result ABOVE the form, not beside it. -->
   <section id="calcpro-pvalue-result" class="calcpro-pvalue-result" aria-label="Calculated P-values" aria-live="polite" hidden>
     <div class="calcpro-pvalue-resulthead"><span>Result</span><button type="button" id="calcpro-pvalue-save" class="calcpro-pvalue-save" title="Save results as an SVG image" aria-label="Save result as SVG"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 3h14l3 3v15H3V3h1zM7 3v6h10V3M7 21v-8h10v8"/><path d="M10 5v3"/></svg>Save SVG</button></div>
@@ -290,4 +291,6 @@
     document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
   });
 })();
-</script></body></html>
+</script><script defer src="calcpro-tools-sidebar-data.js"></script>
+<script defer src="calcpro-tools-sidebar.js"></script>
+</body></html>

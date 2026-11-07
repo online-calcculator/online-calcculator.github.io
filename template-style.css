@@ -60,3 +60,26 @@ body{margin:0;padding:0;background:#fff}
 @media(max-width:940px){.cp-layout{grid-template-columns:minmax(0,1fr);grid-template-areas:'primary' 'rail' 'guide';width:min(calc(100% - 24px),728px)}.cp-sidebar{width:100%;padding:0 0 25px}.cp-ad-area{min-height:250px}.cp-related{max-width:400px;margin:0 auto}}
 @media(max-width:580px){.cp-layout{width:calc(100% - 20px)}.cp-article h2{font-size:20px}.cp-article h3{font-size:17px}.cp-article p{font-size:15px}.cp-page-title{font-size:24px}}
 @media print{.cp-header,.cp-sidebar{display:none!important}.cp-layout{display:block;width:100%;margin:0}.cp-main,.cp-article{width:100%;margin:0}.cp-related{display:none}}
+
+/* Keep calculator actions and result headers consistent across tools. */
+.cp-tool-area button[type="submit"]:not([class*="bra-button"]):not([class*="dice-button"]):not([class*="height-button"]):not([class*="mileage-submit"]):not([class*="rng-generate"]):not([class*="pwg-generate"]):not([class*="roman-convert"]):not([class*="sci__button"]):not([class*="shoe-convert"]):not([class*="speed-submit"]):not([class*="urlenc-action"]),
+.cp-tool-area button[class*="calculate"],
+.cp-tool-area button[class*="calcbutton"]{background:#000!important;color:#fff!important}
+.cp-tool-area button[type="submit"]:not([class*="bra-button"]):not([class*="dice-button"]):not([class*="height-button"]):not([class*="mileage-submit"]):not([class*="rng-generate"]):not([class*="pwg-generate"]):not([class*="roman-convert"]):not([class*="sci__button"]):not([class*="shoe-convert"]):not([class*="speed-submit"]):not([class*="urlenc-action"]):hover,
+.cp-tool-area button[class*="calculate"]:hover,
+.cp-tool-area button[class*="calcbutton"]:hover{background:#000!important}
+.cp-tool-area .calcpro-bra-calc-form .calcpro-bra-button,
+.cp-tool-area .calcpro-height-actions .calcpro-height-button,
+.cp-tool-area #calcpro-speed-form .calcpro-speed-submit{background:#000!important;color:#fff!important}
+.cp-tool-area .calcpro-bra-calc-form .calcpro-bra-button:hover,
+.cp-tool-area .calcpro-height-actions .calcpro-height-button:hover,
+.cp-tool-area #calcpro-speed-form .calcpro-speed-submit:hover{background:#000!important}
+.cp-tool-area [class*="result"][class*="head"],
+.cp-tool-area [class*="result"][class*="bar"],
+.cp-tool-area [class*="result"][class*="title"],
+.cp-tool-area [class*="result"][class*="top"],
+.cp-tool-area [class*="result"][class*="banner"],
+.cp-tool-area [class*="output"][class*="header"],
+.cp-tool-area [class*="summary"][class*="heading"],
+.cp-tool-area [class*="summary"][class*="bar"],
+.cp-tool-area [class*="result"] h2{background:#003366!important;color:#fff!important}

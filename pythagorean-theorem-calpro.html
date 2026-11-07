@@ -47,7 +47,8 @@
 @media(max-width:430px){.calcpro-pyth-root .calcpro-pyth-result-body{grid-template-columns:minmax(0,1fr)}.calcpro-pyth-root .calcpro-pyth-result-diagram{justify-self:start;max-width:200px}.calcpro-pyth-root .calcpro-pyth-workspace{grid-template-columns:1fr;justify-items:center}.calcpro-pyth-root .calcpro-pyth-input-panel{max-width:272px}.calcpro-pyth-root .calcpro-pyth-form-diagram{max-width:210px;padding-top:0}.calcpro-pyth-root .calcpro-pyth-result-text{font-size:14px}}
 @media print{.calcpro-pyth-root .calcpro-pyth-instruction,.calcpro-pyth-root .calcpro-pyth-save,.calcpro-pyth-root .calcpro-pyth-workspace,.calcpro-pyth-root .calcpro-pyth-assistive,.calcpro-pyth-root .calcpro-pyth-error{display:none!important}.calcpro-pyth-root .calcpro-pyth-results[hidden]{display:none!important}.calcpro-pyth-root .calcpro-pyth-results{break-inside:avoid}.calcpro-pyth-root .calcpro-pyth-details:not([open]){display:none!important}}
 
-</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / Math / Pythagorean Theorem Calculator</nav><h1 class="cp-page-title">Pythagorean Theorem Calculator</h1><p class="cp-intro">Please provide any 2 values below to solve the Pythagorean equation: a<sup>2</sup> + b<sup>2</sup> = c<sup>2</sup>.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-pyth-root" id="calcpro-pyth-calculator">
+</style><link rel="stylesheet" href="calcpro-tools-sidebar.css">
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / Math / Pythagorean Theorem Calculator</nav><h1 class="cp-page-title">Pythagorean Theorem Calculator</h1><p class="cp-intro">Please provide any 2 values below to solve the Pythagorean equation: a<sup>2</sup> + b<sup>2</sup> = c<sup>2</sup>.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-pyth-root" id="calcpro-pyth-calculator">
   <div class="calcpro-pyth-instruction" id="calcpro-pyth-instruction"><span class="calcpro-pyth-down" aria-hidden="true"></span><span>Modify the values and click the Calculate button to use</span></div>
   <section class="calcpro-pyth-results" id="calcpro-pyth-results" aria-label="Calculated right-triangle results" hidden>
     <div class="calcpro-pyth-results-header"><span>Result</span><button type="button" class="calcpro-pyth-save" id="calcpro-pyth-save" aria-label="Save or print the results as a PDF" title="Save or print results"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 2h13l4 4v16H3V2h1zm1 2v16h14V7l-3-3h-1v6H7V4H5zm4 0v4h4V4H9zm3 9a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7z"/></svg><small>save</small></button></div>
@@ -355,4 +356,6 @@
   triangleSvg(el('input-svg'), 2, 4, false);
 })();
 
-</script></body></html>
+</script><script defer src="calcpro-tools-sidebar-data.js"></script>
+<script defer src="calcpro-tools-sidebar.js"></script>
+</body></html>

@@ -84,7 +84,8 @@
 @media (max-width:380px){.calcpro-autoloan .calcpro-autoloan-field{grid-template-columns:minmax(0,1fr) minmax(107px,.9fr)}.calcpro-autoloan .calcpro-autoloan-tab{font-size:13px;padding:7px 6px}.calcpro-autoloan .calcpro-autoloan-form{padding:10px}.calcpro-autoloan .calcpro-autoloan-field-label{font-size:13px}.calcpro-autoloan .calcpro-autoloan-result-top,.calcpro-autoloan .calcpro-autoloan-result-top strong{font-size:18px}.calcpro-autoloan .calcpro-autoloan-summary{font-size:12px}.calcpro-autoloan .calcpro-autoloan-donut{height:120px;width:120px}}
 @media print{.calcpro-autoloan .calcpro-autoloan-toolbar,.calcpro-autoloan .calcpro-autoloan-instruction,.calcpro-autoloan .calcpro-autoloan-actions,.calcpro-autoloan .calcpro-autoloan-save,.calcpro-autoloan .calcpro-autoloan-tabs,.calcpro-autoloan .calcpro-autoloan-statehelp,.calcpro-autoloan .calcpro-autoloan-advanced{display:none!important}.calcpro-autoloan .calcpro-autoloan-form{border:1px solid #aaa}.calcpro-autoloan .calcpro-autoloan-upper{grid-template-columns:44% 54%;gap:2%}.calcpro-autoloan .calcpro-autoloan-bottomgrid{grid-template-columns:52% 46%}.calcpro-autoloan .calcpro-autoloan-tablewrap{max-height:none;overflow:visible}.calcpro-autoloan .calcpro-autoloan-linechart{max-height:230px}.calcpro-autoloan{font-size:12px}}
 
-</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Auto Loan Calculator</nav><h1 class="cp-page-title">Auto Loan Calculator</h1><p class="cp-intro">Calculate your monthly car payment or find a vehicle price from your monthly budget. Include trade-ins, rebates, taxes, registration fees, and view the complete amortization schedule.</p><section aria-label="Calculator" class="cp-tool-area">
+</style><link rel="stylesheet" href="calcpro-tools-sidebar.css">
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Auto Loan Calculator</nav><h1 class="cp-page-title">Auto Loan Calculator</h1><p class="cp-intro">Calculate your monthly car payment or find a vehicle price from your monthly budget. Include trade-ins, rebates, taxes, registration fees, and view the complete amortization schedule.</p><section aria-label="Calculator" class="cp-tool-area">
 <div class="calcpro-autoloan" id="calcpro-autoloan-root">
   <div class="calcpro-autoloan-toolbar"><button type="button" class="calcpro-autoloan-print" id="calcpro-autoloan-print">Print</button></div>
   <div class="calcpro-autoloan-instruction"><span class="calcpro-autoloan-instruction-icon" aria-hidden="true">▼</span><span>Modify the values and click Calculate to update your auto loan estimate.</span></div>
@@ -416,4 +417,6 @@
   if(readSaved())el('load').hidden=false;
   calculate();
 })();
-</script></body></html>
+</script><script defer src="calcpro-tools-sidebar-data.js"></script>
+<script defer src="calcpro-tools-sidebar.js"></script>
+</body></html>

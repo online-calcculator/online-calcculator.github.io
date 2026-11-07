@@ -96,11 +96,12 @@
 .calcpro-apr-prefix{left:7px;font-size:13px;color:#000}
 .calcpro-apr-help{border:0;background:#d8d8d8;color:#666;border-radius:50%;width:15px;min-width:15px;height:15px;padding:0;font:10px/15px Arial,Helvetica,sans-serif;vertical-align:middle}
 .calcpro-apr-form-actions{margin-top:10px;gap:5px;justify-content:flex-start;flex-wrap:nowrap;padding-left:35px}
-.calcpro-apr-action{padding:0 15px;height:33px;min-height:33px;border-radius:0;font:bold 13px/33px Arial,Helvetica,sans-serif;white-space:nowrap;background:#4b8827}
+.calcpro-apr-action{padding:0 15px;height:33px;min-height:33px;border-radius:0;font:bold 13px/33px Arial,Helvetica,sans-serif;white-space:nowrap;background:#000}
+.calcpro-apr-action:hover{background:#000}
 .calcpro-apr-action-secondary{background:#9f9f9f}
 .calcpro-apr-action span{font-size:12px}
 .calcpro-apr-result{min-width:0;color:#000;padding-top:2px}
-.calcpro-apr-banner{min-height:37px;height:37px;background:#4c8a27;padding:0 8px;gap:5px;align-items:center}
+.calcpro-apr-banner{min-height:37px;height:37px;background:#003366;padding:0 8px;gap:5px;align-items:center}
 .calcpro-apr-banner strong{font:normal 20px/37px Arial,Helvetica,sans-serif;white-space:nowrap}
 .calcpro-apr-banner output{font:20px/37px Arial,Helvetica,sans-serif}
 .calcpro-apr-save-controls{gap:2px}
@@ -153,6 +154,143 @@
 </head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / APR Calculator</nav><h1 class="cp-page-title">APR Calculator</h1><p class="cp-intro">A loan’s true cost includes more than interest. Calculate real annual percentage rates (APR) for general loans and U.S. mortgages, including financing fees, discount points, and estimated mortgage insurance.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-apr" id="calcpro-apr-root">
 <div class="calcpro-apr-hint"><span aria-hidden="true" class="calcpro-apr-hint-icon">▼</span>Modify the values and select Calculate to estimate your real APR.</div>
 <section aria-labelledby="calcpro-apr-g-heading" class="calcpro-apr-block" id="calcpro-apr-general-block">
+
+<!-- APR Calculator Instruction Banner -->
+<div class="apr-orange-banner">
+
+  <div class="apr-orange-icon">
+    <svg viewBox="0 0 24 24" fill="none"
+         xmlns="http://www.w3.org/2000/svg">
+      <rect x="4" y="2" width="16" height="20" rx="2.5"/>
+      <rect x="7" y="5" width="10" height="5" rx="1"/>
+      <path d="M8 14h1M12 14h1M16 14h.01"/>
+      <path d="M8 17h1M12 17h1M16 17h.01"/>
+    </svg>
+  </div>
+
+  <div class="apr-orange-divider"></div>
+
+  <div class="apr-orange-text">
+    <strong>Customize</strong> your inputs and calculate
+    your results instantly.
+  </div>
+
+  <div class="apr-orange-decoration"></div>
+
+</div>
+
+<style>
+.apr-orange-banner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 64px;
+  box-sizing: border-box;
+  padding: 8px 16px;
+  margin: 15px 0;
+  gap: 20px;
+  overflow: hidden;
+
+  background: #FFF4E5;
+  border: 2px solid #F07816;
+  border-radius: 10px;
+
+  font-family: Arial, sans-serif;
+}
+
+.apr-orange-icon {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 90px;
+  min-width: 90px;
+  height: 60px;
+  margin: -8px 0 -8px -16px;
+
+  background: #F07816;
+  clip-path: polygon(0 0, 75% 0, 100% 50%,
+                     75% 100%, 0 100%);
+}
+
+.apr-orange-icon svg {
+  width: 36px;
+  height: 36px;
+  stroke: #FFFFFF;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.apr-orange-divider {
+  width: 2px;
+  height: 36px;
+  flex-shrink: 0;
+  background: #D96A12;
+  opacity: .8;
+  margin-left: -8px;
+}
+
+.apr-orange-text {
+  position: relative;
+  z-index: 2;
+  color: #172B45;
+  font-size: clamp(14px, 1.8vw, 20px);
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.apr-orange-text strong {
+  color: #D85D0B;
+  font-weight: 700;
+}
+
+.apr-orange-decoration {
+  position: absolute;
+  width: 120px;
+  height: 65px;
+  right: -40px;
+  bottom: -42px;
+  border: 8px solid rgba(240, 120, 22, .35);
+  border-radius: 50%;
+  transform: rotate(-30deg);
+  pointer-events: none;
+}
+
+@media (max-width: 600px) {
+  .apr-orange-banner {
+    min-height: 58px;
+    gap: 10px;
+    padding: 7px 10px;
+    border-radius: 8px;
+  }
+
+  .apr-orange-icon {
+    width: 62px;
+    min-width: 62px;
+    height: 54px;
+    margin: -7px 0 -7px -10px;
+  }
+
+  .apr-orange-icon svg {
+    width: 29px;
+    height: 29px;
+  }
+
+  .apr-orange-divider {
+    height: 30px;
+    margin-left: -5px;
+  }
+
+  .apr-orange-text {
+    font-size: 13px;
+  }
+}
+</style>
+
+
 <h2 class="calcpro-apr-heading" id="calcpro-apr-g-heading">General APR Calculator</h2>
 <div class="calcpro-apr-grid">
 <form aria-label="General APR Calculator" class="calcpro-apr-form" id="calcpro-apr-g-form" novalidate="">

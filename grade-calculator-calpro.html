@@ -67,7 +67,8 @@
 @media(max-width:480px){.calcpro-grade-root .calcpro-grade-panel{width:100%;max-width:350px}.calcpro-grade-root .calcpro-grade-fields-head,.calcpro-grade-root .calcpro-grade-row{grid-template-columns:minmax(0,1fr) 58px 69px}.calcpro-grade-root .calcpro-grade-final-panel{width:100%;max-width:350px}.calcpro-grade-root .calcpro-grade-result-header{font-size:15px}}
 @media print{.calcpro-grade-root .calcpro-grade-settings-trigger,.calcpro-grade-root .calcpro-grade-add-wrap,.calcpro-grade-root .calcpro-grade-actions,.calcpro-grade-root .calcpro-grade-save,.calcpro-grade-root .calcpro-grade-related,.calcpro-grade-root .calcpro-grade-result-print{display:none!important}.calcpro-grade-root .calcpro-grade-panel,.calcpro-grade-root .calcpro-grade-final-panel{border:0;background:white;padding:4px}.calcpro-grade-root .calcpro-grade-result-header{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
 
-</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/">Calculators</a> / Grade Calculator</nav><h1 class="cp-page-title">Grade Calculator</h1><p class="cp-intro">Use this calculator to find your course grade from a weighted average of assignments and exams. Mix letter grades with percentages or grade points, and work out the score you need on the final to reach your goal.</p><section aria-label="Calculator" class="cp-tool-area">
+</style><link rel="stylesheet" href="calcpro-tools-sidebar.css">
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/">Calculators</a> / Grade Calculator</nav><h1 class="cp-page-title">Grade Calculator</h1><p class="cp-intro">Use this calculator to find your course grade from a weighted average of assignments and exams. Mix letter grades with percentages or grade points, and work out the score you need on the final to reach your goal.</p><section aria-label="Calculator" class="cp-tool-area">
 <div class="calcpro-grade-root" id="calcpro-grade-root">
   <section class="calcpro-grade-result" id="calcpro-grade-course-result" aria-label="Course grade result" aria-live="polite" hidden>
     <div class="calcpro-grade-result-header"><span>Result</span><button class="calcpro-grade-save" id="calcpro-grade-course-save" type="button" title="Save result as text">▣ Save</button></div>
@@ -480,4 +481,6 @@
   });
 })();
 </script>
+<script defer src="calcpro-tools-sidebar-data.js"></script>
+<script defer src="calcpro-tools-sidebar.js"></script>
 </body></html>

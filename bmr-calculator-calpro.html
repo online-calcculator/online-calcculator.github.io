@@ -73,7 +73,8 @@
 @media (max-width:360px){.calcpro-bmr-row{grid-template-columns:65px 1fr}.calcpro-bmr-other-line{grid-template-columns:minmax(0,1fr) 82px}.calcpro-bmr-tab{padding:7px 5px;font-size:11px!important}}
 @media print{.calcpro-bmr-notice,.calcpro-bmr-save,.calcpro-bmr-actions,.calcpro-bmr-settings-toggle{display:none!important}.calcpro-bmr-layout{display:block}.calcpro-bmr-left{margin-bottom:18px}}
 
-</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="fitness-and-health-calculator.html">Fitness &amp; Health</a> / BMR Calculator</nav><h1 class="cp-page-title">BMR Calculator</h1><p class="cp-intro">The Basal Metabolic Rate (BMR) Calculator estimates your resting energy expenditure and approximate daily energy needs for six activity levels.</p><section aria-label="Calculator" class="cp-tool-area">
+</style><link rel="stylesheet" href="calcpro-tools-sidebar.css">
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="fitness-and-health-calculator.html">Fitness &amp; Health</a> / BMR Calculator</nav><h1 class="cp-page-title">BMR Calculator</h1><p class="cp-intro">The Basal Metabolic Rate (BMR) Calculator estimates your resting energy expenditure and approximate daily energy needs for six activity levels.</p><section aria-label="Calculator" class="cp-tool-area">
 <div class="calcpro-bmr" id="calcpro-bmr-root">
   <div class="calcpro-bmr-notice"><span class="calcpro-bmr-notice-icon" aria-hidden="true">▼</span><span>Modify the values and click Calculate to update your BMR.</span></div>
   <div class="calcpro-bmr-layout">
@@ -407,4 +408,6 @@
   get('height-unit').dataset.before = 'cm'; get('weight-unit').dataset.before = 'kg';
   calculate(); // Reference initially displays an example result.
 })();
-</script></body></html>
+</script><script defer src="calcpro-tools-sidebar-data.js"></script>
+<script defer src="calcpro-tools-sidebar.js"></script>
+</body></html>

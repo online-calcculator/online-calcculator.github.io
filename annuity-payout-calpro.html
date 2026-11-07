@@ -77,7 +77,8 @@
 @media (max-width:690px){.calcpro-annuity .calcpro-annuity-layout{grid-template-columns:1fr;gap:15px}.calcpro-annuity .calcpro-annuity-form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 12px}.calcpro-annuity .calcpro-annuity-actions,.calcpro-annuity .calcpro-annuity-error{grid-column:1/-1}.calcpro-annuity .calcpro-annuity-result-body{min-height:unset}.calcpro-annuity .calcpro-annuity-pie-row{justify-content:flex-start;margin-left:3%}}
 @media (max-width:510px){.calcpro-annuity .calcpro-annuity-analysis{grid-template-columns:1fr}.calcpro-annuity .calcpro-annuity-form{display:block}.calcpro-annuity .calcpro-annuity-entry{max-width:none}.calcpro-annuity .calcpro-annuity-tab{font-size:12px}.calcpro-annuity .calcpro-annuity-balance-table{font-size:12px}.calcpro-annuity .calcpro-annuity-balance-table th{font-size:11px}.calcpro-annuity .calcpro-annuity-stats td:last-child{white-space:normal}}
 @media print{.calcpro-annuity .calcpro-annuity-hint,.calcpro-annuity .calcpro-annuity-tabs,.calcpro-annuity .calcpro-annuity-actions,.calcpro-annuity .calcpro-annuity-output-actions{display:none!important}.calcpro-annuity .calcpro-annuity-form{border:1px solid #ccc;background:#fff}.calcpro-annuity .calcpro-annuity-analysis,.calcpro-annuity .calcpro-annuity-layout{break-inside:avoid}.calcpro-annuity .calcpro-annuity-line-svg{min-height:0}}
-</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Annuity Payout Calculator</nav><h1 class="cp-page-title">Annuity Payout Calculator</h1><p class="cp-intro">Calculate a regular annuity withdrawal for a fixed term, or find out how long a chosen fixed withdrawal may last. Compare six payout frequencies and see the balance by year.</p><section aria-label="Calculator" class="cp-tool-area">
+</style><link rel="stylesheet" href="calcpro-tools-sidebar.css">
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Annuity Payout Calculator</nav><h1 class="cp-page-title">Annuity Payout Calculator</h1><p class="cp-intro">Calculate a regular annuity withdrawal for a fixed term, or find out how long a chosen fixed withdrawal may last. Compare six payout frequencies and see the balance by year.</p><section aria-label="Calculator" class="cp-tool-area">
 <div class="calcpro-annuity" id="calcpro-annuity-root">
   <p class="calcpro-annuity-hint">Choose a payout method, adjust your values, and select <strong>Calculate</strong>. The results and annuity balance charts update on this page.</p>
   <div class="calcpro-annuity-layout">
@@ -460,4 +461,6 @@
   }
   run();
 })();
-</script></body></html>
+</script><script defer src="calcpro-tools-sidebar-data.js"></script>
+<script defer src="calcpro-tools-sidebar.js"></script>
+</body></html>

@@ -88,7 +88,8 @@
 @media(max-width:600px){.calcpro-tdee-form{padding:13px 10px}.calcpro-tdee-form-row{grid-template-columns:68px minmax(0,1fr);gap:5px}.calcpro-tdee-form-label{font-size:14px}.calcpro-tdee-form input[type=number],.calcpro-tdee-form select{height:36px}.calcpro-tdee-activity{font-size:14px!important}.calcpro-tdee-input-unit input{width:110px}.calcpro-tdee-input-unit.calcpro-tdee-input-unit-wide input{width:198px}.calcpro-tdee-units button{font-size:14px;padding:7px 8px;min-height:34px}.calcpro-tdee-message{font-size:15px;gap:10px}.calcpro-tdee-goal-table{width:100%}.calcpro-tdee-result-summary{font-size:17px}.calcpro-tdee-result-summary strong{font-size:20px}}
 @media(max-width:390px){.calcpro-tdee-form-row{grid-template-columns:1fr;gap:3px;margin-bottom:10px}.calcpro-tdee-form .calcpro-tdee-activity{width:100%}.calcpro-tdee-converter-grid{grid-template-columns:1fr}.calcpro-tdee-units button{font-size:13px;padding:7px 6px}.calcpro-tdee-standalone-wrap{width:calc(100% - 20px)}}
 @media print{.calcpro-tdee-toolbar,.calcpro-tdee-calculate,.calcpro-tdee-reset,.calcpro-tdee-converter,.calcpro-tdee-message,.calcpro-tdee-save,.calcpro-tdee-footnotes{display:none!important}.calcpro-tdee-result[hidden]{display:none!important}.calcpro-tdee-form{background:#fff}.calcpro-tdee-result{break-inside:avoid}.calcpro-tdee-standalone-wrap{margin:0;width:100%}}
-</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="fitness-and-health-calculator.html">Fitness &amp; Health</a> / TDEE Calculator</nav><h1 class="cp-page-title">TDEE Calculator</h1><p class="cp-intro">This calculator can be used to estimate your Total Daily Energy Expenditure (TDEE).</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-tdee-root" id="calcpro-tdee-root">
+</style><link rel="stylesheet" href="calcpro-tools-sidebar.css">
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="fitness-and-health-calculator.html">Fitness &amp; Health</a> / TDEE Calculator</nav><h1 class="cp-page-title">TDEE Calculator</h1><p class="cp-intro">This calculator can be used to estimate your Total Daily Energy Expenditure (TDEE).</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-tdee-root" id="calcpro-tdee-root">
 <div class="calcpro-tdee-toolbar"><button class="calcpro-tdee-print" id="calcpro-tdee-print" type="button">Print</button></div>
 <div class="calcpro-tdee-warning" hidden="" id="calcpro-tdee-error" role="alert"></div>
 <section aria-label="TDEE calculation results" aria-live="polite" class="calcpro-tdee-result" hidden="" id="calcpro-tdee-results">
@@ -426,4 +427,6 @@
   byId('calcpro-tdee-use-conversion').addEventListener('click',applyConverter);
   showConverterCategory('length');setFormula();
 })();
-</script></body></html>
+</script><script defer src="calcpro-tools-sidebar-data.js"></script>
+<script defer src="calcpro-tools-sidebar.js"></script>
+</body></html>

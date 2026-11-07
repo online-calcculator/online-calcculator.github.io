@@ -76,7 +76,8 @@
 @media(max-width:400px){.calcpro-loan .calcpro-loan-form{padding:11px 9px}.calcpro-loan .calcpro-loan-field{grid-template-columns:83px minmax(0,1fr);gap:6px}.calcpro-loan .calcpro-loan-label{font-size:11px}.calcpro-loan .calcpro-loan-term{gap:3px}.calcpro-loan .calcpro-loan-term-unit{font-size:10px}.calcpro-loan .calcpro-loan-visual{padding-left:0;justify-content:center}.calcpro-loan .calcpro-loan-section-title{font-size:17px}}
 @media print{.calcpro-loan .calcpro-loan-save,.calcpro-loan .calcpro-loan-actions,.calcpro-loan .calcpro-loan-table-toggle,.calcpro-loan .calcpro-loan-schedule-actions,.calcpro-loan .calcpro-loan-pager{display:none!important}.calcpro-loan .calcpro-loan-section{break-inside:avoid}.calcpro-loan .calcpro-loan-table-scroll{overflow:visible}.calcpro-loan .calcpro-loan-table{min-width:0;font-size:9px}}
 
-</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Loan Calculator</nav><h1 class="cp-page-title">Loan Calculator</h1><p class="cp-intro">Estimate recurring loan payments, a one-time maturity payment, or the present value of a zero-coupon bond. Compare principal and interest and open detailed repayment schedules.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-loan" id="calcpro-loan-root">
+</style><link rel="stylesheet" href="calcpro-tools-sidebar.css">
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Loan Calculator</nav><h1 class="cp-page-title">Loan Calculator</h1><p class="cp-intro">Estimate recurring loan payments, a one-time maturity payment, or the present value of a zero-coupon bond. Compare principal and interest and open detailed repayment schedules.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-loan" id="calcpro-loan-root">
 <ol class="calcpro-loan-types"><li><a href="#calcpro-loan-amortized">Amortized Loan: regular payments</a></li><li><a href="#calcpro-loan-deferred">Deferred Payment Loan: one payment at maturity</a></li><li><a href="#calcpro-loan-bond">Bond: fixed amount due at maturity</a></li></ol>
 <div class="calcpro-loan-banner"><span class="calcpro-loan-banner-icon" aria-hidden="true">▼</span>Modify the values and click Calculate to update the results.</div>
 <section class="calcpro-loan-section" id="calcpro-loan-amortized">
@@ -543,4 +544,6 @@
   });
 })();
 </script>
+<script defer src="calcpro-tools-sidebar-data.js"></script>
+<script defer src="calcpro-tools-sidebar.js"></script>
 </body></html>

@@ -80,8 +80,10 @@ body{margin:0;padding:0;background:#fff}
 .calcpro-re-search label{display:block;margin-bottom:5px;font-weight:700;color:#1f4266}
 .calcpro-re-search-row{display:flex;gap:5px}
 .calcpro-re-search input{flex:1;min-width:0;border:1px solid #92a8bb;border-radius:3px;padding:8px 9px;font:inherit;font-size:14px;background:#fff}
-.calcpro-re-search button,.calcpro-re-primary{border:1px solid #235b89;border-radius:4px;background:#336699;color:#fff;padding:9px 16px;cursor:pointer;font-weight:700;font:inherit}
-.calcpro-re-search button:hover,.calcpro-re-primary:hover{background:#164b78}
+.calcpro-re-search button{border:1px solid #235b89;border-radius:4px;background:#336699;color:#fff;padding:9px 16px;cursor:pointer;font-weight:700;font:inherit}
+.calcpro-re-search button:hover{background:#164b78}
+.calcpro-re-primary{border:1px solid #000;border-radius:4px;background:#000;color:#fff;padding:9px 16px;cursor:pointer;font-weight:700;font:inherit}
+.calcpro-re-primary:hover{background:#000}
 .calcpro-re-search #calcpro-re-search-status{margin:7px 0 0;color:#46596a;font-size:12px}
 .calcpro-re-estimator{margin-top:35px;padding:18px;border:1px solid #cad9e7;border-radius:7px;background:#f8fbfe}
 .calcpro-re-estimator h2{font-size:23px;color:var(--cp-navy,#003366);margin:0 0 8px;line-height:1.2}
@@ -142,7 +144,8 @@ body{margin:0;padding:0;background:#fff}
 @media(max-width:610px){.calcpro-re-estimator{padding:12px}.calcpro-re-fields,.calcpro-re-kpis{grid-template-columns:1fr}.calcpro-re-directory-list{padding-left:23px}.calcpro-re-results{padding:12px}.calcpro-re-lead strong{font-size:25px}.calcpro-re-toolbar{align-items:flex-start}.calcpro-re-directory-section h2,.calcpro-re-estimator h2{font-size:21px}}
 @media print{.calcpro-re-search,.calcpro-re-tabs,.calcpro-re-actions,.calcpro-re-toolbar{display:none!important}.calcpro-re-estimator{break-inside:avoid}.calcpro-re-panel[hidden],.calcpro-re-results[hidden]{display:none!important}}
 
-</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Real Estate Calculator</nav><h1 class="cp-page-title">Real Estate Calculator</h1><p class="cp-intro">Explore 20 real estate calculators for home financing, rent, property investment, measurements and construction. Use the quick estimates below for common real estate questions.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-re-hub" id="calcpro-re-hub">
+</style><link rel="stylesheet" href="calcpro-tools-sidebar.css">
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Real Estate Calculator</nav><h1 class="cp-page-title">Real Estate Calculator</h1><p class="cp-intro">Explore 20 real estate calculators for home financing, rent, property investment, measurements and construction. Use the quick estimates below for common real estate questions.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-re-hub" id="calcpro-re-hub">
     <div class="calcpro-re-directory" id="calcpro-re-directory">
       <p class="calcpro-re-directory-intro">Real estate covers financing, renting, ownership and construction. Browse the categories below to find a dedicated calculator. Six topics also offer a quick estimate directly on this page.</p>
       <section class="calcpro-re-directory-section" id="calcpro-re-financial"><h2>Financial</h2><ul class="calcpro-re-directory-list">
@@ -526,4 +529,6 @@ body{margin:0;padding:0;background:#fff}
   });
 })();
 </script>
+<script defer src="calcpro-tools-sidebar-data.js"></script>
+<script defer src="calcpro-tools-sidebar.js"></script>
 </body></html>

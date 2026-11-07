@@ -81,7 +81,8 @@
 @media(max-width:350px){.calcpro-rental-expense-header,.calcpro-rental-expense-row{grid-template-columns:minmax(0,1fr) 76px 60px}.calcpro-rental-row{grid-template-columns:minmax(0,1fr) 80px 45px}.calcpro-rental-expense-chart-layout{flex-wrap:wrap}}
 @media print{.calcpro-rental-print-row,.calcpro-rental-form,.calcpro-rental-actions{display:none!important}.calcpro-rental-results{display:block!important}.calcpro-rental-year-scroll{overflow:visible}.calcpro-rental-years-table{min-width:0;font-size:8px}.calcpro-rental-expense-chart-layout{min-height:115px}.calcpro-rental-donut{width:100px;height:100px}.calcpro-rental-results,.calcpro-rental-expense-section{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
 
-</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Rental Property Calculator</nav><h1 class="cp-page-title">Rental Property Calculator</h1><p class="cp-intro">Estimate the potential returns on a rental property, including financing, repairs, income growth, ongoing expenses, resale value, and cash flow over time.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-rental" id="calcpro-rental-root">
+</style><link rel="stylesheet" href="calcpro-tools-sidebar.css">
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Rental Property Calculator</nav><h1 class="cp-page-title">Rental Property Calculator</h1><p class="cp-intro">Estimate the potential returns on a rental property, including financing, repairs, income growth, ongoing expenses, resale value, and cash flow over time.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-rental" id="calcpro-rental-root">
   <div class="calcpro-rental-print-row"><button type="button" class="calcpro-rental-print" id="calcpro-rental-print"><span aria-hidden="true">⎙</span> Print</button></div>
   <section class="calcpro-rental-results" id="calcpro-rental-results" aria-label="Rental property results" aria-live="polite" hidden>
     <div class="calcpro-rental-results-title">Result <span class="calcpro-rental-results-symbol" aria-hidden="true">▦</span></div>
@@ -445,4 +446,6 @@
   syncOptions();
 })();
 
-</script></body></html>
+</script><script defer src="calcpro-tools-sidebar-data.js"></script>
+<script defer src="calcpro-tools-sidebar.js"></script>
+</body></html>

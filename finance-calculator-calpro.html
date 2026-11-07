@@ -80,7 +80,8 @@
 @media(max-width:350px){.calcpro-finance-workspace{grid-template-columns:minmax(0,1fr);grid-template-areas:'form' 'results' 'chart' 'schedule';row-gap:15px}.calcpro-finance-formpanel{max-width:430px}.calcpro-finance-field{grid-template-columns:minmax(0,1fr) minmax(110px,1fr);gap:8px}.calcpro-finance-field>label,.calcpro-finance-field>label small{font-size:11px}.calcpro-finance-form{margin:0 3px;padding:11px}.calcpro-finance-tabs{margin-left:3px}.calcpro-finance-tab{padding:6px 7px}.calcpro-finance-inputbox{height:28px}.calcpro-finance-resultshead{padding:8px}.calcpro-finance-resultshead h2{font-size:15px!important}.calcpro-finance-stats>div{font-size:12px;flex-wrap:nowrap}.calcpro-finance-actionbar{gap:5px}.calcpro-finance-help{padding:7px 5px;font-size:11px}.calcpro-finance-print{padding:3px 5px}}
 @media print{.calcpro-finance-actionbar,.calcpro-finance-buttons,.calcpro-finance-settings,.calcpro-finance-settingstoggle,.calcpro-finance-resultshead button{display:none!important}.calcpro-finance{color:#000}.calcpro-finance-workspace{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.calcpro-finance-schedulesection{break-before:auto}.calcpro-finance-tablescroll{overflow:visible}.calcpro-finance-chartwrap{overflow:visible}.calcpro-finance-scheduletable{font-size:9px}.calcpro-finance-tabs{border-bottom:0}}
 
-</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Finance Calculator</nav><h1 class="cp-page-title">Finance Calculator</h1><p class="cp-intro">Calculate future value (FV), periodic payment (PMT), annual interest rate (I/Y), number of periods (N), or present value (PV) with adjustable compounding, payment timing, a chart, and a full payment schedule.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-finance" data-calcpro-finance>
+</style><link rel="stylesheet" href="calcpro-tools-sidebar.css">
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Finance Calculator</nav><h1 class="cp-page-title">Finance Calculator</h1><p class="cp-intro">Calculate future value (FV), periodic payment (PMT), annual interest rate (I/Y), number of periods (N), or present value (PV) with adjustable compounding, payment timing, a chart, and a full payment schedule.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-finance" data-calcpro-finance>
   <div class="calcpro-finance-actionbar">
     <div class="calcpro-finance-help" id="calcpro-finance-help">Modify the values and click Calculate to update the results.</div>
     <button type="button" class="calcpro-finance-print" id="calcpro-finance-print" title="Print calculation"><span aria-hidden="true">⎙</span> Print</button>
@@ -597,4 +598,6 @@
   setMode('FV', false);
   calculate();
 })();
-</script></body></html>
+</script><script defer src="calcpro-tools-sidebar-data.js"></script>
+<script defer src="calcpro-tools-sidebar.js"></script>
+</body></html>

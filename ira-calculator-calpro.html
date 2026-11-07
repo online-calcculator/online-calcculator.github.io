@@ -62,7 +62,8 @@
 @media(max-width:720px){.calcpro-ira .calcpro-ira-panels{grid-template-columns:minmax(0,1fr)}.calcpro-ira .calcpro-ira-formgrid{grid-template-columns:minmax(0,1fr) minmax(100px,160px)}.calcpro-ira .calcpro-ira-chartbox{margin-top:17px}}
 @media(max-width:480px){.calcpro-ira .calcpro-ira-formbox{padding:12px}.calcpro-ira .calcpro-ira-formgrid label{font-size:12px}.calcpro-ira .calcpro-ira-chartkey{grid-template-columns:minmax(0,1fr)}.calcpro-ira .calcpro-ira-resulttable{font-size:11px}.calcpro-ira .calcpro-ira-chartbox{padding:12px 6px 6px}}
 @media print{.calcpro-ira .calcpro-ira-topline,.calcpro-ira .calcpro-ira-buttons,.calcpro-ira .calcpro-ira-barbutton{display:none!important}.calcpro-ira .calcpro-ira-panels{grid-template-columns:240px 1fr;gap:12px}.calcpro-ira .calcpro-ira-chartbox{break-inside:avoid}.calcpro-ira .calcpro-ira-schedulewrap{overflow:visible}.calcpro-ira .calcpro-ira-schedule{min-width:0;font-size:9px}.calcpro-ira .calcpro-ira-schedule td,.calcpro-ira .calcpro-ira-schedule th{padding:3px 2px}.calcpro-ira .calcpro-ira-resulttable{min-width:0}}
-</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / IRA Calculator</nav><h1 class="cp-page-title">IRA Calculator</h1><p class="cp-intro">Compare tax-deferred Traditional, SIMPLE, or SEP IRA growth with Roth IRA savings and a regular taxable account. Adjust your balance, contributions, growth rate, ages, and tax assumptions to see after-tax estimates and a year-by-year schedule.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-ira" id="calcpro-ira-root">
+</style><link rel="stylesheet" href="calcpro-tools-sidebar.css">
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / IRA Calculator</nav><h1 class="cp-page-title">IRA Calculator</h1><p class="cp-intro">Compare tax-deferred Traditional, SIMPLE, or SEP IRA growth with Roth IRA savings and a regular taxable account. Adjust your balance, contributions, growth rate, ages, and tax assumptions to see after-tax estimates and a year-by-year schedule.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-ira" id="calcpro-ira-root">
 <div class="calcpro-ira-topline"><button class="calcpro-ira-action" id="calcpro-ira-print" type="button">Print results</button></div>
 <div class="calcpro-ira-panels">
 <form class="calcpro-ira-formbox" id="calcpro-ira-form" novalidate="">
@@ -380,4 +381,6 @@
   });
   recalc();
 })();
-</script></body></html>
+</script><script defer src="calcpro-tools-sidebar-data.js"></script>
+<script defer src="calcpro-tools-sidebar.js"></script>
+</body></html>

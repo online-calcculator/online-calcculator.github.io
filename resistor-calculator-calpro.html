@@ -72,7 +72,8 @@
 @media(max-width:680px){.calcpro-resistor-color-layout{grid-template-columns:1fr}.calcpro-resistor-reference{max-width:450px}.calcpro-resistor-figure svg{max-width:350px;margin:auto}.calcpro-resistor-lookup{font-size:11px}.calcpro-resistor-color-form{padding:12px}.calcpro-resistor-option{font-size:12px}}
 @media(max-width:560px){.calcpro-resistor-conductor-row,.calcpro-resistor-conductivity-row{grid-template-columns:minmax(0,100px) minmax(0,1fr);gap:6px}.calcpro-resistor-conductor-row>label:first-child{text-align:left}.calcpro-resistor-conductor-row>select{grid-column:2}.calcpro-resistor-conductivity-row .calcpro-resistor-unit{grid-column:1;text-align:left}.calcpro-resistor-conductivity-row .calcpro-resistor-material-label{grid-column:2}.calcpro-resistor-conductivity-row #calcpro-resistor-material{grid-column:2}.calcpro-resistor-result-main{font-size:18px}}
 @media print{.calcpro-resistor-actions,.calcpro-resistor-save{display:none!important}.calcpro-resistor-color-layout{grid-template-columns:1fr 1fr}.calcpro-resistor-color-form,.calcpro-resistor-simple-form,.calcpro-resistor-conductor-form{background:#fff}}
-</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Resistor Calculator</nav><h1 class="cp-page-title">Resistor Calculator</h1><p class="cp-intro">Calculate ohm values from color bands, equivalent resistance for resistors in series or parallel, and conductor resistance from length, diameter, and conductivity.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-resistor" id="calcpro-resistor-tool">
+</style><link rel="stylesheet" href="calcpro-tools-sidebar.css">
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Resistor Calculator</nav><h1 class="cp-page-title">Resistor Calculator</h1><p class="cp-intro">Calculate ohm values from color bands, equivalent resistance for resistors in series or parallel, and conductor resistance from length, diameter, and conductivity.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-resistor" id="calcpro-resistor-tool">
   <section class="calcpro-resistor-section" aria-labelledby="calcpro-resistor-color-title">
     <h2 id="calcpro-resistor-color-title">Resistor color code calculator</h2>
     <p class="calcpro-resistor-description">Select the number of bands and their colors to calculate resistance and tolerance.</p>
@@ -446,4 +447,6 @@
   });
 })();
 </script>
+<script defer src="calcpro-tools-sidebar-data.js"></script>
+<script defer src="calcpro-tools-sidebar.js"></script>
 </body></html>

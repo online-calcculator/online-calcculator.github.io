@@ -179,7 +179,8 @@
   font: 700 16pt/1.3 Arial, Helvetica, sans-serif;
 }
 .cp-site .cp-article .cp-accordion-list {
-  width: 100%; 
+  width: 100%;
+  background: #222429;
   padding: 3px 15px;
   border-radius: 4px;
   color: #f2f2f4;
@@ -202,7 +203,7 @@
   border: 0;
   border-radius: 0;
   background: transparent;
-  color: #0a0a0a;
+  color: #f1f1f3;
   cursor: pointer;
   font: 400 15px/1.42 Arial, Helvetica, sans-serif;
   text-align: left;
@@ -212,7 +213,7 @@
 }
 .cp-site .cp-article .cp-accordion-trigger:hover .cp-accordion-question-text,
 .cp-site .cp-article .cp-accordion-trigger[aria-expanded="true"] .cp-accordion-question-text {
-  color: #242323;
+  color: #fff;
 }
 .cp-site .cp-article .cp-accordion-trigger:focus-visible {
   outline: 2px solid #9fb6ff;
@@ -253,7 +254,7 @@
 .cp-site .cp-article .cp-accordion-panel-content { padding: 0 45px 16px 0; }
 .cp-site .cp-article .cp-accordion-panel-content p,
 .cp-site .cp-article .cp-accordion-panel-content li {
-  color: #000000;
+  color: #d7dae1;
   font: 400 14px/1.68 Arial, Helvetica, sans-serif;
 }
 .cp-site .cp-article .cp-accordion-panel-content p { margin: 0 0 10px; }
@@ -300,4 +301,177 @@
   .cp-site .cp-article .cp-doc-table-scroll { overflow: visible; }
   .cp-site .cp-article table.cp-doc-table { min-width: 0; }
   .cp-site .cp-article :is(h2,h3,figure,tr) { break-inside: avoid; }
+}
+
+
+/* ============================================================
+   CALCPRO EDITORIAL POLISH — v2
+   Sources accent, informative Pro Tips, readable formulas,
+   and polished responsive tables. Only touches .cp-article.
+   Add the cp-doc-formula class to actual formula paragraphs.
+   No text is generated or changed by these rules.
+   ============================================================ */
+
+/* More prominent but restrained Pro Tip callout */
+.cp-site .cp-article p.cp-doc-pro-tip,
+.cp-site .cp-article .cp-doc-tip,
+.cp-site .cp-article .cp-tip {
+  background: #e8f7ee;
+  border: 1px solid #b9e2c8;
+  border-left: 5px solid #27854e;
+  border-radius: 0 8px 8px 0;
+  padding: 13px 16px;
+  margin: 15px 0 16px;
+  box-shadow: 0 2px 7px rgba(17, 97, 57, .05);
+  color: #183d2b;
+  line-height: 1.45;
+}
+.cp-site .cp-article p.cp-doc-pro-tip strong,
+.cp-site .cp-article .cp-doc-tip strong,
+.cp-site .cp-article .cp-tip strong { color: #17603b; }
+
+/* Formula boxes: original symbols and wording remain untouched */
+.cp-site .cp-article p.cp-doc-formula,
+.cp-site .cp-article .cp-doc-formula {
+  display: block;
+  max-width: 100%;
+  background: #f1f6ff;
+  border: 1px solid #c7daf2;
+  border-left: 5px solid #3572bc;
+  border-radius: 0 8px 8px 0;
+  box-shadow: 0 2px 7px rgba(31, 77, 139, .045);
+  padding: 13px 16px;
+  margin: 11px 0 17px;
+  color: #183d68;
+  font: 600 15px/1.55 Arial, Helvetica, sans-serif;
+  overflow-wrap: anywhere;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+.cp-site .cp-article .cp-doc-formula strong { color: inherit; font-weight: 700; }
+
+/* Table wrapper and rounded, lightly shadowed table grid */
+.cp-site .cp-article .cp-doc-table-scroll {
+  margin: 14px 0 20px;
+  border-radius: 9px;
+  box-shadow: 0 2px 12px rgba(22, 53, 91, .07);
+  overflow-x: auto;
+}
+.cp-site .cp-article table.cp-doc-table {
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid #c5d5e7;
+  border-radius: 9px;
+  background: #fff;
+  margin: 0;
+  overflow: hidden;
+  font-size: 14px;
+  line-height: 1.4;
+}
+.cp-site .cp-article table.cp-doc-table :is(th,td) {
+  background: transparent;
+  border: 0;
+  border-right: 1px solid #dce5ee;
+  border-bottom: 1px solid #dce5ee;
+  padding: 11px 12px;
+  line-height: 1.42;
+  vertical-align: top;
+}
+.cp-site .cp-article table.cp-doc-table tr > :is(th,td):last-child { border-right: 0; }
+.cp-site .cp-article table.cp-doc-table tbody tr:last-child > :is(th,td) { border-bottom: 0; }
+.cp-site .cp-article table.cp-doc-table thead :is(th,td),
+.cp-site .cp-article table.cp-doc-table:not(:has(thead)) tbody tr:first-child > :is(th,td) {
+  background: #e3eefb;
+  color: #173f6c;
+  font-weight: 700;
+  border-bottom: 2px solid #b2cdea;
+}
+.cp-site .cp-article table.cp-doc-table tbody tr:nth-child(even) > :is(th,td) { background: #f7fafe; }
+.cp-site .cp-article table.cp-doc-table tbody tr:not(:first-child):hover > :is(th,td) { background: #eaf3fd; }
+.cp-site .cp-article table.cp-doc-table :is(th,td) p { margin: 0; font: inherit; }
+.cp-site .cp-article table.cp-doc-table :is(th,td) p strong { font-weight: 700; }
+
+/* A table with thead must not accidentally tint its first data row. */
+.cp-site .cp-article table.cp-doc-table:has(thead) tbody tr:first-child > :is(th,td) {
+  background: #fff;
+  font-weight: 400;
+}
+
+/* Optional baseline table styling for older fragments that lack cp-doc-table. */
+.cp-site .cp-article table:not([class]) {
+  width: 100%;
+  max-width: 100%;
+  border-collapse: collapse;
+  margin: 14px 0 18px;
+  font: 14px/1.42 Arial, Helvetica, sans-serif;
+  box-shadow: 0 2px 10px rgba(22, 53, 91, .06);
+}
+.cp-site .cp-article table:not([class]) :is(th,td) {
+  padding: 10px 12px;
+  border: 1px solid #cfdeec;
+  vertical-align: top;
+  text-align: left;
+}
+.cp-site .cp-article table:not([class]) thead :is(th,td),
+.cp-site .cp-article table:not([class]):not(:has(thead)) tr:first-child > :is(th,td) {
+  background: #e3eefb;
+  font-weight: 700;
+  color: #173f6c;
+}
+.cp-site .cp-article table:not([class]) tbody tr:nth-child(even) { background: #f7fafe; }
+
+/* Sources: visually distinct from the FAQ's dark accordion */
+.cp-site .cp-article .cp-accordion-sources {
+  margin-top: 34px;
+  margin-bottom: 28px;
+}
+.cp-site .cp-article .cp-accordion-sources .cp-accordion-list {
+  background: #f1f6fd;
+  color: #174474;
+  padding: 0 15px;
+  border: 1px solid #c9dcec;
+  border-left: 5px solid #3378b7;
+  border-radius: 9px;
+  box-shadow: 0 2px 10px rgba(25, 77, 132, .06);
+}
+.cp-site .cp-article .cp-accordion-sources .cp-accordion-trigger {
+  min-height: 64px;
+  padding: 12px 0;
+  font: 700 18px/1.4 Arial, Helvetica, sans-serif;
+  color: #174b83;
+}
+.cp-site .cp-article .cp-accordion-sources .cp-accordion-trigger:hover .cp-accordion-question-text,
+.cp-site .cp-article .cp-accordion-sources .cp-accordion-trigger[aria-expanded="true"] .cp-accordion-question-text {
+  color: #0d3762;
+}
+.cp-site .cp-article .cp-accordion-sources .cp-accordion-chevron {
+  background: #d9e9fa;
+  color: #225f9c;
+}
+.cp-site .cp-article .cp-accordion-sources .cp-accordion-trigger:hover .cp-accordion-chevron,
+.cp-site .cp-article .cp-accordion-sources .cp-accordion-item[data-open="true"] .cp-accordion-chevron {
+  background: #bfd9f4;
+  color: #174b83;
+}
+.cp-site .cp-article .cp-accordion-sources .cp-accordion-panel-content :is(p,li) {
+  color: #264058;
+}
+.cp-site .cp-article .cp-accordion-sources .cp-accordion-panel-content a { color: #1557a2; }
+.cp-site .cp-article .cp-accordion-sources .cp-accordion-panel-content a:hover { color: #0a397a; }
+/* For a non-accordion sources heading on older pages. */
+.cp-site .cp-article h2.cp-doc-sources-heading { color: #174b83; }
+
+@media (max-width: 580px) {
+  .cp-site .cp-article p.cp-doc-formula { padding: 12px; font-size: 14px; }
+  .cp-site .cp-article p.cp-doc-pro-tip,
+  .cp-site .cp-article .cp-doc-tip { padding: 12px; }
+  .cp-site .cp-article table.cp-doc-table :is(th,td) { padding: 9px 10px; }
+  .cp-site .cp-article .cp-accordion-sources .cp-accordion-trigger { font-size: 16px; }
+}
+@media print {
+  .cp-site .cp-article .cp-accordion-sources .cp-accordion-list {
+    background: #fff; box-shadow: none; color: #111;
+  }
+  .cp-site .cp-article .cp-accordion-sources .cp-accordion-trigger,
+  .cp-site .cp-article .cp-accordion-sources .cp-accordion-panel-content :is(p,li) { color: #111; }
+  .cp-site .cp-article .cp-doc-formula { box-shadow: none; }
 }

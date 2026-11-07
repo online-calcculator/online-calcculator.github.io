@@ -57,7 +57,8 @@
 #calcpro-rmd-root .calcpro-rmd-source a{color:#08699b}
 @media(max-width:660px){#calcpro-rmd-root .calcpro-rmd-upper{grid-template-columns:1fr;gap:16px}#calcpro-rmd-root .calcpro-rmd-inputbox{width:100%;max-width:none}#calcpro-rmd-root .calcpro-rmd-table{font-size:11px}#calcpro-rmd-root .calcpro-rmd-table td,#calcpro-rmd-root .calcpro-rmd-table th{padding:5px}#calcpro-rmd-root .calcpro-rmd-toolbar{font-size:11px}}
 @media print{#calcpro-rmd-root .calcpro-rmd-toolbar,#calcpro-rmd-root .calcpro-rmd-actions,#calcpro-rmd-root .calcpro-rmd-save{display:none}#calcpro-rmd-root .calcpro-rmd-upper{grid-template-columns:215px minmax(0,1fr)}#calcpro-rmd-root .calcpro-rmd-table-scroll{overflow:visible}}
-</style><!--TOOL CSS INSERT HERE: Paste only calculator-specific CSS here. Use unique class/id prefixes per tool, e.g. bmi-, loan-, age-. Keep header, sidebar and article CSS in style.css.--></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / RMD Calculator</nav><h1 class="cp-page-title">RMD Calculator</h1><p class="cp-intro">Estimate your annual U.S. Required Minimum Distribution (RMD) from retirement savings using IRS life-expectancy factors. Explore yearly withdrawals, future account balances, and a projection chart.</p><section aria-label="Calculator" class="cp-tool-area">
+</style><!--TOOL CSS INSERT HERE: Paste only calculator-specific CSS here. Use unique class/id prefixes per tool, e.g. bmi-, loan-, age-. Keep header, sidebar and article CSS in style.css.--><link rel="stylesheet" href="calcpro-tools-sidebar.css">
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / RMD Calculator</nav><h1 class="cp-page-title">RMD Calculator</h1><p class="cp-intro">Estimate your annual U.S. Required Minimum Distribution (RMD) from retirement savings using IRS life-expectancy factors. Explore yearly withdrawals, future account balances, and a projection chart.</p><section aria-label="Calculator" class="cp-tool-area">
 <div id="calcpro-rmd-root">
 <div class="calcpro-rmd-toolbar"><span aria-hidden="true">▼</span>Modify the values and click Calculate to use</div>
 <div class="calcpro-rmd-upper">
@@ -227,4 +228,6 @@
  });
  setBalanceYear();updateSpouse();calculate();
 })();
-</script></body></html>
+</script><script defer src="calcpro-tools-sidebar-data.js"></script>
+<script defer src="calcpro-tools-sidebar.js"></script>
+</body></html>

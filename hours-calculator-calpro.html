@@ -67,7 +67,8 @@
 @media(max-width:440px){.calcpro-hours-root .calcpro-hours-hint{font-size:12px}.calcpro-hours-root .calcpro-hours-panel{padding:7px 5px}.calcpro-hours-root .calcpro-hours-clock-grid{grid-template-columns:max-content minmax(60px,90px) max-content 14px;column-gap:2px}.calcpro-hours-root .calcpro-hours-input{width:100%}.calcpro-hours-root .calcpro-hours-now{font-size:12px}.calcpro-hours-root .calcpro-hours-date-grid{column-gap:5px}.calcpro-hours-root .calcpro-hours-month{width:52px}.calcpro-hours-root .calcpro-hours-day{width:43px}.calcpro-hours-root .calcpro-hours-year{width:66px}.calcpro-hours-root .calcpro-hours-calendar-button{width:24px;flex-basis:24px}.calcpro-hours-root .calcpro-hours-date-time-row .calcpro-hours-input{width:95px}.calcpro-hours-root .calcpro-hours-calendar{left:-65px;max-width:calc(100vw - 30px)}}
 @media print{.calcpro-hours-root .calcpro-hours-hint,.calcpro-hours-root .calcpro-hours-panel,.calcpro-hours-root .calcpro-hours-related,.calcpro-hours-root .calcpro-hours-result-actions{display:none!important}.calcpro-hours-root .calcpro-hours-result:not([hidden]){display:block!important}.calcpro-hours-root .calcpro-hours-result[hidden]{display:none!important}}
 
-</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/other-calculator/">Other</a> / Hours Calculator</nav><h1 class="cp-page-title">Hours Calculator</h1><p class="cp-intro">Use the calculators below to find the number of hours and minutes between two times. For longer intervals, calculate the hours between two dates.</p><section aria-label="Calculator" class="cp-tool-area">
+</style><link rel="stylesheet" href="calcpro-tools-sidebar.css">
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/other-calculator/">Other</a> / Hours Calculator</nav><h1 class="cp-page-title">Hours Calculator</h1><p class="cp-intro">Use the calculators below to find the number of hours and minutes between two times. For longer intervals, calculate the hours between two dates.</p><section aria-label="Calculator" class="cp-tool-area">
 <div class="calcpro-hours-root" id="calcpro-hours-calculator">
   <div class="calcpro-hours-hint" id="calcpro-hours-hint"><span class="calcpro-hours-hint-icon" aria-hidden="true">▼</span> Modify the values and click the Calculate button to use</div>
   <section class="calcpro-hours-section" aria-label="Hours between two times">
@@ -479,4 +480,6 @@
   });
 })();
 </script>
+<script defer src="calcpro-tools-sidebar-data.js"></script>
+<script defer src="calcpro-tools-sidebar.js"></script>
 </body></html>

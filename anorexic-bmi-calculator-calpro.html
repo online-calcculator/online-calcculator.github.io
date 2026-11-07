@@ -56,7 +56,8 @@
 @media(max-width:720px){.calcpro-anorexic .calcpro-anorexic-grid{grid-template-columns:1fr;gap:14px}.calcpro-anorexic .calcpro-anorexic-resultbody{min-height:0}.calcpro-anorexic .calcpro-anorexic-tab{font-size:15px}}
 @media(max-width:380px){.calcpro-anorexic .calcpro-anorexic-formbox{padding:11px 8px}.calcpro-anorexic .calcpro-anorexic-tabs{gap:2px}.calcpro-anorexic .calcpro-anorexic-tab{font-size:13px;padding:9px 6px}.calcpro-anorexic .calcpro-anorexic-row{grid-template-columns:59px minmax(0,1fr);gap:5px}.calcpro-anorexic .calcpro-anorexic-label{font-size:15px}.calcpro-anorexic .calcpro-anorexic-gender{gap:10px}.calcpro-anorexic .calcpro-anorexic-radio{font-size:14px}.calcpro-anorexic .calcpro-anorexic-instruction{font-size:14px}}
 @media print{.calcpro-anorexic .calcpro-anorexic-instruction,.calcpro-anorexic .calcpro-anorexic-save,.calcpro-anorexic .calcpro-anorexic-actionrow{display:none!important}.calcpro-anorexic .calcpro-anorexic-grid{display:grid;grid-template-columns:1fr 1fr}.calcpro-anorexic .calcpro-anorexic-resultheading{print-color-adjust:exact;-webkit-print-color-adjust:exact}}
-</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="fitness-and-health-calculator.html">Fitness &amp; Health</a> / Anorexic BMI Calculator</nav><h1 class="cp-page-title">Anorexic BMI Calculator</h1><p class="cp-intro">Use age, height, and weight to calculate body mass index (BMI). Results are informational only: BMI cannot diagnose or rule out anorexia nervosa.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-anorexic" id="calcpro-anorexic-root">
+</style><link rel="stylesheet" href="calcpro-tools-sidebar.css">
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="fitness-and-health-calculator.html">Fitness &amp; Health</a> / Anorexic BMI Calculator</nav><h1 class="cp-page-title">Anorexic BMI Calculator</h1><p class="cp-intro">Use age, height, and weight to calculate body mass index (BMI). Results are informational only: BMI cannot diagnose or rule out anorexia nervosa.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-anorexic" id="calcpro-anorexic-root">
 <div class="calcpro-anorexic-instruction"><span aria-hidden="true" class="calcpro-anorexic-chevron">▼</span><span>Modify the values and click the Calculate button to use</span></div>
 <div class="calcpro-anorexic-grid">
 <div class="calcpro-anorexic-left">
@@ -225,4 +226,6 @@
  save.addEventListener('click',()=>{if(!save.disabled)window.print();});
  root.querySelectorAll('input').forEach(input=>input.addEventListener('input',()=>{input.removeAttribute('aria-invalid');error.textContent='';}));
 })();
-</script></body></html>
+</script><script defer src="calcpro-tools-sidebar-data.js"></script>
+<script defer src="calcpro-tools-sidebar.js"></script>
+</body></html>

@@ -74,7 +74,8 @@
 @media(max-width:690px) {.calcpro-bond-tool .calcpro-bond-two-col {grid-template-columns:minmax(0,1fr);gap:12px;}.calcpro-bond-tool .calcpro-bond-section{margin-bottom:27px;}.calcpro-bond-tool .calcpro-bond-field{grid-template-columns:minmax(100px,43%) minmax(0,1fr)}.calcpro-bond-tool .calcpro-bond-result {width:100%;}.calcpro-bond-tool .calcpro-bond-panel{padding:12px;}}
 @media(max-width:355px) {.calcpro-bond-tool .calcpro-bond-field {grid-template-columns:minmax(89px,42%) minmax(0,1fr);gap:6px;}.calcpro-bond-tool input[type=text],.calcpro-bond-tool input[type=date],.calcpro-bond-tool select{font-size:12px;}.calcpro-bond-tool .calcpro-bond-field>label{font-size:11px;}}
 @media print {.calcpro-bond-tool .calcpro-bond-form .calcpro-bond-btn,.calcpro-bond-tool .calcpro-bond-save{display:none}.calcpro-bond-tool .calcpro-bond-more:not([open]){display:none}.calcpro-bond-tool .calcpro-bond-two-col{break-inside:avoid}.calcpro-bond-tool .calcpro-bond-panel{border:1px solid #bbb;}}
-</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Bond Calculator</nav><h1 class="cp-page-title">Bond Calculator</h1><p class="cp-intro">Calculate a bond’s price, yield, face value, maturity, or coupon — plus clean and dirty prices for bonds traded between coupon dates.</p><section aria-label="Calculator" class="cp-tool-area">
+</style><link rel="stylesheet" href="calcpro-tools-sidebar.css">
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Bond Calculator</nav><h1 class="cp-page-title">Bond Calculator</h1><p class="cp-intro">Calculate a bond’s price, yield, face value, maturity, or coupon — plus clean and dirty prices for bonds traded between coupon dates.</p><section aria-label="Calculator" class="cp-tool-area">
 <div class="calcpro-bond-tool" id="calcpro-bond-tool">
   <section class="calcpro-bond-section" aria-label="Bond value solver">
     <p class="calcpro-bond-section-intro">Leave exactly one of the five values blank to solve for it. This calculation assumes the bond is traded on a coupon payment date.</p>
@@ -573,4 +574,6 @@
   });
 })();
 </script>
+<script defer src="calcpro-tools-sidebar-data.js"></script>
+<script defer src="calcpro-tools-sidebar.js"></script>
 </body></html>

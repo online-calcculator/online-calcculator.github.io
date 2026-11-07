@@ -48,7 +48,8 @@
   .calcpro-average-actions,.calcpro-average-save,.calcpro-average-hint{display:none!important;}
   .calcpro-average-result-heading{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
 }
-</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/math-calculator/">Math</a> / Average Calculator</nav><h1 class="cp-page-title">Average Calculator</h1><p class="cp-intro">Please provide numbers separated by a comma to calculate the average of the numbers.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-average-tool" id="calcpro-average-tool">
+</style><link rel="stylesheet" href="calcpro-tools-sidebar.css">
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/math-calculator/">Math</a> / Average Calculator</nav><h1 class="cp-page-title">Average Calculator</h1><p class="cp-intro">Please provide numbers separated by a comma to calculate the average of the numbers.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-average-tool" id="calcpro-average-tool">
   <section class="calcpro-average-result" id="calcpro-average-result" aria-label="Average calculation results" aria-live="polite" hidden>
     <div class="calcpro-average-result-heading"><span>Result</span>
       <button type="button" class="calcpro-average-save" id="calcpro-average-save" title="Save results as a text file" aria-label="Save results as a text file">
@@ -246,4 +247,6 @@
     setTimeout(() => URL.revokeObjectURL(url), 2000);
   });
 })();
-</script></body></html>
+</script><script defer src="calcpro-tools-sidebar-data.js"></script>
+<script defer src="calcpro-tools-sidebar.js"></script>
+</body></html>

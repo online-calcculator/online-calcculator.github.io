@@ -78,7 +78,8 @@
  .calcpro-pwg .calcpro-pwg-chart-wrap{break-inside:avoid}
 }
 
-</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/fitness-and-health-calculator/">Fitness &amp; Health</a> / Pregnancy Weight Gain Calculator</nav><h1 class="cp-page-title">Pregnancy Weight Gain Calculator</h1><p class="cp-intro">Estimate a recommended pregnancy weight gain schedule based on pre-pregnancy BMI and Institute of Medicine guidance. View your weekly range, chart, and 40-week table, in metric or US units.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-pwg" id="calcpro-pwg-root">
+</style><link rel="stylesheet" href="calcpro-tools-sidebar.css">
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/fitness-and-health-calculator/">Fitness &amp; Health</a> / Pregnancy Weight Gain Calculator</nav><h1 class="cp-page-title">Pregnancy Weight Gain Calculator</h1><p class="cp-intro">Estimate a recommended pregnancy weight gain schedule based on pre-pregnancy BMI and Institute of Medicine guidance. View your weekly range, chart, and 40-week table, in metric or US units.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-pwg" id="calcpro-pwg-root">
   <div class="calcpro-pwg-top"><button class="calcpro-pwg-print" type="button" id="calcpro-pwg-print"><span aria-hidden="true">⎙</span> Print</button></div>
   <section class="calcpro-pwg-results" id="calcpro-pwg-results" aria-label="Pregnancy weight gain results" tabindex="-1" hidden>
     <div class="calcpro-pwg-results-heading"><strong>Result</strong><span aria-hidden="true">▣</span></div>
@@ -446,4 +447,6 @@
   });
   find('calcpro-pwg-print').addEventListener('click', () => window.print());
 })();
-</script></body></html>
+</script><script defer src="calcpro-tools-sidebar-data.js"></script>
+<script defer src="calcpro-tools-sidebar.js"></script>
+</body></html>

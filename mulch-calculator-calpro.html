@@ -79,7 +79,8 @@
  .calcpro-mulch-results[hidden]{display:none!important}
  .calcpro-mulch-result-heading{background:#538b26!important;color:#fff!important;print-color-adjust:exact;-webkit-print-color-adjust:exact}
 }
-</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/other-calculator/">Other</a> / Mulch Calculator</nav><h1 class="cp-page-title">Mulch Calculator</h1><p class="cp-intro">Estimate the amount of mulch needed to cover a garden or landscaped area at a given depth, with an optional price estimate.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-mulch" data-calcpro-mulch>
+</style><link rel="stylesheet" href="calcpro-tools-sidebar.css">
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/other-calculator/">Other</a> / Mulch Calculator</nav><h1 class="cp-page-title">Mulch Calculator</h1><p class="cp-intro">Estimate the amount of mulch needed to cover a garden or landscaped area at a given depth, with an optional price estimate.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-mulch" data-calcpro-mulch>
  <div class="calcpro-mulch-prompt" data-calcpro-mulch-prompt><span class="calcpro-mulch-prompt-icon" aria-hidden="true">▼</span><span>Modify the values and click the Calculate button to use</span></div>
  <section class="calcpro-mulch-results" data-calcpro-mulch-results aria-label="Mulch calculation result" aria-live="polite" hidden>
    <div class="calcpro-mulch-result-heading"><span>Result</span><button type="button" class="calcpro-mulch-print" data-calcpro-mulch-print aria-label="Print or save result as PDF" title="Print or save result as PDF"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M6 2h10l4 4v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2Zm8 1v5h5l-5-5ZM7 3v6h10V3H7Zm5 8a5 5 0 1 0 0 10 5 5 0 0 0 0-10Zm-1 2h2v3h2l-3 3-3-3h2v-3Z"/></svg><span>save</span></button></div>
@@ -324,4 +325,6 @@
  root.querySelector('[data-calcpro-mulch-print]').addEventListener('click',()=>window.print());
  updateExtras(false);updateMode();
 })();
-</script></body></html>
+</script><script defer src="calcpro-tools-sidebar-data.js"></script>
+<script defer src="calcpro-tools-sidebar.js"></script>
+</body></html>

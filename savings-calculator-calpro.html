@@ -72,7 +72,8 @@
 @media(max-width:545px){.calcpro-savings-top{grid-template-columns:minmax(0,1fr)}.calcpro-savings-input-panel{max-width:360px;width:100%;margin:0 auto}.calcpro-savings-results{max-width:460px;width:100%;margin:0 auto}.calcpro-savings-donut-wrap{flex-direction:row;min-height:112px}.calcpro-savings-donut{width:115px;height:115px;flex-basis:115px}.calcpro-savings-detail-grid{grid-template-columns:minmax(0,1fr)}.calcpro-savings-graph-box{padding:8px 0 0}.calcpro-savings-graph-box svg{max-height:260px}.calcpro-savings-schedule{font-size:12.5px}.calcpro-savings-accumulation h2{font-size:19px}}
 @media print{.calcpro-savings-hint,.calcpro-savings-actions,.calcpro-savings-save-actions,.calcpro-savings-print,.calcpro-savings-save-message{display:none!important}.calcpro-savings-tool{max-width:100%!important}.calcpro-savings-top{grid-template-columns:290px minmax(0,1fr)}.calcpro-savings-detail-grid{grid-template-columns:1fr 1fr}.calcpro-savings-table-scroll{max-height:none;overflow:visible}.calcpro-savings-schedule{font-size:10px}.calcpro-savings-results-header{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
 
-</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Savings Calculator</nav><h1 class="cp-page-title">Savings Calculator</h1><p class="cp-intro">Estimate how your savings grow with regular contributions, annual increases, compound interest, and tax on interest. Explore the balance and interest month by month.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-savings-tool" id="calcpro-savings-tool">
+</style><link rel="stylesheet" href="calcpro-tools-sidebar.css">
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Savings Calculator</nav><h1 class="cp-page-title">Savings Calculator</h1><p class="cp-intro">Estimate how your savings grow with regular contributions, annual increases, compound interest, and tax on interest. Explore the balance and interest month by month.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-savings-tool" id="calcpro-savings-tool">
   <div class="calcpro-savings-actions-top"><button class="calcpro-savings-print" id="calcpro-savings-print" type="button">Print</button></div>
   <div class="calcpro-savings-hint"><span class="calcpro-savings-hint-icon" aria-hidden="true">▼</span><span>Modify the values and click Calculate to update your savings estimate.</span></div>
   <div class="calcpro-savings-top">
@@ -384,4 +385,6 @@
   keys.forEach(k=>{if(by(k).value==='')by(k).value=defaults[k];});
   recalculate();
 })();
-</script></body></html>
+</script><script defer src="calcpro-tools-sidebar-data.js"></script>
+<script defer src="calcpro-tools-sidebar.js"></script>
+</body></html>

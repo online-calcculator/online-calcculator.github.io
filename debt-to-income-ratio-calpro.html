@@ -79,7 +79,8 @@
 @media(max-width:365px){.calcpro-dti-field{grid-template-columns:minmax(0,1fr) minmax(65px,88px) 8px minmax(67px,77px)}.calcpro-dti-field .calcpro-dti-label{font-size:11px}.calcpro-dti-field select,.calcpro-dti-dollar-wrap input{font-size:12px}.calcpro-dti-chart-row{gap:4px}.calcpro-dti-pie{width:108px;height:108px}.calcpro-dti-legend{font-size:11px}.calcpro-dti-extra-grid{grid-template-columns:1fr}}
 @media print{.calcpro-dti-prompt,.calcpro-dti-result-tools,.calcpro-dti-actions,.calcpro-dti-extra{display:none!important}.calcpro-dti-results{display:block!important}.calcpro-dti-form-inner{border:1px solid #aaa}.calcpro-dti{max-width:100%}}
 
-</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Debt-to-Income (DTI) Ratio Calculator</nav><h1 class="cp-page-title">Debt-to-Income (DTI) Ratio Calculator</h1><p class="cp-intro">Calculate your front-end and back-end debt-to-income ratios from gross income and recurring debt payments. Choose monthly or yearly amounts for every entry.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-dti" id="calcpro-dti-app">
+</style><link rel="stylesheet" href="calcpro-tools-sidebar.css">
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Debt-to-Income (DTI) Ratio Calculator</nav><h1 class="cp-page-title">Debt-to-Income (DTI) Ratio Calculator</h1><p class="cp-intro">Calculate your front-end and back-end debt-to-income ratios from gross income and recurring debt payments. Choose monthly or yearly amounts for every entry.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-dti" id="calcpro-dti-app">
   <div class="calcpro-dti-prompt" id="calcpro-dti-prompt"><span class="calcpro-dti-prompt-icon" aria-hidden="true">▼</span> Modify the values and click Calculate to view your results</div>
   <section class="calcpro-dti-results" id="calcpro-dti-results" aria-labelledby="calcpro-dti-results-title" aria-live="polite" hidden tabindex="-1">
     <div class="calcpro-dti-results-heading"><h2 id="calcpro-dti-results-title">Results</h2><div class="calcpro-dti-result-tools"><button type="button" id="calcpro-dti-save" title="Download a text summary">Save</button><button type="button" id="calcpro-dti-print" title="Print results">Print</button></div></div>
@@ -429,4 +430,6 @@
   });
   $('calcpro-dti-print').addEventListener('click',()=>{if(!results.hidden)window.print();});
 })();
-</script></body></html>
+</script><script defer src="calcpro-tools-sidebar-data.js"></script>
+<script defer src="calcpro-tools-sidebar.js"></script>
+</body></html>

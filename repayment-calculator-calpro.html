@@ -74,7 +74,8 @@
 @media(max-width:350px){.calcpro-repayment .calcpro-repayment-field{grid-template-columns:minmax(78px,1fr) minmax(120px,1.15fr)}.calcpro-repayment .calcpro-repayment-chart-area{gap:10px}}
 @media print{.calcpro-repayment .calcpro-repayment-help,.calcpro-repayment .calcpro-repayment-form-panel,.calcpro-repayment .calcpro-repayment-result-tools,.calcpro-repayment .calcpro-repayment-amort-trigger,.calcpro-repayment .calcpro-repayment-pagination{display:none!important}.calcpro-repayment .calcpro-repayment-layout{display:block}.calcpro-repayment .calcpro-repayment-amort[hidden]{display:block!important}.calcpro-repayment .calcpro-repayment-result{width:100%}.calcpro-repayment .calcpro-repayment-table-container{overflow:visible}.calcpro-repayment .calcpro-repayment-result-bar{print-color-adjust:exact;-webkit-print-color-adjust:exact}}
 
-</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Repayment Calculator</nav><h1 class="cp-page-title">Repayment Calculator</h1><p class="cp-intro">The Repayment Calculator estimates your regular loan payment or how long it will take to pay off a debt. Compare repayment schedules, interest costs, and a full amortization breakdown.</p><section aria-label="Calculator" class="cp-tool-area">
+</style><link rel="stylesheet" href="calcpro-tools-sidebar.css">
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Repayment Calculator</nav><h1 class="cp-page-title">Repayment Calculator</h1><p class="cp-intro">The Repayment Calculator estimates your regular loan payment or how long it will take to pay off a debt. Compare repayment schedules, interest costs, and a full amortization breakdown.</p><section aria-label="Calculator" class="cp-tool-area">
 <div class="calcpro-repayment" id="calcpro-repayment-root">
   <div class="calcpro-repayment-help"><span class="calcpro-repayment-help-icon" aria-hidden="true">▾</span><span>Modify the values and click Calculate to update the result.</span></div>
   <div class="calcpro-repayment-layout">
@@ -338,4 +339,6 @@
   byId('save').addEventListener('click',downloadCsv);
   updateMode();syncFrequencyLabel();calculate();
 })();
-</script></body></html>
+</script><script defer src="calcpro-tools-sidebar-data.js"></script>
+<script defer src="calcpro-tools-sidebar.js"></script>
+</body></html>

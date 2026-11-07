@@ -57,7 +57,8 @@
  .calcpro-electricity .calcpro-electricity-save, .calcpro-electricity .calcpro-electricity-actions {display:none!important;}
  .calcpro-electricity .calcpro-electricity-panel {print-color-adjust:exact;-webkit-print-color-adjust:exact;}
 }
-</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="other-calculator.html">Other Calculators</a> / Electricity Calculator</nav><h1 class="cp-page-title">Electricity Calculator</h1><p class="cp-intro">Use the calculator below to estimate electricity usage and cost based on the power requirements and usage of appliances. The amount of time and power that each appliance is used varies significantly between households, so for the best results, adjust the usage for each appliance to most accurately reflect your personal usage.</p><section aria-label="Calculator" class="cp-tool-area"><section class="calcpro-electricity" id="calcpro-electricity-tool" aria-label="Electricity cost and usage calculator">
+</style><link rel="stylesheet" href="calcpro-tools-sidebar.css">
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="other-calculator.html">Other Calculators</a> / Electricity Calculator</nav><h1 class="cp-page-title">Electricity Calculator</h1><p class="cp-intro">Use the calculator below to estimate electricity usage and cost based on the power requirements and usage of appliances. The amount of time and power that each appliance is used varies significantly between households, so for the best results, adjust the usage for each appliance to most accurately reflect your personal usage.</p><section aria-label="Calculator" class="cp-tool-area"><section class="calcpro-electricity" id="calcpro-electricity-tool" aria-label="Electricity cost and usage calculator">
   <section class="calcpro-electricity-result" id="calcpro-electricity-result" aria-label="Calculation result" aria-live="polite" hidden>
     <div class="calcpro-electricity-result-head"><span id="calcpro-electricity-result-title" tabindex="-1">Result</span>
       <button type="button" class="calcpro-electricity-save" id="calcpro-electricity-save" title="Save this calculation as a text file" aria-label="Save this calculation as a text file">
@@ -325,4 +326,6 @@
     return option ? option.textContent : key;
   }
 })();
-</script></body></html>
+</script><script defer src="calcpro-tools-sidebar-data.js"></script>
+<script defer src="calcpro-tools-sidebar.js"></script>
+</body></html>

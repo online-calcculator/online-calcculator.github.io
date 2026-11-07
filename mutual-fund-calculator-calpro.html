@@ -54,7 +54,8 @@
 @media (max-width:720px){.calcpro-mf-columns{grid-template-columns:minmax(0,1fr);gap:13px}.calcpro-mf-panel{width:100%;max-width:420px}.calcpro-mf-result{max-width:420px;padding-top:0}.calcpro-mf-notice{font-size:14px}}
 @media (max-width:390px){.calcpro-mf-row{grid-template-columns:118px minmax(0,1fr);gap:3px}.calcpro-mf-label{font-size:13px}.calcpro-mf-periods .calcpro-mf-suffix-wrap .calcpro-mf-input{padding:3px 21px 3px 3px}.calcpro-mf-periods .calcpro-mf-suffix{font-size:11px;right:2px}.calcpro-mf-donut-wrap{grid-template-columns:110px minmax(0,1fr)}.calcpro-mf-legend{font-size:12px}.calcpro-mf-tip:hover::after,.calcpro-mf-tip:focus-visible::after{width:195px;left:-80px}}
 @media print{.calcpro-mf-notice,.calcpro-mf-actions,.calcpro-mf-save,.calcpro-mf-tip{display:none!important}.calcpro-mf-widget{break-inside:avoid}.calcpro-mf-panel{background:white;border:1px solid #bbb}.calcpro-mf-result-bar,.calcpro-mf-calculate{print-color-adjust:exact;-webkit-print-color-adjust:exact}.calcpro-mf-chart circle{print-color-adjust:exact;-webkit-print-color-adjust:exact}}
-</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Mutual Fund Calculator</nav><h1 class="cp-page-title">Mutual Fund Calculator</h1><p class="cp-intro">Estimate mutual fund ending value, net return and annualized IRR after sales loads, operating expenses and contributions.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-mf-widget" id="calcpro-mf-app">
+</style><link rel="stylesheet" href="calcpro-tools-sidebar.css">
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Mutual Fund Calculator</nav><h1 class="cp-page-title">Mutual Fund Calculator</h1><p class="cp-intro">Estimate mutual fund ending value, net return and annualized IRR after sales loads, operating expenses and contributions.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-mf-widget" id="calcpro-mf-app">
   <div class="calcpro-mf-notice"><span class="calcpro-mf-notice-icon" aria-hidden="true">▼</span><span>Modify the values and click the Calculate button to use</span></div>
   <div class="calcpro-mf-columns">
     <div class="calcpro-mf-panel">
@@ -317,4 +318,6 @@
   // Match the reference: the example's calculated result is displayed on load.
   update();
 })();
-</script></body></html>
+</script><script defer src="calcpro-tools-sidebar-data.js"></script>
+<script defer src="calcpro-tools-sidebar.js"></script>
+</body></html>

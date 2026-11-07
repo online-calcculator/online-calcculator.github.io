@@ -68,7 +68,8 @@
 @media(max-width:355px){.calcpro-orm .calcpro-orm-form-grid{grid-template-columns:1fr;gap:4px}.calcpro-orm .calcpro-orm-field-label{margin-top:4px}.calcpro-orm .calcpro-orm-unit-caption{font-size:13px}}
 @media print{.calcpro-orm .calcpro-orm-panel,.calcpro-orm .calcpro-orm-instruction,.calcpro-orm .calcpro-orm-save,.calcpro-orm .calcpro-orm-view-saved,.calcpro-orm .calcpro-orm-history{display:none!important}.calcpro-orm .calcpro-orm-result{display:block!important}.calcpro-orm .calcpro-orm-data-table th{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
 
-</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="fitness-and-health-calculator.html">Fitness &amp; Health</a> / One Rep Max Calculator</nav><h1 class="cp-page-title">One Rep Max Calculator</h1><p class="cp-intro">Estimate the maximum weight you can lift for a single repetition (1RM) from a set of 1–10 completed repetitions. Enter your lifted weight and rep count, then explore estimated working weights, percentages of your 1RM, and training-load charts. See the <a href="#calcpro-orm-estimation-methods">estimation methods</a> below.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-orm" id="calcpro-orm-root">
+</style><link rel="stylesheet" href="calcpro-tools-sidebar.css">
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="fitness-and-health-calculator.html">Fitness &amp; Health</a> / One Rep Max Calculator</nav><h1 class="cp-page-title">One Rep Max Calculator</h1><p class="cp-intro">Estimate the maximum weight you can lift for a single repetition (1RM) from a set of 1–10 completed repetitions. Enter your lifted weight and rep count, then explore estimated working weights, percentages of your 1RM, and training-load charts. See the <a href="#calcpro-orm-estimation-methods">estimation methods</a> below.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-orm" id="calcpro-orm-root">
   <div class="calcpro-orm-error" id="calcpro-orm-error" role="alert" hidden></div>
   <section class="calcpro-orm-result" id="calcpro-orm-results" aria-label="One rep max calculation results" aria-live="polite" hidden>
     <div class="calcpro-orm-result-bar"><span>Result</span>
@@ -332,4 +333,6 @@
     }
   });
   renderHistory();
-})();</script></body></html>
+})();</script><script defer src="calcpro-tools-sidebar-data.js"></script>
+<script defer src="calcpro-tools-sidebar.js"></script>
+</body></html>

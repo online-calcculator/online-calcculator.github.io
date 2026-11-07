@@ -81,7 +81,8 @@
 .calcpro-cd-print-link{float:right;margin-top:9px;padding:0;border:0;background:none;color:#006699;text-decoration:underline;font:14px Arial,Helvetica,sans-serif;cursor:pointer}
 @media print{.calcpro-cd-print-link{display:none}}
 
-</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / CD Calculator</nav><button type="button" id="calcpro-cd-print" class="calcpro-cd-print-link">Print</button><h1 class="cp-page-title">CD Calculator</h1><p class="cp-intro">The Certificate of Deposit (CD) Calculator estimates maturity balances and interest earnings over time, including an optional marginal income-tax adjustment.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-cd-root" id="calcpro-cd-root">
+</style><link rel="stylesheet" href="calcpro-tools-sidebar.css">
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / CD Calculator</nav><button type="button" id="calcpro-cd-print" class="calcpro-cd-print-link">Print</button><h1 class="cp-page-title">CD Calculator</h1><p class="cp-intro">The Certificate of Deposit (CD) Calculator estimates maturity balances and interest earnings over time, including an optional marginal income-tax adjustment.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-cd-root" id="calcpro-cd-root">
   <div class="calcpro-cd-instruction" id="calcpro-cd-instruction">
     <button type="button" id="calcpro-cd-instruction-toggle" class="calcpro-cd-instruction-toggle" aria-label="Hide instructions" aria-expanded="true" aria-controls="calcpro-cd-instruction-text"><span aria-hidden="true">▼</span></button>
     <span id="calcpro-cd-instruction-text">Modify the values and click the Calculate button to use</span>
@@ -498,4 +499,6 @@
   calculate(); // Match the reference page's populated example on first load.
 })();
 
-</script></body></html>
+</script><script defer src="calcpro-tools-sidebar-data.js"></script>
+<script defer src="calcpro-tools-sidebar.js"></script>
+</body></html>

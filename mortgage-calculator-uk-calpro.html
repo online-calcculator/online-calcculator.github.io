@@ -78,7 +78,8 @@
 @media(max-width:625px){.calcpro-mortgage-uk-top{grid-template-columns:minmax(0,1fr)}.calcpro-mortgage-uk-panel{width:100%;max-width:390px;margin:0 auto}.calcpro-mortgage-uk-field{grid-template-columns:minmax(0,45%) minmax(0,55%)}.calcpro-mortgage-uk-result{width:100%}.calcpro-mortgage-uk-result-table{font-size:12px}.calcpro-mortgage-uk-schedule-layout{grid-template-columns:minmax(0,1fr)}.calcpro-mortgage-uk-graph{order:-1;max-width:520px;margin:0 auto}.calcpro-mortgage-uk-schedule-wrap{max-height:480px}.calcpro-mortgage-uk-summary-title{font-size:15px}}
 @media(max-width:380px){.calcpro-mortgage-uk-result-table{font-size:11px}.calcpro-mortgage-uk-summary-title{font-size:13px}.calcpro-mortgage-uk-summary-main{gap:4px}.calcpro-mortgage-uk-schedule-table{font-size:10px}}
 @media print{.calcpro-mortgage-uk-banner,.calcpro-mortgage-uk-actions,.calcpro-mortgage-uk-small-actions,.calcpro-mortgage-uk-status,.calcpro-mortgage-uk-tabs,.calcpro-mortgage-uk-save{display:none!important}.calcpro-mortgage-uk-top{grid-template-columns:250px minmax(0,1fr)}.calcpro-mortgage-uk-panel{background:#fff}.calcpro-mortgage-uk-schedule-wrap{max-height:none;overflow:visible}.calcpro-mortgage-uk-schedule-table th{position:static}.calcpro-mortgage-uk-schedule-table tr{break-inside:avoid}}
-</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Mortgage Calculator UK</nav><h1 class="cp-page-title">Mortgage Calculator UK</h1><p class="cp-intro">Estimate UK mortgage repayments and interest-only payments in GBP, with optional annual costs, charts and a full amortization schedule.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-mortgage-uk" id="calcpro-mortgage-uk-root">
+</style><link rel="stylesheet" href="calcpro-tools-sidebar.css">
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Mortgage Calculator UK</nav><h1 class="cp-page-title">Mortgage Calculator UK</h1><p class="cp-intro">Estimate UK mortgage repayments and interest-only payments in GBP, with optional annual costs, charts and a full amortization schedule.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-mortgage-uk" id="calcpro-mortgage-uk-root">
   <div class="calcpro-mortgage-uk-banner">Modify the values and select Calculate to update your UK mortgage estimate.</div>
   <div class="calcpro-mortgage-uk-top">
     <form id="calcpro-mortgage-uk-form" class="calcpro-mortgage-uk-panel" novalidate>
@@ -381,4 +382,6 @@
   $('year').value=String(startDefault.year);
   restoreShared(); setOptions(); render();
 })();
-</script></body></html>
+</script><script defer src="calcpro-tools-sidebar-data.js"></script>
+<script defer src="calcpro-tools-sidebar.js"></script>
+</body></html>

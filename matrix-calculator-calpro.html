@@ -32,7 +32,7 @@
 .calcpro-matrix button:focus-visible,.calcpro-matrix a:focus-visible{outline:2px solid #155aa2;outline-offset:2px}
 .calcpro-matrix-result{margin-top:4px;width:100%;min-width:0}
 .calcpro-matrix-result[hidden]{display:none}
-.calcpro-matrix-result h2{background:#4b8e1e;color:#fff;font-size:19px;font-weight:400;margin:0 0 5px;padding:5px 6px;line-height:1.35}
+.calcpro-matrix-result h2{background:#003366;color:#fff;font-size:19px;font-weight:400;margin:0 0 5px;padding:5px 6px;line-height:1.35}
 .calcpro-matrix-result-body{display:flex;align-items:flex-start;flex-wrap:wrap;gap:6px;min-width:0}
 .calcpro-matrix-result-prefix{font-size:19px;min-width:65px;display:flex;flex-direction:column;align-items:flex-start;line-height:1.25}
 .calcpro-matrix-result-prefix a{font-size:14px;color:#006699;text-decoration:underline;line-height:1.15}
@@ -49,7 +49,8 @@
 @media(max-width:525px){.calcpro-matrix-panels{gap:8px}.calcpro-matrix-card{width:min(100%,244px)}.calcpro-matrix-operation-bar{padding-left:4px;padding-right:4px}.calcpro-matrix-operation-bar button{padding:8px 9px}.calcpro-matrix-result-prefix{font-size:17px}}
 @media(max-width:310px){.calcpro-matrix-card{width:100%}.calcpro-matrix-action{font-size:12px;padding:4px 3px}.calcpro-matrix-result-body{display:block}.calcpro-matrix-result-prefix .calcpro-matrix-copy-links{margin:5px 0}}
 @media print{.calcpro-matrix{break-inside:avoid}.calcpro-matrix-operation-bar{display:none}}
-</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/math-calculator/">Math</a> / Matrix Calculator</nav><h1 class="cp-page-title">Matrix Calculator</h1><p class="cp-intro">Add, subtract, and multiply matrices or calculate a transpose, determinant, inverse, power, and scalar product. Enter values for Matrix A and/or B and choose an operation; results appear directly below the controls.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-matrix" id="calcpro-matrix-root">
+</style><link rel="stylesheet" href="calcpro-tools-sidebar.css">
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/math-calculator/">Math</a> / Matrix Calculator</nav><h1 class="cp-page-title">Matrix Calculator</h1><p class="cp-intro">Add, subtract, and multiply matrices or calculate a transpose, determinant, inverse, power, and scalar product. Enter values for Matrix A and/or B and choose an operation; results appear directly below the controls.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-matrix" id="calcpro-matrix-root">
   <div class="calcpro-matrix-panels">
     
 <section class="calcpro-matrix-card" aria-label="Matrix A inputs" data-calcpro-matrix-panel="a">
@@ -373,4 +374,6 @@
   });
   renderGrid('a');renderGrid('b');
 })();
-</script></body></html>
+</script><script defer src="calcpro-tools-sidebar-data.js"></script>
+<script defer src="calcpro-tools-sidebar.js"></script>
+</body></html>

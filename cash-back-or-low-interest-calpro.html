@@ -58,7 +58,8 @@
 @media(max-width:760px){.calcpro-cbloi-grid{grid-template-columns:minmax(0,1fr)}.calcpro-cbloi-form{max-width:350px;width:100%;margin:0 auto}.calcpro-cbloi-results{width:100%}.calcpro-cbloi-field{grid-template-columns:minmax(0,1fr) minmax(0,135px)}}
 @media(max-width:390px){.calcpro-cbloi-field{grid-template-columns:minmax(0,1fr) 112px;gap:3px}.calcpro-cbloi-result-row{font-size:12px;gap:4px}.calcpro-cbloi-result-subheading{font-size:13.5px}.calcpro-cbloi-hint-banner{font-size:12px}}
 @media print{.calcpro-cbloi-root{container-type:normal!important}.calcpro-cbloi-toolbar,.calcpro-cbloi-hint-banner,.calcpro-cbloi-actions,.calcpro-cbloi-save,.calcpro-cbloi-tax-hint{display:none!important}.calcpro-cbloi-grid{display:grid!important;grid-template-columns:minmax(0,285px) minmax(0,1fr)!important;gap:15px}.calcpro-cbloi-form{background:#fff;max-width:none;border:1px solid #bbb}.calcpro-cbloi-results-heading,.calcpro-cbloi-section-label,.calcpro-cbloi-result-subheading,.calcpro-cbloi-verdict{print-color-adjust:exact;-webkit-print-color-adjust:exact}}
-</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Cash Back or Low Interest Calculator</nav><h1 class="cp-page-title">Cash Back or Low Interest Calculator</h1><p class="cp-intro">Car manufacturers may offer either cash back with a standard interest rate or promotional low-rate financing. Compare both choices, including tax, fees, down payment, and trade-in value, to find the lower estimated total purchase cost.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-cbloi-root" id="calcpro-cbloi-root">
+</style><link rel="stylesheet" href="calcpro-tools-sidebar.css">
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Cash Back or Low Interest Calculator</nav><h1 class="cp-page-title">Cash Back or Low Interest Calculator</h1><p class="cp-intro">Car manufacturers may offer either cash back with a standard interest rate or promotional low-rate financing. Compare both choices, including tax, fees, down payment, and trade-in value, to find the lower estimated total purchase cost.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-cbloi-root" id="calcpro-cbloi-root">
   <div class="calcpro-cbloi-toolbar"><button id="calcpro-cbloi-print" class="calcpro-cbloi-link-button" type="button">Print</button></div>
   <p class="calcpro-cbloi-hint-banner"><span class="calcpro-cbloi-hint-icon" aria-hidden="true">▼</span> Modify the values and click Calculate to compare the offers.</p>
   <div class="calcpro-cbloi-grid">
@@ -338,4 +339,6 @@
   // The reference page shows sample results immediately; calculate from live defaults.
   updateFromForm();
 })();
-</script></body></html>
+</script><script defer src="calcpro-tools-sidebar-data.js"></script>
+<script defer src="calcpro-tools-sidebar.js"></script>
+</body></html>

@@ -57,7 +57,8 @@
 @media(max-width:360px){.calcpro-lease-helpbar{font-size:14px;gap:7px}.calcpro-lease-form-panel{padding:8px 7px}.calcpro-lease-field{grid-template-columns:minmax(105px,1fr) minmax(108px,1fr)}.calcpro-lease-result-table{font-size:13px}.calcpro-lease-result-table th{width:65%}}
 @media(prefers-reduced-motion:reduce){.calcpro-lease-chart circle{transition:none}}
 @media print{.calcpro-lease-helpbar,.calcpro-lease-buttons,.calcpro-lease-save{display:none!important}.calcpro-lease-columns{grid-template-columns:45% 1fr;gap:15px}.calcpro-lease-form-panel{border-color:#aaa}.calcpro-lease-result-head{print-color-adjust:exact;-webkit-print-color-adjust:exact}}
-</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Lease Calculator</nav><h1 class="cp-page-title">Lease Calculator</h1><p class="cp-intro">The Lease Calculator estimates a monthly payment or the implied annual interest rate for a lease. Use <strong>Fixed Rate</strong> when you know the annual rate, or <strong>Fixed Pay</strong> when you know the monthly payment. For vehicle-specific assumptions, see the <a href="auto-lease-calculator.html">Auto Lease Calculator</a>.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-lease-root" id="calcpro-lease-root">
+</style><link rel="stylesheet" href="calcpro-tools-sidebar.css">
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Lease Calculator</nav><h1 class="cp-page-title">Lease Calculator</h1><p class="cp-intro">The Lease Calculator estimates a monthly payment or the implied annual interest rate for a lease. Use <strong>Fixed Rate</strong> when you know the annual rate, or <strong>Fixed Pay</strong> when you know the monthly payment. For vehicle-specific assumptions, see the <a href="auto-lease-calculator.html">Auto Lease Calculator</a>.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-lease-root" id="calcpro-lease-root">
   <div class="calcpro-lease-helpbar"><span aria-hidden="true" class="calcpro-lease-chevron">▼</span><span>Modify the values and click the Calculate button to use</span></div>
   <div class="calcpro-lease-columns">
     <div class="calcpro-lease-form-col">
@@ -323,4 +324,6 @@
   // Default sample matches the reference, computed from the original input values.
   calculate();
 })();
-</script></body></html>
+</script><script defer src="calcpro-tools-sidebar-data.js"></script>
+<script defer src="calcpro-tools-sidebar.js"></script>
+</body></html>

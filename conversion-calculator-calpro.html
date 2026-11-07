@@ -26,7 +26,8 @@
 @media(max-width:580px){.calcpro-conv-tabs{gap:3px;margin-top:15px}.calcpro-conv-tab{font-size:14px;min-height:36px;padding:7px 8px}.calcpro-conv-panel{padding:12px 10px}.calcpro-conv-columns{gap:12px}.calcpro-conv-list{font-size:15px;height:243px}.calcpro-conv-value{font-size:16px}}
 @media(max-width:420px){.calcpro-conv-columns{grid-template-columns:minmax(0,1fr)}.calcpro-conv-list{height:176px}.calcpro-conv-column+.calcpro-conv-column{margin-top:5px}.calcpro-conv-panel{padding:11px}.calcpro-conv-result{font-size:15px}}
 @media print{.calcpro-conv-list{height:auto;min-height:210px}.calcpro-conv-tab{color:#111;background:#eee;border-color:#888}}
-</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / Conversion Calculator</nav><h1 class="cp-page-title">Conversion Calculator</h1><p class="cp-intro">Convert between common length, temperature, area, volume, and weight units. Enter a value in the left column, choose the source and destination units, and view the result instantly below.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-conv" id="calcpro-conv-root" data-calcpro-conversion>
+</style><link rel="stylesheet" href="calcpro-tools-sidebar.css">
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / Conversion Calculator</nav><h1 class="cp-page-title">Conversion Calculator</h1><p class="cp-intro">Convert between common length, temperature, area, volume, and weight units. Enter a value in the left column, choose the source and destination units, and view the result instantly below.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-conv" id="calcpro-conv-root" data-calcpro-conversion>
   <div class="calcpro-conv-tabs" role="tablist" aria-label="Unit category">
     <button class="calcpro-conv-tab" type="button" role="tab" id="calcpro-conv-tab-length" aria-controls="calcpro-conv-panel" aria-selected="true" tabindex="0" data-calcpro-conv-tab="length">Length</button>
     <button class="calcpro-conv-tab" type="button" role="tab" id="calcpro-conv-tab-temperature" aria-controls="calcpro-conv-panel" aria-selected="false" tabindex="-1" data-calcpro-conv-tab="temperature">Temperature</button>
@@ -290,4 +291,6 @@
   }
   changeCategory('length');
 })();
-</script></body></html>
+</script><script defer src="calcpro-tools-sidebar-data.js"></script>
+<script defer src="calcpro-tools-sidebar.js"></script>
+</body></html>

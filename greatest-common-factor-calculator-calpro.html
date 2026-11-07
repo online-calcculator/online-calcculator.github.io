@@ -35,7 +35,8 @@
 @media(max-width:610px){.calcpro-gcf .calcpro-gcf-input-panel,.calcpro-gcf .calcpro-gcf-error{width:100%}.calcpro-gcf .calcpro-gcf-result-title{font-size:19px}.calcpro-gcf .calcpro-gcf-equation{font-size:19px}}
 @media print{.calcpro-gcf .calcpro-gcf-save{display:none!important}.calcpro-gcf .calcpro-gcf-input-panel{width:100%;max-width:100%}.calcpro-gcf .calcpro-gcf-results{break-inside:avoid}}
 
-</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="math-calculator.html">Math</a> / Greatest Common Factor Calculator</nav><h1 class="cp-page-title">Greatest Common Factor Calculator</h1><p class="cp-intro">Please provide numbers separated by a comma "," and click the "Calculate" button to find the GCF.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-gcf" id="calcpro-gcf-root">
+</style><link rel="stylesheet" href="calcpro-tools-sidebar.css">
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="math-calculator.html">Math</a> / Greatest Common Factor Calculator</nav><h1 class="cp-page-title">Greatest Common Factor Calculator</h1><p class="cp-intro">Please provide numbers separated by a comma "," and click the "Calculate" button to find the GCF.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-gcf" id="calcpro-gcf-root">
   <section class="calcpro-gcf-results" id="calcpro-gcf-results" aria-label="GCF result and calculation steps" aria-live="polite" hidden>
     <div class="calcpro-gcf-result-bar">
       <span class="calcpro-gcf-result-title">Result</span>
@@ -329,4 +330,6 @@
     setTimeout(() => URL.revokeObjectURL(url), 1000);
   });
 })();
-</script></body></html>
+</script><script defer src="calcpro-tools-sidebar-data.js"></script>
+<script defer src="calcpro-tools-sidebar.js"></script>
+</body></html>

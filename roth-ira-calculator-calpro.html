@@ -79,7 +79,8 @@
 .calcpro-roth-ira [hidden]{display:none!important}
 .calcpro-roth-ira-tooltip{max-width:min(92vw,490px);white-space:normal;text-align:center}
 
-</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Roth IRA Calculator</nav><h1 class="cp-page-title">Roth IRA Calculator</h1><p class="cp-intro">Estimate Roth IRA savings at retirement and compare them with a regular taxable investment account. Change the inputs to see updated results, a balance accumulation graph, and the annual schedule.</p><section aria-label="Calculator" class="cp-tool-area">
+</style><link rel="stylesheet" href="calcpro-tools-sidebar.css">
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Roth IRA Calculator</nav><h1 class="cp-page-title">Roth IRA Calculator</h1><p class="cp-intro">Estimate Roth IRA savings at retirement and compare them with a regular taxable investment account. Change the inputs to see updated results, a balance accumulation graph, and the annual schedule.</p><section aria-label="Calculator" class="cp-tool-area">
 <div class="calcpro-roth-ira" id="calcpro-roth-ira-app">
   <div class="calcpro-roth-ira-instruction">
     <span>Modify the values and click Calculate to see your results.</span>
@@ -511,4 +512,6 @@
   calculate(); // Match the reference, which initially shows the example calculation.
 })();
 
-</script></body></html>
+</script><script defer src="calcpro-tools-sidebar-data.js"></script>
+<script defer src="calcpro-tools-sidebar.js"></script>
+</body></html>

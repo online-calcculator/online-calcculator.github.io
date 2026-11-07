@@ -81,7 +81,8 @@
 @media(max-width:345px){.calcpro-day .calcpro-day-date-fields select{width:67px}.calcpro-day .calcpro-day-date-fields .calcpro-day-day{width:46px}.calcpro-day .calcpro-day-date-fields .calcpro-day-year{width:70px}.calcpro-day .calcpro-day-picker{width:31px;flex-basis:31px}.calcpro-day .calcpro-day-custom-row{grid-template-columns:minmax(56px,1fr) 65px 50px 28px}}
 @media print{.calcpro-day .calcpro-day-form-panel,.calcpro-day .calcpro-day-settings,.calcpro-day .calcpro-day-print,.calcpro-day .calcpro-day-internal-links{display:none!important}.calcpro-day .calcpro-day-result{break-inside:avoid}.calcpro-day .calcpro-day-month{break-inside:avoid}}
 
-</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/">Other</a> / Day Counter</nav><h1 class="cp-page-title">Day Counter</h1><p class="cp-intro">Find the number of days between two dates, including weekdays, weekends, and selected holidays. Or add and subtract calendar or business days from a date.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-day" id="calcpro-day-root">
+</style><link rel="stylesheet" href="calcpro-tools-sidebar.css">
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/">Other</a> / Day Counter</nav><h1 class="cp-page-title">Day Counter</h1><p class="cp-intro">Find the number of days between two dates, including weekdays, weekends, and selected holidays. Or add and subtract calendar or business days from a date.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-day" id="calcpro-day-root">
   <section class="calcpro-day-section" aria-label="Days between two dates">
     <div id="calcpro-day-between-result" class="calcpro-day-result" hidden aria-live="polite">
       <div class="calcpro-day-result-bar"><strong>Result</strong><button type="button" class="calcpro-day-print" data-calcpro-day-print title="Print or save as PDF">▣ Print / Save PDF</button></div>
@@ -669,4 +670,6 @@
   });
 })();
 </script>
+<script defer src="calcpro-tools-sidebar-data.js"></script>
+<script defer src="calcpro-tools-sidebar.js"></script>
 </body></html>

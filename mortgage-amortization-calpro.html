@@ -79,7 +79,8 @@
 @media(max-width:560px){.calcpro-mortgage-main{grid-template-columns:1fr;gap:16px}.calcpro-mortgage-form{max-width:390px}.calcpro-mortgage-fields{grid-template-columns:minmax(110px,43%) minmax(0,1fr)}.calcpro-mortgage-schedule-grid{grid-template-columns:1fr}.calcpro-mortgage-graph{max-width:520px}.calcpro-mortgage-linechart{min-height:0}.calcpro-mortgage-pie-row{justify-content:flex-start}.calcpro-mortgage-summary-heading{font-size:17px}.calcpro-mortgage-table{min-width:330px}}
 @media print{.calcpro-mortgage-toolbar,.calcpro-mortgage-form-actions,.calcpro-mortgage-tabs,.calcpro-mortgage-save,.calcpro-mortgage-restore,.calcpro-mortgage-errors,.calcpro-mortgage-save-status{display:none!important}.calcpro-mortgage-main{grid-template-columns:230px minmax(0,1fr)}.calcpro-mortgage-form{print-color-adjust:exact;-webkit-print-color-adjust:exact}.calcpro-mortgage-summary-heading,.calcpro-mortgage-table th{print-color-adjust:exact;-webkit-print-color-adjust:exact}.calcpro-mortgage-schedule-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.calcpro-mortgage-table-scroller{overflow:visible}.calcpro-mortgage-table{min-width:0;font-size:9px}.calcpro-mortgage-table td,.calcpro-mortgage-table th{padding:3px 2px}.calcpro-mortgage-schedule-grid,.calcpro-mortgage-main{break-inside:avoid}}
 
-</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Mortgage Amortization Calculator</nav><h1 class="cp-page-title">Mortgage Amortization Calculator</h1><p class="cp-intro">Estimate your mortgage payment and total recurring housing expenses. View a detailed annual or monthly amortization schedule, compare interest and principal, and explore repayment charts.</p><section aria-label="Calculator" class="cp-tool-area">
+</style><link rel="stylesheet" href="calcpro-tools-sidebar.css">
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Mortgage Amortization Calculator</nav><h1 class="cp-page-title">Mortgage Amortization Calculator</h1><p class="cp-intro">Estimate your mortgage payment and total recurring housing expenses. View a detailed annual or monthly amortization schedule, compare interest and principal, and explore repayment charts.</p><section aria-label="Calculator" class="cp-tool-area">
 <div class="calcpro-mortgage" data-calcpro-mortgage-root>
   <div class="calcpro-mortgage-toolbar"><button type="button" data-calcpro-mortgage-print>Print</button></div>
   <div class="calcpro-mortgage-main">
@@ -406,4 +407,6 @@
   syncOptional();updateRestore();calculate();
 })();
 
-</script></body></html>
+</script><script defer src="calcpro-tools-sidebar-data.js"></script>
+<script defer src="calcpro-tools-sidebar.js"></script>
+</body></html>

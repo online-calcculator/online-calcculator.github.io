@@ -59,7 +59,8 @@
 @media (max-width:330px) { .calcpro-height-widget .calcpro-height-line { grid-template-columns:1fr; margin:8px 0; } .calcpro-height-widget .calcpro-height-tabs { gap:2px; } .calcpro-height-widget .calcpro-height-tab { padding:7px 6px; font-size:11px; } }
 @media print { .calcpro-height-widget .calcpro-height-actions, .calcpro-height-widget .calcpro-height-save { display:none; } }
 
-</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="other-calculator.html">Other</a> / Height Calculator</nav><h1 class="cp-page-title">Height Calculator</h1><p class="cp-intro">Predict a child’s adult height using the Khamis–Roche method or parents’ heights alone, and convert between US and metric height units.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-height-widget" id="calcpro-height-root"><section aria-label="Predict a child's adult height" class="calcpro-height-primary-section">
+</style><link rel="stylesheet" href="calcpro-tools-sidebar.css">
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="other-calculator.html">Other</a> / Height Calculator</nav><h1 class="cp-page-title">Height Calculator</h1><p class="cp-intro">Predict a child’s adult height using the Khamis–Roche method or parents’ heights alone, and convert between US and metric height units.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-height-widget" id="calcpro-height-root"><section aria-label="Predict a child's adult height" class="calcpro-height-primary-section">
 <section id="calcpro-height-primary-result" class="calcpro-height-results" aria-live="polite" hidden>
       <div class="calcpro-height-result-title"><span>Result</span><button type="button" class="calcpro-height-save" data-calcpro-height-save="primary" aria-label="Save primary prediction as a text file">▣ Save</button></div>
       <div class="calcpro-height-result-body" id="calcpro-height-primary-result-body"></div>
@@ -416,4 +417,6 @@ root.calcproHeightTest={khamisRoche,usText,readMeasures};
   });
 })();
 </script>
+<script defer src="calcpro-tools-sidebar-data.js"></script>
+<script defer src="calcpro-tools-sidebar.js"></script>
 </body></html>

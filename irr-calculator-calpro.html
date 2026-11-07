@@ -90,7 +90,8 @@
  .calcpro-irr-root .calcpro-irr-result-top{print-color-adjust:exact;-webkit-print-color-adjust:exact}
 }
 
-</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / IRR Calculator</nav><h1 class="cp-page-title">Internal Rate of Return (IRR) Calculator</h1><p class="cp-intro">Calculate annualized internal rate of return for recurring deposits or withdrawals and for uneven yearly investment cash flows. Compare IRR, total return, and the investment breakdown.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-irr-root" id="calcpro-irr-app"><section class="calcpro-irr-section" aria-labelledby="calcpro-irr-fixed-heading">
+</style><link rel="stylesheet" href="calcpro-tools-sidebar.css">
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / IRR Calculator</nav><h1 class="cp-page-title">Internal Rate of Return (IRR) Calculator</h1><p class="cp-intro">Calculate annualized internal rate of return for recurring deposits or withdrawals and for uneven yearly investment cash flows. Compare IRR, total return, and the investment breakdown.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-irr-root" id="calcpro-irr-app"><section class="calcpro-irr-section" aria-labelledby="calcpro-irr-fixed-heading">
 <h2 class="calcpro-irr-heading" id="calcpro-irr-fixed-heading">IRR based on fixed cash flow</h2>
 <p class="calcpro-irr-description">This calculator computes annual IRR from an initial investment, a final balance, and equal recurring cash flows (or no recurring cash flow).</p>
 <div class="calcpro-irr-result" id="calcpro-irr-fixed-result" hidden aria-live="polite" aria-label="Fixed cash-flow calculation result">
@@ -500,4 +501,6 @@ root.querySelectorAll('.calcpro-irr-print').forEach(button=>button.addEventListe
   });
 })();
 </script>
+<script defer src="calcpro-tools-sidebar-data.js"></script>
+<script defer src="calcpro-tools-sidebar.js"></script>
 </body></html>

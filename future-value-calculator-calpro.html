@@ -78,7 +78,8 @@
 @media(max-width:380px){.calcpro-fv .calcpro-fv-topline{padding:7px}.calcpro-fv .calcpro-fv-hint{font-size:11px}.calcpro-fv .calcpro-fv-field{grid-template-columns:minmax(0,1fr) minmax(105px,43%)}.calcpro-fv .calcpro-fv-field>label{font-size:12px}.calcpro-fv .calcpro-fv-donutrow{grid-template-columns:125px minmax(0,1fr)}.calcpro-fv .calcpro-fv-donut{width:125px;height:125px}.calcpro-fv .calcpro-fv-legend{font-size:11px;gap:6px}}
 @media print{.calcpro-fv .calcpro-fv-topline,.calcpro-fv .calcpro-fv-actions,.calcpro-fv .calcpro-fv-save,.calcpro-fv .calcpro-fv-error,.calcpro-fv .calcpro-fv-empty{display:none!important}.calcpro-fv .calcpro-fv-grid{grid-template-columns:43% 55%;gap:2%}.calcpro-fv .calcpro-fv-schedulegrid{grid-template-columns:52% 46%;gap:2%}.calcpro-fv .calcpro-fv-schedule-table{font-size:10px}.calcpro-fv .calcpro-fv-schedule-table td{padding:3px}.calcpro-fv .calcpro-fv-resultbox{border:1px solid #aaa} .calcpro-fv .calcpro-fv-chartwrap,.calcpro-fv .calcpro-fv-tablewrap{break-inside:avoid}}
 
-</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Future Value Calculator</nav><h1 class="cp-page-title">Future Value Calculator</h1><p class="cp-intro">Estimate the future value of an investment from your initial balance, interest rate per compounding period, and recurring deposits. See your results, charts, and schedule instantly.</p><section aria-label="Calculator" class="cp-tool-area">
+</style><link rel="stylesheet" href="calcpro-tools-sidebar.css">
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Future Value Calculator</nav><h1 class="cp-page-title">Future Value Calculator</h1><p class="cp-intro">Estimate the future value of an investment from your initial balance, interest rate per compounding period, and recurring deposits. See your results, charts, and schedule instantly.</p><section aria-label="Calculator" class="cp-tool-area">
 <div class="calcpro-fv" id="calcpro-fv-root">
   <div class="calcpro-fv-topline"><div class="calcpro-fv-hint"><span class="calcpro-fv-hint-icon" aria-hidden="true">✓</span> Modify the values and click Calculate to use</div><button type="button" class="calcpro-fv-print" id="calcpro-fv-print">Print</button></div>
   <div class="calcpro-fv-grid">
@@ -332,4 +333,6 @@
   refresh();
 })();
 
-</script></body></html>
+</script><script defer src="calcpro-tools-sidebar-data.js"></script>
+<script defer src="calcpro-tools-sidebar.js"></script>
+</body></html>

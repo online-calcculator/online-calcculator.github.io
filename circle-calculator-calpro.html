@@ -41,7 +41,8 @@
 .calcpro-circle-sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
 @media(max-width:360px){.calcpro-circle-field{grid-template-columns:minmax(0,1fr) minmax(0,116px)}.calcpro-circle-field label{font-size:15px}.calcpro-circle-panel{padding-left:6px;padding-right:6px}}
 @media print{.calcpro-circle-save,.calcpro-circle-actions{display:none!important}.calcpro-circle-result-header{print-color-adjust:exact;-webkit-print-color-adjust:exact}.calcpro-circle-panel{background:#f3f3f3}}
-</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="math-calculator.html">Math</a> / Circle Calculator</nav><h1 class="cp-page-title">Circle Calculator</h1><p class="cp-intro">Please provide any value below to calculate the remaining values of a circle.</p><section aria-label="Calculator" class="cp-tool-area">
+</style><link rel="stylesheet" href="calcpro-tools-sidebar.css">
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="math-calculator.html">Math</a> / Circle Calculator</nav><h1 class="cp-page-title">Circle Calculator</h1><p class="cp-intro">Please provide any value below to calculate the remaining values of a circle.</p><section aria-label="Calculator" class="cp-tool-area">
 <div class="calcpro-circle" id="calcpro-circle-tool">
   <section class="calcpro-circle-results" id="calcpro-circle-results" aria-labelledby="calcpro-circle-result-title" hidden>
     <div class="calcpro-circle-result-header">
@@ -313,4 +314,6 @@
     status.textContent = 'Results saved as a text file.';
   });
 })();
-</script></body></html>
+</script><script defer src="calcpro-tools-sidebar-data.js"></script>
+<script defer src="calcpro-tools-sidebar.js"></script>
+</body></html>

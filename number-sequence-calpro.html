@@ -33,7 +33,8 @@
 .calcpro-nseq .calcpro-nseq-error{margin:7px 0 0;color:#a12a2a;font-size:13px;line-height:1.45}
 @media(max-width:430px){.calcpro-nseq .calcpro-nseq-panel{width:100%;padding:10px 8px}.calcpro-nseq .calcpro-nseq-fields{grid-template-columns:minmax(0,1fr) minmax(80px,110px)}.calcpro-nseq .calcpro-nseq-heading{font-size:18px}.calcpro-nseq .calcpro-nseq-field-label{font-size:12px}.calcpro-nseq .calcpro-nseq-result-body p{font-size:13px}}
 @media print{.calcpro-nseq .calcpro-nseq-save,.calcpro-nseq .calcpro-nseq-actions{display:none!important}.calcpro-nseq .calcpro-nseq-result{break-inside:avoid}}
-</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="math-calculator.html">Math</a> / Number Sequence Calculator</nav><h1 class="cp-page-title">Number Sequence Calculator</h1><p class="cp-intro">Calculate a term and the sum of terms in an arithmetic, geometric, or Fibonacci sequence. Results appear above the selected form.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-nseq" id="calcpro-nseq-tool">
+</style><link rel="stylesheet" href="calcpro-tools-sidebar.css">
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="math-calculator.html">Math</a> / Number Sequence Calculator</nav><h1 class="cp-page-title">Number Sequence Calculator</h1><p class="cp-intro">Calculate a term and the sum of terms in an arithmetic, geometric, or Fibonacci sequence. Results appear above the selected form.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-nseq" id="calcpro-nseq-tool">
   <section class="calcpro-nseq-section" id="calcpro-nseq-arithmetic" aria-labelledby="calcpro-nseq-arithmetic-title">
     <h2 class="calcpro-nseq-heading" id="calcpro-nseq-arithmetic-title">Arithmetic Sequence Calculator</h2>
     <p class="calcpro-nseq-definition">definition: a<sub>n</sub> = a<sub>1</sub> + f × (n − 1)<br>example: 1, 3, 5, 7, 9, 11, 13, ...</p>
@@ -370,4 +371,6 @@ root.querySelectorAll('[data-calcpro-nseq-save]').forEach(button=>{
   });
 })();
 </script>
+<script defer src="calcpro-tools-sidebar-data.js"></script>
+<script defer src="calcpro-tools-sidebar.js"></script>
 </body></html>

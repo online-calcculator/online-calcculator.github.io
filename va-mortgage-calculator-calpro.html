@@ -111,7 +111,8 @@
   .calcpro-va-more[hidden]{display:none!important}
   .calcpro-va-output-column{grid-row:auto}
 }
-</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / VA Mortgage Calculator</nav><h1 class="cp-page-title">VA Mortgage Calculator</h1><p class="cp-intro">Calculate your estimated VA mortgage payment, VA funding fee, interest costs, and annual or monthly amortization. Explore extra payments and optional housing expenses.</p><section aria-label="Calculator" class="cp-tool-area">
+</style><link rel="stylesheet" href="calcpro-tools-sidebar.css">
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / VA Mortgage Calculator</nav><h1 class="cp-page-title">VA Mortgage Calculator</h1><p class="cp-intro">Calculate your estimated VA mortgage payment, VA funding fee, interest costs, and annual or monthly amortization. Explore extra payments and optional housing expenses.</p><section aria-label="Calculator" class="cp-tool-area">
 <div class="calcpro-va-root" id="calcpro-va-calculator">
   <div class="calcpro-va-toolbar"><span class="calcpro-va-toolbar-hint">Modify the values and click Calculate.</span><button class="calcpro-va-print" type="button" id="calcpro-va-print"><svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 9V3h12v6M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v8H6zM18 12h.01"/></svg> Print</button></div>
   <div class="calcpro-va-grid">
@@ -588,4 +589,6 @@
     extraTotal:latest.calc.extraTotal,more:latest.s.more,
     annualRows:latest.calc.annual.length,monthlyRows:latest.calc.monthly.length}:null;
 })();
-</script></body></html>
+</script><script defer src="calcpro-tools-sidebar-data.js"></script>
+<script defer src="calcpro-tools-sidebar.js"></script>
+</body></html>

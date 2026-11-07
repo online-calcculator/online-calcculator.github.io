@@ -48,7 +48,8 @@
   .calcpro-sales-tax-tool .calcpro-sales-tax-results{break-inside:avoid}
 }
 
-</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Sales Tax Calculator</nav><h1 class="cp-page-title">Sales Tax Calculator</h1><p class="cp-intro">Calculate any one of three values using the other two: before-tax price, sales tax rate, or after-tax price.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-sales-tax-tool" id="calcpro-sales-tax-tool">
+</style><link rel="stylesheet" href="calcpro-tools-sidebar.css">
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Sales Tax Calculator</nav><h1 class="cp-page-title">Sales Tax Calculator</h1><p class="cp-intro">Calculate any one of three values using the other two: before-tax price, sales tax rate, or after-tax price.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-sales-tax-tool" id="calcpro-sales-tax-tool">
   <section class="calcpro-sales-tax-results" id="calcpro-sales-tax-results" aria-label="Calculation results" aria-live="polite" hidden>
     <div class="calcpro-sales-tax-result-header"><span>Result</span>
       <button class="calcpro-sales-tax-save" id="calcpro-sales-tax-save" type="button" title="Save the calculation as a text file" aria-label="Save results">
@@ -213,4 +214,6 @@
     setTimeout(() => URL.revokeObjectURL(url), 1000);
   });
 })();
-</script></body></html>
+</script><script defer src="calcpro-tools-sidebar-data.js"></script>
+<script defer src="calcpro-tools-sidebar.js"></script>
+</body></html>

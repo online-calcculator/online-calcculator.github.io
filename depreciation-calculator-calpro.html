@@ -49,7 +49,8 @@
 @media(max-width:600px){.calcpro-depr-form{width:100%;max-width:420px;padding:10px}.calcpro-depr-field{grid-template-columns:minmax(0,44%) minmax(0,56%)}.calcpro-depr-field>label,.calcpro-depr-field>.calcpro-depr-field-label{font-size:12px}.calcpro-depr-radio-line{gap:7px}.calcpro-depr-resultbar{font-size:16px}.calcpro-depr-summary{font-size:14px}.calcpro-depr-table{min-width:590px}}
 @media(max-width:380px){.calcpro-depr-radio-line .calcpro-depr-question{width:100%}.calcpro-depr-control{font-size:13px}.calcpro-depr-fiscal-inputs select:last-child{width:52px}}
 @media print{.calcpro-depr-instruction,.calcpro-depr-form,.calcpro-depr-resultactions{display:none!important}.calcpro-depr-result{display:block!important}.calcpro-depr-table-scroll{overflow:visible}.calcpro-depr-table{min-width:0;font-size:9px}.calcpro-depr-chart{max-height:250px}}
-</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Depreciation Calculator</nav><h1 class="cp-page-title">Depreciation Calculator</h1><p class="cp-intro">Calculate asset depreciation using straight-line, declining-balance, or sum-of-the-years’ digits methods. View annual depreciation, accumulated depreciation, book value, and a chart. Optional partial-year conventions support custom fiscal-year start dates.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-depr" id="calcpro-depr-root">
+</style><link rel="stylesheet" href="calcpro-tools-sidebar.css">
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Depreciation Calculator</nav><h1 class="cp-page-title">Depreciation Calculator</h1><p class="cp-intro">Calculate asset depreciation using straight-line, declining-balance, or sum-of-the-years’ digits methods. View annual depreciation, accumulated depreciation, book value, and a chart. Optional partial-year conventions support custom fiscal-year start dates.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-depr" id="calcpro-depr-root">
   <div class="calcpro-depr-instruction" id="calcpro-depr-instruction">Modify the values and click the Calculate button to use</div>
   <!-- Reference placement: calculated results are shown BEFORE the form. -->
   <section class="calcpro-depr-result" id="calcpro-depr-result" aria-label="Depreciation results" aria-live="polite" hidden>
@@ -364,4 +365,6 @@
   });
   updateConditional();
 })();
-</script></body></html>
+</script><script defer src="calcpro-tools-sidebar-data.js"></script>
+<script defer src="calcpro-tools-sidebar.js"></script>
+</body></html>

@@ -54,7 +54,8 @@
 @media(max-width:350px){.calcpro-roi-date-row{padding-left:0}.calcpro-roi-mode{padding-left:4px;gap:6px}.calcpro-roi-money-row{grid-template-columns:minmax(0,1fr) 112px}}
 @media print{.calcpro-roi-actions,.calcpro-roi-save{display:none!important}.calcpro-roi-layout{break-inside:avoid}.calcpro-roi-tool{max-width:100%}}
 
-</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Return on Investment (ROI) Calculator</nav><h1 class="cp-page-title">Return on Investment (ROI) Calculator</h1><p class="cp-intro">Calculate investment gain, total ROI, and annualized ROI using investment dates or length, with a clear capital-and-profit chart.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-roi-tool" id="calcpro-roi-tool">
+</style><link rel="stylesheet" href="calcpro-tools-sidebar.css">
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Return on Investment (ROI) Calculator</nav><h1 class="cp-page-title">Return on Investment (ROI) Calculator</h1><p class="cp-intro">Calculate investment gain, total ROI, and annualized ROI using investment dates or length, with a clear capital-and-profit chart.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-roi-tool" id="calcpro-roi-tool">
   <div class="calcpro-roi-layout">
     <form id="calcpro-roi-form" class="calcpro-roi-form" novalidate>
       <div class="calcpro-roi-money-row"><label for="calcpro-roi-invested">Amount Invested</label><input id="calcpro-roi-invested" name="roi-invested" class="calcpro-roi-text-input" type="text" inputmode="decimal" autocomplete="off" value="1,000" aria-required="true" /></div>
@@ -339,4 +340,6 @@
   });
   switchMode();
   calculate();
-})();</script></body></html>
+})();</script><script defer src="calcpro-tools-sidebar-data.js"></script>
+<script defer src="calcpro-tools-sidebar.js"></script>
+</body></html>

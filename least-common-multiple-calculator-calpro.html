@@ -33,7 +33,8 @@
 .calcpro-lcm-root .calcpro-lcm-status{font-size:13px;color:#476b2e;margin-top:5px;text-align:right}
 @media(max-width:580px){.calcpro-lcm-root .calcpro-lcm-result-title{font-size:22px}.calcpro-lcm-root .calcpro-lcm-equation{font-size:20px}.calcpro-lcm-root .calcpro-lcm-form-frame{padding:7px}.calcpro-lcm-root .calcpro-lcm-controls{padding-top:14px}.calcpro-lcm-root .calcpro-lcm-calculate,.calcpro-lcm-root .calcpro-lcm-clear{min-height:43px}}
 @media print{.calcpro-lcm-root .calcpro-lcm-form-frame,.calcpro-lcm-root .calcpro-lcm-save,.calcpro-lcm-root .calcpro-lcm-status{display:none!important}.calcpro-lcm-root .calcpro-lcm-results{display:block!important}.calcpro-lcm-root .calcpro-lcm-result-bar{print-color-adjust:exact;-webkit-print-color-adjust:exact}}
-</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="math-calculator.html">Math</a> / Least Common Multiple Calculator</nav><h1 class="cp-page-title">Least Common Multiple Calculator</h1><p class="cp-intro">Please provide numbers separated by a comma "," and click the "Calculate" button to find the LCM.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-lcm-root" data-calcpro-lcm>
+</style><link rel="stylesheet" href="calcpro-tools-sidebar.css">
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="math-calculator.html">Math</a> / Least Common Multiple Calculator</nav><h1 class="cp-page-title">Least Common Multiple Calculator</h1><p class="cp-intro">Please provide numbers separated by a comma "," and click the "Calculate" button to find the LCM.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-lcm-root" data-calcpro-lcm>
   <section class="calcpro-lcm-results" id="calcpro-lcm-results" aria-label="Calculation result" aria-live="polite" tabindex="-1" hidden>
     <div class="calcpro-lcm-result-bar"><h2 class="calcpro-lcm-result-title">Result</h2>
       <button type="button" class="calcpro-lcm-save" id="calcpro-lcm-save" title="Save result as a text file" aria-label="Save result as a text file">
@@ -235,4 +236,6 @@
     status.textContent = 'Result saved as a text file.';
   });
 })();
-</script></body></html>
+</script><script defer src="calcpro-tools-sidebar-data.js"></script>
+<script defer src="calcpro-tools-sidebar.js"></script>
+</body></html>

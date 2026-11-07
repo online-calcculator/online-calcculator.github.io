@@ -40,7 +40,8 @@
 @media(max-width:430px){.calcpro-fuel-cost{font-size:13px}.calcpro-fuel-panel{padding:8px}.calcpro-fuel-field{grid-template-columns:100px minmax(0,1fr);gap:5px}.calcpro-fuel-field label{font-size:12px}.calcpro-fuel-control-pair{grid-template-columns:minmax(62px,78px) minmax(0,1fr);gap:4px}.calcpro-fuel-control-pair select,.calcpro-fuel-control-pair input{font-size:12px;padding:3px 4px}.calcpro-fuel-summary{font-size:16px}}
 @media(max-width:340px){.calcpro-fuel-field{grid-template-columns:1fr;gap:3px;margin-bottom:10px}.calcpro-fuel-control-pair{grid-template-columns:minmax(77px,100px) minmax(0,1fr)}}
 @media print{.calcpro-fuel-cost .calcpro-fuel-notice,.calcpro-fuel-cost .calcpro-fuel-panel,.calcpro-fuel-cost .calcpro-fuel-hint,.calcpro-fuel-cost .calcpro-fuel-error,.calcpro-fuel-cost .calcpro-fuel-print{display:none!important}.calcpro-fuel-cost .calcpro-fuel-result{display:block!important}.calcpro-fuel-cost .calcpro-fuel-result-head{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
-</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Fuel Cost Calculator</nav><h1 class="cp-page-title">Fuel Cost Calculator</h1><p class="cp-intro">Estimate how much fuel your trip will use and what it will cost. Enter your trip distance, fuel efficiency, and gas or fuel price, then choose the appropriate units.</p><section aria-label="Calculator" class="cp-tool-area">
+</style><link rel="stylesheet" href="calcpro-tools-sidebar.css">
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Fuel Cost Calculator</nav><h1 class="cp-page-title">Fuel Cost Calculator</h1><p class="cp-intro">Estimate how much fuel your trip will use and what it will cost. Enter your trip distance, fuel efficiency, and gas or fuel price, then choose the appropriate units.</p><section aria-label="Calculator" class="cp-tool-area">
 <div class="calcpro-fuel-cost" id="calcpro-fuel-root">
   <div class="calcpro-fuel-notice" id="calcpro-fuel-notice"><span class="calcpro-fuel-notice-icon" aria-hidden="true">✓</span><span>Modify the values and click the Calculate button to use</span></div>
   <section class="calcpro-fuel-result" id="calcpro-fuel-result" aria-label="Fuel cost result" aria-live="polite" hidden>
@@ -240,4 +241,6 @@
     control.addEventListener('input', hideError);
   });
 })();
-</script></body></html>
+</script><script defer src="calcpro-tools-sidebar-data.js"></script>
+<script defer src="calcpro-tools-sidebar.js"></script>
+</body></html>

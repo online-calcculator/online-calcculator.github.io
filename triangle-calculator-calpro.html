@@ -69,7 +69,8 @@
 @media(max-width:350px){.calcpro-triangle .calcpro-triangle-field input{height:25px;font-size:13px}.calcpro-triangle .calcpro-triangle-field .calcpro-triangle-unit{top:5px}}
 @media print{.calcpro-triangle .calcpro-triangle-actions,.calcpro-triangle .calcpro-triangle-save,.calcpro-triangle .calcpro-triangle-hint{display:none!important}.calcpro-triangle .calcpro-triangle-result[hidden]{display:none!important}}
 
-</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/math-calculator/">Math</a> / Triangle Calculator</nav><h1 class="cp-page-title">Triangle Calculator</h1><p class="cp-intro">Enter any three known measurements, including at least one side. Use the triangle diagram to enter sides a, b, c and angles A, B, C, then calculate the remaining measurements. Radian angles can use expressions such as pi/2 or pi/4.</p><section aria-label="Calculator" class="cp-tool-area">
+</style><link rel="stylesheet" href="calcpro-tools-sidebar.css">
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/math-calculator/">Math</a> / Triangle Calculator</nav><h1 class="cp-page-title">Triangle Calculator</h1><p class="cp-intro">Enter any three known measurements, including at least one side. Use the triangle diagram to enter sides a, b, c and angles A, B, C, then calculate the remaining measurements. Radian angles can use expressions such as pi/2 or pi/4.</p><section aria-label="Calculator" class="cp-tool-area">
 <div class="calcpro-triangle" id="calcpro-triangle-root">
   <section class="calcpro-triangle-result" id="calcpro-triangle-result" aria-label="Triangle result" hidden>
     <div class="calcpro-triangle-result-head"><span>Result</span><button type="button" class="calcpro-triangle-save" id="calcpro-triangle-save" title="Save the current triangle result as text" aria-label="Save triangle result"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 3h14l3 3v15H3V3z M7 3v7h10V3 M7 21v-8h10v8 M9 3v5h6"/></svg>Save</button></div>
@@ -353,4 +354,6 @@
     const url=URL.createObjectURL(new Blob([contents],{type:'text/plain;charset=utf-8'}));const a=document.createElement('a');a.href=url;a.download='triangle-calculation.txt';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
   });
 })();
-</script></body></html>
+</script><script defer src="calcpro-tools-sidebar-data.js"></script>
+<script defer src="calcpro-tools-sidebar.js"></script>
+</body></html>

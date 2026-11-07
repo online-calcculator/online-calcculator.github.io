@@ -76,7 +76,8 @@
 @media(max-width:690px){.calcpro-creditcard-charts{grid-template-columns:1fr;gap:0}.calcpro-creditcard-donut-panel{padding-top:5px;justify-content:center}.calcpro-creditcard-chart{max-width:430px}.calcpro-creditcard-resulttext{font-size:20px}}
 @media(max-width:450px){.calcpro-creditcard-hint{font-size:15px;gap:8px}.calcpro-creditcard-form{padding:11px 10px}.calcpro-creditcard-field{grid-template-columns:1fr;gap:2px;margin:0 0 9px}.calcpro-creditcard-option{font-size:15px}.calcpro-creditcard-option-body{margin-left:30px;font-size:15px}.calcpro-creditcard-presets button{font-size:14px}.calcpro-creditcard-resulttext{font-size:19px}.calcpro-creditcard-resultbar{font-size:20px}}
 @media print{.calcpro-creditcard-hint,.calcpro-creditcard-form-actions,.calcpro-creditcard-save,.calcpro-creditcard-print,.calcpro-creditcard-pager{display:none!important}.calcpro-creditcard-breakdown{break-inside:avoid}.calcpro-creditcard-result{margin-bottom:12px}}
-</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Credit Card Calculator</nav><h1 class="cp-page-title">Credit Card Calculator</h1><p class="cp-intro">Calculate how long it will take to pay off a credit card balance, or find the monthly payment needed to be debt-free by your chosen date. Compare interest costs and review a month-by-month payment schedule.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-creditcard-widget" id="calcpro-creditcard-widget">
+</style><link rel="stylesheet" href="calcpro-tools-sidebar.css">
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Credit Card Calculator</nav><h1 class="cp-page-title">Credit Card Calculator</h1><p class="cp-intro">Calculate how long it will take to pay off a credit card balance, or find the monthly payment needed to be debt-free by your chosen date. Compare interest costs and review a month-by-month payment schedule.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-creditcard-widget" id="calcpro-creditcard-widget">
   <div class="calcpro-creditcard-result" id="calcpro-creditcard-result" hidden aria-live="polite">
     <div class="calcpro-creditcard-resultbar"><span>Result:</span>
       <button class="calcpro-creditcard-save" id="calcpro-creditcard-save" type="button" aria-label="Save calculation as CSV" title="Save calculation and payment schedule as CSV">
@@ -406,4 +407,6 @@
   });
   toggleMode();
 })();
-</script></body></html>
+</script><script defer src="calcpro-tools-sidebar-data.js"></script>
+<script defer src="calcpro-tools-sidebar.js"></script>
+</body></html>

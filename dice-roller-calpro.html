@@ -51,7 +51,8 @@
 @media(prefers-reduced-motion:reduce){.calcpro-dice-roller .calcpro-dice-visual.calcpro-dice-is-rolling .calcpro-dice-cube{animation:none}.calcpro-dice-roller .calcpro-dice-button{transition:none}.calcpro-dice-roller .calcpro-dice-custom-output.calcpro-dice-custom-spinning{animation:none}}
 @media print{.calcpro-dice-roller .calcpro-dice-button{color:#111;background:#eee!important;border:1px solid #666}.calcpro-dice-roller .calcpro-dice-visual .calcpro-dice-cube{animation:none!important}}
 
-</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / Other / Dice Roller</nav><h1 class="cp-page-title">Virtual Dice Roller</h1><p class="cp-intro">Roll classic or custom-sided dice with smooth animation. Results, totals, and products update without leaving this page.</p><section aria-label="Calculator" class="cp-tool-area">
+</style><link rel="stylesheet" href="calcpro-tools-sidebar.css">
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / Other / Dice Roller</nav><h1 class="cp-page-title">Virtual Dice Roller</h1><p class="cp-intro">Roll classic or custom-sided dice with smooth animation. Results, totals, and products update without leaving this page.</p><section aria-label="Calculator" class="cp-tool-area">
 <section class="calcpro-dice-roller" id="calcpro-dice-roller-root" aria-label="Virtual dice roller">
   <div class="calcpro-dice-visual" id="calcpro-dice-standard-visual" aria-label="Six-sided dice showing one die with five pips"></div>
   <div class="calcpro-dice-standard-totals" id="calcpro-dice-standard-totals" role="status" aria-live="polite"></div>
@@ -452,4 +453,6 @@
   });
 })();
 </script>
+<script defer src="calcpro-tools-sidebar-data.js"></script>
+<script defer src="calcpro-tools-sidebar.js"></script>
 </body></html>

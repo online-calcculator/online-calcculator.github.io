@@ -55,7 +55,8 @@
  .calcpro-mass .calcpro-mass-save,.calcpro-mass .calcpro-mass-actions {display:none;}
  .calcpro-mass .calcpro-mass-field-panel {border:1px solid #999;}
 }
-</style></head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/other-calculators/">Other Calculators</a> / Mass Calculator</nav><h1 class="cp-page-title">Mass Calculator</h1><p class="cp-intro">Calculate mass from density and volume using common metric, US customary, and scientific units. Enter your values to see the formula and results in eight mass units.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-mass" id="calcpro-mass-root">
+</style><link rel="stylesheet" href="calcpro-tools-sidebar.css">
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/other-calculators/">Other Calculators</a> / Mass Calculator</nav><h1 class="cp-page-title">Mass Calculator</h1><p class="cp-intro">Calculate mass from density and volume using common metric, US customary, and scientific units. Enter your values to see the formula and results in eight mass units.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-mass" id="calcpro-mass-root">
   <div class="calcpro-mass-hint" id="calcpro-mass-hint"><span class="calcpro-mass-hint-symbol" aria-hidden="true">▼</span><span>Modify the values and click the Calculate button to use</span></div>
   <section class="calcpro-mass-result" id="calcpro-mass-result" aria-label="Mass calculation result" hidden>
     <div class="calcpro-mass-result-head"><span>Result</span><button class="calcpro-mass-save" id="calcpro-mass-save" type="button" title="Save calculation as a PNG image" aria-label="Save calculation as a PNG image"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 2h13l5 5v15H2V2h2zm1 2v6h13V4h-2v4H7V4H5zm7 9a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"/></svg><span>save</span></button></div>
@@ -332,4 +333,6 @@
     if (!error.hidden) { error.hidden = true; error.textContent = ''; }
   }));
 })();
-</script></body></html>
+</script><script defer src="calcpro-tools-sidebar-data.js"></script>
+<script defer src="calcpro-tools-sidebar.js"></script>
+</body></html>
