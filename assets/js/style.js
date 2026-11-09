@@ -288,6 +288,85 @@
 
 (function () {
   'use strict';
+
+  var resultSelector = [
+    '[id*="result" i]', '[class*="result" i]',
+    '[id*="output" i]', '[class*="output" i]',
+    '[id*="answer" i]', '[class*="answer" i]',
+    '[id*="summary" i]', '[class*="summary" i]',
+    '[data-result]'
+  ].join(',');
+  var liveResultSelector = resultSelector + ',[aria-live="polite"],[role="status"]';
+  var scrollTimer;
+
+  function isVisible(element) {
+    if (element.hidden || !element.textContent.trim()) return false;
+    var style = window.getComputedStyle(element);
+    return style.display !== 'none' && style.visibility !== 'hidden' && element.getClientRects().length > 0;
+  }
+
+  function scrollToResult(source) {
+    var scope = source.closest('.cp-tool-area') || source.closest('form') || document;
+    var candidates = Array.prototype.filter.call(scope.querySelectorAll(resultSelector), isVisible);
+    if (!candidates.length) {
+      candidates = Array.prototype.filter.call(scope.querySelectorAll(liveResultSelector), isVisible);
+    }
+
+    var topLevel = candidates.filter(function (candidate) {
+      return !candidates.some(function (other) {
+        return other !== candidate && other.contains(candidate);
+      });
+    });
+    if (!topLevel.length) return;
+
+    topLevel.sort(function (a, b) {
+      return a.getBoundingClientRect().top - b.getBoundingClientRect().top;
+    });
+    var target = topLevel[0];
+    var behavior = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
+    target.scrollIntoView({ behavior: behavior, block: 'start' });
+  }
+
+  function scheduleResultScroll(source) {
+    window.clearTimeout(scrollTimer);
+    scrollTimer = window.setTimeout(function () {
+      window.requestAnimationFrame(function () {
+        window.requestAnimationFrame(function () {
+          scrollToResult(source);
+        });
+      });
+    }, 60);
+  }
+
+  document.addEventListener('submit', function (event) {
+    var form = event.target;
+    if (form.matches('form') && form.closest('.cp-tool-area')) {
+      scheduleResultScroll(form);
+    }
+  }, true);
+
+  document.addEventListener('click', function (event) {
+    var button = event.target.closest('button,input[type="submit"],input[type="button"]');
+    if (!button || !button.closest('.cp-tool-area')) return;
+
+    var details = [
+      button.textContent || '',
+      button.value || '',
+      button.id || '',
+      button.className || '',
+      button.getAttribute('aria-label') || '',
+      button.getAttribute('title') || ''
+    ].join(' ');
+    if (/\b(save|restore|reset|clear|print|download|search|close|cancel)\b/i.test(details)) return;
+    if (!button.matches('button[type="submit"],input[type="submit"]') &&
+        !/\b(calculate|compute|convert|generate|solve|estimate|find|check|run|count|roll)\b/i.test(details)) return;
+
+    scheduleResultScroll(button);
+  }, true);
+}());
+
+(function () {
+  'use strict';
   var sections = document.querySelectorAll('.cp-article .cp-accordion-section');
   if (!sections.length) return;
 
