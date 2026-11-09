@@ -1,0 +1,526 @@
+/* ============================================================
+   CALCPRO — Google Docs-inspired editorial article styling
+   Reference: APR Calculator: Complete Editorial Draft (Tab 1)
+   Scope: .cp-article only. Never styles calculator/tool UI,
+   site header, navigation, ads, or right sidebar.
+   Keep this stylesheet AFTER template-style.css.
+   ============================================================ */
+
+/* Google Doc baseline: Arial 11pt / 115% line spacing */
+.cp-site .cp-article {
+  --cp-doc-blue: #1155cc;
+  --cp-doc-table-head: #e0edf7;
+  --cp-doc-table-border: #cbd5df;
+  --cp-doc-green-ink: #276738;
+  --cp-doc-green-fill: #ebf8ee;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 11pt;
+  font-weight: 400;
+  line-height: 1.15;
+  color: #111;
+  overflow-wrap: break-word;
+}
+.cp-site .cp-article p,
+.cp-site .cp-article li {
+  font-family: inherit;
+  font-size: 11pt;
+  font-weight: 400;
+  line-height: 1.15;
+  color: inherit;
+}
+.cp-site .cp-article p { margin: 0 0 10px; }
+.cp-site .cp-article strong,
+.cp-site .cp-article b { font-weight: 700; }
+.cp-site .cp-article em,
+.cp-site .cp-article i { font-style: italic; }
+
+/* Google Doc Heading 2: 16pt, bold, black, 13pt above / 6pt below */
+.cp-site .cp-article h2 {
+  font: 700 16pt/1.28 Arial, Helvetica, sans-serif;
+  color: #111;
+  margin: 17px 0 8px;
+  scroll-margin-top: 16px;
+}
+/* Google Doc Heading 3: direct formatting 13pt, bold, black */
+.cp-site .cp-article h3 {
+  font: 700 13pt/1.25 Arial, Helvetica, sans-serif;
+  color: #111;
+  margin: 20px 0 6px;
+  scroll-margin-top: 16px;
+}
+.cp-site .cp-article h4 {
+  font: 700 12pt/1.3 Arial, Helvetica, sans-serif;
+  color: #222;
+  margin: 16px 0 6px;
+}
+.cp-site .cp-article > h2:first-child { margin-top: 0; }
+.cp-site .cp-article :is(h2,h3,h4) strong { font-weight: inherit; }
+
+/* Ordered and unordered instructions: preserve readable Docs-style indentation */
+.cp-site .cp-article :is(ul,ol) {
+  margin: 4px 0 12px;
+  padding-left: 36px;
+}
+.cp-site .cp-article li { padding-left: 4px; margin-bottom: 5px; }
+.cp-site .cp-article li strong { font-weight: 700; }
+.cp-site .cp-article a { color: var(--cp-doc-blue); text-decoration: underline; text-underline-offset: 2px; }
+.cp-site .cp-article a:hover { text-decoration-thickness: 2px; }
+.cp-site .cp-article a:focus-visible { outline: 2px solid var(--cp-doc-blue); outline-offset: 2px; }
+
+/* DOC TABLES: pale-blue header as in linked Doc; keep cells on a white background. */
+.cp-site .cp-article .cp-doc-table-scroll {
+  max-width: 100%;
+  width: 100%;
+  margin: 10px 0 16px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: 0;
+}
+.cp-site .cp-article table.cp-doc-table {
+  width: 100%;
+  min-width: 520px;
+  max-width: none;
+  border: 1px solid var(--cp-doc-table-border);
+  border-collapse: collapse;
+  table-layout: auto;
+  margin: 0;
+  background: #fff;
+  font: 400 11pt/1.18 Arial, Helvetica, sans-serif;
+  color: #111;
+}
+.cp-site .cp-article table.cp-doc-table :is(th,td) {
+  border: 1px solid var(--cp-doc-table-border);
+  padding: 7px;
+  min-width: 0;
+  vertical-align: top;
+  text-align: left;
+  color: #111;
+  font: inherit;
+  background: #fff;
+  overflow-wrap: normal;
+  word-break: normal;
+}
+.cp-site .cp-article table.cp-doc-table thead :is(th,td),
+.cp-site .cp-article table.cp-doc-table tbody tr:first-child > :is(th,td) {
+  background: var(--cp-doc-table-head);
+  font-weight: 700;
+}
+.cp-site .cp-article table.cp-doc-table :is(th,td) p {
+  font: inherit;
+  margin: 0;
+  color: inherit;
+}
+.cp-site .cp-article table.cp-doc-table :is(th,td) p strong { font-weight: 700; }
+/* Opt-in variant for extra-wide tables where columns must not get squeezed */
+.cp-site .cp-article .cp-doc-table-scroll.cp-doc-wide table { min-width: 660px; }
+.cp-site .cp-article .cp-doc-table-scroll:focus-visible { outline: 2px solid var(--cp-doc-blue); outline-offset: -2px; }
+
+/* Image exactly at the document's nominal width: 459.5pt ≈ 613px. */
+.cp-site .cp-article .cp-doc-figure { margin: 12px 0 12px; width: 100%; }
+.cp-site .cp-article .cp-doc-figure img,
+.cp-site .cp-article img.cp-doc-image {
+  display: block;
+  width: min(100%, 613px);
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+  border: 0;
+  margin: 0;
+}
+.cp-site .cp-article .cp-doc-figure figcaption,
+.cp-site .cp-article .cp-doc-image-caption {
+  display: block;
+  font: italic 9pt/1.3 Arial, Helvetica, sans-serif;
+  color: #343434;
+  margin: 7px 0 0;
+}
+/* General-purpose images and galleries added to future articles. */
+.cp-site .cp-article :is(p,figure) > img:not(.cp-doc-image) { max-width: 100%; height: auto; }
+.cp-site .cp-article .cp-doc-image-center { margin-inline: auto; }
+.cp-site .cp-article .cp-doc-image-border { border: 1px solid var(--cp-doc-table-border); }
+
+/* The green Pro Tip matches the reference Doc: 3pt green line + pale green fill */
+.cp-site .cp-article p.cp-doc-pro-tip,
+.cp-site .cp-article .cp-doc-tip {
+  background: var(--cp-doc-green-fill);
+  color: #111;
+  border: 0;
+  border-left: 4px solid var(--cp-doc-green-ink);
+  padding: 10px 12px;
+  margin: 10px 0 11px;
+  line-height: 1.27;
+}
+.cp-site .cp-article .cp-doc-pro-tip strong,
+.cp-site .cp-article .cp-doc-tip strong { color: var(--cp-doc-green-ink); font-weight: 700; }
+/* Optional highlight styles; apply these classes only where a document calls for them. */
+.cp-site .cp-article .cp-doc-important {
+  background: #fff8e7;
+  border-left: 4px solid #d9aa2d;
+  padding: 10px 12px;
+  margin: 11px 0;
+}
+.cp-site .cp-article .cp-doc-note {
+  background: #f2f5f8;
+  border-left: 4px solid #9aa7b4;
+  padding: 10px 12px;
+  margin: 11px 0;
+}
+/* The particular 'Important qualification' paragraph in this Doc is plain text. */
+.cp-site .cp-article .cp-doc-important-plain { background: transparent; border: 0; padding: 0; }
+
+/* FAQ & Sources: accessible dark accordion inspired by screenshot. */
+.cp-site .cp-article .cp-accordion-section {
+  max-width: 100%;
+  margin: 24px 0 28px;
+}
+.cp-site .cp-article .cp-doc-faq-heading {
+  margin: 0 0 13px;
+  color: #111;
+  font: 700 16pt/1.3 Arial, Helvetica, sans-serif;
+}
+.cp-site .cp-article .cp-accordion-list {
+  width: 100%; 
+  padding: 3px 15px;
+  border-radius: 4px;
+  color: #f2f2f4;
+}
+.cp-site .cp-article .cp-accordion-item + .cp-accordion-item {
+  border-top: 1px solid #44464d;
+}
+.cp-site .cp-article .cp-accordion-item-heading {
+  margin: 0;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+}
+.cp-site .cp-article .cp-accordion-trigger {
+  display: flex;
+  width: 100%;
+  min-height: 54px;
+  padding: 10px 0;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: #f1f1f3;
+  cursor: pointer;
+  font: 400 15px/1.42 Arial, Helvetica, sans-serif;
+  text-align: left;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.cp-site .cp-article .cp-accordion-trigger:hover .cp-accordion-question-text,
+.cp-site .cp-article .cp-accordion-trigger[aria-expanded="true"] .cp-accordion-question-text {
+  color: #3f3d3d;
+}
+.cp-site .cp-article .cp-accordion-trigger:focus-visible {
+  outline: 2px solid #9fb6ff;
+  outline-offset: -3px;
+  border-radius: 3px;
+}
+.cp-site .cp-article .cp-accordion-chevron {
+  display: inline-flex;
+  width: 36px;
+  height: 36px;
+  flex: 0 0 36px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #35373d;
+  color: #cdd0d6;
+  transition: transform .32s cubic-bezier(.2,.7,.2,1), background-color .2s ease;
+}
+.cp-site .cp-article .cp-accordion-trigger:hover .cp-accordion-chevron { background: #474951; }
+.cp-site .cp-article .cp-accordion-item[data-open="true"] .cp-accordion-chevron {
+  transform: rotate(180deg);
+  background: #454850;
+}
+/* Grid row 0fr -> 1fr animates to the actual answer height without hard-coded max-height. */
+.cp-site .cp-article .cp-accordion-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  visibility: hidden;
+  transition: grid-template-rows .36s cubic-bezier(.22,.7,.25,1), opacity .26s ease, visibility .36s;
+}
+.cp-site .cp-article .cp-accordion-item[data-open="true"] .cp-accordion-panel {
+  grid-template-rows: 1fr;
+  opacity: 1;
+  visibility: visible;
+}
+.cp-site .cp-article .cp-accordion-panel-inner { min-height: 0; overflow: hidden; }
+.cp-site .cp-article .cp-accordion-panel-content { padding: 0 45px 16px 0; }
+.cp-site .cp-article .cp-accordion-panel-content p,
+.cp-site .cp-article .cp-accordion-panel-content li {
+  color: #030303;
+  font: 400 14px/1.68 Arial, Helvetica, sans-serif;
+}
+.cp-site .cp-article .cp-accordion-panel-content p { margin: 0 0 10px; }
+.cp-site .cp-article .cp-accordion-panel-content p:last-child { margin-bottom: 0; }
+.cp-site .cp-article .cp-accordion-panel-content a {
+  color: #a9c7ff;
+  text-decoration: underline;
+  overflow-wrap: anywhere;
+}
+.cp-site .cp-article .cp-accordion-panel-content a:hover { color: #fff; }
+.cp-site .cp-article .cp-accordion-sources { margin-top: 28px; }
+.cp-site .cp-article .cp-accordion-sources .cp-accordion-trigger { font-weight: 600; }
+.cp-site .cp-article .cp-accordion-sources .cp-accordion-panel-content { padding-bottom: 19px; }
+@media (max-width: 580px) {
+  .cp-site .cp-article .cp-accordion-list { padding: 2px 12px; }
+  .cp-site .cp-article .cp-accordion-trigger { font-size: 14px; min-height: 55px; }
+  .cp-site .cp-article .cp-accordion-chevron { width: 32px; height: 32px; flex-basis: 32px; }
+  .cp-site .cp-article .cp-accordion-panel-content { padding-right: 5px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cp-site .cp-article .cp-accordion-panel,
+  .cp-site .cp-article .cp-accordion-chevron { transition: none !important; }
+}
+@media print {
+  .cp-site .cp-article .cp-accordion-list { background: transparent; color: #111; padding: 0; }
+  .cp-site .cp-article .cp-accordion-item .cp-accordion-panel { display: block; visibility: visible; opacity: 1; }
+  .cp-site .cp-article .cp-accordion-panel-content p,
+  .cp-site .cp-article .cp-accordion-panel-content li { color: #111; }
+  .cp-site .cp-article .cp-accordion-trigger { color: #111; }
+  .cp-site .cp-article .cp-accordion-chevron { display: none; }
+}
+
+@media (max-width: 580px) {
+  .cp-site .cp-article,
+  .cp-site .cp-article p,
+  .cp-site .cp-article li { font-size: 11pt; }
+  .cp-site .cp-article h2 { font-size: 16pt; line-height: 1.23; }
+  .cp-site .cp-article h3 { font-size: 13pt; }
+  .cp-site .cp-article .cp-doc-table-scroll { margin-block: 10px 15px; }
+  .cp-site .cp-article .cp-doc-table { font-size: 10.5pt; }
+  .cp-site .cp-article :is(ul,ol) { padding-left: 27px; }
+}
+@media print {
+  .cp-site .cp-article .cp-doc-table-scroll { overflow: visible; }
+  .cp-site .cp-article table.cp-doc-table { min-width: 0; }
+  .cp-site .cp-article :is(h2,h3,figure,tr) { break-inside: avoid; }
+}
+
+
+/* ============================================================
+   CALCPRO EDITORIAL POLISH — v2
+   Sources accent, informative Pro Tips, readable formulas,
+   and polished responsive tables. Only touches .cp-article.
+   Add the cp-doc-formula class to actual formula paragraphs.
+   No text is generated or changed by these rules.
+   ============================================================ */
+
+/* More prominent but restrained Pro Tip callout */
+.cp-site .cp-article p.cp-doc-pro-tip,
+.cp-site .cp-article .cp-doc-tip,
+.cp-site .cp-article .cp-tip {
+  background: #e8f7ee;
+  border: 1px solid #b9e2c8;
+  border-left: 5px solid #27854e;
+  border-radius: 0 8px 8px 0;
+  padding: 13px 16px;
+  margin: 15px 0 16px;
+  box-shadow: 0 2px 7px rgba(17, 97, 57, .05);
+  color: #183d2b;
+  line-height: 1.45;
+}
+.cp-site .cp-article p.cp-doc-pro-tip strong,
+.cp-site .cp-article .cp-doc-tip strong,
+.cp-site .cp-article .cp-tip strong { color: #17603b; }
+
+/* Formula boxes: original symbols and wording remain untouched */
+.cp-site .cp-article p.cp-doc-formula,
+.cp-site .cp-article .cp-doc-formula {
+  display: block;
+  max-width: 100%;
+  background: #f1f6ff;
+  border: 1px solid #c7daf2;
+  border-left: 5px solid #3572bc;
+  border-radius: 0 8px 8px 0;
+  box-shadow: 0 2px 7px rgba(31, 77, 139, .045);
+  padding: 13px 16px;
+  margin: 11px 0 17px;
+  color: #183d68;
+  font: 600 15px/1.55 Arial, Helvetica, sans-serif;
+  overflow-wrap: anywhere;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+.cp-site .cp-article .cp-doc-formula strong { color: inherit; font-weight: 700; }
+
+/* Table wrapper and rounded, lightly shadowed table grid */
+.cp-site .cp-article .cp-doc-table-scroll {
+  margin: 14px 0 20px;
+  border-radius: 9px;
+  box-shadow: 0 2px 12px rgba(22, 53, 91, .07);
+  overflow-x: auto;
+}
+.cp-site .cp-article table.cp-doc-table {
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid #c5d5e7;
+  border-radius: 9px;
+  background: #fff;
+  margin: 0;
+  overflow: hidden;
+  font-size: 14px;
+  line-height: 1.4;
+}
+.cp-site .cp-article table.cp-doc-table :is(th,td) {
+  background: transparent;
+  border: 0;
+  border-right: 1px solid #dce5ee;
+  border-bottom: 1px solid #dce5ee;
+  padding: 11px 12px;
+  line-height: 1.42;
+  vertical-align: top;
+}
+.cp-site .cp-article table.cp-doc-table tr > :is(th,td):last-child { border-right: 0; }
+.cp-site .cp-article table.cp-doc-table tbody tr:last-child > :is(th,td) { border-bottom: 0; }
+.cp-site .cp-article table.cp-doc-table thead :is(th,td),
+.cp-site .cp-article table.cp-doc-table:not(:has(thead)) tbody tr:first-child > :is(th,td) {
+  background: #e3eefb;
+  color: #173f6c;
+  font-weight: 700;
+  border-bottom: 2px solid #b2cdea;
+}
+.cp-site .cp-article table.cp-doc-table tbody tr:nth-child(even) > :is(th,td) { background: #f7fafe; }
+.cp-site .cp-article table.cp-doc-table tbody tr:not(:first-child):hover > :is(th,td) { background: #eaf3fd; }
+.cp-site .cp-article table.cp-doc-table :is(th,td) p { margin: 0; font: inherit; }
+.cp-site .cp-article table.cp-doc-table :is(th,td) p strong { font-weight: 700; }
+
+/* A table with thead must not accidentally tint its first data row. */
+.cp-site .cp-article table.cp-doc-table:has(thead) tbody tr:first-child > :is(th,td) {
+  background: #fff;
+  font-weight: 400;
+}
+
+/* Optional baseline table styling for older fragments that lack cp-doc-table. */
+.cp-site .cp-article table:not([class]) {
+  width: 100%;
+  max-width: 100%;
+  border-collapse: collapse;
+  margin: 14px 0 18px;
+  font: 14px/1.42 Arial, Helvetica, sans-serif;
+  box-shadow: 0 2px 10px rgba(22, 53, 91, .06);
+}
+.cp-site .cp-article table:not([class]) :is(th,td) {
+  padding: 10px 12px;
+  border: 1px solid #cfdeec;
+  vertical-align: top;
+  text-align: left;
+}
+.cp-site .cp-article table:not([class]) thead :is(th,td),
+.cp-site .cp-article table:not([class]):not(:has(thead)) tr:first-child > :is(th,td) {
+  background: #e3eefb;
+  font-weight: 700;
+  color: #173f6c;
+}
+.cp-site .cp-article table:not([class]) tbody tr:nth-child(even) { background: #f7fafe; }
+
+/* Sources: visually distinct from the FAQ's dark accordion */
+.cp-site .cp-article .cp-accordion-sources {
+  margin-top: 34px;
+  margin-bottom: 28px;
+}
+.cp-site .cp-article .cp-accordion-sources .cp-accordion-list {
+  background: #f1f6fd;
+  color: #174474;
+  padding: 0 15px;
+  border: 1px solid #c9dcec;
+  border-left: 5px solid #3378b7;
+  border-radius: 9px;
+  box-shadow: 0 2px 10px rgba(25, 77, 132, .06);
+}
+.cp-site .cp-article .cp-accordion-sources .cp-accordion-trigger {
+  min-height: 64px;
+  padding: 12px 0;
+  font: 700 18px/1.4 Arial, Helvetica, sans-serif;
+  color: #174b83;
+}
+.cp-site .cp-article .cp-accordion-sources .cp-accordion-trigger:hover .cp-accordion-question-text,
+.cp-site .cp-article .cp-accordion-sources .cp-accordion-trigger[aria-expanded="true"] .cp-accordion-question-text {
+  color: #0d3762;
+}
+.cp-site .cp-article .cp-accordion-sources .cp-accordion-chevron {
+  background: #d9e9fa;
+  color: #225f9c;
+}
+.cp-site .cp-article .cp-accordion-sources .cp-accordion-trigger:hover .cp-accordion-chevron,
+.cp-site .cp-article .cp-accordion-sources .cp-accordion-item[data-open="true"] .cp-accordion-chevron {
+  background: #bfd9f4;
+  color: #174b83;
+}
+.cp-site .cp-article .cp-accordion-sources .cp-accordion-panel-content :is(p,li) {
+  color: #264058;
+}
+.cp-site .cp-article .cp-accordion-sources .cp-accordion-panel-content a { color: #1557a2; }
+.cp-site .cp-article .cp-accordion-sources .cp-accordion-panel-content a:hover { color: #0a397a; }
+/* For a non-accordion sources heading on older pages. */
+.cp-site .cp-article h2.cp-doc-sources-heading { color: #174b83; }
+
+@media (max-width: 580px) {
+  .cp-site .cp-article p.cp-doc-formula { padding: 12px; font-size: 14px; }
+  .cp-site .cp-article p.cp-doc-pro-tip,
+  .cp-site .cp-article .cp-doc-tip { padding: 12px; }
+  .cp-site .cp-article table.cp-doc-table :is(th,td) { padding: 9px 10px; }
+  .cp-site .cp-article .cp-accordion-sources .cp-accordion-trigger { font-size: 16px; }
+}
+@media print {
+  .cp-site .cp-article .cp-accordion-sources .cp-accordion-list {
+    background: #fff; box-shadow: none; color: #111;
+  }
+  .cp-site .cp-article .cp-accordion-sources .cp-accordion-trigger,
+  .cp-site .cp-article .cp-accordion-sources .cp-accordion-panel-content :is(p,li) { color: #111; }
+  .cp-site .cp-article .cp-doc-formula { box-shadow: none; }
+}
+.formula{font-weight:700;color:var(--ink);background:#f4f7f1;padding:12px;border-radius:10px;border:1px solid var(--line);margin:10px 0 18px}
+.info-bar {
+    width: 100%;
+    min-height: 42px;
+    background: #35858E;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 5px 15px;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+}
+
+.info-icon {
+    width: 27px;
+    height: 27px;
+    background: #35858E;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.arrow {
+    width: 0;
+    height: 0;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-top: 9px solid #35858E;
+}
+
+.info-text {
+    color: #fff;
+    font-size: 18px;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    font-weight: bold;
+}
+
+@media (max-width: 600px) {
+    .info-bar {
+        gap: 12px;
+    }
+
+    .info-text {
+        font-size: 13px;
+    }
+}

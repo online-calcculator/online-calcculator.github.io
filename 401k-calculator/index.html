@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="content-language" content="en">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+  <link rel="icon" type="image/png" sizes="194x194" href="/favicon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.png">
+  <meta name="author" content="Commingsoon">
+  <meta name="publisher" content="Commingsoon">
+  <meta name="robots" content="noindex, nofollow, max-image-preview:large">
+  <link rel="stylesheet" href="/assets/css/style.css" crossorigin="anonymous" data-n-g="">
+  <link rel="stylesheet" href="/assets/css/doc_style.css" crossorigin="anonymous" data-n-g="">
+  <link rel="stylesheet" href="/assets/css/side_style.css" crossorigin="anonymous" data-n-g=""> 
+  <title>401(k) Calculator: Retirement Savings, Employer Match &amp; Withdrawal Costs</title><meta name="title" content="401(k) Calculator: Retirement Savings, Employer Match &amp; Withdrawal Costs"><meta name="description" content="Estimate 401(k) growth, understand employer matching and early withdrawal costs, and explore 2026 IRS limits with clear examples."><link rel="canonical" href="https://calpro.com/401k-calculator/"><meta property="og:type" content="website"><meta property="og:url" content="https://calpro.com/401k-calculator/"><meta property="og:title" content="401(k) Calculator: Retirement Savings, Employer Match &amp; Withdrawal Costs"><meta property="og:description" content="Estimate 401(k) growth, understand employer matching and early withdrawal costs, and explore 2026 IRS limits with clear examples."><meta property="og:site_name" content="401(k) Calculator: Retirement Savings, Employer Match &amp; Withdrawal Costs"><meta name="twitter:card" content="summary"><meta name="twitter:url" content="https://calpro.com/401k-calculator/"><meta name="twitter:title" content="401(k) Calculator: Retirement Savings, Employer Match &amp; Withdrawal Costs"><meta name="twitter:description" content="Estimate 401(k) growth, understand employer matching and early withdrawal costs, and explore 2026 IRS limits with clear examples.">
+
+  <!--schema-->
+ <style>
+/* 401(k) calculator-specific styles; original calculator styling is scoped to #calpro401-root. */
+
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:#fff}
+#calpro401-root{font:16px Arial,Helvetica,sans-serif;color:#111;line-height:1.45;min-height:100vh}
+#calpro401-root *{box-sizing:border-box}
+#calpro401-root a{color:#006699}
+#calpro401-root .calpro401-banner{height:60px;background:#125217;display:flex;align-items:center}
+#calpro401-root .calpro401-banner-inner{width:min(100% - 28px,1100px);margin:auto}
+#calpro401-root .calpro401-brand{color:white;text-decoration:none;font-size:24px;font-weight:700}
+#calpro401-root .calpro401-content{width:min(100% - 26px,728px);margin:20px auto 54px;text-align:left}
+#calpro401-root .calpro401-breadcrumbs{font-size:13px;margin-bottom:11px;color:#555}
+#calpro401-root .calpro401-breadcrumbs a{font-size:13px;text-decoration:none}
+#calpro401-root h1{font-size:26px;line-height:1.18;color:#125217;margin:12px 0}
+#calpro401-root h2{font-size:22px;line-height:1.25;color:#125217;margin:24px 0 5px}
+#calpro401-root p{margin:7px 0 12px;line-height:1.52}
+#calpro401-root .calpro401-instruction{background:#125217;color:white;font-weight:bold;text-align:center;padding:7px;margin:8px 0 3px}
+#calpro401-root .calpro401-panel{border:1px solid #bcbcbc;background:#eee;padding:6px 7px}
+#calpro401-root .calpro401-columns{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:26px}
+#calpro401-root .calpro401-clefthalf,#calpro401-root .calpro401-crighthalf{width:auto;min-width:0;float:none}
+#calpro401-root form{margin:0}
+#calpro401-root form table{width:100%;border-collapse:separate;border-spacing:0 5px}
+#calpro401-root form table td{font-size:15px;line-height:1.2;vertical-align:middle;padding:0 2px}
+#calpro401-root form table td:first-child{white-space:normal}
+#calpro401-root .calpro401-sectitle{display:block;background:#125217;color:#fff;font-size:17px;font-weight:bold;padding:5px 6px;line-height:1.3}
+#calpro401-root input[type="text"]{background-color:white;border:1px solid #044284;border-radius:2px;box-shadow:1px 1px 2px #666;font:16px Arial,Helvetica,sans-serif;color:#111;padding:5px;height:31px;max-width:100%;min-width:0}
+#calpro401-root .calpro401-inlong{width:120px}
+#calpro401-root .calpro401-innormal{width:90px}
+#calpro401-root .calpro401-indollar{padding-left:13px!important;background-image:url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="14" height="22"%3E%3Ctext x="2" y="16" font-family="Arial" font-size="15"%3E%24%3C/text%3E%3C/svg%3E');background-repeat:no-repeat;background-position:left center}
+#calpro401-root .calpro401-inpct{padding-right:20px!important;background-image:url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="18" height="22"%3E%3Ctext x="2" y="16" font-family="Arial" font-size="15"%3E%25%3C/text%3E%3C/svg%3E');background-repeat:no-repeat;background-position:right center}
+#calpro401-root input[type="submit"]{background:#125217;color:#fff;border:0;border-radius:0;font-size:16px;font-weight:bold;padding:10px 20px;cursor:pointer}
+#calpro401-root input[type="button"]{background:#aaa;color:#fff;border:0;padding:10px 9px;font-size:16px;cursor:pointer}
+#calpro401-root input[type="submit"]:hover{background:#000}
+#calpro401-root input[type="button"]:hover{background:#777}
+#calpro401-root input:focus-visible,#calpro401-root button:focus-visible,#calpro401-root summary:focus-visible{outline:2px solid #275f98;outline-offset:2px}
+#calpro401-root .calpro401-actions{text-align:center;padding:9px 0 0!important}
+#calpro401-root .calpro401-actions input{vertical-align:middle;margin:1px 2px}
+#calpro401-root .calpro401-explainer{margin-bottom:12px}
+#calpro401-root .calpro401-small-form{max-width:500px;margin:7px auto 0}
+#calpro401-root .calpro401-small-form .calpro401-panel{width:100%;padding:10px 14px;border-collapse:separate;border-spacing:0 8px}
+#calpro401-root .calpro401-small-form td:last-child{text-align:right}
+#calpro401-root .calpro401-small-form td[colspan="2"]{text-align:left}
+#calpro401-root .calpro401-choice{display:inline-flex;align-items:center;gap:5px;cursor:pointer;margin:2px 9px 2px 2px}
+#calpro401-root .calpro401-choice input[type="radio"]{accent-color:#125217;width:17px;height:17px;margin:0;cursor:pointer}
+#calpro401-root .calpro401-choice .calpro401-rbmark{display:none}
+#calpro401-root .calpro401-result-area[hidden]{display:none!important}
+#calpro401-root .calpro401-result-area{margin:12px 0 14px;text-align:left;overflow:hidden}
+#calpro401-root .calpro401-h2result{background:#125217;color:#fff;border:1px solid #125217;font-size:22px;font-weight:normal;padding:5px;margin:3px 0}
+#calpro401-root .calpro401-result-title{display:flex;justify-content:space-between;align-items:center}
+#calpro401-root .calpro401-result-title *{color:#fff}
+#calpro401-root .calpro401-print{cursor:pointer;background:none;border:0;color:#fff;font-size:19px;padding:0 5px}
+#calpro401-root .calpro401-lead{font-size:18px;line-height:1.5;margin:8px 0 14px}
+#calpro401-root .calpro401-green{color:#268027}
+#calpro401-root .calpro401-result-grid{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);gap:15px;align-items:start;margin:10px 0 12px}
+#calpro401-root .calpro401-result-grid>div{min-width:0}
+#calpro401-root .calpro401-bar-chart{display:block;width:100%;height:auto;max-width:480px}
+#calpro401-root .calpro401-cinfoT{border-collapse:collapse;width:100%}
+#calpro401-root .calpro401-cinfoT th{background:#125217;color:white;text-align:left;border:1px solid #125217;padding:5px 3px}
+#calpro401-root .calpro401-cinfoT td{border:1px solid #ccc;color:#111;padding:5px 4px}
+#calpro401-root .calpro401-cinfoT tr:nth-child(odd){background:#eee}
+#calpro401-root .calpro401-cinfoT tr:nth-child(even){background:#fff}
+#calpro401-root .calpro401-breakdown td{font-size:13px;line-height:1.3}
+#calpro401-root .calpro401-breakdown td:nth-child(2){font-variant-numeric:tabular-nums}
+#calpro401-root .calpro401-subtle,#calpro401-root .calpro401-note{font-size:12px;color:#666;line-height:1.5}
+#calpro401-root .calpro401-subtle{margin:5px 0 0}
+#calpro401-root .calpro401-withdraw-heading{font-size:20px;color:#125217;margin:14px 0 5px}
+#calpro401-root .calpro401-schedule summary{cursor:pointer;text-align:center;color:#006699;text-decoration:underline;font-weight:bold;padding:8px}
+#calpro401-root .calpro401-schedule h4{font-size:16px;margin:12px 0 5px}
+#calpro401-root .calpro401-table-scroll{width:100%;overflow-x:auto;margin:5px 0 14px}
+#calpro401-root .calpro401-year-table{min-width:530px;font-variant-numeric:tabular-nums}
+#calpro401-root .calpro401-year-table td,#calpro401-root .calpro401-year-table th{font-size:12px;white-space:nowrap;text-align:right}
+#calpro401-root .calpro401-tblcompact{width:100%;max-width:620px;margin-bottom:9px}
+#calpro401-root .calpro401-tblcompact td{padding:7px}
+#calpro401-root .calpro401-error{background:#fff3f3;border:1px solid #e39a9a;color:#9b1717;padding:10px 12px;margin:7px 0}
+#calpro401-root .calpro401-footer{border-top:1px solid #ddd;font-size:12px;color:#777;margin-top:38px;padding-top:12px}
+@media(max-width:700px){#calpro401-root .calpro401-columns{gap:8px}#calpro401-root form table td{font-size:14px}#calpro401-root .calpro401-inlong{width:112px}#calpro401-root .calpro401-innormal{width:84px}}
+@media(max-width:580px){#calpro401-root .calpro401-columns{grid-template-columns:1fr;gap:7px}#calpro401-root .calpro401-result-grid{grid-template-columns:1fr}#calpro401-root .calpro401-lead{font-size:16px}#calpro401-root .calpro401-content{width:calc(100% - 20px)}#calpro401-root .calpro401-small-form .calpro401-panel{padding:7px}#calpro401-root .calpro401-actions{padding:6px 0!important}}
+@media print{#calpro401-root .calpro401-banner,#calpro401-root .calpro401-breadcrumbs,#calpro401-root form,#calpro401-root .calpro401-instruction,#calpro401-root .calpro401-print,#calpro401-root .calpro401-explainer,#calpro401-root .calpro401-footer{display:none!important}#calpro401-root .calpro401-content{width:100%}}
+#calpro401-root td.calpro401-section-heading{background:#125217;color:#fff;font-weight:bold;font-size:17px;line-height:1.3;padding:5px 6px}
+#calpro401-root .calpro401-crighthalf table tr:last-child td[colspan]{text-align:center}
+#calpro401-root label.calpro401-cbcontainer{display:inline-flex;align-items:center;gap:5px;margin:2px 8px 2px 2px;cursor:pointer}#calpro401-root label.calpro401-cbcontainer input{margin:0;accent-color:#125217;width:17px;height:17px}#calpro401-root label.calpro401-cbcontainer span{display:none}
+#calpro401-root .calpro401-results[hidden]{display:none!important}#calpro401-root .calpro401-results{margin:12px 0 14px;text-align:left;overflow:hidden}
+
+
+
+/* Two-column page: primary calculator + right rail */
+#calpro401-root .calpro401-layout{width:min(calc(100% - 28px),1100px);margin:20px auto 54px;display:grid;grid-template-columns:minmax(0,728px) minmax(260px,336px);grid-template-areas:"primary rail" "guide rail";gap:22px 34px;align-items:start}
+#calpro401-root .calpro401-content{grid-area:primary;width:100%;min-width:0;margin:0;text-align:left}
+#calpro401-root .calpro401-sidebar{grid-area:rail;min-width:0;padding-top:8px;align-self:start}
+#calpro401-root .calpro401-ad-area{min-height:280px;display:flex;justify-content:center;align-items:flex-start;margin:0 0 14px}
+#calpro401-root .calpro401-ad-slot{width:300px;max-width:100%;height:250px;display:flex;justify-content:center;align-items:flex-start;border:1px solid #ededed;background:#fff;color:#9c9c9c;padding:5px;font-size:11px}
+#calpro401-root .calpro401-ad-slot span{font-size:11px;color:#9c9c9c}
+#calpro401-root .calpro401-related{border:1px solid #125217;margin-top:0}
+#calpro401-root .calpro401-related h2{margin:0;background:#125217;color:#fff;padding:8px 9px;font-size:18px;line-height:1.3}
+#calpro401-root .calpro401-related-links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:9px;row-gap:0;padding:8px 9px}
+#calpro401-root .calpro401-related-links a{font-size:14px;line-height:1.3;padding:5px 2px;color:#006699;text-decoration:underline;overflow-wrap:anywhere}
+#calpro401-root .calpro401-related-links a:hover{text-decoration:none}
+/* Editorial text sourced from the linked 401(k) draft (excluding nonpublication notes). */
+#calpro401-root .calpro401-guide{grid-area:guide;min-width:0;margin:0 0 26px;font-size:16px;line-height:1.55}
+#calpro401-root .calpro401-guide h2{font-size:22px;line-height:1.3;margin:28px 0 10px}
+#calpro401-root .calpro401-guide h3{font-size:18px;line-height:1.35;color:#125217;margin:19px 0 8px}
+#calpro401-root .calpro401-guide p{font-size:16px;line-height:1.55;margin:8px 0 13px}
+#calpro401-root .calpro401-guide ul{padding-left:23px;margin:10px 0 15px}
+#calpro401-root .calpro401-guide li{margin-bottom:6px}
+#calpro401-root .calpro401-guide-table-wrap{max-width:100%;overflow-x:auto;margin:12px 0 18px}
+#calpro401-root .calpro401-guide-table{width:100%;border-collapse:collapse;font-size:14px}
+#calpro401-root .calpro401-guide-table td,#calpro401-root .calpro401-guide-table th{border:1px solid #c7d4df;padding:8px;text-align:left;min-width:98px;vertical-align:top;font-size:13px;line-height:1.35}
+#calpro401-root .calpro401-guide-table th{background:#125217;color:white;font-weight:bold}
+#calpro401-root .calpro401-guide-table tr:nth-child(even) td{background:#f4f8fa}
+#calpro401-root .calpro401-guide-figure{display:block;max-width:100%;height:auto;margin:12px 0}
+@media(max-width:1110px){#calpro401-root .calpro401-layout{grid-template-columns:minmax(0,1fr) minmax(245px,300px);gap:22px}}
+@media(min-width:941px) and (max-width:1110px){#calpro401-root .calpro401-columns{gap:10px}#calpro401-root form table td{font-size:13px}#calpro401-root .calpro401-innormal{width:78px}#calpro401-root .calpro401-inlong{width:110px}#calpro401-root .calpro401-crighthalf table td:last-child{font-size:12px;white-space:nowrap}}
+@media(max-width:940px){#calpro401-root .calpro401-layout{grid-template-columns:minmax(0,1fr);grid-template-areas:"primary" "rail" "guide";width:min(calc(100% - 24px),728px)}#calpro401-root .calpro401-sidebar{width:100%;padding:0 0 25px}#calpro401-root .calpro401-ad-area{min-height:250px}#calpro401-root .calpro401-related{max-width:400px;margin:0 auto}}
+@media(max-width:580px){#calpro401-root .calpro401-layout{width:calc(100% - 20px)}#calpro401-root .calpro401-guide h2{font-size:20px}#calpro401-root .calpro401-guide h3{font-size:17px}#calpro401-root .calpro401-guide p{font-size:15px}}
+@media print{#calpro401-root .calpro401-layout{display:block;width:100%}#calpro401-root .calpro401-sidebar{display:none!important}}
+
+/* Optional model assumptions: collapsible; preserve existing calculator layout. */
+#calpro401-root .calpro401-projection-settings{font-size:12px;line-height:1.4;margin:1px 0 8px;color:#444}
+#calpro401-root .calpro401-projection-settings summary{cursor:pointer;color:#006699;display:list-item;margin-left:14px}
+#calpro401-root .calpro401-projection-settings label{display:block;margin:5px 0 2px 8px;cursor:pointer}
+#calpro401-root .calpro401-projection-settings input{accent-color:#125217}
+
+</style>
+</head>
+<body>
+<div class="cp-site">
+<header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header>
+<main class="cp-layout">
+<div class="cp-main">
+<nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / 401(k) Calculator</nav>
+<h1 class="cp-page-title">401(k) Calculator</h1>
+<p class="cp-intro">A 401(k) calculator estimates how your current retirement balance, paycheck contributions, employer matching, salary growth, and assumed investment returns may affect your savings by retirement. The accompanying guidance also explains how early distributions can reduce take-home proceeds and why paycheck-by-paycheck contribution timing can change the employer match. This is an educational projection, not a forecast of market performance, a tax return, or a determination of plan eligibility.</p>
+<section aria-label="401(k) Calculator" class="cp-tool-area">
+<div id="calpro401-root">
+<div aria-live="polite" class="calpro401-results" hidden="" id="calpro401-result"></div>
+ <div class="info-bar"><span class="info-icon"><img src="/assets/images/info-circle.svg" alt="Info Circle" srcset="/assets/images/info-circle.svg" height="24px"></span><span class="info-text">Customize your inputs and calculate your results instantly.</span></div> 
+<div class="calpro401-panel"><form id="calpro401-plan-form" name="calpro401-plan-form">
+<div class="calpro401-columns"><div class="calpro401-clefthalf">
+<table>
+<tr><td class="calpro401-section-heading" colspan="3">Basic info</td></tr>
+<tr><td>Current age</td><td colspan="2"><input aria-label="Current age" class="calpro401-inlong" name="age" type="text" value="20"/></td><td> </td></tr>
+<tr><td>Current annual salary</td><td colspan="2"><input aria-label="Current annual salary" class="calpro401-inlong calpro401-indollar" id="calpro401-income" name="income" type="text" value="89000"/></td></tr>
+<tr><td>Current 401(k) balance</td><td colspan="2"><input aria-label="Current 401(k) balance" class="calpro401-inlong calpro401-indollar" id="calpro401-balance" name="balance" type="text" value="40000"/></td></tr>
+<tr><td>Contribution (% of salary)</td><td colspan="2"><input aria-label="Contribution (% of salary)" class="calpro401-inlong calpro401-inpct" name="contribution" type="text" value="10"/></td></tr>
+<tr><td>Employer match</td><td colspan="2"><input aria-label="Employer match" class="calpro401-inlong calpro401-inpct" name="ematch" type="text" value="50"/></td></tr>
+<tr><td>Employer match limit</td><td colspan="2"><input aria-label="Employer match limit" class="calpro401-inlong calpro401-inpct" name="ematchend" type="text" value="2"/></td></tr>
+</table>
+</div>
+<div class="calpro401-crighthalf">
+<table>
+<tr><td class="calpro401-section-heading" colspan="3">Projections</td></tr>
+<tr><td>Expected retirement age</td><td><input aria-label="Expected retirement age" class="calpro401-innormal" name="retirementage" type="text" value="60"/></td><td> </td></tr>
+<tr><td>Life expectancy</td><td><input aria-label="Life expectancy" class="calpro401-innormal" name="lifeexpectancy" type="text" value="80"/></td><td> </td></tr>
+<tr><td>Expected salary increase</td><td><input aria-label="Expected salary increase" class="calpro401-innormal calpro401-inpct" name="incomeincrease" type="text" value="2"/></td><td>per year</td></tr>
+<tr><td>Expected annual return</td><td><input aria-label="Expected annual return" class="calpro401-innormal calpro401-inpct" name="rate" type="text" value="5"/></td><td>per year</td></tr>
+<tr><td>Expected inflation rate</td><td><input aria-label="Expected inflation rate" class="calpro401-innormal calpro401-inpct" name="inflation" type="text" value="3"/></td><td>per year</td></tr>
+<tr><td colspan="3"><input name="hideirslimit" type="hidden" value="0"/>
+<details class="calpro401-projection-settings"><summary>Calculation options (optional)</summary>
+<label><input type="checkbox" name="higherCatchup"/> Use higher $11,250 catch-up for ages 60–63 (where eligible)</label>
+<label><input type="checkbox" name="employerTrueUp"/> Employer offers year-end matching true-up</label>
+<label><input type="checkbox" name="enforceCompensationCap"/> Apply the IRS qualified-plan compensation cap to employer match (may differ from Calculator.net)</label>
+</details>
+<input name="x" type="submit" value="Calculate"/>
+<input data-calpro401-clear="calpro401-result" type="button" value="Clear"/>
+</td></tr>
+</table>
+</div></div>
+</form></div>
+<section aria-labelledby="calpro401-early-title">
+<h2 id="calpro401-early-title">401(k) Early Withdrawal Costs Calculator</h2>
+<p>Estimate income taxes and any potential 10% early withdrawal penalty.</p>
+<div aria-live="polite" class="calpro401-results" hidden="" id="calpro401-early-result"></div>
+<div class="calpro401-small-form"><form id="calpro401-early-form" name="calpro401-early-form">
+<table class="calpro401-panel">
+<tr><td>Age at withdrawal</td><td><input aria-label="Age at withdrawal" class="calpro401-inlong" name="withdrawage" type="text" value="50"/></td></tr>
+<tr><td>Early withdrawal amount</td><td><input aria-label="Early withdrawal amount" class="calpro401-inlong calpro401-indollar" id="calpro401-withdrawamt" name="withdrawamt" type="text" value="80000"/></td></tr>
+<tr><td>Federal income tax rate</td><td><input aria-label="Federal income tax rate" class="calpro401-inlong calpro401-inpct" name="fedtax" type="text" value="20"/></td></tr>
+<tr><td>State income tax rate</td><td><input aria-label="State income tax rate" class="calpro401-inlong calpro401-inpct" name="statetax" type="text" value="5"/></td></tr>
+<tr><td>Local/city income tax rate</td><td><input aria-label="Local/city income tax rate" class="calpro401-inlong calpro401-inpct" name="localtax" type="text" value="0"/></td></tr>
+<tr><td colspan="2">
+<div>Are you still employed by the company sponsoring this 401(k)?
+		<label class="calpro401-cbcontainer" for="calpro401-isemployed1"><input checked="" id="calpro401-isemployed1" name="isemployed" type="radio" value="y"/><span class="calpro401-rbmark"></span>Yes</label>
+<label class="calpro401-cbcontainer" for="calpro401-isemployed2"><input id="calpro401-isemployed2" name="isemployed" type="radio" value="n"/><span class="calpro401-rbmark"></span>No</label>
+</div>
+<div id="calpro401-is55plusdiv" style="display:none">
+		Did you leave this employer during or after the calendar year you turned 55?
+		<div>
+<label class="calpro401-cbcontainer" for="calpro401-is55plus1"><input id="calpro401-is55plus1" name="is55plus" type="radio" value="y"/><span class="calpro401-rbmark"></span>Yes</label>
+<label class="calpro401-cbcontainer" for="calpro401-is55plus2"><input checked="" id="calpro401-is55plus2" name="is55plus" type="radio" value="n"/><span class="calpro401-rbmark"></span>No</label>
+</div>
+</div>
+</td></tr>
+<tr><td colspan="2">
+<div>Do you have a qualifying disability?
+		<div>
+<label class="calpro401-cbcontainer" for="calpro401-isdisabled1"><input id="calpro401-isdisabled1" name="isdisabled" type="radio" value="y"/><span class="calpro401-rbmark"></span>Yes</label>
+<label class="calpro401-cbcontainer" for="calpro401-isdisabled2"><input checked="" id="calpro401-isdisabled2" name="isdisabled" type="radio" value="n"/><span class="calpro401-rbmark"></span>No</label>
+</div>
+</div>
+</td></tr>
+<tr><td colspan="2">
+<div>Do you qualify for other penalty exemptions?
+		<div>
+<label class="calpro401-cbcontainer" for="calpro401-isexempt1"><input id="calpro401-isexempt1" name="isexempt" type="radio" value="y"/><span class="calpro401-rbmark"></span>Yes</label>
+<label class="calpro401-cbcontainer" for="calpro401-isexempt2"><input checked="" id="calpro401-isexempt2" name="isexempt" type="radio" value="n"/><span class="calpro401-rbmark"></span>No</label>
+</div>
+</div>
+</td></tr>
+<tr><td colspan="2">
+<input name="x" type="submit" value="Calculate"/>
+<input data-calpro401-clear="calpro401-early-result" type="button" value="Clear"/>
+</td></tr>
+</table></form></div>
+</section>
+<section aria-labelledby="calpro401-match-title">
+<h2 id="calpro401-match-title">Maximize Employer 401(k) Match Calculator</h2>
+<p>Estimate the employee contribution range that can capture your employer's matching contributions.</p>
+<div aria-live="polite" class="calpro401-results" hidden="" id="calpro401-match-result"></div>
+<div class="calpro401-small-form"><form id="calpro401-match-form" name="calpro401-match-form">
+<table class="calpro401-panel">
+<tr><td>Current age</td><td><input aria-label="Current age" class="calpro401-inlong" name="age" type="text" value="35"/></td></tr>
+<tr><td>Current annual salary</td><td><input aria-label="Current annual salary" class="calpro401-inlong calpro401-indollar" id="calpro401-income2" name="income" type="text" value="60000"/></td></tr>
+<tr><td>Employer match 1</td><td><input aria-label="Employer match 1" class="calpro401-inlong calpro401-inpct" name="ematch" type="text" value="60"/></td></tr>
+<tr><td>Employer match 1 limit</td><td><input aria-label="Employer match 1 limit" class="calpro401-inlong calpro401-inpct" name="ematchend" type="text" value="2"/></td></tr>
+<tr><td>Employer match 2</td><td><input aria-label="Employer match 2" class="calpro401-inlong calpro401-inpct" name="ematch2" type="text" value="20"/></td></tr>
+<tr><td>Employer match 2 limit</td><td><input aria-label="Employer match 2 limit" class="calpro401-inlong calpro401-inpct" name="ematchend2" type="text" value="5"/></td></tr>
+<tr><td colspan="2">
+<input name="x" type="submit" value="Calculate"/>
+<input data-calpro401-clear="calpro401-match-result" type="button" value="Clear"/>
+</td></tr>
+</table></form></div>
+</section>
+
+
+</div>
+</section>
+</div>
+<aside aria-label="Advertisement and related calculators" class="cp-sidebar">
+<section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span></div></section>
+<section aria-labelledby="cp-related-title" class="cp-related">
+<h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2>
+<div class="cp-related-links">
+<a href="retirement-calculator.html">Retirement</a><a href="roth-ira-calculator.html">Roth IRA</a>
+<a href="investment-calculator.html">Investment</a><a href="compound-interest-calculator.html">Compound Interest</a>
+<a href="annuity-payout-calculator.html">Annuity Payout</a><a href="pension-calculator.html">Pension</a>
+<a href="inflation-calculator.html">Inflation</a><a href="future-value-calculator.html">Future Value</a>
+<a href="income-tax-calculator.html">Income Tax</a><a href="savings-calculator.html">Savings</a>
+<a href="mortgage-calculator.html">Mortgage</a><a href="loan-calculator.html">Loan</a>
+</div></section>
+</aside><article class="cp-article"><h2><strong>Choose the calculation that answers your question</strong></h2><ul><li><strong>Retirement savings projection:</strong> estimate the account balance at your expected retirement age and consider how long withdrawals might last.</li><li><strong>Early withdrawal costs:</strong> estimate the amount remaining after assumed income taxes and a possible 10% additional federal tax.</li><li><strong>Maximize employer match:</strong> find an employee contribution rate that captures matching contributions without exhausting your annual employee limit too early.</li></ul><p>The three calculations answer different questions and must not be treated as interchangeable.</p><h2><strong>1. Estimate your 401(k) balance at retirement</strong></h2><h3><strong>Understand the savings inputs</strong></h3><p>Current age and expected retirement age establish the contribution horizon. Current annual salary is the pay used to estimate contributions; check whether your employer defines eligible compensation differently. Current 401(k) balance is the amount already invested, not the sum of past deposits. Contribution (% of salary) is your own payroll deferral, typically expressed as a percentage of eligible compensation.</p><p>Employer match is the employer's matching percentage of your contribution; employer match limit is the maximum portion of pay eligible for that match. For example, matching 50% of contributions on the first 6% of salary can supply up to 3% of salary if you contribute at least 6%. These fields are not an assumed flat employer contribution on your entire salary.</p><p>Expected salary increase sets annual pay growth. Expected annual return is a modeling assumption for account performance, not a promised yield; it should be interpreted consistently with fees. Expected inflation rate supports translation of future dollars into present-day purchasing power. Life expectancy helps frame how long retirement savings might need to support spending; it does not predict an individual's lifespan.</p><h3><strong>How an accumulation model works</strong></h3><p>For an illustrative annual model with deposits at each year-end, use Bₜ = Bₜ₋₁ × (1 + r) + Eₜ + Mₜ, where Bₜ is the year-end balance, Bₜ₋₁ is the preceding balance, r is the assumed annual net investment return, Eₜ is the employee deposit, and Mₜ is the employer deposit. Salary may grow as Sₜ = S₀ × (1 + g)^(t − 1), where S₀ is starting salary, g is annual salary growth, and t begins at 1. Apply contribution rates to that year's eligible salary and respect any applicable plan or statutory cap.</p><p>Actual calculators may apply contributions every paycheck, use monthly compounding, cap deposits at changing statutory limits, or use a different return convention. A year-end-deposit model generally differs from paycheck-by-paycheck results because earlier deposits can earn returns sooner. The numerical illustration below states its own convention; it is not presented as an exact observed output from the live calculator.</p><h3><strong>Worked example: a 30-year savings path</strong></h3><p>Assume someone age 35 already has $40,000 invested, earns $90,000, contributes 8% of salary, and receives a 50% match on the first 6% contributed. The resulting maximum match is 3% of salary. Assume a 2% raise each year, a constant 6% net nominal return, end-of-year deposits, no withdrawals, no binding contribution limits, and no additional fees. In year one, the employee deposits $7,200 and the employer deposits $2,700. The first year-end balance is $40,000 × 1.06 + $7,200 + $2,700 = $52,300.</p><p>Continue the recurrence for 30 years. At age 65 the illustrative balance is $1,202,942: the starting $40,000 plus approximately $292,090 of employee contributions, $109,534 of employer deposits, and $761,318 of modeled investment gains. Investment gains are a residual from the model, not a separate guaranteed deposit. With 2.5% annual inflation, this nominal result has purchasing power of approximately $573,494 in age-35 dollars: $1,202,942 ÷ 1.025³⁰.</p><p><em>Table 1. Illustrative savings milestones (rounded to the nearest dollar; deposits at year-end)</em>.</p><div aria-label="APR comparison table 1" class="cp-doc-table-scroll" role="region" tabindex="0"><table class="cp-doc-table"><tbody><tr><th scope="col"><p><strong>Age</strong></p></th><th scope="col"><p><strong>Cumulative employee deposits</strong></p></th><th scope="col"><p><strong>Cumulative employer deposits</strong></p></th><th scope="col"><p><strong>Projected 401(k) balance</strong></p></th></tr><tr><td><p>35</p></td><td><p>$0</p></td><td><p>$0</p></td><td><p>$40,000</p></td></tr><tr><td><p>40</p></td><td><p>$37,469</p></td><td><p>$14,051</p></td><td><p>$111,480</p></td></tr><tr><td><p>45</p></td><td><p>$78,838</p></td><td><p>$29,564</p></td><td><p>$213,168</p></td></tr><tr><td><p>50</p></td><td><p>$124,513</p></td><td><p>$46,692</p></td><td><p>$355,908</p></td></tr><tr><td><p>55</p></td><td><p>$174,941</p></td><td><p>$65,603</p></td><td><p>$554,279</p></td></tr><tr><td><p>60</p></td><td><p>$230,618</p></td><td><p>$86,482</p></td><td><p>$827,863</p></td></tr><tr><td><p>65</p></td><td><p>$292,090</p></td><td><p>$109,534</p></td><td><p>$1,202,942</p></td></tr></tbody></table></div><p>The schedule shows cumulative employee and employer deposits since age 35. The balance also includes the original $40,000 and assumed compounded growth. The early-year change is much smaller than the later-year change because an increasing balance earns more modeled investment income over time.</p><figure class="cp-doc-figure"><img alt="" class="cp-doc-image" decoding="async" loading="lazy" src="/assets/images/401-calculator.png" /><figcaption><em>Figure 1. Original computed projection of the same annual-model assumptions. Amounts are illustrative, nominal U.S. dollars; actual returns and plan rules vary</em>.</figcaption></figure><h3><strong>Read the projection without mistaking it for spendable income</strong></h3><p>A projected account balance combines contributions, employer funding, and earnings; it is not automatically an after-tax retirement budget. For a traditional 401(k), withdrawals are generally taxable as ordinary income. Depending on their qualified status, Roth 401(k) withdrawals can receive different tax treatment. Fees, taxes, market volatility, sequence of returns, and different deposit timing can change realized results.</p><p>The comparison between nominal and inflation-adjusted values is especially important. If a balance grows while prices rise, the future dollar amount can look large without buying as much as today's dollars. To explore uncertainty, calculate at several plausible return assumptions rather than relying on one point estimate.</p><h3><strong>How withdrawals change a retirement projection</strong></h3><p>Once contributions stop, a simplified annual drawdown model is Bₜ = Bₜ₋₁ × (1 + r) − Wₜ, with Wₜ the withdrawal at the end of year t. If an account starts retirement at $500,000, earns a hypothetical 5% during the first year, and pays out $35,000 at year-end, the next balance is $500,000 × 1.05 − $35,000 = $490,000. This does not model tax withholding, market volatility, required distributions, or longevity risk. Life expectancy is a planning horizon, not a safe fixed end date.</p><p class="cp-doc-pro-tip"><strong>IMPORTANT NOTE: </strong>A first-year withdrawal of 4% of an initial account is sometimes used as a starting planning heuristic. It is not a required distribution, a guaranteed sustainable rate, or a substitute for modeling actual expenses, investment returns, inflation, taxes, and the need to adjust spending.</p><h2><strong>2. Estimate the cost of an early 401(k) withdrawal</strong></h2><h3><strong>Inputs and a transparent net-proceeds example</strong></h3><p>The early-withdrawal tool asks for the withdrawal amount and assumed federal, state, and local/city income tax rates. It also asks about current employment, whether you were at least age 55 when you left employment, qualifying disability, and other possible penalty exceptions. These yes/no questions matter because a distribution that is permitted by the plan may or may not be exempt from the additional federal tax.</p><p>For a simple all-taxable traditional 401(k) distribution, a rough estimate is net cash = gross withdrawal − estimated federal income tax − estimated state/local tax − applicable additional 10% tax. Applying three rates directly to a withdrawal is only an approximation: actual tax depends on the full year's taxable income, marginal brackets, deductions, state law, withholding, and the character of the distribution.</p><p>Example: on a hypothetical $20,000 fully taxable distribution, assume incremental federal tax of 22%, state tax of 5%, no local tax, and a 10% additional tax with no exception. Estimated federal tax is $4,400, state tax is $1,000, additional tax is $2,000, and modeled net cash is $12,600. Withholding and final tax liability may differ.</p><p><em>Table 2. Breakdown of an illustrative $20,000 early withdrawal</em>.</p><div aria-label="APR comparison table 2" class="cp-doc-table-scroll" role="region" tabindex="0"><table class="cp-doc-table"><tbody><tr><th scope="col"><p><strong>Withdrawal component</strong></p></th><th scope="col"><p><strong>Illustrative amount</strong></p></th></tr><tr><td><p>Gross distribution</p></td><td><p>$20,000</p></td></tr><tr><td><p>Federal income tax (22%)</p></td><td><p>−$4,400</p></td></tr><tr><td><p>State income tax (5%)</p></td><td><p>−$1,000</p></td></tr><tr><td><p>Additional federal tax (10%)</p></td><td><p>−$2,000</p></td></tr><tr><td><p>Estimated cash after modeled taxes</p></td><td><p>$12,600</p></td></tr></tbody></table></div><h3><strong>When the additional 10% tax may not apply</strong></h3><p>Distributions from qualified retirement plans before age 59½ are generally subject to an additional 10% federal tax unless a statutory exception applies. Among the exceptions are distributions after separation from service in or after the calendar year you reach age 55 (for the relevant employer plan), qualifying disability, certain medical expenses, qualified domestic relations orders, and qualifying substantially equal periodic payments. Other specialized exceptions also exist. The plan's permission to withdraw and the IRS penalty exception are two separate tests.</p><p class="cp-doc-important-plain"><strong>IMPORTANT TAX NOTE: </strong>A hardship distribution is not automatically exempt from the 10% additional tax. A plan may permit hardship withdrawals for an immediate and heavy need, such as qualifying medical expenses, certain education costs, residence-related expenses, or certain disaster expenses; the plan sets its permitted conditions. Hardship distributions generally cannot be rolled over or repaid to replace the withdrawn savings. The mere fact of hardship does not itself waive income taxes or the additional tax.</p><p class="cp-doc-pro-tip"><strong>💡 Tip: </strong>A plan loan is different from a distribution: where a plan permits loans, amounts repaid under the applicable rules are generally not currently taxed, but loan defaults or leaving employment can create tax consequences. Before withdrawing, review the plan document and consult an appropriate tax adviser for exception eligibility and the consequences of reducing future compounding.</p><h2><strong>3. Maximize employer matching contributions</strong></h2><h3><strong>Interpret a one-tier or two-tier match</strong></h3><p>The separate match-optimization section takes current age and annual salary plus Employer match 1 / Employer match 1 limit and Employer match 2 / Employer match 2 limit. It is designed to represent employer plans that can have two matching tiers. A tier may match a certain percentage of employee deposits up to a stated percentage of pay; the precise relationship between tiers depends on the plan formula.</p><p>With a single 50%-on-first-6% match and $90,000 salary, contributing 3% of pay generates $2,700 employee deposits and a $1,350 match. Contributing 6% produces $5,400 employee deposits and the full $2,700 match. Increasing the employee rate to 8% contributes $7,200 but ordinarily adds no more match under this formula. Additional saving may still be worthwhile, even after the match is maximized.</p><p><em>Table 3. How one employer-match formula responds to contribution rates</em>.</p><div aria-label="APR comparison table 3" class="cp-doc-table-scroll" role="region" tabindex="0"><table class="cp-doc-table"><tbody><tr><th scope="col"><p><strong>Employee contribution rate</strong></p></th><th scope="col"><p><strong>Employee contribution</strong></p></th><th scope="col"><p><strong>Employer match</strong></p></th><th scope="col"><p><strong>Combined deposit</strong></p></th></tr><tr><td><p>3%</p></td><td><p>$2,700</p></td><td><p>$1,350</p></td><td><p>$4,050</p></td></tr><tr><td><p>6%</p></td><td><p>$5,400</p></td><td><p>$2,700</p></td><td><p>$8,100</p></td></tr><tr><td><p>8%</p></td><td><p>$7,200</p></td><td><p>$2,700</p></td><td><p>$9,900</p></td></tr></tbody></table></div><h3><strong>Why contributing too fast can reduce the match</strong></h3><p>Employers sometimes calculate matching deposits per paycheck and stop matching paychecks after your own employee deferrals hit the annual limit. For example, at $120,000 salary over 24 equal pay periods, each paycheck is $5,000. A 100% match on the first 5% of each paycheck could supply $250 per paycheck, or $6,000 in a full year. If the employee defers 30% ($1,500) every paycheck against the 2026 $24,500 regular deferral limit, the cap is reached on paycheck 17. With a simple per-paycheck match and no later true-up, only 17 × $250 = $4,250 of matching contributions would be credited; the last seven paychecks generate no match.</p><p>Distributing $24,500 across 24 paychecks instead requires about $1,020.83 per paycheck, or 20.4167% of the $120,000 annual salary, subject to payroll rounding. Under the same hypothetical rules, that could preserve all $6,000 of annual matching contributions. Some employers perform an annual true-up that restores missed matches; some plans have other restrictions. This is why the right 'window' of contribution rates depends on pay frequency, the employer formula, the tax year's deferral limit, and whether a true-up exists.</p><h2><strong>2026 IRS contribution limits and tax timing</strong></h2><p>These figures apply to most standard U.S. 401(k) plans for calendar year 2026, not to SIMPLE 401(k) plans. The employee elective-deferral limit is shared across applicable plans when a participant makes elective deferrals to multiple employers' plans. Employers may impose additional plan restrictions. Employer matching deposits are generally excluded from the employee elective-deferral ceiling but are included in the overall defined-contribution annual additions limit.</p><p><em>Table 4. Selected IRS 2026 limits for standard 401(k) plans</em>.</p><div aria-label="APR comparison table 4" class="cp-doc-table-scroll" role="region" tabindex="0"><table class="cp-doc-table"><tbody><tr><th scope="col"><p><strong>2026 rule</strong></p></th><th scope="col"><p><strong>Amount</strong></p></th><th scope="col"><p><strong>Application / qualification</strong></p></th></tr><tr><td><p>Regular employee elective deferral</p></td><td><p>$24,500</p></td><td><p>Traditional + Roth employee deferrals combined</p></td></tr><tr><td><p>General catch-up, age 50+</p></td><td><p>$8,000</p></td><td><p>Age 50–59 and 64+; if plan permits</p></td></tr><tr><td><p>Higher catch-up, ages 60–63</p></td><td><p>$11,250</p></td><td><p>Replaces the $8,000 catch-up for these ages</p></td></tr><tr><td><p>Overall defined-contribution additions</p></td><td><p>$72,000</p></td><td><p>Includes most employee/employer additions; excludes catch-up</p></td></tr><tr><td><p>Eligible compensation cap</p></td><td><p>$360,000</p></td><td><p>Compensation ceiling used for plan limit purposes</p></td></tr><tr><td><p>Roth catch-up high-wage threshold</p></td><td><p>$150,000</p></td><td><p>2025 wages from sponsor above this trigger 2026 rule</p></td></tr></tbody></table></div><p>The 2026 regular employee limit is $24,500. If permitted by the plan, the additional catch-up is $8,000 for participants age 50–59 or 64 and older, or $11,250 for those age 60–63. Thus the employee deferral maxima are generally $24,500, $32,500, or $35,750 respectively, subject to eligibility and plan restrictions. The $72,000 overall annual additions limit generally excludes catch-up contributions and is also subject to the compensation-based limit.</p><p>Beginning in 2026, participants whose prior-year wages from the sponsoring employer exceeded $150,000 generally must make eligible catch-up contributions on a Roth basis when the relevant plan offers catch-up contributions and the rule applies. This is not the same as making every Roth contribution. Check plan operations and current IRS instructions for special cases.</p><h3><strong>Traditional versus Roth 401(k)</strong></h3><p>A traditional pre-tax employee contribution generally reduces current federal taxable wages, while taxable withdrawals later are generally included in ordinary income. Designated Roth contributions are made after income tax and do not produce that same current exclusion; qualified Roth distributions can be tax-free if the five-taxable-year requirement and a qualifying age, disability, or death condition are met. An employer contribution may have its own pretax or designated Roth treatment if the plan supports the latter and the applicable requirements are met.</p><p>Traditional and Roth employee elective deferrals share one annual employee limit; you cannot contribute the full limit separately to each. An early nonqualified designated Roth withdrawal is generally allocated pro rata between contributions and earnings; its taxable earnings component may be subject to the additional early-distribution tax. Unlike Roth IRAs, a Roth 401(k) does not generally allow withdrawal of contributions first under an IRA-style ordering rule.</p><p>From 2024 onward, designated Roth accounts in qualified plans are no longer subject to lifetime required minimum distributions for the owner. Beneficiary rules differ. This is an important distinction from older explanations that say all Roth 401(k)s require distributions starting at 73.</p><h2><strong>What kind of retirement plan is a 401(k)?</strong></h2><p>A 401(k) is an employer-sponsored defined contribution plan, so your retirement account value depends on deposits, investment performance, fees, and distributions. A traditional defined benefit pension instead promises a benefit determined under the pension's formula. A 401(k) balance can be moved in certain eligible rollovers when an employee changes jobs, but the plan's investment menu, payout options, vesting terms, and fees still matter.</p><h3><strong>Advantages, trade-offs, and investment options</strong></h3><p>Potential advantages include tax-favored retirement saving, relatively high contribution limits, and employer matching if provided. Employer matching is valuable but not literally unrestricted 'free money': vesting, eligibility, employer formulas, and payroll timing determine the amount you can retain. Many 401(k) plans also receive important creditor protections under applicable law, with exceptions depending on circumstances.</p><p>Trade-offs include restricted early access, plan-specific investment menus, administrative and investment expenses, and possible vesting rules on employer funding. Plans commonly offer mutual funds, index funds, target-date funds, or other portfolios mixing stocks and bonds. A target-date fund generally changes its allocation as its stated retirement date approaches, but does not remove market risk or guarantee an outcome.</p><p>Fee types can include plan administration charges, investment management/expense ratios, transaction charges, and optional service fees. Small annual percentage charges compound over decades. When comparing otherwise similar investments, distinguish gross expected returns from the net return after expenses that you use in a projection.</p><h3><strong>Vesting and eligibility</strong></h3><p>Your own employee elective deferrals are always vested, meaning they belong to you. Employer matching and some other employer contributions may vest immediately or according to a cliff or graded schedule. Cliff vesting grants ownership all at once after a stated period; graded vesting increases ownership step by step. If you leave before full vesting, the unvested employer-funded portion can be forfeited under the plan terms.</p><p>Your employer's summary plan description is the practical source for participation dates, eligible wages, matches, true-up policy, vesting, beneficiary designation, loans, and withdrawal rights. Generic waiting-period or vesting examples should not be assumed to describe your plan.</p><h2><strong>Taking distributions or moving your savings</strong></h2><h3><strong>Common retirement distribution choices</strong></h3><p>Depending on the plan and your circumstances, you may be able to keep assets invested, take an eligible lump sum, receive installments, elect a plan-offered annuity, or roll over eligible savings into another employer plan or an IRA. A lump sum can increase taxable income in the year received. Installments spread out payments but remain exposed to investment and longevity risks. An annuity option, where available, has contract-specific payments, survivor features, fees, and guarantees, so a simple investment projection is not a quote from an insurer.</p><p>An eligible direct rollover from a traditional 401(k) to an appropriately qualified traditional account generally avoids current taxation. Indirect rollovers can involve a 60-day deadline and withholding complications. A rollover from pretax money to a Roth account is generally a taxable conversion, not a tax-free transfer. Required minimum distributions and hardship distributions are not eligible rollovers. The general one-rollover-per-year limitation applies to certain IRA-to-IRA rollovers, not to eligible rollovers from employer plans.</p><h3><strong>Required minimum distributions (RMDs)</strong></h3><p>RMDs are minimum annual distributions from certain tax-deferred retirement accounts. For affected cohorts, the applicable starting age is generally 73; the age rises to 75 for people born in 1960 or later under SECURE 2.0. A participating employee who is not a 5% owner may, when the plan permits, delay RMDs from the current employer's qualified plan until retirement. The first required amount may generally be delayed until April 1 of the year after the starting year, though doing so can result in two taxable RMDs in that following year.</p><p>The basic calculation is RMD = prior December 31 account balance ÷ the applicable IRS distribution-period factor. The correct factor depends on age and certain beneficiary circumstances; use the IRS tables rather than dividing by a self-selected life expectancy. If a required amount is missed, the applicable excise tax is generally 25% of the shortfall, reduced to 10% if corrected within the specified period, and relief may be available for reasonable error. An older 50% figure is no longer the current standard.</p><h3><strong>Self-employed or solo 401(k)s</strong></h3><p>A self-employed person with qualifying self-employment income may establish an individual or solo 401(k) if plan eligibility rules are met. The owner may contribute in employee and employer capacities, subject to the separate and combined IRS limits and compensation rules. Certain solo/self-directed arrangements allow wider investments, but 'self-directed' does not mean prohibited transactions, valuation rules, fiduciary obligations, tax reporting, or investment risk disappear. Loans, where permitted, have distinct limits and repayment rules.</p><h2><strong>Assumptions, limitations, and sensible checks</strong></h2><p>No calculator knows future returns, inflation, future tax laws, future contribution limits, employer policy changes, retirement date, or future living expenses. Flat annual rates conceal market volatility and sequence risk; fixed life expectancy is an imperfect planning horizon. Cash flows modeled at the start versus end of a period change results. One stated annual return may be nominal or net of fees; do not subtract fees twice or ignore them.</p><p>For a useful sensitivity check, rerun the projection with a lower return, higher inflation, later or earlier retirement, a different salary path, and a different contribution percentage. Confirm whether a plan's matching dollars are immediately vested, whether the employer true-ups payroll matches, and whether your deferrals across all jobs share the IRS ceiling. For distributions, distinguish federal additional tax, ordinary income tax, state taxes, actual withholding, and plan permission.</p><section class="cp-accordion-section cp-accordion-faq" aria-labelledby="cp-apr-faq-section-title"><h2 class="cp-doc-faq-heading" id="cp-apr-faq-section-title"><strong>Frequently asked questions</strong></h2><div class="cp-accordion-list"><div class="cp-accordion-item" data-open="false"><h3 class="cp-accordion-item-heading"><button class="cp-accordion-trigger" id="cp-apr-faq-1-toggle" type="button" aria-expanded="false" aria-controls="cp-apr-faq-1-panel"><h3 class="cp-accordion-question-text">Does contributing 6% always earn the full match?</h3><span class="cp-accordion-chevron" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="m6 9 6 6 6-6"></path></svg></span></button></h3><div class="cp-accordion-panel" id="cp-apr-faq-1-panel" role="region" aria-labelledby="cp-apr-faq-1-toggle" aria-hidden="true" inert><div class="cp-accordion-panel-inner"><div class="cp-accordion-panel-content"><p class="cp-doc-faq-answer">No. Six percent earns the full hypothetical match only when the plan matches 50% of contributions on the first 6% of eligible pay and the employee meets all other conditions. Some plans use two tiers, different pay definitions, or annual true-up rules.</p></div></div></div></div><div class="cp-accordion-item" data-open="false"><h3 class="cp-accordion-item-heading"><button class="cp-accordion-trigger" id="cp-apr-faq-2-toggle" type="button" aria-expanded="false" aria-controls="cp-apr-faq-2-panel"><h3 class="cp-accordion-question-text">Is a $1 million projected 401(k) balance worth $1 million today?</h3><span class="cp-accordion-chevron" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="m6 9 6 6 6-6"></path></svg></span></button></h3><div class="cp-accordion-panel" id="cp-apr-faq-2-panel" role="region" aria-labelledby="cp-apr-faq-2-toggle" aria-hidden="true" inert><div class="cp-accordion-panel-inner"><div class="cp-accordion-panel-content"><p class="cp-doc-faq-answer">Not in purchasing power. Divide future nominal dollars by (1 + assumed annual inflation) raised to the number of years. Taxes on traditional withdrawals can further reduce spendable proceeds.</p></div></div></div></div><div class="cp-accordion-item" data-open="false"><h3 class="cp-accordion-item-heading"><button class="cp-accordion-trigger" id="cp-apr-faq-3-toggle" type="button" aria-expanded="false" aria-controls="cp-apr-faq-3-panel"><h3 class="cp-accordion-question-text">Will a hardship withdrawal avoid the 10% additional tax?</h3><span class="cp-accordion-chevron" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="m6 9 6 6 6-6"></path></svg></span></button></h3><div class="cp-accordion-panel" id="cp-apr-faq-3-panel" role="region" aria-labelledby="cp-apr-faq-3-toggle" aria-hidden="true" inert><div class="cp-accordion-panel-inner"><div class="cp-accordion-panel-content"><p class="cp-doc-faq-answer">Not by itself. A permitted hardship distribution can still be subject to ordinary income tax and the additional tax unless an independent statutory exception applies.</p></div></div></div></div><div class="cp-accordion-item" data-open="false"><h3 class="cp-accordion-item-heading"><button class="cp-accordion-trigger" id="cp-apr-faq-4-toggle" type="button" aria-expanded="false" aria-controls="cp-apr-faq-4-panel"><h3 class="cp-accordion-question-text">Can I contribute to both a Roth and traditional 401(k)?</h3><span class="cp-accordion-chevron" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="m6 9 6 6 6-6"></path></svg></span></button></h3><div class="cp-accordion-panel" id="cp-apr-faq-4-panel" role="region" aria-labelledby="cp-apr-faq-4-toggle" aria-hidden="true" inert><div class="cp-accordion-panel-inner"><div class="cp-accordion-panel-content"><p class="cp-doc-faq-answer">Often yes, if your plan offers both. But your combined employee elective deferrals generally count toward one annual limit, and the tax treatment of qualifying withdrawals differs.</p></div></div></div></div></div></section><section class="cp-accordion-section cp-accordion-sources" aria-label="Sources and methodology"><div class="cp-accordion-list"><div class="cp-accordion-item" data-open="false"><h2 class="cp-accordion-item-heading"><button class="cp-accordion-trigger" id="cp-apr-sources-toggle" type="button" aria-expanded="false" aria-controls="cp-apr-sources-panel"><h2 class="cp-accordion-question-text">Sources and rule refresh</h2><span class="cp-accordion-chevron" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="m6 9 6 6 6-6"></path></svg></span></button></h2><div class="cp-accordion-panel" id="cp-apr-sources-panel" role="region" aria-labelledby="cp-apr-sources-toggle" aria-hidden="true" inert><div class="cp-accordion-panel-inner"><div class="cp-accordion-panel-content"><p>The following official sources were reviewed for U.S. rules applicable as of October 30, 2026.</p><p><strong>EDITORIAL NOTE — VERIFY BEFORE PUBLICATION</strong></p><p>Verify year-specific contribution limits, employer plan provisions, and distribution regulations again before publication or after a new IRS announcement.</p><p class="cp-doc-source"><a href="https://www.irs.gov/retirement-plans/plan-participant-employee/retirement-topics-401k-and-profit-sharing-plan-contribution-limits">IRS: 2026 401(k) contribution limits</a></p><p class="cp-doc-source"><a href="https://www.irs.gov/retirement-plans/plan-participant-employee/retirement-topics-catch-up-contributions">IRS: 2026 catch-up rules and Roth threshold</a></p><p class="cp-doc-source"><a href="https://www.irs.gov/retirement-plans/plan-participant-employee/retirement-topics-exceptions-to-tax-on-early-distributions">IRS: Early-distribution exceptions</a></p><p class="cp-doc-source"><a href="https://www.irs.gov/retirement-plans/plan-participant-employee/retirement-topics-hardship-distributions">IRS: Hardship distributions</a></p><p class="cp-doc-source"><a href="https://www.irs.gov/retirement-plans/plan-participant-employee/401k-resource-guide-plan-participants-general-distribution-rules">IRS: 401(k) rollovers and distribution rules</a></p><p class="cp-doc-source"><a href="https://www.irs.gov/retirement-plans/plan-participant-employee/retirement-topics-required-minimum-distributions-rmds">IRS: Required minimum distributions</a></p><p class="cp-doc-source"><a href="https://www.irs.gov/retirement-plans/retirement-plans-faqs-on-designated-roth-accounts">IRS: Roth 401(k) distribution rules</a></p><p class="cp-doc-source"><a href="https://www.irs.gov/taxtopics/tc451">IRS: IRA rollover frequency distinction</a></p><p class="cp-doc-source"><a href="https://www.dol.gov/node/63354">U.S. Department of Labor: 401(k) plan fees</a></p><p class="cp-doc-source"><a href="https://www.irs.gov/irb/2026-06_IRB">IRS: SECURE 2.0 RMD age phase-in (2026 Bulletin)</a></p></div></div></div></div></div></section></article></main>
+</div>
+<script>
+
+/* CalcPro 401(k) — local calculations only; benchmark-compatible payroll match projection.
+   2026 statutory values are official; all future-year caps are modeling assumptions,
+   never claims about future IRS announcements. */
+(() => {
+  'use strict';
+  const main = document.getElementById('calpro401-plan-form');
+  const early = document.getElementById('calpro401-early-form');
+  const match = document.getElementById('calpro401-match-form');
+  if (!main || !early || !match) return;
+
+  const IRS_2026 = Object.freeze({deferral:24500, catchup:8000, higherCatchup:11250, additions:72000, compensation:360000});
+  const format = value => Number(value).toLocaleString('en-US', {maximumFractionDigits:2});
+  const money = value => (value < 0 ? '-$' : '$') + Math.round(Math.abs(value)).toLocaleString('en-US');
+  const pct = value => `${format(Math.round(value * 10000) / 10000)}%`;
+  const checked = (form, name) => form.querySelector(`input[name="${name}"]:checked`)?.value || 'n';
+  const row = (label, value) => `<tr><td>${label}</td><td style="text-align:right;white-space:nowrap">${value}</td></tr>`;
+  const show = (id, content) => { const el = document.getElementById(id); el.innerHTML = content; el.hidden = false; };
+  const err = (id, message) => show(id, `<div class="calpro401-error" role="alert">${String(message).replace(/[<>&]/g,'')}</div>`);
+  const read = (form, name) => {
+    const field = form.elements.namedItem(name);
+    const raw = String(field?.value ?? '').trim();
+    // Only well-formed thousands separators; prevent silent misreading of arbitrary text.
+    if (!/^\$?\s*[+-]?(?:\d+(?:\.\d*)?|\.\d+|\d{1,3}(?:,\d{3})+(?:\.\d*)?)\s*%?$/.test(raw)) {
+      throw new Error(`Enter a valid number for ${field?.getAttribute('aria-label') || name}.`);
+    }
+    const v = Number(raw.replace(/[$,%\s]/g,''));
+    if (!Number.isFinite(v)) throw new Error(`Enter a valid number for ${name}.`);
+    return v;
+  };
+  const within = (v, lo, hi, label) => { if(v < lo || v > hi) throw new Error(`${label} must be between ${lo} and ${hi}.`); };
+  const reset = form => {
+    form.querySelectorAll('input[type="text"]').forEach(el => {el.value='';});
+    form.querySelectorAll('input[type="radio"],input[type="checkbox"]').forEach(el => {el.checked=el.defaultChecked;});
+  };
+  // IRS-announced dollar limits apply to 2026 only. Later years are illustrative,
+  // unrounded inflation projections, not published IRS limits.
+  function limits(age, elapsedYears, annualInflation, useEnhancedCatchup=true) {
+    const inflationFactor=Math.pow(1+annualInflation/100,elapsedYears);
+    return {
+      basic:IRS_2026.deferral*inflationFactor,
+      catchup:age>=50 ? ((useEnhancedCatchup && age>=60 && age<=63) ? IRS_2026.higherCatchup : IRS_2026.catchup) : 0,
+      additions:IRS_2026.additions*inflationFactor,
+      compensation:IRS_2026.compensation*inflationFactor
+    };
+  }
+  // Default model reproduces the screenshot reference scenario. The reference
+  // output does NOT impose the tax-qualified compensation cap on employer matching.
+  // Real plans can impose it: users may opt into that separate IRS-aware assumption.
+  // (1) 2026 $24,500 basic deferral limit projected using input inflation (not rounded);
+  // (2) optional $8,000 standard catch-up for each projection year age 50+;
+  // (3) if payroll contributions hit the limit during the year, matching ceases
+  //     for remaining pay periods unless the plan offers a true-up;
+  // (4) cash inflow is modeled at midyear with factor 1+r/2.
+  // Higher 2026 catch-up for age 60–63 is AVAILABLE (may need plan eligibility),
+  // so it is an explicit option rather than silently included in comparisons.
+  function project(p) {
+    const data=[{age:p.age,salary:p.salary,balance:p.balance,employee:0,employer:0,gains:0,starting:p.balance,newEmployee:0,newEmployer:0}];
+    let balance=p.balance, salary=p.salary, employee=0, employer=0;
+    const yearlyReturn=1+p.rate/100;
+    const midyearFactor=1+p.rate/200;
+    for(let y=0;y<p.retire-p.age;y++) {
+      const age=p.age+y;
+      const caps=p.useLimit ? limits(age,y,p.inflation,p.higherCatchup)
+        : {basic:Infinity,catchup:0,additions:Infinity,compensation:Infinity};
+      const requestedOwn=salary*p.contrib/100;
+      const own=Math.min(requestedOwn,caps.basic+caps.catchup,salary);
+      // Reference-comparison mode matches the benchmark's displayed totals even
+      // when pay is above the IRS compensation threshold. Apply the compensation
+      // ceiling only when the optional IRS-aware switch is deliberately enabled.
+      const eligiblePay=p.enforceCompensationCap ? Math.min(salary,caps.compensation) : salary;
+      const eligibleMatchedPay=eligiblePay*Math.min(p.contrib,p.matchLimit)/100;
+      const fullYearMatch=eligibleMatchedPay*p.matchRate/100;
+      // Payroll-match design: matching is earned only while paycheck deferrals
+      // are active; optional true-up makes the full-year match available.
+      const activeFraction=requestedOwn>0 ? Math.min(1,own/requestedOwn) : 0;
+      const proposedEmployer=fullYearMatch*(p.employerTrueUp ? 1 : activeFraction);
+      // Catch-up deferrals are exempt from the section 415(c) annual-additions cap.
+      const normalEmployee=Math.min(own,caps.basic);
+      const additionRoom=Math.max(0,Math.min(caps.additions,eligiblePay)-normalEmployee);
+      const paidEmployer=Math.max(0,Math.min(proposedEmployer,additionRoom));
+      balance=balance*yearlyReturn+(own+paidEmployer)*midyearFactor;
+      employee+=own;
+      employer+=paidEmployer;
+      if(![balance,employee,employer].every(Number.isFinite)) throw new Error('The projection is too large to calculate.');
+      data.push({age:age+1,salary,balance,employee,employer,gains:balance-p.balance-employee-employer,starting:p.balance,newEmployee:own,newEmployer:paidEmployer});
+      salary*=1+p.raise/100;
+    }
+    return {balance,employee,employer,starting:p.balance,gains:balance-p.balance-employee-employer,data};
+  }
+  function axisTick(n) {
+    if(n>=1000000) return `${format(Math.round(n/100000)/10)}M`;
+    if(n>=1000) return `${format(Math.round(n/100)/10)}K`;
+    return format(n);
+  }
+  function chartSVG(data) {
+    const w=480,h=220,left=56,right=13,top=36,bottom=30;
+    const pw=w-left-right,ph=h-top-bottom, n=data.length-1;
+    const max=Math.max(1,...data.map(d=>d.balance));
+    const magnitude=Math.pow(10,Math.floor(Math.log10(max/4)));
+    const step=Math.max(magnitude,Math.ceil(max/(4*magnitude))*magnitude);
+    const ceiling=step*4;
+    let svg=`<svg class="calpro401-bar-chart" viewBox="0 0 ${w} ${h}" role="img" aria-label="Projected retirement account balance by age; colored segments show starting balance, employee deposits, employer match, and positive investment earnings" xmlns="http://www.w3.org/2000/svg">`;
+    svg+=`<g font-family="Arial,sans-serif" font-size="9.4" fill="#444"><rect x="12" y="7" width="9" height="9" fill="#7676ad"/><text x="24" y="15">Starting</text><rect x="88" y="7" width="9" height="9" fill="#368bd1"/><text x="100" y="15">Employee</text><rect x="173" y="7" width="9" height="9" fill="#86b942"/><text x="185" y="15">Employer</text><rect x="266" y="7" width="9" height="9" fill="#b62827"/><text x="278" y="15">Earnings</text><rect x="363" y="7" width="9" height="9" fill="#555"/><text x="375" y="15">Total if loss</text></g>`;
+    for(let i=0;i<=4;i++) {const y=top+ph-(i/4)*ph;svg+=`<line x1="${left}" x2="${w-right}" y1="${y}" y2="${y}" stroke="#d0d0d0"/><text x="${left-6}" y="${y+4}" text-anchor="end" font-size="11" fill="#555">${axisTick(i*step)}</text>`;}
+    const bw=Math.max(1,Math.min(9,pw/Math.max(n,1)*.70));
+    data.slice(1).forEach((d,i)=>{
+      const x=left+((i+.5)/n)*pw-bw/2;
+      if(d.gains < 0) {
+        // With negative earnings, stacked positive components would exceed the balance.
+        const height=Math.max(0,d.balance)/ceiling*ph;
+        svg+=`<rect x="${x.toFixed(2)}" y="${(top+ph-height).toFixed(2)}" width="${bw.toFixed(2)}" height="${height.toFixed(2)}" fill="#555"/>`;
+      } else {
+        let y=top+ph;
+        [[d.starting,'#7676ad'],[d.employee,'#368bd1'],[d.employer,'#86b942'],[d.gains,'#b62827']].forEach(([amount,color])=>{
+          const height=Math.max(0,amount)/ceiling*ph; y-=height;
+          svg+=`<rect x="${x.toFixed(2)}" y="${y.toFixed(2)}" width="${bw.toFixed(2)}" height="${height.toFixed(2)}" fill="${color}"/>`;
+        });
+      }
+    });
+    [0,.25,.5,.75,1].forEach(f=>{ const age=Math.round(data[0].age+f*n);svg+=`<text x="${(left+f*pw).toFixed(1)}" y="${h-15}" text-anchor="middle" font-size="11" fill="#555">${age}</text>`;});
+    return svg+`<text x="${left+pw/2}" y="${h-1}" text-anchor="middle" font-size="11" fill="#555">Age</text></svg>`;
+  }
+  // Reference-compatible withdrawal conventions:
+  // fixed monthly annuity uses nominal annual return / 12;
+  // constant-purchasing-power monthly estimate uses (annual return - inflation) / 12;
+  // fixed annual annuity compounds at exactly the annual return.
+  // These are distinct modeling conventions, not interchangeable annuities.
+  function annuityPayment(balance,periodRate,numPeriods) {
+    if (Math.abs(periodRate)<1e-12) return balance/numPeriods;
+    const denominator=-Math.expm1(-numPeriods*Math.log1p(periodRate));
+    return balance*periodRate/denominator;
+  }
+  function withdrawModel(balance,retirementAge,lifeAge,annualReturn,annualInflation) {
+    const years=lifeAge-retirementAge,months=years*12;
+    const monthlyRate=annualReturn/1200;
+    const realMonthlyRate=(annualReturn-annualInflation)/1200;
+    const firstMonthly=annuityPayment(balance,realMonthlyRate,months);
+    const fixedMonthly=annuityPayment(balance,monthlyRate,months);
+    const annualPay=annuityPayment(balance,annualReturn/100,years);
+    const payments=[];
+    let remain=balance;
+    for(let y=0;y<years;y++) {
+      const start=remain;
+      const investment=start*annualReturn/100;
+      remain=start+investment-annualPay;
+      if(Math.abs(remain)<Math.max(.0001,balance*1e-10)) remain=0;
+      payments.push({age:retirementAge+y+1,start,annual:annualPay,investment,end:remain});
+    }
+    return {years,firstMonthly,fixedMonthly,annualPay,payments,remaining:remain};
+  }
+  function mainResult(p, proj) {
+    const today=proj.balance/Math.pow(1+p.inflation/100,p.retire-p.age);
+    const payout=withdrawModel(proj.balance,p.retire,p.life,p.rate,p.inflation);
+    if([today,payout.firstMonthly,payout.fixedMonthly,payout.annualPay,payout.remaining].some(x=>!Number.isFinite(x))) throw new Error('These retirement assumptions produce an invalid withdrawal result.');
+    const currentPayout=payout.firstMonthly/Math.pow(1+p.inflation/100,p.retire-p.age);
+    const fixedStart=payout.fixedMonthly/Math.pow(1+p.inflation/100,p.retire-p.age);
+    const fixedEnd=payout.fixedMonthly/Math.pow(1+p.inflation/100,p.life-p.age);
+    const schedule=proj.data.slice(1).map((d,i)=>{
+      const before=proj.data[i];
+      const gain=d.gains-before.gains;
+      return `<tr><td>${d.age}</td><td>${money(d.newEmployee)}</td><td>${money(d.newEmployer)}</td><td>${money(d.newEmployee+d.newEmployer)}</td><td>${money(gain)}</td><td>${money(d.balance)}</td></tr>`;
+    }).join('');
+    const retirementSchedule=payout.payments.map(d=>`<tr><td>${d.age}</td><td>${money(d.annual)}</td><td>${money(d.investment)}</td><td>${money(d.end)}</td></tr>`).join('');
+    return `<div class="calpro401-h2result calpro401-result-title">Result <button class="calpro401-print" type="button" title="Print results" aria-label="Print results">▣</button></div>
+      <p class="calpro401-lead">At retirement age <b>${p.retire}</b>, the projected 401(k) balance is <strong class="calpro401-green">${money(proj.balance)}</strong>, equivalent to <strong class="calpro401-green">${money(today)}</strong> in today's purchasing power.</p>
+      <div class="calpro401-result-grid"><div>${chartSVG(proj.data)}</div><div><table class="calpro401-cinfoT calpro401-breakdown"><tbody>
+      ${row('<b>Balance at '+p.retire+':</b>','<b>'+money(proj.balance)+'</b>')}
+      ${row('<b>Total contributions and starting balance:</b>','<b>'+money(proj.starting+proj.employee+proj.employer)+'</b>')}
+      ${row('&nbsp;&nbsp;Employee + starting balance:',money(proj.starting+proj.employee))}
+      ${row('&nbsp;&nbsp;Employer match:',money(proj.employer))}
+      ${row('<b>Investment '+(proj.gains<0?'loss:':'returns:')+'</b>','<b>'+money(proj.gains)+'</b>')}
+      </tbody></table></div></div>
+      <h3 class="calpro401-withdraw-heading">Withdrawal</h3>
+      <p>For <b>fixed purchasing-power monthly withdrawals</b>, begin at age ${p.retire+1} with <strong class="calpro401-green">${money(payout.firstMonthly)} per month</strong> and increase that nominal payment with inflation. This estimate uses the assumed return minus inflation as the monthly real-rate approximation. Initially it is equivalent to <strong class="calpro401-green">${money(currentPayout)}</strong> in today's purchasing power.</p>
+      <p>For a <b>fixed monthly withdrawal</b>, withdraw <strong class="calpro401-green">${money(payout.fixedMonthly)} per month</strong> until age ${p.life}. At age ${p.retire+1} it is equivalent to ${money(fixedStart)} in today's purchasing power and at ${p.life} to about ${money(fixedEnd)}.</p>
+      <p>For a <b>fixed annual withdrawal at each year-end</b>, withdraw <strong class="calpro401-green">${money(payout.annualPay)} per year</strong> until age ${p.life}. At retirement this equals approximately ${money(payout.annualPay/Math.pow(1+p.inflation/100,p.retire-p.age))} in today's purchasing power.</p>
+      <details class="calpro401-schedule"><summary>+ Show Schedule</summary>
+      <h4>401(k) accumulation schedule</h4><div class="calpro401-table-scroll"><table class="calpro401-cinfoT calpro401-year-table"><thead><tr><th>Year-end age</th><th>Employee</th><th>Employer</th><th>Contribution</th><th>Investment return</th><th>End balance</th></tr></thead><tbody>${schedule}</tbody></table></div>
+      <h4>Fixed annual withdrawal schedule</h4><div class="calpro401-table-scroll"><table class="calpro401-cinfoT calpro401-year-table"><thead><tr><th>Year-end age</th><th>Annual payout</th><th>Investment return</th><th>End balance</th></tr></thead><tbody>${retirementSchedule}</tbody></table></div>
+      </details>
+      <p class="calpro401-note"><b>Breakdown reconciliation:</b> Employee + starting balance includes ${money(proj.starting)} already in the account and ${money(proj.employee)} in new employee deposits. The balance equals this amount plus employer match (${money(proj.employer)}) and investment returns (${money(proj.gains)}).<br><b>Projection assumptions:</b> Midyear contribution approximation (deposit growth factor 1 + annual return / 2); ${p.employerTrueUp?'employer year-end true-up':'paycheck-based employer matching stops when annual employee deferrals reach their cap'}; ${p.enforceCompensationCap?'IRS compensation ceiling applied to employer matching':'reference-comparison mode: employer match is calculated from uncapped annual salary, so high-salary estimates may exceed the employer match permitted for an actual qualified plan'}; ${p.higherCatchup?'enhanced catch-up for ages 60–63':'standard $8,000 age-50+ catch-up used for the reference comparison (higher age-60–63 limit is optional)'}. 2026 statutory baselines: basic deferral $24,500, standard catch-up $8,000, compensation ceiling $360,000, and annual-additions ceiling $72,000. The compensation ceiling is <b>optional in this calculation</b> for screenshot-reference matching. Future basic deferral, annual-additions and compensation ceilings are illustrative inflation projections, <b>not announced future IRS limits</b>. <b>Monthly withdrawals:</b> Fixed nominal payments use the annual rate divided by 12. Inflation-adjusted payments use (annual return − inflation) / 12 as an approximation; actual inflation-linked monthly cash flows can differ from that simplified estimate. The annual payout and shown retirement schedule use annual compounding. All displayed dollar figures are individually rounded; components may differ by $1 when added. The calculator does not predict returns, plan vesting, future tax or RMD rules.</p>`;
+  }
+
+  main.addEventListener('submit', e=>{
+    e.preventDefault();
+    const id='calpro401-result';
+    try {
+      const p={
+        age:read(main,'age'),salary:read(main,'income'),balance:read(main,'balance'),
+        contrib:read(main,'contribution'),matchRate:read(main,'ematch'),matchLimit:read(main,'ematchend'),
+        retire:read(main,'retirementage'),life:read(main,'lifeexpectancy'),
+        raise:read(main,'incomeincrease'),rate:read(main,'rate'),inflation:read(main,'inflation'),
+        useLimit:main.elements.namedItem('hideirslimit').value!=='1',
+        higherCatchup:main.querySelector('[name="higherCatchup"]').checked,
+        employerTrueUp:main.querySelector('[name="employerTrueUp"]').checked,
+        enforceCompensationCap:main.querySelector('[name="enforceCompensationCap"]').checked
+      };
+      if(!Number.isInteger(p.age)||p.age<0||p.age>100) throw new Error('Current age must be a whole number from 0 to 100.');
+      if(!Number.isInteger(p.retire)||p.retire<=p.age||p.retire>110) throw new Error('Retirement age must be a whole number after the current age (up to 110).');
+      if(!Number.isInteger(p.life)||p.life<=p.retire||p.life>120) throw new Error('Life expectancy must be greater than retirement age (up to 120).');
+      if(p.salary<0||p.balance<0) throw new Error('Salary and current balance cannot be negative.');
+      within(p.contrib,0,100,'Contribution percentage'); within(p.matchRate,0,1000,'Employer match'); within(p.matchLimit,0,100,'Employer match limit');
+      for(const [val,label] of [[p.raise,'Annual raise'],[p.rate,'Annual return'],[p.inflation,'Inflation']]) {
+        if(val<=-100||val>100) throw new Error(`${label} must be greater than -100% and at most 100%.`);
+      }
+      const projection=project(p);
+      if(!Number.isFinite(projection.balance)||projection.balance<0) throw new Error('These inputs produce an invalid projection.');
+      show(id,mainResult(p,projection));
+      document.querySelector(`#${id} .calpro401-print`)?.addEventListener('click',()=>window.print());
+      document.getElementById(id).scrollIntoView({behavior:'smooth',block:'start'});
+    } catch(ex) {err(id,ex.message);}
+  });
+
+  early.addEventListener('submit', e=>{
+    e.preventDefault();
+    const id='calpro401-early-result';
+    try {
+      const amount=read(early,'withdrawamt'), age=read(early,'withdrawage'), fed=read(early,'fedtax'), state=read(early,'statetax'),local=read(early,'localtax');
+      if(amount<0) throw new Error('Withdrawal amount must be nonnegative.');
+      within(age,0,120,'Withdrawal age');
+      for(const [v,label] of [[fed,'Federal tax rate'],[state,'State tax rate'],[local,'Local tax rate']]) within(v,0,100,label);
+      const ageExempt=age>=59.5;
+      const rule55=checked(early,'isemployed')==='n'&&checked(early,'is55plus')==='y';
+      if(rule55&&age<55) throw new Error('The separation-in-the-year-of-55 exception cannot apply to a withdrawal at this age.');
+      const exempt=ageExempt||rule55||checked(early,'isdisabled')==='y'||checked(early,'isexempt')==='y';
+      const penalty=exempt?0:amount*.10;
+      const federalTax=amount*fed/100,stateTax=amount*state/100,localTax=amount*local/100;
+      const totalTax=federalTax+stateTax+localTax, balance=amount-totalTax-penalty;
+      const received=Math.max(0,balance),shortfall=Math.max(0,-balance);
+      show(id,`<div class="calpro401-h2result calpro401-result-title">Result</div>
+      <p class="calpro401-lead">From a <b>${money(amount)}</b> taxable traditional 401(k) withdrawal, estimated net proceeds are <strong class="calpro401-green">${money(received)}</strong>${shortfall>0?` (additional estimated taxes of ${money(shortfall)} exceed the withdrawal)`:''}.</p>
+      <table class="calpro401-cinfoT calpro401-tblcompact"><tbody>
+      ${row('Withdrawal amount',money(amount))}${row('Federal income tax',money(federalTax))}${row('State income tax',money(stateTax))}${row('Local income tax',money(localTax))}
+      ${row(exempt?'Federal 10% additional tax (exempt or age 59½+)':'Federal 10% additional tax',money(penalty))}${row('<b>Estimated net proceeds</b>','<b>'+money(received)+'</b>')}
+      ${shortfall>0?row('Estimated additional tax shortfall',money(shortfall)):''}</tbody></table>
+      <p class="calpro401-note">Assumes the full distribution is taxable traditional 401(k) money. Enter your estimated <b>incremental</b> tax rates; these are not automatic IRS bracket calculations. The 10% additional tax generally applies before age 59½ unless an exception applies. The year-of-55 exception requires separation from the employer sponsoring this plan during or after the calendar year you turn 55. A penalty exemption does not automatically remove income tax. Withholding is different from final tax liability.</p>`);
+      document.getElementById(id).scrollIntoView({behavior:'smooth',block:'start'});
+    } catch(ex) {err(id,ex.message);}
+  });
+
+  match.addEventListener('submit', e=>{
+    e.preventDefault();
+    const id='calpro401-match-result';
+    try {
+      const age=read(match,'age'),salary=read(match,'income');
+      const match1=read(match,'ematch')/100,limit1=read(match,'ematchend')/100;
+      const match2=read(match,'ematch2')/100,limit2=read(match,'ematchend2')/100;
+      if(!Number.isInteger(age)||age<0||age>100||salary<=0) throw new Error('Enter a whole-number age (0–100) and positive salary.');
+      for(const [v,label] of [[match1,'First match'],[match2,'Second match']]) within(v,0,10,label);
+      for(const [v,label] of [[limit1,'First tier limit'],[limit2,'Second tier limit']]) within(v,0,1,label);
+      if(match2>0 && limit2<limit1) throw new Error('Employer match 2 limit must be at least the employer match 1 limit.');
+      const eligiblePay=Math.min(salary,IRS_2026.compensation);
+      const contributionLimit=Math.min(salary,limits(age,0,0).basic+limits(age,0,0).catchup);
+      const eligibleMaxPercent=contributionLimit/salary;
+      const requiredFraction= Math.max(match1>0?limit1:0,(match2>0&&limit2>limit1)?limit2:0);
+      const requiredDollars=eligiblePay*requiredFraction;
+      const requiredOfActualSalary=requiredDollars/salary;
+      const attainable=contributionLimit+1e-8>=requiredDollars;
+      const employerFor = own => {
+        const matchedPercent=Math.min(1,own/eligiblePay);
+        const first=eligiblePay * Math.min(matchedPercent,limit1)*match1;
+        const second=eligiblePay * Math.max(0,Math.min(matchedPercent,limit2)-limit1)*match2;
+        const nonCatchup=Math.min(own,IRS_2026.deferral);
+        const overallCapacity=Math.max(0,Math.min(IRS_2026.additions,eligiblePay)-nonCatchup);
+        return Math.min(first+second,overallCapacity);
+      };
+      const fullyMatched=employerFor(requiredDollars);
+      const actualMax=employerFor(contributionLimit);
+      show(id,`<div class="calpro401-h2result calpro401-result-title">Result</div>
+      <p class="calpro401-lead">${attainable?
+        `To capture all matching tiers, contribute <strong class="calpro401-green">${pct(requiredOfActualSalary*100)}</strong> to <strong class="calpro401-green">${pct(eligibleMaxPercent*100)}</strong> of annual salary.`:
+        `The employee contribution limit prevents reaching the full match threshold of <strong class="calpro401-green">${pct(requiredOfActualSalary*100)}</strong> of annual salary. The available maximum is <strong class="calpro401-green">${pct(eligibleMaxPercent*100)}</strong>.`}</p>
+      <table class="calpro401-cinfoT calpro401-tblcompact"><tbody>
+      ${row('Full-match contribution threshold',pct(requiredOfActualSalary*100))}
+      ${row('Employee deposit for full match',money(requiredDollars))}
+      ${row('Maximum potential match under entered tiers',money(fullyMatched))}
+      ${row('Employer match achievable under 2026 deferral limit',money(actualMax))}
+      ${row('2026 employee limit including any age catch-up',money(contributionLimit))}
+      ${row('Maximum employee contribution rate',pct(eligibleMaxPercent*100))}
+      </tbody></table>
+      <p class="calpro401-note">Match 1 applies from 0 to ${pct(limit1*100)} of eligible compensation at ${pct(match1*100)}. Match 2 applies only on the band from ${pct(limit1*100)} to ${pct(limit2*100)} at ${pct(match2*100)}. Uses the 2026 IRS elective deferral, annual-additions and $360,000 compensation caps. Assumes even payroll contributions and a full annual true-up; plans without a true-up can yield a different match. Catch-up eligibility and plan rules may impose further restrictions.</p>`);
+      document.getElementById(id).scrollIntoView({behavior:'smooth',block:'start'});
+    } catch(ex) {err(id,ex.message);}
+  });
+
+  document.querySelectorAll('[data-calpro401-clear]').forEach(button=>button.addEventListener('click',()=>{
+    const form=button.closest('form'); reset(form);
+    const result=document.getElementById(button.dataset.calpro401Clear);
+    if(result) {result.hidden=true;result.innerHTML='';}
+    if(form===early) document.getElementById('calpro401-is55plusdiv').style.display='none';
+  }));
+  const employmentVisible=()=>document.getElementById('calpro401-is55plusdiv').style.display=checked(early,'isemployed')==='n'?'block':'none';
+  early.querySelectorAll('input[name="isemployed"]').forEach(el=>el.addEventListener('change',employmentVisible));
+  employmentVisible();
+  document.querySelectorAll('.calpro401-indollar').forEach(input=>{
+    const pretty=()=>{
+      const raw=input.value.replace(/[$,\s]/g,'');
+      if(raw!==''&&Number.isFinite(Number(raw))) input.value=Number(raw).toLocaleString('en-US',{maximumFractionDigits:2});
+    };
+    input.addEventListener('blur',pretty);pretty();
+  });
+})();
+
+
+</script>
+<script defer src="/assets/js/data.js"></script>
+<script defer src="/assets/js/style.js"></script>
+</body>
+</html>
