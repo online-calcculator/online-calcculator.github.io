@@ -145,7 +145,7 @@
 <body>
   <div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="other-calculator.html">Other</a> / Age Calculator</nav><h1 class="cp-page-title">Age Calculator</h1><p class="cp-intro">An age calculator finds the time between a date of birth and a date you choose. Calendar age is usually reported as completed years, followed by full months and remaining days. You can also express the same date interval in weeks or total days. These are different ways of describing one period, not different ages.</p><section aria-label="Calculator" class="cp-tool-area">
 <div class="calcpro-age-root" id="calcpro-age-root">
-  <div class="info-bar"><span class="info-icon"><img src="/assets/images/info-circle.svg" alt="Info Circle" srcset="/assets/images/info-circle.svg" height="24px"></span><span class="info-text">Customize your inputs and calculate your results instantly.</span></div>
+  <div class="info-bar" id="calcpro-age-info"><span class="info-icon"><img src="/assets/images/info-circle.svg" alt="Info Circle" srcset="/assets/images/info-circle.svg" height="24px"></span><span class="info-text">Customize your inputs and calculate your results instantly.</span></div>
   <section class="calcpro-age-result" id="calcpro-age-result" aria-label="Age calculation results" aria-live="polite" hidden>
     <div class="calcpro-age-result-bar"><h2>Result</h2><button type="button" class="calcpro-age-save" id="calcpro-age-save" title="Save result as a text file" aria-label="Save result as a text file"><svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M4 2h14l4 4v16H2V2h2zm1 2v6h12V4H5zm0 9v7h14v-7H5zm3-9h6v5H8V4zm4 10a3 3 0 1 1 0 6 3 3 0 0 1 0-6z"/></svg><span>save</span></button></div>
     <div class="calcpro-age-result-content">
@@ -203,6 +203,7 @@
   const form = $('calcpro-age-form');
   const errorEl = $('calcpro-age-error');
   const result = $('calcpro-age-result');
+  const infoBar = $('calcpro-age-info');
   const lines = $('calcpro-age-result-lines');
   const calendar = $('calcpro-age-result-calendar');
   const hint = $('calcpro-age-hint');
@@ -272,7 +273,7 @@
     refreshDays(name,date.d);
   }
   function clearError() { errorEl.hidden = true; errorEl.textContent = ''; }
-  function showError(message) { errorEl.textContent = message; errorEl.hidden = false; result.hidden = true; hint.hidden = false; savedSummary = ''; }
+  function showError(message) { errorEl.textContent = message; errorEl.hidden = false; result.hidden = true; infoBar.hidden = false; hint.hidden = false; savedSummary = ''; }
   function showResult(birth,target,a) {
     const primary = [a.years ? unit(a.years,'year') : '',a.months ? unit(a.months,'month') : '',a.extraDays || (!a.years && !a.months) ? unit(a.extraDays,'day') : ''].filter(Boolean).join(' ');
     const rows = [primary];
@@ -291,10 +292,8 @@
     }));
     renderResultCalendar(target);
     result.hidden = false;
+    infoBar.hidden = true;
     hint.hidden = true;
-    if (window.matchMedia('(max-width: 650px)').matches) {
-      result.scrollIntoView({behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start'});
-    }
     const textRows = rows.map(text => text.replace(/^or /,''));
     savedSummary = ['Age Calculator','Date of Birth: ' + formatDate(birth), 'Age at the Date of: ' + formatDate(target), 'Age: ' + textRows[0], ...textRows.slice(1), 'Note: Time totals are based on whole dates (24 hours per day).'].join('\n');
   }
@@ -406,7 +405,7 @@
   function restoreDefaults() {
     const now=fromDate(new Date());
     setFields('birth',now);setFields('target',now);
-    clearError();closePicker();result.hidden=true;hint.hidden=false;savedSummary='';
+    clearError();closePicker();result.hidden=true;infoBar.hidden=false;hint.hidden=false;savedSummary='';
   }
   restoreDefaults();
   form.addEventListener('submit',(event) => {event.preventDefault();calculate()});
@@ -442,6 +441,6 @@
 
 </script>
 <script defer src="/assets/js/data.js"></script>
-<script defer src="/assets/js/style.js"></script>
+<script defer src="/assets/js/style.js?v=20261110-2"></script>
 </body>
 </html>

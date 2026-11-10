@@ -1,3 +1,6 @@
+/* Keep hidden info bars hidden even when calculator styles set display:flex. */
+.info-bar[hidden] { display: none !important; }
+
 /* ============================================================
    CALCPRO — Google Docs-inspired editorial article styling
    Reference: APR Calculator: Complete Editorial Draft (Tab 1)

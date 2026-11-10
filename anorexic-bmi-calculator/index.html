@@ -16,14 +16,225 @@
   <link rel="stylesheet" href="/assets/css/style.css" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/doc_style.css" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/side_style.css" crossorigin="anonymous" data-n-g=""> 
-  <!--ogtags-->
+  <title>Anorexic BMI Calculator: Understand BMI and Eating-Disorder Screening</title><meta name="title" content="Anorexic BMI Calculator: Understand BMI and Eating-Disorder Screening"><meta name="description" content="Calculate BMI from height and weight, understand adult and teen interpretation, and learn why BMI alone cannot diagnose anorexia nervosa."><link rel="canonical" href="https://calpro.com/anorexic-bmi-calculator/"><meta property="og:type" content="website"><meta property="og:url" content="https://calpro.com/anorexic-bmi-calculator/"><meta property="og:title" content="Anorexic BMI Calculator: Understand BMI and Eating-Disorder Screening"><meta property="og:description" content="Calculate BMI from height and weight, understand adult and teen interpretation, and learn why BMI alone cannot diagnose anorexia nervosa."><meta property="og:site_name" content="Anorexic BMI Calculator: Understand BMI and Eating-Disorder Screening"><meta name="twitter:card" content="summary"><meta name="twitter:url" content="https://calpro.com/anorexic-bmi-calculator/"><meta name="twitter:title" content="Anorexic BMI Calculator: Understand BMI and Eating-Disorder Screening"><meta name="twitter:description" content="Calculate BMI from height and weight, understand adult and teen interpretation, and learn why BMI alone cannot diagnose anorexia nervosa.">
+
   <!--schema-->
-  <!--style-->
+  <style id="calcpro-anorexic-styles">
+/* All calculator-only styles are scoped; global cp-* layout remains unchanged. */
+.calcpro-anorexic{--an-blue:#125217;--an-green:#4a8123;--an-panel:#ededed;--an-line:#b8c3ce;color:#121212;font:16px/1.45 Arial,Helvetica,sans-serif;width:100%;min-width:0}
+.calcpro-anorexic *{box-sizing:border-box}
+.calcpro-anorexic button,.calcpro-anorexic input,.calcpro-anorexic select{font:inherit}
+.calcpro-anorexic button{cursor:pointer}
+.calcpro-anorexic :is(button,input,select):focus-visible{outline:3px solid #71a6d9;outline-offset:2px}
+.calcpro-anorexic .calcpro-anorexic-instruction{display:flex;align-items:center;justify-content:center;gap:12px;padding:11px 12px;background:var(--an-blue);color:#fff;font-size:17px;line-height:1.3;text-align:center;margin:0 0 9px}
+.calcpro-anorexic .calcpro-anorexic-chevron{display:grid;place-items:center;flex:0 0 24px;width:24px;height:24px;border-radius:50%;background:#fff;color:var(--an-blue);font-size:18px;line-height:1}
+.calcpro-anorexic .calcpro-anorexic-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:19px;align-items:start}
+.calcpro-anorexic .calcpro-anorexic-left,.calcpro-anorexic .calcpro-anorexic-right{min-width:0}
+.calcpro-anorexic .calcpro-anorexic-tabs{display:flex;align-items:stretch;gap:4px;max-width:100%}
+.calcpro-anorexic .calcpro-anorexic-tab{border:1px solid var(--an-blue);background:var(--an-blue);padding:8px 8px;font-size:15px;font-weight:700;line-height:1.1;color:#fff;white-space:nowrap;min-width:0}
+.calcpro-anorexic .calcpro-anorexic-tab[aria-selected="true"]{background:var(--an-panel);border-color:#bcc6ce;border-bottom-color:var(--an-panel);color:#111;position:relative;z-index:1}
+.calcpro-anorexic .calcpro-anorexic-formbox{background:var(--an-panel);border:1px solid #c0c0c0;padding:14px 12px 11px;margin-top:-1px}
+.calcpro-anorexic .calcpro-anorexic-row{display:grid;grid-template-columns:70px minmax(0,1fr);gap:8px;align-items:center;margin:0 0 9px}
+.calcpro-anorexic .calcpro-anorexic-label{font-size:17px;white-space:nowrap}
+.calcpro-anorexic .calcpro-anorexic-field{min-width:0;width:100%;border:1px solid #316797;border-radius:3px;background:white;padding:7px 9px;height:38px;box-shadow:1px 2px 3px #0002;color:#111}
+.calcpro-anorexic .calcpro-anorexic-unitfield{position:relative;min-width:0;width:100%}
+.calcpro-anorexic .calcpro-anorexic-unitfield input{padding-right:43px}
+.calcpro-anorexic .calcpro-anorexic-unittag{position:absolute;right:9px;top:50%;transform:translateY(-50%);pointer-events:none;color:#777;font-size:15px}
+.calcpro-anorexic .calcpro-anorexic-gender{display:flex;gap:15px;align-items:center;flex-wrap:wrap;padding:2px 0;min-height:34px}
+.calcpro-anorexic .calcpro-anorexic-radio{display:inline-flex;align-items:center;gap:6px;font-size:15px;cursor:pointer;white-space:nowrap}
+.calcpro-anorexic .calcpro-anorexic-radio input{width:18px;height:18px;margin:0;accent-color:var(--an-blue)}
+.calcpro-anorexic .calcpro-anorexic-pair{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:6px}
+.calcpro-anorexic .calcpro-anorexic-pair .calcpro-anorexic-unitfield input{padding-right:32px}
+.calcpro-anorexic .calcpro-anorexic-pair .calcpro-anorexic-unittag{right:7px;font-size:13px}
+.calcpro-anorexic .calcpro-anorexic-otherrow{display:grid;grid-template-columns:minmax(0,1fr) minmax(94px,.72fr);gap:6px}
+.calcpro-anorexic .calcpro-anorexic-select{border:1px solid #316797;background:#fff;min-width:0;width:100%;padding:5px;height:38px;border-radius:3px}
+.calcpro-anorexic .calcpro-anorexic-actionrow{display:flex;align-items:center;justify-content:flex-end;gap:6px;margin-top:13px;flex-wrap:wrap}
+.calcpro-anorexic .calcpro-anorexic-calculate{border:0;background:var(--an-green);color:white;font-size:16px;font-weight:700;padding:9px 13px;min-height:39px}
+.calcpro-anorexic .calcpro-anorexic-play{display:inline-grid;place-items:center;border-radius:50%;background:#b4d49a;color:#fff;font-size:17px;width:23px;height:23px;margin-left:8px;vertical-align:middle}
+.calcpro-anorexic .calcpro-anorexic-clear{background:#aaa;color:white;border:0;min-height:39px;padding:9px 12px}
+.calcpro-anorexic .calcpro-anorexic-error{font-size:13px;color:#a31717;line-height:1.4;margin:7px 0 0;min-height:0}
+.calcpro-anorexic .calcpro-anorexic-error:empty{display:none}
+.calcpro-anorexic .calcpro-anorexic-field[aria-invalid="true"]{border-color:#b31e1e;box-shadow:0 0 0 1px #b31e1e}
+.calcpro-anorexic .calcpro-anorexic-resultheading{min-height:44px;display:flex;justify-content:space-between;gap:8px;align-items:center;background:var(--an-green);color:#fff;padding:7px 9px;font-size:21px;line-height:1.2}
+.calcpro-anorexic .calcpro-anorexic-save{display:flex;align-items:center;gap:4px;background:transparent;border:1px solid transparent;color:#fff;padding:3px 4px;font-size:11px;line-height:1.1}
+.calcpro-anorexic .calcpro-anorexic-save svg{width:18px;height:18px}
+.calcpro-anorexic .calcpro-anorexic-save:disabled{opacity:.5;cursor:not-allowed}
+.calcpro-anorexic .calcpro-anorexic-resultbody{padding:6px 1px 3px;font-size:16px;line-height:1.38;min-height:171px}
+.calcpro-anorexic .calcpro-anorexic-bmi{font-size:18px;margin:0 0 3px}
+.calcpro-anorexic .calcpro-anorexic-message{font-weight:700;color:green;font-size:17px;margin:3px 0 25px;line-height:1.22}
+.calcpro-anorexic .calcpro-anorexic-message.calcpro-anorexic-attention{color:#9a4a00}
+.calcpro-anorexic .calcpro-anorexic-message.calcpro-anorexic-youth{color:#284f7a}
+.calcpro-anorexic .calcpro-anorexic-reference{margin:0 0 2px}
+.calcpro-anorexic .calcpro-anorexic-not-diagnosis{font-weight:700;margin:0}
+.calcpro-anorexic .calcpro-anorexic-detail{color:#333;font-size:12px;margin:9px 0 0}
+.calcpro-anorexic .calcpro-anorexic-placeholder{font-size:15px;color:#555;margin:9px 0}
+.calcpro-anorexic .calcpro-anorexic-disclaimer{margin:14px 0 0;font-size:14px;line-height:1.5}
+.calcpro-anorexic .calcpro-anorexic-disclaimer a{color:#006699}
+.calcpro-anorexic .calcpro-anorexic-resultbody[aria-busy="true"]{opacity:.7}
+@media(max-width:720px){.calcpro-anorexic .calcpro-anorexic-grid{grid-template-columns:1fr;gap:14px}.calcpro-anorexic .calcpro-anorexic-resultbody{min-height:0}.calcpro-anorexic .calcpro-anorexic-tab{font-size:15px}}
+@media(max-width:380px){.calcpro-anorexic .calcpro-anorexic-formbox{padding:11px 8px}.calcpro-anorexic .calcpro-anorexic-tabs{gap:2px}.calcpro-anorexic .calcpro-anorexic-tab{font-size:13px;padding:9px 6px}.calcpro-anorexic .calcpro-anorexic-row{grid-template-columns:59px minmax(0,1fr);gap:5px}.calcpro-anorexic .calcpro-anorexic-label{font-size:15px}.calcpro-anorexic .calcpro-anorexic-gender{gap:10px}.calcpro-anorexic .calcpro-anorexic-radio{font-size:14px}.calcpro-anorexic .calcpro-anorexic-instruction{font-size:14px}}
+@media print{.calcpro-anorexic .calcpro-anorexic-instruction,.calcpro-anorexic .calcpro-anorexic-save,.calcpro-anorexic .calcpro-anorexic-actionrow{display:none!important}.calcpro-anorexic .calcpro-anorexic-grid{display:grid;grid-template-columns:1fr 1fr}.calcpro-anorexic .calcpro-anorexic-resultheading{print-color-adjust:exact;-webkit-print-color-adjust:exact}}
+</style>
 </head>
 
 <body>
-<!-- Main-header-page -->
+<div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="fitness-and-health-calculator.html">Fitness &amp; Health</a> / Anorexic BMI Calculator</nav><h1 class="cp-page-title">Anorexic BMI Calculator</h1><p class="cp-intro">This calculator estimates body mass index (BMI) from height and weight and puts the number in the context of possible low body weight. BMI is a screening measurement, not a test for anorexia nervosa. A person can have an eating disorder at any body size, and an unexpectedly low BMI can have causes other than an eating disorder.
+Use the number as a starting point for understanding a measurement, not as a verdict about someone’s health or a weight to aim for. If eating, weight changes, or body-image concerns are causing distress, a qualified healthcare professional can assess the whole picture.
+</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-anorexic" id="calcpro-anorexic-root">
+<div class="info-bar"><span class="info-icon"><img src="/assets/images/info-circle.svg" alt="Info Circle" srcset="/assets/images/info-circle.svg" height="24px"></span><span class="info-text">Customize your inputs and calculate your results instantly.</span></div>
+<div class="calcpro-anorexic-grid">
+<div class="calcpro-anorexic-left">
+<div aria-label="Measurement units" class="calcpro-anorexic-tabs" role="tablist">
+<button aria-controls="calcpro-anorexic-panel-us" aria-selected="false" class="calcpro-anorexic-tab" data-unit-tab="us" id="calcpro-anorexic-tab-us" role="tab" type="button">US Units</button>
+<button aria-controls="calcpro-anorexic-panel-metric" aria-selected="true" class="calcpro-anorexic-tab" data-unit-tab="metric" id="calcpro-anorexic-tab-metric" role="tab" type="button">Metric Units</button>
+<button aria-controls="calcpro-anorexic-panel-other" aria-selected="false" class="calcpro-anorexic-tab" data-unit-tab="other" id="calcpro-anorexic-tab-other" role="tab" type="button">Other Units</button>
+</div>
+<form class="calcpro-anorexic-formbox" id="calcpro-anorexic-form" novalidate="">
+<div class="calcpro-anorexic-row"><label class="calcpro-anorexic-label" for="calcpro-anorexic-age">Age</label><input autocomplete="off" class="calcpro-anorexic-field" id="calcpro-anorexic-age" inputmode="decimal" max="120" min="2" step="any" type="number" value="22"/></div>
+<div class="calcpro-anorexic-row"><span class="calcpro-anorexic-label" id="calcpro-anorexic-sex-label">Gender</span><div aria-labelledby="calcpro-anorexic-sex-label" class="calcpro-anorexic-gender" role="group"><label class="calcpro-anorexic-radio"><input checked="" name="calcpro-anorexic-sex" type="radio" value="f"/>female</label><label class="calcpro-anorexic-radio"><input name="calcpro-anorexic-sex" type="radio" value="m"/>male</label></div></div>
+<div aria-labelledby="calcpro-anorexic-tab-metric" id="calcpro-anorexic-panel-metric" role="tabpanel">
+<div class="calcpro-anorexic-row"><label class="calcpro-anorexic-label" for="calcpro-anorexic-cm">Height</label><div class="calcpro-anorexic-unitfield"><input class="calcpro-anorexic-field" id="calcpro-anorexic-cm" inputmode="decimal" min="0" step="any" type="number" value="170"/><span class="calcpro-anorexic-unittag">cm</span></div></div>
+<div class="calcpro-anorexic-row"><label class="calcpro-anorexic-label" for="calcpro-anorexic-kg">Weight</label><div class="calcpro-anorexic-unitfield"><input class="calcpro-anorexic-field" id="calcpro-anorexic-kg" inputmode="decimal" min="0" step="any" type="number" value="52"/><span class="calcpro-anorexic-unittag">kg</span></div></div>
+</div>
+<div aria-labelledby="calcpro-anorexic-tab-us" hidden="" id="calcpro-anorexic-panel-us" role="tabpanel">
+<div class="calcpro-anorexic-row"><span class="calcpro-anorexic-label">Height</span><div class="calcpro-anorexic-pair"><div class="calcpro-anorexic-unitfield"><input aria-label="Height in feet" class="calcpro-anorexic-field" id="calcpro-anorexic-feet" inputmode="numeric" min="0" step="1" type="number" value="5"/><span class="calcpro-anorexic-unittag">ft</span></div><div class="calcpro-anorexic-unitfield"><input aria-label="Additional inches" class="calcpro-anorexic-field" id="calcpro-anorexic-inches" inputmode="decimal" max="11.9999" min="0" step="any" type="number" value="10.8661"/><span class="calcpro-anorexic-unittag">in</span></div></div></div>
+<div class="calcpro-anorexic-row"><label class="calcpro-anorexic-label" for="calcpro-anorexic-pounds">Weight</label><div class="calcpro-anorexic-unitfield"><input class="calcpro-anorexic-field" id="calcpro-anorexic-pounds" inputmode="decimal" min="0" step="any" type="number" value="132.2774"/><span class="calcpro-anorexic-unittag">lb</span></div></div>
+</div>
+<div aria-labelledby="calcpro-anorexic-tab-other" hidden="" id="calcpro-anorexic-panel-other" role="tabpanel">
+<div class="calcpro-anorexic-row"><label class="calcpro-anorexic-label" for="calcpro-anorexic-other-height">Height</label><div class="calcpro-anorexic-otherrow"><input class="calcpro-anorexic-field" id="calcpro-anorexic-other-height" inputmode="decimal" min="0" step="any" type="number" value="1.8"/><select aria-label="Height unit" class="calcpro-anorexic-select" id="calcpro-anorexic-other-height-unit"><option value="m">meters</option><option value="cm">cm</option><option value="mm">mm</option><option value="in">inches</option><option value="ft">feet</option><option value="yd">yards</option></select></div></div>
+<div class="calcpro-anorexic-row"><label class="calcpro-anorexic-label" for="calcpro-anorexic-other-weight">Weight</label><div class="calcpro-anorexic-otherrow"><input class="calcpro-anorexic-field" id="calcpro-anorexic-other-weight" inputmode="decimal" min="0" step="any" type="number" value="60000"/><select aria-label="Weight unit" class="calcpro-anorexic-select" id="calcpro-anorexic-other-weight-unit"><option value="g">grams</option><option value="kg">kg</option><option value="lb">pounds</option><option value="oz">ounces</option><option value="st">stone</option></select></div></div>
+</div>
+<p class="calcpro-anorexic-error" id="calcpro-anorexic-error" role="alert"></p>
+<div class="calcpro-anorexic-actionrow"><button class="calcpro-anorexic-calculate" type="submit">Calculate <span aria-hidden="true" class="calcpro-anorexic-play">▶</span></button><button class="calcpro-anorexic-clear" id="calcpro-anorexic-clear" type="button">Clear</button></div>
+</form>
+</div>
+<div class="calcpro-anorexic-right">
+<div class="calcpro-anorexic-resultheading"><span>Result</span><button aria-label="Print or save calculation as PDF" class="calcpro-anorexic-save" id="calcpro-anorexic-save" title="Print or save this calculation as a PDF" type="button"><svg aria-hidden="true" fill="currentColor" viewbox="0 0 24 24"><path d="M5 3h13l3 3v15H3V3h2zm2 1v6h10V4H7zm5 9a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"></path><path d="M9 4h6v4H9z"></path></svg><span>save</span></button></div>
+<div aria-atomic="true" aria-live="polite" class="calcpro-anorexic-resultbody" id="calcpro-anorexic-result" role="status">
+<p class="calcpro-anorexic-bmi">BMI = <strong id="calcpro-anorexic-bmi-value" style="font-weight:normal">18.52</strong> kg/m<sup>2</sup></p>
+<p class="calcpro-anorexic-message" id="calcpro-anorexic-message">Your calculated BMI does not suggest anorexia nervosa.</p>
+<p class="calcpro-anorexic-reference" id="calcpro-anorexic-reference">Healthy BMI range: 18.5 - 25 kg/m<sup>2</sup></p>
+<p class="calcpro-anorexic-not-diagnosis">The result above is not a diagnosis</p>
+<p class="calcpro-anorexic-detail" id="calcpro-anorexic-detail">BMI cannot confirm or rule out an eating disorder.</p>
+</div>
+</div>
+</div>
+<p class="calcpro-anorexic-disclaimer">Low BMI or body weight is just one physical feature that may accompany anorexia. Not all low BMI or body weight is related to anorexia, and a person may have an eating disorder at any BMI. Learn more about <a href="https://www.nice.org.uk/guidance/ng69/chapter/recommendations" rel="noopener noreferrer" target="_blank">clinical assessment of eating disorders</a>.</p>
+</div></section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><a href="bmi-calculator.html">BMI</a><a href="body-fat-calculator.html">Body Fat</a><a href="ideal-weight-calculator.html">Ideal Weight</a><a href="healthy-weight-calculator.html">Healthy Weight</a><a href="bmr-calculator.html">BMR</a><a href="calorie-calculator.html">Calorie</a><a href="lean-body-mass-calculator.html">Lean Body Mass</a><a href="body-surface-area-calculator.html">Body Surface Area</a><a href="protein-calculator.html">Protein</a><a href="macro-calculator.html">Macro</a><a href="age-calculator.html">Age</a><a href="tdee-calculator.html">TDEE</a></div></section></aside>  
+<article class="cp-article"><h2><strong>How to use the calculator</strong></h2><ol><li><strong>Choose the measurement system</strong> that matches your measurements. Depending on the available interface, unit choices may include US units, metric units, and an additional unit-selection tab.</li><li><strong>Enter age and the requested</strong> sex/gender selection, then enter height and weight in the displayed units. In US units, the visible fields use feet, inches, and pounds; the metric form uses centimeters and kilograms.</li><li><strong>Select Calculate</strong> to see the BMI result.</li></ol><p class="cp-doc-pro-tip"><strong>💡 Tip: </strong>Use measured height without shoes and a reasonably recent weight. Check the unit labels before calculating: for example, kilograms and pounds are not interchangeable. The mathematical BMI formula is the same for all adults; age and sex become especially important when interpreting BMI during childhood and adolescence.</p><h3><strong>What the result means</strong></h3><p>The principal output is a BMI value in kg/m². A result message may say whether the number appears consistent with the calculator’s low-BMI screening rule, and the page may display an adult reference range. These are screening labels, not diagnostic findings. A message that the result does not suggest anorexia cannot exclude restrictive eating, atypical anorexia, or another eating disorder.</p><h2><strong>How BMI is calculated</strong></h2><p>BMI expresses weight in relation to height squared. With metric measurements, BMI = weight in kilograms ÷ (height in meters)². With US customary measurements, BMI = 703 × weight in pounds ÷ (height in inches)². Convert centimeters to meters by dividing by 100; convert feet to inches by multiplying feet by 12 and adding the extra inches.</p><p>Example (an illustrative adult measurement, not a target): for 70 kg and 1.75 m, BMI = 70 ÷ (1.75 × 1.75) = 70 ÷ 3.0625 ≈ 22.86 kg/m². The same BMI is obtained using consistent customary units, apart from minor rounding. BMI describes a ratio; it does not directly measure fat percentage, muscle, nutritional deficiencies, or mental health.</p><h2><strong>Adult BMI categories and clinical meaning</strong></h2><p>For adults age 20 and older, CDC classifies BMI below 18.5 kg/m² as underweight, 18.5 to below 25 as healthy weight, 25 to below 30 as overweight, and 30 or higher as obesity. These are population-level screening categories; an individual’s health requires context. Neither the 18.5 threshold nor a lower historical cutoff such as 17.5 establishes an anorexia diagnosis.</p><p>Anorexia nervosa is assessed from a combination of eating restriction, low weight in the relevant developmental and health context, fear of weight gain or behaviors interfering with weight restoration, changes in the experience of body weight or shape, and the person’s physical and mental health. Clinicians also consider rapid weight loss and whether the person has failed to gain expected weight during growth.</p><h3><strong>Why BMI-based severity labels require caution</strong></h3><p>Some psychiatric diagnostic references provide adult BMI-based severity specifiers after anorexia nervosa has already been diagnosed. The minimum specifier is not the same as medical stability or the need for treatment. Clinical symptoms, functioning, rate of weight change, vital signs, and other findings can indicate greater severity at any BMI. The numeric boundaries below are clinical descriptors, not goals or standalone diagnostic tests.</p><div aria-label="APR comparison table 1" class="cp-doc-table-scroll" role="region" tabindex="0"><table class="cp-doc-table"><tbody><tr><th scope="col"><p><strong>Severity specifier</strong></p></th><th scope="col"><p><strong>Adult BMI (kg/m²)</strong></p></th><th scope="col"><p><strong>Clinical meaning</strong></p></th></tr><tr><td><p>Mild</p></td><td><p>≥17</p></td><td><p>Not proof of low risk</p></td></tr><tr><td><p>Moderate</p></td><td><p>16.00–16.99</p></td><td><p>Not a hospitalization rule</p></td></tr><tr><td><p>Severe</p></td><td><p>15.00–15.99</p></td><td><p>Physical risk needs separate assessment</p></td></tr><tr><td><p>Extreme</p></td><td><p>&lt;15</p></td><td><p>Urgent risk assessment depends on full presentation</p></td></tr></tbody></table></div><p>In particular, “mild” in a BMI-based classification does not mean harmless, and no particular BMI alone reliably predicts the onset of organ damage. The medical risk of malnutrition cannot be reduced to a single exact number. NICE specifically advises against using a single BMI measurement to decide whether treatment or hospital care is needed.</p><h2><strong>Children and teenagers need BMI-for-age interpretation</strong></h2><p>An adult BMI cutoff should not be applied mechanically to a child or teenager. For ages 2 through 19, CDC interprets BMI using age- and sex-specific growth-chart percentiles. A value below the 5th percentile is classified as underweight in that screening system, but growth history and development are essential to interpretation. A child may need assessment because of slowed growth or failure to gain expected weight even without an obvious decline on a scale.</p><p>If the calculator displays only a raw BMI number or a simplified anorexia warning, do not substitute that message for a pediatric BMI-for-age percentile or clinical assessment. An age-appropriate growth-chart calculator and a pediatric healthcare professional are more suitable for interpreting the number.</p><h2><strong>Why the result cannot diagnose or rule out an eating disorder</strong></h2><p>Eating disorders affect people of different ages, sexes, and body weights. Someone whose BMI lies in a usual adult reference range may still experience significant restriction, intense fear related to weight or shape, rapid weight change, or health complications. Atypical anorexia is an example in which anorexia-like symptoms and substantial weight loss occur without low weight by standard cutoffs. Conversely, lower weight may arise from another illness, medication effect, or an individual health circumstance.</p><figure class="cp-doc-figure"><img alt="" class="cp-doc-image" decoding="async" loading="lazy" src="/assets/images/anorexic-bmi-calculator.png" /><figcaption><em>Figure 1. BMI is one screening input; symptoms, growth or weight-change history, and clinical findings are needed for interpretation.</em></figcaption></figure><p>A clinical evaluation may cover eating patterns, exercise, weight history, distress about eating or body image, medical history, vital signs, and a physical examination. Depending on symptoms, a clinician may order blood tests or an electrocardiogram and assess co-occurring anxiety, depression, or other concerns. No single questionnaire, BMI reading, or laboratory test replaces this assessment.</p><h2><strong>Health concerns and when to seek help</strong></h2><p>Signs worth discussing with a healthcare professional include persistent food restriction, distress around meals, fear of weight gain, frequent weight-checking, compulsive exercise, purging behaviors, rapid weight loss, dizziness, unusual fatigue, missed or delayed periods, and withdrawal from social situations involving food. Eating disorders can affect the heart, bones, digestion, hormones, and psychological well-being.</p><p>Seek prompt professional assessment if you suspect an eating disorder, regardless of the BMI result. Fainting, chest pain, serious weakness, confusion, a markedly irregular heartbeat, or immediate safety concerns warrant urgent medical attention. Treatment may involve coordinated medical monitoring, psychological care, and nutritional support; early intervention matters.</p><h2><strong>Limitations and measurement tips</strong></h2><p class="cp-doc-pro-tip">💡 Tip: BMI is sensitive to the accuracy of height and weight measurements and to the units selected. A small error in height can change the result because height is squared. Rounding a value near a category boundary may change the displayed category without indicating a meaningful change in health. Compare measurements taken consistently rather than focusing on a hundredth of a BMI unit.</p><p>BMI also cannot reveal muscle mass, body composition, hydration status, eating behaviors, or the trajectory of recent weight change. Standard adult BMI categories are not a substitute for interpretation during growth or pregnancy, or for someone whose medical situation changes how weight should be evaluated. A clinician can explain when additional measurements are more informative.</p><section class="cp-accordion-section cp-accordion-sources" aria-label="Sources and methodology"><div class="cp-accordion-list"><div class="cp-accordion-item" data-open="false"><h2 class="cp-accordion-item-heading"><button class="cp-accordion-trigger" id="cp-apr-sources-toggle" type="button" aria-expanded="false" aria-controls="cp-apr-sources-panel"><h2 class="cp-accordion-question-text">Sources and further reading</h2><span class="cp-accordion-chevron" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="m6 9 6 6 6-6"></path></svg></span></button></h2><div class="cp-accordion-panel" id="cp-apr-sources-panel" role="region" aria-labelledby="cp-apr-sources-toggle" aria-hidden="true" inert><div class="cp-accordion-panel-inner"><div class="cp-accordion-panel-content"><p class="cp-doc-source"><a href="https://www.cdc.gov/bmi/adult-calculator/bmi-categories.html">CDC: Adult BMI Categories</a></p><p class="cp-doc-source"><a href="https://www.cdc.gov/bmi/child-teen-calculator/bmi-categories.html">CDC: Child and Teen BMI Categories</a></p><p class="cp-doc-source"><a href="https://www.nice.org.uk/guidance/ng69/chapter/recommendations">NICE: Eating disorders: recognition and treatment (NG69)</a></p><p class="cp-doc-source"><a href="https://www.nimh.nih.gov/health/publications/eating-disorders">NIMH: Eating Disorders: What You Need to Know</a></p><p class="cp-doc-source"><a href="https://psychiatryonline.org/doi/10.1176/appi.focus.20240009">APA/Focus: Practice Assessment Tool for the Care of Patients With Eating Disorders</a></p><p>Editorial source review: October 31, 2026. Information is educational and not a clinical diagnosis or individualized treatment recommendation.</p></div></div></div></div></div></section></article></main></div><script id="calcpro-anorexic-script">
+(()=>{'use strict';
+ const root=document.getElementById('calcpro-anorexic-root');if(!root)return;
+ const el=id=>root.querySelector('#calcpro-anorexic-'+id);
+ const form=el('form'),error=el('error'),save=el('save');
+ const fields={age:el('age'),cm:el('cm'),kg:el('kg'),feet:el('feet'),inches:el('inches'),pounds:el('pounds'),otherHeight:el('other-height'),otherWeight:el('other-weight'),otherHeightUnit:el('other-height-unit'),otherWeightUnit:el('other-weight-unit')};
+ const tabs=[...root.querySelectorAll('[data-unit-tab]')];
+ const H={m:1,cm:.01,mm:.001,in:.0254,ft:.3048,yd:.9144};
+ const W={kg:1,g:.001,lb:.45359237,oz:.028349523125,st:6.35029318};
+ let active='metric',canonical={heightMeters:1.8,weightKg:60},hasResult=true;
+ const val=field=>{let s=field.value.trim();return s===''?NaN:Number(s)};
+ const valid=n=>Number.isFinite(n);
+ const clean=(num,digits)=>Number(num.toFixed(digits)).toString();
+ function measurement(unit){
+  if(unit==='metric')return {heightMeters:val(fields.cm)*.01,weightKg:val(fields.kg)};
+  if(unit==='us'){
+   const ft=val(fields.feet),inch=val(fields.inches);
+   return {heightMeters:(ft*12+inch)*.0254,weightKg:val(fields.pounds)*W.lb,feet:ft,inches:inch};
+  }
+  return {heightMeters:val(fields.otherHeight)*H[fields.otherHeightUnit.value],weightKg:val(fields.otherWeight)*W[fields.otherWeightUnit.value]};
+ }
+ function normalized(m){return valid(m.heightMeters)&&m.heightMeters>0&&m.heightMeters<=3.5&&valid(m.weightKg)&&m.weightKg>0&&m.weightKg<=1000;}
+ function fill(unit){
+  if(unit==='metric'){
+   fields.cm.value=clean(canonical.heightMeters*100,5);fields.kg.value=clean(canonical.weightKg,5);
+  } else if(unit==='us'){
+   let inches=canonical.heightMeters/.0254,ft=Math.floor(inches/12),remainder=inches-ft*12;
+   if(remainder>=11.99995){ft++;remainder=0;}
+   fields.feet.value=ft;fields.inches.value=clean(remainder,4);
+   fields.pounds.value=clean(canonical.weightKg/W.lb,4);
+  } else {
+   fields.otherHeight.value=clean(canonical.heightMeters/H[fields.otherHeightUnit.value],6);
+   fields.otherWeight.value=clean(canonical.weightKg/W[fields.otherWeightUnit.value],6);
+  }
+ }
+ function switchTo(unit){
+  if(unit===active)return;
+  const m=measurement(active);if(normalized(m))canonical={heightMeters:m.heightMeters,weightKg:m.weightKg};
+  active=unit;if(normalized(m)||hasResult)fill(active);
+  tabs.forEach(t=>{let chosen=t.dataset.unitTab===unit;t.setAttribute('aria-selected',String(chosen));t.tabIndex=chosen?0:-1;});
+  ['us','metric','other'].forEach(t=>{el('panel-'+t).hidden=(t!==unit);});
+  error.textContent='';
+  root.querySelectorAll('[aria-invalid="true"]').forEach(f=>f.removeAttribute('aria-invalid'));
+  if(hasResult)calculate(false);
+ }
+ tabs.forEach((tab,i)=>{
+  tab.addEventListener('click',()=>switchTo(tab.dataset.unitTab));
+  tab.addEventListener('keydown',e=>{if(!['ArrowLeft','ArrowRight','Home','End'].includes(e.key))return;e.preventDefault();let next=e.key==='Home'?0:e.key==='End'?tabs.length-1:(i+(e.key==='ArrowRight'?1:-1)+tabs.length)%tabs.length;switchTo(tabs[next].dataset.unitTab);tabs[next].focus();});
+ });
+ function unitSelect(which){
+  const measure=measurement('other');if(normalized(measure))canonical={heightMeters:measure.heightMeters,weightKg:measure.weightKg};
+  // Keep the opposite measurement as entered; only convert the changed dimension.
+  if(which==='height')fields.otherHeight.value=clean(canonical.heightMeters/H[fields.otherHeightUnit.value],6);
+  else fields.otherWeight.value=clean(canonical.weightKg/W[fields.otherWeightUnit.value],6);
+ }
+ // Record previous select values so conversions use the old unit instead of the newly selected unit.
+ ['height','weight'].forEach(which=>{
+  const fld=which==='height'?fields.otherHeightUnit:fields.otherWeightUnit;
+  let previous=fld.value;
+  fld.addEventListener('change',()=>{
+   const numeric=val(which==='height'?fields.otherHeight:fields.otherWeight);
+   if(!hasResult&&!valid(numeric)){previous=fld.value;return;}
+   if(valid(numeric)&&numeric>0){
+    if(which==='height')canonical.heightMeters=numeric*H[previous];
+    else canonical.weightKg=numeric*W[previous];
+   }
+   previous=fld.value;
+   if(which==='height')fields.otherHeight.value=clean(canonical.heightMeters/H[fld.value],6);
+   else fields.otherWeight.value=clean(canonical.weightKg/W[fld.value],6);
+   if(active==='other'&&hasResult)calculate(false);
+  });
+ });
+ function render(bmi,age){
+  const result=el('result');result.textContent='';
+  const p=(className,text)=>{const e=document.createElement('p');e.className=className;e.textContent=text;result.appendChild(e);return e;};
+  const bmiLine=p('calcpro-anorexic-bmi','BMI = '+bmi.toFixed(2)+' kg/m²');bmiLine.dataset.value=bmi.toFixed(2);
+  if(age<20){
+   p('calcpro-anorexic-message calcpro-anorexic-youth','For ages 2–19, BMI needs to be assessed with a sex- and age-specific growth chart.');
+   p('calcpro-anorexic-reference','An adult BMI threshold cannot be used to assess anorexia nervosa in children or teens.');
+   p('calcpro-anorexic-not-diagnosis','The result above is not a diagnosis');
+   p('calcpro-anorexic-detail','Ask a healthcare professional to interpret BMI-for-age percentiles and growth history.');
+  }else{
+   const under=bmi<17.5;
+   p('calcpro-anorexic-message'+(under?' calcpro-anorexic-attention':''),under?'Your BMI is below 17.5, a low-BMI reference value. This does not establish anorexia nervosa.':'Your calculated BMI does not suggest anorexia nervosa.');
+   p('calcpro-anorexic-reference','Healthy adult BMI range: 18.5 – 25 kg/m²');
+   p('calcpro-anorexic-not-diagnosis','The result above is not a diagnosis');
+   p('calcpro-anorexic-detail','BMI alone cannot confirm or rule out anorexia nervosa or any eating disorder.');
+  }
+  save.disabled=false;hasResult=true;
+ }
+ function showError(message,input){error.textContent=message;if(input){input.setAttribute('aria-invalid','true');input.focus();}}
+ function calculate(focusErrors=true){
+  error.textContent='';root.querySelectorAll('[aria-invalid="true"]').forEach(f=>f.removeAttribute('aria-invalid'));
+  const age=val(fields.age),m=measurement(active);
+  if(!valid(age)||age<2||age>120){if(focusErrors)showError('Enter an age between 2 and 120 years.',fields.age);return false;}
+  if(active==='us'&&(!Number.isInteger(m.feet)||m.feet<0||!valid(m.inches)||m.inches<0||m.inches>=12)){
+   if(focusErrors)showError('Enter whole feet and inches from 0 up to (but not including) 12.',fields.inches);return false;
+  }
+  if(!valid(m.heightMeters)||m.heightMeters<.3||m.heightMeters>3.5){if(focusErrors)showError('Enter a height between 30 and 350 cm (or equivalent).',active==='metric'?fields.cm:active==='us'?fields.feet:fields.otherHeight);return false;}
+  if(!valid(m.weightKg)||m.weightKg<=0||m.weightKg>1000){if(focusErrors)showError('Enter a weight greater than 0 and no more than 1,000 kg (or equivalent).',active==='metric'?fields.kg:active==='us'?fields.pounds:fields.otherWeight);return false;}
+  canonical={heightMeters:m.heightMeters,weightKg:m.weightKg};render(m.weightKg/(m.heightMeters*m.heightMeters),age);return true;
+ }
+ form.addEventListener('submit',e=>{e.preventDefault();calculate(true)});
+ el('clear').addEventListener('click',()=>{
+  [fields.age,fields.cm,fields.kg,fields.feet,fields.inches,fields.pounds,fields.otherHeight,fields.otherWeight].forEach(input=>{input.value='';input.removeAttribute('aria-invalid')});
+  root.querySelector('input[name="calcpro-anorexic-sex"][value="f"]').checked=true;
+  error.textContent='';el('result').innerHTML='<p class="calcpro-anorexic-placeholder">Enter age, height, and weight, then select Calculate to see your BMI result.</p>';
+  save.disabled=true;hasResult=false;
+ });
+ save.addEventListener('click',()=>{if(!save.disabled)window.print();});
+ root.querySelectorAll('input').forEach(input=>input.addEventListener('input',()=>{input.removeAttribute('aria-invalid');error.textContent='';}));
+})();
+</script>
 <script defer src="/assets/js/data.js"></script>
-<script defer src="/assets/js/style.js"></script>
+<script defer src="/assets/js/style.js?v=20261110-2"></script>
 </body>
 </html>

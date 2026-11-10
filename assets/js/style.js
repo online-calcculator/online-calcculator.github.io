@@ -124,12 +124,19 @@
     }
     var base = file.replace(/\.html$/i, '').replace(/\s+\(\d+\)$/i, '');
     return tools.find(function (tool) { return tool.file.toLowerCase() === file; }) ||
-      tools.find(function (tool) { return tool.slug.toLowerCase() === base.replace(/-(?:calpro|standalone)$/i, ''); });
+      tools.find(function (tool) {
+        return tool.slug.toLowerCase() === base.replace(/-(?:calpro|standalone)$/i, '') ||
+          (toolRoutes[tool.slug] || '').toLowerCase() === base;
+      });
   }
 
   function enhanceSaveRestoreButtons() {
     Array.prototype.forEach.call(document.querySelectorAll('button'), function (button) {
-      if (button.classList.contains('cp-file-action') || button.closest('.calcpro-apr')) return;
+      if (button.classList.contains('cp-file-action') || button.id === 'calcpro-amort-save' ||
+          button.id === 'calcpro-age-save' || button.id === 'calcpro-annuity-save' ||
+          button.id === 'calcpro-anorexic-save' ||
+          button.classList.contains('calcpro-annuity-save') ||
+          button.closest('.calcpro-apr')) return;
 
       var text = button.textContent.replace(/\s+/g, ' ').trim();
       var details = [
@@ -145,7 +152,7 @@
 
       var labelText = action === 'restore' ? 'Restore' : /\bprint\b/i.test(text) ? text : 'Save';
       var icon = make('img');
-      icon.src = action === 'restore' ? 'restore-page.svg' : 'save-save-file.svg';
+      icon.src = action === 'restore' ? 'restore-page.svg' : '/assets/images/save-save-file.svg';
       icon.alt = '';
       icon.setAttribute('aria-hidden', 'true');
 
@@ -298,6 +305,8 @@
   ].join(',');
   var liveResultSelector = resultSelector + ',[aria-live="polite"],[role="status"]';
   var scrollTimer;
+  var infoBarDisplays = new WeakMap();
+  var infoBarStates = new WeakMap();
 
   function isVisible(element) {
     if (element.hidden || !element.textContent.trim()) return false;
@@ -327,6 +336,137 @@
     target.scrollIntoView({ behavior: behavior, block: 'start' });
   }
 
+  function hasCalculationError(scope) {
+    return Array.prototype.some.call(
+      scope.querySelectorAll('[id*="error" i],[class*="error" i],[role="alert"]'),
+      isVisible
+    );
+  }
+
+  function isActualResult(element) {
+      if (!isVisible(element) || element.closest('.info-bar')) return false;
+      if (/(?:placeholder|empty-state)/i.test(element.getAttribute('class') || '')) return false;
+
+      var text = (element.innerText || element.textContent).replace(/\s+/g, ' ').trim();
+      if (!text || /^(?:result|results|answer|output|summary)(?:\s+(?:save|print|download|copy))*$/i.test(text)) {
+        return false;
+      }
+      if (/^(?:enter\b|customize\b|select\b|calculate\b|your results?\b.*(?:appear|show)|results?\s+(?:will|appear)|no calculation\b)/i.test(text)) {
+        return false;
+      }
+      return !Array.prototype.some.call(
+        element.querySelectorAll('.placeholder,[class*="placeholder" i],[data-placeholder]'),
+        isVisible
+      );
+  }
+
+  function hasActualResult(scope) {
+    if (hasCalculationError(scope)) return false;
+    return Array.prototype.some.call(scope.querySelectorAll(liveResultSelector), isActualResult);
+  }
+
+  function updateInfoBars(scope) {
+    var state = infoBarStates.get(scope);
+    if (!state || !state.pending) return;
+    if (hasCalculationError(scope)) {
+      state.pending = false;
+      setInfoBarsHidden(scope, false);
+    } else if (hasActualResult(scope)) {
+      state.pending = false;
+      setInfoBarsHidden(scope, true);
+    }
+  }
+
+  function setInfoBarsHidden(scope, hidden) {
+    Array.prototype.forEach.call(scope.querySelectorAll('.info-bar'), function (infoBar) {
+      if (!infoBarDisplays.has(infoBar)) infoBarDisplays.set(infoBar, infoBar.style.display);
+      if (infoBar.hidden !== hidden) infoBar.hidden = hidden;
+      var display = hidden ? 'none' : infoBarDisplays.get(infoBar);
+      if (infoBar.style.display !== display) infoBar.style.display = display;
+    });
+  }
+
+  function beginInfoBarCalculation(scope) {
+    var state = infoBarStates.get(scope);
+    if (!state) return;
+    state.pending = true;
+    window.setTimeout(function () {
+      updateInfoBars(scope);
+    }, 100);
+  }
+
+  function resetInfoBar(scope) {
+    var state = infoBarStates.get(scope);
+    if (state) state.pending = false;
+    setInfoBarsHidden(scope, false);
+  }
+
+  function getActionDetails(button) {
+    return [
+      button.textContent || '',
+      button.value || '',
+      button.id || '',
+      typeof button.className === 'string' ? button.className : '',
+      button.getAttribute('aria-label') || '',
+      button.getAttribute('title') || ''
+    ].join(' ');
+  }
+
+  function infoBarScope(infoBar, toolArea) {
+    for (var current = infoBar.parentElement; current && toolArea.contains(current); current = current.parentElement) {
+      if (current.querySelectorAll('form').length > 0) return current;
+      if (current === toolArea) break;
+    }
+    return toolArea.querySelectorAll('form').length > 0 ? toolArea : null;
+  }
+
+  function initializeInfoBars() {
+    Array.prototype.forEach.call(document.querySelectorAll('.cp-tool-area'), function (toolArea) {
+      var scopes = [];
+      Array.prototype.forEach.call(toolArea.querySelectorAll('.info-bar'), function (infoBar) {
+        var scope = infoBarScope(infoBar, toolArea);
+        if (!scope) return;
+        if (scopes.indexOf(scope) === -1) scopes.push(scope);
+      });
+
+      scopes.forEach(function (scope) {
+        infoBarStates.set(scope, { pending: false });
+        setInfoBarsHidden(scope, false);
+        scope.addEventListener('submit', function () {
+          beginInfoBarCalculation(scope);
+        }, true);
+        scope.addEventListener('click', function (event) {
+          var button = event.target.closest('button,input[type="submit"],input[type="button"]');
+          if (!button || !scope.contains(button)) return;
+          var details = getActionDetails(button);
+          if (/\b(reset|clear)\b/i.test(details)) {
+            resetInfoBar(scope);
+          } else if (button.matches('button[type="submit"],input[type="submit"]') ||
+                     /\b(calculate|compute|convert|generate|solve|estimate|find|check|run|count|roll)\b/i.test(details)) {
+            beginInfoBarCalculation(scope);
+          }
+        }, true);
+
+        var observer = new MutationObserver(function () {
+          updateInfoBars(scope);
+        });
+        observer.observe(scope, {
+          attributes: true,
+          attributeFilter: ['class', 'hidden', 'style', 'aria-hidden'],
+          characterData: true,
+          childList: true,
+          subtree: true
+        });
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeInfoBars);
+  } else {
+    initializeInfoBars();
+  }
+
   function scheduleResultScroll(source) {
     window.clearTimeout(scrollTimer);
     scrollTimer = window.setTimeout(function () {
@@ -349,14 +489,7 @@
     var button = event.target.closest('button,input[type="submit"],input[type="button"]');
     if (!button || !button.closest('.cp-tool-area')) return;
 
-    var details = [
-      button.textContent || '',
-      button.value || '',
-      button.id || '',
-      button.className || '',
-      button.getAttribute('aria-label') || '',
-      button.getAttribute('title') || ''
-    ].join(' ');
+    var details = getActionDetails(button);
     if (/\b(save|restore|reset|clear|print|download|search|close|cancel)\b/i.test(details)) return;
     if (!button.matches('button[type="submit"],input[type="submit"]') &&
         !/\b(calculate|compute|convert|generate|solve|estimate|find|check|run|count|roll)\b/i.test(details)) return;
