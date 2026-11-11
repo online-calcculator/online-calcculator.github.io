@@ -477,7 +477,7 @@
   .cp-site .cp-article .cp-accordion-sources .cp-accordion-panel-content :is(p,li) { color: #111; }
   .cp-site .cp-article .cp-doc-formula { box-shadow: none; }
 }
-.formula{font-weight:700;color:var(--ink);background:#f4f7f1;padding:12px;border-radius:10px;border:1px solid var(--line);margin:10px 0 18px}
+.formula{font-weight:700;color:var(--ink);background:#e0e2de;padding:12px;border-radius:10px;border:1px solid var(--line);margin:10px 0 18px}
 .info-bar {
     width: 100%;
     min-height: 42px;

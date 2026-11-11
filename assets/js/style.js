@@ -132,7 +132,7 @@
 
   function enhanceSaveRestoreButtons() {
     Array.prototype.forEach.call(document.querySelectorAll('button'), function (button) {
-      if (button.classList.contains('cp-file-action') || button.id === 'calcpro-amort-save' ||
+      if (button.classList.contains('cp-universal-save') || button.classList.contains('cp-file-action') || button.id === 'calcpro-amort-save' ||
           button.id === 'calcpro-age-save' || button.id === 'calcpro-annuity-save' ||
           button.id === 'calcpro-anorexic-save' ||
           button.classList.contains('calcpro-annuity-save') ||
@@ -291,6 +291,315 @@
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();
+}());
+
+(function () {
+  'use strict';
+
+  var resultSelector = [
+    '[id*="result" i]', '[class*="result" i]',
+    '[id*="output" i]', '[class*="output" i]',
+    '[id*="answer" i]', '[class*="answer" i]',
+    '[id*="summary" i]', '[class*="summary" i]',
+    '[data-result]', '[aria-live="polite"]', '[role="status"]'
+  ].join(',');
+  var dialog;
+  var activeResult;
+  var saveTargets = new WeakMap();
+
+  function isVisible(element) {
+    if (element.hidden || element.closest('[hidden]')) return false;
+    var style = window.getComputedStyle(element);
+    return style.display !== 'none' && style.visibility !== 'hidden' && element.getClientRects().length > 0;
+  }
+
+  function isResult(element) {
+    if (!isVisible(element) || element.closest('.info-bar, .cp-tool-discovery')) return false;
+    if (/^(TABLE|TBODY|THEAD|TFOOT|TR|TD|TH)$/.test(element.tagName)) return false;
+    if (element.matches('[class*="error" i],[class*="placeholder" i],[class*="empty" i]')) return false;
+    if (element.querySelector('form')) return false;
+    var text = (element.innerText || element.textContent).replace(/\s+/g, ' ').trim();
+    if (!text || /^(?:result|results|answer|output|summary)(?:\s+(?:save|print|download|copy|restore))*$/i.test(text)) return false;
+    return !/^(?:enter\b|customize\b|select\b|calculate\b|your results?\b.*(?:appear|show)|results?\s+(?:will|appear)|no calculation\b)/i.test(text);
+  }
+
+  function makeSaveIcon() {
+    var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('viewBox', '0 0 24 24');
+    svg.setAttribute('aria-hidden', 'true');
+    var path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    path.setAttribute('d', 'M5 3h12l4 4v14H3V3h2zm1 2v5h10V5H6zm6 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z');
+    svg.appendChild(path);
+    return svg;
+  }
+
+  function isSaveAction(button) {
+    var details = [
+      button.textContent || '',
+      button.value || '',
+      button.id || '',
+      typeof button.className === 'string' ? button.className : '',
+      button.getAttribute('aria-label') || '',
+      button.getAttribute('title') || ''
+    ].join(' ');
+    return !/\brestore\b/i.test(details) &&
+      (button.hasAttribute('data-save') || /\b(save|print)\b/i.test(details));
+  }
+
+  function prepareSaveButton(button) {
+    button.type = 'button';
+    button.className = 'cp-universal-save';
+    button.disabled = false;
+    button.removeAttribute('data-cp-file-action');
+    button.setAttribute('aria-label', 'Save or export results');
+    button.title = 'Save or export these results';
+    button.textContent = '';
+    button.appendChild(makeSaveIcon());
+    var label = document.createElement('span');
+    label.textContent = 'Save';
+    button.appendChild(label);
+  }
+
+  function addSaveButton(result) {
+    if (!result.hasAttribute('data-cp-save-root')) result.setAttribute('data-cp-save-root', 'true');
+    if (result.querySelector('.cp-universal-save')) return;
+
+    var headingSelector = 'h2,h3,[class*="result"][class*="head"],[class*="result"][class*="heading"],[class*="result"][class*="title"],[class*="result"][class*="bar"],[class*="result"][class*="banner"],[class*="summary"][class*="heading"],[class*="headline"]';
+    var heading = result.querySelector(headingSelector);
+    if (!heading && result.previousElementSibling && result.previousElementSibling.matches(headingSelector)) {
+      heading = result.previousElementSibling;
+    }
+
+    var existing = Array.prototype.find.call(
+      result.querySelectorAll('button,input[type="button"],input[type="submit"]'),
+      isSaveAction
+    );
+    if (!existing && heading) {
+      existing = Array.prototype.find.call(
+        heading.querySelectorAll('button,input[type="button"],input[type="submit"]'),
+        isSaveAction
+      );
+    }
+    if (existing && existing.tagName === 'BUTTON') {
+      prepareSaveButton(existing);
+      saveTargets.set(existing, result);
+      return;
+    }
+
+    var button = document.createElement('button');
+    prepareSaveButton(button);
+    saveTargets.set(button, result);
+    if (existing) {
+      existing.replaceWith(button);
+      return;
+    }
+
+    if (heading) {
+      heading.appendChild(button);
+      return;
+    }
+
+    var toolbar = document.createElement('div');
+    toolbar.className = 'cp-save-toolbar';
+    toolbar.appendChild(button);
+    result.insertBefore(toolbar, result.firstChild);
+  }
+
+  function enhanceResults(scope) {
+    var candidates = Array.prototype.filter.call(scope.querySelectorAll(resultSelector), isResult);
+    candidates.filter(function (candidate) {
+      return !candidates.some(function (other) {
+        return other !== candidate && other.contains(candidate);
+      });
+    }).forEach(addSaveButton);
+  }
+
+  function createDialog() {
+    dialog = document.createElement('dialog');
+    dialog.className = 'cp-save-dialog';
+    dialog.setAttribute('aria-labelledby', 'cp-save-dialog-title');
+
+    var heading = document.createElement('h2');
+    heading.id = 'cp-save-dialog-title';
+    heading.textContent = 'Save your results';
+    dialog.appendChild(heading);
+
+    var close = document.createElement('button');
+    close.type = 'button';
+    close.className = 'cp-save-dialog-close';
+    close.setAttribute('aria-label', 'Close save options');
+    close.textContent = '×';
+    close.addEventListener('click', function () { dialog.close(); });
+    dialog.appendChild(close);
+
+    var options = document.createElement('div');
+    options.className = 'cp-save-dialog-options';
+    [
+      ['print', 'Print'],
+      ['text', 'Download .txt'],
+      ['pdf', 'Save as PDF']
+    ].forEach(function (option) {
+      var button = document.createElement('button');
+      button.type = 'button';
+      button.setAttribute('data-cp-export', option[0]);
+      button.textContent = option[1];
+      options.appendChild(button);
+    });
+    dialog.appendChild(options);
+
+    var note = document.createElement('p');
+    note.className = 'cp-save-dialog-note';
+    note.textContent = 'PDF export opens your browser’s print dialog. Choose “Save as PDF” as the destination.';
+    dialog.appendChild(note);
+
+    var status = document.createElement('p');
+    status.className = 'cp-save-dialog-status';
+    status.setAttribute('aria-live', 'polite');
+    dialog.appendChild(status);
+
+    dialog.addEventListener('click', function (event) {
+      var action = event.target.closest('[data-cp-export]');
+      if (!action) return;
+      var type = action.getAttribute('data-cp-export');
+      if (type === 'text') downloadText();
+      else if (type === 'print' || type === 'pdf') printResults();
+    });
+    dialog.addEventListener('click', function (event) {
+      if (event.target === dialog) dialog.close();
+    });
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape' && dialog.open) dialog.close();
+    });
+    document.body.appendChild(dialog);
+  }
+
+  function exportClone() {
+    if (!activeResult) return null;
+    var clone = activeResult.cloneNode(true);
+    Array.prototype.forEach.call(
+      clone.querySelectorAll('.cp-universal-save,.cp-save-toolbar,button,input,select,textarea,.info-bar,[hidden],[aria-hidden="true"],[data-cp-exclude-export]'),
+      function (element) { element.remove(); }
+    );
+    return clone;
+  }
+
+  function resultText() {
+    var clone = exportClone();
+    if (!clone) return '';
+    var staging = document.createElement('div');
+    staging.className = 'cp-save-export-staging';
+    staging.appendChild(clone);
+    document.body.appendChild(staging);
+    var text = (clone.innerText || clone.textContent || '').replace(/\u00a0/g, ' ').replace(/[ \t]+\n/g, '\n').replace(/\n{3,}/g, '\n\n').trim();
+    staging.remove();
+    return text;
+  }
+
+  function fileName(extension) {
+    var name = (document.title || 'calculator-results')
+      .replace(/\s*\|\s*.*$/, '')
+      .replace(/[<>:"/\\|?*\x00-\x1f]/g, '-')
+      .replace(/\s+/g, '-')
+      .replace(/-+/g, '-')
+      .replace(/^-|-$/g, '') || 'calculator-results';
+    return name + '-results.' + extension;
+  }
+
+  function downloadText() {
+    var text = resultText();
+    if (!text) {
+      dialog.querySelector('.cp-save-dialog-status').textContent = 'There are no results to save yet.';
+      return;
+    }
+    var blob = new Blob([text + '\r\n'], { type: 'text/plain;charset=utf-8' });
+    var url = URL.createObjectURL(blob);
+    var anchor = document.createElement('a');
+    anchor.href = url;
+    anchor.download = fileName('txt');
+    document.body.appendChild(anchor);
+    anchor.click();
+    anchor.remove();
+    window.setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+    dialog.close();
+  }
+
+  function printResults() {
+    var clone = exportClone();
+    var status = dialog.querySelector('.cp-save-dialog-status');
+    if (!clone) {
+      status.textContent = 'There are no results to save yet.';
+      return;
+    }
+
+    var toolArea = activeResult.closest('.cp-tool-area');
+    var styleRoot = activeResult.closest('.cp-site') || activeResult.closest('.cp-layout') || toolArea;
+    var ancestors = [];
+    for (var current = activeResult.parentElement; current && current !== styleRoot; current = current.parentElement) {
+      ancestors.unshift(current);
+    }
+    var wrapper = styleRoot ? styleRoot.cloneNode(false) : document.createElement('div');
+    var parent = wrapper;
+    ancestors.forEach(function (ancestor) {
+      var copy = ancestor.cloneNode(false);
+      parent.appendChild(copy);
+      parent = copy;
+    });
+    clone.classList.add('cp-print-export');
+    parent.appendChild(clone);
+
+    var host = document.createElement('div');
+    host.className = 'cp-print-export-host';
+    host.appendChild(wrapper);
+    document.body.appendChild(host);
+    document.body.classList.add('cp-printing-results');
+
+    var cleaned = false;
+    function cleanup() {
+      if (cleaned) return;
+      cleaned = true;
+      document.body.classList.remove('cp-printing-results');
+      host.remove();
+      window.removeEventListener('afterprint', cleanup);
+    }
+    window.addEventListener('afterprint', cleanup, { once: true });
+    dialog.close();
+    window.print();
+    window.setTimeout(cleanup, 30000);
+  }
+
+  function initializeSaveOptions() {
+    Array.prototype.forEach.call(document.querySelectorAll('.cp-tool-area'), function (toolArea) {
+      enhanceResults(toolArea);
+      var observer = new MutationObserver(function () { enhanceResults(toolArea); });
+      observer.observe(toolArea, {
+        attributes: true,
+        attributeFilter: ['class', 'hidden', 'style', 'aria-hidden'],
+        childList: true,
+        subtree: true
+      });
+    });
+    createDialog();
+
+    document.addEventListener('click', function (event) {
+      var button = event.target.closest('.cp-universal-save');
+      if (!button) return;
+      var result = saveTargets.get(button) || button.closest('[data-cp-save-root]');
+      if (!result) return;
+      activeResult = result;
+      dialog.querySelector('.cp-save-dialog-status').textContent = '';
+      dialog.showModal();
+      if (!(button.hasAttribute('data-save') && button.closest('.calcpro-apr'))) {
+        event.preventDefault();
+        event.stopImmediatePropagation();
+      }
+    }, true);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeSaveOptions);
+  } else {
+    initializeSaveOptions();
+  }
 }());
 
 (function () {

@@ -83,3 +83,54 @@ body{margin:0;padding:0;background:#fff}
 .cp-tool-area [class*="summary"][class*="heading"],
 .cp-tool-area [class*="summary"][class*="bar"],
 .cp-tool-area [class*="result"] h2{background:#125217!important;color:#fff!important}
+
+.cp-tool-area .cp-universal-save{
+  display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:7px!important;
+  min-width:82px!important;min-height:34px!important;padding:6px 11px!important;
+  border:1px solid #fafafa!important;border-radius:6px!important;background:#125217!important;color:#fff!important;
+  box-shadow:none!important;cursor:pointer!important;font:600 13px/1.2 Arial,Helvetica,sans-serif!important;
+  text-align:center!important;text-decoration:none!important;text-transform:none!important;white-space:nowrap!important
+}
+.cp-tool-area .cp-universal-save:hover{background:#0d4512!important}
+.cp-tool-area .cp-universal-save:focus-visible{outline:2px solid #275f98!important;outline-offset:3px!important}
+.cp-tool-area .cp-universal-save svg{display:block!important;width:16px!important;height:16px!important;fill:currentColor!important;flex:0 0 16px}
+.cp-tool-area .cp-save-toolbar{display:flex;justify-content:flex-end;margin:0 0 8px}
+.cp-save-dialog{
+  position:fixed;inset:50% auto auto 50%;transform:translate(-50%,-50%);width:min(420px,calc(100% - 32px));
+  max-width:calc(100% - 32px);padding:24px;border:1px solid #c7d4df;border-radius:12px;background:#fff;color:#152019;
+  box-shadow:0 18px 55px rgba(0,0,0,.24);font:15px/1.45 Arial,Helvetica,sans-serif
+}
+.cp-save-dialog::backdrop{background:rgba(12,24,16,.48)}
+.cp-save-dialog h2{margin:0 38px 18px 0;color:#125217;font-size:21px;line-height:1.25}
+.cp-save-dialog-close{
+  position:absolute;top:10px;right:12px;width:34px;height:34px;border:0;border-radius:6px;background:transparent;
+  color:#34443a;cursor:pointer;font:28px/1 Arial,Helvetica,sans-serif
+}
+.cp-save-dialog-close:hover{background:#eef3ef}
+.cp-save-dialog-options{display:grid;gap:10px}
+.cp-save-dialog-options button{
+  min-height:44px;padding:10px 14px;border:1px solid #125217;border-radius:7px;background:#125217;color:#fff;
+  cursor:pointer;font:600 15px/1.25 Arial,Helvetica,sans-serif;text-align:left
+}
+.cp-save-dialog-options button:hover{background:#0d4512}
+.cp-save-dialog-options button:focus-visible,.cp-save-dialog-close:focus-visible{outline:2px solid #275f98;outline-offset:3px}
+.cp-save-dialog-note,.cp-save-dialog-status{margin:14px 0 0;color:#4b5a50;font-size:13px}
+.cp-save-dialog-status:empty{display:none}
+.cp-save-export-staging{position:fixed;left:-100000px;top:0;width:800px;max-width:none;pointer-events:none}
+.cp-print-export-host{position:fixed;left:-100000px;top:0;width:800px;max-width:none;pointer-events:none}
+@media(max-width:480px){
+  .cp-save-dialog{padding:20px}
+  .cp-tool-area .cp-universal-save{min-width:76px!important;min-height:32px!important;padding:5px 9px!important}
+}
+@media print{
+  body.cp-printing-results>:not(.cp-print-export-host){display:none!important}
+  body.cp-printing-results>.cp-print-export-host{
+    display:block!important;position:static!important;width:auto!important;max-width:none!important;margin:0!important;
+    padding:0!important;overflow:visible!important;pointer-events:auto!important
+  }
+  .cp-print-export-host .cp-print-export{max-width:100%;margin:0 auto;break-inside:avoid}
+  .cp-print-export-host .cp-universal-save,.cp-print-export-host .cp-save-toolbar{display:none!important}
+  .cp-print-export-host table{border-collapse:collapse}
+  .cp-print-export-host th,.cp-print-export-host td{padding:6px;border:1px solid #aaa}
+  .cp-print-export-host svg{max-width:100%}
+}
