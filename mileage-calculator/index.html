@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US">
-<head>
-<meta charset="utf-8">
+<html lang="en"><head><meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="content-language" content="en">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,17 +11,305 @@
   <meta name="author" content="Commingsoon">
   <meta name="publisher" content="Commingsoon">
   <meta name="robots" content="noindex, nofollow, max-image-preview:large">
-  <link rel="stylesheet" href="/assets/css/style.css?v=20261111-1" crossorigin="anonymous" data-n-g="">
+  <link rel="stylesheet" href="/assets/css/style.css?v=20261111-4" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/doc_style.css" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/side_style.css" crossorigin="anonymous" data-n-g=""> 
   <!--ogtags-->
-  <!--schema-->
-  <!--style-->
-</head>
+  <!--schema--><!-- Set content to a restricted browser key for Google Maps Routes (New). Without a key, OpenStreetMap demo routing is used. -->
+<meta name="calcpro-mileage-google-maps-key" content="">
+<style>
+/* Mileage Calculator: styles are deliberately scoped to .calcpro-mileage-root. */
+.calcpro-mileage-root{--calcpro-mileage-green:#4d8129;--calcpro-mileage-outline:#bfbfbf;color:#111;font:16px Arial,Helvetica,sans-serif;line-height:1.25;min-width:0}
+.calcpro-mileage-root *{box-sizing:border-box}
+.calcpro-mileage-result[hidden],.calcpro-mileage-error[hidden],.calcpro-mileage-status[hidden]{display:none!important}
+.calcpro-mileage-result{margin:0 0 21px}
+.calcpro-mileage-result-title{margin:0 0 6px;padding:5px 7px;color:#fff;background:var(--calcpro-mileage-green);font-size:19px;font-weight:700;line-height:1.25}
+.calcpro-mileage-result p{margin:5px 0 10px;font-size:15.5px;line-height:1.25}
+.calcpro-mileage-figures{margin:11px 3px 20px;font:700 14.5px/1.4 "Courier New",Courier,monospace}
+.calcpro-mileage-figures div{margin:0}
+.calcpro-mileage-result a{color:#006699;text-decoration:underline}
+.calcpro-mileage-method{margin-top:10px!important;color:#555;font-size:12px!important;line-height:1.45!important}
+.calcpro-mileage-status,.calcpro-mileage-error{max-width:542px;margin:0 auto 12px;padding:10px 12px;border:1px solid #ccd6de;font-size:14px;line-height:1.4}
+.calcpro-mileage-status{background:#eff6fb;color:#154b72}
+.calcpro-mileage-error a{color:#006699;text-decoration:underline}
+.calcpro-mileage-error{background:#fff4f3;border-color:#d8aaaa;color:#822a27}
+.calcpro-mileage-form{width:542px;max-width:100%;margin:0 auto;background:#eee;border:1px solid var(--calcpro-mileage-outline);padding:10px;}
+.calcpro-mileage-input-row{display:grid;grid-template-columns:40px minmax(0,1fr);align-items:center;gap:10px;margin-bottom:10px}
+.calcpro-mileage-input-row label{font-size:16px;text-align:right;white-space:nowrap}
+.calcpro-mileage-input-row input{display:block;width:100%;height:29px;padding:4px 6px;border:1px solid #336699;border-radius:0;background:white;font:16px Arial,Helvetica,sans-serif;color:#111;box-shadow:1px 2px 2px rgba(0,0,0,.22)}
+.calcpro-mileage-input-row input:focus{outline:2px solid #6ba4d0;outline-offset:1px}
+.calcpro-mileage-actions{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:10px;padding:0;margin-top:8px}
+.calcpro-mileage-submit{appearance:none;cursor:pointer;border:0;border-radius:0;background:var(--calcpro-mileage-green);color:white;min-height:38px;padding:8px;font:16px Arial,Helvetica,sans-serif;line-height:1.25}
+.calcpro-mileage-submit:hover:not(:disabled){background:#3e6d21}
+.calcpro-mileage-submit:disabled{opacity:.72;cursor:wait}
+.calcpro-mileage-submit:focus-visible,.calcpro-mileage-reset:focus-visible{outline:2px solid #194e84;outline-offset:3px}
+.calcpro-mileage-reset{border:0;background:transparent;color:#436b27;cursor:pointer;font:13px Arial,Helvetica,sans-serif;text-decoration:underline;padding:7px}
+.calcpro-mileage-footnote{max-width:542px;margin:8px auto 0;color:#636363;font-size:12px;line-height:1.45;text-align:center}
+.calcpro-mileage-standalone{max-width:722px;margin:22px auto 40px;padding:0 18px}
+.calcpro-mileage-standalone h1{color:#125217;font-size:24px;margin:0 0 12px;line-height:1.2}
+.calcpro-mileage-standalone .calcpro-mileage-intro{margin:0 0 10px;font-size:15.5px;line-height:1.2}
+.calcpro-mileage-standalone .calcpro-mileage-result{margin-bottom:24px}
+@media(max-width:580px){.calcpro-mileage-form{padding:11px 9px}.calcpro-mileage-input-row{grid-template-columns:40px minmax(0,1fr);gap:7px}.calcpro-mileage-input-row input{font-size:16px;min-width:0}.calcpro-mileage-result-title{font-size:18px}.calcpro-mileage-result p{font-size:15px}.calcpro-mileage-figures{font-size:13.5px;overflow-wrap:anywhere}.calcpro-mileage-standalone{padding:0 12px;margin:16px auto}}
+@media(max-width:360px){.calcpro-mileage-actions{flex-direction:column;gap:1px}.calcpro-mileage-submit{width:100%}}
+@media print{.calcpro-mileage-footnote,.calcpro-mileage-reset{display:none}.calcpro-mileage-form{border-color:#bbb}}
 
-<body>
-<!-- Main-header-page -->
-<script defer src="/assets/js/data.js"></script>
-<script defer src="/assets/js/style.js?v=20261111-1"></script>
-</body>
-</html>
+</style>
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/">Other Calculators</a> / Mileage Calculator</nav><h1 class="cp-page-title">Mileage Calculator</h1><p class="cp-intro">Calculate driving distance in miles and driving time between places worldwide, excluding live traffic. Google Maps routes are available when configured; otherwise OpenStreetMap routes are used.</p><section aria-label="Calculator" class="cp-tool-area">
+<div class="calcpro-mileage-root" id="calcpro-mileage-calculator">
+  <section class="calcpro-mileage-result" id="calcpro-mileage-result" aria-label="Mileage result" aria-live="polite" hidden>
+    <h2 class="calcpro-mileage-result-title">Result</h2>
+    <p id="calcpro-mileage-description"></p>
+    <div class="calcpro-mileage-figures">
+      <div id="calcpro-mileage-distance"></div>
+      <div id="calcpro-mileage-duration"></div>
+    </div>
+    <p><a id="calcpro-mileage-map-link" href="https://www.google.com/maps" target="_blank" rel="noopener noreferrer">Click here to see the specific route as well as traffic conditions in Google Maps.</a></p>
+    <p class="calcpro-mileage-method" id="calcpro-mileage-method"></p>
+  </section>
+  <div class="calcpro-mileage-status" id="calcpro-mileage-status" role="status" aria-live="polite" hidden></div>
+  <div class="calcpro-mileage-error" id="calcpro-mileage-error" role="alert" hidden></div>
+  <form class="calcpro-mileage-form" id="calcpro-mileage-form" novalidate autocomplete="off">
+    <div class="calcpro-mileage-input-row"><label for="calcpro-mileage-origin">From:</label><input id="calcpro-mileage-origin" name="origin" type="text" value="New York" placeholder="City, country or full street address" maxlength="160" required /></div>
+    <div class="calcpro-mileage-input-row"><label for="calcpro-mileage-destination">To:</label><input id="calcpro-mileage-destination" name="destination" type="text" value="Boston" placeholder="City, country or full street address" maxlength="160" required /></div>
+    <div class="calcpro-mileage-actions"><button type="submit" id="calcpro-mileage-submit" class="calcpro-mileage-submit">Get Mileage &amp; Driving Time</button><button type="button" id="calcpro-mileage-reset" class="calcpro-mileage-reset">Reset</button></div>
+  </form>
+  <p class="calcpro-mileage-footnote" id="calcpro-mileage-footnote">Worldwide road routing requires an internet connection; exact Google Maps routing requires a configured API key.</p>
+</div>
+
+</section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><a href="gas-mileage-calculator.html">Gas Mileage</a><a href="fuel-cost-calculator.html">Fuel Cost</a><a href="distance-calculator.html">Distance</a><a href="speed-calculator.html">Speed</a><a href="time-calculator.html">Time</a><a href="time-duration-calculator.html">Time Duration</a><a href="pace-calculator.html">Pace</a><a href="conversion-calculator.html">Conversion</a><a href="auto-loan-calculator.html">Auto Loan</a><a href="auto-lease-calculator.html">Auto Lease</a><a href="time-zone-calculator.html">Time Zone</a><a href="average-calculator.html">Average</a></div></section></aside><article class="cp-article"><h2>Worldwide Mileage Calculator</h2>
+<p>Enter a starting city or address and your destination. Include a country or region when a name is ambiguous (for example, <strong>Delhi, India</strong> or <strong>Paris, France</strong>). Select <strong>Get Mileage &amp; Driving Time</strong>. The distance and driving time appear above the form without leaving the page. The Google Maps directions link lets you inspect the route and current traffic.</p>
+<h2>Calculation Method and Accuracy</h2>
+<p>When configured with a Google Maps Platform API key, the tool uses the <strong>Google Maps JavaScript Routes library</strong> with <code>DRIVING</code> and <code>TRAFFIC_UNAWARE</code> settings. It retrieves an actual routed distance and duration. This is the preferred provider when results should align with Google Maps; route choices can still differ from what you see on another page or date.</p>
+<p>Without a Google Maps key, the calculator uses OpenStreetMap Nominatim for location lookup and a public OSRM road router. Those routes can differ from Google Maps in distance and time, particularly in some countries or for long trips. The public endpoints are suitable only for limited testing, not high-volume production traffic.</p>
+<h2>Formula and Units</h2>
+<p><strong>Miles = route distance (meters) ÷ 1,609.344.</strong> <strong>Kilometers = route distance (meters) ÷ 1,000.</strong> Driving minutes are calculated from the routing provider’s duration in seconds and rounded to the nearest whole minute. The tool does <em>not</em> use straight-line distance multipliers or made-up average speeds.</p>
+<h3>Example: Mumbai to Delhi</h3>
+<p>The supplied reference screenshot shows 885 miles and 1 day 0 hours. That reference value is <em>not</em> hardcoded into the calculator. Google-based results require a configured key; OpenStreetMap may select a different route and provide a different distance or time.</p>
+<h2>FAQs</h2>
+<h3>Will this match calculator.net or Google Maps exactly for every trip?</h3>
+<p>No routing product can promise an identical result for every trip, because route selection, map coverage, access restrictions, road data, and routing preferences change. Use the Google Maps Routes integration for the most comparable source to the supplied reference.</p>
+<h3>Why is there no answer for some pairs?</h3>
+<p>Some locations have no connected drivable route, may be ambiguous, or may be blocked by a routing provider. The tool will display an error and a Google Maps directions link rather than invent a road mileage or travel time.</p>
+<h3>Does the duration include live traffic?</h3>
+<p>No. Google mode requests <code>TRAFFIC_UNAWARE</code> routing; OSRM estimates also do not include live traffic. Driving estimates do not include rest or meal stops.</p>
+<h3>How do I enable Google Maps mode?</h3>
+<p>Enable billing and the required Google Maps Platform APIs, create a website-restricted browser API key, then add it to the <code>calcpro-mileage-google-maps-key</code> meta tag in this HTML file. Read the included setup instructions before publishing. Without that configuration, the calculator uses the public OpenStreetMap demo endpoints.</p>
+<h2>Sources and Documentation</h2><ul>
+<li><a href="https://developers.google.com/maps/documentation/javascript/routes/get-a-route" target="_blank" rel="noopener noreferrer">Google Maps JavaScript Routes documentation</a></li>
+<li><a href="https://developers.google.com/maps/documentation/routes/usage-and-billing" target="_blank" rel="noopener noreferrer">Google Routes API billing</a></li>
+<li><a href="https://operations.osmfoundation.org/policies/nominatim/" target="_blank" rel="noopener noreferrer">Nominatim usage policy</a></li>
+<li><a href="https://github.com/Project-OSRM/osrm-backend/wiki/Api-usage-policy" target="_blank" rel="noopener noreferrer">OSRM demo API usage</a></li>
+<li><a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap attribution and licensing</a></li></ul>
+<p class="cp-page-footer">CalcPro — route results are estimates, not guarantees. OpenStreetMap data © OpenStreetMap contributors.</p></article></main></div><script>
+/* CalcPro Mileage Calculator – global road routes. No synthetic distance/time. */
+(() => {
+  'use strict';
+  const root = document.getElementById('calcpro-mileage-calculator');
+  if (!root) return;
+  const el = id => root.querySelector('#' + id);
+  const form = el('calcpro-mileage-form');
+  const originInput = el('calcpro-mileage-origin');
+  const destinationInput = el('calcpro-mileage-destination');
+  const submit = el('calcpro-mileage-submit');
+  const resetButton = el('calcpro-mileage-reset');
+  const result = el('calcpro-mileage-result');
+  const description = el('calcpro-mileage-description');
+  const distanceEl = el('calcpro-mileage-distance');
+  const durationEl = el('calcpro-mileage-duration');
+  const mapLink = el('calcpro-mileage-map-link');
+  const methodEl = el('calcpro-mileage-method');
+  const errorEl = el('calcpro-mileage-error');
+  const statusEl = el('calcpro-mileage-status');
+  const footnote = el('calcpro-mileage-footnote');
+  // Website owner: in the HTML HEAD set the content value of the matching meta tag.
+  // Use a browser key restricted to your own HTTPS domain and the required APIs.
+  const googleKey = (document.querySelector('meta[name="calcpro-mileage-google-maps-key"]')?.content || '').trim();
+  const provider = googleKey && googleKey !== 'YOUR_GOOGLE_MAPS_API_KEY' ? 'google' : 'osm';
+  const numberFormat = new Intl.NumberFormat('en-US', {maximumFractionDigits: 0});
+  const geoCache = new Map();
+  const routeCache = new Map();
+  let lastNominatimRequestAt = 0;
+  let googleLoader = null;
+  let requestVersion = 0;
+
+  const showError = text => { errorEl.textContent = text; errorEl.hidden = false; };
+  const hideError = () => { errorEl.textContent = ''; errorEl.hidden = true; };
+  const showStatus = text => {statusEl.textContent = text;statusEl.hidden = false;};
+  const hideStatus = () => {statusEl.textContent='';statusEl.hidden = true;};
+  const pause = ms => new Promise(resolve => setTimeout(resolve,ms));
+  if (footnote) footnote.textContent = provider === 'google'
+    ? 'Worldwide Google Maps driving routes (traffic-unaware). Road distance and drive time are estimates; actual conditions may differ.'
+    : 'Worldwide OpenStreetMap road routing (public demo). Results may differ from Google Maps. For Google-based route estimates, configure a Google Maps API key in the HTML.';
+
+  function googleMapsURL(from,to) {
+    return 'https://www.google.com/maps/dir/?' + new URLSearchParams({api:'1',origin:from,destination:to,travelmode:'driving'}).toString();
+  }
+  function durationText(minutes) {
+    const days = Math.floor(minutes/1440);
+    const hrs = Math.floor(minutes%1440/60);
+    const mins = minutes%60;
+    if (days) return `${days} ${days===1?'day':'days'} ${hrs} ${hrs===1?'hour':'hours'}${mins?' '+mins+' '+(mins===1?'min':'mins'):''}`;
+    if (!hrs) return `${mins} ${mins===1?'min':'mins'}`;
+    return `${hrs} ${hrs===1?'hour':'hours'} ${mins} ${mins===1?'min':'mins'}`;
+  }
+  function asRoute(distanceMeters, durationSeconds, providerName) {
+    if (!Number.isFinite(distanceMeters) || !Number.isFinite(durationSeconds) || distanceMeters < 0 || durationSeconds < 0)
+      throw new Error('Routing provider returned invalid route measurements.');
+    if (distanceMeters>100000000 || durationSeconds>3600*24*100)
+      throw new Error('Routing provider returned an unexpectedly large route.');
+    return {miles:Math.round(distanceMeters/1609.344), km:Math.round(distanceMeters/1000),
+            minutes:Math.round(durationSeconds/60), source:providerName};
+  }
+  function renderRoute(rawFrom,rawTo,fromLabel,toLabel,route) {
+    const isGoogle=route.source==='Google Maps';
+    description.textContent=`The following is the mileage and driving time between “${fromLabel}” and “${toLabel}” based on ${isGoogle?'Google Maps':'OpenStreetMap/OSRM'} road routing, disregarding live traffic conditions.`;
+    distanceEl.textContent=`Total mileage: ${numberFormat.format(route.miles)} mi`;
+    durationEl.textContent=`Driving time: ${durationText(route.minutes)}`;
+    mapLink.href=googleMapsURL(rawFrom,rawTo);
+    methodEl.textContent=`${isGoogle?'Google Maps route':'OpenStreetMap/OSRM route'}: ${numberFormat.format(route.km)} km. No live traffic, rest breaks, or weather delays are included. Different route selections may produce different figures.${!isGoogle?' OpenStreetMap figures are not identical to Google Maps.':''}`;
+    result.hidden=false;
+  }
+  // Google Maps JavaScript API: Routes library, Google Maps Routes API (New).
+  // Browser-key integration needs no HTML redesign and no backend, but billing must be enabled.
+  function loadGoogleMaps() {
+    if (window.google?.maps?.importLibrary) return Promise.resolve();
+    if (googleLoader) return googleLoader;
+    googleLoader=new Promise((resolve,reject) => {
+      const callback='__calcproMileageRouteApiReady';
+      let settled=false;
+      const timer=setTimeout(()=>finish(new Error('Google Maps could not load. Check the API key, enabled APIs, billing, and domain restrictions.')),14000);
+      function finish(error){
+        if(settled)return;
+        settled=true;clearTimeout(timer);
+        try{delete window[callback];}catch(_){window[callback]=undefined;}
+        if(error)reject(error);else resolve();
+      }
+      window[callback]=()=>finish();
+      const tag=document.createElement('script');
+      tag.async=true;
+      tag.onerror=()=>finish(new Error('Google Maps script failed to load. Check your connection and API key.'));
+      tag.src='https://maps.googleapis.com/maps/api/js?'+new URLSearchParams({key:googleKey,v:'weekly',loading:'async',callback});
+      document.head.appendChild(tag);
+    });
+    return googleLoader;
+  }
+  async function routeWithGoogle(from,to) {
+    await loadGoogleMaps();
+    if (!window.google?.maps?.importLibrary) throw new Error('Google Maps routing library did not initialize.');
+    const {Route}=await window.google.maps.importLibrary('routes');
+    if (!Route || typeof Route.computeRoutes !== 'function') throw new Error('Google Maps Routes API is not available. Verify your Google Cloud project configuration.');
+    const response=await Route.computeRoutes({origin:from,destination:to,travelMode:'DRIVING',routingPreference:'TRAFFIC_UNAWARE',fields:['distanceMeters','durationMillis']});
+    if (!response?.routes?.length) throw new Error('Google Maps found no drivable route. Check the locations, road connections, and country names.');
+    const selected=response.routes[0];
+    return asRoute(selected.distanceMeters,selected.durationMillis/1000,'Google Maps');
+  }
+  async function getJSON(url,timeout=15000) {
+    const ctrl=new AbortController();
+    const timeoutID=setTimeout(()=>ctrl.abort(),timeout);
+    try {
+      const response=await fetch(url,{signal:ctrl.signal,headers:{'Accept':'application/json'}});
+      if(!response.ok)throw new Error('Routing or geocoding service returned HTTP '+response.status+'.');
+      return await response.json();
+    } finally {clearTimeout(timeoutID);}
+  }
+  async function geocodeOSM(location) {
+    const key=location.trim().toLowerCase();
+    if(geoCache.has(key)) return geoCache.get(key);
+    const wait=Math.max(0,1150-(Date.now()-lastNominatimRequestAt));
+    if(wait)await pause(wait);
+    lastNominatimRequestAt=Date.now();
+    const url='https://nominatim.openstreetmap.org/search?'+new URLSearchParams({q:location,format:'jsonv2',addressdetails:'1',limit:'5'});
+    const data=await getJSON(url,15000);
+    if(!Array.isArray(data)||!data.length)throw new Error(`Location not found: “${location}”. Include the city, state/province, and country to make it unambiguous.`);
+    const isSingleCity=/^[\p{L}\p{M}\s.'-]+$/u.test(location.trim());
+    const scored=data.map(item=>{
+      const lat=Number(item.lat),lon=Number(item.lon);
+      const address=item.address||{};
+      const city=address.city||address.town||address.village||address.municipality||'';
+      const target=location.trim().toLowerCase();
+      // Prefer a named town/city for bare city names over nearby postcodes or generic districts.
+      const score=(isSingleCity && city.toLowerCase()===target?10:0)+(item.addresstype==='city'||item.addresstype==='town'?3:0);
+      const display=[city||item.name,address.state||address.region||'',address.country||''].filter(Boolean).join(', ');
+      return {lat,lon,label:display||item.display_name||location,score};
+    }).filter(item=>Number.isFinite(item.lat)&&Number.isFinite(item.lon))
+      .sort((a,b)=>b.score-a.score);
+    if(!scored.length)throw new Error('Geocoding did not return valid geographic coordinates.');
+    geoCache.set(key,scored[0]);
+    return scored[0];
+  }
+  function greatCircleKm(a,b) {
+    const rad=Math.PI/180;
+    const dlat=(b.lat-a.lat)*rad,dlon=(b.lon-a.lon)*rad;
+    const h=Math.sin(dlat/2)**2+Math.cos(a.lat*rad)*Math.cos(b.lat*rad)*Math.sin(dlon/2)**2;
+    return 6371.0088*2*Math.atan2(Math.sqrt(h),Math.sqrt(Math.max(0,1-h)));
+  }
+  async function routeWithOSM(rawFrom,rawTo) {
+    const from=await geocodeOSM(rawFrom);
+    const to=await geocodeOSM(rawTo); // sequential to respect the public geocoder rate limit
+    const direct=greatCircleKm(from,to);
+    const coordinates=`${from.lon},${from.lat};${to.lon},${to.lat}`;
+    const url='https://router.project-osrm.org/route/v1/driving/'+coordinates+'?overview=false&steps=false&alternatives=true';
+    const data=await getJSON(url,20000);
+    if(data.code==='NoRoute'||data.code==='NoSegment'||!data.routes?.length)throw new Error('No connected driving route was found for these locations. Try clearer addresses or view Google Maps.');
+    if(data.code!=='Ok')throw new Error('Road routing failed: '+String(data.message||data.code||'unknown error'));
+    // Alternatives improve route selection when demo routing returns a long detour.
+    // Crucially, do NOT fabricate mileage using straight-line multipliers.
+    const viable=data.routes.filter(candidate=>Number.isFinite(candidate.distance)&&Number.isFinite(candidate.duration)&&candidate.distance>=0&&candidate.duration>=0)
+      .filter(candidate=>{
+        const km=candidate.distance/1000;
+        const avg=candidate.duration>0?km/(candidate.duration/3600):Infinity;
+        return km>=direct*0.975 && (direct<30 || km<=direct*2.1) && (km<30 || (avg>=5&&avg<=165));
+      });
+    if(!viable.length)throw new Error('The public routing service returned an unusually indirect or inconsistent route. No estimated numbers have been invented. Configure Google Maps routing or open the Google Maps directions link.');
+    // Provider's first acceptable (preferred) route, not a hardcoded shortest-distance override.
+    const chosen=viable[0];
+    return {route:asRoute(chosen.distance,chosen.duration,'OpenStreetMap/OSRM'),from,to};
+  }
+  function reset() {
+    requestVersion++;
+    form.reset();originInput.value='New York';destinationInput.value='Boston';
+    submit.disabled=false;submit.textContent='Get Mileage & Driving Time';
+    result.hidden=true;hideError();hideStatus();originInput.focus();
+  }
+  form.addEventListener('submit',async event=>{
+    event.preventDefault();
+    const request=++requestVersion;
+    result.hidden=true;hideError();hideStatus();
+    const from=originInput.value.trim(),to=destinationInput.value.trim();
+    if(!from||!to){showError('Please enter both the starting location and destination.');(!from?originInput:destinationInput).focus();return;}
+    if(from.length>160||to.length>160){showError('Each location must contain no more than 160 characters.');return;}
+    submit.disabled=true;submit.textContent='Calculating…';
+    const href=googleMapsURL(from,to);
+    showStatus(provider==='google'?'Requesting a worldwide Google Maps driving route…':'Looking up locations and requesting an OpenStreetMap driving route…');
+    try {
+      const key=provider+'|'+from.toLowerCase()+'|'+to.toLowerCase();
+      let cached=routeCache.get(key);
+      if(!cached) {
+        if(provider==='google'){
+          const route=await routeWithGoogle(from,to);
+          cached={route,fromLabel:from,toLabel:to};
+        }else{
+          const response=await routeWithOSM(from,to);
+          cached={route:response.route,fromLabel:response.from.label,toLabel:response.to.label};
+        }
+        routeCache.set(key,cached);
+      }
+      if(request!==requestVersion)return;
+      renderRoute(from,to,cached.fromLabel,cached.toLabel,cached.route);
+    }catch(error){
+      if(request!==requestVersion)return;
+      const msg=error?.name==='AbortError'?'Routing timed out. Check your internet connection and try again.':(error?.message||'Unable to calculate the road route.');
+      showError(msg+' You can check this trip in Google Maps: ');
+      // Keep the link accessible even when there is no numeric result.
+      const link=document.createElement('a');link.href=href;link.target='_blank';link.rel='noopener noreferrer';link.textContent='Open driving directions';
+      errorEl.appendChild(link);
+    }finally{
+      if(request===requestVersion){submit.disabled=false;submit.textContent='Get Mileage & Driving Time';hideStatus();}
+    }
+  });
+  resetButton.addEventListener('click',reset);
+})();
+
+</script><script defer src="/assets/js/data.js"></script>
+<script defer src="/assets/js/style.js?v=20261111-5"></script>
+</body></html>

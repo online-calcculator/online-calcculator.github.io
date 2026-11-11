@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US">
-<head>
-<meta charset="utf-8">
+<html lang="en"><head><meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="content-language" content="en">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,17 +11,416 @@
   <meta name="author" content="Commingsoon">
   <meta name="publisher" content="Commingsoon">
   <meta name="robots" content="noindex, nofollow, max-image-preview:large">
-  <link rel="stylesheet" href="/assets/css/style.css?v=20261111-1" crossorigin="anonymous" data-n-g="">
+  <link rel="stylesheet" href="/assets/css/style.css?v=20261111-4" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/doc_style.css" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/side_style.css" crossorigin="anonymous" data-n-g=""> 
   <!--ogtags-->
-  <!--schema-->
-  <!--style-->
-</head>
+  <!--schema--><style>
+/* All tool-specific styles live under the calcpro-bra namespace. */
+.calcpro-bra-root{--calcpro-bra-blue:#336699;--calcpro-bra-dark:#125217;--calcpro-bra-green:#4b831e;--calcpro-bra-line:#cbd4dc;font:15px/1.45 Arial,Helvetica,sans-serif;color:#1b2e40;max-width:100%;text-align:left}
+.calcpro-bra-root *{box-sizing:border-box}
+.calcpro-bra-root [hidden]{display:none!important}
+.calcpro-bra-root .calcpro-bra-intro{max-width:650px;margin:0 0 17px;color:#243a4d}
+.calcpro-bra-root .calcpro-bra-hint{background:var(--calcpro-bra-blue);color:#fff;font-weight:700;font-size:13px;padding:9px 13px;margin:0 0 0;max-width:520px;display:flex;align-items:center;gap:10px}
+.calcpro-bra-root .calcpro-bra-hint-icon{display:inline-flex;align-items:center;justify-content:center;background:white;color:var(--calcpro-bra-blue);width:19px;height:19px;border-radius:100%;font-size:13px;flex-shrink:0}
+.calcpro-bra-root .calcpro-bra-form-and-diagram{display:flex;align-items:center;gap:19px;flex-wrap:wrap;margin:0 0 8px}
+.calcpro-bra-root .calcpro-bra-panel{background:#eef1f4;border:1px solid #c9d0d6;border-top:0;max-width:100%;padding:12px 13px;}
+.calcpro-bra-root .calcpro-bra-calc-form{width:348px;}
+.calcpro-bra-root .calcpro-bra-field{display:grid;grid-template-columns:74px minmax(0,1fr);gap:8px;align-items:center;margin-bottom:8px}
+.calcpro-bra-root .calcpro-bra-field label{font-size:13px;font-weight:700;white-space:nowrap}
+.calcpro-bra-root .calcpro-bra-field-values{display:flex;gap:6px;min-width:0}
+.calcpro-bra-root .calcpro-bra-number,.calcpro-bra-root .calcpro-bra-select{border:1px solid #6791b7;background:#fff;border-radius:3px;height:35px;color:#142e43;font:14px Arial,Helvetica,sans-serif;padding:5px 7px;max-width:100%;min-width:0}
+.calcpro-bra-root .calcpro-bra-number{width:112px;flex:0 1 112px}
+.calcpro-bra-root .calcpro-bra-unit{width:136px;flex:1 1 136px}
+.calcpro-bra-root .calcpro-bra-number:focus,.calcpro-bra-root .calcpro-bra-select:focus{outline:2px solid #285c91;outline-offset:1px}
+.calcpro-bra-root .calcpro-bra-buttons{display:flex;align-items:center;gap:8px;padding-left:82px;margin-top:11px}
+.calcpro-bra-root .calcpro-bra-button{background:var(--calcpro-bra-green);color:#fff;border:0;border-radius:3px;padding:9px 14px;font-weight:700;font-size:13px;cursor:pointer;min-height:36px;white-space:nowrap}
+.calcpro-bra-root .calcpro-bra-button:hover{background:#39691a}
+.calcpro-bra-root .calcpro-bra-button:focus-visible,.calcpro-bra-root .calcpro-bra-iconbutton:focus-visible{outline:3px solid #2d72a9;outline-offset:2px}
+.calcpro-bra-root .calcpro-bra-button-secondary{background:#85909a}
+.calcpro-bra-root .calcpro-bra-button-secondary:hover{background:#67727c}
+.calcpro-bra-root .calcpro-bra-arrow{font-size:13px;margin-left:7px;opacity:.85}
+.calcpro-bra-root .calcpro-bra-diagram{width:155px;max-width:100%;height:88px;flex:0 0 155px}
+.calcpro-bra-root .calcpro-bra-help{font-size:13px;max-width:660px;color:#304457;margin:9px 0}
+.calcpro-bra-root .calcpro-bra-help strong{color:#1c2e3e}
+.calcpro-bra-root .calcpro-bra-section-heading{font-size:20px;color:var(--calcpro-bra-dark);font-weight:700;margin:25px 0 3px}
+.calcpro-bra-root .calcpro-bra-section-desc{font-size:14px;margin:0 0 11px}
+.calcpro-bra-root .calcpro-bra-result{max-width:580px;margin:0 0 13px}
+.calcpro-bra-root .calcpro-bra-result-bar{display:flex;align-items:center;justify-content:space-between;gap:8px;background:var(--calcpro-bra-green);color:#fff;padding:7px 10px}
+.calcpro-bra-root .calcpro-bra-result-bar h2{font:700 17px Arial,Helvetica,sans-serif;color:#fff;margin:0}
+.calcpro-bra-root .calcpro-bra-result-actions{display:flex;gap:4px}
+.calcpro-bra-root .calcpro-bra-iconbutton{border:1px solid rgba(255,255,255,.65);background:rgba(255,255,255,.16);color:#fff;border-radius:3px;font-size:12px;padding:4px 7px;min-height:27px;cursor:pointer}
+.calcpro-bra-root .calcpro-bra-iconbutton:hover{background:rgba(255,255,255,.3)}
+.calcpro-bra-root .calcpro-bra-table-scroll{max-width:100%;overflow-x:auto}
+.calcpro-bra-root .calcpro-bra-results-table{border-collapse:collapse;width:100%;font-size:13px}
+.calcpro-bra-root .calcpro-bra-results-table th{background:var(--calcpro-bra-blue);color:#fff;padding:7px 8px;text-align:left;border:1px solid #88a1b7;font-weight:700}
+.calcpro-bra-root .calcpro-bra-results-table td{border:1px solid var(--calcpro-bra-line);padding:6px 8px;text-align:left}
+.calcpro-bra-root .calcpro-bra-results-table tbody tr:nth-child(even){background:#f0f3f6}
+.calcpro-bra-root .calcpro-bra-results-table td:first-child{font-weight:600}
+.calcpro-bra-root .calcpro-bra-result-note{font-size:12px;color:#344456;line-height:1.5;margin:8px 0 0}
+.calcpro-bra-root .calcpro-bra-result-summary{font-size:13px;margin:8px 0}
+.calcpro-bra-root .calcpro-bra-error{max-width:520px;padding:10px 12px;border-left:4px solid #c14443;background:#fff0ee;color:#832829;margin:10px 0;font-weight:600;font-size:13px}
+.calcpro-bra-root .calcpro-bra-converter-form{width:348px;border-top:1px solid #c9d0d6}
+.calcpro-bra-root .calcpro-bra-converter-form .calcpro-bra-field{grid-template-columns:74px minmax(0,1fr)}
+.calcpro-bra-root .calcpro-bra-converter-form .calcpro-bra-select{width:100%}
+.calcpro-bra-root .calcpro-bra-converter-form .calcpro-bra-buttons{padding-left:82px;margin-top:11px}
+.calcpro-bra-root .calcpro-bra-converter-result{margin:10px 0 12px;max-width:580px}
+.calcpro-bra-root .calcpro-bra-converter-result .calcpro-bra-result-summary{margin:8px 0}
+.calcpro-bra-root .calcpro-bra-fineprint{color:#536474;font-size:12px;margin-top:10px;max-width:580px}
+@media(max-width:580px){.calcpro-bra-root .calcpro-bra-hint{max-width:100%}.calcpro-bra-root .calcpro-bra-calc-form,.calcpro-bra-root .calcpro-bra-converter-form{width:min(100%,400px)}.calcpro-bra-root .calcpro-bra-form-and-diagram{gap:4px}.calcpro-bra-root .calcpro-bra-diagram{height:80px;margin:1px 0 6px 60px}.calcpro-bra-root .calcpro-bra-field{grid-template-columns:74px minmax(0,1fr)}.calcpro-bra-root .calcpro-bra-number{width:95px;flex:1 1 95px}.calcpro-bra-root .calcpro-bra-unit{width:125px;flex:1 1 125px}.calcpro-bra-root .calcpro-bra-field-values{gap:5px}.calcpro-bra-root .calcpro-bra-buttons{padding-left:82px}.calcpro-bra-root .calcpro-bra-results-table{font-size:12px}.calcpro-bra-root .calcpro-bra-results-table td,.calcpro-bra-root .calcpro-bra-results-table th{padding:6px}}
+@media(max-width:370px){.calcpro-bra-root .calcpro-bra-panel{padding:10px 8px}.calcpro-bra-root .calcpro-bra-field{grid-template-columns:64px minmax(0,1fr);gap:5px}.calcpro-bra-root .calcpro-bra-buttons,.calcpro-bra-root .calcpro-bra-converter-form .calcpro-bra-buttons{padding-left:69px}.calcpro-bra-root .calcpro-bra-field label{font-size:12px}.calcpro-bra-root .calcpro-bra-unit{font-size:12px}}
+@media print{.calcpro-bra-root .calcpro-bra-result-actions,.calcpro-bra-root .calcpro-bra-buttons{display:none!important}.calcpro-bra-root .calcpro-bra-panel{break-inside:avoid}.calcpro-bra-root .calcpro-bra-result-bar,.calcpro-bra-root .calcpro-bra-results-table th{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+</style>
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / Other / Bra Size Calculator</nav><h1 class="cp-page-title">Bra Size Calculator</h1><p class="cp-intro">Estimate a starting bra size from your bust and underbust measurements. See US, UK, European, and Australian size labels and use the separate regional size converter.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-bra-root" id="calcpro-bra-tool">
+  <div class="calcpro-bra-result" id="calcpro-bra-main-result" hidden aria-live="polite" aria-label="Bra size calculation results">
+    <div class="calcpro-bra-result-bar"><h2>Result</h2><div class="calcpro-bra-result-actions"><button type="button" class="calcpro-bra-iconbutton" id="calcpro-bra-save" title="Save results to a text file">Save</button><button type="button" class="calcpro-bra-iconbutton" id="calcpro-bra-print" title="Print this calculation">Print</button></div></div>
+    <div class="calcpro-bra-table-scroll"><table class="calcpro-bra-results-table"><thead><tr><th scope="col">Location</th><th scope="col">Size</th><th scope="col">Cup</th></tr></thead><tbody id="calcpro-bra-result-rows"></tbody></table></div>
+    <p id="calcpro-bra-main-result-detail" class="calcpro-bra-result-summary"></p>
+    <p class="calcpro-bra-result-note">These estimates are a starting point. Brand, cut, and fit preferences vary, so try on the suggested size before buying. The traditional +4 band method is shown separately.</p>
+  </div>
+  <div class="calcpro-bra-hint" id="calcpro-bra-hint"><span class="calcpro-bra-hint-icon" aria-hidden="true">▼</span> Modify the values and click Calculate</div>
+  <div id="calcpro-bra-main-error" class="calcpro-bra-error" hidden role="alert"></div>
+  <div class="calcpro-bra-form-and-diagram">
+    <form id="calcpro-bra-measure-form" class="calcpro-bra-panel calcpro-bra-calc-form" novalidate>
+      <div class="calcpro-bra-field"><label for="calcpro-bra-bust">Bust Size</label><div class="calcpro-bra-field-values"><input class="calcpro-bra-number" id="calcpro-bra-bust" name="bust" type="number" min="0" step="any" inputmode="decimal" value="38" required aria-describedby="calcpro-bra-bust-explain"><select class="calcpro-bra-select calcpro-bra-unit" id="calcpro-bra-bust-unit" aria-label="Bust measurement unit"><option value="in">inches</option><option value="cm">centimeters</option></select></div></div>
+      <div class="calcpro-bra-field"><label for="calcpro-bra-band">Band Size</label><div class="calcpro-bra-field-values"><input class="calcpro-bra-number" id="calcpro-bra-band" name="band" type="number" min="0" step="any" inputmode="decimal" value="34" required aria-describedby="calcpro-bra-band-explain"><select class="calcpro-bra-select calcpro-bra-unit" id="calcpro-bra-band-unit" aria-label="Band measurement unit"><option value="in">inches</option><option value="cm">centimeters</option></select></div></div>
+      <div class="calcpro-bra-buttons"><button type="submit" class="calcpro-bra-button">Calculate <span class="calcpro-bra-arrow" aria-hidden="true">▶</span></button><button type="button" class="calcpro-bra-button calcpro-bra-button-secondary" id="calcpro-bra-clear">Clear</button></div>
+    </form>
+    <svg class="calcpro-bra-diagram" role="img" aria-label="Illustration of bust and underbust measurement positions" viewBox="0 0 170 95" xmlns="http://www.w3.org/2000/svg">
+      <g fill="none" stroke="#35719b" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M65 10c-1 10-8 11-14 15-9 6-13 17-15 31l-5 28M99 10c0 11 8 12 14 16 10 6 12 18 14 30l7 28M66 9c4 9 28 11 34 0M60 47c-3 12-1 23 9 29m28 0c10-7 11-20 9-29M53 51c8 6 14 6 30 6 16 0 26-1 36-7"/><path d="M48 65c22 7 48 7 71 0" stroke-dasharray="3 3"/><path d="M47 55l-4 4 5 3m71-8 4 5-5 3M48 66l-4 4 5 3m70-8 4 5-5 3"/></g>
+      <g font-family="Arial,sans-serif" font-size="10" fill="#213a53"><text x="2" y="46">bust</text><text x="2" y="57">size</text><text x="0" y="74">band</text><text x="0" y="85">size</text></g><path d="M28 51h18m-18 20h18" fill="none" stroke="#35719b" stroke-dasharray="3 2"/>
+    </svg>
+  </div>
+  <p id="calcpro-bra-bust-explain" class="calcpro-bra-help">Bust size: measure <strong>loosely</strong> around the fullest part of the bust, keeping the measuring tape level.</p>
+  <p id="calcpro-bra-band-explain" class="calcpro-bra-help">Band (underbust) size: measure <strong>firmly but comfortably</strong> around the ribcage immediately below the bust.</p>
+  <h2 class="calcpro-bra-section-heading">Bra Size Converter</h2>
+  <p class="calcpro-bra-section-desc">Convert bra size labels across countries and sizing conventions.</p>
+  <div id="calcpro-bra-converter-result" class="calcpro-bra-converter-result" hidden aria-live="polite" aria-label="Converted bra sizes">
+    <div class="calcpro-bra-result-bar"><h2>Result</h2></div><p class="calcpro-bra-result-summary" id="calcpro-bra-converter-summary"></p>
+    <div class="calcpro-bra-table-scroll"><table class="calcpro-bra-results-table"><thead><tr><th scope="col">Location</th><th scope="col">Size</th><th scope="col">Cup</th></tr></thead><tbody id="calcpro-bra-converter-rows"></tbody></table></div>
+  </div>
+  <form class="calcpro-bra-panel calcpro-bra-converter-form" id="calcpro-bra-converter-form" novalidate>
+    <div class="calcpro-bra-field"><label for="calcpro-bra-location">Location</label><select class="calcpro-bra-select" id="calcpro-bra-location"><option value="us">US/CA</option><option value="uk">UK</option><option value="eu">EU (EN 13402)</option><option value="fr">FR/BE/ES</option><option value="au">Australia/New Zealand</option><option value="us4">US/CA (Underbust +4)</option><option value="uk4">UK (Underbust +4)</option><option value="ukdress">UK Dress Code</option></select></div>
+    <div class="calcpro-bra-field"><label for="calcpro-bra-convert-size">Size</label><select class="calcpro-bra-select" id="calcpro-bra-convert-size" aria-label="Bra band size"></select></div>
+    <div class="calcpro-bra-field"><label for="calcpro-bra-convert-cup">Cup</label><select class="calcpro-bra-select" id="calcpro-bra-convert-cup" aria-label="Bra cup size"></select></div>
+    <div class="calcpro-bra-buttons"><button type="submit" class="calcpro-bra-button">Convert <span class="calcpro-bra-arrow" aria-hidden="true">▶</span></button></div>
+  </form>
+  <p class="calcpro-bra-fineprint">Different manufacturers do not always use identical cup labels, especially above DD. Regional conversions are approximate.</p>
+</div></section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><!-- REPLACE these links with real related tools for each calculator; verify live slugs. --><a href="retirement-calculator.html">Retirement</a><a href="roth-ira-calculator.html">Roth IRA</a><a href="investment-calculator.html">Investment</a><a href="compound-interest-calculator.html">Compound Interest</a><a href="annuity-payout-calculator.html">Annuity Payout</a><a href="pension-calculator.html">Pension</a><a href="inflation-calculator.html">Inflation</a><a href="future-value-calculator.html">Future Value</a><a href="income-tax-calculator.html">Income Tax</a><a href="savings-calculator.html">Savings</a><a href="mortgage-calculator.html">Mortgage</a><a href="loan-calculator.html">Loan</a></div></section></aside><article class="cp-article"><h2>How to Measure and Calculate Bra Size</h2>
+<p>Use a flexible measuring tape and keep it parallel to the floor. Measure the full bust loosely, then take a firm, comfortable measurement directly under the bust. You can enter either measurement in inches or centimeters, even if the units are different.</p>
+<h3>Band size and cup size</h3>
+<p>The band is the number on the label, such as 34 in a US or UK size. This calculator rounds the measured underbust to the nearest even inch for its standard US/UK estimate. The cup is based on the difference between the full bust and the underbust. The calculator also shows the older band-plus-four convention as a separate comparison.</p>
+<h3>Formula and worked example</h3>
+<p><strong>Cup difference (inches) = full bust circumference − underbust circumference.</strong> With a 38-inch bust and 34-inch underbust, the difference is 4 inches, which corresponds to a D cup in the reference's US/UK chart. The standard band estimate is 34, giving <strong>34D</strong>. Approximate regional label equivalents are shown in the result table, including separate continental cup grading.</p>
+<h2>Understanding International Band Sizes</h2>
+<p>Numbers on international bra labels are not direct translations of one another. These typical label correspondences are used in the converter. The EU and French/Belgian/Spanish numbers refer to their respective local band-label systems.</p>
+<div class="cp-table-scroll"><table class="cp-content-table"><thead><tr><th>Band category</th><th>FR/BE/ES</th><th>EU (EN 13402)</th><th>US / UK</th><th>AU / NZ</th></tr></thead><tbody>
+<tr><td>XXS</td><td>75</td><td>60</td><td>28</td><td>6</td></tr>
+<tr><td>XS</td><td>80</td><td>65</td><td>30</td><td>8</td></tr>
+<tr><td>S</td><td>85</td><td>70</td><td>32</td><td>10</td></tr>
+<tr><td>M</td><td>90</td><td>75</td><td>34</td><td>12</td></tr>
+<tr><td>L</td><td>95</td><td>80</td><td>36</td><td>14</td></tr>
+<tr><td>XL</td><td>100</td><td>85</td><td>38</td><td>16</td></tr>
+<tr><td>XXL</td><td>105</td><td>90</td><td>40</td><td>18</td></tr>
+<tr><td>3XL</td><td>110</td><td>95</td><td>42</td><td>20</td></tr>
+<tr><td>4XL</td><td>115</td><td>100</td><td>44</td><td>22</td></tr>
+<tr><td>5XL</td><td>120</td><td>105</td><td>46</td><td>24</td></tr>
+</tbody></table></div>
+<h2>US, UK and AU Cup Size Chart</h2>
+<p>One additional inch of difference usually advances one nominal cup step, but some countries and brands write the letters differently above D.</p>
+<div class="cp-table-scroll"><table class="cp-content-table"><thead><tr><th>Bust minus band (in)</th><th>US/CA label</th><th>UK/AU chart label</th></tr></thead><tbody>
+<tr><td>Less than 1</td><td>AA</td><td>AA</td></tr><tr><td>1</td><td>A</td><td>A</td></tr><tr><td>2</td><td>B</td><td>B</td></tr><tr><td>3</td><td>C</td><td>C</td></tr><tr><td>4</td><td>D</td><td>D</td></tr><tr><td>5</td><td>E / DD</td><td>DD</td></tr><tr><td>6</td><td>F / DDD</td><td>E</td></tr><tr><td>7</td><td>G / DDDD</td><td>F</td></tr><tr><td>8</td><td>H</td><td>FF</td></tr><tr><td>9</td><td>I</td><td>G</td></tr><tr><td>10</td><td>J</td><td>GG</td></tr><tr><td>11</td><td>K</td><td>H</td></tr><tr><td>12</td><td>L</td><td>HH</td></tr><tr><td>13</td><td>M</td><td>J</td></tr><tr><td>14</td><td>N</td><td>JJ</td></tr>
+</tbody></table></div>
+<h2>Continental European Cup Size Chart</h2>
+<p>The reference uses two-centimeter intervals for EU grading, using the full-bust circumference and the EU band label. That method can produce a different cup letter from a straight US-to-EU cup-label conversion. For example, its 38-inch / 34-inch example reports EU 75E.</p>
+<div class="cp-table-scroll"><table class="cp-content-table"><thead><tr><th>Bust / EU band difference (cm)</th><th>Continental cup</th></tr></thead><tbody>
+<tr><td>10–11</td><td>AA</td></tr><tr><td>12–13</td><td>A</td></tr><tr><td>14–15</td><td>B</td></tr><tr><td>16–17</td><td>C</td></tr><tr><td>18–19</td><td>D</td></tr><tr><td>20–21</td><td>E</td></tr><tr><td>22–23</td><td>F</td></tr><tr><td>24–25</td><td>G</td></tr><tr><td>26–27</td><td>H</td></tr><tr><td>28–29</td><td>I</td></tr><tr><td>30–31</td><td>J</td></tr><tr><td>32–33</td><td>K</td></tr>
+</tbody></table></div>
+<h2>Common Signs That a Bra Doesn't Fit</h2>
+<p>A band that rides up, straps that dig into the shoulders, cup edges that cut into breast tissue, or a center panel that does not lie comfortably against the chest can all be signs of a poor fit. Material, brand, and cup shape can change how a nominal size feels. Trying different cuts or nearby sister sizes may be useful.</p>
+<h2>Frequently Asked Questions</h2>
+<h3>Can I mix inches and centimeters?</h3>
+<p>Yes. Choose the measurement unit next to each value independently. The calculator converts units before estimating the sizes.</p>
+<h3>Why does the converter sometimes show a different EU cup from the measurement calculation?</h3>
+<p>The measurement calculation follows the reference's separate centimeter-based continental cup grading; the converter maps printed labels by approximate nominal cup-step equivalents. These are different conventions, and neither can guarantee a brand-specific fit.</p>
+<h3>What does underbust +4 mean?</h3>
+<p>It is a legacy method that adds four inches to an even band measurement (or an equivalent adjustment for an odd measurement). Current sizing advice often uses the measured band without the extra four inches, so the calculator shows both methods separately.</p>
+<h3>Is the result a guaranteed fit?</h3>
+<p>No. It is a starting size recommendation, not a fit guarantee. Different manufacturers use different patterns and labels, especially for larger cup sizes.</p>
+<h2>References and Sizing Notes</h2>
+<p>The band-label and cup-grade tables follow <a href="https://www.calculator.net/bra-size-calculator.html" rel="noopener noreferrer" target="_blank">Calculator.net's Bra Size Calculator</a>. For a retail comparison of international labels, see the <a href="https://www.primark.com/en-gb/size-charts/women/bras" rel="noopener noreferrer" target="_blank">Primark bra size chart</a>. Size charts are guidance only and differ across brands.</p>
+<p class="cp-page-footer">CalcPro — sizing estimates are for informational purposes, and do not replace an in-person fitting.</p></article></main></div><script>
+(function () {
+  'use strict';
+  const root = document.getElementById('calcpro-bra-tool');
+  if (!root) return;
+  const el = suffix => root.querySelector('#calcpro-bra-' + suffix);
+  const byId = Object.fromEntries([
+    'measure-form','bust','band','bust-unit','band-unit','main-result','result-rows',
+    'main-result-detail','main-error','hint','clear','save','print','converter-form',
+    'location','convert-size','convert-cup','converter-result','converter-summary','converter-rows'
+  ].map(key => [key, el(key)]));
 
-<body>
-<!-- Main-header-page -->
+  const regions = ['us','uk','us4','uk4','eu','fr','au','ukdress'];
+  const names = {
+    us: 'US/CA', uk: 'UK', us4: 'US/CA (Underbust +4)',
+    uk4: 'UK (Underbust +4)', eu: 'EU (EN 13402)',
+    fr: 'FR/BE/ES', au: 'Australia/New Zealand', ukdress: 'UK Dress Code'
+  };
+  // Index = standardized band step: 0 is 28 US/UK, 1 is 30, ...
+  const sizeFromIndex = (region, index) => {
+    if (region === 'eu') return 60 + 5 * index;
+    if (region === 'fr') return 75 + 5 * index;
+    if (region === 'au') return 6 + 2 * index;
+    if (region === 'ukdress') return 4 + 2 * index;
+    if (region === 'us4' || region === 'uk4') return 32 + 2 * index;
+    return 28 + 2 * index;
+  };
+  const cupSets = {
+    us: ['AA','A','B','C','D','DD/E','DDD/F','DDDD/G','H','I','J','K','L','M','N'],
+    uk: ['AA','A','B','C','D','DD','E','F','FF','G','GG','H','HH','J','JJ'],
+    au: ['AA','A','B','C','D','DD','E','F','G','GG','H','HH','J','JJ','K'],
+    eu: ['AA','A','B','C','D','E','F','G','H','I','J','K','L','M','N']
+  };
+  const regionCupSet = region => cupSets[(region === 'uk' || region === 'uk4' || region === 'ukdress') ? 'uk' : (region === 'us' || region === 'us4') ? 'us' : region === 'au' ? 'au' : 'eu'];
+  const fmtNumber = value => Number(value.toFixed(2)).toString();
+  const escapeHtml = raw => String(raw).replace(/[&<>"']/g, chr => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[chr]));
+  const mainError = message => {
+    byId['main-error'].textContent = message;
+    byId['main-error'].hidden = !message;
+    if (message) {
+      byId['main-result'].hidden = true;
+      byId.hint.hidden = false;
+      latestResult = null;
+    }
+  };
+  let latestResult = null;
+  const makeRow = (name, size, cup) => `<tr><td>${escapeHtml(name)}</td><td>${escapeHtml(size)}</td><td>${escapeHtml(cup)}</td></tr>`;
+
+  function calculate() {
+    mainError('');
+    const bustRaw = byId.bust.value.trim();
+    const bandRaw = byId.band.value.trim();
+    const bust = Number(bustRaw);
+    const band = Number(bandRaw);
+    if (!bustRaw || !bandRaw || !Number.isFinite(bust) || !Number.isFinite(band) || bust <= 0 || band <= 0) {
+      mainError('Enter valid, positive bust and band measurements.');
+      return;
+    }
+    const bustIn = byId['bust-unit'].value === 'cm' ? bust / 2.54 : bust;
+    const bandIn = byId['band-unit'].value === 'cm' ? band / 2.54 : band;
+    if (bandIn < 20 || bandIn > 70 || bustIn < 20 || bustIn > 100) {
+      mainError('Enter plausible measurements: band 20–70 inches (50.8–177.8 cm) and bust 20–100 inches (50.8–254 cm).');
+      return;
+    }
+    if (bustIn < bandIn) {
+      mainError('The bust measurement must be greater than or equal to the underbust measurement.');
+      return;
+    }
+    const gapIn = bustIn - bandIn;
+    // The reference table uses one nominal cup step per inch. The measurement
+    // reference explicitly groups differences below one inch as AA; classify
+    // fractional measurements by the lower whole-inch cup interval.
+    const cupStep = Math.max(0, Math.floor(gapIn + 1e-9));
+    if (cupStep >= cupSets.us.length) {
+      mainError('This bust/band difference exceeds the cup sizes covered by the reference chart. Please verify the measurement or consult a fitter.');
+      return;
+    }
+    const roundedBand = Math.round(bandIn / 2) * 2;
+    const sizeIndex = (roundedBand - 28) / 2;
+    // Reference result uses corresponding international band labels, not a raw
+    // centimeter conversion of the measured underbust.
+    const euBand = sizeFromIndex('eu', sizeIndex);
+    const metricDifference = bustIn * 2.54 - euBand;
+    // The reference's continental cup chart: 10–11cm AA, 12–13cm A,
+    // 14–15cm B, ..., 20–21cm E, 22–23cm F, etc.  Classify from
+    // unrounded centimeters by 2cm intervals.
+    const euCupStep = Math.max(0, Math.floor((metricDifference - 10) / 2));
+    const euCup = euCupStep > 11 ? '—' : cupSets.eu[euCupStep];
+    const usCup = cupSets.us[cupStep];
+    const ukCup = cupSets.uk[cupStep];
+    const auCup = cupSets.au[cupStep];
+    const rows = [
+      ['US/CA', `${roundedBand}`, usCup],
+      ['UK', `${roundedBand} or dress code ${roundedBand - 24}`, ukCup],
+      ['US/CA (Underbust +4)*', `${roundedBand + 4}`, usCup],
+      ['UK (Underbust +4)*', `${roundedBand + 4}`, ukCup],
+      ['EU (EN 13402)', `${euBand} cm`, euCup],
+      ['FR/BE/ES', `${euBand + 15} cm`, euCup],
+      ['Australia/New Zealand', `dress code ${sizeFromIndex('au', sizeIndex)}`, auCup]
+    ];
+    byId['result-rows'].innerHTML = rows.map(row => makeRow(...row)).join('');
+    byId['main-result-detail'].textContent = `Bust–band difference: ${fmtNumber(gapIn)} in (${fmtNumber(gapIn * 2.54)} cm). Estimated US/CA size: ${roundedBand}${usCup}. The +4 rows reflect an older alternate labeling method.${euCup === '—' ? ' The EU cup is outside the published reference chart.' : ''}`;
+    byId['main-result'].hidden = false;
+    byId.hint.hidden = true;
+    latestResult = {bust,band,bustUnit:byId['bust-unit'].value,bandUnit:byId['band-unit'].value,gapIn,rows};
+  }
+
+  byId['measure-form'].addEventListener('submit', event => {
+    event.preventDefault();
+    calculate();
+  });
+  byId.clear.addEventListener('click', () => {
+    byId.bust.value = '';
+    byId.band.value = '';
+    byId['bust-unit'].value = 'in';
+    byId['band-unit'].value = 'in';
+    byId['main-result'].hidden = true;
+    byId.hint.hidden = false;
+    byId['result-rows'].replaceChildren();
+    latestResult = null;
+    mainError('');
+    byId.bust.focus();
+  });
+  ['bust','band','bust-unit','band-unit'].forEach(key => byId[key].addEventListener('input', () => mainError('')));
+
+  // Converter reproduces the reference's independent band-label conversion,
+  // including legacy +4 sizes and UK clothing dress-code labels.
+  function populateConverter() {
+    const location = byId.location.value;
+    byId['convert-size'].replaceChildren();
+    for (let index = 0; index <= 16; index++) {
+      const value = String(sizeFromIndex(location, index));
+      const opt = new Option(location === 'au' || location === 'ukdress' ? `dress code ${value}` : `${value} ${location === 'eu' || location === 'fr' ? 'cm' : 'inches'}`, value);
+      byId['convert-size'].add(opt);
+    }
+    byId['convert-cup'].replaceChildren();
+    // The online reference converter's selection is limited to nine cup steps.
+    regionCupSet(location).slice(0, 9).forEach(cup => byId['convert-cup'].add(new Option(cup, cup)));
+    byId['convert-size'].selectedIndex = 0;
+    byId['convert-cup'].selectedIndex = 0;
+    byId['converter-result'].hidden = true;
+  }
+  byId.location.addEventListener('change', populateConverter);
+  ['convert-size','convert-cup'].forEach(key => byId[key].addEventListener('change', () => byId['converter-result'].hidden = true));
+  byId['converter-form'].addEventListener('submit', event => {
+    event.preventDefault();
+    const region = byId.location.value;
+    const size = Number(byId['convert-size'].value);
+    const bandIndex = [...Array(17).keys()].find(index => sizeFromIndex(region,index) === size);
+    const cupIndex = regionCupSet(region).indexOf(byId['convert-cup'].value);
+    if (bandIndex === undefined || cupIndex < 0) return;
+    const converted = regions.filter(loc => loc !== region).map(loc => {
+      const otherSize = sizeFromIndex(loc,bandIndex);
+      const otherCup = regionCupSet(loc)[cupIndex];
+      const sizeLabel = loc === 'eu' || loc === 'fr' ? `${otherSize} cm` : (loc === 'au' || loc === 'ukdress' ? `dress code ${otherSize}` : `${otherSize}`);
+      return [names[loc],sizeLabel,otherCup];
+    });
+    const sourceSize = region === 'au' || region === 'ukdress' ? `dress code ${size}` : `${size}`;
+    byId['converter-summary'].textContent = `Bra size ${sourceSize}${byId['convert-cup'].value} in ${names[region]} is approximately equivalent to:`;
+    byId['converter-rows'].innerHTML = converted.map(row => makeRow(...row)).join('');
+    byId['converter-result'].hidden = false;
+  });
+  populateConverter();
+
+  byId.save.addEventListener('click', () => {
+    if (!latestResult) return;
+    const lines = [
+      'CalcPro Bra Size Calculator',
+      `Bust size: ${latestResult.bust} ${latestResult.bustUnit}`,
+      `Underbust: ${latestResult.band} ${latestResult.bandUnit}`,
+      `Difference: ${fmtNumber(latestResult.gapIn)} inches`,
+      '', 'Location | Band size | Cup',
+      ...latestResult.rows.map(row => row.join(' | ')),
+      '', 'Size is an estimate. Confirm with a fitting or try-on.'
+    ];
+    const blob = new Blob([lines.join('\n')], {type:'text/plain;charset=utf-8'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'calcpro-bra-size-result.txt';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  });
+  byId.print.addEventListener('click', () => window.print());
+})();
+</script><script data-calcpro-latest-result>
+(function () {
+  var toolRoot = document.querySelector('.cp-tool-area') || document.querySelector('main') || document.body;
+  var forms = Array.prototype.slice.call(toolRoot.querySelectorAll('form'));
+  if (forms.length < 2) return;
+
+  var selector = '[id*="result"], [class*="result"], [id*="output"], [class*="output"], [id*="total"], [class*="total"], [id*="summary"], [class*="summary"], [data-result], [data-re-results], [data-cp-surface-result]';
+  var candidates = Array.prototype.slice.call(toolRoot.querySelectorAll(selector));
+  var panels = candidates.filter(function (node) {
+    return !candidates.some(function (other) { return other !== node && other.contains(node); });
+  });
+  var activeOwner = null;
+
+  function namesOf(node) {
+    var names = [node.id].concat(Array.prototype.slice.call(node.classList || []));
+    return names.map(function (name) {
+      return String(name).toLowerCase().replace(/[-_](form|result|results|output|outputs|total|totals|summary|summaries)([-_].*)?$/, '');
+    }).filter(Boolean);
+  }
+
+  function pairedForm(panel) {
+    var names = namesOf(panel);
+    var matches = forms.filter(function (form) {
+      return namesOf(form).some(function (name) { return names.indexOf(name) !== -1; });
+    });
+    return matches.length === 1 ? matches[0] : null;
+  }
+
+  function ownerOf(node) {
+    if (node.matches('form')) return node;
+    var form = node.closest('form') || pairedForm(node);
+    if (form) return form;
+    for (var current = node; current && current !== toolRoot; current = current.parentElement) {
+      var formCount = (current.matches('form') ? 1 : 0) + current.querySelectorAll('form').length;
+      if (formCount === 1 && panels.some(function (panel) { return current === panel || current.contains(panel); })) return current.querySelector('form') || current;
+    }
+    return node.closest('section') || node;
+  }
+
+  function keepOnly(owner, showActive) {
+    panels.forEach(function (panel) {
+      var isActive = ownerOf(panel) === owner;
+      if (!isActive) panel.hidden = true;
+      else if (showActive) panel.hidden = false;
+    });
+  }
+
+  function activate(owner) {
+    if (!owner) return;
+    activeOwner = owner;
+    keepOnly(owner, false);
+  }
+
+  toolRoot.addEventListener('submit', function (event) {
+    var form = event.target;
+    if (form instanceof HTMLFormElement) activate(ownerOf(form));
+  }, true);
+
+  toolRoot.addEventListener('input', function (event) {
+    var form = event.target.closest('form');
+    if (form) activeOwner = ownerOf(form);
+  }, true);
+
+  toolRoot.addEventListener('click', function (event) {
+    var button = event.target.closest('button');
+    var form = button && button.closest('form');
+    if (!form) return;
+    var label = [button.id, button.textContent, button.getAttribute('aria-label') || ''].join(' ').toLowerCase();
+    if (/\b(clear|reset)\b/.test(label) || button.type === 'reset') activeOwner = null;
+    else if (button.type === 'submit' || /\b(calculate|compute|roll|start|encode|decode|convert|generate|run|solve|estimate)\b/.test(label)) activate(ownerOf(form));
+  }, true);
+
+  var observer = new MutationObserver(function (records) {
+    records.forEach(function (record) {
+      var panel = panels.find(function (item) { return item === record.target || item.contains(record.target); });
+      if (!panel || !activeOwner || ownerOf(panel) !== activeOwner) return;
+      if (record.type === 'attributes' && panel.hidden) return;
+      keepOnly(activeOwner, true);
+    });
+  });
+  panels.forEach(function (panel) {
+    observer.observe(panel, {attributes: true, attributeFilter: ['hidden'], childList: true, characterData: true, subtree: true});
+  });
+})();
+</script>
 <script defer src="/assets/js/data.js"></script>
-<script defer src="/assets/js/style.js?v=20261111-1"></script>
-</body>
-</html>
+<script defer src="/assets/js/style.js?v=20261111-5"></script>
+</body></html>

@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US">
-<head>
-<meta charset="utf-8">
+<html lang="en"><head><meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="content-language" content="en">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,17 +11,310 @@
   <meta name="author" content="Commingsoon">
   <meta name="publisher" content="Commingsoon">
   <meta name="robots" content="noindex, nofollow, max-image-preview:large">
-  <link rel="stylesheet" href="/assets/css/style.css?v=20261111-1" crossorigin="anonymous" data-n-g="">
+  <link rel="stylesheet" href="/assets/css/style.css?v=20261111-4" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/doc_style.css" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/side_style.css" crossorigin="anonymous" data-n-g=""> 
   <!--ogtags-->
-  <!--schema-->
-  <!--style-->
-</head>
+  <!--schema--><style>
 
-<body>
-<!-- Main-header-page -->
-<script defer src="/assets/js/data.js"></script>
-<script defer src="/assets/js/style.js?v=20261111-1"></script>
-</body>
-</html>
+/* College cost calculator only; every selector is scoped to its unique component. */
+.calcpro-collegecost{font:16px/1.38 Arial,Helvetica,sans-serif;color:#151515;width:100%;min-width:0}
+.calcpro-collegecost *{box-sizing:border-box}
+.calcpro-collegecost [hidden]{display:none!important}
+.calcpro-collegecost button,.calcpro-collegecost input,.calcpro-collegecost select{font:inherit}
+.calcpro-collegecost .calcpro-collegecost-instruction{background:#346696;color:#fff;min-height:41px;padding:8px 14px;display:flex;align-items:center;justify-content:center;gap:20px;text-align:center;margin:4px 0 5px}
+.calcpro-collegecost .calcpro-collegecost-chevron{display:inline-grid;place-items:center;width:27px;height:27px;border-radius:50%;color:#346696;background:#fff;font-size:19px;line-height:1;flex:none}
+.calcpro-collegecost .calcpro-collegecost-form-panel{margin:0;border:1px solid #b9b9b9;background:#eee;padding:10px 9px 9px}
+.calcpro-collegecost .calcpro-collegecost-fields{display:grid;gap:5px}
+.calcpro-collegecost .calcpro-collegecost-field-row{display:grid;grid-template-columns:minmax(0,295px) 118px minmax(0,1fr);align-items:center;column-gap:6px;min-height:31px}
+.calcpro-collegecost .calcpro-collegecost-field-label{color:#171717;font-size:16px;line-height:1.25}
+.calcpro-collegecost .calcpro-collegecost-input-shell{height:33px;width:118px;max-width:100%;position:relative;display:block}
+.calcpro-collegecost .calcpro-collegecost-input{width:100%;height:33px;min-width:0;background:#fff;border:1px solid #32669a;border-radius:1px;padding:5px 7px;color:#111;box-shadow:1px 1px 2px #0002;appearance:none;outline-offset:2px}
+.calcpro-collegecost .calcpro-collegecost-input:focus,.calcpro-collegecost .calcpro-collegecost-select:focus{outline:2px solid #275f98;outline-offset:1px}
+.calcpro-collegecost .calcpro-collegecost-input-shell[data-suffix] .calcpro-collegecost-input{padding-right:45px}
+.calcpro-collegecost .calcpro-collegecost-input-shell[data-suffix="%"] .calcpro-collegecost-input{padding-right:20px}
+.calcpro-collegecost .calcpro-collegecost-input-shell[data-suffix]::after{content:attr(data-suffix);position:absolute;right:6px;top:50%;transform:translateY(-50%);pointer-events:none;color:#666}
+.calcpro-collegecost .calcpro-collegecost-input-shell[data-suffix="%"]::after{color:#000}
+.calcpro-collegecost .calcpro-collegecost-input[aria-invalid="true"]{border-color:#bb2020;background:#fff7f6}
+.calcpro-collegecost .calcpro-collegecost-helper{font-size:13px;line-height:1.15;color:#111}
+.calcpro-collegecost .calcpro-collegecost-select-wrap{display:flex;align-items:center;gap:5px;min-width:0}
+.calcpro-collegecost .calcpro-collegecost-select{width:100%;min-width:0;height:33px;background:#fff;border:1px solid #32669a;border-radius:1px;padding:4px 5px;box-shadow:1px 1px 2px #0002;font-size:15px}
+.calcpro-collegecost .calcpro-collegecost-actions{display:flex;align-items:center;justify-content:center;gap:5px;padding-top:10px}
+.calcpro-collegecost .calcpro-collegecost-calculate{color:#fff;background:#4a8025;border:1px solid #4a8025;padding:9px 14px;font-weight:bold;cursor:pointer;min-width:146px}
+.calcpro-collegecost .calcpro-collegecost-calculate:hover{background:#346118}
+.calcpro-collegecost .calcpro-collegecost-play{display:inline-grid;place-items:center;vertical-align:middle;font-weight:normal;font-size:14px;background:#9bc38a;border-radius:50%;height:23px;width:23px;margin-left:13px;color:#fff}
+.calcpro-collegecost .calcpro-collegecost-clear{background:#a5a5a5;border:1px solid #a5a5a5;color:#fff;padding:9px 12px;cursor:pointer}
+.calcpro-collegecost .calcpro-collegecost-clear:hover{background:#777}
+.calcpro-collegecost .calcpro-collegecost-error{border:1px solid #b52020;background:#fff3f0;color:#8e1010;margin:7px 0;padding:9px 12px;font-size:14px}
+.calcpro-collegecost .calcpro-collegecost-result{margin:2px 0 17px;scroll-margin-top:12px}
+.calcpro-collegecost .calcpro-collegecost-result-bar{background:#4a8125;color:#fff;min-height:40px;padding:6px 8px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.calcpro-collegecost .calcpro-collegecost-result-bar-title{font-size:23px;font-weight:400;line-height:1.15}
+.calcpro-collegecost .calcpro-collegecost-result-actions{display:flex;gap:7px;align-items:center}
+.calcpro-collegecost .calcpro-collegecost-result-action{background:transparent;color:#fff;border:1px solid #ffffff55;padding:4px 6px;cursor:pointer;font-size:12px}
+.calcpro-collegecost .calcpro-collegecost-result-action:hover{background:#ffffff25}
+.calcpro-collegecost .calcpro-collegecost-result-section{margin:18px 0 24px}
+.calcpro-collegecost .calcpro-collegecost-result-heading{font-size:21px;line-height:1.24;margin:0 0 4px;color:#125217;font-weight:700}
+.calcpro-collegecost .calcpro-collegecost-result-description{margin:0 0 4px;font-size:15px}
+.calcpro-collegecost .calcpro-collegecost-metric{display:grid;grid-template-columns:minmax(0,55%) minmax(0,45%);gap:0;min-height:24px;align-items:start;font-size:16px;padding:2px 5px}
+.calcpro-collegecost .calcpro-collegecost-metric:nth-of-type(odd){background:#e0edf4}
+.calcpro-collegecost .calcpro-collegecost-metric-label{padding-right:8px}
+.calcpro-collegecost .calcpro-collegecost-metric-value{overflow-wrap:anywhere}
+.calcpro-collegecost .calcpro-collegecost-result-footnote{font-size:12px;color:#505050;margin:8px 5px 0;line-height:1.4}
+.calcpro-collegecost .calcpro-collegecost-breakdown{margin:12px 0 4px;border:1px solid #c7d4df;background:#f7fafc}
+.calcpro-collegecost .calcpro-collegecost-breakdown-summary{font-weight:700;color:#125217;padding:10px 12px;cursor:pointer}
+.calcpro-collegecost .calcpro-collegecost-breakdown-inner{padding:6px 14px 14px}
+.calcpro-collegecost .calcpro-collegecost-breakdown-note{font-size:13px;color:#555;margin:0 0 12px}
+.calcpro-collegecost .calcpro-collegecost-chart-row{display:grid;grid-template-columns:65px minmax(0,1fr) 103px;align-items:center;gap:7px;margin:8px 0;font-size:13px}
+.calcpro-collegecost .calcpro-collegecost-bar-track{height:16px;background:#dde9f0;border-radius:3px;overflow:hidden}
+.calcpro-collegecost .calcpro-collegecost-bar-fill{height:100%;background:#346696;min-width:0;border-radius:3px}
+.calcpro-collegecost .calcpro-collegecost-data-table{border-collapse:collapse;width:100%;font-size:13px;margin-top:16px}
+.calcpro-collegecost .calcpro-collegecost-data-table th,.calcpro-collegecost .calcpro-collegecost-data-table td{border:1px solid #c7d4df;text-align:left;padding:7px 6px}
+.calcpro-collegecost .calcpro-collegecost-data-table th{background:#346696;color:#fff}
+.calcpro-collegecost .calcpro-collegecost-data-table tr:nth-child(even) td{background:#fff}
+.calcpro-collegecost .calcpro-collegecost-total-row td{font-weight:bold}
+@media(max-width:690px){
+ .calcpro-collegecost .calcpro-collegecost-field-row{grid-template-columns:minmax(0,42%) 118px minmax(0,1fr)}
+ .calcpro-collegecost .calcpro-collegecost-field-label{font-size:14px}
+ .calcpro-collegecost .calcpro-collegecost-helper{font-size:12px}
+ .calcpro-collegecost .calcpro-collegecost-select{font-size:13px}
+}
+@media(max-width:540px){
+ .calcpro-collegecost .calcpro-collegecost-instruction{font-size:14px;gap:10px}
+ .calcpro-collegecost .calcpro-collegecost-form-panel{padding:12px}
+ .calcpro-collegecost .calcpro-collegecost-fields{gap:12px}
+ .calcpro-collegecost .calcpro-collegecost-field-row{grid-template-columns:minmax(0,1fr);gap:5px}
+ .calcpro-collegecost .calcpro-collegecost-field-label{font-size:15px}
+ .calcpro-collegecost .calcpro-collegecost-input-shell{width:160px}
+ .calcpro-collegecost .calcpro-collegecost-helper{font-size:12px;margin-top:0}
+ .calcpro-collegecost .calcpro-collegecost-select-wrap{flex-wrap:wrap;gap:5px}
+ .calcpro-collegecost .calcpro-collegecost-select{max-width:100%;width:100%;height:35px;font-size:14px}
+ .calcpro-collegecost .calcpro-collegecost-result-heading{font-size:19px}
+ .calcpro-collegecost .calcpro-collegecost-metric{font-size:14px;grid-template-columns:minmax(0,53%) minmax(0,47%)}
+ .calcpro-collegecost .calcpro-collegecost-chart-row{grid-template-columns:60px minmax(0,1fr) 88px}
+ .calcpro-collegecost .calcpro-collegecost-breakdown-inner{padding:6px 8px 10px}
+}
+@media print{
+ .calcpro-collegecost .calcpro-collegecost-instruction,.calcpro-collegecost .calcpro-collegecost-actions,.calcpro-collegecost .calcpro-collegecost-result-actions,.calcpro-collegecost .calcpro-collegecost-breakdown{display:none!important}
+ .calcpro-collegecost .calcpro-collegecost-form-panel{border:0}
+ .calcpro-collegecost .calcpro-collegecost-result{break-inside:avoid}
+}
+
+</style>
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / College Cost Calculator</nav><h1 class="cp-page-title">College Cost Calculator</h1><h2 style="font-size:22px;line-height:1.3;color:#125217;margin:12px 0 5px">How Much Does College Cost?</h2><p class="cp-intro">Estimate college tuition, fees, housing, and other annual costs with projected price increases. Compare the full education budget with the portion you plan to pay from savings, and see how much to save monthly. This planner uses U.S. dollars and U.S. college-cost averages.</p><section aria-label="Calculator" class="cp-tool-area">
+<div class="calcpro-collegecost" id="calcpro-collegecost-tool">
+  <div class="calcpro-collegecost-instruction" id="calcpro-collegecost-instruction"><span class="calcpro-collegecost-chevron" aria-hidden="true">▼</span><span>Modify the values and click the Calculate button to use</span></div>
+  <div class="calcpro-collegecost-result" id="calcpro-collegecost-result" role="region" aria-label="College cost calculation results" hidden>
+    <div class="calcpro-collegecost-result-bar"><strong class="calcpro-collegecost-result-bar-title">Results:</strong><div class="calcpro-collegecost-result-actions"><button type="button" class="calcpro-collegecost-result-action" id="calcpro-collegecost-save" title="Save results as a text file">▣ Save</button><button type="button" class="calcpro-collegecost-result-action" id="calcpro-collegecost-print" title="Print or save as PDF">Print</button></div></div>
+    <div class="calcpro-collegecost-result-section"><h3 class="calcpro-collegecost-result-heading">If paying college costs in full</h3><div class="calcpro-collegecost-metric"><span class="calcpro-collegecost-metric-label">Total college cost</span><output class="calcpro-collegecost-metric-value" id="calcpro-collegecost-full-total">—</output></div>
+<div class="calcpro-collegecost-metric"><span class="calcpro-collegecost-metric-label">Total college cost in today&#x27;s money</span><output class="calcpro-collegecost-metric-value" id="calcpro-collegecost-full-pv">—</output></div>
+<div class="calcpro-collegecost-metric"><span class="calcpro-collegecost-metric-label">Equivalent monthly saving</span><output class="calcpro-collegecost-metric-value" id="calcpro-collegecost-full-monthly">—</output></div>
+<div class="calcpro-collegecost-metric"><span class="calcpro-collegecost-metric-label">Freshman year cost</span><output class="calcpro-collegecost-metric-value" id="calcpro-collegecost-full-freshman">—</output></div></div>
+    <div class="calcpro-collegecost-result-section"><h3 class="calcpro-collegecost-result-heading" id="calcpro-collegecost-share-heading">If 35% of college costs come from savings</h3><p class="calcpro-collegecost-result-description">The rest may be paid by grants, scholarships, student loans, or other financial aids.</p><div class="calcpro-collegecost-metric"><span class="calcpro-collegecost-metric-label">You will need to save</span><output class="calcpro-collegecost-metric-value" id="calcpro-collegecost-share-total">—</output></div>
+<div class="calcpro-collegecost-metric"><span class="calcpro-collegecost-metric-label">Your target saving amount in today&#x27;s money</span><output class="calcpro-collegecost-metric-value" id="calcpro-collegecost-share-pv">—</output></div>
+<div class="calcpro-collegecost-metric"><span class="calcpro-collegecost-metric-label">Equivalent monthly saving</span><output class="calcpro-collegecost-metric-value" id="calcpro-collegecost-share-monthly">—</output></div>
+<div class="calcpro-collegecost-metric"><span class="calcpro-collegecost-metric-label">Amount needed in freshman year</span><output class="calcpro-collegecost-metric-value" id="calcpro-collegecost-share-freshman">—</output></div></div>
+    <p class="calcpro-collegecost-result-footnote" id="calcpro-collegecost-balance-note">Monthly contributions account for existing college savings and assume end-of-month deposits.</p>
+  </div>
+  <div class="calcpro-collegecost-error" id="calcpro-collegecost-error" role="alert" hidden></div>
+  <form class="calcpro-collegecost-form" id="calcpro-collegecost-form" novalidate>
+    <div class="calcpro-collegecost-form-panel"><div class="calcpro-collegecost-fields"><div class="calcpro-collegecost-field-row"><label class="calcpro-collegecost-field-label" for="calcpro-collegecost-cost">Today&#x27;s annual college costs:</label><span class="calcpro-collegecost-input-shell"><input autocomplete="off" class="calcpro-collegecost-input" id="calcpro-collegecost-cost" name="cost" type="text" inputmode="decimal" value="$30,990" aria-describedby="calcpro-collegecost-error" /></span><div class="calcpro-collegecost-select-wrap"><span>or</span><select class="calcpro-collegecost-select" id="calcpro-collegecost-average" aria-label="Average U.S. annual college cost">
+<option value="custom">Custom amount</option><option value="65470">4-year private: $65,470</option><option value="30990" selected>4-year in-state public: $30,990</option><option value="50920">4-year out-of-state public: $50,920</option><option value="21320">2-year public: $21,320</option></select></div></div><div class="calcpro-collegecost-field-row"><label class="calcpro-collegecost-field-label" for="calcpro-collegecost-increase">College cost increase rate:</label><span class="calcpro-collegecost-input-shell" data-suffix="%"><input autocomplete="off" class="calcpro-collegecost-input" id="calcpro-collegecost-increase" name="increase" type="text" inputmode="decimal" value="5" aria-describedby="calcpro-collegecost-error" /></span><span class="calcpro-collegecost-helper">5% recommended</span></div><div class="calcpro-collegecost-field-row"><label class="calcpro-collegecost-field-label" for="calcpro-collegecost-duration">Expected college attendance duration:</label><span class="calcpro-collegecost-input-shell" data-suffix="years"><input autocomplete="off" class="calcpro-collegecost-input" id="calcpro-collegecost-duration" name="duration" type="text" inputmode="decimal" value="4" aria-describedby="calcpro-collegecost-error" /></span><span></span></div><div class="calcpro-collegecost-field-row"><label class="calcpro-collegecost-field-label" for="calcpro-collegecost-share">Percent of costs from savings:</label><span class="calcpro-collegecost-input-shell" data-suffix="%"><input autocomplete="off" class="calcpro-collegecost-input" id="calcpro-collegecost-share" name="share" type="text" inputmode="decimal" value="35" aria-describedby="calcpro-collegecost-error" /></span><span></span></div><div class="calcpro-collegecost-field-row"><label class="calcpro-collegecost-field-label" for="calcpro-collegecost-balance">College savings balance now:</label><span class="calcpro-collegecost-input-shell"><input autocomplete="off" class="calcpro-collegecost-input" id="calcpro-collegecost-balance" name="balance" type="text" inputmode="decimal" value="$0" aria-describedby="calcpro-collegecost-error" /></span><span class="calcpro-collegecost-helper">amount saved so far</span></div><div class="calcpro-collegecost-field-row"><label class="calcpro-collegecost-field-label" for="calcpro-collegecost-return">Interest or investment return rate:</label><span class="calcpro-collegecost-input-shell" data-suffix="%"><input autocomplete="off" class="calcpro-collegecost-input" id="calcpro-collegecost-return" name="return" type="text" inputmode="decimal" value="5" aria-describedby="calcpro-collegecost-error" /></span><span></span></div><div class="calcpro-collegecost-field-row"><label class="calcpro-collegecost-field-label" for="calcpro-collegecost-tax">Tax rate on interest or investment return:</label><span class="calcpro-collegecost-input-shell" data-suffix="%"><input autocomplete="off" class="calcpro-collegecost-input" id="calcpro-collegecost-tax" name="tax" type="text" inputmode="decimal" value="25" aria-describedby="calcpro-collegecost-error" /></span><span class="calcpro-collegecost-helper">Including federal, state, and local tax; use 0% for 529 plan savings</span></div><div class="calcpro-collegecost-field-row"><label class="calcpro-collegecost-field-label" for="calcpro-collegecost-start">College will start in:</label><span class="calcpro-collegecost-input-shell" data-suffix="years"><input autocomplete="off" class="calcpro-collegecost-input" id="calcpro-collegecost-start" name="start" type="text" inputmode="decimal" value="3" aria-describedby="calcpro-collegecost-error" /></span><span></span></div></div><div class="calcpro-collegecost-actions"><button type="submit" class="calcpro-collegecost-calculate">Calculate <span class="calcpro-collegecost-play" aria-hidden="true">▶</span></button><button type="button" class="calcpro-collegecost-clear" id="calcpro-collegecost-clear">Clear</button></div></div>
+  </form>
+  <details class="calcpro-collegecost-breakdown" id="calcpro-collegecost-breakdown" hidden><summary class="calcpro-collegecost-breakdown-summary">View year-by-year cost chart and breakdown</summary><div class="calcpro-collegecost-breakdown-inner"><p class="calcpro-collegecost-breakdown-note">Annual costs grow at the selected increase rate. Each year's present value is discounted at the estimated after-tax investment rate.</p><div id="calcpro-collegecost-chart" role="img" aria-label="Annual college costs bar chart"></div><div style="overflow-x:auto"><table class="calcpro-collegecost-data-table"><thead><tr><th>College year</th><th>Projected cost</th><th>Present value</th><th>Share from savings</th></tr></thead><tbody id="calcpro-collegecost-breakdown-tbody"></tbody><tfoot><tr class="calcpro-collegecost-total-row"><td>Total</td><td id="calcpro-collegecost-annual-total">—</td><td id="calcpro-collegecost-annual-pv">—</td><td id="calcpro-collegecost-annual-share">—</td></tr></tfoot></table></div></div></details>
+</div>
+</section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><!-- REPLACE these links with real related tools for each calculator; verify live slugs. --><a href="retirement-calculator.html">Retirement</a><a href="roth-ira-calculator.html">Roth IRA</a><a href="investment-calculator.html">Investment</a><a href="compound-interest-calculator.html">Compound Interest</a><a href="annuity-payout-calculator.html">Annuity Payout</a><a href="pension-calculator.html">Pension</a><a href="inflation-calculator.html">Inflation</a><a href="future-value-calculator.html">Future Value</a><a href="income-tax-calculator.html">Income Tax</a><a href="savings-calculator.html">Savings</a><a href="mortgage-calculator.html">Mortgage</a><a href="loan-calculator.html">Loan</a></div></section></aside><article class="cp-article">
+<h2>How to Use the College Cost Calculator</h2>
+<p>Enter the total cost of one college year in today's dollars. You can type a school-specific estimate or select a 2025–26 national average. Adjust the annual cost increase, number of school years, percentage you plan to cover from savings, current savings balance, anticipated investment return, tax rate on earnings, and years until enrollment. Select <strong>Calculate</strong> to see two scenarios: covering every dollar and covering only your chosen savings share. Results appear above the inputs.</p>
+<h2>How the College Cost Formulas Work</h2>
+<p><strong>Projected cost for college year i:</strong> annual cost today × (1 + annual cost increase rate)<sup>years until enrollment + i</sup>, with i starting at zero. Adding the projected amounts for every attendance year gives the total future cost.</p>
+<p><strong>After-tax annual investment return:</strong> expected return × (1 − tax rate on earnings). Each future college-year expense is discounted to the present by dividing it by (1 + after-tax return)<sup>years until enrollment + i</sup>. The sum is the <strong>total college cost in today's money</strong>—a discounted present value, not an adjustment using general consumer-price inflation.</p>
+<p><strong>Monthly savings:</strong> let <em>PV</em> be the present-value cost target minus your current savings (not below zero), <em>r</em> be the after-tax annual return divided by 12, and <em>n</em> be 12 × (years until enrollment + years attending). For nonzero r, the monthly contribution is <em>PV × r ÷ [1 − (1 + r)<sup>−n</sup>]</em>. If r is zero, it is PV ÷ n. This simplified method assumes deposits continue through graduation and are made at the end of each month; it does not model the precise timing of tuition bills.</p>
+<h2>Worked Example</h2>
+<p>Assume annual college costs of <strong>$30,990</strong>, 5% yearly cost increases, four years in college starting in three years, a 5% investment return, 25% tax on earnings, no existing savings, and a 35% family-savings target. The after-tax return is 3.75%. The four inflated annual costs add to approximately <strong>$154,625</strong>. Discounting the four expenses at 3.75% produces a present value of about <strong>$130,836</strong>. Saving for the full amount requires approximately <strong>$1,773 monthly</strong> over seven years. A 35% savings share equals about <strong>$54,119</strong> of future costs or <strong>$621 monthly</strong>.</p>
+<h2>Understanding the Outputs</h2>
+<p><strong>Total college cost</strong> is the sum of future annual bills. <strong>Cost in today's money</strong> is their present value under the investment return assumption. <strong>Freshman year cost</strong> compares the first projected year with today's annual budget. <strong>You will need to save</strong> is the nominal future portion you plan to cover. The monthly saving figure allows for the existing savings balance; a balance already exceeding the present-value goal reduces the required monthly contribution to zero.</p>
+<h2>2025–26 U.S. Annual College Budget Reference</h2>
+<div class="cp-table-scroll"><table class="cp-content-table"><thead><tr><th>College category</th><th>Average total annual budget</th></tr></thead><tbody>
+<tr><td>Four-year private nonprofit</td><td>$65,470</td></tr><tr><td>Four-year public, in-state</td><td>$30,990</td></tr><tr><td>Four-year public, out-of-state</td><td>$50,920</td></tr><tr><td>Two-year public, in-district</td><td>$21,320</td></tr>
+</tbody></table></div>
+<p>These College Board student budgets include more than tuition: they also estimate housing and food, books and supplies, transportation, and personal expenses. Individual universities can cost substantially more or less, and scholarships may reduce the net amount you pay.</p>
+<h2>Frequently Asked Questions</h2>
+<h3>Does the estimated annual cost include housing and food?</h3><p>The selectable averages are full student budgets. When entering a custom amount, include tuition and fees, housing, meals, course materials, transportation, and other relevant living expenses for a complete estimate.</p>
+<h3>Should I enter 0% tax for a 529 college savings plan?</h3><p>For an eligible U.S. 529 account, investment earnings are generally federal-tax-free when distributions are used for qualified education expenses. Entering a zero tax rate can approximate that treatment, but your individual tax circumstances and state rules may differ.</p>
+<h3>Do contributions stop once college starts?</h3><p>Not in this calculator. For comparability with the reference method, the equivalent monthly amount is spread across both the years before college and the years of attendance. If you plan to finish saving before enrollment, use a dedicated pre-enrollment funding projection instead.</p>
+<h3>Are scholarships or student loans included automatically?</h3><p>No. Enter the percentage of projected costs you intend to cover with savings. The remaining portion represents an amount you might fund through grants, scholarships, earnings, or borrowing; the calculator does not predict eligibility or loan repayment costs.</p>
+<h2>Sources and Further Planning</h2>
+<p><a href="https://research.collegeboard.org/trends/college-pricing" target="_blank" rel="noopener noreferrer">College Board — Trends in College Pricing</a> (student budgets), <a href="https://nces.ed.gov/collegenavigator/" target="_blank" rel="noopener noreferrer">NCES College Navigator</a> (individual college research), and <a href="https://www.irs.gov/publications/p970" target="_blank" rel="noopener noreferrer">IRS Publication 970</a> (education-related tax rules).</p>
+<p class="cp-page-footer">CalcPro — projections are estimates for financial planning and do not guarantee costs or investment returns.</p>
+</article></main></div><script>
+/* College cost calculator: standalone, offline-capable, without globals. */
+(() => {
+ 'use strict';
+ const root = document.getElementById('calcpro-collegecost-tool');
+ if (!root) return;
+ const $ = id => root.querySelector('#calcpro-collegecost-' + id);
+ const form = $('form'), err = $('error'), result = $('result'), tip = $('instruction'), details = $('breakdown');
+ const names = ['cost','increase','duration','share','balance','return','tax','start'];
+ const defaults = { cost:30990,increase:5,duration:4,share:35,balance:0,return:5,tax:25,start:3 };
+ const fmt = val => '$' + Math.round(val).toLocaleString('en-US', { maximumFractionDigits:0 });
+ const fmtDecimal = val => Number(val).toLocaleString('en-US', {maximumFractionDigits:2});
+ const parse = val => {
+   const clean = String(val).trim().replace(/[$,%\s]/g, '');
+   if (clean === '' || !/^[+-]?(?:\d+\.?\d*|\.\d+)$/.test(clean)) return NaN;
+   return Number(clean);
+ };
+ const constraints = {
+   cost:[0,1000000000,false],increase:[-50,100,false],duration:[1,20,true],
+   share:[0,100,false],balance:[0,1000000000000,false],return:[-50,100,false],
+   tax:[0,100,false],start:[0,60,true]
+ };
+ let latest = null;
+ function markErrors(badNames) {
+   names.forEach(name => $(name).setAttribute('aria-invalid', String(badNames.includes(name))));
+ }
+ function validate() {
+   const v = {}, errors=[];
+   names.forEach(name => {
+     const val = parse($(name).value), [min,max,integer]=constraints[name];
+     v[name] = val;
+     if (!Number.isFinite(val) || val<min || val>max || (integer && !Number.isInteger(val))) errors.push(name);
+   });
+   markErrors(errors);
+   if (errors.length) {
+     const labels = errors.map(name => root.querySelector('label[for="calcpro-collegecost-'+name+'"]').textContent.replace(/:$/, '')).join('; ');
+     err.textContent = 'Please enter valid values for: ' + labels + '. Dollar amounts must be nonnegative, percentages must be within the allowed ranges, and years must be whole numbers.';
+     err.hidden = false;
+     return null;
+   }
+   err.hidden = true;
+   return v;
+ }
+ function model(v) {
+   const afterTax = (v.return/100) * (1-v.tax/100);
+   const annualFactor = 1 + afterTax;
+   const monthlyRate = afterTax/12;
+   const months = (v.start + v.duration)*12;
+   const years=[];
+   for (let i=0; i<v.duration; i++) {
+     const t = v.start + i;
+     const amount = v.cost*Math.pow(1+v.increase/100,t);
+     const pv = amount/Math.pow(annualFactor,t);
+     years.push({ year:i+1,time:t,amount,pv,share:amount*v.share/100 });
+   }
+   const total = years.reduce((sum, y)=>sum+y.amount,0);
+   const present = years.reduce((sum, y)=>sum+y.pv,0);
+   const savingsShare = v.share/100;
+   // The reference treats all monthly deposits as an ordinary annuity continuing
+   // from now through graduation. Costs are discounted at the net annual return.
+   const annuityPV = Math.abs(monthlyRate)<1e-12 ? months : -Math.expm1(-months*Math.log1p(monthlyRate))/monthlyRate;
+   const monthlyFor = targetPV => Math.max(0,(targetPV-v.balance)/annuityPV);
+   return {
+     v,years, total, present, freshman:years[0].amount, afterTax, months,
+     monthlyFull:monthlyFor(present), monthlyShare:monthlyFor(present*savingsShare),
+     targetShare:total*savingsShare, presentShare:present*savingsShare,
+     firstShare:years[0].amount*savingsShare
+   };
+ }
+ function output(id,value){$(id).textContent=value;}
+ function render(data) {
+   const d=data, y=d.v.start+d.v.duration;
+   output('full-total',fmt(d.total));
+   output('full-pv',fmt(d.present));
+   output('full-monthly',fmt(d.monthlyFull)+' per month for '+y+' '+(y===1?'year':'years'));
+   output('full-freshman',fmt(d.freshman)+' vs. '+fmt(d.v.cost)+' now');
+   $('share-heading').textContent='If '+fmtDecimal(d.v.share)+'% of college costs come from savings';
+   output('share-total',fmt(d.targetShare));
+   output('share-pv',fmt(d.presentShare));
+   output('share-monthly',fmt(d.monthlyShare)+' per month for '+y+' '+(y===1?'year':'years'));
+   output('share-freshman',fmt(d.firstShare));
+   $('balance-note').textContent=d.v.balance>0
+     ? 'Monthly savings account for the '+fmt(d.v.balance)+' already saved. If your balance meets or exceeds a present-value goal, its required monthly contribution is $0. Assumes deposits at the end of each month.'
+     : 'Equivalent monthly savings assume deposits at the end of each month over '+y+' '+(y===1?'year':'years')+'.';
+   const chart=$('chart'),tbody=$('breakdown-tbody');
+   chart.replaceChildren(); tbody.replaceChildren();
+   const max=Math.max(...d.years.map(row=>row.amount),0);
+   d.years.forEach(row=>{
+     const barrow=document.createElement('div'); barrow.className='calcpro-collegecost-chart-row';
+     const t=document.createElement('span');t.textContent='Year '+row.year;
+     const track=document.createElement('div');track.className='calcpro-collegecost-bar-track';
+     const bar=document.createElement('div');bar.className='calcpro-collegecost-bar-fill';bar.style.width=(max===0?0:row.amount/max*100).toFixed(2)+'%';
+     track.appendChild(bar);
+     const value=document.createElement('span');value.textContent=fmt(row.amount);
+     barrow.append(t,track,value); chart.appendChild(barrow);
+     const tr=document.createElement('tr');
+     ['Year '+row.year,fmt(row.amount),fmt(row.pv),fmt(row.share)].forEach(text=>{const td=document.createElement('td');td.textContent=text;tr.appendChild(td)});
+     tbody.appendChild(tr);
+   });
+   output('annual-total',fmt(d.total));output('annual-pv',fmt(d.present));output('annual-share',fmt(d.targetShare));
+   tip.hidden=true; result.hidden=false; details.hidden=false;
+ }
+ function calculate(e){
+   if(e)e.preventDefault();
+   const v=validate();
+   if(!v){return;}
+   try {
+     const d=model(v);
+     const numbers=[d.total,d.present,d.monthlyFull,d.monthlyShare,d.targetShare,d.presentShare,d.firstShare];
+     if(numbers.some(x=>!Number.isFinite(x))){ throw new Error('Calculated values are outside the supported range.'); }
+     latest=d; render(d);
+   } catch(ex) {
+     err.hidden=false;err.textContent=ex.message || 'Unable to calculate with these values.';
+   }
+ }
+ function clear() {
+   for (const name of names) $(name).value=name==='cost'||name==='balance'?fmt(defaults[name]):String(defaults[name]);
+   $('average').value='30990'; markErrors([]);err.hidden=true;
+   latest=null;result.hidden=true;tip.hidden=false;details.hidden=true;details.open=false;
+ }
+ form.addEventListener('submit',calculate);
+ $('clear').addEventListener('click',clear);
+ $('average').addEventListener('change',e=>{
+   if(e.target.value==='custom')return;
+   $('cost').value=fmt(Number(e.target.value));
+ });
+ $('cost').addEventListener('input',()=>{
+   const v=parse($('cost').value);
+   $('average').value=Number.isFinite(v) && ['65470','30990','50920','21320'].includes(String(v)) ? String(v) : 'custom';
+ });
+ ['cost','balance'].forEach(name=>$(name).addEventListener('blur',()=>{
+   const value=parse($(name).value); if(Number.isFinite(value) && value>=0) $(name).value=fmtDecimal(value).replace(/^/,'$');
+ }));
+ names.forEach(name=>$(name).addEventListener('input',()=>{
+   $(name).setAttribute('aria-invalid','false');
+   err.hidden=true;
+ }));
+ $('save').addEventListener('click',()=>{
+   if(!latest)return;
+   const d=latest, v=d.v,period=v.start+v.duration;
+   const lines=[
+     'CalcPro — College Cost Calculator','',
+     "Today's annual college cost: "+fmt(v.cost),
+     'Annual college cost increase: '+v.increase+'%',
+     'Years attending college: '+v.duration,
+     'College starts in: '+v.start+' years',
+     'Share paid from savings: '+v.share+'%',
+     'Current savings balance: '+fmt(v.balance),
+     'Investment return: '+v.return+'%',
+     'Tax rate on return: '+v.tax+'%',
+     '', 'Full college cost:', 'Total projected cost: '+fmt(d.total),
+     'Present value: '+fmt(d.present),
+     'Equivalent monthly savings: '+fmt(d.monthlyFull)+' for '+period+' years',
+     'Freshman year cost: '+fmt(d.freshman),
+     '', 'Savings share:', 'Target share: '+fmt(d.targetShare),
+     'Present-value target: '+fmt(d.presentShare),
+     'Equivalent monthly savings: '+fmt(d.monthlyShare)+' for '+period+' years',
+     'Freshman year savings share: '+fmt(d.firstShare), '',
+     'Method: annual costs increased by the projected growth rate, discounted using the after-tax annual investment return. Monthly savings use an end-of-month ordinary annuity over the years through graduation.',
+     'These are planning estimates, not guarantees.'
+   ];
+   const blob=new Blob([lines.join('\n')+'\n'],{type:'text/plain;charset=utf-8'});
+   const url=URL.createObjectURL(blob),a=document.createElement('a');
+   a.href=url;a.download='college-cost-results.txt';document.body.appendChild(a);a.click();a.remove();
+   setTimeout(()=>URL.revokeObjectURL(url),500);
+ });
+ $('print').addEventListener('click',()=>{if(latest)window.print();});
+ markErrors([]);
+})();
+</script><script defer src="/assets/js/data.js"></script>
+<script defer src="/assets/js/style.js?v=20261111-5"></script>
+</body></html>

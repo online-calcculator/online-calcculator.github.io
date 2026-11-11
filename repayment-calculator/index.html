@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US">
-<head>
-<meta charset="utf-8">
+<html lang="en"><head><meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="content-language" content="en">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,17 +11,350 @@
   <meta name="author" content="Commingsoon">
   <meta name="publisher" content="Commingsoon">
   <meta name="robots" content="noindex, nofollow, max-image-preview:large">
-  <link rel="stylesheet" href="/assets/css/style.css?v=20261111-1" crossorigin="anonymous" data-n-g="">
+  <link rel="stylesheet" href="/assets/css/style.css?v=20261111-4" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/doc_style.css" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/side_style.css" crossorigin="anonymous" data-n-g=""> 
   <!--ogtags-->
-  <!--schema-->
-  <!--style-->
-</head>
+  <!--schema--><style>
 
-<body>
-<!-- Main-header-page -->
-<script defer src="/assets/js/data.js"></script>
-<script defer src="/assets/js/style.js?v=20261111-1"></script>
-</body>
-</html>
+/* All calculator-only rules are scoped to .calcpro-repayment. */
+.calcpro-repayment{--crp-blue:#367fcf;--crp-green:#80b924;--crp-dark-green:#4d8524;--crp-light:#f0f0f0;--crp-border:#bec3c8;color:#141414;font:14px/1.4 Arial,Helvetica,sans-serif;max-width:100%;}
+.calcpro-repayment *{box-sizing:border-box}
+.calcpro-repayment button,.calcpro-repayment input,.calcpro-repayment select{font:inherit}
+.calcpro-repayment input,.calcpro-repayment select{color:#172635;background:#fff;border:1px solid #67839a;border-radius:2px;min-height:31px;width:100%;padding:4px 8px;min-width:0}
+.calcpro-repayment input:focus-visible,.calcpro-repayment select:focus-visible{outline:2px solid #3376bd;outline-offset:2px}
+.calcpro-repayment .calcpro-repayment-layout{display:grid;grid-template-columns:minmax(220px,0.91fr) minmax(240px,1.09fr);align-items:start;gap:20px}
+.calcpro-repayment .calcpro-repayment-form-panel{background:#efefef;border:1px solid #bbb;padding:12px 12px 13px;min-width:0}
+.calcpro-repayment .calcpro-repayment-help{font-size:12px;background:#336699;color:white;padding:8px 11px;margin-bottom:8px;display:flex;align-items:center;gap:8px;font-weight:bold}
+.calcpro-repayment .calcpro-repayment-help-icon{background:#fff;color:#336699;width:19px;height:19px;border-radius:50%;display:inline-grid;place-items:center;flex-shrink:0}
+.calcpro-repayment .calcpro-repayment-field{display:grid;grid-template-columns:minmax(82px,0.88fr) minmax(125px,1.12fr);gap:7px;align-items:center;margin-bottom:7px}
+.calcpro-repayment .calcpro-repayment-field>label{font-size:13px;line-height:1.2}
+.calcpro-repayment .calcpro-repayment-field select{padding-left:5px;font-size:13px}
+.calcpro-repayment .calcpro-repayment-unit-wrap{position:relative;min-width:0}
+.calcpro-repayment .calcpro-repayment-unit-wrap input{padding-right:29px}
+.calcpro-repayment .calcpro-repayment-unit{position:absolute;right:9px;top:50%;transform:translateY(-50%);color:#333;pointer-events:none}
+.calcpro-repayment .calcpro-repayment-choice{display:flex;align-items:flex-start;gap:8px;font-size:13px;font-weight:600;cursor:pointer;margin:12px 0 6px}
+.calcpro-repayment .calcpro-repayment-choice input{width:16px;min-height:16px;height:16px;flex:0 0 16px;accent-color:#336699;margin:1px 0 0}
+.calcpro-repayment .calcpro-repayment-subrow{display:flex;align-items:center;gap:5px;padding-left:24px;font-size:12px;flex-wrap:nowrap}
+.calcpro-repayment .calcpro-repayment-subrow>span:first-child{flex-shrink:0}
+.calcpro-repayment .calcpro-repayment-duration-control{position:relative;flex:1;min-width:0}
+.calcpro-repayment .calcpro-repayment-duration-control input{min-width:0;padding:4px 39px 4px 7px}
+.calcpro-repayment .calcpro-repayment-duration-control span{position:absolute;right:6px;top:50%;transform:translateY(-50%);font-size:11px;color:#747474;pointer-events:none}
+.calcpro-repayment .calcpro-repayment-installment-row{flex-wrap:wrap}
+.calcpro-repayment .calcpro-repayment-installment-row .calcpro-repayment-unit-wrap{width:110px;max-width:100%}
+.calcpro-repayment .calcpro-repayment-installment-row .calcpro-repayment-every{font-size:12px}
+.calcpro-repayment .calcpro-repayment-actions{display:flex;justify-content:center;gap:6px;margin-top:15px}
+.calcpro-repayment .calcpro-repayment-action{border:0;color:#fff;padding:7px 12px;cursor:pointer;font-size:13px;font-weight:bold;min-height:34px;border-radius:2px}
+.calcpro-repayment .calcpro-repayment-action-primary{background:var(--crp-dark-green)}
+.calcpro-repayment .calcpro-repayment-action-secondary{background:#969696}
+.calcpro-repayment .calcpro-repayment-action:hover{filter:brightness(.93)}
+.calcpro-repayment .calcpro-repayment-error{background:#ffeded;border:1px solid #c85656;color:#812626;padding:8px 9px;font-size:13px;margin:10px 0 0;line-height:1.45}
+.calcpro-repayment [hidden]{display:none!important}
+.calcpro-repayment .calcpro-repayment-result{min-width:0}
+.calcpro-repayment .calcpro-repayment-result-bar{display:flex;align-items:center;justify-content:space-between;background:var(--crp-dark-green);color:#fff;padding:7px 9px;min-height:34px}
+.calcpro-repayment .calcpro-repayment-result-bar h2{color:inherit;font:bold 19px/1.2 Arial,Helvetica,sans-serif;margin:0}
+.calcpro-repayment .calcpro-repayment-result-tools{display:flex;align-items:center;gap:5px}
+.calcpro-repayment .calcpro-repayment-result-tools button{background:transparent;border:1px solid rgba(255,255,255,.7);color:white;font:11px Arial,Helvetica,sans-serif;cursor:pointer;border-radius:2px;padding:3px 5px}
+.calcpro-repayment .calcpro-repayment-result-tools button:hover{background:rgba(255,255,255,.18)}
+.calcpro-repayment .calcpro-repayment-result-body{padding:9px 3px 5px}
+.calcpro-repayment .calcpro-repayment-summary-line{display:flex;gap:10px;align-items:baseline;justify-content:space-between;line-height:1.4;font-size:13px}
+.calcpro-repayment .calcpro-repayment-summary-line>span:first-child{min-width:0}
+.calcpro-repayment .calcpro-repayment-summary-line strong{text-align:right;white-space:nowrap;color:#111}
+.calcpro-repayment .calcpro-repayment-summary-line:first-child strong{font-weight:700}
+.calcpro-repayment .calcpro-repayment-chart-area{display:flex;align-items:center;justify-content:center;gap:14px;padding:14px 0 9px}
+.calcpro-repayment .calcpro-repayment-donut{--crp-share:78.44%;width:94px;height:94px;flex:0 0 94px;border-radius:50%;background:conic-gradient(var(--crp-blue) 0 var(--crp-share),var(--crp-green) var(--crp-share) 100%);position:relative;display:grid;place-items:center;transform:rotate(-90deg)}
+.calcpro-repayment .calcpro-repayment-donut:before{content:'';width:48px;height:48px;background:#fff;border-radius:50%;position:absolute;inset:23px}
+.calcpro-repayment .calcpro-repayment-donut-label{position:absolute;font-size:10px;line-height:1;font-weight:bold;color:#fff;transform:rotate(90deg);text-shadow:0 1px 2px rgba(0,0,0,.15)}
+.calcpro-repayment .calcpro-repayment-donut-principal{right:11px;top:45px}
+.calcpro-repayment .calcpro-repayment-donut-interest{left:10px;top:27px}
+.calcpro-repayment .calcpro-repayment-chart-key{display:grid;gap:4px;font-size:13px}
+.calcpro-repayment .calcpro-repayment-key-line{display:flex;align-items:center;gap:6px}
+.calcpro-repayment .calcpro-repayment-key-color{width:13px;height:12px;border-radius:2px;display:inline-block}
+.calcpro-repayment .calcpro-repayment-key-color-blue{background:var(--crp-blue)}
+.calcpro-repayment .calcpro-repayment-key-color-green{background:var(--crp-green)}
+.calcpro-repayment .calcpro-repayment-amort-trigger{display:block;margin:1px auto 6px;border:0;background:none;text-decoration:underline;color:#0068a2;cursor:pointer;font-size:13px;padding:4px}
+.calcpro-repayment .calcpro-repayment-amort{margin:12px 0 0;border-top:1px solid #ddd;padding-top:9px}
+.calcpro-repayment .calcpro-repayment-amort h3{margin:7px 0;font:bold 15px Arial,Helvetica,sans-serif;color:#123e62}
+.calcpro-repayment .calcpro-repayment-table-container{width:100%;overflow-x:auto;margin:6px 0 13px;border:1px solid #d5dfe7}
+.calcpro-repayment .calcpro-repayment-table{border-collapse:collapse;width:100%;font-size:12px;white-space:nowrap}
+.calcpro-repayment .calcpro-repayment-table th,.calcpro-repayment .calcpro-repayment-table td{padding:6px 8px;border-bottom:1px solid #e2e7ea;text-align:right}
+.calcpro-repayment .calcpro-repayment-table th:first-child,.calcpro-repayment .calcpro-repayment-table td:first-child{text-align:left}
+.calcpro-repayment .calcpro-repayment-table th{background:#336699;color:white;font-weight:600}
+.calcpro-repayment .calcpro-repayment-table tbody tr:nth-child(even){background:#f5f8fb}
+.calcpro-repayment .calcpro-repayment-pagination{display:flex;align-items:center;justify-content:center;gap:9px;font-size:12px;margin:9px 0 2px;flex-wrap:wrap}
+.calcpro-repayment .calcpro-repayment-pagination button{padding:5px 9px;border:1px solid #a3b4c3;border-radius:2px;background:#eef5fa;color:#1c5279;cursor:pointer}
+.calcpro-repayment .calcpro-repayment-pagination button:disabled{opacity:.4;cursor:not-allowed}
+.calcpro-repayment .calcpro-repayment-note{font-size:11px;line-height:1.45;color:#555;margin:6px 0}
+@media(max-width:600px){.calcpro-repayment .calcpro-repayment-layout{gap:12px}.calcpro-repayment .calcpro-repayment-form-panel{padding:10px 8px}.calcpro-repayment .calcpro-repayment-field{grid-template-columns:minmax(80px,0.87fr) minmax(113px,1.13fr);gap:5px}.calcpro-repayment .calcpro-repayment-field>label{font-size:12px}.calcpro-repayment .calcpro-repayment-duration-control input{padding-right:34px}.calcpro-repayment .calcpro-repayment-duration-control span{font-size:10px;right:4px}}
+@media(max-width:515px){.calcpro-repayment .calcpro-repayment-layout{grid-template-columns:minmax(0,1fr)}.calcpro-repayment .calcpro-repayment-form-panel{max-width:420px;width:100%;padding:13px}.calcpro-repayment .calcpro-repayment-field{grid-template-columns:minmax(105px,1fr) minmax(155px,1.3fr)}.calcpro-repayment .calcpro-repayment-result{max-width:100%}.calcpro-repayment .calcpro-repayment-chart-area{padding:14px 0}.calcpro-repayment .calcpro-repayment-help{font-size:11px}}
+@media(max-width:350px){.calcpro-repayment .calcpro-repayment-field{grid-template-columns:minmax(78px,1fr) minmax(120px,1.15fr)}.calcpro-repayment .calcpro-repayment-chart-area{gap:10px}}
+@media print{.calcpro-repayment .calcpro-repayment-help,.calcpro-repayment .calcpro-repayment-form-panel,.calcpro-repayment .calcpro-repayment-result-tools,.calcpro-repayment .calcpro-repayment-amort-trigger,.calcpro-repayment .calcpro-repayment-pagination{display:none!important}.calcpro-repayment .calcpro-repayment-layout{display:block}.calcpro-repayment .calcpro-repayment-amort[hidden]{display:block!important}.calcpro-repayment .calcpro-repayment-result{width:100%}.calcpro-repayment .calcpro-repayment-table-container{overflow:visible}.calcpro-repayment .calcpro-repayment-result-bar{print-color-adjust:exact;-webkit-print-color-adjust:exact}}
+
+</style>
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Repayment Calculator</nav><h1 class="cp-page-title">Repayment Calculator</h1><p class="cp-intro">The Repayment Calculator estimates your regular loan payment or how long it will take to pay off a debt. Compare repayment schedules, interest costs, and a full amortization breakdown.</p><section aria-label="Calculator" class="cp-tool-area">
+<div class="calcpro-repayment" id="calcpro-repayment-root">
+  <div class="calcpro-repayment-help"><span class="calcpro-repayment-help-icon" aria-hidden="true">▾</span><span>Modify the values and click Calculate to update the result.</span></div>
+  <div class="calcpro-repayment-layout">
+    <form class="calcpro-repayment-form-panel" id="calcpro-repayment-form" novalidate>
+      <div class="calcpro-repayment-field"><label for="calcpro-repayment-balance">Loan balance</label><input id="calcpro-repayment-balance" name="loanBalance" type="text" inputmode="decimal" autocomplete="off" value="10,000" aria-label="Loan balance in dollars" /></div>
+      <div class="calcpro-repayment-field"><label for="calcpro-repayment-apr">Interest rate</label><div class="calcpro-repayment-unit-wrap"><input id="calcpro-repayment-apr" name="annualRate" type="text" inputmode="decimal" autocomplete="off" value="10" aria-label="Annual interest rate, percent" /><span class="calcpro-repayment-unit" aria-hidden="true">%</span></div></div>
+      <div class="calcpro-repayment-field"><label for="calcpro-repayment-compound">Compound</label><select id="calcpro-repayment-compound" name="compound"><option value="annually">annually (APY)</option><option value="semiannually">semi-annually</option><option value="quarterly">quarterly</option><option value="monthly" selected>monthly (APR)</option><option value="semimonthly">semi-monthly</option><option value="biweekly">biweekly</option><option value="weekly">weekly</option><option value="daily">daily</option><option value="continuously">continuously</option></select></div>
+      <div class="calcpro-repayment-field"><label for="calcpro-repayment-payback">Pay back</label><select id="calcpro-repayment-payback" name="payFrequency"><option value="daily">every day</option><option value="weekly">every week</option><option value="biweekly">every 2 weeks</option><option value="halfmonth">every half month</option><option value="month" selected>every month</option><option value="quarter">every quarter</option><option value="halfyear">every 6 months</option><option value="year">every year</option></select></div>
+      <label class="calcpro-repayment-choice"><input id="calcpro-repayment-way-term" name="repaymentMode" type="radio" value="term" checked /><span>Repay within a fixed time</span></label>
+      <div class="calcpro-repayment-subrow" id="calcpro-repayment-term-fields"><span>of</span><div class="calcpro-repayment-duration-control"><input id="calcpro-repayment-years" name="years" type="text" inputmode="numeric" value="5" aria-label="Loan term years" /><span>years</span></div><div class="calcpro-repayment-duration-control"><input id="calcpro-repayment-months" name="months" type="text" inputmode="numeric" value="0" aria-label="Additional loan term months" /><span>months</span></div></div>
+      <label class="calcpro-repayment-choice"><input id="calcpro-repayment-way-installment" name="repaymentMode" type="radio" value="installment" /><span>Repay with a fixed installment</span></label>
+      <div class="calcpro-repayment-subrow calcpro-repayment-installment-row" id="calcpro-repayment-installment-fields" hidden><span>of</span><div class="calcpro-repayment-unit-wrap"><input id="calcpro-repayment-installment" name="installment" type="text" inputmode="decimal" autocomplete="off" value="200" aria-label="Installment amount in dollars" disabled /></div><span id="calcpro-repayment-frequency-label" class="calcpro-repayment-every">every month</span></div>
+      <div class="calcpro-repayment-actions"><button class="calcpro-repayment-action calcpro-repayment-action-primary" type="submit">Calculate <span aria-hidden="true">▶</span></button><button class="calcpro-repayment-action calcpro-repayment-action-secondary" id="calcpro-repayment-clear" type="button">Clear</button></div>
+      <div class="calcpro-repayment-error" id="calcpro-repayment-error" role="alert" hidden></div>
+    </form>
+    <section class="calcpro-repayment-result" id="calcpro-repayment-result" aria-label="Repayment calculation results" aria-live="polite">
+      <div class="calcpro-repayment-result-bar"><h2>Result</h2><div class="calcpro-repayment-result-tools"><button id="calcpro-repayment-print" type="button" title="Print calculation">Print</button><button id="calcpro-repayment-save" type="button" title="Save amortization schedule as CSV">Save</button></div></div>
+      <div class="calcpro-repayment-result-body">
+        <div class="calcpro-repayment-summary-line"><span id="calcpro-repayment-primary-label">Pay back every month</span><strong id="calcpro-repayment-primary-value">$212.47</strong></div>
+        <div class="calcpro-repayment-summary-line"><span id="calcpro-repayment-total-label">Total of 60 loan payments</span><strong id="calcpro-repayment-total-value">$12,748.23</strong></div>
+        <div class="calcpro-repayment-summary-line"><span>Interest</span><strong id="calcpro-repayment-interest-value">$2,748.23</strong></div>
+        <div class="calcpro-repayment-summary-line" id="calcpro-repayment-last-row" hidden><span>Final payment</span><strong id="calcpro-repayment-last-value"></strong></div>
+        <div class="calcpro-repayment-chart-area"><div class="calcpro-repayment-donut" id="calcpro-repayment-donut" role="img" aria-label="Principal 78 percent, interest 22 percent"><span class="calcpro-repayment-donut-label calcpro-repayment-donut-principal" id="calcpro-repayment-principal-percent">78%</span><span class="calcpro-repayment-donut-label calcpro-repayment-donut-interest" id="calcpro-repayment-interest-percent">22%</span></div><div class="calcpro-repayment-chart-key"><div class="calcpro-repayment-key-line"><span class="calcpro-repayment-key-color calcpro-repayment-key-color-blue" aria-hidden="true"></span>Principal</div><div class="calcpro-repayment-key-line"><span class="calcpro-repayment-key-color calcpro-repayment-key-color-green" aria-hidden="true"></span>Interest</div></div></div>
+        <button class="calcpro-repayment-amort-trigger" id="calcpro-repayment-show-amort" type="button" aria-controls="calcpro-repayment-amort" aria-expanded="false">View Amortization Table</button>
+        <section class="calcpro-repayment-amort" id="calcpro-repayment-amort" hidden aria-label="Amortization details">
+          <h3>Annual Payment Summary</h3><div class="calcpro-repayment-table-container"><table class="calcpro-repayment-table"><thead><tr><th scope="col">Year</th><th scope="col">Payments</th><th scope="col">Principal</th><th scope="col">Interest</th><th scope="col">Balance</th></tr></thead><tbody id="calcpro-repayment-yearly-body"></tbody></table></div>
+          <h3>Amortization Schedule</h3><div class="calcpro-repayment-table-container"><table class="calcpro-repayment-table"><thead><tr><th scope="col">Payment #</th><th scope="col">Payment</th><th scope="col">Principal</th><th scope="col">Interest</th><th scope="col">Balance</th></tr></thead><tbody id="calcpro-repayment-schedule-body"></tbody></table></div>
+          <div class="calcpro-repayment-pagination" id="calcpro-repayment-pagination" hidden><button id="calcpro-repayment-previous" type="button">Previous</button><span id="calcpro-repayment-page-caption"></span><button id="calcpro-repayment-next" type="button">Next</button></div>
+          <p class="calcpro-repayment-note">Figures are estimates. Scheduled payments use the full-precision rate and may differ by a few cents from paying only the displayed rounded amount. Taxes, fees, insurance, and variable interest rates are excluded.</p>
+        </section>
+      </div>
+    </section>
+  </div>
+</div>
+</section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><a href="mortgage-calculator.html">Mortgage</a><a href="auto-loan-calculator.html">Auto Loan</a><a href="credit-card-calculator.html">Credit Card</a><a href="loan-calculator.html">Loan</a><a href="amortization-calculator.html">Amortization</a><a href="debt-payoff-calculator.html">Debt Payoff</a><a href="debt-consolidation-calculator.html">Debt Consolidation</a><a href="payment-calculator.html">Payment</a><a href="apr-calculator.html">APR</a><a href="interest-rate-calculator.html">Interest Rate</a><a href="mortgage-payoff-calculator.html">Mortgage Payoff</a><a href="credit-card-payoff-calculator.html">Credit Card Payoff</a></div></section></aside><article class="cp-article">
+<h2>How to Use the Repayment Calculator</h2>
+<p>Enter the outstanding loan balance and the annual interest rate. Choose how often interest compounds and how often payments will be made. Next, select one of two repayment methods: <strong>Repay within a fixed time</strong> to calculate the required regular payment, or <strong>Repay with a fixed installment</strong> to calculate how long a chosen payment will take to pay off the loan. Select <strong>Calculate</strong> to update the figures immediately on this page.</p>
+<p>The result includes the regular payment or expected payoff time, total repayments, total interest, a principal-versus-interest chart, and an expandable amortization schedule. Select <strong>Save</strong> in the results header to export the complete schedule as a CSV file, or <strong>Print</strong> to print the page.</p>
+<h2>Repayment Formula and Compounding</h2>
+<p>For a loan with principal <strong>P</strong>, periodic interest rate <strong>i</strong>, and number of scheduled payments <strong>n</strong>, the regular payment <strong>A</strong> is calculated as:</p>
+<p><strong>A = P × i ÷ [1 − (1 + i)<sup>−n</sup>]</strong></p>
+<p>When the interest rate is zero, the payment is <strong>A = P ÷ n</strong>. To calculate a repayment term from a fixed installment, the inverse relationship is <strong>n = −ln(1 − P × i ÷ A) ÷ ln(1 + i)</strong>; the final number of payments is rounded up and the last payment may be smaller.</p>
+<p>When compounding and repayment frequencies differ, the calculator converts the stated nominal annual rate <strong>r</strong> into an equivalent payment-period rate using <strong>i = (1 + r ÷ c)<sup>c ÷ p</sup> − 1</strong>, where <strong>c</strong> is compounding periods per year and <strong>p</strong> is payments per year. For continuous compounding, <strong>i = e<sup>r ÷ p</sup> − 1</strong>. It assumes a fixed rate and equal-length financial periods.</p>
+<h2>Worked Example: $10,000 Over Five Years</h2>
+<p>With a $10,000 balance, 10% annual interest compounded monthly, and 60 monthly payments, the payment is <strong>$212.47 per month</strong>. Total repayment is about <strong>$12,748.23</strong>, including <strong>$2,748.23 of interest</strong>. Each payment first covers the interest accrued on the remaining balance; the rest reduces principal. Because the balance declines, the interest portion generally decreases with each subsequent payment.</p>
+<h2>Understanding the Amortization Table</h2>
+<p>The annual summary groups the scheduled repayments by year. The detailed schedule shows the payment number, amount paid, principal repaid, interest charged, and remaining balance. For long daily or weekly schedules, payment rows are displayed in pages to keep the browser responsive; the CSV export includes every payment.</p>
+<h2>Frequently Asked Questions</h2>
+<h3>What happens if my fixed payment is too small?</h3><p>If a payment cannot cover the interest accumulating each payment period, the debt will not amortize under a fixed-rate, fixed-payment model. The calculator displays a validation error instead of a misleading payoff date.</p>
+<h3>Can I compare weekly, biweekly, and monthly repayments?</h3><p>Yes. Choose a repayment frequency in the Pay back menu, and choose compounding separately. The calculation uses 365 daily, 52 weekly, 26 biweekly, 24 semimonthly, 12 monthly, 4 quarterly, 2 semiannual, or 1 annual payment period per year. Dates and actual day counts may differ under a lender's contract.</p>
+<h3>Why might a lender quote a slightly different payment?</h3><p>Lenders may round each payment to cents, use specific calendar-day accrual, charge fees, add escrow, or apply different compounding conventions. This tool uses mathematical payment amounts at full precision internally; displayed figures are rounded to two decimal places.</p>
+<h3>Does this model variable-rate loans or credit-card minimum payments?</h3><p>No. It models a fixed annual rate and planned repayments on a declining balance. Variable rates, penalties, annual fees, additional borrowing, changing credit-card minimum payments, and prepayment penalties require a more detailed model.</p>
+<h2>Further Reading</h2>
+<p>For another illustration of fixed-term and fixed-installment methods, see the <a href="https://www.calculator.net/repayment-calculator.html" rel="noopener noreferrer">repayment calculator reference</a>. Always refer to your actual loan agreement for the lender's payment schedule, fees, and interest conventions.</p>
+<p class="cp-page-footer">CalcPro — calculations are estimates for educational purposes, not a loan offer or financial advice.</p>
+</article></main></div><script>
+(function () {
+  'use strict';
+  const root = document.getElementById('calcpro-repayment-root');
+  if (!root) return;
+  const byId = (name) => root.querySelector('#calcpro-repayment-' + name);
+  const frequencies = {daily:365,weekly:52,biweekly:26,halfmonth:24,month:12,quarter:4,halfyear:2,year:1};
+  const compoundFrequencies = {annually:1,semiannually:2,quarterly:4,monthly:12,semimonthly:24,biweekly:26,weekly:52,daily:365};
+  const money = (number) => new Intl.NumberFormat('en-US',{style:'currency',currency:'USD'}).format(number);
+  const groupNumber = (value) => String(value).replace(/\B(?=(\d{3})+(?!\d))/g,',');
+  const form = byId('form');
+  const error = byId('error');
+  const result = byId('result');
+  const periodSelect = byId('payback');
+  const modeTerm = byId('way-term');
+  const modeInstallment = byId('way-installment');
+  const termFields = byId('term-fields');
+  const installmentFields = byId('installment-fields');
+  const installmentInput = byId('installment');
+  const amort = byId('amort');
+  const amortTrigger = byId('show-amort');
+  const PAGE_SIZE = 120;
+  let calculation = null;
+  let pageIndex = 0;
+
+  function readNumber(element, label, allowZero) {
+    const raw = element.value.trim().replace(/[$,\s]/g,'');
+    if (raw === '' || !/^(?:\d+(?:\.\d*)?|\.\d+)$/.test(raw)) {
+      throw new Error('Enter a valid ' + label.toLowerCase() + '.');
+    }
+    const num = Number(raw);
+    if (!Number.isFinite(num) || (allowZero ? num < 0 : num <= 0)) {
+      throw new Error(label + ' must be ' + (allowZero ? 'zero or greater' : 'greater than zero') + '.');
+    }
+    return num;
+  }
+  function readWhole(element,label) {
+    const val = element.value.trim();
+    if(!/^\d+$/.test(val)) throw new Error('Enter ' + label.toLowerCase() + ' as a whole number.');
+    return Number(val);
+  }
+  function periodicRate(annualFraction, compoundCode, paymentsPerYear) {
+    if (annualFraction === 0) return 0;
+    if (compoundCode === 'continuously') return Math.expm1(annualFraction / paymentsPerYear);
+    const compoundsPerYear = compoundFrequencies[compoundCode];
+    return Math.expm1(compoundsPerYear / paymentsPerYear * Math.log1p(annualFraction / compoundsPerYear));
+  }
+  function paymentForTerm(principal, periodRate, count) {
+    if(periodRate === 0) return principal / count;
+    return principal * periodRate / -Math.expm1(-count * Math.log1p(periodRate));
+  }
+  function amortize(principal, rate, regular, numberOfPayments) {
+    let balance = principal;
+    let totalInterest = 0;
+    let totalPaid = 0;
+    const schedule = [];
+    for(let i=1; i<=numberOfPayments; i++) {
+      const interest = balance * rate;
+      const due = balance + interest;
+      const actualPayment = i === numberOfPayments ? due : Math.min(regular, due);
+      const paidToPrincipal = Math.max(0,actualPayment-interest);
+      balance = Math.max(0, balance - paidToPrincipal);
+      totalInterest += interest;
+      totalPaid += actualPayment;
+      schedule.push({index:i,payment:actualPayment,principal:paidToPrincipal,interest:interest,balance:balance});
+    }
+    return {regular,numberOfPayments,totalInterest,totalPaid,finalPayment:schedule[schedule.length - 1].payment,schedule};
+  }
+  function hideError() {error.hidden=true;error.textContent='';}
+  function showError(message) {error.textContent=message;error.hidden=false;result.hidden=true;calculation=null;}
+  function updateMode() {
+    const term = modeTerm.checked;
+    termFields.hidden = !term;
+    installmentFields.hidden = term;
+    byId('years').disabled=!term;
+    byId('months').disabled=!term;
+    installmentInput.disabled=term;
+    hideError();
+  }
+  function syncFrequencyLabel() {byId('frequency-label').textContent=periodSelect.selectedOptions[0].textContent;}
+  function calculate() {
+    hideError();
+    try {
+      const principal = readNumber(byId('balance'),'Loan balance',false);
+      const percent = readNumber(byId('apr'),'Interest rate',true);
+      if(principal>1e12) throw new Error('Loan balance must be $1 trillion or less.');
+      if(percent>1000) throw new Error('Interest rate must be 1,000% or less.');
+      const paymentPerYear = frequencies[periodSelect.value];
+      const rate = periodicRate(percent / 100,byId('compound').value,paymentPerYear);
+      if(!Number.isFinite(rate)) throw new Error('The selected interest rate is too high.');
+      let regular;
+      let n;
+      if (modeTerm.checked) {
+        const years = readWhole(byId('years'),'Years');
+        const months = readWhole(byId('months'),'Months');
+        if(months>11) throw new Error('Months must be between 0 and 11. Use years for complete 12-month periods.');
+        const totalMonths = years*12 + months;
+        if(totalMonths===0) throw new Error('Enter a repayment period longer than zero.');
+        if(totalMonths>1200) throw new Error('Repayment terms must be 100 years or less.');
+        n=Math.round(totalMonths*paymentPerYear/12);
+        if(n<1) throw new Error('Choose a longer term or a more frequent payment schedule.');
+        regular = paymentForTerm(principal,rate,n);
+      } else {
+        regular = readNumber(installmentInput,'Installment',false);
+        if(regular>1e12) throw new Error('Installment must be $1 trillion or less.');
+        if(regular <= principal*rate) throw new Error('This installment does not cover the interest each period. Increase the installment to repay the loan.');
+        const periodsExact = rate===0 ? principal/regular : Math.log(regular/(regular-principal*rate))/Math.log1p(rate);
+        if(!Number.isFinite(periodsExact)||periodsExact>36500) throw new Error('Payoff would take over 36,500 payments. Increase the installment.');
+        n = Math.max(1,Math.ceil(periodsExact-1e-10));
+      }
+      if(!Number.isFinite(regular) || regular<=0 || n>36500) throw new Error('These inputs exceed the supported repayment schedule.');
+      const computed = amortize(principal,rate,regular,n);
+      // Check unusual numerical edge cases rather than presenting an invalid last installment.
+      if(!Number.isFinite(computed.totalPaid)||!Number.isFinite(computed.totalInterest) || computed.finalPayment>regular+Math.max(.01,regular*1e-10)){
+        throw new Error('Unable to create a consistent amortization schedule. Adjust the amount, rate, or term.');
+      }
+      calculation={...computed,principal,rate,percent,compounding:byId('compound').value,payFrequency:periodSelect.value,paymentPerYear,mode:modeTerm.checked?'term':'installment'};
+      displayResults();
+    } catch(ex) {showError(ex.message || 'Unable to calculate. Review the inputs.');}
+  }
+  function timeDescription(numberOfPayments,perYear) {
+    const totalMonths = Math.round(numberOfPayments * 12 / perYear);
+    const years = Math.floor(totalMonths/12);
+    const months = totalMonths%12;
+    const parts=[];
+    if(years) parts.push(years+' '+(years===1?'year':'years'));
+    if(months) parts.push(months+' '+(months===1?'month':'months'));
+    return (parts.join(', ')||'less than a month');
+  }
+  function displayResults() {
+    const c=calculation;
+    const fixedTerm=c.mode==='term';
+    byId('primary-label').textContent=fixedTerm?'Pay back '+periodSelect.selectedOptions[0].textContent:'Estimated payoff time';
+    byId('primary-value').textContent=fixedTerm?money(c.regular):timeDescription(c.numberOfPayments,c.paymentPerYear);
+    byId('total-label').textContent='Total of '+groupNumber(c.numberOfPayments)+' loan payments';
+    byId('total-value').textContent=money(c.totalPaid);
+    byId('interest-value').textContent=money(c.totalInterest);
+    byId('last-row').hidden=fixedTerm;
+    if(!fixedTerm) byId('last-value').textContent=money(c.finalPayment);
+    const principalPercent=c.principal/c.totalPaid*100;
+    const interestPercent=100-principalPercent;
+    const percentFormat=(n)=>Math.round(n)+'%';
+    const donut=byId('donut');
+    donut.style.setProperty('--crp-share',principalPercent.toFixed(4)+'%');
+    donut.setAttribute('aria-label','Principal '+percentFormat(principalPercent)+', interest '+percentFormat(interestPercent));
+    byId('principal-percent').textContent=percentFormat(principalPercent);
+    byId('interest-percent').textContent=percentFormat(interestPercent);
+    byId('interest-percent').hidden=interestPercent<6;
+    byId('principal-percent').hidden=principalPercent<6;
+    result.hidden=false;
+    amort.hidden=true;
+    amortTrigger.setAttribute('aria-expanded','false');
+    amortTrigger.textContent='View Amortization Table';
+    pageIndex=0;
+  }
+  function drawAnnual() {
+    const c=calculation;
+    const groups=[];
+    for(const p of c.schedule) {
+      const year = Math.floor((p.index-1)/c.paymentPerYear);
+      let group=groups[year];
+      if(!group){group={year:year+1,count:0,principal:0,interest:0,balance:0}; groups[year]=group;}
+      group.count++;group.principal+=p.principal;group.interest+=p.interest;group.balance=p.balance;
+    }
+    byId('yearly-body').innerHTML=groups.map((g)=>'<tr><td>'+g.year+'</td><td>'+groupNumber(g.count)+'</td><td>'+money(g.principal)+'</td><td>'+money(g.interest)+'</td><td>'+money(g.balance)+'</td></tr>').join('');
+  }
+  function drawPage() {
+    const entries=calculation.schedule;
+    const count=Math.ceil(entries.length/PAGE_SIZE);
+    pageIndex=Math.max(0,Math.min(pageIndex,count-1));
+    const offset=pageIndex*PAGE_SIZE;
+    byId('schedule-body').innerHTML=entries.slice(offset,offset+PAGE_SIZE).map((p)=>'<tr><td>'+groupNumber(p.index)+'</td><td>'+money(p.payment)+'</td><td>'+money(p.principal)+'</td><td>'+money(p.interest)+'</td><td>'+money(p.balance)+'</td></tr>').join('');
+    byId('pagination').hidden=count<=1;
+    byId('previous').disabled=pageIndex<=0;
+    byId('next').disabled=pageIndex>=count-1;
+    byId('page-caption').textContent='Payments '+groupNumber(offset+1)+'–'+groupNumber(Math.min(offset+PAGE_SIZE,entries.length))+' of '+groupNumber(entries.length);
+  }
+  function csvCell(value){return '"'+String(value).replace(/"/g,'""')+'"';}
+  function downloadCsv() {
+    if(!calculation)return;
+    const c=calculation;
+    const rows=[['Repayment Calculator','CalcPro'],['Principal',c.principal],['Annual interest rate (%)',c.percent],['Compounding',c.compounding],['Pay back',c.payFrequency],['Number of payments',c.numberOfPayments],['Total paid',c.totalPaid.toFixed(2)],['Total interest',c.totalInterest.toFixed(2)],[],['Payment #','Payment','Principal','Interest','Balance']];
+    c.schedule.forEach(p=>rows.push([p.index,p.payment.toFixed(2),p.principal.toFixed(2),p.interest.toFixed(2),p.balance.toFixed(2)]));
+    const csv=rows.map(r=>r.map(csvCell).join(',')).join('\r\n');
+    const url=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8;'}));
+    const anchor=document.createElement('a'); anchor.href=url;anchor.download='repayment-amortization.csv';document.body.appendChild(anchor);anchor.click();anchor.remove();setTimeout(()=>URL.revokeObjectURL(url),500);
+  }
+  modeTerm.addEventListener('change',updateMode);
+  modeInstallment.addEventListener('change',updateMode);
+  periodSelect.addEventListener('change',syncFrequencyLabel);
+  form.addEventListener('submit',(event)=>{event.preventDefault();calculate();});
+  form.addEventListener('input',()=>{if(!error.hidden)hideError();});
+  byId('clear').addEventListener('click',()=>{
+    ['balance','apr','years','months','installment'].forEach((id)=>{byId(id).value='';});
+    byId('compound').value='monthly';periodSelect.value='month';modeTerm.checked=true;modeInstallment.checked=false;
+    syncFrequencyLabel();updateMode();result.hidden=true;amort.hidden=true;calculation=null;byId('balance').focus();
+  });
+  amortTrigger.addEventListener('click',()=>{
+    if(!calculation)return;
+    if(amort.hidden){drawAnnual();drawPage();amort.hidden=false;amortTrigger.textContent='Hide Amortization Table';amortTrigger.setAttribute('aria-expanded','true');}
+    else{amort.hidden=true;amortTrigger.textContent='View Amortization Table';amortTrigger.setAttribute('aria-expanded','false');}
+  });
+  byId('previous').addEventListener('click',()=>{pageIndex--;drawPage();});
+  byId('next').addEventListener('click',()=>{pageIndex++;drawPage();});
+  byId('print').addEventListener('click',()=>window.print());
+  byId('save').addEventListener('click',downloadCsv);
+  updateMode();syncFrequencyLabel();calculate();
+})();
+</script><script defer src="/assets/js/data.js"></script>
+<script defer src="/assets/js/style.js?v=20261111-5"></script>
+</body></html>

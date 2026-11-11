@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US">
-<head>
-<meta charset="utf-8">
+<html lang="en"><head><meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="content-language" content="en">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,17 +11,335 @@
   <meta name="author" content="Commingsoon">
   <meta name="publisher" content="Commingsoon">
   <meta name="robots" content="noindex, nofollow, max-image-preview:large">
-  <link rel="stylesheet" href="/assets/css/style.css?v=20261111-1" crossorigin="anonymous" data-n-g="">
+  <link rel="stylesheet" href="/assets/css/style.css?v=20261111-4" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/doc_style.css" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/side_style.css" crossorigin="anonymous" data-n-g=""> 
   <!--ogtags-->
-  <!--schema-->
-  <!--style-->
-</head>
-
-<body>
-<!-- Main-header-page -->
-<script defer src="/assets/js/data.js"></script>
-<script defer src="/assets/js/style.js?v=20261111-1"></script>
-</body>
-</html>
+  <!--schema--><style>
+/* Lease Calculator: deliberately scoped to this tool only. */
+.calcpro-lease-root{--calcpro-lease-blue:#336699;--calcpro-lease-green:#4b8224;--calcpro-lease-principal:#2b7ddb;--calcpro-lease-interest:#8bbc21;font:16px Arial,Helvetica,sans-serif;color:#111;max-width:100%;line-height:1.35}
+.calcpro-lease-root *{box-sizing:border-box}
+.calcpro-lease-helpbar{min-height:42px;background:var(--calcpro-lease-blue);color:#fff;display:flex;align-items:center;justify-content:center;gap:15px;text-align:center;padding:8px 12px;margin:0 0 6px;font-size:17px}
+.calcpro-lease-chevron{display:inline-flex;width:26px;height:26px;flex:0 0 26px;align-items:center;justify-content:center;background:#fff;color:var(--calcpro-lease-blue);border-radius:50%;font-size:20px;line-height:1}
+.calcpro-lease-columns{display:grid;grid-template-columns:minmax(0, .92fr) minmax(0, 1.08fr);column-gap:24px;align-items:start}
+.calcpro-lease-form-col,.calcpro-lease-result-col{min-width:0}
+.calcpro-lease-tabs{display:flex;gap:3px;align-items:end;padding:0;margin:0;min-height:38px}
+.calcpro-lease-tab{border:0;border-radius:0;background:var(--calcpro-lease-blue);color:#fff;padding:10px 9px 9px;min-height:38px;font:700 15px Arial,Helvetica,sans-serif;cursor:pointer}
+.calcpro-lease-tab[aria-selected="true"]{background:#ededed;color:#111;border:1px solid #bcbcbc;border-bottom:0}
+.calcpro-lease-tab:hover:not([aria-selected="true"]){background:#24547e}
+.calcpro-lease-tab:focus-visible,.calcpro-lease-root button:focus-visible,.calcpro-lease-root input:focus-visible{outline:2px solid #225caa;outline-offset:2px}
+.calcpro-lease-form-panel{background:#eee;border:1px solid #c6c6c6;padding:9px 9px 10px;min-height:242px}
+.calcpro-lease-field{display:grid;grid-template-columns:minmax(115px,1fr) minmax(120px,1fr);align-items:center;gap:5px;min-height:37px}
+.calcpro-lease-field-label{font-size:15px;line-height:1.2;color:#111}
+.calcpro-lease-term-field{align-items:start;padding-top:1px}
+.calcpro-lease-term-field>.calcpro-lease-field-label{padding-top:9px}
+.calcpro-lease-input{display:block;min-width:0;width:100%;height:34px;border:1px solid #0a4e8a;background:#fff;box-shadow:0 1px 3px #00000025;border-radius:2px;padding:5px 7px;color:#111;font:16px Arial,Helvetica,sans-serif}
+.calcpro-lease-input[aria-invalid="true"]{border:2px solid #b42318}
+.calcpro-lease-input-wrap{position:relative;min-width:0}
+.calcpro-lease-input-wrap .calcpro-lease-input{padding-right:49px}
+.calcpro-lease-suffix{position:absolute;right:7px;top:50%;transform:translateY(-50%);color:#757575;pointer-events:none;font-size:14px;white-space:nowrap}
+.calcpro-lease-suffix-pct{color:#111}
+.calcpro-lease-months{margin-top:2px}
+.calcpro-lease-mode-field[hidden]{display:none!important}
+.calcpro-lease-buttons{display:flex;justify-content:center;gap:5px;margin-top:11px}
+.calcpro-lease-calculate,.calcpro-lease-clear{border:0;border-radius:0;cursor:pointer;color:#fff;font:700 15px Arial,Helvetica,sans-serif;padding:10px 13px;min-height:43px}
+.calcpro-lease-calculate{background:var(--calcpro-lease-green);display:flex;align-items:center;gap:12px}
+.calcpro-lease-calculate:hover{background:#3c6c1d}
+.calcpro-lease-play{width:23px;height:23px;display:inline-flex;align-items:center;justify-content:center;background:#a4c78a;border-radius:50%;font-size:14px;color:#fff}
+.calcpro-lease-clear{background:#a5a5a5;font-weight:400}.calcpro-lease-clear:hover{background:#858585}
+.calcpro-lease-error{color:#ae2012;font-size:13px;line-height:1.4;margin:9px 0 0;font-weight:600}
+.calcpro-lease-error[hidden]{display:none!important}
+.calcpro-lease-result-head{margin:0;background:var(--calcpro-lease-green);color:#fff;display:flex;align-items:center;justify-content:space-between;min-height:41px;font:normal 23px Arial,Helvetica,sans-serif;padding:3px 7px}
+.calcpro-lease-save{background:transparent;color:#fff;border:0;cursor:pointer;display:flex;gap:1px;align-items:center;justify-content:center;flex-direction:column;font:10px Arial,Helvetica,sans-serif;padding:1px 3px;min-width:31px;min-height:30px}
+.calcpro-lease-save svg{height:17px;width:17px;fill:currentColor}.calcpro-lease-save:disabled{opacity:.45;cursor:not-allowed}
+.calcpro-lease-result-body{padding-top:4px}
+.calcpro-lease-result-table{border-collapse:collapse;width:100%;font-size:15px;line-height:1.35}
+.calcpro-lease-result-table th,.calcpro-lease-result-table td{padding:4px 6px;vertical-align:top}
+.calcpro-lease-result-table th{text-align:left;font-weight:400;width:72%}
+.calcpro-lease-result-table td{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.calcpro-lease-primary-row{background:#ddd;font-weight:bold}.calcpro-lease-primary-row th{font-weight:bold}.calcpro-lease-primary-row td{font-weight:bold;border-left:2px solid #fff}
+.calcpro-lease-chartbox{margin:14px auto 1px;display:flex;justify-content:center;align-items:center;gap:9px;max-width:100%;padding:0 4px}
+.calcpro-lease-chart{width:106px;height:106px;flex:0 0 106px;overflow:visible}
+.calcpro-lease-chart circle{transition:stroke-dasharray .25s ease,stroke-dashoffset .25s ease}
+.calcpro-lease-chart-label{fill:#fff;font:700 12px Arial,Helvetica,sans-serif;text-anchor:middle;pointer-events:none}
+.calcpro-lease-legend{display:flex;flex-direction:column;align-self:center;gap:4px;min-width:105px;font-size:15px;line-height:1.1}
+.calcpro-lease-legend-line{display:flex;gap:7px;align-items:center}
+.calcpro-lease-swatch{width:20px;height:14px;flex:0 0 20px;border-radius:3px;background:var(--calcpro-lease-principal)}
+.calcpro-lease-swatch-interest{background:var(--calcpro-lease-interest)}
+.calcpro-lease-chart-note{margin:9px 4px;font-size:12px;text-align:center;color:#555}
+.calcpro-lease-message{padding:17px 10px;background:#f2f5f8;border:1px solid #cdd5db;margin:0;font-size:14px;color:#46515b}
+.calcpro-lease-save-status{font-size:12px;color:#3c6c1d;min-height:14px;text-align:right;margin:5px 2px 0}
+@media(max-width:700px){.calcpro-lease-columns{grid-template-columns:minmax(0,1fr);row-gap:21px}.calcpro-lease-form-panel{min-height:0}.calcpro-lease-result-col{width:100%}.calcpro-lease-result-head{margin:0}.calcpro-lease-field{grid-template-columns:minmax(100px,1fr) minmax(125px,1fr)}.calcpro-lease-chartbox{justify-content:center;padding:3px 0}}
+@media(max-width:360px){.calcpro-lease-helpbar{font-size:14px;gap:7px}.calcpro-lease-form-panel{padding:8px 7px}.calcpro-lease-field{grid-template-columns:minmax(105px,1fr) minmax(108px,1fr)}.calcpro-lease-result-table{font-size:13px}.calcpro-lease-result-table th{width:65%}}
+@media(prefers-reduced-motion:reduce){.calcpro-lease-chart circle{transition:none}}
+@media print{.calcpro-lease-helpbar,.calcpro-lease-buttons,.calcpro-lease-save{display:none!important}.calcpro-lease-columns{grid-template-columns:45% 1fr;gap:15px}.calcpro-lease-form-panel{border-color:#aaa}.calcpro-lease-result-head{print-color-adjust:exact;-webkit-print-color-adjust:exact}}
+</style>
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Lease Calculator</nav><h1 class="cp-page-title">Lease Calculator</h1><p class="cp-intro">The Lease Calculator estimates a monthly payment or the implied annual interest rate for a lease. Use <strong>Fixed Rate</strong> when you know the annual rate, or <strong>Fixed Pay</strong> when you know the monthly payment. For vehicle-specific assumptions, see the <a href="auto-lease-calculator.html">Auto Lease Calculator</a>.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-lease-root" id="calcpro-lease-root">
+  <div class="calcpro-lease-helpbar"><span aria-hidden="true" class="calcpro-lease-chevron">▼</span><span>Modify the values and click the Calculate button to use</span></div>
+  <div class="calcpro-lease-columns">
+    <div class="calcpro-lease-form-col">
+      <div class="calcpro-lease-tabs" role="tablist" aria-label="Lease calculation method">
+        <button type="button" id="calcpro-lease-tab-rate" class="calcpro-lease-tab" role="tab" aria-controls="calcpro-lease-rate-field" aria-selected="true" tabindex="0">Fixed Rate</button>
+        <button type="button" id="calcpro-lease-tab-pay" class="calcpro-lease-tab" role="tab" aria-controls="calcpro-lease-pay-field" aria-selected="false" tabindex="-1">Fixed Pay</button>
+      </div>
+      <form id="calcpro-lease-form" class="calcpro-lease-form-panel" novalidate>
+        <div class="calcpro-lease-field"><label class="calcpro-lease-field-label" for="calcpro-lease-asset">Asset Value</label><input id="calcpro-lease-asset" class="calcpro-lease-input" type="text" inputmode="decimal" value="$20,000" autocomplete="off" aria-describedby="calcpro-lease-error"/></div>
+        <div class="calcpro-lease-field"><label class="calcpro-lease-field-label" for="calcpro-lease-residual">Residual Value</label><input id="calcpro-lease-residual" class="calcpro-lease-input" type="text" inputmode="decimal" value="$8,000" autocomplete="off" aria-describedby="calcpro-lease-error"/></div>
+        <div class="calcpro-lease-field calcpro-lease-term-field"><span class="calcpro-lease-field-label">Lease Term</span>
+          <div><div class="calcpro-lease-input-wrap"><label for="calcpro-lease-years" class="calcpro-lease-suffix">years</label><input id="calcpro-lease-years" class="calcpro-lease-input" type="text" inputmode="decimal" value="3" aria-label="Lease term years" autocomplete="off" aria-describedby="calcpro-lease-error"/></div>
+          <div class="calcpro-lease-input-wrap calcpro-lease-months"><label for="calcpro-lease-months" class="calcpro-lease-suffix">months</label><input id="calcpro-lease-months" class="calcpro-lease-input" type="text" inputmode="numeric" value="0" aria-label="Lease term months" autocomplete="off" aria-describedby="calcpro-lease-error"/></div></div>
+        </div>
+        <div id="calcpro-lease-rate-field" class="calcpro-lease-field calcpro-lease-mode-field" role="tabpanel" aria-labelledby="calcpro-lease-tab-rate"><label class="calcpro-lease-field-label" for="calcpro-lease-rate">Interest Rate</label><div class="calcpro-lease-input-wrap"><input id="calcpro-lease-rate" class="calcpro-lease-input" type="text" inputmode="decimal" value="6" autocomplete="off" aria-describedby="calcpro-lease-error"/><span class="calcpro-lease-suffix calcpro-lease-suffix-pct">%</span></div></div>
+        <div id="calcpro-lease-pay-field" class="calcpro-lease-field calcpro-lease-mode-field" role="tabpanel" aria-labelledby="calcpro-lease-tab-pay" hidden><label class="calcpro-lease-field-label" for="calcpro-lease-payment">Monthly Payment</label><input id="calcpro-lease-payment" class="calcpro-lease-input" type="text" inputmode="decimal" value="$400" autocomplete="off" aria-describedby="calcpro-lease-error"/></div>
+        <div class="calcpro-lease-buttons"><button class="calcpro-lease-calculate" type="submit">Calculate <span class="calcpro-lease-play" aria-hidden="true">▶</span></button><button id="calcpro-lease-clear" class="calcpro-lease-clear" type="button">Clear</button></div>
+        <p id="calcpro-lease-error" class="calcpro-lease-error" role="alert" hidden></p>
+      </form>
+    </div>
+    <div class="calcpro-lease-result-col" aria-label="Lease calculation results">
+      <h2 class="calcpro-lease-result-head">Result <button type="button" id="calcpro-lease-save" class="calcpro-lease-save" aria-label="Save calculation as text file" title="Save this calculation"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 2h15l4 4v16H2V2h1zm3 2v6h11V4h-2v4H8V4H6zm6 9a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"/></svg><span>save</span></button></h2>
+      <div id="calcpro-lease-result-body" class="calcpro-lease-result-body" aria-live="polite">
+        <table class="calcpro-lease-result-table"><tbody>
+          <tr class="calcpro-lease-primary-row"><th scope="row" id="calcpro-lease-primary-label">Monthly Pay</th><td id="calcpro-lease-primary-value">—</td></tr>
+          <tr><th scope="row" id="calcpro-lease-total-label">Total of 36 Monthly Payments</th><td id="calcpro-lease-total-value">—</td></tr>
+          <tr><th scope="row">Total Interest</th><td id="calcpro-lease-interest-value">—</td></tr>
+        </tbody></table>
+        <div id="calcpro-lease-chartbox" class="calcpro-lease-chartbox">
+          <svg class="calcpro-lease-chart" id="calcpro-lease-chart" viewBox="0 0 130 130" role="img" aria-label="Principal and interest percentage doughnut chart">
+            <circle cx="65" cy="65" r="42" fill="none" stroke="#f0f0f0" stroke-width="27"/>
+            <circle id="calcpro-lease-principal-arc" cx="65" cy="65" r="42" fill="none" stroke="#2b7ddb" stroke-width="27" pathLength="100" transform="rotate(-90 65 65)"/>
+            <circle id="calcpro-lease-interest-arc" cx="65" cy="65" r="42" fill="none" stroke="#8bbc21" stroke-width="27" pathLength="100" transform="rotate(-90 65 65)"/>
+            <circle cx="65" cy="65" r="18" fill="#fff"/>
+            <text id="calcpro-lease-principal-percent" class="calcpro-lease-chart-label" x="65" y="65">82%</text>
+            <text id="calcpro-lease-interest-percent" class="calcpro-lease-chart-label" x="65" y="65">18%</text>
+          </svg>
+          <div class="calcpro-lease-legend" aria-hidden="true"><div class="calcpro-lease-legend-line"><span class="calcpro-lease-swatch"></span>Principal</div><div class="calcpro-lease-legend-line"><span class="calcpro-lease-swatch calcpro-lease-swatch-interest"></span>Interest</div></div>
+        </div>
+        <p id="calcpro-lease-chart-note" class="calcpro-lease-chart-note" hidden></p>
+      </div>
+      <p id="calcpro-lease-empty" class="calcpro-lease-message" hidden>Enter the lease details and click Calculate to view results.</p>
+      <p id="calcpro-lease-save-status" class="calcpro-lease-save-status" aria-live="polite"></p>
+    </div>
+  </div>
+</div></section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><a href="auto-lease-calculator.html">Auto Lease</a><a href="auto-loan-calculator.html">Auto Loan</a><a href="loan-calculator.html">Loan</a><a href="payment-calculator.html">Payment</a><a href="interest-rate-calculator.html">Interest Rate</a><a href="interest-calculator.html">Interest</a><a href="amortization-calculator.html">Amortization</a><a href="apr-calculator.html">APR</a><a href="finance-calculator.html">Finance</a><a href="depreciation-calculator.html">Depreciation</a><a href="present-value-calculator.html">Present Value</a><a href="mortgage-calculator.html">Mortgage</a></div></section></aside><article class="cp-article">
+  <h2>How to Use the Lease Calculator</h2>
+  <p>Select <strong>Fixed Rate</strong> to estimate the payment from an annual interest rate, or <strong>Fixed Pay</strong> to find the interest rate implied by a known monthly payment. Enter the starting asset value, the estimated value remaining at lease end, and a term in years and months. Click <strong>Calculate</strong> to update the results and the principal-versus-interest doughnut chart.</p>
+  <p>The <strong>Clear</strong> button empties the fields. Use the <strong>Save</strong> icon above the results to download a text summary. The calculator assumes payments made at the end of each month; it does not include upfront payments, taxes, maintenance, insurance, security deposits, or other fees.</p>
+  <h2>Lease Payment Formula</h2>
+  <p>The asset value equals the present value of the monthly payments plus the present value of the residual amount. The monthly payment is therefore:</p>
+  <div class="cp-note"><strong>PMT = [A − R / (1 + i)<sup>n</sup>] × i / [1 − (1 + i)<sup>−n</sup>]</strong><p>Where <strong>A</strong> is the asset value, <strong>R</strong> is residual value, <strong>i</strong> is the annual nominal interest rate divided by 12 (in decimal form), and <strong>n</strong> is the number of months. With a 0% interest rate: <strong>PMT = (A − R) / n</strong>.</p></div>
+  <p>In Fixed Pay mode, the same present-value equation is solved numerically for the nonnegative monthly rate, which is multiplied by 12 to report the nominal annual interest rate. This is not a fee-inclusive legal APR disclosure. A supplied payment below the 0%-interest payment cannot produce a nonnegative rate; the calculator reports an input error rather than inventing a result.</p>
+  <h2>Worked Lease Example</h2>
+  <p>An asset valued at <strong>$20,000</strong>, with <strong>$8,000</strong> residual value, a <strong>36-month</strong> term, and <strong>6% nominal annual interest</strong>, produces a monthly payment of about <strong>$405.06</strong>. The unrounded payment over 36 months totals <strong>$14,582.28</strong>, including <strong>$12,000.00</strong> of asset value used and <strong>$2,582.28</strong> of interest. Displayed totals use the full-precision payment before rounding to cents.</p>
+  <h2>Understanding the Results</h2>
+  <h3>Principal and residual value</h3>
+  <p>The principal portion shown in the chart is the asset value minus the residual value. Residual value is the estimated value retained at the lease's end, not a fee included in the monthly payments. This simplified model is designed for a lease with a final residual amount.</p>
+  <h3>Total interest</h3>
+  <p>Total interest is the total of the monthly payments minus the difference between the asset value and residual value. With a typical depreciating asset, the chart shows these as principal and interest shares. If the breakdown contains negative shares, the chart is hidden rather than displaying misleading proportions.</p>
+  <h2>Frequently Asked Questions</h2>
+  <h3>Can I enter a lease term entirely in months?</h3>
+  <p>Yes. Enter 0 years and the full number of months. You can also use a fractional number of years, provided the combined term is a whole number of months. Terms between 1 and 1,200 months are accepted.</p>
+  <h3>Why might my dealer quote be different?</h3>
+  <p>A real lease quote may include acquisition charges, taxes, down payments, rebates, advance payments, add-ons, money-factor pricing, and a different treatment of residual value. Those items are not built into this general-purpose calculator.</p>
+  <h3>Does the Fixed Pay rate include compound interest?</h3>
+  <p>It solves the monthly rate of the lease equation and displays twelve times that monthly rate as a nominal annual percentage. An effective annual yield with monthly compounding would be (1 + i)<sup>12</sup> − 1, which is a different figure.</p>
+  <h3>What happens if the residual value exceeds the asset value?</h3>
+  <p>The underlying equation can describe an appreciating asset, but it can produce atypical or negative monthly payments. The calculator rejects negative monthly payments and omits the standard principal/interest chart when its proportions would be misleading.</p>
+  <h2>Sources and Further Reading</h2>
+  <p><a href="https://www.calculator.net/lease-calculator.html" target="_blank" rel="noopener noreferrer">Calculator.net Lease Calculator</a> (reference layout and example) and the <a href="https://www.psasb.go.ke/Documents/Accounting%20Standards/Standards/IPSASB-2024-Handbook-Volume1.pdf" target="_blank" rel="noopener noreferrer">IPSASB 2024 Handbook</a> (present-value formulation of lease payments and residual value).</p>
+  <p class="cp-page-footer">CalcPro — calculator estimates are for informational purposes and do not replace a binding lease quotation.</p>
+</article></main></div><script>
+(function () {
+  "use strict";
+  const root = document.getElementById("calcpro-lease-root");
+  if (!root) return;
+  const el = id => root.querySelector("#" + id);
+  const ids = {
+    form: el("calcpro-lease-form"), rateTab: el("calcpro-lease-tab-rate"), payTab: el("calcpro-lease-tab-pay"),
+    rateField: el("calcpro-lease-rate-field"), payField: el("calcpro-lease-pay-field"),
+    asset: el("calcpro-lease-asset"), residual: el("calcpro-lease-residual"), years: el("calcpro-lease-years"),
+    months: el("calcpro-lease-months"), rate: el("calcpro-lease-rate"), payment: el("calcpro-lease-payment"),
+    clear: el("calcpro-lease-clear"), error: el("calcpro-lease-error"),
+    body: el("calcpro-lease-result-body"), empty: el("calcpro-lease-empty"),
+    primaryLabel: el("calcpro-lease-primary-label"), primaryValue: el("calcpro-lease-primary-value"),
+    totalLabel: el("calcpro-lease-total-label"), totalValue: el("calcpro-lease-total-value"),
+    interestValue: el("calcpro-lease-interest-value"), chart: el("calcpro-lease-chart"),
+    chartbox: el("calcpro-lease-chartbox"), chartNote: el("calcpro-lease-chart-note"),
+    arcPrincipal: el("calcpro-lease-principal-arc"), arcInterest: el("calcpro-lease-interest-arc"),
+    percentPrincipal: el("calcpro-lease-principal-percent"), percentInterest: el("calcpro-lease-interest-percent"),
+    save: el("calcpro-lease-save"), saveStatus: el("calcpro-lease-save-status")
+  };
+  const moneyFormat = new Intl.NumberFormat("en-US", {style:"currency", currency:"USD",minimumFractionDigits:2,maximumFractionDigits:2});
+  const percentFormat = new Intl.NumberFormat("en-US", {minimumFractionDigits:2,maximumFractionDigits:2});
+  const current = {mode:"rate",result:null};
+  const numberFields = [ids.asset, ids.residual, ids.years, ids.months, ids.rate, ids.payment];
+  function numberValue(field, label, allowCurrency) {
+    let raw = field.value.trim();
+    if (allowCurrency) raw = raw.replace(/[$,\s]/g, "");
+    else raw = raw.replace(/[%\s,]/g, "");
+    if (!/^(?:\d+(?:\.\d*)?|\.\d+)$/.test(raw)) throw {field, message: "Enter a valid nonnegative number for " + label + "."};
+    const value = Number(raw);
+    if (!Number.isFinite(value) || value > 1e12) throw {field, message: label + " is outside the supported range."};
+    return value;
+  }
+  function setError(message, field) {
+    ids.error.textContent = message;
+    ids.error.hidden = false;
+    if (field) { field.setAttribute("aria-invalid","true"); field.focus(); }
+  }
+  function clearError() {
+    ids.error.hidden = true;ids.error.textContent = "";
+    numberFields.forEach(field => field.removeAttribute("aria-invalid"));
+  }
+  function paymentFor(asset, residual, months, annualPercent) {
+    const monthlyRate = annualPercent / 1200;
+    if (monthlyRate === 0) return (asset - residual) / months;
+    const discount = Math.exp(-months * Math.log1p(monthlyRate));
+    const annuityFactor = -Math.expm1(-months * Math.log1p(monthlyRate)) / monthlyRate;
+    return (asset - residual * discount) / annuityFactor;
+  }
+  function solveRate(asset, residual, months, payment) {
+    const zeroPay = (asset - residual) / months;
+    const tolerance = 1e-9 * Math.max(1,Math.abs(payment),Math.abs(zeroPay));
+    if (payment < zeroPay - tolerance) throw {field:ids.payment,message:"This payment is below the zero-interest payment; no nonnegative interest rate fits these values."};
+    if (Math.abs(payment - zeroPay) <= tolerance) return 0;
+    // A 1000% annual nominal rate is an explicit numerical limit, not a silent clamp.
+    let lo = 0, hi = 1000;
+    if (payment > paymentFor(asset, residual, months, hi) + tolerance) throw {field:ids.payment,message:"The implied annual interest rate exceeds the supported range of 1,000%."};
+    for (let i=0;i<140;i++) {
+      const middle = (lo+hi)/2;
+      if (paymentFor(asset,residual,months,middle) < payment) lo=middle;
+      else hi=middle;
+    }
+    return (lo+hi)/2;
+  }
+  function readInputs() {
+    const asset = numberValue(ids.asset,"asset value",true);
+    if (asset <= 0) throw {field:ids.asset,message:"Asset value must be greater than zero."};
+    const residual = numberValue(ids.residual,"residual value",true);
+    const years = numberValue(ids.years,"lease years",false);
+    const monthsExtra = numberValue(ids.months,"lease months",false);
+    if (!Number.isInteger(monthsExtra)) throw {field:ids.months,message:"Enter lease months as a whole number."};
+    const rawMonths = years*12 + monthsExtra;
+    const months = Math.round(rawMonths);
+    if (Math.abs(rawMonths-months) > 0.0000001) throw {field:ids.years,message:"The lease term must equal a whole number of months. For example, use 2.5 years or 30 months."};
+    if (months < 1 || months > 1200) throw {field:ids.years,message:"Enter a lease term of 1 to 1,200 months."};
+    let rate, payment;
+    if (current.mode==="rate") {
+      rate = numberValue(ids.rate,"annual interest rate",false);
+      if (rate>1000) throw {field:ids.rate,message:"Interest rate must be between 0% and 1,000% annually."};
+      payment = paymentFor(asset,residual,months,rate);
+      if (payment < -1e-8) throw {field:ids.residual,message:"These values give a negative monthly payment. Change the residual value, term, or rate."};
+    } else {
+      payment = numberValue(ids.payment,"monthly payment",true);
+      rate = solveRate(asset,residual,months,payment);
+    }
+    const total = payment*months;
+    const principal = asset-residual;
+    const interest = total-principal;
+    return {asset,residual,years,monthsExtra,months,rate,payment,total,principal,interest,mode:current.mode};
+  }
+  function hideResults() {
+    current.result = null;
+    ids.body.hidden = true;
+    ids.empty.hidden = false;
+    ids.save.disabled = true;
+    ids.saveStatus.textContent = "";
+  }
+  function labelOnArc(label, percentage, startPercentage) {
+    if (percentage<8 || percentage>99.9) {label.setAttribute("visibility","hidden");return;}
+    const angle = (-90+3.6*(startPercentage + percentage/2))*Math.PI/180;
+    label.setAttribute("x",String(65+42*Math.cos(angle)));
+    label.setAttribute("y",String(69+42*Math.sin(angle)));
+    label.setAttribute("visibility","visible");
+    label.textContent = Math.round(percentage)+"%";
+  }
+  function renderChart(result) {
+    ids.chartNote.hidden = true;
+    ids.chartbox.hidden = false;
+    const {principal,interest,total} = result;
+    if (total<=0 || principal < -1e-7 || interest < -1e-7) {
+      ids.chartbox.hidden = true;
+      ids.chartNote.hidden = false;
+      ids.chartNote.textContent = "A principal/interest percentage chart is unavailable for this payment breakdown.";
+      return;
+    }
+    const principalShare = Math.max(0,Math.min(100,principal/total*100));
+    const interestShare = 100-principalShare;
+    ids.arcPrincipal.setAttribute("stroke-dasharray",principalShare+" "+(100-principalShare));
+    ids.arcPrincipal.setAttribute("stroke-dashoffset","0");
+    ids.arcInterest.setAttribute("stroke-dasharray",interestShare+" "+principalShare);
+    ids.arcInterest.setAttribute("stroke-dashoffset",String(-principalShare));
+    labelOnArc(ids.percentPrincipal,principalShare,0);
+    labelOnArc(ids.percentInterest,interestShare,principalShare);
+    ids.chart.setAttribute("aria-label","Principal "+Math.round(principalShare)+" percent ("+moneyFormat.format(principal)+"), interest "+Math.round(interestShare)+" percent ("+moneyFormat.format(interest)+")");
+  }
+  function showResults(result) {
+    current.result=result;
+    ids.empty.hidden=true;ids.body.hidden=false;ids.save.disabled=false;ids.saveStatus.textContent="";
+    ids.primaryLabel.textContent = result.mode==="rate" ? "Monthly Pay" : "Interest Rate (Annual)";
+    ids.primaryValue.textContent = result.mode==="rate" ? moneyFormat.format(result.payment) : percentFormat.format(result.rate)+"%";
+    ids.totalLabel.textContent = "Total of "+result.months+" Monthly Payments";
+    ids.totalValue.textContent=moneyFormat.format(result.total);
+    ids.interestValue.textContent=moneyFormat.format(result.interest);
+    renderChart(result);
+  }
+  function calculate(event) {
+    if (event) event.preventDefault();
+    clearError();
+    try {showResults(readInputs());}
+    catch (error) {hideResults();setError(error.message||"Please check the entered values.",error.field);}
+  }
+  function selectMode(mode, focusTab) {
+    current.mode=mode;
+    const isRate=mode==="rate";
+    ids.rateTab.setAttribute("aria-selected",String(isRate));
+    ids.payTab.setAttribute("aria-selected",String(!isRate));
+    ids.rateTab.tabIndex=isRate?0:-1;
+    ids.payTab.tabIndex=isRate?-1:0;
+    ids.rateField.hidden=!isRate;
+    ids.payField.hidden=isRate;
+    clearError();
+    // Recompute when switching modes so the displayed value always fits the visible input.
+    calculate();
+    if (focusTab) (isRate?ids.rateTab:ids.payTab).focus();
+  }
+  ids.rateTab.addEventListener("click",()=>selectMode("rate",false));
+  ids.payTab.addEventListener("click",()=>selectMode("pay",false));
+  [ids.rateTab,ids.payTab].forEach(tab => tab.addEventListener("keydown",event=>{
+    if (["ArrowLeft","ArrowRight","Home","End"].includes(event.key)) {
+      event.preventDefault();
+      const next=event.key==="Home"?"rate":event.key==="End"?"pay":current.mode==="rate"?"pay":"rate";
+      selectMode(next,true);
+    }
+  }));
+  ids.form.addEventListener("submit",calculate);
+  ids.clear.addEventListener("click",()=>{
+    numberFields.forEach(field=>{field.value="";field.removeAttribute("aria-invalid");});
+    current.mode="rate";
+    ids.rateTab.setAttribute("aria-selected","true");ids.payTab.setAttribute("aria-selected","false");
+    ids.rateTab.tabIndex=0;ids.payTab.tabIndex=-1;
+    ids.rateField.hidden=false;ids.payField.hidden=true;
+    clearError();hideResults();ids.asset.focus();
+  });
+  ids.save.addEventListener("click",()=>{
+    const result=current.result;
+    if (!result) return;
+    const lines = ["CalcPro Lease Calculator", "Mode: "+(result.mode==="rate"?"Fixed Rate":"Fixed Pay"),
+      "Asset value: "+moneyFormat.format(result.asset),"Residual value: "+moneyFormat.format(result.residual),
+      "Lease term: "+result.months+" months","Annual interest rate: "+percentFormat.format(result.rate)+"%",
+      "Monthly payment: "+moneyFormat.format(result.payment),
+      "Total monthly payments: "+moneyFormat.format(result.total),"Total interest: "+moneyFormat.format(result.interest),
+      "Assumes end-of-month payments and no fees or taxes."];
+    const blob=new Blob([lines.join("\n")+"\n"],{type:"text/plain;charset=utf-8"});
+    const url=URL.createObjectURL(blob);
+    const anchor=document.createElement("a");anchor.href=url;anchor.download="calcpro-lease-calculation.txt";
+    root.appendChild(anchor);anchor.click();anchor.remove();
+    setTimeout(()=>URL.revokeObjectURL(url),2000);
+    ids.saveStatus.textContent="Calculation summary saved as a text file.";
+  });
+  // Default sample matches the reference, computed from the original input values.
+  calculate();
+})();
+</script><script defer src="/assets/js/data.js"></script>
+<script defer src="/assets/js/style.js?v=20261111-5"></script>
+</body></html>

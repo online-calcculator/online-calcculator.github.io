@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US">
-<head>
-<meta charset="utf-8">
+<html lang="en"><head><meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="content-language" content="en">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,17 +11,400 @@
   <meta name="author" content="Commingsoon">
   <meta name="publisher" content="Commingsoon">
   <meta name="robots" content="noindex, nofollow, max-image-preview:large">
-  <link rel="stylesheet" href="/assets/css/style.css?v=20261111-1" crossorigin="anonymous" data-n-g="">
+  <link rel="stylesheet" href="/assets/css/style.css?v=20261111-4" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/doc_style.css" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/side_style.css" crossorigin="anonymous" data-n-g=""> 
   <!--ogtags-->
-  <!--schema-->
-  <!--style-->
-</head>
-
-<body>
-<!-- Main-header-page -->
-<script defer src="/assets/js/data.js"></script>
-<script defer src="/assets/js/style.js?v=20261111-1"></script>
-</body>
-</html>
+  <!--schema--><style>
+/* Scoped Gas Mileage Calculator. All IDs/classes are tool-specific. */
+.calcpro-gas-mileage{max-width:100%;font:16px/1.45 Arial,Helvetica,sans-serif;color:#151515}
+.calcpro-gas-mileage *{box-sizing:border-box}
+.calcpro-gas-mileage [hidden]{display:none!important}
+.calcpro-gas-mileage button,.calcpro-gas-mileage input,.calcpro-gas-mileage select{font:inherit}
+.calcpro-gas-mileage button:focus-visible,.calcpro-gas-mileage input:focus-visible,.calcpro-gas-mileage select:focus-visible{outline:3px solid #78a9df;outline-offset:2px}
+.calcpro-gas-mileage-result{margin:0 0 25px;max-width:100%}
+.calcpro-gas-mileage-result-header{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:7px 11px;background:#4d802b;color:#fff;min-height:38px}
+.calcpro-gas-mileage-result-header strong{font-size:21px;line-height:1.2}
+.calcpro-gas-mileage-result-actions{display:flex;gap:7px}
+.calcpro-gas-mileage-result-action{background:transparent;border:1px solid rgba(255,255,255,.75);border-radius:3px;color:#fff;cursor:pointer;font-size:12px!important;padding:4px 7px;min-height:29px}
+.calcpro-gas-mileage-result-action:hover{background:rgba(255,255,255,.2)}
+.calcpro-gas-mileage-result-main{font-size:20px;line-height:1.45;margin:11px 0 4px}
+.calcpro-gas-mileage-result-main strong{color:#00820b;font-size:22px}
+.calcpro-gas-mileage-result-detail{margin:2px 0;line-height:1.42}
+.calcpro-gas-mileage-result-note{color:#495057;font-size:12px;margin:8px 0}
+.calcpro-gas-mileage-feedback{max-width:490px;background:#fff2eb;border:1px solid #b74323;border-left:4px solid #b74323;color:#762b17;padding:9px 12px;margin:0 0 14px;font-size:14px}
+.calcpro-gas-mileage-tabs{display:flex;flex-wrap:wrap;align-items:end;gap:4px;margin:8px 0 0;max-width:100%}
+.calcpro-gas-mileage-tab{appearance:none;border:1px solid #336699;background:#336699;color:#fff;border-radius:0;min-height:37px;padding:7px 12px;cursor:pointer;font-weight:700;font-size:14px!important;line-height:1.2}
+.calcpro-gas-mileage-tab:hover{background:#245481}
+.calcpro-gas-mileage-tab[aria-selected="true"]{color:#082e59;background:#f1f1f1;border-color:#b7b7b7;border-bottom-color:#f1f1f1;position:relative;z-index:1}
+.calcpro-gas-mileage-form{width:min(100%,490px);background:#f1f1f1;border:1px solid #b7b7b7;padding:13px 14px 15px;margin-top:-1px}
+.calcpro-gas-mileage-row{display:grid;grid-template-columns:minmax(175px,210px) minmax(0,1fr);gap:7px 10px;align-items:center;margin:0 0 10px}
+.calcpro-gas-mileage-row>label{text-align:right;font-size:14px;line-height:1.3}
+.calcpro-gas-mileage-field{display:flex;align-items:center;gap:7px;min-width:0}
+.calcpro-gas-mileage-field>input{width:132px;max-width:100%;min-width:0;border:1px solid #738d9e;box-shadow:inset 0 1px 2px #ddd;border-radius:2px;background:#fff;height:34px;padding:5px 7px;color:#111}
+.calcpro-gas-mileage-field>input[aria-invalid="true"]{border-color:#b32a22;background:#fffafa}
+.calcpro-gas-mileage-unit{font-size:13px;color:#222;min-width:0;line-height:1.25}
+.calcpro-gas-mileage-other{border-top:1px solid #c9c9c9;margin:12px 0 8px;padding-top:12px}
+.calcpro-gas-mileage-other-heading{font-size:13px;color:#3b5367;margin:0 0 10px;font-weight:700}
+.calcpro-gas-mileage-other .calcpro-gas-mileage-row{grid-template-columns:minmax(175px,210px) minmax(0,1fr)}
+.calcpro-gas-mileage-other select,.calcpro-gas-mileage-other input{height:34px;background:#fff;border:1px solid #738d9e;border-radius:2px;padding:5px 7px;max-width:100%;width:180px}
+.calcpro-gas-mileage-other input{width:96px}
+.calcpro-gas-mileage-other-note{font-size:12px;color:#526170;margin:5px 2px 0}
+.calcpro-gas-mileage-buttons{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px;padding-top:3px}
+.calcpro-gas-mileage-calculate{appearance:none;background:#4d802b;border:1px solid #3b6b20;color:#fff;padding:9px 16px;min-width:127px;min-height:38px;font-size:14px!important;font-weight:700;cursor:pointer}
+.calcpro-gas-mileage-calculate:hover{background:#3f7022}
+.calcpro-gas-mileage-calculate:after{content:'›';display:inline-flex;width:18px;height:18px;border-radius:50%;background:#8cb87a;margin-left:9px;justify-content:center;align-items:center;font-size:20px;font-weight:700;line-height:1;vertical-align:middle}
+.calcpro-gas-mileage-clear{appearance:none;background:#a1a1a1;border:1px solid #939393;color:#fff;padding:9px 12px;min-height:38px;cursor:pointer;font-size:14px!important}
+.calcpro-gas-mileage-clear:hover{background:#858585}
+.calcpro-gas-mileage-help{font-size:12px;color:#586576;margin:10px 0 0;max-width:490px}
+@media(max-width:560px){
+ .calcpro-gas-mileage-tab{flex:1 1 auto;min-width:90px;padding:9px 6px;font-size:13px!important}
+ .calcpro-gas-mileage-form{padding:13px 11px}
+ .calcpro-gas-mileage-row,.calcpro-gas-mileage-other .calcpro-gas-mileage-row{grid-template-columns:minmax(0,1fr);gap:4px;margin-bottom:11px}
+ .calcpro-gas-mileage-row>label{text-align:left}
+ .calcpro-gas-mileage-field>input{width:170px}
+ .calcpro-gas-mileage-result-main{font-size:18px}
+ .calcpro-gas-mileage-result-main strong{font-size:20px}
+}
+@media print{
+ .calcpro-gas-mileage-result-actions,.calcpro-gas-mileage-tabs,.calcpro-gas-mileage-form,.calcpro-gas-mileage-help,.calcpro-gas-mileage-feedback{display:none!important}
+ .calcpro-gas-mileage-result{display:block!important}
+ .calcpro-gas-mileage-result-header{print-color-adjust:exact;-webkit-print-color-adjust:exact}
+}
+</style>
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / Other Calculators / Gas Mileage Calculator</nav><h1 class="cp-page-title">Gas Mileage Calculator</h1><p class="cp-intro">Measure real-world fuel efficiency using two odometer readings and the fuel added at your latest fill-up. Calculate miles per gallon (mpg), kilometers per liter (km/L), liters per 100 km (L/100 km), and optional fuel cost.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-gas-mileage" id="calcpro-gas-mileage-root">
+  <section class="calcpro-gas-mileage-result" id="calcpro-gas-mileage-result" aria-label="Calculated gas mileage result" aria-live="polite" hidden>
+    <div class="calcpro-gas-mileage-result-header">
+      <strong>Result</strong>
+      <div class="calcpro-gas-mileage-result-actions">
+        <button type="button" id="calcpro-gas-mileage-save" class="calcpro-gas-mileage-result-action" title="Save result as a text file">Save</button>
+        <button type="button" id="calcpro-gas-mileage-print" class="calcpro-gas-mileage-result-action" title="Print the result">Print</button>
+      </div>
+    </div>
+    <p class="calcpro-gas-mileage-result-main">Gas mileage: <strong id="calcpro-gas-mileage-efficiency"></strong> <span id="calcpro-gas-mileage-secondary"></span></p>
+    <p class="calcpro-gas-mileage-result-detail" id="calcpro-gas-mileage-distance-result"></p>
+    <div id="calcpro-gas-mileage-price-results" hidden>
+      <p class="calcpro-gas-mileage-result-detail" id="calcpro-gas-mileage-expense"></p>
+      <p class="calcpro-gas-mileage-result-detail" id="calcpro-gas-mileage-unit-cost"></p>
+    </div>
+    <p class="calcpro-gas-mileage-result-note" id="calcpro-gas-mileage-saved-note" role="status" hidden></p>
+  </section>
+  <p class="calcpro-gas-mileage-feedback" role="alert" id="calcpro-gas-mileage-error" hidden></p>
+  <div class="calcpro-gas-mileage-tabs" role="tablist" aria-label="Distance and fuel unit systems">
+    <button type="button" class="calcpro-gas-mileage-tab" role="tab" id="calcpro-gas-mileage-tab-us" aria-selected="true" aria-controls="calcpro-gas-mileage-form" tabindex="0" data-calcpro-gas-mileage-tab="us">US Units</button>
+    <button type="button" class="calcpro-gas-mileage-tab" role="tab" id="calcpro-gas-mileage-tab-metric" aria-selected="false" aria-controls="calcpro-gas-mileage-form" tabindex="-1" data-calcpro-gas-mileage-tab="metric">Metric Units</button>
+    <button type="button" class="calcpro-gas-mileage-tab" role="tab" id="calcpro-gas-mileage-tab-other" aria-selected="false" aria-controls="calcpro-gas-mileage-form" tabindex="-1" data-calcpro-gas-mileage-tab="other">Other Units</button>
+  </div>
+  <form id="calcpro-gas-mileage-form" class="calcpro-gas-mileage-form" role="tabpanel" aria-labelledby="calcpro-gas-mileage-tab-us" novalidate>
+    <div class="calcpro-gas-mileage-row">
+      <label for="calcpro-gas-mileage-current">Current Odometer Reading</label>
+      <div class="calcpro-gas-mileage-field"><input type="text" id="calcpro-gas-mileage-current" inputmode="decimal" value="12360" autocomplete="off" aria-required="true" /><span id="calcpro-gas-mileage-current-unit" class="calcpro-gas-mileage-unit">miles</span></div>
+    </div>
+    <div class="calcpro-gas-mileage-row">
+      <label for="calcpro-gas-mileage-previous">Previous Odometer Reading</label>
+      <div class="calcpro-gas-mileage-field"><input type="text" id="calcpro-gas-mileage-previous" inputmode="decimal" value="12000" autocomplete="off" aria-required="true" /><span id="calcpro-gas-mileage-previous-unit" class="calcpro-gas-mileage-unit">miles</span></div>
+    </div>
+    <div class="calcpro-gas-mileage-row">
+      <label for="calcpro-gas-mileage-fuel">Gas Added to the Tank</label>
+      <div class="calcpro-gas-mileage-field"><input type="text" id="calcpro-gas-mileage-fuel" inputmode="decimal" value="15" autocomplete="off" aria-required="true" /><span id="calcpro-gas-mileage-fuel-unit" class="calcpro-gas-mileage-unit">gallons</span></div>
+    </div>
+    <div class="calcpro-gas-mileage-row">
+      <label for="calcpro-gas-mileage-price">Gas Price (Optional)</label>
+      <div class="calcpro-gas-mileage-field"><input type="text" id="calcpro-gas-mileage-price" inputmode="decimal" value="$3" autocomplete="off" /><span id="calcpro-gas-mileage-price-unit" class="calcpro-gas-mileage-unit">per gallon</span></div>
+    </div>
+    <div class="calcpro-gas-mileage-other" id="calcpro-gas-mileage-other-options" hidden>
+      <p class="calcpro-gas-mileage-other-heading">Choose custom distance and fuel units</p>
+      <div class="calcpro-gas-mileage-row"><label for="calcpro-gas-mileage-distance-unit">Odometer Unit</label>
+        <div><select id="calcpro-gas-mileage-distance-unit"><option value="km">Kilometers (km)</option><option value="mi">Miles (mi)</option><option value="m">Meters (m)</option><option value="nmi">Nautical miles (nmi)</option></select></div></div>
+      <div class="calcpro-gas-mileage-row"><label for="calcpro-gas-mileage-volume-unit">Fuel Volume Unit</label>
+        <div><select id="calcpro-gas-mileage-volume-unit"><option value="l">Liters (L)</option><option value="usgal">US gallons (gal)</option><option value="impgal">Imperial gallons (UK gal)</option><option value="usqt">US quarts (qt)</option></select></div></div>
+      <div class="calcpro-gas-mileage-row"><label for="calcpro-gas-mileage-currency">Currency Symbol</label>
+        <div><input type="text" id="calcpro-gas-mileage-currency" maxlength="8" value="$" aria-label="Currency symbol used for gas price and results" /></div></div>
+      <p class="calcpro-gas-mileage-other-note">Changing a unit converts the existing values and fuel price to the selected unit.</p>
+    </div>
+    <div class="calcpro-gas-mileage-buttons">
+      <button type="submit" class="calcpro-gas-mileage-calculate">Calculate</button>
+      <button type="button" id="calcpro-gas-mileage-clear" class="calcpro-gas-mileage-clear">Clear</button>
+    </div>
+  </form>
+  <p class="calcpro-gas-mileage-help">For the most reliable result, fill the tank completely at both odometer readings. Gas price is optional.</p>
+</div></section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><a href="https://www.calculator.net/mileage-calculator.html" target="_blank" rel="noopener noreferrer">Mileage Calculator</a><a href="https://www.calculator.net/fuel-cost-calculator.html" target="_blank" rel="noopener noreferrer">Fuel Cost Calculator</a></div></section></aside><article class="cp-article">
+<h2>How to Use the Gas Mileage Calculator</h2>
+<ol>
+  <li>Fill your tank completely and record the <strong>previous odometer reading</strong> (or reset your trip meter).</li>
+  <li>Drive normally. At your next full fill-up, record the <strong>current odometer reading</strong>.</li>
+  <li>Enter the fuel added during that second fill-up, using the same volume unit shown in the calculator.</li>
+  <li>Optionally enter the price per gallon, liter, or other selected fuel unit. Choose US, Metric, or Other Units and click <strong>Calculate</strong>.</li>
+</ol>
+<p>For a reliable fill-to-fill measurement, both fill-ups should reach approximately the same level. Measuring several tanks and combining total distance with total fuel reduces the effect of small variations in fill levels.</p>
+<h2>Gas Mileage Formulas</h2>
+<p><strong>Distance traveled</strong> = current odometer − previous odometer.</p>
+<p><strong>US miles per gallon (mpg)</strong> = miles traveled ÷ US gallons used.</p>
+<p><strong>Kilometers per liter (km/L)</strong> = kilometers traveled ÷ liters used.</p>
+<p><strong>Liters per 100 km (L/100 km)</strong> = (liters used ÷ kilometers traveled) × 100. A lower L/100 km figure means less fuel consumed for the same distance, while a higher mpg or km/L figure means better fuel economy.</p>
+<p>If you provide fuel price: <strong>fill-up expense</strong> = fuel volume × price per volume unit; <strong>cost per distance unit</strong> = fill-up expense ÷ distance traveled; <strong>distance per currency unit</strong> = distance traveled ÷ fill-up expense (when expense is greater than zero).</p>
+<h3>Worked Example: Metric Units</h3>
+<p>Suppose the current odometer reads 18,900 km, the previous reading was 18,300 km, and you added 50 liters at $1 per liter. The distance is 600 km, so fuel efficiency is <strong>12 km/L</strong>, equivalent to <strong>8.33 L/100 km</strong> or approximately <strong>28.23 US mpg</strong>. The fill expense is $50 and the average fuel cost is about $0.0833 per km.</p>
+<h3>Worked Example: US Units</h3>
+<p>With odometer readings of 12,360 and 12,000 miles, and 15 US gallons added, you traveled 360 miles at <strong>24 mpg</strong>. At $3 per gallon, you spent $45 on the fill-up, or <strong>$0.125 per mile</strong>.</p>
+<h2>Fuel Economy Units and Conversions</h2>
+<div class="cp-table-scroll"><table class="cp-content-table"><thead><tr><th>Measurement</th><th>Calculation / conversion</th></tr></thead><tbody>
+<tr><td>Miles to kilometers</td><td>1 international mile = 1.609344 km</td></tr>
+<tr><td>US gallons to liters</td><td>1 US liquid gallon = 3.785411784 L</td></tr>
+<tr><td>Imperial gallons to liters</td><td>1 imperial gallon = 4.54609 L</td></tr>
+<tr><td>mpg (US) to L/100 km</td><td>Approximately 235.215 ÷ mpg</td></tr>
+<tr><td>km/L to L/100 km</td><td>100 ÷ (km/L)</td></tr>
+</tbody></table></div>
+<p>The calculator uses <strong>US gallons</strong> for its standard mpg result, not UK imperial gallons. Under <strong>Other Units</strong>, you can select imperial gallons, US quarts, meters, or nautical miles; the entered quantities and unit price convert when you change the corresponding unit selector.</p>
+<h2>How to Improve Your Fuel Mileage</h2>
+<ul><li>Keep tires inflated according to the vehicle manufacturer's recommendation.</li><li>Accelerate and brake smoothly and avoid unnecessary idling.</li><li>Remove unneeded weight and roof accessories that add aerodynamic drag.</li><li>Keep up with vehicle maintenance and use the recommended motor oil.</li><li>Compare full-tank averages under similar road and weather conditions.</li></ul>
+<h2>Frequently Asked Questions</h2>
+<h3>What if I do not know my gas price?</h3>
+<p>Leave the optional gas-price input blank. Fuel economy and distance results still calculate; the expense and unit-cost lines are omitted.</p>
+<h3>Why is a lower L/100 km better?</h3>
+<p>L/100 km measures fuel <em>consumption</em> for a fixed distance. Using 6 L/100 km is more efficient than using 9 L/100 km. mpg and km/L measure distance per unit of fuel, so higher values are better.</p>
+<h3>Do the current and previous odometer readings need to be whole numbers?</h3>
+<p>No. Decimal readings and decimal fuel quantities are supported. The current reading must be greater than the previous reading, and fuel added must be positive.</p>
+<h3>Is US mpg the same as UK mpg?</h3>
+<p>No. A UK (imperial) gallon is larger than a US gallon. The same trip and fuel consumption therefore give a larger number when expressed as miles per imperial gallon than when expressed as US mpg.</p>
+<h3>Why does my dashboard fuel economy differ?</h3>
+<p>Dashboard estimates may use different measurement intervals and sensor data. This calculation uses actual odometer distance and the amount dispensed at a fill-up; variation in tank filling and pump readings can affect any individual result.</p>
+<h2>References</h2>
+<p>Conversion factors: <a href="https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors/nist-guide-si-appendix-b8" target="_blank" rel="noopener noreferrer">NIST Guide to the SI, Appendix B</a>. Calculator layout and methodology reference: <a href="https://www.calculator.net/gas-mileage-calculator.html" target="_blank" rel="noopener noreferrer">Calculator.net Gas Mileage Calculator</a>.</p>
+<p class="cp-page-footer">CalcPro — results are estimates for informational use; actual fuel economy varies with how and when the tank is filled.</p>
+</article></main></div><script>
+(function () {
+  'use strict';
+  const root = document.getElementById('calcpro-gas-mileage-root');
+  if (!root) return;
+  const el = (suffix) => document.getElementById('calcpro-gas-mileage-' + suffix);
+  const fields = {
+    current: el('current'), previous: el('previous'), fuel: el('fuel'), price: el('price'),
+    distanceUnit: el('distance-unit'), volumeUnit: el('volume-unit'), currency: el('currency'),
+    form: el('form'), other: el('other-options'), error: el('error'), result: el('result')
+  };
+  const distanceUnits = {
+    mi: {meters: 1609.344, input: 'miles', singular: 'mile', plural: 'miles', short: 'mi'},
+    km: {meters: 1000, input: 'kilometer', singular: 'kilometer', plural: 'kilometers', short: 'km'},
+    m: {meters: 1, input: 'meters', singular: 'meter', plural: 'meters', short: 'm'},
+    nmi: {meters: 1852, input: 'nautical miles', singular: 'nautical mile', plural: 'nautical miles', short: 'nmi'}
+  };
+  const fuelUnits = {
+    usgal: {liters: 3.785411784, input: 'gallons', singular: 'gallon', short: 'US gal'},
+    l: {liters: 1, input: 'liter', singular: 'liter', short: 'L'},
+    impgal: {liters: 4.54609, input: 'imperial gallons', singular: 'imperial gallon', short: 'imp gal'},
+    usqt: {liters: 3.785411784 / 4, input: 'US quarts', singular: 'US quart', short: 'US qt'}
+  };
+  const initial = () => ({
+    us: {current: '12360', previous: '12000', fuel: '15', price: '$3', distance: 'mi', volume: 'usgal', currency: '$'},
+    metric: {current: '18900', previous: '18300', fuel: '50', price: '$1', distance: 'km', volume: 'l', currency: '$'},
+    other: {current: '18900', previous: '18300', fuel: '50', price: '$1', distance: 'km', volume: 'l', currency: '$'}
+  });
+  let values = initial();
+  let mode = 'us';
+  let lastResultText = '';
+  const fmt = (number, decimals = 2) => new Intl.NumberFormat('en-US', {maximumFractionDigits: decimals}).format(number);
+  const toInput = (number) => Number.isFinite(number) ? Number(number.toPrecision(12)).toString() : '';
+  const symbol = () => (values[mode].currency || '$').trim() || '$';
+  const money = (amount, decimals = 2) => {
+    const mark = symbol();
+    return mark + (/^[\p{L}]/u.test(mark) ? ' ' : '') + fmt(amount, decimals);
+  };
+  function decimal(raw, optionalCurrency) {
+    let str = String(raw).trim();
+    if (optionalCurrency) {
+      const configured = (fields.currency.value || '$').trim();
+      if (configured && str.startsWith(configured)) str = str.slice(configured.length).trim();
+      str = str.replace(/^(?:\$|€|£|₹|₨|Rs\.?)(?:\s*)/i, '');
+    }
+    const standard = /^(?:\d{1,3}(?:,\d{3})+|\d+)?(?:\.\d+)?$/;
+    if (!standard.test(str) || str === '' || str === '.') return NaN;
+    const n = Number(str.replace(/,/g, ''));
+    return Number.isFinite(n) ? n : NaN;
+  }
+  function capture() {
+    const v = values[mode];
+    v.current = fields.current.value;
+    v.previous = fields.previous.value;
+    v.fuel = fields.fuel.value;
+    v.price = fields.price.value;
+    if (mode === 'other') {
+      v.distance = fields.distanceUnit.value;
+      v.volume = fields.volumeUnit.value;
+      v.currency = fields.currency.value.trim() || '$';
+    }
+  }
+  function hideResult() {
+    fields.result.hidden = true;
+    el('saved-note').hidden = true;
+    lastResultText = '';
+  }
+  function hideError() {
+    fields.error.hidden = true;
+    fields.error.textContent = '';
+    for (const k of ['current','previous','fuel','price']) fields[k].removeAttribute('aria-invalid');
+  }
+  function renderMode() {
+    const v = values[mode];
+    for (const k of ['current','previous','fuel','price']) fields[k].value = v[k];
+    fields.distanceUnit.value = v.distance;
+    fields.volumeUnit.value = v.volume;
+    fields.currency.value = v.currency;
+    const unit = distanceUnits[v.distance];
+    const vol = fuelUnits[v.volume];
+    el('current-unit').textContent = unit.input;
+    el('previous-unit').textContent = unit.input;
+    el('fuel-unit').textContent = vol.input;
+    el('price-unit').textContent = 'per ' + vol.singular;
+    fields.other.hidden = mode !== 'other';
+    for (const tab of root.querySelectorAll('[data-calcpro-gas-mileage-tab]')) {
+      const selected = tab.dataset.calcproGasMileageTab === mode;
+      tab.setAttribute('aria-selected', selected ? 'true' : 'false');
+      tab.tabIndex = selected ? 0 : -1;
+      if (selected) fields.form.setAttribute('aria-labelledby', tab.id);
+    }
+  }
+  function selectMode(next) {
+    if (mode === next) return;
+    capture();
+    mode = next;
+    renderMode();
+    hideError();
+    hideResult();
+  }
+  const tabs = Array.from(root.querySelectorAll('[data-calcpro-gas-mileage-tab]'));
+  tabs.forEach((tab, index) => {
+    tab.addEventListener('click', () => selectMode(tab.dataset.calcproGasMileageTab));
+    tab.addEventListener('keydown', (event) => {
+      let i = index;
+      if (event.key === 'ArrowRight') i = (index + 1) % tabs.length;
+      else if (event.key === 'ArrowLeft') i = (index + tabs.length - 1) % tabs.length;
+      else if (event.key === 'Home') i = 0;
+      else if (event.key === 'End') i = tabs.length - 1;
+      else return;
+      event.preventDefault();
+      tabs[i].focus();
+      selectMode(tabs[i].dataset.calcproGasMileageTab);
+    });
+  });
+  function convertDistance() {
+    const oldUnit = values.other.distance;
+    const newUnit = fields.distanceUnit.value;
+    if (oldUnit === newUnit) return;
+    const multiple = distanceUnits[oldUnit].meters / distanceUnits[newUnit].meters;
+    for (const k of ['current','previous']) {
+      const n = decimal(fields[k].value, false);
+      if (Number.isFinite(n)) fields[k].value = toInput(n * multiple);
+    }
+    values.other.distance = newUnit;
+    capture(); renderMode(); hideResult(); hideError();
+  }
+  function convertVolume() {
+    const oldUnit = values.other.volume;
+    const newUnit = fields.volumeUnit.value;
+    if (oldUnit === newUnit) return;
+    const factor = fuelUnits[oldUnit].liters / fuelUnits[newUnit].liters;
+    const gas = decimal(fields.fuel.value, false);
+    if (Number.isFinite(gas)) fields.fuel.value = toInput(gas * factor);
+    const originalPrice = fields.price.value;
+    const price = originalPrice.trim() ? decimal(originalPrice, true) : NaN;
+    if (Number.isFinite(price)) fields.price.value = moneyInput(price / factor);
+    values.other.volume = newUnit;
+    capture(); renderMode(); hideResult(); hideError();
+  }
+  function moneyInput(value) {
+    const mark = (fields.currency.value || '$').trim() || '$';
+    return mark + (/^[\p{L}]/u.test(mark) ? ' ' : '') + toInput(value);
+  }
+  fields.distanceUnit.addEventListener('change', convertDistance);
+  fields.volumeUnit.addEventListener('change', convertVolume);
+  fields.currency.addEventListener('change', () => { capture(); hideResult(); hideError(); });
+  function fail(message, field) {
+    fields.error.textContent = message;
+    fields.error.hidden = false;
+    hideResult();
+    if (field) { field.setAttribute('aria-invalid', 'true'); field.focus(); }
+  }
+  function calculate(event) {
+    event.preventDefault();
+    capture(); hideError();
+    const current = decimal(fields.current.value, false);
+    const previous = decimal(fields.previous.value, false);
+    const gas = decimal(fields.fuel.value, false);
+    const hasPrice = fields.price.value.trim() !== '';
+    const price = hasPrice ? decimal(fields.price.value, true) : null;
+    if (!Number.isFinite(current) || current < 0) return fail('Enter a valid non-negative current odometer reading.', fields.current);
+    if (!Number.isFinite(previous) || previous < 0) return fail('Enter a valid non-negative previous odometer reading.', fields.previous);
+    if (current <= previous) return fail('The current odometer reading must be greater than the previous reading.', fields.current);
+    if (!Number.isFinite(gas) || gas <= 0) return fail('Gas added to the tank must be greater than zero.', fields.fuel);
+    if (hasPrice && (!Number.isFinite(price) || price < 0)) return fail('Enter a valid non-negative gas price, or leave it blank.', fields.price);
+    const v = values[mode];
+    const driven = current - previous;
+    const km = driven * distanceUnits[v.distance].meters / 1000;
+    const liters = gas * fuelUnits[v.volume].liters;
+    const kmPerL = km / liters;
+    const litersPer100 = 100 * liters / km;
+    const mpgUS = (km / 1.609344) / (liters / 3.785411784);
+    const distancePerFuel = driven / gas;
+    if (![km,liters,kmPerL,litersPer100,mpgUS,distancePerFuel].every(Number.isFinite))
+      return fail('The values are too large to calculate. Please enter smaller numbers.');
+    let primary, secondary;
+    if (mode === 'us') {
+      primary = fmt(mpgUS) + ' mpg or ' + fmt(litersPer100) + ' L/100 km';
+      secondary = '(' + fmt(kmPerL) + ' km/L)';
+    } else if (mode === 'metric' || (v.distance === 'km' && v.volume === 'l')) {
+      primary = fmt(kmPerL) + ' km/L or ' + fmt(litersPer100) + ' L/100 km';
+      secondary = '(' + fmt(mpgUS) + ' mpg)';
+    } else if (v.distance === 'mi' && v.volume === 'usgal') {
+      primary = fmt(mpgUS) + ' mpg or ' + fmt(litersPer100) + ' L/100 km';
+      secondary = '(' + fmt(kmPerL) + ' km/L)';
+    } else {
+      primary = fmt(distancePerFuel) + ' ' + distanceUnits[v.distance].short + '/' + fuelUnits[v.volume].short + ' or ' + fmt(litersPer100) + ' L/100 km';
+      secondary = '(' + fmt(mpgUS) + ' mpg US)';
+    }
+    const distanceDescription = 'Distance traveled since last time is ' + fmt(driven, 6) + ' ' + (driven === 1 ? distanceUnits[v.distance].singular : distanceUnits[v.distance].plural) + '.';
+    el('efficiency').textContent = primary;
+    el('secondary').textContent = secondary;
+    el('distance-result').textContent = distanceDescription;
+    const report = ['Gas Mileage Calculator', 'Gas mileage: ' + primary + ' ' + secondary, distanceDescription];
+    el('price-results').hidden = !hasPrice;
+    if (hasPrice) {
+      const total = gas * price;
+      const costPerDistance = total / driven;
+      const isFree = total === 0;
+      const costText = 'Your fill expense this time is ' + money(total) + '.';
+      const costResult = isFree
+        ? 'Your unit cost is ' + money(0) + ' per ' + distanceUnits[v.distance].singular + '; distance per unit of currency is undefined when fuel is free.'
+        : 'Your unit cost is ' + money(costPerDistance, 4) + ' per ' + distanceUnits[v.distance].singular + ' or ' + fmt(driven / total, 4) + ' ' + distanceUnits[v.distance].plural + ' per ' + symbol() + '.';
+      el('expense').textContent = costText;
+      el('unit-cost').textContent = costResult;
+      report.push(costText, costResult);
+    }
+    lastResultText = report.join('\n');
+    fields.result.hidden = false;
+    el('saved-note').hidden = true;
+  }
+  fields.form.addEventListener('submit', calculate);
+  el('clear').addEventListener('click', () => {
+    capture();
+    for (const name of ['us','metric','other'])
+      for (const k of ['current','previous','fuel','price']) values[name][k] = '';
+    renderMode(); hideError(); hideResult();
+    fields.current.focus();
+  });
+  el('save').addEventListener('click', () => {
+    if (!lastResultText) return;
+    const url = URL.createObjectURL(new Blob([lastResultText + '\n'], {type:'text/plain;charset=utf-8'}));
+    const a = document.createElement('a');
+    a.href = url; a.download = 'gas-mileage-result.txt';
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+    el('saved-note').textContent = 'Result saved as a text file.';
+    el('saved-note').hidden = false;
+  });
+  el('print').addEventListener('click', () => window.print());
+  renderMode();
+})();
+</script><script defer src="/assets/js/data.js"></script>
+<script defer src="/assets/js/style.js?v=20261111-5"></script>
+</body></html>

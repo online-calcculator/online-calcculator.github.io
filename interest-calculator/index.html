@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US">
-<head>
-<meta charset="utf-8">
+<html lang="en"><head><meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="content-language" content="en">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,17 +11,436 @@
   <meta name="author" content="Commingsoon">
   <meta name="publisher" content="Commingsoon">
   <meta name="robots" content="noindex, nofollow, max-image-preview:large">
-  <link rel="stylesheet" href="/assets/css/style.css?v=20261111-1" crossorigin="anonymous" data-n-g="">
+  <link rel="stylesheet" href="/assets/css/style.css?v=20261111-4" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/doc_style.css" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/side_style.css" crossorigin="anonymous" data-n-g=""> 
   <!--ogtags-->
-  <!--schema-->
-  <!--style-->
-</head>
+  <!--schema--><style>
+/* Isolated Interest Calculator component. All tool rules begin with .calcpro-interest. */
+.calcpro-interest{--ci-blue:#336699;--ci-link:#00699b;--ci-navy:#125217;--ci-green:#508726;--ci-green2:#83bd13;--ci-invest:#2879dd;--ci-interest:#b50000;font-family:Arial,Helvetica,sans-serif;color:#080808;max-width:728px;font-size:14px;line-height:1.35}
+.calcpro-interest *,.calcpro-interest *::before,.calcpro-interest *::after{box-sizing:border-box}
+.calcpro-interest button,.calcpro-interest input,.calcpro-interest select{font:inherit}
+.calcpro-interest-tools{display:flex;justify-content:flex-end;min-height:21px;padding:0 1px 3px}
+.calcpro-interest-print{background:none;color:#00669a;border:0;text-decoration:underline;cursor:pointer;padding:0 1px}
+.calcpro-interest-notice{background:var(--ci-blue);min-height:36px;color:#fff;display:flex;align-items:center;justify-content:center;gap:13px;margin-bottom:6px;text-align:center;font-size:15px;padding:5px 9px}
+.calcpro-interest-notice-icon{display:inline-grid;place-items:center;background:#fff;color:var(--ci-blue);width:24px;height:24px;border-radius:100%;font-size:15px;flex:none}
+.calcpro-interest-top{display:grid;grid-template-columns:minmax(305px,325px) minmax(0,1fr);align-items:start;gap:38px}
+.calcpro-interest-form{border:1px solid #bbb;background:#eee;padding:7px 8px 9px;min-width:0}
+.calcpro-interest-field{display:grid;grid-template-columns:46% minmax(0,1fr);min-height:31px;gap:4px;align-items:center}
+.calcpro-interest-field>label{white-space:nowrap;font-size:14px;line-height:1.2}
+.calcpro-interest-field input,.calcpro-interest-field select{display:block;width:100%;height:29px;min-width:0;border:1px solid #255f99;border-radius:1px;background:#fff;color:#101010;padding:3px 6px;box-shadow:1px 1px 2px #b6b6b6}
+.calcpro-interest-field input:focus,.calcpro-interest-field select:focus{outline:2px solid #8cb9e3;outline-offset:0}
+.calcpro-interest-field .calcpro-interest-percent{position:relative}
+.calcpro-interest-percent input{padding-right:22px}
+.calcpro-interest-percent>span{position:absolute;top:50%;right:7px;transform:translateY(-50%);pointer-events:none;font-size:14px}
+.calcpro-interest-timing{border:0;padding:3px 0 4px;margin:0;text-align:center;min-width:0;line-height:1.3}
+.calcpro-interest-timing legend{display:inline;padding:0;float:left;width:100%;height:0;overflow:hidden}
+.calcpro-interest-timing::before{content:'Contribute at the';display:inline}
+.calcpro-interest-timing label{white-space:nowrap;margin-left:7px;cursor:pointer;font-size:14px}
+.calcpro-interest-timing input{vertical-align:-2px;width:16px;height:16px;accent-color:var(--ci-blue);margin:0 3px 0 0}
+.calcpro-interest-timing-caption{line-height:1.4;margin-top:0}
+.calcpro-interest-length{display:flex;gap:4px;min-width:0}
+.calcpro-interest-length>div{flex:1;min-width:0;position:relative}
+.calcpro-interest-length input{padding-right:39px}
+.calcpro-interest-length>div span{position:absolute;right:4px;top:6px;pointer-events:none;color:#777;font-size:12px}
+.calcpro-interest-help{display:inline-grid;width:15px;height:15px;border:1px solid #888;border-radius:50%;color:#777;place-items:center;font-size:11px;line-height:14px;cursor:help}
+.calcpro-interest-form-actions{display:flex;justify-content:center;gap:5px;padding-top:10px;align-items:stretch}
+.calcpro-interest-form-actions button{border:0;color:#fff;cursor:pointer;min-height:36px}
+.calcpro-interest-calculate{background:#4b8121;font-weight:bold;padding:7px 14px}
+.calcpro-interest-calculate:hover{background:#3f6e1a}
+.calcpro-interest-calculate span{display:inline-grid;place-items:center;width:19px;height:19px;border-radius:50%;background:#9bbf88;font-size:11px;margin-left:9px}
+.calcpro-interest-clear{background:#a9a9a9;padding:7px 11px}
+.calcpro-interest-clear:hover{background:#898989}
+.calcpro-interest-error{background:#fff5ea;color:#8f170d;border:1px solid #d98a7d;padding:7px;margin-top:8px;line-height:1.4}
+.calcpro-interest-results{min-width:0}
+.calcpro-interest-results-bar{height:36px;background:var(--ci-green);color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 6px}
+.calcpro-interest-results-bar h2{font-weight:400;color:#fff;font-size:21px;line-height:1;margin:0}
+.calcpro-interest-save{color:#fff;background:none;border:0;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2px 3px;line-height:1;min-width:23px}
+.calcpro-interest-save>span{font-size:15px}.calcpro-interest-save>small{font-size:9px}
+.calcpro-interest-summary{padding:3px 4px 0;margin:0;font-size:14px}
+.calcpro-interest-summary>div{display:grid;grid-template-columns:minmax(0,1fr) max-content;gap:6px;margin:2px 0;align-items:start;min-height:22px}
+.calcpro-interest-summary dt,.calcpro-interest-summary dd{margin:0}
+.calcpro-interest-summary dd{text-align:right;white-space:nowrap}
+.calcpro-interest-summary .calcpro-interest-emphasis{font-weight:bold}
+.calcpro-interest-summary .calcpro-interest-buying{margin-top:7px;min-height:42px}
+.calcpro-interest-donut-container{display:flex;align-items:center;justify-content:center;gap:7px;margin:12px 0 0;min-width:0}
+.calcpro-interest-donut-container svg{width:135px;height:135px;flex-shrink:0;overflow:visible}
+.calcpro-interest-legend{display:flex;flex-direction:column;gap:3px;min-width:0;font-size:13px;line-height:1.25}
+.calcpro-interest-legend span{display:flex;align-items:center;white-space:nowrap;gap:5px}
+.calcpro-interest-legend i{width:16px;height:13px;border-radius:2px;flex-shrink:0}
+.calcpro-interest-legend-initial{background:var(--ci-invest)}.calcpro-interest-legend-contrib{background:var(--ci-green2)}.calcpro-interest-legend-gain{background:var(--ci-interest)}
+.calcpro-interest-chart-note{font-size:12px;color:#5b5b5b;text-align:center;margin:5px 0}
+.calcpro-interest-accumulation{padding-top:14px}
+.calcpro-interest-accumulation>h2{font-size:21px;line-height:1.2;font-weight:700;color:var(--ci-navy);margin:3px 0 8px}
+.calcpro-interest-schedule-layout{display:grid;grid-template-columns:minmax(0,340px) minmax(0,1fr);align-items:start;gap:16px}
+.calcpro-interest-tabs{display:flex;gap:20px;align-items:center;min-height:26px;white-space:nowrap}
+.calcpro-interest-tabs button{font-size:14px;border:0;background:transparent;padding:0 0 3px;cursor:pointer;color:var(--ci-link);text-decoration:underline;font-weight:bold}
+.calcpro-interest-tabs button[aria-selected="true"]{color:#000;text-decoration:none;cursor:default}
+.calcpro-interest-table-scroll{overflow:auto;max-height:470px;scrollbar-width:thin}
+.calcpro-interest-table{width:100%;border-collapse:collapse;font-size:13px;white-space:nowrap;text-align:right}
+.calcpro-interest-table thead{position:sticky;top:0;z-index:1}
+.calcpro-interest-table th{background:var(--ci-blue);color:#fff;font-weight:bold;text-align:center;border:1px solid #25527b;padding:5px 4px}
+.calcpro-interest-table td{border:1px solid #ccc;padding:3px 4px;text-align:right}
+.calcpro-interest-table tbody tr:nth-child(even){background:#eee}
+.calcpro-interest-table tbody tr.calcpro-interest-total{background:#edf5eb;font-weight:bold}
+.calcpro-interest-bars-wrap{min-width:0;padding-top:21px}
+.calcpro-interest-bars-wrap svg{width:100%;height:auto;min-height:150px;display:block;overflow:visible}
+.calcpro-interest button:focus-visible,.calcpro-interest input:focus-visible,.calcpro-interest select:focus-visible{outline:2px solid #275f98;outline-offset:2px}
+@media(max-width:700px){.calcpro-interest-top{gap:15px;grid-template-columns:minmax(0,1fr) minmax(0,1.03fr)}.calcpro-interest-field{grid-template-columns:1fr;gap:2px;margin-bottom:5px}.calcpro-interest-form{padding:8px}.calcpro-interest-schedule-layout{gap:10px;grid-template-columns:minmax(0,1fr) minmax(0,.95fr)}.calcpro-interest-tabs{gap:10px}.calcpro-interest-donut-container{flex-wrap:wrap}.calcpro-interest-donut-container svg{width:115px;height:115px}}
+@media(max-width:530px){.calcpro-interest-top{display:flex;flex-direction:column;gap:17px}.calcpro-interest-form,.calcpro-interest-results{width:100%}.calcpro-interest-field{grid-template-columns:44% 1fr;gap:6px;margin-bottom:2px}.calcpro-interest-donut-container{flex-wrap:nowrap}.calcpro-interest-schedule-layout{display:flex;flex-direction:column;gap:10px}.calcpro-interest-schedule-left,.calcpro-interest-bars-wrap{width:100%}.calcpro-interest-bars-wrap{max-width:380px;margin:auto;padding-top:0}.calcpro-interest-notice{font-size:13px}.calcpro-interest-tabs{gap:18px}}
+@media(max-width:355px){.calcpro-interest-field{grid-template-columns:1fr}.calcpro-interest-summary{font-size:13px}.calcpro-interest-donut-container svg{width:112px;height:112px}.calcpro-interest-legend{font-size:12px}}
+@media print{.calcpro-interest-tools,.calcpro-interest-notice,.calcpro-interest-form-actions,.calcpro-interest-save,.calcpro-interest-tabs{display:none!important}.calcpro-interest-top{grid-template-columns:1fr 1fr;gap:20px}.calcpro-interest-form{background:#fff}.calcpro-interest-accumulation{break-before:auto}.calcpro-interest-table-scroll{max-height:none;overflow:visible}.calcpro-interest-donut-container svg{width:110px}.calcpro-interest-accumulation,.calcpro-interest-top{break-inside:avoid}}
 
-<body>
-<!-- Main-header-page -->
-<script defer src="/assets/js/data.js"></script>
-<script defer src="/assets/js/style.js?v=20261111-1"></script>
-</body>
-</html>
+</style>
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Interest Calculator</nav><h1 class="cp-page-title">Interest Calculator</h1><p class="cp-intro">Estimate compound interest, future investment value, contributions, and inflation-adjusted buying power. Review annual or monthly accumulation schedules.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-interest" id="calcpro-interest-app">
+  <div class="calcpro-interest-tools"><button type="button" id="calcpro-interest-print" class="calcpro-interest-print"><span aria-hidden="true">▤</span> Print</button></div>
+  <div class="calcpro-interest-notice"><span class="calcpro-interest-notice-icon" aria-hidden="true">▼</span>Modify the values and click the Calculate button to use</div>
+  <div class="calcpro-interest-top">
+    <form class="calcpro-interest-form" id="calcpro-interest-form" novalidate>
+      <div class="calcpro-interest-field"><label for="calcpro-interest-initial">Initial investment</label><div class="calcpro-interest-money"><input id="calcpro-interest-initial" name="initial" type="text" inputmode="decimal" value="$20,000" autocomplete="off" required/></div></div>
+      <div class="calcpro-interest-field"><label for="calcpro-interest-annual">Annual contribution</label><div class="calcpro-interest-money"><input id="calcpro-interest-annual" name="annual" type="text" inputmode="decimal" value="$5,000" autocomplete="off" required/></div></div>
+      <div class="calcpro-interest-field"><label for="calcpro-interest-monthly">Monthly contribution</label><div class="calcpro-interest-money"><input id="calcpro-interest-monthly" name="monthly" type="text" inputmode="decimal" value="$0" autocomplete="off" required/></div></div>
+      <fieldset class="calcpro-interest-timing"><legend>Contribute at the</legend><label><input type="radio" name="timing" value="beginning" checked/> beginning</label><label><input type="radio" name="timing" value="end"/> end</label><div class="calcpro-interest-timing-caption">of each compounding period</div></fieldset>
+      <div class="calcpro-interest-field"><label for="calcpro-interest-rate">Interest rate</label><div class="calcpro-interest-percent"><input id="calcpro-interest-rate" name="rate" type="text" inputmode="decimal" value="5" required/><span>%</span></div></div>
+      <div class="calcpro-interest-field"><label for="calcpro-interest-frequency">Compound</label><select id="calcpro-interest-frequency" name="frequency"><option value="annually">annually</option><option value="semiannually">semiannually</option><option value="quarterly">quarterly</option><option value="monthly">monthly</option><option value="semimonthly">semimonthly</option><option value="biweekly">biweekly</option><option value="weekly">weekly</option><option value="daily">daily</option><option value="continuously">continuously</option></select></div>
+      <div class="calcpro-interest-field"><label for="calcpro-interest-years">Investment length</label><div class="calcpro-interest-length"><div><input id="calcpro-interest-years" name="years" type="text" inputmode="numeric" value="5" required/><span>years</span></div><div><input id="calcpro-interest-months" name="months" type="text" inputmode="numeric" value="0" aria-label="Additional months" required/><span>months</span></div></div></div>
+      <div class="calcpro-interest-field"><label for="calcpro-interest-tax">Tax rate <span class="calcpro-interest-help" title="Estimated marginal tax rate applied to investment interest at each compounding period." aria-label="Tax applies to interest at every compounding period">?</span></label><div class="calcpro-interest-percent"><input id="calcpro-interest-tax" name="tax" type="text" inputmode="decimal" value="0" required/><span>%</span></div></div>
+      <div class="calcpro-interest-field"><label for="calcpro-interest-inflation">Inflation rate</label><div class="calcpro-interest-percent"><input id="calcpro-interest-inflation" name="inflation" type="text" inputmode="decimal" value="3" required/><span>%</span></div></div>
+      <div class="calcpro-interest-form-actions"><button type="submit" class="calcpro-interest-calculate">Calculate <span aria-hidden="true">▶</span></button><button type="button" id="calcpro-interest-clear" class="calcpro-interest-clear">Clear</button></div>
+      <div id="calcpro-interest-error" class="calcpro-interest-error" role="alert" hidden></div>
+    </form>
+    <section class="calcpro-interest-results" id="calcpro-interest-results" aria-label="Calculation results" aria-live="polite">
+      <div class="calcpro-interest-results-bar"><h2>Results</h2><button class="calcpro-interest-save" id="calcpro-interest-save" type="button" aria-label="Save calculation as CSV" title="Save calculation as CSV"><span aria-hidden="true">▣</span><small>save</small></button></div>
+      <dl class="calcpro-interest-summary">
+        <div class="calcpro-interest-emphasis"><dt>Ending balance</dt><dd id="calcpro-interest-ending">$54,535.20</dd></div>
+        <div><dt>Total principal</dt><dd id="calcpro-interest-principal">$45,000.00</dd></div>
+        <div><dt>Total contributions</dt><dd id="calcpro-interest-contributions">$25,000.00</dd></div>
+        <div class="calcpro-interest-emphasis"><dt>Total interest</dt><dd id="calcpro-interest-interest">$9,535.20</dd></div>
+        <div><dt>Interest of initial investment</dt><dd id="calcpro-interest-initial-interest">$5,525.63</dd></div>
+        <div><dt>Interest of the contributions</dt><dd id="calcpro-interest-contribution-interest">$4,009.56</dd></div>
+        <div class="calcpro-interest-buying"><dt>Buying power of the end balance after inflation adjustment</dt><dd id="calcpro-interest-real">$47,042.54</dd></div>
+      </dl>
+      <div class="calcpro-interest-donut-container"><svg id="calcpro-interest-donut" viewBox="0 0 144 144" role="img" aria-label="Ending balance composition chart"></svg><div class="calcpro-interest-legend"><span><i class="calcpro-interest-legend-initial"></i>Initial investment</span><span><i class="calcpro-interest-legend-contrib"></i>Contributions</span><span><i class="calcpro-interest-legend-gain"></i>Interest</span></div></div>
+      <p id="calcpro-interest-chart-note" class="calcpro-interest-chart-note" hidden></p>
+    </section>
+  </div>
+  <section class="calcpro-interest-accumulation" id="calcpro-interest-accumulation" aria-label="Accumulation schedule">
+    <h2>Accumulation Schedule</h2>
+    <div class="calcpro-interest-schedule-layout">
+      <div class="calcpro-interest-schedule-left"><div class="calcpro-interest-tabs" role="tablist" aria-label="Accumulation schedule view"><button id="calcpro-interest-tab-annual" type="button" role="tab" aria-selected="true" aria-controls="calcpro-interest-table-panel">Annual Schedule</button><button id="calcpro-interest-tab-monthly" type="button" role="tab" aria-selected="false" aria-controls="calcpro-interest-table-panel">Monthly Schedule</button></div><div id="calcpro-interest-table-panel" class="calcpro-interest-table-scroll" role="tabpanel" aria-labelledby="calcpro-interest-tab-annual"><table class="calcpro-interest-table"><thead><tr><th scope="col">Year</th><th scope="col">Deposit</th><th scope="col">Interest</th><th scope="col">Ending balance</th></tr></thead><tbody id="calcpro-interest-tbody"></tbody></table></div></div>
+      <div class="calcpro-interest-bars-wrap"><svg id="calcpro-interest-bars" viewBox="0 0 330 220" role="img" aria-label="Stacked bar chart of investment, contributions and interest by year"></svg></div>
+    </div>
+  </section>
+</div>
+</section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><!-- REPLACE these links with real related tools for each calculator; verify live slugs. --><a href="retirement-calculator.html">Retirement</a><a href="roth-ira-calculator.html">Roth IRA</a><a href="investment-calculator.html">Investment</a><a href="compound-interest-calculator.html">Compound Interest</a><a href="annuity-payout-calculator.html">Annuity Payout</a><a href="pension-calculator.html">Pension</a><a href="inflation-calculator.html">Inflation</a><a href="future-value-calculator.html">Future Value</a><a href="income-tax-calculator.html">Income Tax</a><a href="savings-calculator.html">Savings</a><a href="mortgage-calculator.html">Mortgage</a><a href="loan-calculator.html">Loan</a></div></section></aside><article class="cp-article"><h2>How to Use the Interest Calculator</h2>
+<p>Enter your starting deposit, any annual and monthly contributions, and the nominal annual interest rate. Choose how often interest compounds and whether recurring contributions arrive at the beginning or the end of their deposit period. Set the investment duration in years and months. Optionally enter an estimated tax rate on interest and an inflation rate to compare future dollars with today's buying power.</p>
+<p>Select <strong>Calculate</strong> to update the ending balance, the investment-versus-interest doughnut chart, the annual accumulation schedule, and the monthly schedule. The <strong>Clear</strong> button empties the form. <strong>Save</strong> exports the results and schedules as a CSV file, while <strong>Print</strong> opens your browser's printing dialog.</p>
+<h2>Compound Interest Formula</h2>
+<p>For a single starting investment with no further deposits, compound interest is calculated as:</p>
+<p><strong>A = P × (1 + r/n)<sup>n×t</sup></strong></p>
+<p>Here, <strong>P</strong> is the starting amount, <strong>r</strong> is the nominal annual interest rate as a decimal, <strong>n</strong> is the number of compounding periods per year, <strong>t</strong> is the length in years, and <strong>A</strong> is the ending balance. With continuous compounding, the formula becomes <strong>A = P × e<sup>rt</sup></strong>.</p>
+<h3>Contributions, Taxes and Monthly Calculations</h3>
+<p>When regular contributions are added, the calculator accrues interest month by month. To reconcile monthly deposits with compounding frequencies such as quarterly, weekly, or daily, it uses a monthly-equivalent growth factor. For periodic compounding this factor is <strong>g = (1 + r(1 − τ)/n)<sup>n/12</sup></strong>, where <strong>τ</strong> is the selected tax rate as a decimal. For continuous compounding, <strong>g = e<sup>r(1 − τ)/12</sup></strong>. Each month, deposits occur before or after growth according to the chosen contribution timing.</p>
+<p>The tax estimate applies an effective reduction to interest each compounding period, not a one-time deduction at withdrawal. Actual taxation may depend on account type, interest recognition, tax allowances and jurisdiction. For unusual contribution timing and non-monthly compounding, the monthly-equivalent method is an approximation of the precise day-by-day cash flow.</p>
+<h3>Inflation-Adjusted Buying Power</h3>
+<p>Buying power in today's dollars is estimated with <strong>real value = ending balance ÷ (1 + inflation rate)<sup>t</sup></strong>. This adjustment does not subtract money from your account; it expresses what the future balance would be worth at today's price level if the assumed inflation rate persisted.</p>
+<h2>Worked Example</h2>
+<p>Suppose you invest <strong>$20,000</strong>, contribute <strong>$5,000 at the beginning of each year</strong>, earn <strong>5% annually compounded interest</strong>, and invest for <strong>5 years</strong> without tax. The total contributed is $45,000 ($20,000 initially plus five $5,000 payments). The resulting ending balance is approximately <strong>$54,535.20</strong>, of which <strong>$9,535.20</strong> is interest. Assuming 3% annual inflation, the estimated purchasing power of that balance is <strong>$47,042.54</strong> in today's dollars.</p>
+<h2>Understanding the Results</h2>
+<ul>
+<li><strong>Ending balance:</strong> The future investment balance after all entered deposits and the estimated after-tax interest.</li>
+<li><strong>Total principal:</strong> Starting investment plus cumulative scheduled contributions.</li>
+<li><strong>Total interest:</strong> Ending balance less total principal, after the selected estimated interest tax.</li>
+<li><strong>Initial investment interest:</strong> Interest attributable to the starting amount alone.</li>
+<li><strong>Contribution interest:</strong> Remaining interest attributable to recurring deposits.</li>
+<li><strong>Annual and monthly schedules:</strong> Deposits, interest and ending balance for each period. Switch tabs to examine either view.</li>
+</ul>
+<h2>Frequently Asked Questions</h2>
+<h3>Does more frequent compounding always increase the balance?</h3>
+<p>For a fixed positive nominal rate and unchanged deposits, more frequent compounding normally increases the effective annual yield. The difference may be small at low rates and short durations, but compounds over longer periods.</p>
+<h3>What is the difference between beginning and end contributions?</h3>
+<p>Beginning-of-period deposits earn interest during that period; end-of-period deposits begin earning interest afterward. For annual deposits, the calculator schedules beginning contributions in January and end contributions in December. Monthly deposits are scheduled at the start or end of each month.</p>
+<h3>What happens if I use a 0% rate?</h3>
+<p>With zero interest, the ending balance equals the initial investment plus all contributions. Inflation may still reduce its purchasing power. The calculator also supports negative rates for loss scenarios, subject to numeric validation.</p>
+<h3>Is this a prediction of actual investment returns?</h3>
+<p>No. It is a fixed-rate projection. Actual returns, fees, deposit dates, taxes, inflation and market performance can differ, so use the result for planning rather than as a guarantee.</p>
+<h2>Source and Further Reading</h2>
+<p>Reference layout and example figures: <a href="https://www.calculator.net/interest-calculator.html" target="_blank" rel="noopener noreferrer">Calculator.net — Interest Calculator</a>. The formulas above are standard compound-interest and present-value mathematics; the implementation is independently written for CalcPro.</p>
+<p class="cp-page-footer">CalcPro — results are estimates for educational and financial-planning purposes, not personalized investment or tax advice.</p>
+</article></main></div><script>
+(() => {
+  'use strict';
+  const root = document.getElementById('calcpro-interest-app');
+  if (!root) return;
+  const byId = (id) => root.querySelector('#calcpro-interest-' + id);
+  const form = byId('form');
+  const error = byId('error');
+  const resultsPanel = byId('results');
+  const schedulePanel = byId('accumulation');
+  const frequencyMap = { annually:1, semiannually:2, quarterly:4, monthly:12,
+    semimonthly:24, biweekly:26, weekly:52, daily:365 };
+  const currency = new Intl.NumberFormat('en-US', {style:'currency',currency:'USD',minimumFractionDigits:2,maximumFractionDigits:2});
+  const whole = new Intl.NumberFormat('en-US',{maximumFractionDigits:0});
+  const NS = 'http://www.w3.org/2000/svg';
+  let calculation = null;
+  let activeTab = 'annual';
+
+  function readNumber(id, label, minimum, maximum, integer=false) {
+    const node = byId(id);
+    const raw = node.value.trim();
+    if (!raw || !/^\s*[+-]?\s*\$?\s*(?:\d[\d,]*(?:\.\d*)?|\.\d+)\s*%?\s*$/.test(raw)) {
+      throw new Error('Enter a valid number for ' + label + '.');
+    }
+    const value = Number(raw.replace(/[$,%\s]/g,''));
+    if (!Number.isFinite(value) || value < minimum || value > maximum || (integer && !Number.isInteger(value))) {
+      let msg = integer ? 'a whole number' : 'a number';
+      throw new Error(label + ' must be ' + msg + ' between ' + minimum + ' and ' + maximum + '.');
+    }
+    return value;
+  }
+  function readInputs(){
+    const p = {
+      initial:readNumber('initial','Initial investment',0,1e12),
+      annual:readNumber('annual','Annual contribution',0,1e12),
+      monthly:readNumber('monthly','Monthly contribution',0,1e12),
+      rate:readNumber('rate','Interest rate',-99,1000),
+      frequency:byId('frequency').value,
+      years:readNumber('years','Years',0,100,true),
+      months:readNumber('months','Months',0,11,true),
+      tax:readNumber('tax','Tax rate',0,100),
+      inflation:readNumber('inflation','Inflation rate',-99.99,1000),
+      timing:form.querySelector('input[name="timing"]:checked').value
+    };
+    p.totalMonths = p.years*12+p.months;
+    if (p.totalMonths === 0) throw new Error('Investment length must be at least one month.');
+    if (!(p.frequency in frequencyMap) && p.frequency !== 'continuously') throw new Error('Choose a compounding frequency.');
+    return p;
+  }
+  function monthlyEffectiveRate(p){
+    // Monthly equivalent of nominal annual compounding after tax at each compounding event.
+    const afterTaxAnnualNominal = p.rate / 100 * (1-p.tax/100);
+    if(p.frequency === 'continuously') return Math.expm1(afterTaxAnnualNominal/12);
+    const count = frequencyMap[p.frequency];
+    const base = 1 + afterTaxAnnualNominal/count;
+    if (base <= 0) throw new Error('The selected negative interest rate cannot be compounded at this frequency.');
+    return Math.pow(base,count/12)-1;
+  }
+  function project(p){
+    const monthlyRate=monthlyEffectiveRate(p);
+    const annualRows=[], monthlyRows=[];
+    let balance=p.initial, allDeposits=0, allInterest=0;
+    let depositThisYear=0, interestThisYear=0;
+    for(let m=1; m<=p.totalMonths; m++){
+      let deposited=0, earned=0;
+      if(p.timing === 'beginning'){
+        deposited = p.monthly + (m%12===1 ? p.annual : 0);
+        balance += deposited;
+        earned = balance * monthlyRate;
+        balance += earned;
+      } else {
+        earned = balance * monthlyRate;
+        balance += earned;
+        deposited = p.monthly + (m%12===0 ? p.annual : 0);
+        balance += deposited;
+      }
+      if (!Number.isFinite(balance) || Math.abs(balance)>1e21) throw new Error('Values produce an out-of-range result. Reduce the rate, balance or time.');
+      allDeposits += deposited;
+      allInterest += earned;
+      depositThisYear += deposited + (m===1 ? p.initial : 0);
+      interestThisYear += earned;
+      monthlyRows.push({index:m, deposit:deposited+(m===1 ? p.initial : 0),interest:earned,balance});
+      if(m%12===0 || m===p.totalMonths){
+        annualRows.push({index:Math.ceil(m/12), monthsInYear:m%12 || 12,deposit:depositThisYear,interest:interestThisYear,balance,
+          initial:p.initial,contributions:allDeposits});
+        depositThisYear=0;
+        interestThisYear=0;
+      }
+    }
+    const initInterest = p.initial*Math.expm1(p.totalMonths*Math.log1p(monthlyRate));
+    const contributionInterest = allInterest-initInterest;
+    const real = balance/Math.pow(1+p.inflation/100,p.totalMonths/12);
+    if (!Number.isFinite(real) || Math.abs(real)>1e21) throw new Error('Inflation adjustment produces an out-of-range number.');
+    return {p, balance, contributions:allDeposits,principal:p.initial+allDeposits,
+      interest:allInterest,initInterest,contributionInterest,real,annualRows,monthlyRows,monthlyRate};
+  }
+  function amount(n){return currency.format(Math.abs(n)<0.00000001?0:n)}
+  function showNumber(id,value){byId(id).textContent=amount(value)}
+  function drawDonut(calc){
+    const svg=byId('donut');
+    const items = [
+      {val:calc.p.initial,color:'#2879dd'},
+      {val:calc.contributions,color:'#83bd13'},
+      {val:Math.max(0,calc.interest),color:'#b50000'}
+    ];
+    const total=items.reduce((s,v)=>s+v.val,0);
+    const circumference=2*Math.PI*42;
+    let offset=0;
+    let pieces=[];
+    if(total<1e-12){
+      pieces.push('<circle cx="72" cy="72" r="42" fill="none" stroke="#bbb" stroke-width="34"/>');
+    }else{
+      for(const item of items){
+        if(item.val<=0)continue;
+        const fraction=item.val/total;
+        pieces.push(`<circle cx="72" cy="72" r="42" fill="none" stroke="${item.color}" stroke-width="34" stroke-dasharray="${(fraction*circumference).toFixed(6)} ${(circumference).toFixed(6)}" stroke-dashoffset="${(-offset*circumference).toFixed(6)}" transform="rotate(-90 72 72)"/>`);
+        if(fraction>=0.075){
+          const angle= -Math.PI/2 + (offset+fraction/2)*Math.PI*2;
+          const x=72+43*Math.cos(angle), y=72+43*Math.sin(angle);
+          pieces.push(`<text x="${x.toFixed(2)}" y="${(y+3.5).toFixed(2)}" fill="white" text-anchor="middle" font-weight="bold" font-size="11">${Math.round(fraction*100)}%</text>`);
+        }
+        offset+=fraction;
+      }
+    }
+    pieces.push('<circle cx="72" cy="72" r="23.5" fill="#fff"/>');
+    svg.innerHTML=pieces.join('');
+    svg.setAttribute('aria-label','Balance composition: initial investment '+amount(calc.p.initial)+', contributions '+amount(calc.contributions)+', investment interest '+amount(calc.interest));
+    const note=byId('chart-note');
+    note.hidden=calc.interest>=0;
+    note.textContent=calc.interest<0?'Interest is negative ('+amount(calc.interest)+'). The doughnut shows the positive invested amounts; the loss is included in the ending balance.':'';
+  }
+  function niceAxis(max){
+    if(max<=0) return {top:1,step:0.2};
+    const ideal=max/5;
+    const pow=Math.pow(10,Math.floor(Math.log10(ideal)));
+    const candidates=[1,2,2.5,5,10].map(v=>v*pow);
+    const step=candidates.reduce((a,b)=>Math.abs(b-ideal)<Math.abs(a-ideal)?b:a);
+    return {top:Math.ceil(max/step-1e-12)*step,step};
+  }
+  function compact(v){
+    const a=Math.abs(v);
+    if(a>=1e9) return (v/1e9).toFixed(a>=1e10?0:1).replace(/\.0$/,'')+'B';
+    if(a>=1e6) return (v/1e6).toFixed(a>=1e7?0:1).replace(/\.0$/,'')+'M';
+    if(a>=1e3) return (v/1e3).toFixed(a>=1e4?0:1).replace(/\.0$/,'')+'K';
+    return whole.format(v);
+  }
+  function drawBars(calc){
+    const svg=byId('bars'), rows=calc.annualRows;
+    const max=Math.max(0,...rows.map(r=>Math.max(r.balance,r.initial+r.contributions)));
+    const axis=niceAxis(max), top=axis.top, base=179, chartHeight=146, y=(v)=>base-chartHeight*Math.max(0,v)/top;
+    const chartLeft=43, chartRight=222, chartWidth=chartRight-chartLeft;
+    const colWidth=chartWidth/rows.length;
+    const barWidth=Math.max(1,Math.min(17,colWidth*0.62));
+    const parts=[];
+    for(let step=0;step<=Math.round(top/axis.step);step++){
+      const val=axis.step*step, py=y(val);
+      parts.push(`<line x1="${chartLeft}" y1="${py.toFixed(2)}" x2="${chartRight+1}" y2="${py.toFixed(2)}" stroke="#d6d6d6" stroke-width="1"/>`);
+      parts.push(`<text x="${chartLeft-5}" y="${(py+3.3).toFixed(2)}" text-anchor="end" fill="#666" font-size="10">${val===0?'$0':'$'+compact(val)}</text>`);
+    }
+    rows.forEach((row,i)=>{
+      const x=chartLeft+(i+.5)*colWidth-barWidth/2;
+      const contribution=Math.max(0,row.contributions), initial=Math.max(0,row.initial);
+      const basePrincipal=initial+contribution;
+      const balance=Math.max(0,row.balance);
+      if(initial>0) parts.push(`<rect x="${x.toFixed(2)}" y="${y(initial).toFixed(2)}" width="${barWidth.toFixed(2)}" height="${Math.max(.1,base-y(initial)).toFixed(2)}" fill="#2879dd"><title>Year ${row.index}: initial investment ${amount(initial)}</title></rect>`);
+      if(contribution>0)parts.push(`<rect x="${x.toFixed(2)}" y="${y(basePrincipal).toFixed(2)}" width="${barWidth.toFixed(2)}" height="${Math.max(.1,y(initial)-y(basePrincipal)).toFixed(2)}" fill="#83bd13"><title>Year ${row.index}: contributions ${amount(contribution)}</title></rect>`);
+      if(balance>=basePrincipal){
+        const h=y(basePrincipal)-y(balance);
+        if(h>0)parts.push(`<rect x="${x.toFixed(2)}" y="${y(balance).toFixed(2)}" width="${barWidth.toFixed(2)}" height="${h.toFixed(2)}" fill="#b50000"><title>Year ${row.index}: interest ${amount(balance-basePrincipal)}</title></rect>`);
+      }else{
+        parts.push(`<rect x="${x.toFixed(2)}" y="${y(basePrincipal).toFixed(2)}" width="${barWidth.toFixed(2)}" height="${Math.max(1,y(balance)-y(basePrincipal)).toFixed(2)}" fill="#b50000"><title>Year ${row.index}: loss ${amount(basePrincipal-balance)}</title></rect>`);
+      }
+      const every=rows.length<=14?1:rows.length<=30?2:rows.length<=60?5:10;
+      if(i===0||i===rows.length-1||row.index%every===0)
+        parts.push(`<text x="${(x+barWidth/2).toFixed(2)}" y="193" font-size="9.5" fill="#444" text-anchor="middle">${row.index}</text>`);
+    });
+    parts.push(`<text x="133" y="214" text-anchor="middle" fill="#111" font-size="12">Year</text>`);
+    const legends=[['#2879dd','Initial investment'],['#83bd13','Contributions'],['#b50000','Interest']];
+    legends.forEach(([color,label],i)=>{
+      const ypos=42+i*19;
+      parts.push(`<rect x="242" y="${ypos-9}" width="17" height="6" fill="${color}"/><text x="263" y="${ypos-2}" font-size="12.2" fill="#111">${label}</text>`);
+    });
+    svg.innerHTML=parts.join('');
+    svg.setAttribute('aria-label','Year-by-year stacked balance chart, ending at '+amount(calc.balance));
+  }
+  function renderTable(calc){
+    const body=byId('tbody');
+    const rows=activeTab==='annual'?calc.annualRows:calc.monthlyRows;
+    let markup='';
+    for(const row of rows){
+      const label=activeTab==='annual'
+        ? `${row.index}${row.monthsInYear<12?' ('+row.monthsInYear+' mo.)':''}`:row.index;
+      markup+=`<tr><td>${label}</td><td>${amount(row.deposit)}</td><td>${amount(row.interest)}</td><td>${amount(row.balance)}</td></tr>`;
+      if(activeTab==='monthly' && row.index%12===0 && row.index<calc.p.totalMonths)
+        markup+=`<tr class="calcpro-interest-total"><td colspan="4">End of year ${row.index/12}</td></tr>`;
+    }
+    body.innerHTML=markup;
+    const annual=activeTab==='annual';
+    byId('tab-annual').setAttribute('aria-selected',String(annual));
+    byId('tab-monthly').setAttribute('aria-selected',String(!annual));
+    byId('table-panel').setAttribute('aria-labelledby','calcpro-interest-tab-'+activeTab);
+    const first=byId('table-panel').querySelector('th');
+    if(first)first.textContent=annual?'Year':'Month';
+  }
+  function render(calc){
+    showNumber('ending',calc.balance);
+    showNumber('principal',calc.principal);
+    showNumber('contributions',calc.contributions);
+    showNumber('interest',calc.interest);
+    showNumber('initial-interest',calc.initInterest);
+    showNumber('contribution-interest',calc.contributionInterest);
+    showNumber('real',calc.real);
+    drawDonut(calc);
+    drawBars(calc);
+    renderTable(calc);
+    resultsPanel.hidden=false;schedulePanel.hidden=false;
+  }
+  function calculate(){
+    error.hidden=true;error.textContent='';
+    try{
+      const p=readInputs();const c=project(p);
+      calculation=c;render(c);
+      for(const field of ['initial','annual','monthly']){
+        byId(field).value=new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',minimumFractionDigits:0,maximumFractionDigits:2}).format(p[field]);
+      }
+      return true;
+    }catch(e){
+      error.textContent=e instanceof Error?e.message:'Please verify all entries.';
+      error.hidden=false;
+      return false;
+    }
+  }
+  function csvEscape(v){const text=String(v);return '"'+text.replace(/"/g,'""')+'"'}
+  function save(){
+    if(!calculation){error.textContent='Calculate a result before saving.';error.hidden=false;return;}
+    const c=calculation, p=c.p;
+    const lines=[['CalcPro Interest Calculator',''],['Initial investment',p.initial],['Annual contribution',p.annual],
+      ['Monthly contribution',p.monthly],['Contribution timing',p.timing],['Interest rate (%)',p.rate],
+      ['Compound',p.frequency],['Investment length (months)',p.totalMonths],['Tax rate (%)',p.tax],['Inflation rate (%)',p.inflation],
+      [],['Ending balance',c.balance.toFixed(2)],['Total principal',c.principal.toFixed(2)],['Total contributions',c.contributions.toFixed(2)],
+      ['Total interest',c.interest.toFixed(2)],['Initial investment interest',c.initInterest.toFixed(2)],
+      ['Contributions interest',c.contributionInterest.toFixed(2)],['Inflation-adjusted buying power',c.real.toFixed(2)],
+      [],['Annual schedule'],['Year','Deposit','Interest','Ending balance']];
+    c.annualRows.forEach(r=>lines.push([r.index,r.deposit.toFixed(2),r.interest.toFixed(2),r.balance.toFixed(2)]));
+    lines.push([],['Monthly schedule'],['Month','Deposit','Interest','Ending balance']);
+    c.monthlyRows.forEach(r=>lines.push([r.index,r.deposit.toFixed(2),r.interest.toFixed(2),r.balance.toFixed(2)]));
+    const csv=lines.map(line=>line.map(csvEscape).join(',')).join('\r\n');
+    const url=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));
+    const a=document.createElement('a');a.href=url;a.download='calcpro-interest-results.csv';
+    document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
+  }
+  form.addEventListener('submit',e=>{e.preventDefault();calculate()});
+  byId('clear').addEventListener('click',()=>{
+    for(const id of ['initial','annual','monthly','rate','years','months','tax','inflation'])byId(id).value='';
+    byId('frequency').value='annually';
+    form.querySelector('input[name="timing"][value="beginning"]').checked=true;
+    calculation=null;error.hidden=true;error.textContent='';resultsPanel.hidden=true;schedulePanel.hidden=true;
+    byId('initial').focus();
+  });
+  byId('print').addEventListener('click',()=>window.print());
+  byId('save').addEventListener('click',save);
+  for(const view of ['annual','monthly']){
+    byId('tab-'+view).addEventListener('click',()=>{
+      if(!calculation)return;
+      activeTab=view;renderTable(calculation);
+    });
+  }
+  for(const id of ['initial','annual','monthly']){
+    byId(id).addEventListener('focus',e=>e.target.select());
+  }
+  // Reference results are visible on first load without requiring a submit.
+  calculate();
+})();
+
+</script><script defer src="/assets/js/data.js"></script>
+<script defer src="/assets/js/style.js?v=20261111-5"></script>
+</body></html>

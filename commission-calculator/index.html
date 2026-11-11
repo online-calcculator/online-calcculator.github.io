@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US">
-<head>
-<meta charset="utf-8">
+<html lang="en"><head><meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="content-language" content="en">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,17 +11,488 @@
   <meta name="author" content="Commingsoon">
   <meta name="publisher" content="Commingsoon">
   <meta name="robots" content="noindex, nofollow, max-image-preview:large">
-  <link rel="stylesheet" href="/assets/css/style.css?v=20261111-1" crossorigin="anonymous" data-n-g="">
+  <link rel="stylesheet" href="/assets/css/style.css?v=20261111-4" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/doc_style.css" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/side_style.css" crossorigin="anonymous" data-n-g=""> 
   <!--ogtags-->
-  <!--schema-->
-  <!--style-->
-</head>
+  <!--schema--><style>
+/* Commission calculator — all styles isolated from CalcPro's cp-* layout. */
+.calcpro-commission{--cm-navy:#073b69;--cm-green:#4b8527;--cm-border:#c8d0d5;--cm-ink:#152333;font:14px/1.45 Arial,Helvetica,sans-serif;color:var(--cm-ink);max-width:100%;}
+.calcpro-commission *{box-sizing:border-box}
+.calcpro-commission [hidden]{display:none!important}
+.calcpro-commission-simple,.calcpro-commission-tier{min-width:0}
+.calcpro-commission-tier{margin-top:26px}
+.calcpro-commission-tier h2{font-size:21px;line-height:1.3;color:var(--cm-navy);margin:0 0 5px;font-weight:700}
+.calcpro-commission-tier-intro{margin:0 0 10px;line-height:1.5}
+.calcpro-commission-panel{width:min(100%,332px);padding:13px 14px 12px;margin:10px auto 0;border:1px solid #c7c7c7;background:#efefef;color:#191919}
+.calcpro-commission-tier-panel{width:min(100%,363px);padding:13px 12px 12px}
+.calcpro-commission-basic-grid{display:grid;grid-template-columns:minmax(120px,1fr) 134px;align-items:center;column-gap:7px;row-gap:6px}
+.calcpro-commission-label{text-align:right;font-size:13px}
+.calcpro-commission-field{min-width:0;position:relative;display:flex;align-items:center}
+.calcpro-commission-field input,.calcpro-commission-tier-row input,.calcpro-commission-base-input input,.calcpro-commission-fixed-input input{width:100%;max-width:100%;height:29px;min-width:0;border:1px solid #7598b3;border-radius:2px;background:#fff;color:#152333;box-shadow:inset 0 1px 2px #00000012;font:14px Arial,Helvetica,sans-serif;padding:4px 6px}
+.calcpro-commission-field input:focus,.calcpro-commission-tier-row input:focus,.calcpro-commission-base-input input:focus,.calcpro-commission-fixed-input input:focus,.calcpro-commission select:focus{outline:2px solid #2c77ab;outline-offset:1px}
+.calcpro-commission-field.has-prefix input{padding-left:16px}
+.calcpro-commission-field.has-suffix input{padding-right:18px}
+.calcpro-commission-affix{position:absolute;pointer-events:none;color:#444;font-size:13px}
+.calcpro-commission-field.has-prefix .calcpro-commission-affix{left:6px}
+.calcpro-commission-field.has-suffix .calcpro-commission-affix{right:7px}
+.calcpro-commission-actions{display:flex;justify-content:center;align-items:center;gap:5px;margin-top:11px}
+.calcpro-commission button{font:700 13px Arial,Helvetica,sans-serif;cursor:pointer;min-height:31px;border:0;border-radius:1px}
+.calcpro-commission-calculate{background:var(--cm-green);color:white;padding:7px 14px}
+.calcpro-commission-calculate:hover{background:#3a6c17}
+.calcpro-commission-calculate::after{content:'›';display:inline-grid;place-items:center;width:15px;height:15px;margin-left:9px;border-radius:50%;background:#88bb6c;color:#fff;font-weight:700;font-size:18px;line-height:1;vertical-align:middle}
+.calcpro-commission-clear{background:#a7a7a7;color:#fff;padding:7px 11px}
+.calcpro-commission-clear:hover{background:#8e8e8e}
+.calcpro-commission-error{background:#fff5f2;border-left:3px solid #b82d22;color:#992017;font-size:13px;line-height:1.45;padding:7px 8px;margin-top:10px}
+.calcpro-commission-tier-price{display:flex;justify-content:center;align-items:center;gap:7px}
+.calcpro-commission-tier-price .calcpro-commission-field{width:132px}
+.calcpro-commission-question{font-size:13px;text-align:left;margin:18px 0 6px;line-height:1.3}
+.calcpro-commission-help{color:#6f757a;cursor:help;font-size:13px}
+.calcpro-commission-radio-group{display:flex;justify-content:center;align-items:center;gap:14px;font-size:13px}
+.calcpro-commission-radio-group label{display:inline-flex;align-items:center;gap:4px;cursor:pointer}
+.calcpro-commission-radio-group input{accent-color:#236599;margin:0;width:15px;height:15px}
+.calcpro-commission-extra-row{display:grid;grid-template-columns:1fr 142px;align-items:center;gap:6px;font-size:13px;margin:8px 0 0}
+.calcpro-commission-extra-row>label{text-align:right}
+.calcpro-commission-base-input,.calcpro-commission-fixed-input{display:flex;gap:3px;min-width:0;align-items:center}
+.calcpro-commission-base-input input,.calcpro-commission-fixed-input input{flex:1;width:calc(100% - 48px)}
+.calcpro-commission select{height:29px;border:1px solid #7899b2;border-radius:2px;background:#fff;color:#121212;padding:2px 1px;font:13px Arial,Helvetica,sans-serif;cursor:pointer}
+.calcpro-commission-base-input select,.calcpro-commission-fixed-input select{width:47px}
+.calcpro-commission-tier-instructions{font-size:13px;line-height:1.32;margin:14px 0 6px}
+.calcpro-commission-tier-table{border-collapse:collapse;width:100%;table-layout:fixed}
+.calcpro-commission-tier-table th{color:#1a2024;background:transparent;font-size:12px;font-weight:700;text-align:left;padding:2px 2px 3px}
+.calcpro-commission-tier-table th:nth-child(1){width:25%}
+.calcpro-commission-tier-table th:nth-child(2){width:31%}
+.calcpro-commission-tier-table th:nth-child(3){width:44%}
+.calcpro-commission-tier-table td{padding:2px;vertical-align:middle;font-size:12px}
+.calcpro-commission-tier-from{overflow-wrap:anywhere;font-variant-numeric:tabular-nums}
+.calcpro-commission-tier-row input{height:27px;padding:3px 4px;font-size:13px}
+.calcpro-commission-rate-group{display:flex;gap:2px;min-width:0}
+.calcpro-commission-rate-group input{flex:1;min-width:0;width:calc(100% - 47px)}
+.calcpro-commission-rate-group select{width:45px;flex:0 0 45px;height:27px;padding:1px}
+.calcpro-commission-result{border:0;margin:11px 0 14px;width:100%;font-size:14px}
+.calcpro-commission-result-head{background:var(--cm-green);color:#fff;padding:5px 8px;min-height:32px;display:flex;align-items:center;justify-content:space-between;font-size:17px;font-weight:700}
+.calcpro-commission-result-head button{background:transparent;color:#fff;border:1px solid #c9e5b3;padding:3px 7px;min-height:25px;font:12px Arial,Helvetica,sans-serif}
+.calcpro-commission-result-head button:hover{background:#fff2}
+.calcpro-commission-result-body{padding:9px 0 5px}
+.calcpro-commission-result-lead{font-size:18px;line-height:1.45;margin:0 0 12px}
+.calcpro-commission-result-lead strong{color:#16851c;font-weight:700}
+.calcpro-commission-result-steps-title{font-weight:700;margin:8px 0 3px}
+.calcpro-commission-result-steps{font-size:13px;line-height:1.58;white-space:pre-line}
+.calcpro-commission-breakdown{border-collapse:collapse;max-width:100%;font-size:13px;margin:6px 0 0}
+.calcpro-commission-breakdown td,.calcpro-commission-breakdown th{border:1px solid #bfc9d0;padding:5px 8px;text-align:left;vertical-align:top;overflow-wrap:anywhere}
+.calcpro-commission-breakdown td:last-child,.calcpro-commission-breakdown th:last-child{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+.calcpro-commission-breakdown tfoot{font-weight:700;background:#edf5e8}
+.calcpro-commission-result-note{font-size:12px;color:#55616a;margin:8px 0 0}
+.calcpro-commission-guide{font:15px/1.58 Arial,Helvetica,sans-serif;color:#202a32;margin:38px 0 28px}
+.calcpro-commission-guide h2{font-size:21px;color:#073b69;margin:25px 0 10px}
+.calcpro-commission-guide h3{font-size:17px;color:#073b69;margin:17px 0 7px}
+.calcpro-commission-guide p{margin:8px 0 12px}
+.calcpro-commission-guide ul{margin:8px 0 12px;padding-left:23px}
+.calcpro-commission-guide li{margin-bottom:4px}
+.calcpro-commission-guide code{font-family:Consolas,monospace}
+@media(max-width:430px){.calcpro-commission-tier h2{font-size:19px}.calcpro-commission-panel{padding:11px 9px}.calcpro-commission-basic-grid{grid-template-columns:minmax(115px,1fr) minmax(112px,134px);gap:6px}.calcpro-commission-tier-panel{padding:10px 7px}.calcpro-commission-tier-table td{padding:2px 1px}.calcpro-commission-tier-table th:nth-child(1){width:24%}.calcpro-commission-tier-table th:nth-child(2){width:31%}.calcpro-commission-tier-table th:nth-child(3){width:45%}.calcpro-commission-rate-group select{width:42px;flex-basis:42px}.calcpro-commission-result-lead{font-size:16px}}
+@media print{.calcpro-commission-panel,.calcpro-commission-result-head button,.calcpro-commission-error{display:none!important}.calcpro-commission-result[hidden]{display:none!important}.calcpro-commission-result{break-inside:avoid}.calcpro-commission-result-head{print-color-adjust:exact;-webkit-print-color-adjust:exact}}
+</style>
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Commission Calculator</nav><h1 class="cp-page-title">Commission Calculator</h1><p class="cp-intro">Calculate any one of sales price, commission rate, or commission using the other two inputs. The tiered calculator also supports progressive commission brackets and an optional base payment.</p><section aria-label="Calculator" class="cp-tool-area">
+<div class="calcpro-commission" id="calcpro-commission">
+  <section class="calcpro-commission-simple" aria-label="Simple commission">
+    <div class="calcpro-commission-result" id="calcpro-commission-simple-result" hidden aria-live="polite">
+      <div class="calcpro-commission-result-head"><span>Result</span><button type="button" class="calcpro-commission-print" aria-label="Print or save simple commission result">Print / Save</button></div>
+      <div class="calcpro-commission-result-body">
+        <p class="calcpro-commission-result-lead"><span id="calcpro-commission-simple-answer-label"></span> = <strong id="calcpro-commission-simple-answer"></strong></p>
+        <div class="calcpro-commission-result-steps-title">Steps:</div>
+        <div class="calcpro-commission-result-steps" id="calcpro-commission-simple-steps"></div>
+      </div>
+    </div>
+    <form class="calcpro-commission-panel" id="calcpro-commission-simple-form" novalidate>
+      <div class="calcpro-commission-basic-grid">
+        <label class="calcpro-commission-label" for="calcpro-commission-simple-price">Sales Price</label>
+        <span class="calcpro-commission-field has-prefix"><span class="calcpro-commission-affix">$</span><input id="calcpro-commission-simple-price" type="text" inputmode="decimal" autocomplete="off" value="200,000" aria-label="Sales price in dollars"></span>
+        <label class="calcpro-commission-label" for="calcpro-commission-simple-rate">Commission Rate</label>
+        <span class="calcpro-commission-field has-suffix"><input id="calcpro-commission-simple-rate" type="text" inputmode="decimal" autocomplete="off" value="3" aria-label="Commission rate in percent"><span class="calcpro-commission-affix">%</span></span>
+        <label class="calcpro-commission-label" for="calcpro-commission-simple-amount">Commission</label>
+        <span class="calcpro-commission-field has-prefix"><span class="calcpro-commission-affix">$</span><input id="calcpro-commission-simple-amount" type="text" inputmode="decimal" autocomplete="off" value="" aria-label="Commission in dollars"></span>
+      </div>
+      <div class="calcpro-commission-actions"><button class="calcpro-commission-calculate" type="submit">Calculate</button><button class="calcpro-commission-clear" id="calcpro-commission-simple-clear" type="button">Clear</button></div>
+      <div class="calcpro-commission-error" id="calcpro-commission-simple-error" role="alert" hidden></div>
+    </form>
+  </section>
+  <section class="calcpro-commission-tier" aria-label="Tiered commission" id="calcpro-commission-tier">
+    <h2>Tiered Commission Calculator</h2>
+    <p class="calcpro-commission-tier-intro">Calculate more complex commission structures, including tiered commissions and an optional base amount.</p>
+    <div class="calcpro-commission-result" id="calcpro-commission-tier-result" hidden aria-live="polite">
+      <div class="calcpro-commission-result-head"><span>Result</span><button type="button" class="calcpro-commission-print" aria-label="Print or save tiered commission result">Print / Save</button></div>
+      <div class="calcpro-commission-result-body">
+        <p class="calcpro-commission-result-lead">Total commission: <strong id="calcpro-commission-tier-total"></strong></p>
+        <table class="calcpro-commission-breakdown"><thead><tr><th scope="col">Calculation</th><th scope="col">Commission</th></tr></thead><tbody id="calcpro-commission-tier-breakdown"></tbody><tfoot><tr><th scope="row">Total</th><td id="calcpro-commission-tier-total-table"></td></tr></tfoot></table>
+        <p class="calcpro-commission-result-note" id="calcpro-commission-tier-note">Percentage tiers apply to the sales amount within each range.</p>
+      </div>
+    </div>
+    <form class="calcpro-commission-panel calcpro-commission-tier-panel" id="calcpro-commission-tier-form" novalidate>
+      <div class="calcpro-commission-tier-price"><label for="calcpro-commission-tier-price" class="calcpro-commission-label">Sales Price</label><span class="calcpro-commission-field has-prefix"><span class="calcpro-commission-affix">$</span><input id="calcpro-commission-tier-price" type="text" inputmode="decimal" autocomplete="off" value="200,000" aria-label="Total sales in dollars"></span></div>
+      <div class="calcpro-commission-question">Has a base commission? <span class="calcpro-commission-help" title="A base commission is paid in addition to the variable commission, even when sales are zero." aria-label="Base commission explanation">ⓘ</span></div>
+      <div class="calcpro-commission-radio-group" role="radiogroup" aria-label="Has a base commission"><label><input type="radio" name="calcpro-commission-has-base" value="yes">Yes</label><label><input type="radio" name="calcpro-commission-has-base" value="no" checked>No</label></div>
+      <div class="calcpro-commission-extra-row" id="calcpro-commission-base-row" hidden><label for="calcpro-commission-base-value">Base commission</label><span class="calcpro-commission-base-input"><input id="calcpro-commission-base-value" type="text" inputmode="decimal" value="1,000" autocomplete="off"><select id="calcpro-commission-base-unit" aria-label="Base commission unit"><option value="percent">%</option><option value="dollar" selected>$</option></select></span></div>
+      <div class="calcpro-commission-question">Commission varies with price? <span class="calcpro-commission-help" title="When enabled, each percentage rate applies only to the amount of sales in its range." aria-label="Tiered commission explanation">ⓘ</span></div>
+      <div class="calcpro-commission-radio-group" role="radiogroup" aria-label="Commission varies with price"><label><input type="radio" name="calcpro-commission-varies" value="yes" checked>Yes</label><label><input type="radio" name="calcpro-commission-varies" value="no">No</label></div>
+      <div class="calcpro-commission-extra-row" id="calcpro-commission-fixed-row" hidden><label for="calcpro-commission-fixed-value">Commission</label><span class="calcpro-commission-fixed-input"><input id="calcpro-commission-fixed-value" type="text" inputmode="decimal" value="3" autocomplete="off"><select id="calcpro-commission-fixed-unit" aria-label="Fixed commission unit"><option value="percent" selected>%</option><option value="dollar">$</option></select></span></div>
+      <div id="calcpro-commission-tiers">
+        <p class="calcpro-commission-tier-instructions">Define the tiered commission structure below. Leave the “To” value blank for the final, unlimited tier.</p>
+        <table class="calcpro-commission-tier-table" aria-label="Commission tiers"><thead><tr><th scope="col">From:</th><th scope="col">To:</th><th scope="col">Commission</th></tr></thead><tbody>
+          <tr class="calcpro-commission-tier-row" data-index="1"><td class="calcpro-commission-tier-from">$0</td><td><input data-field="to" aria-label="Tier 1 upper sales limit in dollars" type="text" inputmode="decimal" autocomplete="off" value="20,000"></td><td><span class="calcpro-commission-rate-group"><input data-field="rate" aria-label="Tier 1 commission amount" type="text" inputmode="decimal" autocomplete="off" value="3"><select data-field="unit" aria-label="Tier 1 unit"><option value="percent" selected>%</option><option value="dollar">$</option></select></span></td></tr>
+          <tr class="calcpro-commission-tier-row" data-index="2"><td class="calcpro-commission-tier-from">$20,000</td><td><input data-field="to" aria-label="Tier 2 upper sales limit in dollars" type="text" inputmode="decimal" autocomplete="off" value=""></td><td><span class="calcpro-commission-rate-group"><input data-field="rate" aria-label="Tier 2 commission amount" type="text" inputmode="decimal" autocomplete="off" value="5"><select data-field="unit" aria-label="Tier 2 unit"><option value="percent" selected>%</option><option value="dollar">$</option></select></span></td></tr>
+          <tr class="calcpro-commission-tier-row" data-index="3"><td class="calcpro-commission-tier-from">—</td><td><input data-field="to" aria-label="Tier 3 upper sales limit in dollars" type="text" inputmode="decimal" autocomplete="off"></td><td><span class="calcpro-commission-rate-group"><input data-field="rate" aria-label="Tier 3 commission amount" type="text" inputmode="decimal" autocomplete="off"><select data-field="unit" aria-label="Tier 3 unit"><option value="percent" selected>%</option><option value="dollar">$</option></select></span></td></tr>
+          <tr class="calcpro-commission-tier-row" data-index="4"><td class="calcpro-commission-tier-from">—</td><td><input data-field="to" aria-label="Tier 4 upper sales limit in dollars" type="text" inputmode="decimal" autocomplete="off"></td><td><span class="calcpro-commission-rate-group"><input data-field="rate" aria-label="Tier 4 commission amount" type="text" inputmode="decimal" autocomplete="off"><select data-field="unit" aria-label="Tier 4 unit"><option value="percent" selected>%</option><option value="dollar">$</option></select></span></td></tr>
+          <tr class="calcpro-commission-tier-row" data-index="5"><td class="calcpro-commission-tier-from">—</td><td><input data-field="to" aria-label="Tier 5 upper sales limit in dollars" type="text" inputmode="decimal" autocomplete="off"></td><td><span class="calcpro-commission-rate-group"><input data-field="rate" aria-label="Tier 5 commission amount" type="text" inputmode="decimal" autocomplete="off"><select data-field="unit" aria-label="Tier 5 unit"><option value="percent" selected>%</option><option value="dollar">$</option></select></span></td></tr>
+          <tr class="calcpro-commission-tier-row" data-index="6"><td class="calcpro-commission-tier-from">—</td><td><input data-field="to" aria-label="Tier 6 upper sales limit in dollars" type="text" inputmode="decimal" autocomplete="off"></td><td><span class="calcpro-commission-rate-group"><input data-field="rate" aria-label="Tier 6 commission amount" type="text" inputmode="decimal" autocomplete="off"><select data-field="unit" aria-label="Tier 6 unit"><option value="percent" selected>%</option><option value="dollar">$</option></select></span></td></tr>
+          <tr class="calcpro-commission-tier-row" data-index="7"><td class="calcpro-commission-tier-from">—</td><td><input data-field="to" aria-label="Tier 7 upper sales limit in dollars" type="text" inputmode="decimal" autocomplete="off"></td><td><span class="calcpro-commission-rate-group"><input data-field="rate" aria-label="Tier 7 commission amount" type="text" inputmode="decimal" autocomplete="off"><select data-field="unit" aria-label="Tier 7 unit"><option value="percent" selected>%</option><option value="dollar">$</option></select></span></td></tr>
+          <tr class="calcpro-commission-tier-row" data-index="8"><td class="calcpro-commission-tier-from">—</td><td><input data-field="to" aria-label="Tier 8 upper sales limit in dollars" type="text" inputmode="decimal" autocomplete="off"></td><td><span class="calcpro-commission-rate-group"><input data-field="rate" aria-label="Tier 8 commission amount" type="text" inputmode="decimal" autocomplete="off"><select data-field="unit" aria-label="Tier 8 unit"><option value="percent" selected>%</option><option value="dollar">$</option></select></span></td></tr>
+        </tbody></table>
+      </div>
+      <div class="calcpro-commission-actions"><button class="calcpro-commission-calculate" type="submit">Calculate</button><button class="calcpro-commission-clear" type="button" id="calcpro-commission-tier-clear">Clear</button></div>
+      <div class="calcpro-commission-error" id="calcpro-commission-tier-error" role="alert" hidden></div>
+    </form>
+  </section>
+</div>
+</section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><a href="salary-calculator.html">Salary</a><a href="percent-calculator.html">Percentage</a><a href="tax-calculator.html">Income Tax</a><a href="sales-tax-calculator.html">Sales Tax</a><a href="margin-calculator.html">Profit Margin</a><a href="discount-calculator.html">Discount</a><a href="investment-calculator.html">Investment</a><a href="compound-interest-calculator.html">Compound Interest</a><a href="loan-calculator.html">Loan</a><a href="mortgage-calculator.html">Mortgage</a><a href="retirement-calculator.html">Retirement</a><a href="inflation-calculator.html">Inflation</a></div></section></aside><article class="cp-article">
+<h2>How to Use the Commission Calculator</h2>
+<p>Use the simple commission calculator when commission is a single percentage of sales. Fill in any two of <strong>Sales Price</strong>, <strong>Commission Rate</strong>, and <strong>Commission</strong>; leave the quantity you want to find empty. Select <strong>Calculate</strong> to see the answer and substitution steps above the form.</p>
+<p>For a compensation plan with several rates, use the <strong>Tiered Commission Calculator</strong>. Enter total sales, select whether there is a base payment, and choose whether the rate changes as sales increase. Up to eight tiers can be configured with upper sales limits and percentage or fixed-dollar commission amounts.</p>
+<h2>Commission Formulas</h2>
+<h3>Simple percentage commission</h3>
+<p>The base relationship is <strong>Commission = Sales price × Rate ÷ 100</strong>. Reversing it gives <strong>Rate (%) = Commission ÷ Sales price × 100</strong> and <strong>Sales price = Commission ÷ (Rate ÷ 100)</strong>. For example, a $200,000 sale at 3% earns <strong>$6,000</strong>.</p>
+<h3>Progressive tiered commission</h3>
+<p>For progressive tiers, a rate applies only to the sales amount <em>inside</em> its range. This differs from a flat rate applied to the entire sales total once a target is reached. For each tier, calculate the eligible sales, multiply them by that tier's percentage, and add the resulting commissions.</p>
+<p>With $27,000 of sales, a first tier of 3% on $0–$20,000, a second tier of 5% on $20,000–$25,000, and a third tier of 10% above $25,000 produces <strong>$600 + $250 + $200 = $1,050</strong>. On $200,000 of sales with 3% through $20,000 and 5% above $20,000, the total is <strong>$600 + $9,000 = $9,600</strong>.</p>
+<h3>Base payments and flat-dollar commission</h3>
+<p>When a base commission is enabled, it is added to the sales-based commission. A base entered in dollars adds that amount directly; a base entered as a percentage adds that percentage of total sales. When commission does not vary with price, choose one percentage of sales or one fixed-dollar payment. Within the tier table, a dollar-denominated tier is treated as a one-time amount when sales enter that tier—not a rate applied to every dollar in the tier.</p>
+<h2>Reading Your Results</h2>
+<p>The simple result shows the missing value and its formula steps. The tiered result shows total commission and a breakdown for each tier that contributed to it, plus the base amount if one is selected. All dollar results display up to two decimal places, while calculations retain full numeric precision until final presentation. Use <strong>Print / Save</strong> to open your browser's print dialog, where printing or saving to PDF may be available.</p>
+<h2>Frequently Asked Questions</h2>
+<h3>Is tiered commission the same as applying the highest rate to all sales?</h3>
+<p>No. This calculator uses a progressive, or marginal, tier structure: reaching a new rate does not change the earnings already accrued in lower tiers.</p>
+<h3>What do “To” and “From” mean?</h3>
+<p>“From” is calculated automatically from the preceding row's “To” amount. Enter an increasing “To” limit for each non-final tier, and leave the last “To” blank for an unlimited final tier. Fill tiers in order without leaving a gap.</p>
+<h3>Can I calculate commission from a payout amount?</h3>
+<p>Yes. In the simple calculator, enter the commission and either the sales price or the percentage; leave the unknown value blank. A zero sales price cannot determine a rate, and a zero rate cannot determine sales price from commission.</p>
+<h3>Does this calculator estimate taxes or take-home pay?</h3>
+<p>No. The result is gross commission before taxes, deductions, clawbacks, or employer-specific adjustments. The base amount is an additional commission payment, not an annual salary schedule.</p>
+<h2>Source and Method</h2>
+<p>Form and result placement are based on the <a href="https://www.calculator.net/commission-calculator.html" rel="noopener noreferrer">Commission Calculator reference</a>. Calculation examples use the standard percentage formula and progressive marginal-tier method. The user-defined flat-dollar tier behavior is explicitly stated in the calculator interface and result explanation.</p>
+<p class="cp-page-footer">CalcPro — commission calculations are estimates and depend on the compensation plan's actual rules.</p>
+</article></main></div><script>
+(() => {
+  'use strict';
+  const root = document.getElementById('calcpro-commission');
+  if (!root) return;
+  const byId = suffix => root.querySelector('#calcpro-commission-' + suffix);
+  const USD = n => '$' + new Intl.NumberFormat('en-US', {minimumFractionDigits:0,maximumFractionDigits:2}).format(Math.round((n + Number.EPSILON * Math.max(1,Math.abs(n))) * 100) / 100);
+  const NUM = n => new Intl.NumberFormat('en-US', {maximumFractionDigits:6}).format(n);
+  const PCT = n => NUM(n) + '%';
+  const rows = [...root.querySelectorAll('.calcpro-commission-tier-row')];
 
-<body>
-<!-- Main-header-page -->
+  function invalid(message, input) {
+    const e = new Error(message);
+    e.field = input;
+    throw e;
+  }
+  function numberFrom(input, label, required = false) {
+    const raw = input.value.trim();
+    if (!raw) {
+      if (required) invalid('Please enter ' + label.toLowerCase() + '.', input);
+      return null;
+    }
+    const value = raw.replace(/[,$%\s]/g, '');
+    if (!/^(?:\d+(?:\.\d*)?|\.\d+)$/.test(value)) invalid('Enter a valid non-negative number for ' + label.toLowerCase() + '.', input);
+    const n = Number(value);
+    if (!Number.isFinite(n) || n > 1000000000000) invalid(label + ' must be no greater than 1 trillion.', input);
+    return n;
+  }
+  function showError(panel, message, field) {
+    panel.textContent = message;
+    panel.hidden = false;
+    if (field) {field.setAttribute('aria-invalid', 'true');field.focus();}
+  }
+  function clearError(panel) {
+    panel.textContent = '';
+    panel.hidden = true;
+    root.querySelectorAll('[aria-invalid="true"]').forEach(input => input.removeAttribute('aria-invalid'));
+  }
+  function formatInput(input) {
+    const raw = input.value.trim();
+    if (!raw) return;
+    const value = raw.replace(/[,$%\s]/g, '');
+    if (/^(?:\d+(?:\.\d*)?|\.\d+)$/.test(value)) {
+      const [whole, decimal] = value.split('.');
+      const head = Number(whole || 0).toLocaleString('en-US',{maximumFractionDigits:0});
+      input.value = decimal === undefined ? head : head + '.' + decimal;
+    }
+  }
+  function appendBreakdown(tbody, label, value) {
+    const row = document.createElement('tr');
+    const name = document.createElement('td');
+    const amount = document.createElement('td');
+    name.textContent = label;
+    amount.textContent = USD(value);
+    row.append(name, amount);
+    tbody.append(row);
+  }
+
+  // Simple calculator: solve the one empty value, retaining the original inputs.
+  const simpleForm = byId('simple-form');
+  const simpleResult = byId('simple-result');
+  const simpleError = byId('simple-error');
+  simpleForm.addEventListener('submit', event => {
+    event.preventDefault();
+    clearError(simpleError);
+    try {
+      const pInput = byId('simple-price');
+      const rInput = byId('simple-rate');
+      const cInput = byId('simple-amount');
+      const price = numberFrom(pInput, 'Sales Price');
+      const rate = numberFrom(rInput, 'Commission Rate');
+      const commission = numberFrom(cInput, 'Commission');
+      const present = [price, rate, commission].filter(n => n !== null).length;
+      if (present !== 2) invalid('Enter exactly two values and leave the value to calculate blank.', present === 3 ? null : [pInput,rInput,cInput].find(x => !x.value.trim()));
+      let label, answer, steps;
+      if (commission === null) {
+        label = 'Commission';
+        answer = USD(price * rate / 100);
+        steps = 'commission = sales price × commission rate\n' + '                 = ' + USD(price) + ' × ' + PCT(rate) + '\n' + '                 = ' + answer;
+      } else if (rate === null) {
+        if (price === 0) invalid('Commission rate is undefined when sales price is zero.', pInput);
+        label = 'Commission Rate';
+        const ratio = commission / price * 100;
+        answer = PCT(ratio);
+        steps = 'commission rate = commission ÷ sales price × 100\n' + '                             = ' + USD(commission) + ' ÷ ' + USD(price) + ' × 100\n' + '                             = ' + answer;
+      } else {
+        if (rate === 0) invalid('Sales price cannot be determined from a 0% commission rate.', rInput);
+        label = 'Sales Price';
+        const total = commission / (rate / 100);
+        answer = USD(total);
+        steps = 'sales price = commission ÷ (commission rate ÷ 100)\n' + '                  = ' + USD(commission) + ' ÷ (' + PCT(rate) + ')\n' + '                  = ' + answer;
+      }
+      byId('simple-answer-label').textContent = label;
+      byId('simple-answer').textContent = answer;
+      byId('simple-steps').textContent = steps;
+      simpleResult.hidden = false;
+      simpleResult.scrollIntoView({behavior:'instant',block:'start'});
+    } catch (e) { simpleResult.hidden = true; showError(simpleError, e.message, e.field); }
+  });
+  byId('simple-clear').addEventListener('click', () => {
+    for (const name of ['simple-price','simple-rate','simple-amount']) byId(name).value = '';
+    simpleResult.hidden = true;
+    clearError(simpleError);
+    byId('simple-price').focus();
+  });
+
+  const tierForm = byId('tier-form');
+  const tierError = byId('tier-error');
+  const tierResult = byId('tier-result');
+  const baseRow = byId('base-row');
+  const fixedRow = byId('fixed-row');
+  const tierFields = byId('tiers');
+  const hasBase = () => tierForm.querySelector('input[name="calcpro-commission-has-base"]:checked').value === 'yes';
+  const varies = () => tierForm.querySelector('input[name="calcpro-commission-varies"]:checked').value === 'yes';
+  function updateOptions() {
+    baseRow.hidden = !hasBase();
+    fixedRow.hidden = varies();
+    tierFields.hidden = !varies();
+  }
+  function updateFromLabels() {
+    let current = 0;
+    let open = false;
+    for (const row of rows) {
+      row.querySelector('.calcpro-commission-tier-from').textContent = open ? '—' : USD(current);
+      const upper = row.querySelector('[data-field="to"]').value.trim().replace(/[,$\s]/g,'');
+      if (!open && /^(?:\d+(?:\.\d*)?|\.\d+)$/.test(upper)) {
+        current = Number(upper);
+      } else {
+        open = true;
+      }
+    }
+  }
+  root.querySelectorAll('input[name="calcpro-commission-has-base"],input[name="calcpro-commission-varies"]').forEach(input => input.addEventListener('change',updateOptions));
+  rows.forEach(row => row.querySelector('[data-field="to"]').addEventListener('input',updateFromLabels));
+  function computeTiers(sales) {
+    let from = 0;
+    let ended = false;
+    let empty = false;
+    let any = false;
+    let total = 0;
+    const breakdown = [];
+    for (let i=0;i<rows.length;i++) {
+      const row = rows[i];
+      const endInput = row.querySelector('[data-field="to"]');
+      const amountInput = row.querySelector('[data-field="rate"]');
+      const unit = row.querySelector('[data-field="unit"]').value;
+      const endFilled = endInput.value.trim() !== '';
+      const rateFilled = amountInput.value.trim() !== '';
+      if (!endFilled && !rateFilled) { empty = true; continue; }
+      if (empty) invalid('Fill commission tiers consecutively, without skipping a row.', amountInput);
+      if (ended) invalid('An unlimited tier must be the last tier.', endInput);
+      const rate = numberFrom(amountInput,'Tier ' + (i + 1) + ' Commission', true);
+      const to = endFilled ? numberFrom(endInput,'Tier ' + (i + 1) + ' To', true) : Infinity;
+      if (to <= from) invalid('Tier ' + (i + 1) + ' upper limit must exceed its starting amount of ' + USD(from) + '.', endInput);
+      const eligible = Math.max(0, Math.min(sales, to) - from);
+      const earned = unit === 'percent' ? eligible * rate / 100 : (eligible > 0 ? rate : 0);
+      if (eligible > 0 || (i === 0 && sales === 0)) {
+        const band = 'Commission of ' + USD(from) + (to === Infinity ? ' and above' : ' – ' + USD(to));
+        const suffix = ' (' + (unit === 'percent' ? PCT(rate) : USD(rate) + ' flat') + ')';
+        breakdown.push({label:band + suffix, amount:earned});
+      }
+      total += earned;
+      any = true;
+      if (to === Infinity) ended = true;
+      from = to;
+    }
+    if (!any) invalid('Enter at least one tier with a commission amount.', rows[0].querySelector('[data-field="rate"]'));
+    if (!ended && sales > from) invalid('Sales price exceeds the last tier. Add an unlimited final tier or raise the final “To” limit.', rows[rows.length-1].querySelector('[data-field="to"]'));
+    return {total,breakdown};
+  }
+  tierForm.addEventListener('submit', event => {
+    event.preventDefault();
+    clearError(tierError);
+    try {
+      const sales = numberFrom(byId('tier-price'),'Sales Price',true);
+      const tbody = byId('tier-breakdown');
+      const items = [];
+      let total = 0;
+      if (hasBase()) {
+        const value = numberFrom(byId('base-value'),'Base Commission',true);
+        const isPercent = byId('base-unit').value === 'percent';
+        const amount = isPercent ? sales * value / 100 : value;
+        total += amount;
+        items.push({label:'Base commission (' + (isPercent ? PCT(value) + ' of sales' : USD(value) + ' fixed') + ')',amount});
+      }
+      if (varies()) {
+        const tiered = computeTiers(sales);
+        total += tiered.total;
+        items.push(...tiered.breakdown);
+        byId('tier-note').textContent = 'Percentage tiers apply only to sales within each band. Dollar-denominated tiers are paid once when a sale reaches that band.';
+      } else {
+        const value = numberFrom(byId('fixed-value'),'Commission',true);
+        const isPercent = byId('fixed-unit').value === 'percent';
+        const amount = isPercent ? sales * value / 100 : value;
+        total += amount;
+        items.push({label:'Commission (' + (isPercent ? PCT(value) + ' of sales' : USD(value) + ' fixed') + ')',amount});
+        byId('tier-note').textContent = 'Fixed percentage commission is applied to all sales; a fixed dollar commission is paid once.';
+      }
+      tbody.replaceChildren();
+      for (const item of items) appendBreakdown(tbody,item.label,item.amount);
+      byId('tier-total').textContent = USD(total);
+      byId('tier-total-table').textContent = USD(total);
+      tierResult.hidden = false;
+      tierResult.scrollIntoView({behavior:'instant',block:'start'});
+    } catch (e) { tierResult.hidden = true; showError(tierError,e.message,e.field); }
+  });
+  byId('tier-clear').addEventListener('click', () => {
+    tierForm.querySelectorAll('input[type="text"]').forEach(input => input.value = '');
+    tierForm.querySelector('input[name="calcpro-commission-has-base"][value="no"]').checked = true;
+    tierForm.querySelector('input[name="calcpro-commission-varies"][value="yes"]').checked = true;
+    tierForm.querySelectorAll('select').forEach(select => {select.value = select.id === 'calcpro-commission-base-unit' ? 'dollar' : 'percent';});
+    tierResult.hidden = true;
+    clearError(tierError);
+    updateOptions();
+    updateFromLabels();
+    byId('tier-price').focus();
+  });
+  root.querySelectorAll('input[inputmode="decimal"]').forEach(input => {
+    input.addEventListener('blur',() => formatInput(input));
+    input.addEventListener('input',() => {
+      input.removeAttribute('aria-invalid');
+      // Don't silently invalidate visible results until the next Calculate.
+    });
+  });
+  root.querySelectorAll('.calcpro-commission-print').forEach(button => button.addEventListener('click',() => window.print()));
+  updateOptions();
+  updateFromLabels();
+})();
+</script><script data-calcpro-latest-result>
+(function () {
+  var toolRoot = document.querySelector('.cp-tool-area') || document.querySelector('main') || document.body;
+  var forms = Array.prototype.slice.call(toolRoot.querySelectorAll('form'));
+  if (forms.length < 2) return;
+
+  var selector = '[id*="result"], [class*="result"], [id*="output"], [class*="output"], [id*="total"], [class*="total"], [id*="summary"], [class*="summary"], [data-result], [data-re-results], [data-cp-surface-result]';
+  var candidates = Array.prototype.slice.call(toolRoot.querySelectorAll(selector));
+  var panels = candidates.filter(function (node) {
+    return !candidates.some(function (other) { return other !== node && other.contains(node); });
+  });
+  var activeOwner = null;
+
+  function namesOf(node) {
+    var names = [node.id].concat(Array.prototype.slice.call(node.classList || []));
+    return names.map(function (name) {
+      return String(name).toLowerCase().replace(/[-_](form|result|results|output|outputs|total|totals|summary|summaries)([-_].*)?$/, '');
+    }).filter(Boolean);
+  }
+
+  function pairedForm(panel) {
+    var names = namesOf(panel);
+    var matches = forms.filter(function (form) {
+      return namesOf(form).some(function (name) { return names.indexOf(name) !== -1; });
+    });
+    return matches.length === 1 ? matches[0] : null;
+  }
+
+  function ownerOf(node) {
+    if (node.matches('form')) return node;
+    var form = node.closest('form') || pairedForm(node);
+    if (form) return form;
+    for (var current = node; current && current !== toolRoot; current = current.parentElement) {
+      var formCount = (current.matches('form') ? 1 : 0) + current.querySelectorAll('form').length;
+      if (formCount === 1 && panels.some(function (panel) { return current === panel || current.contains(panel); })) return current.querySelector('form') || current;
+    }
+    return node.closest('section') || node;
+  }
+
+  function keepOnly(owner, showActive) {
+    panels.forEach(function (panel) {
+      var isActive = ownerOf(panel) === owner;
+      if (!isActive) panel.hidden = true;
+      else if (showActive) panel.hidden = false;
+    });
+  }
+
+  function activate(owner) {
+    if (!owner) return;
+    activeOwner = owner;
+    keepOnly(owner, false);
+  }
+
+  toolRoot.addEventListener('submit', function (event) {
+    var form = event.target;
+    if (form instanceof HTMLFormElement) activate(ownerOf(form));
+  }, true);
+
+  toolRoot.addEventListener('input', function (event) {
+    var form = event.target.closest('form');
+    if (form) activeOwner = ownerOf(form);
+  }, true);
+
+  toolRoot.addEventListener('click', function (event) {
+    var button = event.target.closest('button');
+    var form = button && button.closest('form');
+    if (!form) return;
+    var label = [button.id, button.textContent, button.getAttribute('aria-label') || ''].join(' ').toLowerCase();
+    if (/\b(clear|reset)\b/.test(label) || button.type === 'reset') activeOwner = null;
+    else if (button.type === 'submit' || /\b(calculate|compute|roll|start|encode|decode|convert|generate|run|solve|estimate)\b/.test(label)) activate(ownerOf(form));
+  }, true);
+
+  var observer = new MutationObserver(function (records) {
+    records.forEach(function (record) {
+      var panel = panels.find(function (item) { return item === record.target || item.contains(record.target); });
+      if (!panel || !activeOwner || ownerOf(panel) !== activeOwner) return;
+      if (record.type === 'attributes' && panel.hidden) return;
+      keepOnly(activeOwner, true);
+    });
+  });
+  panels.forEach(function (panel) {
+    observer.observe(panel, {attributes: true, attributeFilter: ['hidden'], childList: true, characterData: true, subtree: true});
+  });
+})();
+</script>
 <script defer src="/assets/js/data.js"></script>
-<script defer src="/assets/js/style.js?v=20261111-1"></script>
-</body>
-</html>
+<script defer src="/assets/js/style.js?v=20261111-5"></script>
+</body></html>

@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US">
-<head>
-<meta charset="utf-8">
+<html lang="en"><head><meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="content-language" content="en">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,17 +11,600 @@
   <meta name="author" content="Commingsoon">
   <meta name="publisher" content="Commingsoon">
   <meta name="robots" content="noindex, nofollow, max-image-preview:large">
-  <link rel="stylesheet" href="/assets/css/style.css?v=20261111-1" crossorigin="anonymous" data-n-g="">
+  <link rel="stylesheet" href="/assets/css/style.css?v=20261111-4" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/doc_style.css" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/side_style.css" crossorigin="anonymous" data-n-g=""> 
   <!--ogtags-->
-  <!--schema-->
-  <!--style-->
-</head>
+  <!--schema--><style>
+.calcpro-va-root{--va-blue:#164d78;--va-green:#4b881c;--va-light:#f0f1f2;--va-border:#c2cbd2;--va-ink:#1d2b37;width:100%;max-width:760px;margin:0;color:var(--va-ink);font:13px/1.35 Arial,Helvetica,sans-serif;text-align:left}
+.calcpro-va-root *{box-sizing:border-box}
+.calcpro-va-root button,.calcpro-va-root input,.calcpro-va-root select{font:inherit}
+.calcpro-va-root button{cursor:pointer}
+.calcpro-va-root button:focus-visible,.calcpro-va-root input:focus-visible,.calcpro-va-root select:focus-visible{outline:2px solid #2267a7;outline-offset:2px}
+.calcpro-va-toolbar{display:flex;align-items:center;justify-content:space-between;margin:0 0 7px;gap:12px}
+.calcpro-va-toolbar-hint{background:#2d5d8d;color:#fff;display:block;padding:4px 9px;font-size:12px;flex:1;max-width:100%;font-weight:600}
+.calcpro-va-print{border:none;background:transparent;color:#075482;text-decoration:underline;padding:1px 3px;display:flex;gap:4px;align-items:center}
+.calcpro-va-grid{display:grid;grid-template-columns:minmax(0,318px) minmax(0,1fr);gap:16px;align-items:start}
+.calcpro-va-input-column,.calcpro-va-output-column{min-width:0}
+.calcpro-va-form{background:#eeeeef;border:1px solid #bdc7cd;padding:12px 11px 11px;border-radius:1px;margin:0}
+.calcpro-va-fields{display:grid;grid-template-columns:minmax(0,128px) minmax(0,1fr);gap:5px 5px;align-items:center}
+.calcpro-va-fields>label{font-size:12px;line-height:1.17}
+.calcpro-va-control{min-width:0;display:flex;align-items:center;gap:4px}
+.calcpro-va-control>.calcpro-va-number{width:100%;min-width:0}
+.calcpro-va-root input[type="text"],.calcpro-va-root input[type="number"],.calcpro-va-root select{min-height:28px;padding:4px 5px;border:1px solid #a3b1bc;border-radius:2px;background:#fff;color:#152d44;font-size:13px}
+.calcpro-va-root input[type="text"]:focus,.calcpro-va-root input[type="number"]:focus{border-color:#164d78}
+.calcpro-va-currency,.calcpro-va-suffix{font-size:12px;white-space:nowrap;color:#374c5a}
+.calcpro-va-with-select select{width:62px;flex:0 0 62px;padding:3px}
+.calcpro-va-fieldset{min-width:0;border:0;margin:11px 0 0;padding:0}
+.calcpro-va-fieldset legend{display:block;float:left;width:100%;font-weight:600;font-size:12px;margin-bottom:3px}
+.calcpro-va-radio-stack{display:flex;flex-direction:column;gap:3px;clear:both;padding-left:7px}
+.calcpro-va-radio-row{display:flex;gap:18px;clear:both;padding-left:7px}
+.calcpro-va-radio{display:inline-flex;align-items:center;gap:4px;font-size:12px;line-height:1.2;cursor:pointer}
+.calcpro-va-radio input,.calcpro-va-checkbox input{width:14px;height:14px;margin:0;accent-color:#2064a1}
+.calcpro-va-hint{clear:both;margin:5px 0 0 7px;color:#4e6070;font-size:11px;line-height:1.35}
+.calcpro-va-toggle{display:block;margin:12px auto 8px;background:transparent;border:none;padding:4px;color:#00618f;text-decoration:underline;font-weight:700}
+.calcpro-va-more{margin:4px 0 8px;padding:8px 5px;border:1px solid #cbd3d8;background:#f8f9fa}
+.calcpro-va-more[hidden],.calcpro-va-error[hidden],.calcpro-va-extra-results[hidden]{display:none!important}
+.calcpro-va-section-label{font-size:12px;color:#194b75;font-weight:700;margin:8px 0}
+.calcpro-va-section-label:first-child{margin-top:0}
+.calcpro-va-fields-more{grid-template-columns:minmax(0,132px) minmax(0,1fr)}
+.calcpro-va-fields-more .calcpro-va-control{min-width:0}
+.calcpro-va-date-group{display:flex;min-width:0;gap:5px}
+.calcpro-va-date-group select{width:50%;min-width:0}
+.calcpro-va-date-group input{width:50%;min-width:0}
+.calcpro-va-extra-label{display:block;font-size:12px;margin:8px 0 3px}
+.calcpro-va-extra-row{display:grid;grid-template-columns:minmax(0,1fr) auto 56px 63px;gap:5px;align-items:center}
+.calcpro-va-extra-row input,.calcpro-va-extra-row select{width:100%;min-width:0}
+.calcpro-va-extra-row>span{font-size:12px}
+.calcpro-va-checkbox{display:flex;gap:7px;align-items:center;font-size:12px;margin:12px 0 5px;cursor:pointer}
+.calcpro-va-error{background:#ffeced;color:#92212b;border:1px solid #d89196;border-radius:2px;padding:8px 9px;margin:10px 0;line-height:1.5}
+.calcpro-va-actions{display:flex;justify-content:center;gap:7px;margin-top:12px}
+.calcpro-va-calculate,.calcpro-va-clear{border:0;border-radius:2px;padding:7px 12px;color:#fff;font-size:12px;font-weight:700}
+.calcpro-va-calculate{background:#4b861b}
+.calcpro-va-calculate:hover{background:#3d6e17}
+.calcpro-va-calculate span{margin-left:4px;font-size:10px}
+.calcpro-va-clear{background:#8d9296}
+.calcpro-va-clear:hover{background:#70777d}
+.calcpro-va-output-column{padding-top:0}
+.calcpro-va-result-header{min-height:32px;background:var(--va-green);color:#fff;padding:6px 7px;display:flex;align-items:center;gap:7px;font-size:14px}
+.calcpro-va-result-header strong:first-child{font-size:13px}
+.calcpro-va-result-header strong:nth-child(2){margin-left:auto;font-size:16px;white-space:nowrap}
+.calcpro-va-result-header button{background:transparent;border:0;color:#fff;font-size:20px;padding:0 1px;line-height:1}
+.calcpro-va-result-rows{padding:6px 1px 0}
+.calcpro-va-result-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;font-size:12px;line-height:1.5;padding:2px 0}
+.calcpro-va-result-row span:last-child{font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
+.calcpro-va-result-row.calcpro-va-strong{border-top:1px solid #cbd5d9;font-weight:700;margin-top:4px;padding-top:6px}
+.calcpro-va-donut-section{display:flex;justify-content:center;margin:8px auto 0}
+.calcpro-va-donut-section svg{display:block;width:min(100%,300px);height:auto}
+.calcpro-va-result-note{margin:7px 2px;font-size:11px;color:#4a6070;line-height:1.45}
+.calcpro-va-extra-results{margin:12px 0;padding:10px 9px;background:#f2f6f8;border-left:3px solid #4f832b;font-size:12px}
+.calcpro-va-extra-results h4{font-size:13px;color:#184369;margin:0 0 5px}
+.calcpro-va-extra-results p{margin:5px 0}
+.calcpro-va-extra-results .calcpro-va-result-row{font-size:12px}
+.calcpro-va-graph-wrap{margin:14px 0 0}
+.calcpro-va-graph-wrap h3{font-size:14px;font-weight:700;color:#1b4b73;margin:0 0 5px}
+.calcpro-va-graph-wrap svg{display:block;width:100%;height:auto;max-width:400px;border:1px solid #eff1f3}
+.calcpro-va-schedule{margin-top:12px}
+.calcpro-va-schedule h3{font-size:15px;color:#123f68;margin:0 0 5px;font-weight:700}
+.calcpro-va-schedule-top{display:flex;justify-content:space-between;gap:6px;align-items:center;margin:0 0 5px}
+.calcpro-va-tablist{display:flex;gap:9px;flex-wrap:wrap}
+.calcpro-va-tab{background:transparent;color:#005a8c;border:none;padding:2px 0;text-decoration:underline;font-size:11px}
+.calcpro-va-tab.active{color:#183b5e;font-weight:700;text-decoration:none}
+.calcpro-va-download{background:#e7eef3;color:#18517a;border:1px solid #bdcdd9;border-radius:2px;padding:2px 6px;font-size:11px}
+.calcpro-va-tablebox{max-height:610px;max-width:100%;overflow:auto;border:1px solid #d1d6dc}
+.calcpro-va-table{width:100%;border-collapse:collapse;font-size:11px;font-variant-numeric:tabular-nums}
+.calcpro-va-table thead th{position:sticky;top:0;background:#29618b;color:#fff;text-align:right;font-weight:700;border-right:1px solid #fff;padding:5px 4px;white-space:nowrap}
+.calcpro-va-table thead th:first-child{text-align:center}
+.calcpro-va-table td{border:1px solid #d3d6da;padding:4px 4px;text-align:right;white-space:nowrap}
+.calcpro-va-table td:first-child{text-align:center}
+.calcpro-va-table tbody tr:nth-child(2n){background:#f2f3f4}
+.calcpro-va-table tfoot{font-weight:bold}
+.calcpro-va-disclaimer{font-size:11px;margin:14px 0 2px;color:#596974;line-height:1.5}
+.calcpro-va-copy-message{font-size:11px;color:#377012;margin:5px 0}
+@media(max-width:680px){
+  .calcpro-va-grid{grid-template-columns:minmax(0,1fr);gap:14px}
+  .calcpro-va-input-column{display:contents}
+  .calcpro-va-form{grid-row:1}
+  .calcpro-va-output-column{grid-row:2}
+  .calcpro-va-schedule{grid-row:3;margin-top:0}
+  .calcpro-va-donut-section svg{max-width:300px}
+  .calcpro-va-root{max-width:100%}
+  .calcpro-va-tablebox{max-height:500px}
+  .calcpro-va-fields{grid-template-columns:minmax(0,42%) minmax(0,58%)}
+}
+@media(max-width:365px){
+  .calcpro-va-form{padding:10px 7px}
+  .calcpro-va-fields{grid-template-columns:minmax(0,39%) minmax(0,61%)}
+  .calcpro-va-extra-row{grid-template-columns:minmax(0,1fr) auto 52px 57px;gap:3px}
+  .calcpro-va-root input[type="text"],.calcpro-va-root input[type="number"],.calcpro-va-root select{font-size:12px}
+}
+@media print{
+  .calcpro-va-toolbar,.calcpro-va-actions,.calcpro-va-toggle,.calcpro-va-download,.calcpro-va-result-header button{display:none!important}
+  .calcpro-va-tablebox{max-height:none;overflow:visible}
+  .calcpro-va-root{max-width:100%}
+  .calcpro-va-grid{grid-template-columns:44% 54%;gap:2%}
+  .calcpro-va-input-column{display:block}
+  .calcpro-va-more[hidden]{display:none!important}
+  .calcpro-va-output-column{grid-row:auto}
+}
+</style>
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / VA Mortgage Calculator</nav><h1 class="cp-page-title">VA Mortgage Calculator</h1><p class="cp-intro">Calculate your estimated VA mortgage payment, VA funding fee, interest costs, and annual or monthly amortization. Explore extra payments and optional housing expenses.</p><section aria-label="Calculator" class="cp-tool-area">
+<div class="calcpro-va-root" id="calcpro-va-calculator">
+  <div class="calcpro-va-toolbar"><span class="calcpro-va-toolbar-hint">Modify the values and click Calculate.</span><button class="calcpro-va-print" type="button" id="calcpro-va-print"><svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 9V3h12v6M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v8H6zM18 12h.01"/></svg> Print</button></div>
+  <div class="calcpro-va-grid">
+    <div class="calcpro-va-input-column">
+      <form id="calcpro-va-form" class="calcpro-va-form" novalidate>
+        <div class="calcpro-va-fields">
+          <label for="calcpro-va-home-price">Home Price</label>
+          <div class="calcpro-va-control"><span class="calcpro-va-currency">$</span><input id="calcpro-va-home-price" name="home-price" type="text" inputmode="decimal" value="500,000" autocomplete="off" class="calcpro-va-number" aria-label="home price"></div>
+          <label for="calcpro-va-down-payment">Down Payment</label>
+          <div class="calcpro-va-control calcpro-va-with-select"><input id="calcpro-va-down-payment" name="down-payment" type="text" inputmode="decimal" value="0" autocomplete="off" class="calcpro-va-number" aria-label="down payment"><select id="calcpro-va-down-unit" name="down-unit" aria-label="Down payment unit"><option value="pct" selected>%</option><option value="usd">$</option></select></div>
+          <label for="calcpro-va-loan-term">Loan Term</label>
+          <div class="calcpro-va-control"><input id="calcpro-va-loan-term" name="loan-term" type="text" inputmode="decimal" value="30" autocomplete="off" class="calcpro-va-number" aria-label="loan term"><span class="calcpro-va-suffix">years</span></div>
+          <label for="calcpro-va-interest-rate">Interest Rate</label>
+          <div class="calcpro-va-control"><input id="calcpro-va-interest-rate" name="interest-rate" type="text" inputmode="decimal" value="7.085" autocomplete="off" class="calcpro-va-number" aria-label="interest rate"><span class="calcpro-va-suffix">%</span></div>
+        </div>
+        <fieldset class="calcpro-va-fieldset"><legend>VA Eligibility</legend>
+          <div class="calcpro-va-radio-stack"><label class="calcpro-va-radio"><input type="radio" name="eligibility" value="veteran" checked> <span>Active / Veteran</span></label><label class="calcpro-va-radio"><input type="radio" name="eligibility" value="reserve"> <span>Reservist / National Guard</span></label><label class="calcpro-va-radio"><input type="radio" name="eligibility" value="spouse"> <span>Surviving Spouse</span></label></div>
+        </fieldset>
+        <fieldset class="calcpro-va-fieldset"><legend>Used VA Loan Before?</legend>
+          <div class="calcpro-va-radio-row"><label class="calcpro-va-radio"><input type="radio" name="before" value="yes"> <span>Yes</span></label><label class="calcpro-va-radio"><input type="radio" name="before" value="no" checked> <span>No</span></label></div>
+        </fieldset>
+        <fieldset class="calcpro-va-fieldset"><legend>Service-Related Disability (10+%)?</legend>
+          <div class="calcpro-va-radio-row"><label class="calcpro-va-radio"><input type="radio" name="exempt" value="yes"> <span>Yes</span></label><label class="calcpro-va-radio"><input type="radio" name="exempt" value="no" checked> <span>No</span></label></div>
+          <p class="calcpro-va-hint">Choose Yes for any VA-recognized funding-fee exemption, including qualifying disability or DIC benefits; a 10% rating is not a universal requirement.</p>
+        </fieldset>
+        <fieldset class="calcpro-va-fieldset"><legend>VA Funding Fee</legend>
+          <div class="calcpro-va-radio-stack"><label class="calcpro-va-radio"><input type="radio" name="finance-fee" value="financed" checked> <span>Financed Into Loan</span></label><label class="calcpro-va-radio"><input type="radio" name="finance-fee" value="upfront"> <span>Paid Upfront</span></label></div>
+        </fieldset>
+        <button type="button" id="calcpro-va-more-toggle" class="calcpro-va-toggle" aria-expanded="false" aria-controls="calcpro-va-more">+ More Options</button>
+        <div class="calcpro-va-more" id="calcpro-va-more" hidden>
+          <div class="calcpro-va-section-label">Housing Costs</div>
+          <div class="calcpro-va-fields calcpro-va-fields-more">
+            <label for="calcpro-va-property-tax">Property Taxes</label><div class="calcpro-va-control calcpro-va-with-select"><input id="calcpro-va-property-tax" name="property-tax" type="text" inputmode="decimal" value="1.2" autocomplete="off" class="calcpro-va-number" aria-label="property tax"><select id="calcpro-va-tax-unit" name="tax-unit" aria-label="Property taxes unit"><option value="pct" selected>%</option><option value="usd">$ / yr</option></select></div>
+            <label for="calcpro-va-insurance">Home Insurance</label><div class="calcpro-va-control"><input id="calcpro-va-insurance" name="insurance" type="text" inputmode="decimal" value="2500" autocomplete="off" class="calcpro-va-number" aria-label="insurance"><span class="calcpro-va-suffix">/year</span></div>
+            <label for="calcpro-va-hoa">HOA Fee</label><div class="calcpro-va-control"><input id="calcpro-va-hoa" name="hoa" type="text" inputmode="decimal" value="0" autocomplete="off" class="calcpro-va-number" aria-label="hoa"><span class="calcpro-va-suffix">/year</span></div>
+            <label for="calcpro-va-other-cost">Other Costs</label><div class="calcpro-va-control"><input id="calcpro-va-other-cost" name="other-cost" type="text" inputmode="decimal" value="5000" autocomplete="off" class="calcpro-va-number" aria-label="other cost"><span class="calcpro-va-suffix">/year</span></div>
+            <label for="calcpro-va-start-month">Start Date</label><div class="calcpro-va-date-group"><select id="calcpro-va-start-month" name="start-month" aria-label="Start Month month"><option value="1">Jan</option><option value="2">Feb</option><option value="3">Mar</option><option value="4">Apr</option><option value="5">May</option><option value="6">Jun</option><option value="7">Jul</option><option value="8">Aug</option><option value="9">Sep</option><option value="10">Oct</option><option value="11" selected>Nov</option><option value="12">Dec</option></select><input id="calcpro-va-start-year" name="start-year" type="number" min="1900" max="2200" step="1" value="2026" aria-label="Loan start year"></div>
+          </div>
+          <div class="calcpro-va-section-label">Annual Tax &amp; Cost Increase</div>
+          <div class="calcpro-va-fields calcpro-va-fields-more">
+            <label for="calcpro-va-tax-increase">Property Taxes Increase</label><div class="calcpro-va-control"><input id="calcpro-va-tax-increase" name="tax-increase" type="text" inputmode="decimal" value="0" autocomplete="off" class="calcpro-va-number" aria-label="tax increase"><span class="calcpro-va-suffix">%</span></div>
+            <label for="calcpro-va-ins-increase">Home Insurance Increase</label><div class="calcpro-va-control"><input id="calcpro-va-ins-increase" name="ins-increase" type="text" inputmode="decimal" value="0" autocomplete="off" class="calcpro-va-number" aria-label="ins increase"><span class="calcpro-va-suffix">%</span></div>
+            <label for="calcpro-va-hoa-increase">HOA Fee Increase</label><div class="calcpro-va-control"><input id="calcpro-va-hoa-increase" name="hoa-increase" type="text" inputmode="decimal" value="0" autocomplete="off" class="calcpro-va-number" aria-label="hoa increase"><span class="calcpro-va-suffix">%</span></div>
+            <label for="calcpro-va-other-increase">Other Costs Increase</label><div class="calcpro-va-control"><input id="calcpro-va-other-increase" name="other-increase" type="text" inputmode="decimal" value="0" autocomplete="off" class="calcpro-va-number" aria-label="other increase"><span class="calcpro-va-suffix">%</span></div>
+          </div>
+          <div class="calcpro-va-section-label">Extra Payments</div>
+          <label class="calcpro-va-extra-label" for="calcpro-va-extra-monthly">Extra Monthly Pay</label>
+          <div class="calcpro-va-extra-row"><input id="calcpro-va-extra-monthly" name="extra-monthly" type="text" inputmode="decimal" value="0" autocomplete="off" class="calcpro-va-number" aria-label="extra monthly"><span>from</span><select id="calcpro-va-extra-monthly-month" name="extra-monthly-month" aria-label="Extra Monthly Month month"><option value="1">Jan</option><option value="2">Feb</option><option value="3">Mar</option><option value="4">Apr</option><option value="5">May</option><option value="6">Jun</option><option value="7">Jul</option><option value="8">Aug</option><option value="9">Sep</option><option value="10">Oct</option><option value="11" selected>Nov</option><option value="12">Dec</option></select><input id="calcpro-va-extra-monthly-year" name="extra-monthly-year" type="number" min="1900" max="2200" value="2026" aria-label="Extra monthly payment start year"></div>
+          <label class="calcpro-va-extra-label" for="calcpro-va-extra-yearly">Extra Yearly Pay</label>
+          <div class="calcpro-va-extra-row"><input id="calcpro-va-extra-yearly" name="extra-yearly" type="text" inputmode="decimal" value="0" autocomplete="off" class="calcpro-va-number" aria-label="extra yearly"><span>from</span><select id="calcpro-va-extra-yearly-month" name="extra-yearly-month" aria-label="Extra Yearly Month month"><option value="1">Jan</option><option value="2">Feb</option><option value="3">Mar</option><option value="4">Apr</option><option value="5">May</option><option value="6">Jun</option><option value="7">Jul</option><option value="8">Aug</option><option value="9">Sep</option><option value="10">Oct</option><option value="11" selected>Nov</option><option value="12">Dec</option></select><input id="calcpro-va-extra-yearly-year" name="extra-yearly-year" type="number" min="1900" max="2200" value="2026" aria-label="Extra yearly payment start year"></div>
+          <label class="calcpro-va-extra-label" for="calcpro-va-extra-onetime">Extra One-time Pay</label>
+          <div class="calcpro-va-extra-row"><input id="calcpro-va-extra-onetime" name="extra-onetime" type="text" inputmode="decimal" value="0" autocomplete="off" class="calcpro-va-number" aria-label="extra onetime"><span>on</span><select id="calcpro-va-extra-onetime-month" name="extra-onetime-month" aria-label="Extra Onetime Month month"><option value="1">Jan</option><option value="2">Feb</option><option value="3">Mar</option><option value="4">Apr</option><option value="5">May</option><option value="6">Jun</option><option value="7">Jul</option><option value="8">Aug</option><option value="9">Sep</option><option value="10">Oct</option><option value="11" selected>Nov</option><option value="12">Dec</option></select><input id="calcpro-va-extra-onetime-year" name="extra-onetime-year" type="number" min="1900" max="2200" value="2026" aria-label="Extra one-time payment year"></div>
+          <label class="calcpro-va-checkbox"><input type="checkbox" id="calcpro-va-biweekly" name="biweekly" checked> Show Biweekly Payback Results</label>
+        </div>
+        <div id="calcpro-va-error" role="alert" class="calcpro-va-error" hidden></div>
+        <div class="calcpro-va-actions"><button class="calcpro-va-calculate" type="submit">Calculate <span aria-hidden="true">▶</span></button><button id="calcpro-va-clear" class="calcpro-va-clear" type="button">Clear</button></div>
+      </form>
+      <section class="calcpro-va-schedule" aria-labelledby="calcpro-va-schedule-title">
+        <h3 id="calcpro-va-schedule-title">Amortization Schedule</h3>
+        <div class="calcpro-va-schedule-top"><div class="calcpro-va-tablist" role="tablist" aria-label="Amortization schedule view"><button id="calcpro-va-tab-annual" type="button" class="calcpro-va-tab active" role="tab" aria-selected="true" aria-controls="calcpro-va-tablebox">Annual Schedule</button><button id="calcpro-va-tab-monthly" type="button" class="calcpro-va-tab" role="tab" aria-selected="false" aria-controls="calcpro-va-tablebox">Monthly Schedule</button></div><button type="button" id="calcpro-va-csv" class="calcpro-va-download">CSV</button></div>
+        <div id="calcpro-va-tablebox" class="calcpro-va-tablebox" role="tabpanel" tabindex="0"><table class="calcpro-va-table"><thead id="calcpro-va-table-head"></thead><tbody id="calcpro-va-table-body"></tbody></table></div>
+      </section>
+    </div>
+    <section class="calcpro-va-output-column" aria-label="Mortgage results">
+      <div class="calcpro-va-result-header"><strong id="calcpro-va-pay-label">Monthly Pay:</strong><strong id="calcpro-va-monthly-pay" aria-live="polite">$3,427.24</strong><button type="button" id="calcpro-va-copy" title="Copy mortgage summary" aria-label="Copy mortgage summary">▣</button></div>
+      <div class="calcpro-va-result-rows" id="calcpro-va-result-rows" aria-live="polite"></div>
+      <div class="calcpro-va-donut-section">
+        <svg id="calcpro-va-donut" viewBox="0 0 230 150" role="img" aria-label="Total principal versus total interest">
+          <circle cx="72" cy="73" r="48" fill="none" stroke="#3481c9" stroke-width="25"/>
+          <circle id="calcpro-va-interest-ring" cx="72" cy="73" r="48" fill="none" stroke="#88ba20" stroke-width="25" transform="rotate(-90 72 73)" stroke-dasharray="0 301.5929"/>
+          <text id="calcpro-va-pie-percent" x="72" y="70" text-anchor="middle" fill="#123a66" font-size="14" font-weight="bold">59%</text><text x="72" y="85" text-anchor="middle" font-size="10" fill="#445">Interest</text>
+          <rect x="138" y="45" width="11" height="11" fill="#3481c9"/><text x="153" y="54" fill="#263444" font-size="11">Principal</text><rect x="138" y="62" width="11" height="11" fill="#88ba20"/><text x="153" y="71" fill="#263444" font-size="11">Interest</text>
+        </svg>
+      </div>
+      <p id="calcpro-va-result-note" class="calcpro-va-result-note"></p>
+      <div id="calcpro-va-extra-results" class="calcpro-va-extra-results" hidden></div>
+      <div class="calcpro-va-graph-wrap"><h3>Loan Amortization Over Time</h3><svg id="calcpro-va-graph" viewBox="0 0 370 235" role="img" aria-label="Chart showing mortgage principal paid, interest paid, and balance over loan term"></svg></div>
+      <p id="calcpro-va-copy-message" class="calcpro-va-copy-message" role="status"></p>
+    </section>
+  </div>
+  <p class="calcpro-va-disclaimer">Estimates assume a fixed-rate purchase loan with monthly compounding. Figures exclude closing costs and mortgage insurance. VA eligibility and actual funding-fee exemption must be confirmed with a lender or VA.</p>
+</div>
+</section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><!-- REPLACE these links with real related tools for each calculator; verify live slugs. --><a href="retirement-calculator.html">Retirement</a><a href="roth-ira-calculator.html">Roth IRA</a><a href="investment-calculator.html">Investment</a><a href="compound-interest-calculator.html">Compound Interest</a><a href="annuity-payout-calculator.html">Annuity Payout</a><a href="pension-calculator.html">Pension</a><a href="inflation-calculator.html">Inflation</a><a href="future-value-calculator.html">Future Value</a><a href="income-tax-calculator.html">Income Tax</a><a href="savings-calculator.html">Savings</a><a href="mortgage-calculator.html">Mortgage</a><a href="loan-calculator.html">Loan</a></div></section></aside><article class="cp-article">
+<h2>How to Use the VA Mortgage Calculator</h2>
+<p>Enter the home purchase price, down payment (as a percentage or dollar amount), loan term, and fixed annual interest rate. Select whether this is your first VA loan and whether you qualify for a VA funding-fee exemption. Choose to pay the funding fee at closing or finance it into the loan, then select <strong>Calculate</strong>.</p>
+<p>Use <strong>More Options</strong> to add annual property taxes, homeowners insurance, HOA fees, and other recurring costs. You can model yearly expense increases, recurring extra principal payments, a one-time prepayment, and an illustrative biweekly payment schedule. The annual and monthly amortization tabs show how much each period's payment goes toward interest and principal.</p>
+<h2>VA Mortgage Payment Formula</h2>
+<p>For a fixed-rate loan, the monthly principal-and-interest payment is:</p>
+<p><strong>M = P × r ÷ (1 − (1 + r)<sup>−n</sup>)</strong></p>
+<p>Here <strong>P</strong> is the loan principal including a financed VA funding fee, <strong>r</strong> is the annual interest rate divided by 12, and <strong>n</strong> is the total number of monthly payments. For a 0% annual interest rate, the payment is simply <strong>P ÷ n</strong>. The VA funding fee is calculated against the purchase loan amount <em>before</em> the fee is financed.</p>
+<h3>Worked Example</h3>
+<p>Consider a $500,000 purchase with no down payment, a 30-year term, 7.085% interest, and first-time VA loan use with no funding-fee exemption. The applicable 2.15% funding fee is $10,750. If financed, the opening mortgage balance becomes $510,750. The estimated monthly principal-and-interest payment is <strong>$3,427.24</strong>. Over 360 payments, the estimated total is <strong>$1,233,805.99</strong>, including approximately <strong>$723,055.99</strong> in interest. Optional taxes and insurance are not included in these figures.</p>
+<h2>VA Funding Fee Rates for Home Purchases</h2>
+<p>The standard VA purchase-loan funding fee depends on the down payment and whether the VA benefit has been used before. VA currently publishes these rates for both active-duty borrowers and National Guard/Reserve borrowers.</p>
+<div class="cp-table-scroll"><table class="cp-content-table"><thead><tr><th>Down Payment</th><th>First Use</th><th>Subsequent Use</th></tr></thead><tbody>
+<tr><td>Less than 5%</td><td>2.15%</td><td>3.30%</td></tr>
+<tr><td>5% to less than 10%</td><td>1.50%</td><td>1.50%</td></tr>
+<tr><td>10% or more</td><td>1.25%</td><td>1.25%</td></tr>
+</tbody></table></div>
+<p>Qualifying borrowers may be exempt from the funding fee, including veterans receiving eligible service-connected disability compensation, certain surviving spouses receiving Dependency and Indemnity Compensation, and other categories identified by VA. The exemption is <strong>not</strong> based only on having a 10% disability rating. Confirm the determination with your lender or VA before closing.</p>
+<h2>Understanding the Results</h2>
+<p>The green payment headline reports principal and interest only when optional costs are disabled. With More Options enabled, it reports the <em>first month's estimated housing payment</em>, including the optional costs you entered. Amortization rows show the interest charged during the period, the principal paid (including extra payments), and the balance after payment. Costs entered under More Options may rise annually according to your increase assumptions.</p>
+<p>Early extra principal payments can reduce both the mortgage payoff period and cumulative interest. The optional biweekly scenario is an illustration based on 26 half-monthly payments per year; actual lenders may use different posting schedules, escrow practices, and interest-accrual rules.</p>
+<h2>Frequently Asked Questions</h2>
+<h3>Does a VA loan require a down payment?</h3>
+<p>Eligible borrowers can often get a VA-backed purchase loan with no down payment, subject to lender underwriting and VA requirements. A down payment can reduce the loan principal and potentially the funding-fee rate.</p>
+<h3>Can I finance the VA funding fee?</h3>
+<p>Yes. VA permits the funding fee for a purchase loan to be included in the mortgage balance, increasing the principal and interest paid over time. Other purchase closing costs generally must be paid separately.</p>
+<h3>Does the VA loan require monthly mortgage insurance?</h3>
+<p>No. Standard VA-backed purchase loans do not require private mortgage insurance (PMI). Property taxes, homeowners insurance, and HOA charges may still apply.</p>
+<h3>What if my disability rating does not meet 10%?</h3>
+<p>VA funding-fee exemption rules refer to qualifying compensation eligibility and several other statutory categories; a blanket 10% minimum is not the appropriate test. Ask VA or your lender to verify your exemption status.</p>
+<h3>Are the rates fixed for every type of VA loan?</h3>
+<p>No. The fee-rate table above applies to VA-backed <em>purchase</em> loans. Cash-out refinances, streamline refinances, assumptions, and certain other loan types have different fee structures.</p>
+<h2>Sources</h2>
+<p>Official guidance: <a href="https://www.va.gov/housing-assistance/home-loans/funding-fee-and-closing-costs/" rel="noopener noreferrer" target="_blank">U.S. Department of Veterans Affairs — Funding Fee and Closing Costs</a>. Layout and feature reference: <a href="https://www.calculator.net/va-mortgage-calculator.html" rel="noopener noreferrer" target="_blank">Calculator.net VA Mortgage Calculator</a>.</p>
+<p class="cp-page-footer">CalcPro — estimates are informational, not a lender quote or VA eligibility determination. Confirm rates, funding-fee exemptions, closing costs, and payment schedules with the appropriate lender or VA.</p>
+</article></main></div><script>
+(function () {
+  'use strict';
+  const root = document.getElementById('calcpro-va-calculator');
+  if (!root) return;
+  const $ = (id) => document.getElementById('calcpro-va-' + id);
+  const form = $('form');
+  const money = (n, digits=2) => '$' + Number(n).toLocaleString('en-US',{minimumFractionDigits:digits,maximumFractionDigits:digits});
+  const shortMoney = n => money(n,0);
+  const num = (id, label, min=0, max=1e12) => {
+    const str = String($(id).value).replace(/[,$%\s]/g,'');
+    if (!str || !/^[+-]?(?:\d+\.?\d*|\.\d+)$/.test(str)) throw new Error(label+' must be a valid number.');
+    const n = Number(str);
+    if (!Number.isFinite(n) || n<min || n>max) throw new Error(label+' must be between '+min.toLocaleString('en-US')+' and '+max.toLocaleString('en-US')+'.');
+    return n;
+  };
+  const radio = name => form.querySelector('input[name="'+name+'"]:checked')?.value;
+  const monthIndex = (year,month) => year*12 + month;
+  const periodicPayment = (balance, rate, n) => {
+    if (balance <= 0 || n<=0) return 0;
+    if (Math.abs(rate)<1e-12) return balance/n;
+    return balance*rate/(-Math.expm1(-n*Math.log1p(rate)));
+  };
+  let moreActive=false, tab='annual', latest=null;
+  let downUnitBefore='pct', taxUnitBefore='pct';
 
-<body>
-<!-- Main-header-page -->
-<script defer src="/assets/js/data.js"></script>
-<script defer src="/assets/js/style.js?v=20261111-1"></script>
-</body>
-</html>
+  function inputs() {
+    const price=num('home-price','Home price',1,1e10);
+    const dpInput=num('down-payment','Down payment',0,1e10);
+    const downUnit=$('down-unit').value;
+    const down=downUnit==='pct' ? price*dpInput/100 : dpInput;
+    if (down>price+0.000001) throw new Error('Down payment cannot exceed home price.');
+    if (downUnit==='pct' && dpInput>100) throw new Error('Down payment percentage cannot exceed 100%.');
+    const years=num('loan-term','Loan term',1,50);
+    const rate=num('interest-rate','Interest rate',0,35);
+    const n=Math.round(years*12);
+    if (Math.abs(years*12-n)>0.000001) throw new Error('Loan term must be in whole months (for example, 15, 20, or 30 years).');
+    const exempt=radio('exempt')==='yes';
+    const firstUse=radio('before')==='no';
+    const downPct=down/price*100;
+    const feeRate=exempt ? 0 : downPct >= 10-1e-9 ? 1.25 : downPct >= 5-1e-9 ? 1.5 : firstUse ? 2.15 : 3.3;
+    const baseLoan=Math.max(0,price-down);
+    const fee=baseLoan*feeRate/100;
+    const financed=radio('finance-fee')==='financed';
+    const principal=baseLoan+(financed?fee:0);
+    const settings={price,down,downPct,n,years,rate,feeRate,fee,financed,principal,exempt,
+      eligibility:radio('eligibility'),baseLoan,
+      more:moreActive};
+    if (moreActive) {
+      const taxValue=num('property-tax','Property taxes',0,1e10);
+      const taxUnit=$('tax-unit').value;
+      if (taxUnit==='pct' && taxValue>100) throw new Error('Property-tax percentage cannot exceed 100%.');
+      settings.taxYear=taxUnit==='pct'?price*taxValue/100:taxValue;
+      settings.insurance=num('insurance','Home insurance',0,1e9);
+      settings.hoa=num('hoa','HOA fee',0,1e9);
+      settings.other=num('other-cost','Other costs',0,1e9);
+      const rates=[
+        num('tax-increase','Property-tax annual increase',-95,100),
+        num('ins-increase','Insurance annual increase',-95,100),
+        num('hoa-increase','HOA annual increase',-95,100),
+        num('other-increase','Other-cost annual increase',-95,100)
+      ];
+      settings.costGrowth=rates.map(r=>1+r/100);
+      settings.startMonth=num('start-month','Start month',1,12);
+      settings.startYear=num('start-year','Start year',1900,2200);
+      settings.extraMonthly=num('extra-monthly','Extra monthly payment',0,1e10);
+      settings.extraYearly=num('extra-yearly','Extra yearly payment',0,1e10);
+      settings.extraOne=num('extra-onetime','Extra one-time payment',0,1e10);
+      for (const part of ['start-year','extra-monthly-year','extra-yearly-year','extra-onetime-year']) {
+        if (!Number.isInteger(num(part,part.replace(/-/g,' '),1900,2200))) throw new Error(part.replace(/-/g,' ')+' must be a whole year.');
+      }
+      settings.monthlyStarts=monthIndex(num('extra-monthly-year','Extra monthly start year',1900,2200),num('extra-monthly-month','Extra monthly start month',1,12));
+      settings.yearlyStarts=monthIndex(num('extra-yearly-year','Extra yearly start year',1900,2200),num('extra-yearly-month','Extra yearly start month',1,12));
+      settings.yearlyPayMonth=num('extra-yearly-month','Extra yearly month',1,12);
+      settings.oneStarts=monthIndex(num('extra-onetime-year','Extra one-time year',1900,2200),num('extra-onetime-month','Extra one-time month',1,12));
+      settings.biweekly=$('biweekly').checked;
+    } else {
+      Object.assign(settings,{taxYear:0,insurance:0,hoa:0,other:0,costGrowth:[1,1,1,1],startMonth:11,startYear:2026,
+        extraMonthly:0,extraYearly:0,extraOne:0,monthlyStarts:Infinity,yearlyStarts:Infinity,yearlyPayMonth:0,oneStarts:Infinity,biweekly:false});
+    }
+    return settings;
+  }
+  function calculateSchedule(s,includeExtras=true) {
+    const payment=periodicPayment(s.principal,s.rate/1200,s.n);
+    let bal=s.principal, interestTotal=0,paidTotal=0,extraTotal=0,monthly=[];
+    const R=s.rate/1200;
+    const startSerial=monthIndex(s.startYear,s.startMonth);
+    for (let k=1; k<=s.n && bal>0.0000001; k++) {
+      const currentSerial=startSerial+k-1;
+      const currentMonth=((currentSerial-1)%12+12)%12+1;
+      const currentYear=Math.floor((currentSerial-1)/12);
+      const interest=bal*R;
+      const regular=Math.min(payment,bal+interest);
+      let principalPayment=Math.max(0,regular-interest);
+      let extra=0;
+      if (includeExtras && s.more) {
+        if (currentSerial>=s.monthlyStarts) extra+=s.extraMonthly;
+        if (currentSerial>=s.yearlyStarts && currentMonth===s.yearlyPayMonth) extra+=s.extraYearly;
+        if (currentSerial===s.oneStarts) extra+=s.extraOne;
+        extra=Math.min(extra,Math.max(0,bal-principalPayment));
+      }
+      const principalPaid=Math.min(bal,principalPayment+extra);
+      bal=Math.max(0,bal-principalPaid);
+      const paid=interest+principalPaid;
+      paidTotal+=paid; interestTotal+=interest; extraTotal+=extra;
+      const yearIntoLoan=Math.ceil(k/12);
+      const monthIntoYear=((k-1)%12)+1;
+      const costVals=[s.taxYear,s.insurance,s.hoa,s.other].map((v,i)=>v*Math.pow(s.costGrowth[i],yearIntoLoan-1)/12);
+      monthly.push({number:k,year:yearIntoLoan,calendarYear:currentYear,calendarMonth:currentMonth,
+        interest,principal:principalPaid,regular,extra,balance:bal,paid,
+        costs:costVals.reduce((a,b)=>a+b,0)});
+    }
+    const annual=[];
+    for(const row of monthly){
+      let a=annual[annual.length-1];
+      if(!a || a.number!==row.year) {
+        a={number:row.year,interest:0,principal:0,extra:0,paid:0,balance:row.balance,costs:0};
+        annual.push(a);
+      }
+      a.interest+=row.interest;a.principal+=row.principal;a.extra+=row.extra;a.paid+=row.paid;a.balance=row.balance;a.costs+=row.costs;
+    }
+    return {payment,monthly,annual,interestTotal,paidTotal,extraTotal,
+      months:monthly.length,initial:s.principal,firstCosts:monthly.length?monthly[0].costs:0,
+      totalHousingCosts:monthly.reduce((tot,m)=>tot+m.costs,0)};
+  }
+  function biweekly(s) {
+    const monthlyPay=periodicPayment(s.principal,s.rate/1200,s.n);
+    const each=monthlyPay/2;
+    const periods=Math.round(s.years*26);
+    let bal=s.principal,interest=0,count=0;
+    // Illustrative frequency-based 26-period approximation; lender daily accrual may differ.
+    const R=Math.pow(1+s.rate/1200,12/26)-1;
+    while(bal>1e-8 && count<periods+1){
+      const cost=bal*R;
+      const pay=Math.min(each,bal+cost);
+      bal=Math.max(0,bal+cost-pay);interest+=cost;count++;
+    }
+    return {periods:count, interest, each, paidOff:bal<1e-8};
+  }
+  function insertRow(parent,label,value,strong=false){
+    const div=document.createElement('div');
+    div.className='calcpro-va-result-row'+(strong?' calcpro-va-strong':'');
+    const a=document.createElement('span');a.textContent=label;
+    const b=document.createElement('span');b.textContent=value;
+    div.append(a,b);parent.appendChild(div);
+  }
+  function drawDonut(calc){
+    const principal=calc.initial, total=calc.paidTotal;
+    const share=total?calc.interestTotal/total:0;
+    const circumference=2*Math.PI*48;
+    $('interest-ring').setAttribute('stroke-dasharray',(share*circumference).toFixed(3)+' '+circumference.toFixed(3));
+    $('pie-percent').textContent=(share*100).toFixed(0)+'%';
+    $('donut').setAttribute('aria-label','Principal '+money(principal)+' and total interest '+money(calc.interestTotal));
+  }
+  function graph(calc,s){
+    const graph=$('graph');
+    const arr=[{number:0,balance:s.principal,interest:0,principal:0}];
+    let it=0,pr=0;
+    for(const row of calc.monthly){
+      it+=row.interest;pr+=row.principal;
+      arr.push({number:row.number,balance:row.balance,interest:it,principal:pr});
+    }
+    const ymax=Math.max(1,s.principal,calc.interestTotal,Math.ceil(calc.interestTotal/100000)*100000);
+    const left=56,right=347,top=36,bottom=199,w=right-left,h=bottom-top;
+    const X=i=>left+w*i/Math.max(1,s.n);
+    const Y=v=>bottom-h*v/ymax;
+    const poly=(key,color)=>'<polyline fill="none" stroke="'+color+'" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" points="'+arr.map(r=>X(r.number).toFixed(2)+','+Y(r[key]).toFixed(2)).join(' ')+'"/>';
+    const esc=t=>String(t).replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+    let markup='';
+    for(let i=0;i<=5;i++){
+      const v=i*ymax/5, y=Y(v);
+      markup+='<line x1="'+left+'" y1="'+y+'" x2="'+right+'" y2="'+y+'" stroke="#e0e5e9" stroke-width="1"/>';
+      markup+='<text x="'+(left-6)+'" y="'+(y+4)+'" font-size="10" fill="#617080" text-anchor="end">'+(v>=1e6?'$'+(v/1e6).toFixed(1)+'M':'$'+Math.round(v/1000)+'K')+'</text>';
+    }
+    for(let i=0;i<=5;i++){
+      const t=s.n*i/5,x=X(t);
+      markup+='<line x1="'+x+'" y1="'+top+'" x2="'+x+'" y2="'+bottom+'" stroke="#edf0f2"/>';
+      markup+='<text x="'+x+'" y="214" text-anchor="middle" font-size="10" fill="#596875">'+Math.round(s.years*i/5)+'</text>';
+    }
+    markup+='<text x="200" y="231" text-anchor="middle" font-size="11" fill="#39526b">Year</text>';
+    [['Balance','#326ba7'],['Interest','#8ab827'],['Principal','#bd4b35']].forEach((e,i)=>{
+      const x=70+i*98;
+      markup+='<line x1="'+x+'" y1="12" x2="'+(x+17)+'" y2="12" stroke="'+e[1]+'" stroke-width="3"/>';
+      markup+='<text x="'+(x+22)+'" y="16" font-size="11" fill="#223d53">'+esc(e[0])+'</text>';
+    });
+    markup+=poly('balance','#326ba7')+poly('interest','#8ab827')+poly('principal','#bd4b35');
+    graph.innerHTML=markup;
+    graph.setAttribute('aria-label','Amortization lines over '+s.years+' years. Original loan '+money(s.principal)+', total interest '+money(calc.interestTotal)+'.');
+  }
+  function displayTable(){
+    if(!latest) return;
+    const monthly=tab==='monthly';
+    const head=$('table-head'),body=$('table-body');
+    head.replaceChildren();body.replaceChildren();
+    const tr=document.createElement('tr');
+    for(const h of [monthly?'Month':'Year','Interest','Principal','Ending Balance']){
+      const th=document.createElement('th');th.textContent=h;th.scope='col';tr.appendChild(th);
+    }
+    head.appendChild(tr);
+    const frag=document.createDocumentFragment();
+    for(const r of monthly?latest.calc.monthly:latest.calc.annual){
+      const tr2=document.createElement('tr');
+      for(const v of [String(r.number),shortMoney(r.interest),shortMoney(r.principal),shortMoney(r.balance)]){
+        const td=document.createElement('td');td.textContent=v;tr2.appendChild(td);
+      }
+      frag.appendChild(tr2);
+    }
+    body.appendChild(frag);
+    for (const name of ['annual','monthly']){
+      const chosen=tab===name;
+      $('tab-'+name).classList.toggle('active',chosen);
+      $('tab-'+name).setAttribute('aria-selected',String(chosen));
+      $('tab-'+name).setAttribute('tabindex',chosen?'0':'-1');
+    }
+    $('tablebox').scrollTop=0;
+  }
+  function render(s,calc) {
+    const rows=$('result-rows');rows.replaceChildren();
+    const firstCost=calc.firstCosts;
+    $('pay-label').textContent=s.more?'Est. First Monthly Pay:':'Monthly Pay:';
+    $('monthly-pay').textContent=money(calc.payment+firstCost);
+    insertRow(rows,'House Price',money(s.price));
+    insertRow(rows,'VA Funding Fee ('+s.feeRate.toFixed(2)+'%)',money(s.fee));
+    insertRow(rows,'Down Payment',money(s.down));
+    insertRow(rows,'Loan Amount',money(s.principal));
+    if(s.more){
+      insertRow(rows,'Monthly Principal & Interest',money(calc.payment));
+      insertRow(rows,'First-month Property Taxes',money(s.taxYear/12));
+      insertRow(rows,'First-month Home Insurance',money(s.insurance/12));
+      insertRow(rows,'First-month HOA Fee',money(s.hoa/12));
+      insertRow(rows,'First-month Other Costs',money(s.other/12));
+    }
+    insertRow(rows,'Total of '+calc.months+' Mortgage Payments',money(calc.paidTotal));
+    insertRow(rows,'Total Interest',money(calc.interestTotal),true);
+    if(s.more){
+      insertRow(rows,'Total Extra Principal Payments',money(calc.extraTotal));
+      insertRow(rows,'Lifetime Taxes, Insurance & Other Costs',money(calc.totalHousingCosts));
+    }
+    if(!s.financed && s.fee>0) insertRow(rows,'VA Funding Fee Paid at Closing',money(s.fee));
+    const msg=[];
+    if(s.exempt)msg.push('VA funding-fee exemption assumed based on your selection.');
+    if(s.eligibility==='spouse' && !s.exempt)msg.push('Surviving spouses may be exempt if they receive qualifying DIC; confirm status with VA.');
+    if(s.more)msg.push('The payment shown includes first-month estimated property taxes, insurance, HOA and other costs; those costs can change annually.');
+    if(s.downPct>=100-1e-9)msg.push('No mortgage principal remains after the down payment.');
+    $('result-note').textContent=msg.join(' ');
+    const ext=$('extra-results');ext.replaceChildren();
+    const section=(title)=>{
+      const h=document.createElement('h4');h.textContent=title;ext.appendChild(h);
+    };
+    if(s.more){
+      ext.hidden=false;
+      const base=calculateSchedule(s,false);
+      section('Payoff and Extra Payments');
+      const finish=calc.monthly[calc.monthly.length-1];
+      insertRow(ext,'Estimated Payoff',finish ? monthsLabel(finish.calendarMonth)+' '+finish.calendarYear:'Immediately');
+      insertRow(ext,'Term',calc.months+' months ('+(calc.months/12).toFixed(2)+' years)');
+      insertRow(ext,'Time Saved',Math.max(0,base.months-calc.months)+' months');
+      insertRow(ext,'Interest Saved',money(Math.max(0,base.interestTotal-calc.interestTotal)));
+      if(s.biweekly){
+        const bw=biweekly(s);
+        section('Illustrative Biweekly Plan (Base Loan)');
+        insertRow(ext,'Every Two Weeks',money(bw.each));
+        insertRow(ext,'Payoff',bw.paidOff?bw.periods+' biweekly periods':'Not paid off within original term');
+        insertRow(ext,'Estimated Total Interest',money(bw.interest));
+        const p=document.createElement('p');
+        p.textContent='Illustration assumes 26 half-monthly payments annually, an equivalent periodic interest rate, and no extra payments. Actual lender posting, daily accrual and escrow methods can vary.';
+        ext.appendChild(p);
+      }
+    }else ext.hidden=true;
+    drawDonut(calc);graph(calc,s);
+    const totalOverview='VA Mortgage Calculator\nHouse price: '+money(s.price)+'\nDown payment: '+money(s.down)+
+      '\nVA funding fee: '+money(s.fee)+' ('+s.feeRate.toFixed(2)+'%)'+
+      '\nLoan amount: '+money(s.principal)+'\nScheduled monthly principal & interest: '+money(calc.payment)+
+      '\nEstimated first-month payment: '+money(calc.payment+firstCost)+
+      '\nTotal mortgage payments: '+money(calc.paidTotal)+'\nTotal interest: '+money(calc.interestTotal);
+    latest={s,calc,text:totalOverview};
+    displayTable();
+  }
+  function monthsLabel(n){return ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][n-1]||'—';}
+  function update(){
+    try {
+      const s=inputs(),calc=calculateSchedule(s);
+      $('error').hidden=true;$('error').textContent='';
+      render(s,calc);
+      return true;
+    }catch(e){
+      $('error').textContent=e.message;
+      $('error').hidden=false;
+      return false;
+    }
+  }
+  function switchAmountUnit(field, selector, priorValue, basis, target){
+    const txt=$(field).value.replace(/[,$%\s]/g,'');
+    const numeric=Number(txt);
+    if(Number.isFinite(numeric)&&txt!==''){
+      const dollar=priorValue==='pct' ? numeric*basis/100:numeric;
+      $(field).value=(target==='pct'?(basis>0?dollar/basis*100:0):dollar).toLocaleString('en-US',{maximumFractionDigits:6,useGrouping:false});
+    }
+  }
+  $('down-unit').addEventListener('change',()=>{
+    let basis=Number($('home-price').value.replace(/[,$\s]/g,''));
+    if(!Number.isFinite(basis)||basis<=0)basis=0;
+    switchAmountUnit('down-payment','down-unit',downUnitBefore,basis,$('down-unit').value);
+    downUnitBefore=$('down-unit').value;
+  });
+  $('tax-unit').addEventListener('change',()=>{
+    let basis=Number($('home-price').value.replace(/[,$\s]/g,''));
+    if(!Number.isFinite(basis)||basis<=0)basis=0;
+    switchAmountUnit('property-tax','tax-unit',taxUnitBefore,basis,$('tax-unit').value);
+    taxUnitBefore=$('tax-unit').value;
+  });
+  $('more-toggle').addEventListener('click',()=>{
+    moreActive=!moreActive;
+    $('more').hidden=!moreActive;
+    $('more-toggle').textContent=moreActive?'- Fewer Options':'+ More Options';
+    $('more-toggle').setAttribute('aria-expanded',String(moreActive));
+    update();
+  });
+  form.addEventListener('submit',e=>{e.preventDefault();update();});
+  $('clear').addEventListener('click',()=>{
+    form.reset();downUnitBefore='pct';taxUnitBefore='pct';
+    moreActive=false;$('more').hidden=true;$('more-toggle').textContent='+ More Options';$('more-toggle').setAttribute('aria-expanded','false');
+    tab='annual';$('copy-message').textContent='';update();
+  });
+  $('tab-annual').addEventListener('click',()=>{tab='annual';displayTable();});
+  $('tab-monthly').addEventListener('click',()=>{tab='monthly';displayTable();});
+  $('print').addEventListener('click',()=>window.print());
+  $('copy').addEventListener('click',async()=>{
+    if(!latest)return;
+    try{
+      if(navigator.clipboard?.writeText)await navigator.clipboard.writeText(latest.text);
+      else {
+        const t=document.createElement('textarea');t.value=latest.text;t.style.position='fixed';t.style.opacity='0';document.body.append(t);t.select();
+        if(!document.execCommand('copy'))throw new Error('Copy is unavailable');
+        t.remove();
+      }
+      $('copy-message').textContent='Mortgage summary copied.';
+    }catch(e){$('copy-message').textContent='Copy is unavailable in this browser. Select the displayed results to copy them.';}
+  });
+  $('csv').addEventListener('click',()=>{
+    if(!latest)return;
+    const lines=[['Month','Year','Calendar Month','Calendar Year','Interest','Principal','Extra Principal','Total Mortgage Payment','Ending Balance','Estimated Housing Costs'].join(',')];
+    for(const r of latest.calc.monthly){
+      lines.push([r.number,r.year,monthsLabel(r.calendarMonth),r.calendarYear,r.interest.toFixed(2),r.principal.toFixed(2),
+        r.extra.toFixed(2),r.paid.toFixed(2),r.balance.toFixed(2),r.costs.toFixed(2)].join(','));
+    }
+    const blob=new Blob([lines.join('\r\n')],{type:'text/csv;charset=utf-8'});
+    const url=URL.createObjectURL(blob);
+    const a=document.createElement('a');a.href=url;a.download='va-mortgage-amortization.csv';
+    document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1500);
+  });
+  update();
+  // Expose a read-only test hook for automated browser verification.
+  root.calcproVaGetState=()=>latest?{payment:latest.calc.payment,monthlyPay:latest.calc.payment+latest.calc.firstCosts,
+    fee:latest.s.fee,feeRate:latest.s.feeRate,principal:latest.s.principal,
+    interest:latest.calc.interestTotal,total:latest.calc.paidTotal,months:latest.calc.months,
+    extraTotal:latest.calc.extraTotal,more:latest.s.more,
+    annualRows:latest.calc.annual.length,monthlyRows:latest.calc.monthly.length}:null;
+})();
+</script><script defer src="/assets/js/data.js"></script>
+<script defer src="/assets/js/style.js?v=20261111-5"></script>
+</body></html>

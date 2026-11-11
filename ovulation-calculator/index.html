@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US">
-<head>
-<meta charset="utf-8">
+<html lang="en"><head><meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="content-language" content="en">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,17 +11,420 @@
   <meta name="author" content="Commingsoon">
   <meta name="publisher" content="Commingsoon">
   <meta name="robots" content="noindex, nofollow, max-image-preview:large">
-  <link rel="stylesheet" href="/assets/css/style.css?v=20261111-1" crossorigin="anonymous" data-n-g="">
+  <link rel="stylesheet" href="/assets/css/style.css?v=20261111-4" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/doc_style.css" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/side_style.css" crossorigin="anonymous" data-n-g=""> 
   <!--ogtags-->
-  <!--schema-->
-  <!--style-->
-</head>
+  <!--schema--><style>
+/* Ovulation Calculator — all styles isolated to calcpro-ovu. */
+.calcpro-ovu{font-family:Arial,Helvetica,sans-serif;color:#111;font-size:15px;line-height:1.3;max-width:100%;position:relative}
+.calcpro-ovu *{box-sizing:border-box}
+.calcpro-ovu a{color:#006699}
+.calcpro-ovu .calcpro-ovu-toolbar{display:flex;justify-content:flex-end;margin:0 0 4px;gap:12px}
+.calcpro-ovu .calcpro-ovu-print{border:0;background:transparent;color:#006699;text-decoration:underline;cursor:pointer;font:inherit;padding:0}
+.calcpro-ovu .calcpro-ovu-instructions{background:#336699;color:#fff;text-align:center;min-height:36px;display:flex;align-items:center;justify-content:center;gap:34px;margin:0 0 3px;padding:5px 12px}
+.calcpro-ovu .calcpro-ovu-down{display:inline-flex;align-items:center;justify-content:center;border-radius:50%;background:#fff;color:#336699;font-size:16px;width:24px;height:24px;flex:0 0 24px;line-height:1}
+.calcpro-ovu .calcpro-ovu-form{border:1px solid #bbb;background:#efefef;padding:10px 12px 9px;margin:0;position:relative}
+.calcpro-ovu .calcpro-ovu-form-grid{display:grid;grid-template-columns:minmax(180px, 1fr) minmax(220px,1fr);gap:6px 8px;align-items:center;max-width:640px;margin:auto}
+.calcpro-ovu .calcpro-ovu-field-label{text-align:right;font-size:16px}
+.calcpro-ovu .calcpro-ovu-field-label strong{font-weight:700}
+.calcpro-ovu .calcpro-ovu-date-fields{display:flex;gap:3px;align-items:center;min-width:0}
+.calcpro-ovu .calcpro-ovu-date-fields select,.calcpro-ovu .calcpro-ovu-date-fields input,.calcpro-ovu .calcpro-ovu-cycle{font:16px Arial,Helvetica,sans-serif;height:29px;padding:2px 4px;border:1px solid #36658c;border-radius:0;background:#fff;color:#000;box-shadow:1px 1px 2px #aaa}
+.calcpro-ovu .calcpro-ovu-month{width:70px;min-width:62px}
+.calcpro-ovu .calcpro-ovu-day{width:54px;min-width:50px}
+.calcpro-ovu .calcpro-ovu-year{width:88px;min-width:68px}
+.calcpro-ovu .calcpro-ovu-date-fields input[type=number]{appearance:textfield;-moz-appearance:textfield}
+.calcpro-ovu .calcpro-ovu-date-fields input::-webkit-outer-spin-button,.calcpro-ovu .calcpro-ovu-date-fields input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.calcpro-ovu .calcpro-ovu-cycle{width:102px}
+.calcpro-ovu .calcpro-ovu-calendar-trigger{background:#f7f7f7;border:1px solid #5e7e9b;border-radius:0;cursor:pointer;height:29px;width:30px;padding:0;display:flex;align-items:center;justify-content:center;flex:0 0 30px;box-shadow:1px 1px 2px #aaa}
+.calcpro-ovu .calcpro-ovu-calendar-trigger svg{width:22px;height:22px}
+.calcpro-ovu button:focus-visible,.calcpro-ovu a:focus-visible,.calcpro-ovu input:focus-visible,.calcpro-ovu select:focus-visible{outline:2px solid #006699;outline-offset:2px}
+.calcpro-ovu .calcpro-ovu-action-cell{padding-top:4px}
+.calcpro-ovu .calcpro-ovu-calc{display:inline-flex;align-items:center;gap:16px;border:0;border-radius:0;background:#47801c;color:#fff;font:bold 15px Arial,Helvetica,sans-serif;padding:10px 14px;cursor:pointer;min-height:37px}
+.calcpro-ovu .calcpro-ovu-calc:hover{background:#346716}
+.calcpro-ovu .calcpro-ovu-play{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;background:#86b37c;color:#fff;font-size:12px;line-height:1}
+.calcpro-ovu .calcpro-ovu-error{color:#ae1a15;font-size:14px;margin:5px auto 0;max-width:610px;font-weight:700}
+.calcpro-ovu .calcpro-ovu-error:empty{display:none}
+.calcpro-ovu .calcpro-ovu-calendar-picker{display:none;position:absolute;z-index:12;top:44px;right:20px;width:260px;background:#fff;padding:9px;border:1px solid #9aa9b9;box-shadow:0 6px 18px #0003}
+.calcpro-ovu .calcpro-ovu-calendar-picker[data-open=true]{display:block}
+.calcpro-ovu .calcpro-ovu-pick-head,.calcpro-ovu .calcpro-ovu-month-head{display:flex;align-items:center;justify-content:space-between;gap:4px}
+.calcpro-ovu .calcpro-ovu-pick-head{margin-bottom:5px}
+.calcpro-ovu .calcpro-ovu-pick-head button,.calcpro-ovu .calcpro-ovu-month-head button{background:none;border:1px solid transparent;cursor:pointer;color:#224e77;padding:1px 5px;font-size:17px;line-height:1.2}
+.calcpro-ovu .calcpro-ovu-pick-head button:hover,.calcpro-ovu .calcpro-ovu-month-head button:hover{border-color:#777;background:#f0f6fa}
+.calcpro-ovu .calcpro-ovu-pick-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:1px;text-align:center;font-size:13px}
+.calcpro-ovu .calcpro-ovu-pick-grid b{background:#336699;color:#fff;font-size:12px;padding:4px 0}
+.calcpro-ovu .calcpro-ovu-pick-grid button{background:#fff;border:1px solid #ddd;border-radius:0;cursor:pointer;min-height:27px;padding:2px 0;font:inherit;color:#111}
+.calcpro-ovu .calcpro-ovu-pick-grid button:hover,.calcpro-ovu .calcpro-ovu-pick-grid button[aria-current=date]{background:#fad0e1}
+.calcpro-ovu .calcpro-ovu-result{margin:0 0 16px}
+.calcpro-ovu .calcpro-ovu-result[hidden],.calcpro-ovu .calcpro-ovu-instructions[hidden]{display:none!important}
+.calcpro-ovu .calcpro-ovu-result-head{display:flex;justify-content:space-between;align-items:center;background:#4b841f;color:#fff;min-height:36px;padding:5px 8px;font-size:20px}
+.calcpro-ovu .calcpro-ovu-save{display:inline-flex;flex-direction:column;gap:0;align-items:center;justify-content:center;min-width:30px;padding:0 3px;line-height:1;background:none;border:0;color:#fff;font:10px Arial,sans-serif;cursor:pointer}
+.calcpro-ovu .calcpro-ovu-save svg{height:17px;width:17px;fill:currentColor}
+.calcpro-ovu .calcpro-ovu-subhead{margin:5px 0 7px;font-size:15px}
+.calcpro-ovu .calcpro-ovu-details{display:flex;align-items:flex-start;gap:5px;flex-wrap:wrap}
+.calcpro-ovu .calcpro-ovu-data-scroll{max-width:100%;overflow-x:auto}
+.calcpro-ovu .calcpro-ovu-detail-table,.calcpro-ovu .calcpro-ovu-six-table{border-collapse:collapse;font:14px Arial,Helvetica,sans-serif;line-height:1.3;white-space:nowrap}
+.calcpro-ovu .calcpro-ovu-detail-table{min-width:350px}
+.calcpro-ovu .calcpro-ovu-detail-table td,.calcpro-ovu .calcpro-ovu-six-table td,.calcpro-ovu .calcpro-ovu-six-table th{padding:2px 4px;border:1px solid #c3c3c3;text-align:left}
+.calcpro-ovu .calcpro-ovu-detail-table tr:nth-child(odd) td{background:#f4f4f4}
+.calcpro-ovu .calcpro-ovu-detail-table tr:first-child td{background:#f5bfda;font-weight:700}
+.calcpro-ovu .calcpro-ovu-detail-table td:first-child{min-width:206px}
+.calcpro-ovu .calcpro-ovu-detail-table td:nth-child(2){min-width:117px}
+.calcpro-ovu .calcpro-ovu-monthly{width:165px;max-width:100%;border:1px solid #c5c5c5;background:white;flex-shrink:0;font:14px Arial,sans-serif}
+.calcpro-ovu .calcpro-ovu-month-head{font-size:14px;font-weight:700;min-height:25px;white-space:nowrap}
+.calcpro-ovu .calcpro-ovu-month-head button{font-size:12px;padding:1px 2px}
+.calcpro-ovu .calcpro-ovu-month-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));grid-auto-rows:24px}
+.calcpro-ovu .calcpro-ovu-month-grid div{min-width:0;display:flex;align-items:center;justify-content:center;border-right:1px solid #ccc;border-bottom:1px solid #ccc;font-size:13px}
+.calcpro-ovu .calcpro-ovu-month-grid div:nth-child(7n){border-right:0}
+.calcpro-ovu .calcpro-ovu-month-grid .calcpro-ovu-weekday{background:#336699;color:#fff;font-weight:700;font-size:12px}
+.calcpro-ovu .calcpro-ovu-month-grid .calcpro-ovu-fertile{background:#ffbddb}
+.calcpro-ovu .calcpro-ovu-month-grid .calcpro-ovu-peak{background:#f58cbf;font-weight:700}
+.calcpro-ovu .calcpro-ovu-month-grid .calcpro-ovu-empty{background:#fff}
+.calcpro-ovu .calcpro-ovu-legend{color:#555;font-size:11px;margin:4px 0 0}
+.calcpro-ovu .calcpro-ovu-six-wrap{margin-top:7px}
+.calcpro-ovu .calcpro-ovu-six-table th{background:#336699;color:#fff;font-weight:700}
+.calcpro-ovu .calcpro-ovu-six-table td{background:#fff}
+.calcpro-ovu .calcpro-ovu-six-table tbody tr:nth-child(even) td{background:#ededed}
+.calcpro-ovu .calcpro-ovu-six-table tbody tr{cursor:pointer}
+.calcpro-ovu .calcpro-ovu-six-table tbody tr:hover td{background:#ddebfa}
+.calcpro-ovu .calcpro-ovu-six-table tbody tr.calcpro-ovu-selected td{box-shadow:inset 0 -2px 0 #397cb2}
+.calcpro-ovu .calcpro-ovu-six-table tbody tr:focus-visible{outline:2px solid #266ea6;outline-offset:-2px}
+.calcpro-ovu .calcpro-ovu-footnote{font-size:12px;color:#555;margin:8px 0 0}
+@media(max-width:620px){.calcpro-ovu .calcpro-ovu-form-grid{grid-template-columns:1fr;gap:3px;justify-content:start}.calcpro-ovu .calcpro-ovu-field-label{text-align:left;margin-top:4px}.calcpro-ovu .calcpro-ovu-action-cell{padding:7px 0 0}.calcpro-ovu .calcpro-ovu-form{padding:10px}.calcpro-ovu .calcpro-ovu-instructions{gap:12px;font-size:14px}.calcpro-ovu .calcpro-ovu-calendar-picker{top:70px;right:8px}.calcpro-ovu .calcpro-ovu-detail-table{min-width:0;white-space:normal;width:100%}.calcpro-ovu .calcpro-ovu-detail-table td:first-child{min-width:0;width:60%}.calcpro-ovu .calcpro-ovu-detail-table td:nth-child(2){min-width:0}.calcpro-ovu .calcpro-ovu-details{gap:12px}.calcpro-ovu .calcpro-ovu-monthly{width:190px}}
+@media(max-width:360px){.calcpro-ovu .calcpro-ovu-month{width:62px}.calcpro-ovu .calcpro-ovu-day{width:48px}.calcpro-ovu .calcpro-ovu-year{width:76px}.calcpro-ovu .calcpro-ovu-date-fields{gap:2px}.calcpro-ovu .calcpro-ovu-instructions{gap:6px}.calcpro-ovu .calcpro-ovu-calendar-picker{width:min(260px,calc(100% - 12px))}}
+@media print{.calcpro-ovu .calcpro-ovu-toolbar,.calcpro-ovu .calcpro-ovu-form,.calcpro-ovu .calcpro-ovu-instructions,.calcpro-ovu .calcpro-ovu-save,.calcpro-ovu .calcpro-ovu-month-head button{display:none!important}.calcpro-ovu .calcpro-ovu-result{display:block!important}.calcpro-ovu .calcpro-ovu-six-table tbody tr{cursor:default}.calcpro-ovu .calcpro-ovu-details{break-inside:avoid}.calcpro-ovu .calcpro-ovu-result-head{-webkit-print-color-adjust:exact;print-color-adjust:exact}.calcpro-ovu .calcpro-ovu-month-grid .calcpro-ovu-fertile,.calcpro-ovu .calcpro-ovu-month-grid .calcpro-ovu-peak{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
 
-<body>
-<!-- Main-header-page -->
-<script defer src="/assets/js/data.js"></script>
-<script defer src="/assets/js/style.js?v=20261111-1"></script>
-</body>
-</html>
+</style>
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/fitness-health-calculator/">Fitness &amp; Health</a> / Ovulation Calculator</nav><h1 class="cp-page-title">Ovulation Calculator</h1><p class="cp-intro">Estimate your ovulation window, most probable ovulation day, possible conception dates, next period, pregnancy test date, and estimated due date for six cycles. Results assume regular cycles and must not be used as birth control.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-ovu" id="calcpro-ovu-root">
+  <div class="calcpro-ovu-toolbar"><button class="calcpro-ovu-print" id="calcpro-ovu-print" type="button">Print</button></div>
+  <section class="calcpro-ovu-result" id="calcpro-ovu-result" hidden aria-label="Ovulation calculation results" aria-live="polite">
+    <div class="calcpro-ovu-result-head"><span>Result</span><button type="button" class="calcpro-ovu-save" id="calcpro-ovu-save" title="Save results as CSV" aria-label="Save results as CSV"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 3h14l3 3v15H3V4a1 1 0 0 1 1-1zm2 2v6h12V5h-2v4H8V5H6zm6 9a4 4 0 1 0 0 8 4 4 0 0 0 0-8zm0 2a2 2 0 1 1 0 4 2 2 0 0 1 0-4z"/></svg><span>save</span></button></div>
+    <p class="calcpro-ovu-subhead">Important dates for this cycle:</p>
+    <div class="calcpro-ovu-details">
+      <div class="calcpro-ovu-data-scroll"><table class="calcpro-ovu-detail-table"><tbody id="calcpro-ovu-keydates"></tbody></table></div>
+      <div><div class="calcpro-ovu-monthly"><div class="calcpro-ovu-month-head"><button id="calcpro-ovu-month-prev" type="button" title="Previous month" aria-label="Previous month">‹</button><span id="calcpro-ovu-month-name"></span><button id="calcpro-ovu-month-next" type="button" title="Next month" aria-label="Next month">›</button></div><div id="calcpro-ovu-month-grid" class="calcpro-ovu-month-grid" aria-label="Fertile window calendar"></div></div><p class="calcpro-ovu-legend">Pink = estimated ovulation window</p></div>
+    </div>
+    <div class="calcpro-ovu-six-wrap"><p class="calcpro-ovu-subhead">Important dates for the next 6 cycles:</p>
+      <div class="calcpro-ovu-data-scroll"><table class="calcpro-ovu-six-table"><thead><tr><th scope="col">Period Start</th><th scope="col">Ovulation Window</th><th scope="col">Due Date</th></tr></thead><tbody id="calcpro-ovu-six-cycles"></tbody></table></div>
+    </div>
+    <p class="calcpro-ovu-footnote">Dates are estimates for regular cycles, not confirmation of ovulation or pregnancy. Do not use this calculator as birth control.</p>
+  </section>
+  <div class="calcpro-ovu-instructions" id="calcpro-ovu-instructions"><span class="calcpro-ovu-down" aria-hidden="true">▼</span><span>Modify the values and click the Calculate button to use</span></div>
+  <form class="calcpro-ovu-form" id="calcpro-ovu-form" novalidate>
+    <div class="calcpro-ovu-form-grid">
+      <label class="calcpro-ovu-field-label" for="calcpro-ovu-month"><strong>First Day</strong> of Your Last Period:</label>
+      <div class="calcpro-ovu-date-fields">
+        <select class="calcpro-ovu-month" id="calcpro-ovu-month" aria-label="Last period month"></select>
+        <select class="calcpro-ovu-day" id="calcpro-ovu-day" aria-label="Last period day"></select>
+        <input class="calcpro-ovu-year" id="calcpro-ovu-year" aria-label="Last period year" inputmode="numeric" type="number" min="1900" max="2100" step="1" required>
+        <button type="button" id="calcpro-ovu-date-picker-trigger" class="calcpro-ovu-calendar-trigger" title="Choose a date" aria-label="Choose a date" aria-expanded="false" aria-controls="calcpro-ovu-calendar-picker"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="3" width="20" height="19" fill="#fff" stroke="#5177a1" stroke-width="1.3"/><rect x="2.5" y="3.5" width="19" height="5" fill="#336699"/><path d="M7 2v5M17 2v5" stroke="#fff" stroke-width="2"/><path d="M3 12h18M3 17h18M8 9v12M14 9v12" stroke="#bbc9d3" stroke-width=".8"/><rect x="14.5" y="17.5" width="6" height="4" fill="#ef5472"/></svg></button>
+      </div>
+      <label class="calcpro-ovu-field-label" for="calcpro-ovu-cycle">Average Length of Cycles:</label>
+      <div><select class="calcpro-ovu-cycle" id="calcpro-ovu-cycle"></select></div>
+      <div></div><div class="calcpro-ovu-action-cell"><button class="calcpro-ovu-calc" type="submit">Calculate <span class="calcpro-ovu-play" aria-hidden="true">▶</span></button></div>
+    </div>
+    <div id="calcpro-ovu-error" class="calcpro-ovu-error" role="alert"></div>
+    <div id="calcpro-ovu-calendar-picker" class="calcpro-ovu-calendar-picker" data-open="false" aria-label="Choose the first day of your last period"><div class="calcpro-ovu-pick-head"><button type="button" id="calcpro-ovu-pick-prev" aria-label="Previous month">‹</button><strong id="calcpro-ovu-pick-title"></strong><button type="button" id="calcpro-ovu-pick-next" aria-label="Next month">›</button></div><div class="calcpro-ovu-pick-grid" id="calcpro-ovu-pick-grid"></div></div>
+  </form>
+</div>
+</section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><a href="pregnancy-calculator.html">Pregnancy</a><a href="due-date-calculator.html">Due Date</a><a href="period-calculator.html">Period</a><a href="pregnancy-conception-calculator.html">Pregnancy Conception</a><a href="conception-calculator.html">Conception</a><a href="pregnancy-weight-gain-calculator.html">Pregnancy Weight Gain</a><a href="bmi-calculator.html">BMI</a><a href="calorie-calculator.html">Calorie</a><a href="healthy-weight-calculator.html">Healthy Weight</a><a href="ideal-weight-calculator.html">Ideal Weight</a><a href="age-calculator.html">Age</a><a href="date-calculator.html">Date</a></div></section></aside><article class="cp-article"><h2>How to Use the Ovulation Calculator</h2>
+<p>Enter the <strong>first day of your last menstrual period</strong>, choose your average cycle length (22–44 days), and select <strong>Calculate</strong>. The results appear above the form and include a highlighted calendar and six future cycle estimates. The calendar arrows change the visible month; select a row in the six-cycle table to view that cycle's details. Use <strong>Print</strong> or <strong>save</strong> to keep your results.</p>
+<h2>How the Dates Are Estimated</h2>
+<p>A cycle begins on the first day of menstrual bleeding and ends when the next period starts. This calculator assumes the next period begins after the selected number of days and estimates ovulation approximately <strong>14 days before the next period</strong>. The highlighted ovulation window covers two days before through two days after that estimated day. The wider intercourse window extends from five days before through two days after it. These are mathematical estimates; an individual cycle may differ.</p>
+<div class="cp-table-scroll"><table class="cp-content-table"><thead><tr><th>Result</th><th>Calculation used</th></tr></thead><tbody>
+<tr><td>Next period</td><td>Last period start + average cycle length</td></tr>
+<tr><td>Most probable ovulation</td><td>Last period start + cycle length − 14 days</td></tr>
+<tr><td>Ovulation window</td><td>Two days before through two days after estimated ovulation</td></tr>
+<tr><td>Intercourse window</td><td>Five days before through two days after estimated ovulation</td></tr>
+<tr><td>Suggested pregnancy test date</td><td>Estimated ovulation + 9 days (early estimate; testing on or after a missed period is generally more reliable)</td></tr>
+<tr><td>Estimated due date</td><td>Last period start + 280 days + (cycle length − 28) days</td></tr>
+</tbody></table></div>
+<h2>Worked Example: November 5, 2026</h2>
+<p>For a last period beginning <strong>November 5, 2026</strong> with a <strong>28-day cycle</strong>, the next period is estimated to begin December 3, 2026. The most probable ovulation date is November 19, with an ovulation window of November 17–21 and an intercourse window of November 14–21. The suggested pregnancy test date is November 28, and the estimated due date if pregnant is August 12, 2027.</p>
+<div class="cp-warning"><strong>Important:</strong> This calculator cannot identify an individual's exact fertile days and is <strong>not contraception</strong>. Cycle variations and irregular periods make calendar estimates less reliable. If you need to prevent pregnancy, use an effective contraceptive method rather than relying on these predictions.</div>
+<h2>Understanding Your Fertile Window</h2>
+<p>Pregnancy is most likely when intercourse happens shortly before or around ovulation. Sperm may survive for up to five days, while the egg typically remains viable for approximately 12–24 hours after ovulation. Changes in cervical mucus and ovulation predictor tests can give additional indications of timing, although no at-home prediction method guarantees the exact date. For medical decisions, consult a qualified clinician.</p>
+<h2>Frequently Asked Questions</h2>
+<h3>What if my menstrual cycle is not 28 days long?</h3>
+<p>Select your usual cycle length from the menu. For example, a 32-day cycle moves the estimated ovulation date approximately four days later than a 28-day cycle with the same period start date.</p>
+<h3>Can I rely on these dates with irregular periods?</h3>
+<p>No. The predictions assume roughly regular cycles. If cycle length changes from month to month, recorded cycle dates, cervical mucus observations, or ovulation tests may be more informative than this calendar alone.</p>
+<h3>Why could a pregnancy test be negative on the suggested date?</h3>
+<p>The displayed pregnancy-test date is an early estimate, not a guarantee that a urine test will detect pregnancy. Test sensitivity and the timing of ovulation and implantation vary. Testing at or after the expected period, and repeating a test if needed, is usually more reliable.</p>
+<h3>Is the pregnancy due date exact?</h3>
+<p>No. It is a planning estimate based on the last menstrual period and cycle length. A clinician can confirm or revise pregnancy dating using an early ultrasound and other clinical information.</p>
+<h2>Reliable Sources</h2>
+<ul><li><a href="https://www.acog.org/womens-health/experts-and-stories/the-latest/trying-to-get-pregnant-heres-when-to-have-sex" target="_blank" rel="noopener noreferrer">ACOG — Trying to Get Pregnant? Here's When to Have Sex</a></li>
+<li><a href="https://www.acog.org/clinical/clinical-guidance/committee-opinion/articles/2017/05/methods-for-estimating-the-due-date" target="_blank" rel="noopener noreferrer">ACOG — Methods for Estimating the Due Date</a></li>
+<li><a href="https://www.nhs.uk/pregnancy/finding-out/due-date-calculator/" target="_blank" rel="noopener noreferrer">NHS — Pregnancy Due Date Calculator</a></li></ul>
+<p class="cp-page-footer">CalcPro — ovulation and pregnancy dates are informational estimates, not medical advice or a method of birth control.</p></article></main></div><script>
+(() => {
+  'use strict';
+  const root = document.getElementById('calcpro-ovu-root');
+  if (!root) return;
+  const el = (id) => document.getElementById('calcpro-ovu-' + id);
+  const form = el('form');
+  const monthInput = el('month');
+  const dayInput = el('day');
+  const yearInput = el('year');
+  const cycleInput = el('cycle');
+  const result = el('result');
+  const error = el('error');
+  const picker = el('calendar-picker');
+  const pickerTrigger = el('date-picker-trigger');
+  const monthLabels = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const fullMonthLabels = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  const dayLabels = ['S','M','T','W','T','F','S'];
+  const DAY_MS = 86400000;
+  const toUTC = (year, month, day) => new Date(Date.UTC(year, month, day));
+  const addDays = (date, count) => new Date(date.getTime() + count * DAY_MS);
+  const ymd = (date) => date.getUTCFullYear() + '-' + String(date.getUTCMonth()+1).padStart(2,'0') + '-' + String(date.getUTCDate()).padStart(2,'0');
+  const longDate = (date) => `${monthLabels[date.getUTCMonth()]} ${date.getUTCDate()}, ${date.getUTCFullYear()}`;
+  const rangeDate = (a, b) => `${monthLabels[a.getUTCMonth()]} ${a.getUTCDate()} - ${monthLabels[b.getUTCMonth()]} ${b.getUTCDate()}`;
+  const inRange = (date, a, b) => date.getTime() >= a.getTime() && date.getTime() <= b.getTime();
+  const monthDays = (y, m) => toUTC(y, m + 1, 0).getUTCDate();
+  let calculations = [];
+  let selectedCycle = 0;
+  let displayedMonth = null;
+  let pickerMonth = null;
+
+  function createOption(value, label) {
+    const option = document.createElement('option');
+    option.value = String(value);
+    option.textContent = label;
+    return option;
+  }
+  monthLabels.forEach((name, i) => monthInput.append(createOption(i, name)));
+  for (let value = 22; value <= 44; value++) cycleInput.append(createOption(value, `${value} days`));
+  cycleInput.value = '28';
+  // Select today's local calendar date on first load, matching the reference's date default.
+  const today = new Date();
+  monthInput.value = String(today.getMonth());
+  yearInput.value = String(today.getFullYear());
+  function refreshDays() {
+    const oldDay = Number(dayInput.value) || today.getDate();
+    const y = Number(yearInput.value);
+    const m = Number(monthInput.value);
+    const max = Number.isInteger(y) && y >= 1900 && y <= 2100 ? monthDays(y, m) : 31;
+    dayInput.replaceChildren();
+    for (let d = 1; d <= max; d++) dayInput.append(createOption(d, String(d)));
+    dayInput.value = String(Math.min(oldDay, max));
+  }
+  refreshDays();
+  dayInput.value = String(today.getDate());
+
+  function getInputDate() {
+    const year = Number(yearInput.value);
+    const month = Number(monthInput.value);
+    const day = Number(dayInput.value);
+    if (yearInput.value.trim() === '' || !Number.isInteger(year) || year < 1900 || year > 2100) {
+      throw new Error('Enter a whole year between 1900 and 2100.');
+    }
+    if (!Number.isInteger(month) || month < 0 || month > 11 || !Number.isInteger(day) || day < 1 || day > monthDays(year, month)) {
+      throw new Error('Choose a valid first day of your last period.');
+    }
+    return toUTC(year, month, day);
+  }
+  function forecast(start, cycleDays) {
+    // For the supplied reference: peak = start + cycle − 14 days;
+    // ovulation window = peak ± 2 days; intercourse window = peak − 5 through peak + 2.
+    const peak = addDays(start, cycleDays - 14);
+    return {
+      start,
+      peak,
+      ovStart: addDays(peak, -2),
+      ovEnd: addDays(peak, 2),
+      sexStart: addDays(peak, -5),
+      sexEnd: addDays(peak, 2),
+      pregnancyTest: addDays(peak, 9),
+      nextPeriod: addDays(start, cycleDays),
+      due: addDays(start, cycleDays + 252) // 280 days after LMP, adjusted from 28-day cycle.
+    };
+  }
+  function makeCell(row, content, tag = 'td') {
+    const cell = document.createElement(tag);
+    cell.textContent = content;
+    row.append(cell);
+    return cell;
+  }
+  function drawKeyDates(item) {
+    const tbody = el('keydates');
+    tbody.replaceChildren();
+    const rows = [
+      ['Ovulation Window', rangeDate(item.ovStart, item.ovEnd)],
+      ['Most Probable Ovulation Date', longDate(item.peak)],
+      ['Intercourse Window for Pregnancy', rangeDate(item.sexStart, item.sexEnd)],
+      ['Pregnancy Test', longDate(item.pregnancyTest)],
+      ['Next Period Start', longDate(item.nextPeriod)],
+      ['Due Date if Pregnant', longDate(item.due)]
+    ];
+    for (const pair of rows) {
+      const row = document.createElement('tr');
+      makeCell(row, pair[0]);
+      makeCell(row, pair[1]);
+      tbody.append(row);
+    }
+  }
+  function drawCalendar() {
+    if (!calculations.length) return;
+    const item = calculations[selectedCycle];
+    const first = toUTC(displayedMonth.getUTCFullYear(), displayedMonth.getUTCMonth(), 1);
+    const year = first.getUTCFullYear();
+    const month = first.getUTCMonth();
+    el('month-name').textContent = `${fullMonthLabels[month]} ${year}`;
+    const grid = el('month-grid');
+    grid.replaceChildren();
+    for (const day of dayLabels) {
+      const head = document.createElement('div');
+      head.className = 'calcpro-ovu-weekday';
+      head.textContent = day;
+      grid.append(head);
+    }
+    const totalCells = Math.ceil((first.getUTCDay() + monthDays(year,month)) / 7) * 7;
+    for (let i = 0; i < totalCells; i++) {
+      const node = document.createElement('div');
+      const number = i - first.getUTCDay() + 1;
+      if (number >= 1 && number <= monthDays(year,month)) {
+        const date = toUTC(year,month,number);
+        node.textContent = String(number);
+        node.setAttribute('aria-label',longDate(date));
+        if (inRange(date,item.ovStart,item.ovEnd)) {
+          node.classList.add('calcpro-ovu-fertile');
+          node.title = 'Estimated ovulation window';
+        }
+        if (ymd(date) === ymd(item.peak)) {
+          node.classList.add('calcpro-ovu-peak');
+          node.title = 'Most probable ovulation date';
+        }
+      } else {
+        node.className = 'calcpro-ovu-empty';
+      }
+      grid.append(node);
+    }
+  }
+  function selectCycle(index) {
+    selectedCycle = index;
+    const item = calculations[index];
+    drawKeyDates(item);
+    displayedMonth = toUTC(item.peak.getUTCFullYear(), item.peak.getUTCMonth(), 1);
+    drawCalendar();
+    Array.from(el('six-cycles').children).forEach((row,i) => {
+      row.classList.toggle('calcpro-ovu-selected', i === index);
+      row.setAttribute('aria-selected', String(i === index));
+    });
+  }
+  function drawSixCycles() {
+    const tbody = el('six-cycles');
+    tbody.replaceChildren();
+    calculations.forEach((item, i) => {
+      const row = document.createElement('tr');
+      row.tabIndex = 0;
+      row.setAttribute('role','button');
+      row.setAttribute('aria-label',`Show cycle ${i+1} starting ${longDate(item.start)}`);
+      makeCell(row, longDate(item.start));
+      makeCell(row, rangeDate(item.ovStart, item.ovEnd));
+      makeCell(row, longDate(item.due));
+      row.addEventListener('click', () => selectCycle(i));
+      row.addEventListener('keydown', e => {
+        if(e.key === 'Enter' || e.key === ' ') {e.preventDefault(); selectCycle(i);}
+      });
+      tbody.append(row);
+    });
+  }
+  function calculate(evt) {
+    if (evt) evt.preventDefault();
+    error.textContent = '';
+    try {
+      const start = getInputDate();
+      const cycle = Number(cycleInput.value);
+      if (!Number.isInteger(cycle) || cycle < 22 || cycle > 44) throw new Error('Choose an average cycle length between 22 and 44 days.');
+      calculations = Array.from({length:6}, (_,i) => forecast(addDays(start,cycle*i),cycle));
+      drawSixCycles();
+      selectCycle(0);
+      el('instructions').hidden = true;
+      result.hidden = false;
+    } catch (err) {
+      error.textContent = err.message;
+    }
+  }
+  form.addEventListener('submit', calculate);
+  monthInput.addEventListener('change', refreshDays);
+  yearInput.addEventListener('change', refreshDays);
+  el('month-prev').addEventListener('click',()=>{ if(displayedMonth){ displayedMonth = toUTC(displayedMonth.getUTCFullYear(),displayedMonth.getUTCMonth()-1,1);drawCalendar(); }});
+  el('month-next').addEventListener('click',()=>{ if(displayedMonth){ displayedMonth = toUTC(displayedMonth.getUTCFullYear(),displayedMonth.getUTCMonth()+1,1);drawCalendar(); }});
+  el('print').addEventListener('click',()=>window.print());
+  function escapeCSV(value) { return '"' + String(value).replace(/"/g,'""') + '"'; }
+  el('save').addEventListener('click', () => {
+    if (!calculations.length) return;
+    const item = calculations[selectedCycle];
+    const rows = [
+      ['Ovulation Calculator Report',''],
+      ['Selected Period Start',longDate(item.start)],
+      ['Estimated Ovulation Window',rangeDate(item.ovStart,item.ovEnd)],
+      ['Most Probable Ovulation',longDate(item.peak)],
+      ['Intercourse Window for Pregnancy',rangeDate(item.sexStart,item.sexEnd)],
+      ['Pregnancy Test',longDate(item.pregnancyTest)],
+      ['Next Period Start',longDate(item.nextPeriod)],
+      ['Due Date If Pregnant',longDate(item.due)],
+      [],
+      ['Period Start','Ovulation Window','Due Date'],
+      ...calculations.map(c => [longDate(c.start),rangeDate(c.ovStart,c.ovEnd),longDate(c.due)]),
+      [],
+      ['Note','These are estimates and must not be used as birth control.']
+    ];
+    const csv = '\ufeff' + rows.map(row=>row.map(escapeCSV).join(',')).join('\r\n');
+    const url = URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8;'}));
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `ovulation-results-${ymd(item.start)}.csv`;
+    document.body.append(a);
+    a.click();
+    a.remove();
+    window.setTimeout(()=> URL.revokeObjectURL(url),1000);
+  });
+  function togglePicker(open) {
+    picker.dataset.open = String(open);
+    pickerTrigger.setAttribute('aria-expanded', String(open));
+    if (open) {
+      try {const chosen = getInputDate();pickerMonth=toUTC(chosen.getUTCFullYear(),chosen.getUTCMonth(),1);}
+      catch {const t=new Date();pickerMonth=toUTC(t.getFullYear(),t.getMonth(),1);}
+      drawPicker();
+    }
+  }
+  function drawPicker() {
+    if (!pickerMonth) return;
+    const y = pickerMonth.getUTCFullYear();
+    const m = pickerMonth.getUTCMonth();
+    el('pick-title').textContent = `${fullMonthLabels[m]} ${y}`;
+    const grid = el('pick-grid');
+    grid.replaceChildren();
+    dayLabels.forEach(label => { const heading=document.createElement('b'); heading.textContent=label; grid.append(heading); });
+    for(let i=0;i<toUTC(y,m,1).getUTCDay();i++) grid.append(document.createElement('span'));
+    for(let d=1; d<=monthDays(y,m);d++) {
+      const button = document.createElement('button');
+      button.type='button';
+      button.textContent=String(d);
+      button.setAttribute('aria-label',longDate(toUTC(y,m,d)));
+      if (y===Number(yearInput.value) && m===Number(monthInput.value) && d===Number(dayInput.value)) button.setAttribute('aria-current','date');
+      button.addEventListener('click',()=>{
+        if(y<1900 || y>2100) return;
+        yearInput.value=String(y);
+        monthInput.value=String(m);
+        refreshDays();
+        dayInput.value=String(d);
+        togglePicker(false);
+        pickerTrigger.focus();
+      });
+      grid.append(button);
+    }
+  }
+  pickerTrigger.addEventListener('click',()=>togglePicker(picker.dataset.open!=='true'));
+  el('pick-prev').addEventListener('click',()=>{pickerMonth=toUTC(pickerMonth.getUTCFullYear(),pickerMonth.getUTCMonth()-1,1);drawPicker();});
+  el('pick-next').addEventListener('click',()=>{pickerMonth=toUTC(pickerMonth.getUTCFullYear(),pickerMonth.getUTCMonth()+1,1);drawPicker();});
+  root.addEventListener('keydown',e=>{if(e.key==='Escape' && picker.dataset.open==='true'){togglePicker(false);pickerTrigger.focus();}});
+  document.addEventListener('pointerdown',e=>{if(picker.dataset.open==='true'&&!picker.contains(e.target)&&!pickerTrigger.contains(e.target))togglePicker(false);});
+})();
+
+</script><script defer src="/assets/js/data.js"></script>
+<script defer src="/assets/js/style.js?v=20261111-5"></script>
+</body></html>

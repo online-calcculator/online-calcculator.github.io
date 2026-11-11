@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US">
-<head>
-<meta charset="utf-8">
+<html lang="en"><head><meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="content-language" content="en">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,17 +11,487 @@
   <meta name="author" content="Commingsoon">
   <meta name="publisher" content="Commingsoon">
   <meta name="robots" content="noindex, nofollow, max-image-preview:large">
-  <link rel="stylesheet" href="/assets/css/style.css?v=20261111-1" crossorigin="anonymous" data-n-g="">
+  <link rel="stylesheet" href="/assets/css/style.css?v=20261111-4" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/doc_style.css" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/side_style.css" crossorigin="anonymous" data-n-g=""> 
   <!--ogtags-->
-  <!--schema-->
-  <!--style-->
-</head>
+  <!--schema--><style>
 
-<body>
-<!-- Main-header-page -->
-<script defer src="/assets/js/data.js"></script>
-<script defer src="/assets/js/style.js?v=20261111-1"></script>
-</body>
-</html>
+/* The prefix calcpro-fha- isolates every new style from CalcPro's global site CSS. */
+.calcpro-fha-calculator{--fha-forest:#4b841e;--fha-blue:#24557f;--fha-border:#bcc6ce;--fha-muted:#617181;color:#1d2c37;font:13px/1.4 Arial,Helvetica,sans-serif;width:100%;max-width:100%}
+.calcpro-fha-calculator *{box-sizing:border-box}
+.calcpro-fha-calculator button,.calcpro-fha-calculator input,.calcpro-fha-calculator select{font:inherit}
+.calcpro-fha-calculator button{cursor:pointer}
+.calcpro-fha-calculator button:focus-visible,.calcpro-fha-calculator input:focus-visible,.calcpro-fha-calculator select:focus-visible{outline:2px solid #2773b0;outline-offset:2px}
+.calcpro-fha-topline{background:#356696;color:#fff;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 10px;margin-bottom:8px;font-weight:700;min-height:40px}
+.calcpro-fha-topactions{display:flex;gap:10px;flex-shrink:0}
+.calcpro-fha-topactions button{border:0;background:none;color:#fff;text-decoration:underline;padding:2px 0;font-size:12px}
+.calcpro-fha-grid{display:grid;grid-template-columns:minmax(285px,0.91fr) minmax(0,1.25fr);gap:18px;align-items:start}
+.calcpro-fha-form{background:#f0f2f3;border:1px solid #bac5cd;padding:12px 10px 10px;min-width:0}
+.calcpro-fha-form-title{font-size:15px;color:#244f76;margin:0 0 9px;font-weight:700}
+.calcpro-fha-field{display:grid;grid-template-columns:43% minmax(0,57%);align-items:center;gap:4px;margin:0 3px 7px}
+.calcpro-fha-field>label{font-size:12px;line-height:1.22;text-align:right;padding-right:4px}
+.calcpro-fha-value{display:flex;align-items:center;gap:5px;min-width:0}
+.calcpro-fha-value input{width:0;min-width:0;flex:1 1 auto;height:29px;border:1px solid #7c98ad;background:#fff;border-radius:2px;padding:3px 6px;color:#182c3e}
+.calcpro-fha-value select{min-width:46px;max-width:100%;height:29px;border:1px solid #7c98ad;background:white;border-radius:2px;color:#182c3e;padding:2px 3px}
+.calcpro-fha-value input.calcpro-fha-year{max-width:71px;flex:0 1 71px}
+.calcpro-fha-value select[data-fha-field="mip_duration"]{width:100%}
+.calcpro-fha-value select[data-fha-field="start_month"],.calcpro-fha-value select[data-fha-field$="_month"]{flex:1 1 60px;min-width:59px}
+.calcpro-fha-unit{font-size:11px;white-space:nowrap;flex:0 0 auto;color:#314050}
+.calcpro-fha-check{margin:12px 4px 10px 10px;font-size:12px;font-weight:700}
+.calcpro-fha-check label{display:flex;align-items:center;gap:6px;cursor:pointer}
+.calcpro-fha-check input{accent-color:#306c9c}
+.calcpro-fha-link{display:block;margin:8px auto 10px;border:0;background:transparent;color:#075f9d;text-decoration:underline;font-weight:700}
+.calcpro-fha-more{border-top:1px solid #c6d0d9;margin-top:8px;padding-top:6px}
+.calcpro-fha-more[hidden],.calcpro-fha-optional[hidden],.calcpro-fha-errors[hidden],.calcpro-fha-biweekly[hidden]{display:none}
+.calcpro-fha-more h3{font-size:13px;color:#24557f;margin:11px 0 9px;text-align:center}
+.calcpro-fha-actions{display:flex;justify-content:center;gap:8px;margin:11px 0 5px}
+.calcpro-fha-actions button{border:0;border-radius:2px;color:white;padding:7px 14px;font-weight:700}
+.calcpro-fha-calculate{background:#4d8429}
+.calcpro-fha-calculate:hover{background:#396a20}
+.calcpro-fha-clear{background:#79838b}
+.calcpro-fha-clear:hover{background:#59646d}
+.calcpro-fha-calculate span{font-size:10px;margin-left:7px}
+.calcpro-fha-input-note{font-size:11px;color:#586978;text-align:center;margin:9px 2px 1px}
+.calcpro-fha-errors{background:#fff1f0;border-left:3px solid #a92f2c;padding:9px;color:#8b2525;margin-top:9px;font-weight:700}
+.calcpro-fha-results{min-width:0;align-self:start}
+.calcpro-fha-result-head{background:var(--fha-forest);color:white;display:flex;align-items:center;justify-content:space-between;padding:7px 10px;gap:4px;font-size:18px;font-weight:700}
+.calcpro-fha-result-head strong{font-size:20px;white-space:nowrap}
+.calcpro-fha-result-content{padding:4px 0 0}
+.calcpro-fha-breakdown,.calcpro-fha-facts{width:100%;border-collapse:collapse;font-size:12px;font-variant-numeric:tabular-nums}
+.calcpro-fha-breakdown th{font-size:11px;text-align:right;border-bottom:1px solid #aab7bf;padding:3px 4px}
+.calcpro-fha-breakdown th:first-child{text-align:left}
+.calcpro-fha-breakdown td,.calcpro-fha-facts td{padding:4px 4px;vertical-align:top}
+.calcpro-fha-breakdown td:not(:first-child),.calcpro-fha-facts td:last-child{text-align:right;white-space:nowrap}
+.calcpro-fha-breakdown tr:nth-child(odd),.calcpro-fha-facts tr:nth-child(odd){background:#edf1f3}
+.calcpro-fha-breakdown tr.calcpro-fha-total{font-weight:700;background:#e3e9ed;border-top:1px solid #b2c0c9}
+.calcpro-fha-facts{border-top:1px solid #ccd7df;margin-top:7px}
+.calcpro-fha-facts td:first-child{width:62%}
+.calcpro-fha-facts tr:first-child{font-weight:700}
+.calcpro-fha-pie-flex{display:flex;align-items:center;justify-content:center;gap:9px;padding:10px 2px 3px;min-height:126px}
+.calcpro-fha-donut{width:130px;max-width:40%;height:auto;flex:0 1 130px;overflow:visible}
+.calcpro-fha-pie-legend{font-size:11px;display:grid;gap:3px;flex:1;min-width:0}
+.calcpro-fha-pie-legend div{display:flex;gap:5px;align-items:center;line-height:1.17}
+.calcpro-fha-swatch{height:10px;width:10px;flex:none;display:inline-block;border-radius:2px}
+.calcpro-fha-caption{font-size:11px;margin:9px 2px;color:#576674}
+.calcpro-fha-biweekly{background:#eef7ec;border-left:4px solid #528c36;margin:9px 0;padding:8px;font-size:12px}
+.calcpro-fha-biweekly strong{color:#336b1c}
+.calcpro-fha-biweekly p{margin:4px 0}
+.calcpro-fha-status{font-size:12px;min-height:18px;color:#386b1f;margin:8px 0}
+.calcpro-fha-amort{margin-top:13px}
+.calcpro-fha-amort-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:0 0 7px}
+.calcpro-fha-amort-head h2{font-size:18px;color:#003d71;margin:0}
+.calcpro-fha-amort-head button{background:#edf3f8;border:1px solid #b3c3d1;color:#164a72;border-radius:3px;padding:5px 8px;font-size:11px}
+.calcpro-fha-amort-toolbar{display:flex;justify-content:space-between;gap:6px;align-items:center;margin-bottom:8px}
+.calcpro-fha-tabs{display:flex;gap:4px}
+.calcpro-fha-tabs button{background:transparent;color:#126194;text-decoration:underline;border:0;padding:5px 6px;font-size:12px}
+.calcpro-fha-tabs button.calcpro-fha-tab-active{background:#346998;color:#fff;text-decoration:none;border-radius:2px;font-weight:700}
+.calcpro-fha-count{font-size:11px;color:#526778}
+.calcpro-fha-schedule-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,0.95fr);gap:12px;align-items:start}
+.calcpro-fha-table-scroll{max-width:100%;overflow-x:auto;max-height:720px;overflow-y:auto;border:1px solid #c1ccd4}
+.calcpro-fha-schedule{border-collapse:collapse;width:100%;font-size:11px;font-variant-numeric:tabular-nums}
+.calcpro-fha-schedule th,.calcpro-fha-schedule td{border:1px solid #c6d1db;padding:6px 4px;text-align:right;white-space:nowrap}
+.calcpro-fha-schedule th{position:sticky;top:0;background:#316594;color:#fff;z-index:1;font-weight:700}
+.calcpro-fha-schedule th:nth-child(2),.calcpro-fha-schedule td:nth-child(2){text-align:left}
+.calcpro-fha-schedule tr:nth-child(even){background:#f3f7fa}
+.calcpro-fha-chart-area{min-width:0;border:1px solid #d8e0e6;border-radius:3px;padding:7px;background:#fff}
+.calcpro-fha-chart-area svg{width:100%;display:block;height:auto}
+.calcpro-fha-chart-area p{font-size:11px;text-align:center;color:#697988;margin:3px 0 0}
+.calcpro-fha-calculator .calcpro-fha-hint{color:#617181}
+@media(max-width:660px){.calcpro-fha-grid{grid-template-columns:1fr}.calcpro-fha-form{max-width:none}.calcpro-fha-field{grid-template-columns:minmax(115px,38%) minmax(0,62%)}.calcpro-fha-schedule-grid{grid-template-columns:1fr}.calcpro-fha-chart-area{order:-1}.calcpro-fha-table-scroll{max-height:580px}.calcpro-fha-result-head{font-size:17px}.calcpro-fha-result-head strong{font-size:19px}}
+@media(max-width:390px){.calcpro-fha-topline{flex-direction:column;align-items:flex-start}.calcpro-fha-field{grid-template-columns:minmax(106px,40%) minmax(0,60%)}.calcpro-fha-value{gap:3px}.calcpro-fha-field>label{font-size:11px}.calcpro-fha-breakdown,.calcpro-fha-facts{font-size:11px}.calcpro-fha-result-head strong{font-size:18px}.calcpro-fha-value input{padding:3px 4px}}
+@media print{.calcpro-fha-topactions,.calcpro-fha-form,.calcpro-fha-actions,.calcpro-fha-amort-head button,.calcpro-fha-tabs,.calcpro-fha-input-note{display:none!important}.calcpro-fha-grid,.calcpro-fha-schedule-grid{display:block}.calcpro-fha-calculator{font-size:12px}.calcpro-fha-table-scroll{max-height:none;overflow:visible}.calcpro-fha-chart-area{max-width:420px;margin:15px auto}.calcpro-fha-breakdown,.calcpro-fha-facts{font-size:12px}.calcpro-fha-results{width:100%}}
+
+</style>
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / FHA Loan Calculator</nav><h1 class="cp-page-title">FHA Loan Calculator</h1><p class="cp-intro">Calculate an estimated FHA mortgage payment and total housing costs, including FHA mortgage insurance premiums, property tax, homeowners insurance, extra principal payments, and a detailed amortization schedule.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-fha-calculator" id="calcpro-fha-calculator">
+ <div class="calcpro-fha-topline"><span>Modify the values and select Calculate to update your estimate</span><div class="calcpro-fha-topactions"><button type="button" id="calcpro-fha-print">Print</button><button type="button" id="calcpro-fha-save">Save estimate</button></div></div>
+ <div class="calcpro-fha-grid">
+  <form class="calcpro-fha-form" id="calcpro-fha-form" novalidate><h2 class="calcpro-fha-form-title">Loan and property details</h2>
+   <div class="calcpro-fha-field"><label for="calcpro-fha-home-price">Home Price</label><div class="calcpro-fha-value"><input id="calcpro-fha-home-price" name="home_price" data-fha-field="home_price" type="text" inputmode="decimal" value="500,000" aria-label="Home Price" autocomplete="off"></div></div>
+<div class="calcpro-fha-field"><label for="calcpro-fha-down-payment">Down Payment</label><div class="calcpro-fha-value"><input id="calcpro-fha-down-payment" name="down_payment" data-fha-field="down_payment" type="text" inputmode="decimal" value="3.5" aria-label="Down Payment" autocomplete="off"><select data-fha-field="down_payment_unit" id="calcpro-fha-down-payment-unit" aria-label="Down Payment unit"><option value="percent">%</option><option value="dollar">$</option></select></div></div>
+<div class="calcpro-fha-field"><label for="calcpro-fha-loan-term">Loan Term</label><div class="calcpro-fha-value"><input id="calcpro-fha-loan-term" name="loan_term" data-fha-field="loan_term" type="text" inputmode="decimal" value="30" aria-label="Loan Term" autocomplete="off"><span class="calcpro-fha-unit">years</span></div></div>
+<div class="calcpro-fha-field"><label for="calcpro-fha-interest-rate">Interest Rate</label><div class="calcpro-fha-value"><input id="calcpro-fha-interest-rate" name="interest_rate" data-fha-field="interest_rate" type="text" inputmode="decimal" value="7.108" aria-label="Interest Rate" autocomplete="off"><span class="calcpro-fha-unit">%</span></div></div>
+<div class="calcpro-fha-field"><label for="calcpro-fha-upfront-mip">Upfront FHA MIP</label><div class="calcpro-fha-value"><input id="calcpro-fha-upfront-mip" name="upfront_mip" data-fha-field="upfront_mip" type="text" inputmode="decimal" value="1.75" aria-label="Upfront FHA MIP" autocomplete="off"><span class="calcpro-fha-unit">%</span></div></div>
+<div class="calcpro-fha-field"><label for="calcpro-fha-annual-mip">Annual FHA MIP</label><div class="calcpro-fha-value"><input id="calcpro-fha-annual-mip" name="annual_mip" data-fha-field="annual_mip" type="text" inputmode="decimal" value="0.55" aria-label="Annual FHA MIP" autocomplete="off"><span class="calcpro-fha-unit">%</span></div></div>
+<div class="calcpro-fha-field"><label for="calcpro-fha-mip-duration">Annual FHA MIP Duration</label><div class="calcpro-fha-value"><select id="calcpro-fha-mip-duration" data-fha-field="mip_duration"><option value="term">Loan Term</option><option value="11">11 Years</option><option value="5">5 Years</option><option value="78">78% LTV (custom scenario)</option><option value="none">No Annual MIP</option></select></div></div>
+<div class="calcpro-fha-check"><label><input type="checkbox" data-fha-field="include_optionals" checked> Include Optionals Below</label></div>
+<div class="calcpro-fha-optional">
+<div class="calcpro-fha-field"><label for="calcpro-fha-property-tax">Property Taxes</label><div class="calcpro-fha-value"><input id="calcpro-fha-property-tax" name="property_tax" data-fha-field="property_tax" type="text" inputmode="decimal" value="1.2" aria-label="Property Taxes" autocomplete="off"><select data-fha-field="property_tax_unit" id="calcpro-fha-property-tax-unit" aria-label="Property Taxes unit"><option value="percent">%</option><option value="dollar">$/year</option></select></div></div>
+<div class="calcpro-fha-field"><label for="calcpro-fha-home-insurance">Home Insurance</label><div class="calcpro-fha-value"><input id="calcpro-fha-home-insurance" name="home_insurance" data-fha-field="home_insurance" type="text" inputmode="decimal" value="2,500" aria-label="Home Insurance" autocomplete="off"><span class="calcpro-fha-unit">/year</span></div></div>
+<div class="calcpro-fha-field"><label for="calcpro-fha-hoa-fee">HOA Fee</label><div class="calcpro-fha-value"><input id="calcpro-fha-hoa-fee" name="hoa_fee" data-fha-field="hoa_fee" type="text" inputmode="decimal" value="0" aria-label="HOA Fee" autocomplete="off"><span class="calcpro-fha-unit">/year</span></div></div>
+<div class="calcpro-fha-field"><label for="calcpro-fha-other-cost">Other Costs</label><div class="calcpro-fha-value"><input id="calcpro-fha-other-cost" name="other_cost" data-fha-field="other_cost" type="text" inputmode="decimal" value="5,000" aria-label="Other Costs" autocomplete="off"><span class="calcpro-fha-unit">/year</span></div></div>
+</div>
+<div class="calcpro-fha-field"><label for="calcpro-fha-start-month">Start Date</label><div class="calcpro-fha-value"><select id="calcpro-fha-start-month" data-fha-field="start_month" aria-label="Start Date month"><option value="1">Jan</option><option value="2">Feb</option><option value="3">Mar</option><option value="4">Apr</option><option value="5">May</option><option value="6">Jun</option><option value="7">Jul</option><option value="8">Aug</option><option value="9">Sep</option><option value="10">Oct</option><option value="11" selected>Nov</option><option value="12">Dec</option></select><input id="calcpro-fha-start-year" class="calcpro-fha-year" data-fha-field="start_year" type="text" inputmode="numeric" value="2026" aria-label="Start Date year"></div></div>
+<button class="calcpro-fha-link" type="button" id="calcpro-fha-toggle-more" aria-expanded="false" aria-controls="calcpro-fha-more">+ More Options</button>
+<div class="calcpro-fha-more" id="calcpro-fha-more" hidden><h3>Annual Tax &amp; Cost Increase</h3>
+<div class="calcpro-fha-field"><label for="calcpro-fha-tax-increase">Property Tax Increase</label><div class="calcpro-fha-value"><input id="calcpro-fha-tax-increase" name="tax_increase" data-fha-field="tax_increase" type="text" inputmode="decimal" value="0" aria-label="Property Tax Increase" autocomplete="off"><span class="calcpro-fha-unit">% /year</span></div></div>
+<div class="calcpro-fha-field"><label for="calcpro-fha-insurance-increase">Home Insurance Increase</label><div class="calcpro-fha-value"><input id="calcpro-fha-insurance-increase" name="insurance_increase" data-fha-field="insurance_increase" type="text" inputmode="decimal" value="0" aria-label="Home Insurance Increase" autocomplete="off"><span class="calcpro-fha-unit">% /year</span></div></div>
+<div class="calcpro-fha-field"><label for="calcpro-fha-hoa-increase">HOA Fee Increase</label><div class="calcpro-fha-value"><input id="calcpro-fha-hoa-increase" name="hoa_increase" data-fha-field="hoa_increase" type="text" inputmode="decimal" value="0" aria-label="HOA Fee Increase" autocomplete="off"><span class="calcpro-fha-unit">% /year</span></div></div>
+<div class="calcpro-fha-field"><label for="calcpro-fha-other-increase">Other Cost Increase</label><div class="calcpro-fha-value"><input id="calcpro-fha-other-increase" name="other_increase" data-fha-field="other_increase" type="text" inputmode="decimal" value="0" aria-label="Other Cost Increase" autocomplete="off"><span class="calcpro-fha-unit">% /year</span></div></div>
+<h3>Extra Principal Payments</h3>
+<div class="calcpro-fha-field"><label for="calcpro-fha-extra-monthly">Extra Monthly Pay</label><div class="calcpro-fha-value"><input id="calcpro-fha-extra-monthly" name="extra_monthly" data-fha-field="extra_monthly" type="text" inputmode="decimal" value="0" aria-label="Extra Monthly Pay" autocomplete="off"><span class="calcpro-fha-unit">/month</span></div></div>
+<div class="calcpro-fha-field"><label for="calcpro-fha-extra_monthly_start-month">Monthly Pay Starts</label><div class="calcpro-fha-value"><select id="calcpro-fha-extra_monthly_start-month" data-fha-field="extra_monthly_start_month" aria-label="Monthly Pay Starts month"><option value="1">Jan</option><option value="2">Feb</option><option value="3">Mar</option><option value="4">Apr</option><option value="5">May</option><option value="6">Jun</option><option value="7">Jul</option><option value="8">Aug</option><option value="9">Sep</option><option value="10">Oct</option><option value="11" selected>Nov</option><option value="12">Dec</option></select><input id="calcpro-fha-extra_monthly_start-year" class="calcpro-fha-year" data-fha-field="extra_monthly_start_year" type="text" inputmode="numeric" value="2026" aria-label="Monthly Pay Starts year"></div></div>
+<div class="calcpro-fha-field"><label for="calcpro-fha-extra-yearly">Extra Yearly Pay</label><div class="calcpro-fha-value"><input id="calcpro-fha-extra-yearly" name="extra_yearly" data-fha-field="extra_yearly" type="text" inputmode="decimal" value="0" aria-label="Extra Yearly Pay" autocomplete="off"><span class="calcpro-fha-unit">/year</span></div></div>
+<div class="calcpro-fha-field"><label for="calcpro-fha-extra_yearly_start-month">Yearly Pay Starts</label><div class="calcpro-fha-value"><select id="calcpro-fha-extra_yearly_start-month" data-fha-field="extra_yearly_start_month" aria-label="Yearly Pay Starts month"><option value="1">Jan</option><option value="2">Feb</option><option value="3">Mar</option><option value="4">Apr</option><option value="5">May</option><option value="6">Jun</option><option value="7">Jul</option><option value="8">Aug</option><option value="9">Sep</option><option value="10">Oct</option><option value="11" selected>Nov</option><option value="12">Dec</option></select><input id="calcpro-fha-extra_yearly_start-year" class="calcpro-fha-year" data-fha-field="extra_yearly_start_year" type="text" inputmode="numeric" value="2026" aria-label="Yearly Pay Starts year"></div></div>
+<div class="calcpro-fha-field"><label for="calcpro-fha-extra-one-time">Extra One-time Pay</label><div class="calcpro-fha-value"><input id="calcpro-fha-extra-one-time" name="extra_one_time" data-fha-field="extra_one_time" type="text" inputmode="decimal" value="0" aria-label="Extra One-time Pay" autocomplete="off"><span class="calcpro-fha-unit">once</span></div></div>
+<div class="calcpro-fha-field"><label for="calcpro-fha-extra_one_time_date-month">One-time Pay Date</label><div class="calcpro-fha-value"><select id="calcpro-fha-extra_one_time_date-month" data-fha-field="extra_one_time_date_month" aria-label="One-time Pay Date month"><option value="1">Jan</option><option value="2">Feb</option><option value="3">Mar</option><option value="4">Apr</option><option value="5">May</option><option value="6">Jun</option><option value="7">Jul</option><option value="8">Aug</option><option value="9">Sep</option><option value="10">Oct</option><option value="11" selected>Nov</option><option value="12">Dec</option></select><input id="calcpro-fha-extra_one_time_date-year" class="calcpro-fha-year" data-fha-field="extra_one_time_date_year" type="text" inputmode="numeric" value="2026" aria-label="One-time Pay Date year"></div></div>
+<div class="calcpro-fha-check"><label><input type="checkbox" data-fha-field="biweekly"> Show Biweekly Payback Results</label></div>
+</div>
+<div class="calcpro-fha-actions"><button class="calcpro-fha-calculate" type="submit">Calculate <span aria-hidden="true">▶</span></button><button class="calcpro-fha-clear" id="calcpro-fha-clear" type="button">Clear</button></div>
+<p class="calcpro-fha-input-note">Rates are editable assumptions, not live mortgage offers. FHA eligibility and local loan limits are not determined here.</p>
+   <div id="calcpro-fha-errors" role="alert" aria-live="assertive" class="calcpro-fha-errors" hidden></div>
+  </form>
+  <section class="calcpro-fha-results" aria-label="FHA loan payment results" id="calcpro-fha-results">
+    <div class="calcpro-fha-result-head"><span>Monthly Pay:</span> <strong id="calcpro-fha-main-pay">—</strong></div>
+    <div class="calcpro-fha-result-content">
+      <table class="calcpro-fha-breakdown" aria-label="Payment and lifetime cost breakdown"><thead><tr><th scope="col">Cost</th><th scope="col">Monthly*</th><th scope="col">Total</th></tr></thead><tbody id="calcpro-fha-breakdown-body"></tbody></table>
+      <div class="calcpro-fha-pie-flex"><svg class="calcpro-fha-donut" id="calcpro-fha-donut" viewBox="0 0 150 150" role="img" aria-label="Chart showing lifetime mortgage cost breakdown"></svg><div class="calcpro-fha-pie-legend" id="calcpro-fha-pie-legend"></div></div>
+      <table class="calcpro-fha-facts" aria-label="Loan summary"><tbody id="calcpro-fha-facts-body"></tbody></table>
+      <p class="calcpro-fha-caption">*Monthly rows show the first scheduled month; totals include projected increases, applicable MIP duration, and any extra payments.</p>
+      <div class="calcpro-fha-biweekly" id="calcpro-fha-biweekly-result" hidden></div>
+    </div>
+  </section>
+ </div>
+ <p id="calcpro-fha-status" class="calcpro-fha-status" role="status" aria-live="polite"></p>
+ <section class="calcpro-fha-amort" aria-labelledby="calcpro-fha-amort-title">
+   <div class="calcpro-fha-amort-head"><h2 id="calcpro-fha-amort-title">Amortization schedule</h2><button type="button" id="calcpro-fha-csv">Export schedule CSV</button></div>
+   <div class="calcpro-fha-amort-toolbar"><div class="calcpro-fha-tabs" role="group" aria-label="Amortization display"><button type="button" data-fha-view="annual" aria-pressed="true" class="calcpro-fha-tab-active">Annual Schedule</button><button type="button" data-fha-view="monthly" aria-pressed="false">Monthly Schedule</button></div><span id="calcpro-fha-amort-count" class="calcpro-fha-count"></span></div>
+   <div class="calcpro-fha-schedule-grid">
+    <div class="calcpro-fha-table-scroll" tabindex="0" role="region" aria-label="Scrollable amortization table"><table class="calcpro-fha-schedule"><thead><tr><th scope="col">Year / Mo.</th><th scope="col">Date</th><th scope="col">Interest</th><th scope="col">Principal</th><th scope="col">Ending Balance</th></tr></thead><tbody id="calcpro-fha-schedule-body"></tbody></table></div>
+    <div class="calcpro-fha-chart-area"><svg id="calcpro-fha-chart" viewBox="0 0 440 270" role="img" aria-label="Loan balance, cumulative interest, and principal paid over time"></svg><p>Balance, cumulative interest, and principal paid over the loan term</p></div>
+   </div>
+ </section>
+</div></section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><!-- REPLACE these links with real related tools for each calculator; verify live slugs. --><a href="retirement-calculator.html">Retirement</a><a href="roth-ira-calculator.html">Roth IRA</a><a href="investment-calculator.html">Investment</a><a href="compound-interest-calculator.html">Compound Interest</a><a href="annuity-payout-calculator.html">Annuity Payout</a><a href="pension-calculator.html">Pension</a><a href="inflation-calculator.html">Inflation</a><a href="future-value-calculator.html">Future Value</a><a href="income-tax-calculator.html">Income Tax</a><a href="savings-calculator.html">Savings</a><a href="mortgage-calculator.html">Mortgage</a><a href="loan-calculator.html">Loan</a></div></section></aside><article class="cp-article"><h2>How to Use the FHA Loan Calculator</h2>
+<p>Enter the purchase price and down payment, choose the repayment term, and enter the annual mortgage interest rate. The calculator defaults to a 1.75% upfront FHA mortgage insurance premium (MIP) and a 0.55% annual MIP, but you can edit both rates to match a lender quote and your FHA loan category.</p>
+<p>Use <strong>Include Optionals Below</strong> for property tax, homeowners insurance, HOA dues, and other yearly expenses. Select <strong>More Options</strong> to model annual expense increases, extra monthly or yearly principal payments, or a one-time prepayment. The results update in place after Calculate. The amortization section switches between annual and monthly schedules and offers CSV export.</p>
+<h2>How FHA Mortgage Payments Are Calculated</h2>
+<p><strong>Base loan</strong> = home price − down payment. <strong>Upfront MIP</strong> = base loan × upfront MIP rate. When financed, the starting principal is the base loan plus upfront MIP.</p>
+<p>For a fixed-rate mortgage, the monthly principal-and-interest payment is <strong>M = P × r ÷ [1 − (1 + r)<sup>−n</sup>]</strong>, where P is financed principal, r is the annual interest rate divided by 12, and n is the term in months. For a zero-interest loan, payment equals P ÷ n. Taxes, insurance, HOA costs, and annual FHA MIP are added separately.</p>
+<p>FHA's monthly annual-MIP projection uses the scheduled outstanding loan balance rather than treating the original principal as unchanged throughout the term. This calculator estimates the yearly premium from the average scheduled base balance, spread over 12 payments; your servicer's premium calculation and rounding may differ. Added principal payments shorten the repayment schedule but do not automatically reprice the FHA insurance rate.</p>
+<h3>Worked Example</h3>
+<p>For a $500,000 purchase with 3.5% down, the down payment is $17,500 and the base loan is $482,500. At a 1.75% upfront MIP, the financed premium is $8,443.75 and the starting loan balance is <strong>$490,943.75</strong>. Enter an annual interest rate and term above to calculate the amortizing monthly payment and the remaining housing costs.</p>
+<h2>Understanding FHA Mortgage Insurance</h2>
+<p>For many modern FHA purchase loans, the upfront MIP rate is 1.75% of the base loan amount. Annual MIP rates vary with the original loan size, term, and loan-to-value ratio. For FHA loans with an original loan-to-value ratio of 90% or less, annual MIP generally lasts 11 years; above 90%, it generally runs for the loan term. Older or special-case loans can have different rules. The 5-year and 78%-LTV options above are custom or legacy-style scenarios, not a promise of current automatic FHA cancellation.</p>
+<p>Use your lender's annual-MIP rate and term-specific program details for a decision-ready estimate. This tool does not determine whether your property qualifies under FHA local loan limits, whether the loan meets underwriting requirements, or whether your escrow payment will change.</p>
+<h2>Frequently Asked Questions</h2>
+<h3>Is the green monthly payment my entire monthly housing payment?</h3><p>No. The green figure is the scheduled mortgage principal-and-interest payment. The <strong>Total Out-of-Pocket</strong> row adds projected property tax, homeowners insurance, annual FHA MIP, HOA fees, and other selected costs. The down payment and any separate closing costs are excluded from this monthly total.</p>
+<h3>Can I remove FHA mortgage insurance after 20% equity?</h3><p>Not necessarily. FHA annual-MIP duration for many newer loans is tied to the <em>original</em> loan-to-value ratio rather than a later 80% or 78% balance milestone. For a loan originated with more than 90% LTV, annual MIP generally remains for the full mortgage term unless the loan is refinanced or otherwise paid off.</p>
+<h3>Will extra principal payments reduce my monthly payment?</h3><p>No. The regular principal-and-interest payment stays fixed in this model; extra payments reduce the outstanding principal and typically shorten the payoff time and lower interest expense. Your lender may handle recasting or other payment changes differently.</p>
+<h3>What is the biweekly comparison?</h3><p>The optional comparison divides the normal principal-and-interest installment in half and pays it 26 times per year, equivalent to 13 full installments annually. It uses an approximate 26-period interest model and excludes separately entered extra payments, property expenses, and annual FHA MIP.</p>
+<h2>Sources and Assumptions</h2><p>The calculations follow the standard fixed-rate amortization formula. FHA insurance guidance: <a href="https://answers.hud.gov/FHA/s/article/What-is-the-FHA-Mortgage-Insurance-Premium-structure-for-forward-mortgage-loans" rel="noopener noreferrer" target="_blank">HUD mortgage insurance premium structure</a>, <a href="https://www.hud.gov/hud-partners/housing-premium-calculation" rel="noopener noreferrer" target="_blank">HUD monthly MIP calculation</a>, and <a href="https://entp.hud.gov/sfohlp/f17updbal.cfm" rel="noopener noreferrer" target="_blank">HUD FHA MIP duration guidance</a>. Estimates assume a fixed interest rate, fixed annual MIP percentage and scheduled yearly cost changes; lender-specific disclosures control actual charges.</p>
+<p class="cp-page-footer">CalcPro — estimates are informational and are not mortgage, tax, or legal advice.</p></article></main></div><script>
+(function(){
+ 'use strict';
+ const root=document.getElementById('calcpro-fha-calculator');
+ if(!root) return;
+ const form=root.querySelector('#calcpro-fha-form');
+ const $=(s)=>root.querySelector(s);
+ const field=(key)=>root.querySelector('[data-fha-field="'+key+'"]');
+ const text=(id,value)=>{const el=$(id); if(el) el.textContent=value;};
+ const fmtMoney=(value,dp=2)=>new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',minimumFractionDigits:dp,maximumFractionDigits:dp}).format(Math.abs(value)<0.005?0:value);
+ const fmtNumber=(value)=>new Intl.NumberFormat('en-US',{maximumFractionDigits:0}).format(value);
+ const roundCents=(n)=>Math.round((n+Number.EPSILON)*100)/100;
+ const months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+ const monthKey=(m,y)=>y*12+m-1;
+ const monthDate=(startM,startY,delta)=>new Date(startY,startM-1+delta,1);
+ const monthLabel=(date)=>months[date.getMonth()]+' '+date.getFullYear();
+ const shortDate=(date)=>String(date.getMonth()+1).padStart(2,'0')+'/'+String(date.getFullYear()).slice(-2);
+ const interestColors=['#367fc0','#84b329','#b63228','#15a1be','#774a9d','#d53b88'];
+ let current=null; let view='annual';
+ function numberField(key,min,max,label){
+   const raw=field(key).value.trim();
+   const normal=raw.replace(/[,$%\s]/g,'');
+   if(raw===''||normal===''||!/^[-+]?(?:\d+(?:\.\d*)?|\.\d+)$/.test(normal)) throw Error('Enter a valid number for '+label+'.');
+   const n=Number(normal);if(!Number.isFinite(n)||n<min||n>max) throw Error(label+' must be between '+min+' and '+max+'.');
+   return n;
+ }
+ function dateField(prefix){
+   const year=numberField(prefix+'_year',1900,2200,prefix.replaceAll('_',' ')+' year');
+   if(!Number.isInteger(year)) throw Error('Date years must be whole numbers.');
+   return {m:Number(field(prefix+'_month').value),y:year};
+ }
+ function collect(){
+   const v={};
+   v.price=numberField('home_price',1,1000000000,'Home price');
+   v.downValue=numberField('down_payment',0,1000000000,'Down payment');
+   v.downUnit=field('down_payment_unit').value;
+   if(v.downUnit==='percent'&&v.downValue>=100)throw Error('Down payment must be less than 100%.');
+   v.down=v.downUnit==='percent'?v.price*v.downValue/100:v.downValue;
+   if(v.down>=v.price)throw Error('Down payment must be less than the home price.');
+   v.years=numberField('loan_term',1,30,'Loan term');
+   if(!Number.isInteger(v.years))throw Error('Loan term must be a whole number of years.');
+   v.rate=numberField('interest_rate',0,100,'Interest rate');
+   v.upfront=numberField('upfront_mip',0,10,'Upfront FHA MIP');
+   v.annual=numberField('annual_mip',0,10,'Annual FHA MIP');
+   v.duration=field('mip_duration').value;
+   v.include=field('include_optionals').checked;
+   v.taxValue=numberField('property_tax',0,100000000,'Property taxes');
+   v.taxUnit=field('property_tax_unit').value;
+   if(v.taxUnit==='percent'&&v.taxValue>100)throw Error('Property taxes cannot exceed 100% of home price.');
+   v.insurance=numberField('home_insurance',0,100000000,'Home insurance');
+   v.hoa=numberField('hoa_fee',0,100000000,'HOA fee');
+   v.other=numberField('other_cost',0,100000000,'Other costs');
+   v.start=dateField('start');
+   v.taxGrowth=numberField('tax_increase',-99,100,'Property tax increase');
+   v.insGrowth=numberField('insurance_increase',-99,100,'Home insurance increase');
+   v.hoaGrowth=numberField('hoa_increase',-99,100,'HOA increase');
+   v.otherGrowth=numberField('other_increase',-99,100,'Other cost increase');
+   v.extraMonthly=numberField('extra_monthly',0,100000000,'Extra monthly payment');
+   v.extraMonthlyDate=dateField('extra_monthly_start');
+   v.extraYearly=numberField('extra_yearly',0,100000000,'Extra yearly payment');
+   v.extraYearlyDate=dateField('extra_yearly_start');
+   v.extraOnce=numberField('extra_one_time',0,100000000,'Extra one-time payment');
+   v.extraOnceDate=dateField('extra_one_time_date');
+   v.biweekly=field('biweekly').checked;
+   return v;
+ }
+ function normalPayment(balance,apr,monthsCount){
+   const r=apr/1200;
+   return r===0?balance/monthsCount:balance*r/(1-Math.pow(1+r,-monthsCount));
+ }
+ // MIP projection uses each year's average scheduled beginning base balance,
+ // before optional accelerated repayment; annual premium is assessed in equal monthly amounts.
+ function getMips(base,financeFactor,rate,years,annualPct){
+   const total=years*12;const pay=normalPayment(base*financeFactor,rate,total);
+   const sums=new Array(years).fill(0);let balance=base*financeFactor;
+   for(let i=0;i<total;i++){
+     sums[Math.floor(i/12)]+=balance/financeFactor;
+     const interest=balance*rate/1200;
+     balance=Math.max(0,balance+interest-pay);
+   }
+   return sums.map(s=>roundCents(s/12*annualPct/1200));
+ }
+ function calculate(v){
+   const base=v.price-v.down;const upfrontCost=base*v.upfront/100;
+   const factor=1+v.upfront/100;const principal=base+upfrontCost;
+   const duration=v.years*12;const rateM=v.rate/1200;
+   const normal=normalPayment(principal,v.rate,duration);
+   const yearlyMIP=getMips(base,factor,v.rate,v.years,v.annual);
+   const annualTax=v.include?(v.taxUnit==='percent'?v.price*v.taxValue/100:v.taxValue):0;
+   const annualIns=v.include?v.insurance:0;
+   const annualHoa=v.include?v.hoa:0;
+   const annualOther=v.include?v.other:0;
+   const rows=[];
+   let balance=principal,totInterest=0,totPrincipal=0,totMortgage=0,totTax=0,totIns=0,totHoa=0,totOther=0,totMip=0,totExtra=0;
+   for(let i=0;i<duration;i++){
+     if(balance<0.000001)break;
+     const d=monthDate(v.start.m,v.start.y,i+1);
+     const currMonthKey=monthKey(d.getMonth()+1,d.getFullYear());
+     const yearIndex=Math.floor(i/12);
+     const growth=(amount,pct)=>amount*Math.pow(1+pct/100,yearIndex)/12;
+     const tax=growth(annualTax,v.taxGrowth);
+     const ins=growth(annualIns,v.insGrowth);
+     const hoa=growth(annualHoa,v.hoaGrowth);
+     const other=growth(annualOther,v.otherGrowth);
+     let mip=0;
+     if(v.duration==='term'||v.duration==='11'&&i<132||v.duration==='5'&&i<60||v.duration==='78'&&balance/factor/v.price>0.78+1e-10){
+       mip=yearlyMIP[yearIndex]||0;
+     }
+     let extra=0;
+     if(v.extraMonthly>0&&currMonthKey>=monthKey(v.extraMonthlyDate.m,v.extraMonthlyDate.y))extra+=v.extraMonthly;
+     if(v.extraYearly>0&&currMonthKey>=monthKey(v.extraYearlyDate.m,v.extraYearlyDate.y)&&d.getMonth()+1===v.extraYearlyDate.m)extra+=v.extraYearly;
+     if(v.extraOnce>0&&currMonthKey===monthKey(v.extraOnceDate.m,v.extraOnceDate.y))extra+=v.extraOnce;
+     const interest=balance*rateM;
+     const originalPart=Math.min(normal,balance+interest);
+     const payment=Math.min(balance+interest,normal+extra);
+     const principalPaid=Math.max(0,payment-interest);
+     const actualExtra=Math.max(0,payment-originalPart);
+     balance=Math.max(0,balance-principalPaid);
+     totInterest+=interest;totPrincipal+=principalPaid;totMortgage+=payment;
+     totTax+=tax;totIns+=ins;totHoa+=hoa;totOther+=other;totMip+=mip;totExtra+=actualExtra;
+     rows.push({month:i+1,date:d,year:yearIndex+1,interest,principal:principalPaid,balance,payment,extra:actualExtra,tax,ins,hoa,other,mip,cumulInterest:totInterest,cumulPrincipal:totPrincipal});
+   }
+   if(rows.length){const last=rows[rows.length-1];if(last.balance<=0.01)last.balance=0;}
+   const first=rows[0];const totals={interest:totInterest,principal:totPrincipal,mortgage:totMortgage,tax:totTax,ins:totIns,hoa:totHoa,other:totOther,mip:totMip,extra:totExtra};
+   totals.outOfPocket=totMortgage+totTax+totIns+totHoa+totOther+totMip;
+   let biweekly=null;
+   if(v.biweekly){
+     const target=normal/2;let bal=principal,paid=0,interestPaid=0,period=0;
+     while(bal>0.00001&&period<30*26+100){
+       const interest=bal*v.rate/2600;
+       const amount=Math.min(target,bal+interest);
+       bal=Math.max(0,bal+interest-amount);
+       interestPaid+=interest;paid+=amount;period++;
+     }
+     biweekly={years:period/26,periods:period,mortgage:paid,interest:interestPaid,savings:(normal*duration-principal)-interestPaid,monthsSaved:duration-period*12/26};
+   }
+   return {v,base,principal,upfrontCost,normal,first,rows,totals,biweekly,lastDate:rows[rows.length-1]?.date};
+ }
+ function row(label,monthly,total,bold=false){return '<tr'+(bold?' class="calcpro-fha-total"':'')+'><td>'+label+'</td><td>'+fmtMoney(monthly)+'</td><td>'+fmtMoney(total)+'</td></tr>';}
+ function fact(label,value){return '<tr><td>'+label+'</td><td>'+value+'</td></tr>';}
+ function renderResults(d){
+   const t=d.totals, f=d.first;
+   text('#calcpro-fha-main-pay',fmtMoney(d.normal));
+   $('#calcpro-fha-breakdown-body').innerHTML=[
+     row('Mortgage Payment',f.payment,t.mortgage),
+     row('Property Tax',f.tax,t.tax),
+     row('Home Insurance',f.ins,t.ins),
+     row('Annual MIP',f.mip,t.mip),
+     row('Other Costs / HOA',f.other+f.hoa,t.other+t.hoa),
+     row('Total Out-of-Pocket',f.payment+f.tax+f.ins+f.mip+f.hoa+f.other,t.outOfPocket,true)
+   ].join('');
+   $('#calcpro-fha-facts-body').innerHTML=[
+     fact('House Price',fmtMoney(d.v.price)),
+     fact('Base Loan Amount',fmtMoney(d.base)),
+     fact('Loan Amount with Upfront MIP',fmtMoney(d.principal)),
+     fact('Down Payment',fmtMoney(d.v.down)),
+     fact('Upfront MIP',fmtMoney(d.upfrontCost)),
+     fact('Total of '+d.rows.length+' Mortgage Payments',fmtMoney(t.mortgage)),
+     fact('Total Interest',fmtMoney(t.interest)),
+     fact('Extra Principal Paid',fmtMoney(t.extra)),
+     fact('Mortgage Payoff Date',monthLabel(d.lastDate))
+   ].join('');
+   const b=$('#calcpro-fha-biweekly-result');
+   if(d.biweekly){
+     const v=d.biweekly;
+     b.hidden=false;
+     b.innerHTML='<strong>Biweekly payment comparison</strong><p>Half of the regular principal-and-interest payment every 2 weeks: <b>'+fmtMoney(d.normal/2)+'</b></p><p>Estimated payoff: <b>'+v.periods+' biweekly payments</b> ('+v.years.toFixed(1)+' years), interest '+fmtMoney(v.interest)+'.</p><p>Interest change versus selected monthly scenario: <b>'+fmtMoney(v.savings)+'</b>.</p><p>Comparison excludes separately entered extra payments and non-mortgage costs.</p>';
+   } else {b.hidden=true;b.innerHTML='';}
+   drawDonut(d);
+ }
+ function drawDonut(d){
+   const t=d.totals;
+   const amounts=[d.principal,t.interest,t.tax,t.mip,t.other+t.hoa,t.ins];
+   const labels=['Principal','Interest','Property Taxes','Annual MIP','Other Costs','Home Insurance'];
+   const sum=amounts.reduce((a,b)=>a+b,0)||1;
+   const circumference=2*Math.PI*49;let offset=0;
+   let svg='<circle cx="75" cy="75" r="49" stroke="#e4eaf0" stroke-width="22" fill="none" />';
+   amounts.forEach((value,i)=>{
+     if(value<=0)return;
+     const span=value/sum*circumference;
+     svg+='<circle cx="75" cy="75" r="49" stroke="'+interestColors[i]+'" stroke-width="22" fill="none" stroke-dasharray="'+span.toFixed(3)+' '+(circumference-span).toFixed(3)+'" stroke-dashoffset="'+(-offset).toFixed(3)+'" transform="rotate(-90 75 75)"><title>'+labels[i]+': '+fmtMoney(value)+'</title></circle>';
+     offset+=span;
+   });
+   svg+='<circle cx="75" cy="75" r="34" fill="#fff"/><text x="75" y="72" text-anchor="middle" font-size="10" fill="#5a6875">Total costs</text><text x="75" y="85" text-anchor="middle" font-size="12" font-weight="bold" fill="#29465c">'+fmtMoney(sum,0).replace('$','')+'</text>';
+   $('#calcpro-fha-donut').innerHTML=svg;
+   $('#calcpro-fha-pie-legend').innerHTML=labels.map((label,i)=>'<div><span class="calcpro-fha-swatch" style="background:'+interestColors[i]+'"></span><span>'+label+' <b>'+Math.round(amounts[i]/sum*100)+'%</b></span></div>').join('');
+ }
+ function aggregateAnnual(rows){
+   const out=[];
+   for(let i=0;i<rows.length;i+=12){
+     const part=rows.slice(i,i+12),end=part[part.length-1];
+     out.push({n:out.length+1,label:shortDate(part[0].date)+'–'+shortDate(end.date),interest:part.reduce((s,x)=>s+x.interest,0),principal:part.reduce((s,x)=>s+x.principal,0),balance:end.balance});
+   }
+   return out;
+ }
+ function renderSchedule(){
+   if(!current)return;
+   const data=view==='annual'?aggregateAnnual(current.rows):current.rows.map(x=>({n:x.month,label:shortDate(x.date),interest:x.interest,principal:x.principal,balance:x.balance}));
+   $('#calcpro-fha-schedule-body').innerHTML=data.map(x=>'<tr><td>'+x.n+'</td><td>'+x.label+'</td><td>'+fmtMoney(x.interest,0)+'</td><td>'+fmtMoney(x.principal,0)+'</td><td>'+fmtMoney(x.balance,0)+'</td></tr>').join('');
+   text('#calcpro-fha-amort-count',data.length+(view==='annual'?' annual':' monthly')+' rows');
+   root.querySelectorAll('[data-fha-view]').forEach(btn=>{
+     const isActive=btn.dataset.fhaView===view;
+     btn.classList.toggle('calcpro-fha-tab-active',isActive);
+     btn.setAttribute('aria-pressed',String(isActive));
+   });
+ }
+ function drawChart(d){
+   const rows=d.rows;
+   const years=[{month:0,balance:d.principal,cumulInterest:0,cumulPrincipal:0}];
+   for(let k=11;k<rows.length;k+=12)years.push(rows[k]);
+   if(years[years.length-1]!==rows[rows.length-1])years.push(rows[rows.length-1]);
+   const W=440,H=270,left=60,right=12,top=20,bottom=42;
+   const plotW=W-left-right,plotH=H-top-bottom;
+   const maxVal=Math.max(d.principal,d.totals.interest,d.totals.principal,1)*1.10;
+   const x=(m)=>left+plotW*(m/(rows.length||1));
+   const y=(v)=>top+plotH*(1-v/maxVal);
+   let parts=[];
+   for(let i=0;i<=4;i++){
+     const val=maxVal*i/4;
+     const yy=y(val);
+     parts.push('<path d="M'+left+' '+yy.toFixed(1)+'H'+(W-right)+'" stroke="#e2e7ed" stroke-width="1"/>');
+     parts.push('<text x="'+(left-7)+'" y="'+(yy+3)+'" text-anchor="end" font-size="10" fill="#667988">'+(val>=1000000?'$'+(val/1000000).toFixed(1)+'m':'$'+Math.round(val/1000)+'k')+'</text>');
+   }
+   for(let i=0;i<=4;i++){
+     const month=rows.length*i/4, xx=x(month);
+     parts.push('<text x="'+xx+'" y="'+(H-bottom+17)+'" font-size="10" text-anchor="middle" fill="#667988">'+(month/12).toFixed(0)+'</text>');
+   }
+   const series=[['balance','#367fc0'],['cumulInterest','#84b329'],['cumulPrincipal','#b63228']];
+   for(const [key,color] of series){
+     const p=years.map((r,i)=>{const mi=r.month||0;return (i?'L':'M')+x(mi).toFixed(2)+' '+y(r[key]).toFixed(2);}).join(' ');
+     parts.push('<path d="'+p+'" fill="none" stroke="'+color+'" stroke-width="2.3" stroke-linejoin="round" stroke-linecap="round"/>');
+   }
+   parts.push('<text x="'+(left+plotW/2)+'" y="'+(H-3)+'" font-size="11" text-anchor="middle" fill="#4d6477">Years</text>');
+   [['Balance','#367fc0'],['Interest','#84b329'],['Principal','#b63228']].forEach((it,i)=>{
+     const xx=left+i*112;
+     parts.push('<path d="M'+xx+' 8h16" stroke="'+it[1]+'" stroke-width="3"/><text x="'+(xx+21)+'" y="11" fill="#526a7a" font-size="11">'+it[0]+'</text>');
+   });
+   $('#calcpro-fha-chart').innerHTML=parts.join('');
+ }
+ function run(){
+   const errors=$('#calcpro-fha-errors');
+   try{
+     const v=collect();
+     const d=calculate(v);
+     current=d;errors.hidden=true;errors.textContent='';
+     renderResults(d);renderSchedule();drawChart(d);
+     text('#calcpro-fha-status','Estimate updated. Figures are projections, not a lender quote.');
+   }catch(err){
+     errors.hidden=false;errors.textContent=err.message;
+     text('#calcpro-fha-status','Please correct the highlighted input issue.');
+   }
+ }
+ function syncOptional(){root.querySelector('.calcpro-fha-optional').hidden=!field('include_optionals').checked;}
+ function convertUnit(which){
+   try{
+     const home=numberField('home_price',1,1e9,'Home price');
+     const unit=field(which+'_unit').value;
+     const input=field(which);
+     const currentNumeric=Number(input.value.replace(/[,$%\s]/g,''));
+     if(!Number.isFinite(currentNumeric))return;
+     // Store prior unit; convert the numeric amount to retain the same dollar estimate.
+     const previous=input.dataset.prevUnit||'percent';
+     if(previous!==unit){
+       const asDollars=previous==='percent'?home*currentNumeric/100:currentNumeric;
+       input.value=unit==='percent'?String(Number((asDollars/home*100).toFixed(6))):String(Number(asDollars.toFixed(2)));
+     }
+     input.dataset.prevUnit=unit;
+   }catch(e){ /* User can correct an invalid input before calculating. */ }
+ }
+ const optionButton=$('#calcpro-fha-toggle-more');
+ optionButton.addEventListener('click',()=>{
+   const section=$('#calcpro-fha-more');const open=section.hidden;
+   section.hidden=!open;optionButton.setAttribute('aria-expanded',String(open));
+   optionButton.textContent=open?'− Fewer Options':'+ More Options';
+ });
+ field('include_optionals').addEventListener('change',syncOptional);
+ field('down_payment_unit').addEventListener('change',()=>convertUnit('down_payment'));
+ field('property_tax_unit').addEventListener('change',()=>convertUnit('property_tax'));
+ form.addEventListener('submit',evt=>{evt.preventDefault();run();});
+ $('#calcpro-fha-clear').addEventListener('click',()=>{
+   form.reset();field('down_payment').dataset.prevUnit='percent';field('property_tax').dataset.prevUnit='percent';
+   syncOptional();$('#calcpro-fha-more').hidden=true;optionButton.textContent='+ More Options';optionButton.setAttribute('aria-expanded','false');
+   view='annual';run();text('#calcpro-fha-status','Default values restored.');
+ });
+ root.querySelectorAll('[data-fha-view]').forEach(btn=>btn.addEventListener('click',()=>{view=btn.dataset.fhaView;renderSchedule();}));
+ $('#calcpro-fha-print').addEventListener('click',()=>window.print());
+ function download(name,body,type){
+   const blob=new Blob([body],{type});const url=URL.createObjectURL(blob);
+   const a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();
+   setTimeout(()=>URL.revokeObjectURL(url),500);
+ }
+ $('#calcpro-fha-save').addEventListener('click',()=>{
+   if(!current){text('#calcpro-fha-status','Calculate a valid estimate first.');return;}
+   const d=current,t=d.totals;
+   const content=['CalcPro FHA Loan Estimate','Generated: '+new Date().toLocaleString(),'',
+    'Home price: '+fmtMoney(d.v.price),'Down payment: '+fmtMoney(d.v.down),'Base loan: '+fmtMoney(d.base),
+    'Financed upfront MIP: '+fmtMoney(d.upfrontCost),'Financed mortgage amount: '+fmtMoney(d.principal),
+    'Interest rate: '+d.v.rate+'%','Term: '+d.v.years+' years','Annual FHA MIP: '+d.v.annual+'%',
+    'Regular principal and interest: '+fmtMoney(d.normal),'First-month out-of-pocket: '+fmtMoney(d.first.payment+d.first.tax+d.first.ins+d.first.hoa+d.first.other+d.first.mip),
+    'Total mortgage paid: '+fmtMoney(t.mortgage),'Total interest: '+fmtMoney(t.interest),
+    'Total out-of-pocket (excluding down payment): '+fmtMoney(t.outOfPocket),'Payoff: '+monthLabel(d.lastDate),
+    'Note: estimate only; future tax, insurance, and FHA premiums may vary.'].join('\n');
+   download('fha-loan-estimate.txt',content,'text/plain;charset=utf-8');text('#calcpro-fha-status','Estimate saved as a text file.');
+ });
+ $('#calcpro-fha-csv').addEventListener('click',()=>{
+   if(!current)return;
+   const data=['Payment,Date,Interest,Principal,Principal and Interest,Extra Principal,Annual MIP,Property Tax,Home Insurance,HOA,Other Costs,Ending Balance'];
+   for(const x of current.rows){data.push([x.month,monthLabel(x.date),x.interest,x.principal,x.payment,x.extra,x.mip,x.tax,x.ins,x.hoa,x.other,x.balance].map((v,i)=>i===1?'"'+v+'"':typeof v==='number'?v.toFixed(i===0?0:2):v).join(','));}
+   download('fha-amortization-schedule.csv',data.join('\r\n'),'text/csv;charset=utf-8');text('#calcpro-fha-status','Amortization CSV exported.');
+ });
+ field('down_payment').dataset.prevUnit='percent';field('property_tax').dataset.prevUnit='percent';
+ syncOptional();run();
+})();
+</script><script defer src="/assets/js/data.js"></script>
+<script defer src="/assets/js/style.js?v=20261111-5"></script>
+</body></html>

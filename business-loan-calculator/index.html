@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US">
-<head>
-<meta charset="utf-8">
+<html lang="en"><head><meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="content-language" content="en">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,17 +11,523 @@
   <meta name="author" content="Commingsoon">
   <meta name="publisher" content="Commingsoon">
   <meta name="robots" content="noindex, nofollow, max-image-preview:large">
-  <link rel="stylesheet" href="/assets/css/style.css?v=20261111-1" crossorigin="anonymous" data-n-g="">
+  <link rel="stylesheet" href="/assets/css/style.css?v=20261111-4" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/doc_style.css" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/side_style.css" crossorigin="anonymous" data-n-g=""> 
   <!--ogtags-->
   <!--schema-->
-  <!--style-->
-</head>
+<style>
+/* Business Loan Calculator — uniquely scoped tool-only styles */
+#calcpro-business-loan {
+  --bl-navy:#125217;--bl-green:#4c8125;--bl-blue:#366a9f;--bl-border:#c7c7c7;
+  font-family:Arial,Helvetica,sans-serif; font-size:16px; color:#111; line-height:1.35;
+  width:100%; min-width:0; text-align:left;
+}
+#calcpro-business-loan *, #calcpro-business-loan *::before, #calcpro-business-loan *::after {box-sizing:border-box}
+#calcpro-business-loan .calcpro-business-loan-notice {
+  background:#376a9c;color:#fff;min-height:39px;display:flex;align-items:center;
+  justify-content:center;padding:7px 12px;text-align:center;font-size:16px;margin:0 0 7px;
+}
+#calcpro-business-loan .calcpro-business-loan-notice-icon {
+  display:inline-flex; align-items:center;justify-content:center;width:27px;height:27px;
+  border-radius:50%;background:#fff;color:#376a9c;margin-right:14px;flex:none;
+  font-size:18px;font-weight:700;line-height:1;
+}
+#calcpro-business-loan .calcpro-business-loan-layout {
+  display:grid;grid-template-columns:minmax(0,43%) minmax(0,1fr);gap:20px;align-items:start;
+}
+#calcpro-business-loan .calcpro-business-loan-form {
+  border:1px solid #bbb;background:#eeeeee;padding:8px 8px 10px;
+  min-width:0;
+}
+#calcpro-business-loan .calcpro-business-loan-fields {display:grid;gap:3px}
+#calcpro-business-loan .calcpro-business-loan-field {
+  display:grid;grid-template-columns:minmax(0,45%) minmax(0,55%);align-items:center;
+  min-height:33px;gap:0;
+}
+#calcpro-business-loan .calcpro-business-loan-field > label {font-size:15px;line-height:1.23;padding-right:5px}
+#calcpro-business-loan .calcpro-business-loan-control {position:relative;min-width:0;width:100%;}
+#calcpro-business-loan .calcpro-business-loan-control > input,
+#calcpro-business-loan .calcpro-business-loan-control > select {
+  width:100%;max-width:100%;height:33px;background:#fff;border:1px solid #2a5d92;
+  color:#111;border-radius:2px;font-family:Arial,Helvetica,sans-serif;font-size:16px;
+  padding:4px 8px;box-shadow:1px 2px 2px #0002;
+}
+#calcpro-business-loan .calcpro-business-loan-control > select {cursor:pointer;padding:4px 3px;font-size:15px}
+#calcpro-business-loan .calcpro-business-loan-control > input:focus,
+#calcpro-business-loan .calcpro-business-loan-control > select:focus {outline:2px solid #79a7d4;outline-offset:1px}
+#calcpro-business-loan .calcpro-business-loan-control > input[aria-invalid="true"]{border:2px solid #ae1f25}
+#calcpro-business-loan .calcpro-business-loan-control.calcpro-business-loan-money > input {padding-left:20px}
+#calcpro-business-loan .calcpro-business-loan-control.calcpro-business-loan-pct > input {padding-right:28px}
+#calcpro-business-loan .calcpro-business-loan-control.calcpro-business-loan-unit > input {padding-right:62px}
+#calcpro-business-loan .calcpro-business-loan-adornment {
+  position:absolute;pointer-events:none;top:50%;transform:translateY(-50%);
+  color:#4b4b4b;font-size:15px;z-index:1;
+}
+#calcpro-business-loan .calcpro-business-loan-money .calcpro-business-loan-adornment {left:8px;color:#111}
+#calcpro-business-loan .calcpro-business-loan-pct .calcpro-business-loan-adornment {right:8px;color:#111}
+#calcpro-business-loan .calcpro-business-loan-unit .calcpro-business-loan-adornment {right:6px;color:#777}
+#calcpro-business-loan .calcpro-business-loan-term-controls {display:grid;gap:3px}
+#calcpro-business-loan .calcpro-business-loan-actions {display:flex;justify-content:center;gap:5px;margin:10px 0 0;align-items:stretch}
+#calcpro-business-loan .calcpro-business-loan-actions button {border:0;cursor:pointer;font:inherit;min-height:43px;padding:9px 11px;}
+#calcpro-business-loan .calcpro-business-loan-calculate {background:#4a8120;color:#fff;font-weight:bold;min-width:135px}
+#calcpro-business-loan .calcpro-business-loan-arrow {display:inline-flex;border-radius:50%;background:#90b17e;width:25px;height:25px;align-items:center;justify-content:center;margin-left:5px;vertical-align:middle;color:#fff}
+#calcpro-business-loan .calcpro-business-loan-clear {background:#aaa;color:#fff}
+#calcpro-business-loan .calcpro-business-loan-actions button:hover {filter:brightness(.94)}
+#calcpro-business-loan .calcpro-business-loan-error {color:#9b1f20;font-size:13px;line-height:1.35;margin:8px 2px 2px;min-height:0}
+#calcpro-business-loan .calcpro-business-loan-result {min-width:0}
+#calcpro-business-loan .calcpro-business-loan-result-heading {
+  display:flex;justify-content:space-between;align-items:center;gap:8px;
+  background:#4d8226;color:#fff;font-size:23px;padding:4px 8px 4px;margin:2px 0 10px;
+  min-height:40px;font-weight:400;
+}
+#calcpro-business-loan .calcpro-business-loan-save {
+  display:inline-flex;flex-direction:column;align-items:center;justify-content:center;
+  background:none;border:0;color:#fff;font:inherit;font-size:11px;line-height:1.0;
+  padding:0 1px;min-width:27px;cursor:pointer;
+}
+#calcpro-business-loan .calcpro-business-loan-save svg {width:18px;height:18px}
+#calcpro-business-loan .calcpro-business-loan-result-table {width:100%;border-collapse:collapse;font-size:16px}
+#calcpro-business-loan .calcpro-business-loan-result-table td {padding:4px 3px;vertical-align:top;line-height:1.25}
+#calcpro-business-loan .calcpro-business-loan-result-table td:last-child {text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+#calcpro-business-loan .calcpro-business-loan-result-blank {padding:15px 5px;color:#555;font-size:15px}
+#calcpro-business-loan .calcpro-business-loan-chart-area {display:flex;align-items:center;justify-content:center;gap:14px;min-height:131px;margin:10px auto 0}
+#calcpro-business-loan .calcpro-business-loan-donut {
+  position:relative;border-radius:50%;height:112px;width:112px;flex:none;
+  background:conic-gradient(#2f7ed8 0deg 257deg,#83bc23 257deg 328deg,#970000 328deg 360deg);
+}
+#calcpro-business-loan .calcpro-business-loan-donut::after {
+  content:"";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:35%;height:35%;background:#fff;border-radius:50%;z-index:1;
+}
+#calcpro-business-loan .calcpro-business-loan-slice-label {
+  position:absolute;z-index:2;color:#fff;font-weight:700;font-size:12px;line-height:1;
+  transform:translate(-50%,-50%);text-shadow:0 1px 1px #0002;pointer-events:none;
+}
+#calcpro-business-loan .calcpro-business-loan-legend {font-size:15px;line-height:1.24}
+#calcpro-business-loan .calcpro-business-loan-legend > div {display:flex;align-items:center;gap:6px;white-space:nowrap}
+#calcpro-business-loan .calcpro-business-loan-key {width:20px;height:15px;border-radius:3px;display:inline-block;flex:none}
+#calcpro-business-loan .calcpro-business-loan-key-principal {background:#2f7ed8}
+#calcpro-business-loan .calcpro-business-loan-key-interest {background:#83bc23}
+#calcpro-business-loan .calcpro-business-loan-key-fee {background:#970000}
+#calcpro-business-loan .calcpro-business-loan-toggle-wrap{text-align:center;margin:10px 0 12px}
+#calcpro-business-loan .calcpro-business-loan-toggle {color:#006699;background:none;border:0;text-decoration:underline;cursor:pointer;font:inherit;padding:4px}
+#calcpro-business-loan .calcpro-business-loan-toggle:hover{text-decoration:none}
+#calcpro-business-loan .calcpro-business-loan-amortization {border-top:1px solid #d8d8d8;padding-top:9px}
+#calcpro-business-loan .calcpro-business-loan-amortization h3 {font-size:17px;color:#125217;margin:3px 0 8px}
+#calcpro-business-loan .calcpro-business-loan-schedule-note {font-size:12px;color:#555;margin:0 0 7px}
+#calcpro-business-loan .calcpro-business-loan-table-wrap {overflow-x:auto;max-width:100%}
+#calcpro-business-loan .calcpro-business-loan-schedule {width:100%;border-collapse:collapse;font-size:12px;font-variant-numeric:tabular-nums;white-space:nowrap}
+#calcpro-business-loan .calcpro-business-loan-schedule th {background:#376a9c;color:#fff;border:1px solid #ccd7e1;text-align:right;padding:6px 5px}
+#calcpro-business-loan .calcpro-business-loan-schedule td {border:1px solid #d8e0e5;padding:5px;text-align:right}
+#calcpro-business-loan .calcpro-business-loan-schedule th:first-child,
+#calcpro-business-loan .calcpro-business-loan-schedule td:first-child {text-align:center}
+#calcpro-business-loan .calcpro-business-loan-schedule tr:nth-child(even) {background:#f4f7f9}
+#calcpro-business-loan .calcpro-business-loan-schedule-actions {margin:9px 0;display:flex;gap:7px;flex-wrap:wrap}
+#calcpro-business-loan .calcpro-business-loan-small-btn {background:#f0f3f5;border:1px solid #bfcbd5;border-radius:3px;color:#004b7d;cursor:pointer;font-size:12px;padding:6px 8px}
+#calcpro-business-loan .calcpro-business-loan-result-info {font-size:12px;color:#666;margin:7px 2px 0}
+@media(max-width:650px) {
+  #calcpro-business-loan .calcpro-business-loan-layout {grid-template-columns:minmax(0,1fr);gap:13px}
+  #calcpro-business-loan .calcpro-business-loan-form {max-width:480px;width:100%;margin:auto}
+  #calcpro-business-loan .calcpro-business-loan-result {width:100%}
+  #calcpro-business-loan .calcpro-business-loan-result-heading {margin-top:0}
+  #calcpro-business-loan .calcpro-business-loan-chart-area {min-height:125px}
+}
+@media(max-width:370px) {
+  #calcpro-business-loan .calcpro-business-loan-field > label {font-size:13px}
+  #calcpro-business-loan .calcpro-business-loan-control > select {font-size:13px}
+  #calcpro-business-loan .calcpro-business-loan-result-table {font-size:14px}
+  #calcpro-business-loan .calcpro-business-loan-chart-area {gap:7px}
+  #calcpro-business-loan .calcpro-business-loan-legend {font-size:13px}
+}
+@media print {
+  #calcpro-business-loan .calcpro-business-loan-notice,
+  #calcpro-business-loan .calcpro-business-loan-actions,
+  #calcpro-business-loan .calcpro-business-loan-save,
+  #calcpro-business-loan .calcpro-business-loan-schedule-actions {display:none!important}
+  #calcpro-business-loan .calcpro-business-loan-form {background:#fff}
+  #calcpro-business-loan .calcpro-business-loan-result-heading {-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  #calcpro-business-loan .calcpro-business-loan-donut {-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
 
-<body>
-<!-- Main-header-page -->
-<script defer src="/assets/js/data.js"></script>
-<script defer src="/assets/js/style.js?v=20261111-1"></script>
-</body>
-</html>
+#calcpro-business-loan .calcpro-business-loan-utility{text-align:right;min-height:19px;margin-top:-3px;margin-bottom:2px}
+#calcpro-business-loan .calcpro-business-loan-utility button{color:#006699;cursor:pointer;text-decoration:underline;background:none;border:0;padding:0 2px;font:14px Arial,Helvetica,sans-serif}
+@media print{#calcpro-business-loan .calcpro-business-loan-utility{display:none!important}}
+#calcpro-business-loan [hidden] {display:none!important}
+
+</style>
+
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Business Loan Calculator</nav><h1 class="cp-page-title">Business Loan Calculator</h1><p class="cp-intro">Calculate your business loan payments and total cost, including origination, documentation, and other fees. See the estimated fee-adjusted real APR, cost breakdown, and full amortization table.</p><section aria-label="Calculator" class="cp-tool-area">
+<div id="calcpro-business-loan" class="calcpro-business-loan" aria-label="Business loan payment and APR calculator">
+  <div class="calcpro-business-loan-utility"><button id="calcpro-business-loan-print" type="button">Print</button></div>
+  <div class="calcpro-business-loan-notice" id="calcpro-business-loan-notice"><span class="calcpro-business-loan-notice-icon" aria-hidden="true">▼</span>Modify the values and click the Calculate button to use</div>
+  <div class="calcpro-business-loan-layout">
+    <form id="calcpro-business-loan-form" class="calcpro-business-loan-form" novalidate>
+      <div class="calcpro-business-loan-fields">
+        <div class="calcpro-business-loan-field"><label for="calcpro-business-loan-amount">Loan amount</label><div class="calcpro-business-loan-control calcpro-business-loan-money"><span class="calcpro-business-loan-adornment" aria-hidden="true">$</span><input id="calcpro-business-loan-amount" name="loanAmount" type="text" inputmode="decimal" autocomplete="off" value="10,000" required></div></div>
+        <div class="calcpro-business-loan-field"><label for="calcpro-business-loan-interest">Interest rate</label><div class="calcpro-business-loan-control calcpro-business-loan-pct"><input id="calcpro-business-loan-interest" name="annualRate" type="text" inputmode="decimal" autocomplete="off" value="10" required><span class="calcpro-business-loan-adornment" aria-hidden="true">%</span></div></div>
+        <div class="calcpro-business-loan-field"><label for="calcpro-business-loan-compound">Compound</label><div class="calcpro-business-loan-control"><select id="calcpro-business-loan-compound" name="compounding">
+          <option value="annually">Annually (APY)</option><option value="semiannually">Semi-annually</option><option value="quarterly">Quarterly</option><option value="monthly" selected>Monthly (APR)</option><option value="semimonthly">Semi-monthly</option><option value="biweekly">Biweekly</option><option value="weekly">Weekly</option><option value="daily">Daily</option><option value="continuously">Continuously</option>
+        </select></div></div>
+        <div class="calcpro-business-loan-field"><label for="calcpro-business-loan-years">Loan term</label><div class="calcpro-business-loan-term-controls">
+          <div class="calcpro-business-loan-control calcpro-business-loan-unit"><input id="calcpro-business-loan-years" name="termYears" type="text" inputmode="numeric" value="5" required><span class="calcpro-business-loan-adornment" aria-hidden="true">years</span></div>
+          <div class="calcpro-business-loan-control calcpro-business-loan-unit"><input id="calcpro-business-loan-months" name="termMonths" type="text" inputmode="numeric" aria-label="Additional loan term in months" value="0" required><span class="calcpro-business-loan-adornment" aria-hidden="true">months</span></div>
+        </div></div>
+        <div class="calcpro-business-loan-field"><label for="calcpro-business-loan-payback">Pay back</label><div class="calcpro-business-loan-control"><select id="calcpro-business-loan-payback" name="payback">
+          <option value="daily">Every Day</option><option value="weekly">Every Week</option><option value="biweekly">Every 2 Weeks</option><option value="halfmonth">Every Half Month</option><option value="month" selected>Every Month</option><option value="quarter">Every Quarter</option><option value="halfyear">Every 6 Months</option><option value="year">Every Year</option><option value="interest">Interest Only</option><option value="end">In the End</option>
+        </select></div></div>
+        <div class="calcpro-business-loan-field"><label for="calcpro-business-loan-origination">Origination fee</label><div class="calcpro-business-loan-control calcpro-business-loan-pct"><input id="calcpro-business-loan-origination" name="origination" type="text" inputmode="decimal" value="5" required><span class="calcpro-business-loan-adornment" aria-hidden="true">%</span></div></div>
+        <div class="calcpro-business-loan-field"><label for="calcpro-business-loan-documentation">Documentation fee</label><div class="calcpro-business-loan-control calcpro-business-loan-money"><span class="calcpro-business-loan-adornment" aria-hidden="true">$</span><input id="calcpro-business-loan-documentation" name="documentation" type="text" inputmode="decimal" value="750" required></div></div>
+        <div class="calcpro-business-loan-field"><label for="calcpro-business-loan-other">Other fees</label><div class="calcpro-business-loan-control calcpro-business-loan-money"><span class="calcpro-business-loan-adornment" aria-hidden="true">$</span><input id="calcpro-business-loan-other" name="otherFees" type="text" inputmode="decimal" value="0" required></div></div>
+      </div>
+      <div class="calcpro-business-loan-actions"><button type="submit" class="calcpro-business-loan-calculate">Calculate <span class="calcpro-business-loan-arrow" aria-hidden="true">▶</span></button><button type="button" class="calcpro-business-loan-clear" id="calcpro-business-loan-clear">Clear</button></div>
+      <div id="calcpro-business-loan-error" class="calcpro-business-loan-error" role="alert" aria-live="polite"></div>
+    </form>
+    <section class="calcpro-business-loan-result" id="calcpro-business-loan-result" aria-label="Loan calculation result">
+      <h2 class="calcpro-business-loan-result-heading">Result <button class="calcpro-business-loan-save" id="calcpro-business-loan-save" type="button" title="Save this calculation as a text file" aria-label="Save loan calculation"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 2h14l4 4v16H2V2h2zm1 2v6h12V4H5zm7 9a4 4 0 1 0 0 8 4 4 0 0 0 0-8zM7 3h8v5H7V3z"/></svg><span>save</span></button></h2>
+      <div id="calcpro-business-loan-result-content" aria-live="polite">
+        <table class="calcpro-business-loan-result-table" aria-label="Business loan summary"><tbody>
+          <tr><td id="calcpro-business-loan-payment-label">Payback every month</td><td id="calcpro-business-loan-payment-value">$212.47</td></tr>
+          <tr><td id="calcpro-business-loan-total-label">Total of 60 loan payments</td><td id="calcpro-business-loan-total-value">$12,748.23</td></tr>
+          <tr><td>Interest</td><td id="calcpro-business-loan-interest-value">$2,748.23</td></tr>
+          <tr><td>Interest + fee</td><td id="calcpro-business-loan-cost-value">$3,998.23</td></tr>
+          <tr><td>Real rate (APR)</td><td id="calcpro-business-loan-apr-value">15.933%</td></tr>
+        </tbody></table>
+        <div class="calcpro-business-loan-chart-area"><div class="calcpro-business-loan-donut" id="calcpro-business-loan-donut" role="img" aria-label="Principal 71 percent, interest 20 percent, fees 9 percent"></div><div class="calcpro-business-loan-legend"><div><span class="calcpro-business-loan-key calcpro-business-loan-key-principal"></span>Principal</div><div><span class="calcpro-business-loan-key calcpro-business-loan-key-interest"></span>Interest</div><div><span class="calcpro-business-loan-key calcpro-business-loan-key-fee"></span>Fee</div></div></div>
+        <div class="calcpro-business-loan-toggle-wrap"><button id="calcpro-business-loan-toggle" class="calcpro-business-loan-toggle" type="button" aria-expanded="false" aria-controls="calcpro-business-loan-amortization">View Amortization Table</button></div>
+        <div id="calcpro-business-loan-amortization" class="calcpro-business-loan-amortization" hidden>
+          <h3>Amortization Table</h3><p class="calcpro-business-loan-schedule-note" id="calcpro-business-loan-schedule-note"></p>
+          <div class="calcpro-business-loan-table-wrap"><table class="calcpro-business-loan-schedule"><thead><tr><th scope="col">#</th><th scope="col">Starting balance</th><th scope="col">Payment</th><th scope="col">Principal</th><th scope="col">Interest</th><th scope="col">Ending balance</th></tr></thead><tbody id="calcpro-business-loan-schedule-rows"></tbody></table></div>
+          <div class="calcpro-business-loan-schedule-actions"><button id="calcpro-business-loan-more" type="button" class="calcpro-business-loan-small-btn" hidden>Show more rows</button><button id="calcpro-business-loan-csv" type="button" class="calcpro-business-loan-small-btn">Download full table (CSV)</button></div>
+          <p class="calcpro-business-loan-result-info">Payments and balances are calculated at full precision; displayed values are rounded to cents. Fees are treated as charges reducing the amount received, not as financed principal.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+</section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><!-- REPLACE these links with real related tools for each calculator; verify live slugs. --><a href="retirement-calculator.html">Retirement</a><a href="roth-ira-calculator.html">Roth IRA</a><a href="investment-calculator.html">Investment</a><a href="compound-interest-calculator.html">Compound Interest</a><a href="annuity-payout-calculator.html">Annuity Payout</a><a href="pension-calculator.html">Pension</a><a href="inflation-calculator.html">Inflation</a><a href="future-value-calculator.html">Future Value</a><a href="income-tax-calculator.html">Income Tax</a><a href="savings-calculator.html">Savings</a><a href="mortgage-calculator.html">Mortgage</a><a href="loan-calculator.html">Loan</a></div></section></aside><article class="cp-article">
+<h2>How to Use the Business Loan Calculator</h2>
+<p>Enter the amount you plan to borrow, the stated annual interest rate, and the loan term in years and months. Choose how often interest compounds and how frequently you will repay the lender. Add any origination, documentation, or other upfront fees, then select <strong>Calculate</strong> to update the payments, total financing cost, estimated APR, and loan-cost chart.</p>
+<p>Select <strong>View Amortization Table</strong> to inspect each repayment, including the portion applied to principal and interest. You can expand the schedule, download the full table as CSV, save a calculation summary, or print the page.</p>
+<h2>Business Loan Payment Formulas</h2>
+<p>For a fixed-rate, fully amortizing loan, the periodic payment is:</p>
+<p><strong>Payment = P × i ÷ [1 − (1 + i)<sup>−n</sup>]</strong></p>
+<p>Here, <strong>P</strong> is the loan principal, <strong>i</strong> is the effective rate for one payment interval, and <strong>n</strong> is the number of payments. At a zero interest rate, payment = P ÷ n. The model converts the selected compounding frequency to the repayment frequency rather than assuming these frequencies are always the same.</p>
+<p>For a nominal annual rate <strong>r</strong>, with <strong>c</strong> compoundings and <strong>p</strong> payments per year, the payment-period rate is <strong>i = (1 + r/c)<sup>c/p</sup> − 1</strong>. For continuous compounding, <strong>i = e<sup>r/p</sup> − 1</strong>. A yearly percentage marked APY is interpreted as an annual effective yield when the annual compounding option is selected.</p>
+<p>Loan fees are calculated as <strong>origination fee = principal × origination percentage</strong> plus flat documentation and other fees. The <strong>interest plus fee</strong> result equals interest over the loan term plus all entered fees.</p>
+<h3>How the Estimated Real APR Works</h3>
+<p>Upfront fees reduce the net money received: <strong>net proceeds = loan principal − total fees</strong>. The calculator then finds the discount rate that makes the present value of scheduled future payments equal those net proceeds. For equally spaced payments, the periodic rate is multiplied by the number of periods in a year to obtain a nominal annualized APR estimate. Single payments due at maturity use an effective annualized rate. This is a comparison estimate; a lender's formal disclosure may use different timing and fee conventions.</p>
+<h2>Worked Example: $10,000 Business Loan</h2>
+<p>Suppose you borrow <strong>$10,000</strong> for five years at a <strong>10%</strong> nominal annual interest rate, compounded and repaid monthly. With a 5% origination fee ($500) and a $750 documentation fee, the upfront fees total <strong>$1,250</strong>. The loan delivers $8,750 in net proceeds under this calculator's fee assumption.</p>
+<div class="cp-table-scroll"><table class="cp-content-table"><thead><tr><th scope="col">Estimate</th><th scope="col">Amount</th></tr></thead><tbody><tr><td>Monthly payment</td><td>$212.47</td></tr><tr><td>60 loan payments in total</td><td>$12,748.23</td></tr><tr><td>Total interest</td><td>$2,748.23</td></tr><tr><td>Interest + $1,250 in fees</td><td>$3,998.23</td></tr><tr><td>Fee-adjusted nominal APR estimate</td><td>Approximately 15.933%</td></tr></tbody></table></div>
+<p>This distinction matters: the 10% stated rate determines scheduled payments, while the higher estimated APR reflects the fees deducted from the amount actually received.</p>
+<h2>Understanding the Results</h2>
+<h3>Periodic Payment and Total Payments</h3>
+<p>The periodic payment is the amount due each repayment interval for a level-payment amortizing loan. In the <strong>Interest Only</strong> option, the listed amount is the recurring monthly interest payment; the final payment also includes the outstanding principal. In the <strong>In the End</strong> option, principal and accrued compound interest are paid once at maturity.</p>
+<h3>Amortization and Cost Breakdown</h3>
+<p>The amortization table shows how the principal balance changes with each payment. Early scheduled payments normally contain a larger interest share; subsequent payments apply more toward principal. The donut chart compares principal, interest, and upfront fees as shares of the total cash paid including fees.</p>
+<h2>Frequently Asked Questions</h2>
+<h3>Do fees change my scheduled monthly payment?</h3>
+<p>Not in this model. The loan principal is amortized separately, and the entered fees are treated as upfront deductions from loan proceeds. If a lender finances the fees into the balance, increase the loan amount accordingly and use terms consistent with the lender's offer.</p>
+<h3>What is the difference between the stated interest rate and real APR?</h3>
+<p>The stated rate governs interest accrual under the chosen compounding convention. Real APR estimates the annual cost of credit after considering upfront fees and payment timing, making similarly structured offers easier to compare.</p>
+<h3>What happens if I choose a different compounding frequency?</h3>
+<p>The calculator converts the quoted annual interest rate into an effective rate for the selected payment interval. At the same nominal annual rate, more frequent compounding generally increases the effective annual cost.</p>
+<h3>Can this calculator model variable rates or balloon loans?</h3>
+<p>It models fixed rates with level repayments, an interest-only structure ending in a principal balloon, or a single maturity payment. It does not model rate resets, late fees, early repayments, staggered advances, or custom balloon amounts.</p>
+<h2>Methodology and Sources</h2>
+<p>Payment formulas follow standard annuity amortization mathematics. The estimated cash-flow APR uses a discounted-payment method informed by the <a href="https://www.consumerfinance.gov/rules-policy/regulations/1026/j/" target="_blank" rel="noopener noreferrer">CFPB's Regulation Z, Appendix J</a>, which describes actuarial APR computations for consumer credit. Commercial loans may be subject to different disclosure rules. For a comparison of calculator fields and default example, see the <a href="https://www.calculator.net/business-loan-calculator.html" target="_blank" rel="noopener noreferrer">reference Business Loan Calculator</a>.</p>
+<p class="cp-page-footer">CalcPro — estimates are for informational purposes and are not a loan offer, approval, or regulatory APR disclosure.</p>
+
+</article></main></div><script>
+(() => {
+  'use strict';
+  const root = document.getElementById('calcpro-business-loan');
+  if (!root) return;
+  const $ = (suffix) => root.querySelector('#calcpro-business-loan-' + suffix);
+  const form = $('form');
+  const resultContent = $('result-content');
+  const errorEl = $('error');
+  const amortEl = $('amortization');
+  const toggle = $('toggle');
+  const more = $('more');
+  const save = $('save');
+  const csv = $('csv');
+  const numberFormat = new Intl.NumberFormat('en-US', {style:'currency', currency:'USD'});
+  const money = (x) => numberFormat.format(Math.abs(x) < 0.00000001 ? 0 : x);
+  const periods = {
+    daily: {count:365,label:'day'}, weekly: {count:52,label:'week'},
+    biweekly: {count:26,label:'2 weeks'}, halfmonth: {count:24,label:'half month'},
+    month: {count:12,label:'month'}, quarter: {count:4,label:'quarter'},
+    halfyear: {count:2,label:'6 months'}, year: {count:1,label:'year'}
+  };
+  const compounds = {
+    annually:1,semiannually:2,quarterly:4,monthly:12,
+    semimonthly:24,biweekly:26,weekly:52,daily:365
+  };
+  const numericIds = ['amount','interest','years','months','origination','documentation','other'];
+  let lastCalculation = null;
+  let visibleRows = 100;
+  let scheduleOpen = false;
+  const clean = (x) => x.replace(/[,$%\s]/g, '');
+  const readNumber = (id, label) => {
+    const raw = $(id).value.trim();
+    const cleaned = clean(raw);
+    if (cleaned === '' || !/^(?:\d+(?:\.\d*)?|\.\d+)$/.test(cleaned)) {
+      throw new Error(label + ' must be a valid nonnegative number.');
+    }
+    const value = Number(cleaned);
+    if (!Number.isFinite(value)) throw new Error(label + ' is too large.');
+    return value;
+  };
+  function getInputs() {
+    const principal = readNumber('amount', 'Loan amount');
+    const annualRate = readNumber('interest', 'Interest rate');
+    const years = readNumber('years', 'Loan term (years)');
+    const months = readNumber('months', 'Loan term (months)');
+    const origination = readNumber('origination', 'Origination fee');
+    const documentation = readNumber('documentation', 'Documentation fee');
+    const other = readNumber('other', 'Other fees');
+    if (principal <= 0 || principal > 1e12) throw new Error('Loan amount must be greater than $0 and no more than $1 trillion.');
+    if (annualRate > 500) throw new Error('Interest rate must be between 0% and 500%.');
+    if (origination > 100) throw new Error('Origination fee must be between 0% and 100%.');
+    if (!Number.isInteger(years) || !Number.isInteger(months)) throw new Error('Loan term years and months must be whole numbers.');
+    const duration = years + months / 12;
+    if (duration <= 0 || duration > 50) throw new Error('Loan term must be greater than zero and no more than 50 years.');
+    const fees = principal * origination / 100 + documentation + other;
+    if (fees >= principal) throw new Error('Total upfront fees must be less than the loan amount to calculate a meaningful APR.');
+    const compound = $('compound').value;
+    const payback = $('payback').value;
+    if (!(compound in compounds) && compound !== 'continuously') throw new Error('Select a valid compounding period.');
+    if (!(payback in periods) && payback !== 'interest' && payback !== 'end') throw new Error('Select a valid repayment frequency.');
+    return {principal, annualRate, years, months, duration, origination, documentation, other, fees, compound, payback};
+  }
+  function annualGrowth(rate, compound) {
+    const r = rate / 100;
+    if (compound === 'continuously') return Math.exp(r);
+    const c = compounds[compound];
+    return Math.pow(1 + r / c, c);
+  }
+  function periodicRate(rate, compound, count) {
+    const r = rate / 100;
+    if (r === 0) return 0;
+    if (compound === 'continuously') return Math.expm1(r / count);
+    const c = compounds[compound];
+    return Math.expm1(Math.log1p(r / c) * c / count);
+  }
+  // Discount cash flows against net proceeds; solve the periodic yield without
+  // rounding during calculation. The nominal yearly APR is that yield × periods/year.
+  function solveApr(cashFlows, netProceeds, perYear, singlePaymentYears = 0) {
+    if (singlePaymentYears) {
+      return 100 * Math.expm1(Math.log(cashFlows[0].payment / netProceeds) / singlePaymentYears);
+    }
+    const pv = (r) => {
+      let total = 0;
+      for (const row of cashFlows) total += row.payment / Math.pow(1 + r, row.number);
+      return total;
+    };
+    let low = 0, high = 1;
+    // Net proceeds are less than loan principal, so the yield is nonnegative.
+    while (pv(high) > netProceeds && high < 1e10) high *= 2;
+    if (high >= 1e10 && pv(high) > netProceeds) throw new Error('APR could not be determined for these inputs.');
+    for (let k = 0; k < 95; k++) {
+      const middle = (low + high) / 2;
+      if (pv(middle) > netProceeds) low = middle;
+      else high = middle;
+    }
+    return ((low + high) / 2) * perYear * 100;
+  }
+  function calculateLoan(v) {
+    const {principal:P, duration:T, annualRate:rate, compound, fees, payback} = v;
+    const netProceeds = P - fees;
+    const rows = [];
+    let n, frequency, periodic, headline, frequencyLabel;
+    if (payback === 'end') {
+      const due = P * Math.pow(annualGrowth(rate, compound), T);
+      if (!Number.isFinite(due)) throw new Error('The loan grows too large for a reliable calculation.');
+      rows.push({number:1, start:P, interest:due - P, principal:P, payment:due, end:0});
+      n = 1; frequency=1; periodic = null;
+      headline = 'Payback at the end of the term';
+      frequencyLabel = 'At maturity';
+    } else {
+      const interestOnly = payback === 'interest';
+      frequency = interestOnly ? 12 : periods[payback].count;
+      frequencyLabel = interestOnly ? 'month (interest only)' : periods[payback].label;
+      n = Math.max(1, Math.round(T * frequency));
+      periodic = periodicRate(rate, compound, frequency);
+      if (!Number.isFinite(periodic)) throw new Error('The interest rate is too high for these settings.');
+      let regularPayment;
+      if (interestOnly) regularPayment = P * periodic;
+      else if (periodic === 0) regularPayment = P / n;
+      else regularPayment = P * periodic / (-Math.expm1(-n * Math.log1p(periodic)));
+      if (!Number.isFinite(regularPayment)) throw new Error('Payment could not be calculated for these inputs.');
+      let balance = P;
+      for (let i = 1; i <= n; i++) {
+        const interest = balance * periodic;
+        let principalPaid, payment;
+        if (interestOnly) {
+          principalPaid = i === n ? balance : 0;
+          payment = principalPaid + interest;
+        } else {
+          principalPaid = i === n ? balance : regularPayment - interest;
+          principalPaid = Math.max(0, Math.min(balance, principalPaid));
+          payment = principalPaid + interest;
+        }
+        let ending = balance - principalPaid;
+        if (Math.abs(ending) < 0.0000001) ending = 0;
+        rows.push({number:i, start:balance, interest, principal:principalPaid, payment, end:ending});
+        balance = ending;
+      }
+      headline = interestOnly ? 'Interest-only payment every month' : 'Payback every ' + frequencyLabel;
+    }
+    const totalPaid = rows.reduce((sum,x)=>sum+x.payment,0);
+    const interest = totalPaid - P;
+    const cost = interest + fees;
+    if (![totalPaid,interest,cost].every(Number.isFinite)) throw new Error('Inputs produce a number that is too large.');
+    const apr = solveApr(rows, netProceeds, frequency, payback === 'end' ? T : 0);
+    const payment = payback === 'end' ? totalPaid : payback === 'interest' ? rows[0].interest : rows[0].payment;
+    return {v, rows, n, frequencyLabel, headline, payment, totalPaid, interest, cost, fees, apr};
+  }
+  function updateChart(calc) {
+    const total = calc.v.principal + calc.interest + calc.fees;
+    const values = [calc.v.principal, Math.max(0,calc.interest), calc.fees];
+    const colors = ['#2f7ed8','#83bc23','#970000'];
+    const names = ['Principal','Interest','Fee'];
+    const donut = $('donut');
+    let passed = 0;
+    const stops = [];
+    for (let j=0;j<3;j++) {
+      const next = j===2 ? 100 : passed + (100 * values[j] / total);
+      stops.push(colors[j] + ' ' + passed.toFixed(7) + '% ' + next.toFixed(7) + '%');
+      passed = next;
+    }
+    donut.style.background = 'conic-gradient(' + stops.join(',') + ')';
+    donut.replaceChildren();
+    let start = 0;
+    const parts = [];
+    for (let j=0;j<3;j++) {
+      const pct = values[j] / total * 100;
+      parts.push(names[j] + ' ' + pct.toFixed(1) + '%');
+      if (pct >= 5.5) {
+        const middleAngle = (-90 + (start + pct/2) * 3.6) * Math.PI / 180;
+        const s = document.createElement('span');
+        s.className = 'calcpro-business-loan-slice-label';
+        s.textContent = Math.round(pct) + '%';
+        s.style.left = (50 + 36 * Math.cos(middleAngle)) + '%';
+        s.style.top = (50 + 36 * Math.sin(middleAngle)) + '%';
+        donut.append(s);
+      }
+      start += pct;
+    }
+    donut.setAttribute('aria-label',parts.join(', '));
+  }
+  function scheduleRowHtml(row) {
+    const cells = [row.number, money(row.start), money(row.payment), money(row.principal), money(row.interest), money(row.end)];
+    return '<tr>' + cells.map(value => '<td>' + value + '</td>').join('') + '</tr>';
+  }
+  function showScheduleRows() {
+    if (!lastCalculation) return;
+    const rows = lastCalculation.rows;
+    $('schedule-rows').innerHTML = rows.slice(0,visibleRows).map(scheduleRowHtml).join('');
+    $('schedule-note').textContent = 'Showing ' + Math.min(visibleRows,rows.length).toLocaleString('en-US') +
+      ' of ' + rows.length.toLocaleString('en-US') + ' payment' + (rows.length === 1?'':'s') + '.';
+    more.hidden = visibleRows >= rows.length;
+  }
+  function setScheduleVisible(open) {
+    scheduleOpen = !!open;
+    amortEl.hidden = !scheduleOpen;
+    toggle.setAttribute('aria-expanded',String(scheduleOpen));
+    toggle.textContent = scheduleOpen ? 'Hide Amortization Table' : 'View Amortization Table';
+    if (scheduleOpen) showScheduleRows();
+  }
+  function render(calc) {
+    lastCalculation = calc;
+    $('payment-label').textContent = calc.headline;
+    $('payment-value').textContent = money(calc.payment);
+    $('total-label').textContent = 'Total of ' + calc.n.toLocaleString('en-US') + ' loan payment' + (calc.n === 1?'':'s');
+    $('total-value').textContent = money(calc.totalPaid);
+    $('interest-value').textContent = money(calc.interest);
+    $('cost-value').textContent = money(calc.cost);
+    $('apr-value').textContent = calc.apr.toFixed(3) + '%';
+    updateChart(calc);
+    visibleRows = 100;
+    if (scheduleOpen) showScheduleRows();
+    resultContent.hidden = false;
+    save.disabled = false;
+    errorEl.textContent = '';
+    numericIds.forEach(id => $(id).removeAttribute('aria-invalid'));
+  }
+  function recalculate({initial=false}={}) {
+    try {
+      const inputs = getInputs();
+      const output = calculateLoan(inputs);
+      render(output);
+      if (!initial) $('notice').hidden = true;
+      return output;
+    } catch (error) {
+      errorEl.textContent = error.message;
+      resultContent.hidden = true;
+      save.disabled = true;
+      lastCalculation = null;
+      return null;
+    }
+  }
+  function downloadFile(name,text,type) {
+    const url = URL.createObjectURL(new Blob([text],{type}));
+    const anchor = document.createElement('a');
+    anchor.href = url; anchor.download = name;
+    document.body.appendChild(anchor);
+    anchor.click(); anchor.remove();
+    setTimeout(() => URL.revokeObjectURL(url),1000);
+  }
+  form.addEventListener('submit', event => {event.preventDefault();recalculate();});
+  $('clear').addEventListener('click',()=>{
+    numericIds.forEach(id => {$(id).value = '';$(id).removeAttribute('aria-invalid');});
+    $('compound').value='monthly';$('payback').value='month';
+    errorEl.textContent='';lastCalculation=null;save.disabled=true;
+    setScheduleVisible(false);
+    resultContent.hidden=true;
+    $('notice').hidden=false;
+    $('amount').focus();
+  });
+  toggle.addEventListener('click',()=>setScheduleVisible(!scheduleOpen));
+  more.addEventListener('click',()=>{visibleRows += 100;showScheduleRows();});
+  $('print').addEventListener('click',()=>window.print());
+  csv.addEventListener('click',()=>{
+    if (!lastCalculation) return;
+    const headings='Payment #,Starting Balance,Payment,Principal,Interest,Ending Balance';
+    const data=lastCalculation.rows.map(r => [r.number,r.start,r.payment,r.principal,r.interest,r.end]
+      .map((v,i)=>i===0?String(v):v.toFixed(6)).join(','));
+    downloadFile('business-loan-amortization.csv',[headings,...data].join('\r\n'),'text/csv;charset=utf-8');
+  });
+  save.addEventListener('click',()=>{
+    if (!lastCalculation) return;
+    const c=lastCalculation, v=c.v;
+    const lines=[
+      'CalcPro Business Loan Calculation',
+      'Loan amount: ' + money(v.principal),
+      'Interest rate: ' + v.annualRate + '%',
+      'Compounding: ' + $('compound').selectedOptions[0].textContent,
+      'Term: ' + v.years + ' years, ' + v.months + ' months',
+      'Repayment method: ' + $('payback').selectedOptions[0].textContent,
+      'Origination fee: ' + v.origination + '%',
+      'Documentation fee: ' + money(v.documentation),
+      'Other fees: ' + money(v.other),
+      'Total upfront fees: ' + money(v.fees),
+      c.headline + ': ' + money(c.payment),
+      'Total of ' + c.n + ' payments: ' + money(c.totalPaid),
+      'Total interest: ' + money(c.interest),
+      'Interest + fees: ' + money(c.cost),
+      'Fee-adjusted estimated annual rate (APR): ' + c.apr.toFixed(3) + '%',
+      '', 'Planning estimate only. Terms and lender disclosures may differ.'
+    ];
+    downloadFile('business-loan-summary.txt',lines.join('\r\n'),'text/plain;charset=utf-8');
+  });
+  // Start with the reference's prepopulated example and calculated result.
+  recalculate({initial:true});
+})();
+
+</script><script defer src="/assets/js/data.js"></script>
+<script defer src="/assets/js/style.js?v=20261111-5"></script>
+</body></html>

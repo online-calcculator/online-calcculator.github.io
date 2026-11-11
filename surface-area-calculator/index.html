@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US">
-<head>
-<meta charset="utf-8">
+<html lang="en"><head><meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="content-language" content="en">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,17 +11,420 @@
   <meta name="author" content="Commingsoon">
   <meta name="publisher" content="Commingsoon">
   <meta name="robots" content="noindex, nofollow, max-image-preview:large">
-  <link rel="stylesheet" href="/assets/css/style.css?v=20261111-1" crossorigin="anonymous" data-n-g="">
+  <link rel="stylesheet" href="/assets/css/style.css?v=20261111-4" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/doc_style.css" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/side_style.css" crossorigin="anonymous" data-n-g=""> 
   <!--ogtags-->
-  <!--schema-->
-  <!--style-->
-</head>
+  <!--schema--><style>
+/* CalcPro Surface Area Calculator — every new rule is scoped to cp-surface- */
+.cp-surface-wrap{max-width:100%;color:#17283b;font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.48}
+.cp-surface-wrap *{box-sizing:border-box}
+.cp-surface-intro-note{margin:3px 0 17px;color:#475569;font-size:14px}
+.cp-surface-section{margin:0 0 23px;padding:0 0 16px;border-bottom:1px solid #e0e8f0;scroll-margin-top:20px}
+.cp-surface-heading{font-size:19px!important;font-weight:700;color:#003b6d!important;line-height:1.3;margin:0 0 10px!important}
+.cp-surface-body{display:flex;align-items:center;flex-wrap:wrap;gap:15px}
+.cp-surface-form{width:min(100%,420px);background:#f3f5f7;border:1px solid #d4dce5;border-radius:5px;padding:11px 12px 10px}
+.cp-surface-field{display:grid;grid-template-columns:minmax(98px,135px) minmax(72px,1fr) minmax(104px,116px);gap:6px;align-items:center;margin-bottom:7px}
+.cp-surface-field>label{font-size:12px;line-height:1.3;font-weight:600;color:#264057}
+.cp-surface-field>input,.cp-surface-field>select{width:100%;min-width:0;height:32px;padding:4px 6px;border:1px solid #9fb0c3;border-radius:3px;background:#fff;color:#17263a;font:13px Arial,Helvetica,sans-serif}
+.cp-surface-field>input:focus,.cp-surface-field>select:focus{outline:2px solid #4584ba;outline-offset:1px}
+.cp-surface-field>input::placeholder{color:#8b97a8;font-size:12px}
+.cp-surface-fieldnote{font-size:12px;line-height:1.35;color:#576578;margin:4px 0 9px}
+.cp-surface-actions{display:flex;justify-content:center;align-items:center;gap:8px;margin-top:9px}
+.cp-surface-actions button{font-family:inherit;font-size:13px;font-weight:700;line-height:1;padding:9px 14px;min-height:34px;cursor:pointer;border-radius:3px}
+.cp-surface-calculate{background:#42852a;border:1px solid #32691e;color:#fff}
+.cp-surface-calculate:hover{background:#316e1e}
+.cp-surface-calculate span{font-size:10px;margin-left:5px;color:#d9f3d0}
+.cp-surface-clear{background:#687687;color:#fff;border:1px solid #536170}
+.cp-surface-clear:hover{background:#505d6d}
+.cp-surface-picture{width:130px;display:flex;align-items:center;justify-content:center;flex:none}
+.cp-surface-diagram{display:block;width:120px;height:104px}
+.cp-surface-diagram text{fill:#496677;stroke:none;font-size:12px;font-family:Arial,sans-serif}
+.cp-surface-result{max-width:620px;border:1px solid #a8c593;margin:0 0 12px;border-radius:3px;overflow:hidden;background:#f7fbf3}
+.cp-surface-result-header{background:#497f2c;color:#fff;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:space-between;padding:5px 9px}
+.cp-surface-collapse{background:transparent;color:#fff;border:1px solid #e0efdc;border-radius:2px;min-width:23px;min-height:23px;font-size:17px;line-height:1;cursor:pointer}
+.cp-surface-result-content{padding:11px 12px 10px;color:#27384b;font-size:13px;overflow-wrap:anywhere}
+.cp-surface-answer{font-size:15px;font-weight:700;margin-bottom:5px;color:#174f20}
+.cp-surface-answer strong{font-size:20px;font-weight:700;display:inline-block;margin-left:5px;color:#246b14;overflow-wrap:anywhere}
+.cp-surface-formula-line{font-size:13px;line-height:1.6;margin:2px 0}
+.cp-surface-result-list{display:grid;grid-template-columns:max-content minmax(0,1fr);gap:4px 12px;margin:9px 0 7px}
+.cp-surface-result-list dt{font-weight:600;color:#395c3b}
+.cp-surface-result-list dd{margin:0;min-width:0;font-variant-numeric:tabular-nums}
+.cp-surface-conversions{display:flex;flex-wrap:wrap;gap:7px;margin-top:8px}
+.cp-surface-conversions span{display:inline-block;padding:4px 7px;border:1px solid #d4e5cf;border-radius:3px;background:#fff;font-variant-numeric:tabular-nums}
+.cp-surface-result-note{font-size:12px;color:#58677a;margin-top:8px}
+.cp-surface-error{max-width:620px;margin:0 0 10px!important;background:#fff1ef;border:1px solid #d6837d;color:#8f2119;padding:9px 12px;font-size:13px;border-radius:3px}
+.cp-surface-related-inline{background:#f0f4f8;padding:10px 12px;display:flex;gap:8px 12px;align-items:center;flex-wrap:wrap;font-size:13px;margin:8px 0 2px}
+.cp-surface-related-inline a{color:#075b8b}
+@media(max-width:620px){.cp-surface-picture{width:100px}.cp-surface-diagram{width:96px;height:88px}.cp-surface-form{width:min(100%,420px)}.cp-surface-field{grid-template-columns:minmax(94px,115px) minmax(70px,1fr) minmax(90px,102px);gap:5px}.cp-surface-field>label{font-size:11px}.cp-surface-result-list{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}
+@media(max-width:435px){.cp-surface-body{gap:5px}.cp-surface-picture{width:100%;justify-content:flex-start;padding-left:8px}.cp-surface-field{grid-template-columns:minmax(88px,1fr) minmax(78px,1fr) minmax(85px,1fr)}.cp-surface-form{padding:9px 8px}.cp-surface-field>input,.cp-surface-field>select{font-size:12px;padding:4px}.cp-surface-heading{font-size:17px!important}}
+@media print{.cp-surface-form{border:1px solid #bbb}.cp-surface-actions{display:none}.cp-surface-section{break-inside:avoid}.cp-surface-result-content{display:block!important}}
+</style>
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / Math / Surface Area Calculator</nav><h1 class="cp-page-title">Surface Area Calculator</h1><p class="cp-intro">Calculate the surface area of ten common three-dimensional shapes. Enter dimensions, choose measurement units, and see accurate results instantly without leaving the page.</p><section aria-label="Calculator" class="cp-tool-area"><div class="cp-surface-wrap" id="cp-surface-calculator">
+ <p class="cp-surface-intro-note">Choose a shape, enter its dimensions, and select a unit for each measurement. All ten calculators work independently.</p>
+ <section class="cp-surface-section" id="cp-surface-ball" data-cp-surface-shape="ball" aria-labelledby="cp-surface-title-ball">
+   <h2 class="cp-surface-heading" id="cp-surface-title-ball">Ball Surface Area</h2>
+   <div class="cp-surface-result" data-cp-surface-result hidden><div class="cp-surface-result-header"><span>Result</span><button type="button" class="cp-surface-collapse" aria-label="Collapse result" aria-expanded="true">−</button></div><div class="cp-surface-result-content" data-cp-surface-result-content aria-live="polite"></div></div>
+   <p class="cp-surface-error" data-cp-surface-error role="alert" hidden></p>
+   <div class="cp-surface-body"><form class="cp-surface-form" novalidate>
+   <div class="cp-surface-field"><label for="cp-surface-ball-radius">Radius (r)</label><input id="cp-surface-ball-radius" data-cp-surface-field="radius" type="number" inputmode="decimal" step="any" placeholder="Enter value" aria-label="Radius (r)"/><select data-cp-surface-unit="radius" aria-label="Unit for Radius (r)"><option value="miles">Miles</option><option value="yards">Yards</option><option value="feet" selected>Feet</option><option value="inches">Inches</option><option value="kilometers">Kilometers</option><option value="meters">Meters</option><option value="centimeters">Centimeters</option><option value="millimeters">Millimeters</option><option value="micrometers">Micrometers</option><option value="nanometers">Nanometers</option><option value="angstroms">Ångströms</option></select></div>
+   <div class="cp-surface-actions"><button class="cp-surface-calculate" type="submit">Calculate <span aria-hidden="true">●</span></button><button class="cp-surface-clear" type="reset">Clear</button></div>
+   </form><div class="cp-surface-picture"><svg class="cp-surface-diagram" viewBox="0 0 110 96" role="img" aria-label="ball geometry sketch" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="#576d78" stroke-width="1.65" stroke-linejoin="round" stroke-linecap="round"><circle cx="53" cy="44" r="30"/><ellipse cx="53" cy="44" rx="30" ry="10" stroke-dasharray="3 4"/><path d="M53 44 L82 44"/><text x="68" y="39">r</text></g></svg></div></div>
+ </section>
+<section class="cp-surface-section" id="cp-surface-cone" data-cp-surface-shape="cone" aria-labelledby="cp-surface-title-cone">
+   <h2 class="cp-surface-heading" id="cp-surface-title-cone">Cone Surface Area</h2>
+   <div class="cp-surface-result" data-cp-surface-result hidden><div class="cp-surface-result-header"><span>Result</span><button type="button" class="cp-surface-collapse" aria-label="Collapse result" aria-expanded="true">−</button></div><div class="cp-surface-result-content" data-cp-surface-result-content aria-live="polite"></div></div>
+   <p class="cp-surface-error" data-cp-surface-error role="alert" hidden></p>
+   <div class="cp-surface-body"><form class="cp-surface-form" novalidate>
+   <div class="cp-surface-field"><label for="cp-surface-cone-radius">Base Radius (r)</label><input id="cp-surface-cone-radius" data-cp-surface-field="radius" type="number" inputmode="decimal" step="any" placeholder="Enter value" aria-label="Base Radius (r)"/><select data-cp-surface-unit="radius" aria-label="Unit for Base Radius (r)"><option value="miles">Miles</option><option value="yards">Yards</option><option value="feet" selected>Feet</option><option value="inches">Inches</option><option value="kilometers">Kilometers</option><option value="meters">Meters</option><option value="centimeters">Centimeters</option><option value="millimeters">Millimeters</option><option value="micrometers">Micrometers</option><option value="nanometers">Nanometers</option><option value="angstroms">Ångströms</option></select></div><div class="cp-surface-field"><label for="cp-surface-cone-height">Height (h)</label><input id="cp-surface-cone-height" data-cp-surface-field="height" type="number" inputmode="decimal" step="any" placeholder="Enter value" aria-label="Height (h)"/><select data-cp-surface-unit="height" aria-label="Unit for Height (h)"><option value="miles">Miles</option><option value="yards">Yards</option><option value="feet" selected>Feet</option><option value="inches">Inches</option><option value="kilometers">Kilometers</option><option value="meters">Meters</option><option value="centimeters">Centimeters</option><option value="millimeters">Millimeters</option><option value="micrometers">Micrometers</option><option value="nanometers">Nanometers</option><option value="angstroms">Ångströms</option></select></div><p class="cp-surface-fieldnote">Includes both the circular base and the curved side.</p>
+   <div class="cp-surface-actions"><button class="cp-surface-calculate" type="submit">Calculate <span aria-hidden="true">●</span></button><button class="cp-surface-clear" type="reset">Clear</button></div>
+   </form><div class="cp-surface-picture"><svg class="cp-surface-diagram" viewBox="0 0 110 96" role="img" aria-label="cone geometry sketch" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="#576d78" stroke-width="1.65" stroke-linejoin="round" stroke-linecap="round"><path d="M55 11 L22 75 M55 11 L88 75"/><ellipse cx="55" cy="75" rx="33" ry="11"/><path d="M55 11 V75" stroke-dasharray="4 4"/><path d="M55 75 H88" stroke-dasharray="4 4"/><text x="60" y="47">h</text><text x="72" y="70">r</text></g></svg></div></div>
+ </section>
+<section class="cp-surface-section" id="cp-surface-cube" data-cp-surface-shape="cube" aria-labelledby="cp-surface-title-cube">
+   <h2 class="cp-surface-heading" id="cp-surface-title-cube">Cube Surface Area</h2>
+   <div class="cp-surface-result" data-cp-surface-result hidden><div class="cp-surface-result-header"><span>Result</span><button type="button" class="cp-surface-collapse" aria-label="Collapse result" aria-expanded="true">−</button></div><div class="cp-surface-result-content" data-cp-surface-result-content aria-live="polite"></div></div>
+   <p class="cp-surface-error" data-cp-surface-error role="alert" hidden></p>
+   <div class="cp-surface-body"><form class="cp-surface-form" novalidate>
+   <div class="cp-surface-field"><label for="cp-surface-cube-edge">Edge Length (a)</label><input id="cp-surface-cube-edge" data-cp-surface-field="edge" type="number" inputmode="decimal" step="any" placeholder="Enter value" aria-label="Edge Length (a)"/><select data-cp-surface-unit="edge" aria-label="Unit for Edge Length (a)"><option value="miles">Miles</option><option value="yards">Yards</option><option value="feet" selected>Feet</option><option value="inches">Inches</option><option value="kilometers">Kilometers</option><option value="meters">Meters</option><option value="centimeters">Centimeters</option><option value="millimeters">Millimeters</option><option value="micrometers">Micrometers</option><option value="nanometers">Nanometers</option><option value="angstroms">Ångströms</option></select></div>
+   <div class="cp-surface-actions"><button class="cp-surface-calculate" type="submit">Calculate <span aria-hidden="true">●</span></button><button class="cp-surface-clear" type="reset">Clear</button></div>
+   </form><div class="cp-surface-picture"><svg class="cp-surface-diagram" viewBox="0 0 110 96" role="img" aria-label="cube geometry sketch" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="#576d78" stroke-width="1.65" stroke-linejoin="round" stroke-linecap="round"><path d="M30 30 H76 V77 H30 Z M43 17 H89 V64 H76 M30 30 L43 17 M76 30 L89 17 M76 77 L89 64 M43 17 V64 L30 77"/><text x="51" y="88">a</text></g></svg></div></div>
+ </section>
+<section class="cp-surface-section" id="cp-surface-cylinder" data-cp-surface-shape="cylinder" aria-labelledby="cp-surface-title-cylinder">
+   <h2 class="cp-surface-heading" id="cp-surface-title-cylinder">Cylindrical Tank Surface Area</h2>
+   <div class="cp-surface-result" data-cp-surface-result hidden><div class="cp-surface-result-header"><span>Result</span><button type="button" class="cp-surface-collapse" aria-label="Collapse result" aria-expanded="true">−</button></div><div class="cp-surface-result-content" data-cp-surface-result-content aria-live="polite"></div></div>
+   <p class="cp-surface-error" data-cp-surface-error role="alert" hidden></p>
+   <div class="cp-surface-body"><form class="cp-surface-form" novalidate>
+   <div class="cp-surface-field"><label for="cp-surface-cylinder-radius">Base Radius (r)</label><input id="cp-surface-cylinder-radius" data-cp-surface-field="radius" type="number" inputmode="decimal" step="any" placeholder="Enter value" aria-label="Base Radius (r)"/><select data-cp-surface-unit="radius" aria-label="Unit for Base Radius (r)"><option value="miles">Miles</option><option value="yards">Yards</option><option value="feet" selected>Feet</option><option value="inches">Inches</option><option value="kilometers">Kilometers</option><option value="meters">Meters</option><option value="centimeters">Centimeters</option><option value="millimeters">Millimeters</option><option value="micrometers">Micrometers</option><option value="nanometers">Nanometers</option><option value="angstroms">Ångströms</option></select></div><div class="cp-surface-field"><label for="cp-surface-cylinder-height">Height (h)</label><input id="cp-surface-cylinder-height" data-cp-surface-field="height" type="number" inputmode="decimal" step="any" placeholder="Enter value" aria-label="Height (h)"/><select data-cp-surface-unit="height" aria-label="Unit for Height (h)"><option value="miles">Miles</option><option value="yards">Yards</option><option value="feet" selected>Feet</option><option value="inches">Inches</option><option value="kilometers">Kilometers</option><option value="meters">Meters</option><option value="centimeters">Centimeters</option><option value="millimeters">Millimeters</option><option value="micrometers">Micrometers</option><option value="nanometers">Nanometers</option><option value="angstroms">Ångströms</option></select></div><p class="cp-surface-fieldnote">Includes the top, bottom, and curved side of a closed cylinder.</p>
+   <div class="cp-surface-actions"><button class="cp-surface-calculate" type="submit">Calculate <span aria-hidden="true">●</span></button><button class="cp-surface-clear" type="reset">Clear</button></div>
+   </form><div class="cp-surface-picture"><svg class="cp-surface-diagram" viewBox="0 0 110 96" role="img" aria-label="cylinder geometry sketch" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="#576d78" stroke-width="1.65" stroke-linejoin="round" stroke-linecap="round"><ellipse cx="55" cy="21" rx="32" ry="10"/><path d="M23 21 V73 M87 21 V73"/><path d="M23 73 A32 10 0 0 0 87 73"/><path d="M23 73 A32 10 0 0 1 87 73" stroke-dasharray="4 4"/><path d="M55 21 L87 21"/><text x="67" y="17">r</text><text x="92" y="51">h</text></g></svg></div></div>
+ </section>
+<section class="cp-surface-section" id="cp-surface-rectangular" data-cp-surface-shape="rectangular" aria-labelledby="cp-surface-title-rectangular">
+   <h2 class="cp-surface-heading" id="cp-surface-title-rectangular">Rectangular Tank Surface Area</h2>
+   <div class="cp-surface-result" data-cp-surface-result hidden><div class="cp-surface-result-header"><span>Result</span><button type="button" class="cp-surface-collapse" aria-label="Collapse result" aria-expanded="true">−</button></div><div class="cp-surface-result-content" data-cp-surface-result-content aria-live="polite"></div></div>
+   <p class="cp-surface-error" data-cp-surface-error role="alert" hidden></p>
+   <div class="cp-surface-body"><form class="cp-surface-form" novalidate>
+   <div class="cp-surface-field"><label for="cp-surface-rectangular-length">Length (l)</label><input id="cp-surface-rectangular-length" data-cp-surface-field="length" type="number" inputmode="decimal" step="any" placeholder="Enter value" aria-label="Length (l)"/><select data-cp-surface-unit="length" aria-label="Unit for Length (l)"><option value="miles">Miles</option><option value="yards">Yards</option><option value="feet" selected>Feet</option><option value="inches">Inches</option><option value="kilometers">Kilometers</option><option value="meters">Meters</option><option value="centimeters">Centimeters</option><option value="millimeters">Millimeters</option><option value="micrometers">Micrometers</option><option value="nanometers">Nanometers</option><option value="angstroms">Ångströms</option></select></div><div class="cp-surface-field"><label for="cp-surface-rectangular-width">Width (w)</label><input id="cp-surface-rectangular-width" data-cp-surface-field="width" type="number" inputmode="decimal" step="any" placeholder="Enter value" aria-label="Width (w)"/><select data-cp-surface-unit="width" aria-label="Unit for Width (w)"><option value="miles">Miles</option><option value="yards">Yards</option><option value="feet" selected>Feet</option><option value="inches">Inches</option><option value="kilometers">Kilometers</option><option value="meters">Meters</option><option value="centimeters">Centimeters</option><option value="millimeters">Millimeters</option><option value="micrometers">Micrometers</option><option value="nanometers">Nanometers</option><option value="angstroms">Ångströms</option></select></div><div class="cp-surface-field"><label for="cp-surface-rectangular-height">Height (h)</label><input id="cp-surface-rectangular-height" data-cp-surface-field="height" type="number" inputmode="decimal" step="any" placeholder="Enter value" aria-label="Height (h)"/><select data-cp-surface-unit="height" aria-label="Unit for Height (h)"><option value="miles">Miles</option><option value="yards">Yards</option><option value="feet" selected>Feet</option><option value="inches">Inches</option><option value="kilometers">Kilometers</option><option value="meters">Meters</option><option value="centimeters">Centimeters</option><option value="millimeters">Millimeters</option><option value="micrometers">Micrometers</option><option value="nanometers">Nanometers</option><option value="angstroms">Ångströms</option></select></div>
+   <div class="cp-surface-actions"><button class="cp-surface-calculate" type="submit">Calculate <span aria-hidden="true">●</span></button><button class="cp-surface-clear" type="reset">Clear</button></div>
+   </form><div class="cp-surface-picture"><svg class="cp-surface-diagram" viewBox="0 0 110 96" role="img" aria-label="rectangular geometry sketch" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="#576d78" stroke-width="1.65" stroke-linejoin="round" stroke-linecap="round"><path d="M24 30 L69 30 L90 16 L45 16 Z M24 30 L24 78 L69 78 L69 30 M69 78 L90 62 L90 16 M69 30 L90 16"/><text x="42" y="88">l</text><text x="80" y="79">w</text><text x="13" y="56">h</text></g></svg></div></div>
+ </section>
+<section class="cp-surface-section" id="cp-surface-capsule" data-cp-surface-shape="capsule" aria-labelledby="cp-surface-title-capsule">
+   <h2 class="cp-surface-heading" id="cp-surface-title-capsule">Capsule Surface Area</h2>
+   <div class="cp-surface-result" data-cp-surface-result hidden><div class="cp-surface-result-header"><span>Result</span><button type="button" class="cp-surface-collapse" aria-label="Collapse result" aria-expanded="true">−</button></div><div class="cp-surface-result-content" data-cp-surface-result-content aria-live="polite"></div></div>
+   <p class="cp-surface-error" data-cp-surface-error role="alert" hidden></p>
+   <div class="cp-surface-body"><form class="cp-surface-form" novalidate>
+   <div class="cp-surface-field"><label for="cp-surface-capsule-radius">Base Radius (r)</label><input id="cp-surface-capsule-radius" data-cp-surface-field="radius" type="number" inputmode="decimal" step="any" placeholder="Enter value" aria-label="Base Radius (r)"/><select data-cp-surface-unit="radius" aria-label="Unit for Base Radius (r)"><option value="miles">Miles</option><option value="yards">Yards</option><option value="feet" selected>Feet</option><option value="inches">Inches</option><option value="kilometers">Kilometers</option><option value="meters">Meters</option><option value="centimeters">Centimeters</option><option value="millimeters">Millimeters</option><option value="micrometers">Micrometers</option><option value="nanometers">Nanometers</option><option value="angstroms">Ångströms</option></select></div><div class="cp-surface-field"><label for="cp-surface-capsule-height">Height (h)</label><input id="cp-surface-capsule-height" data-cp-surface-field="height" type="number" inputmode="decimal" step="any" placeholder="Enter value" aria-label="Height (h)"/><select data-cp-surface-unit="height" aria-label="Unit for Height (h)"><option value="miles">Miles</option><option value="yards">Yards</option><option value="feet" selected>Feet</option><option value="inches">Inches</option><option value="kilometers">Kilometers</option><option value="meters">Meters</option><option value="centimeters">Centimeters</option><option value="millimeters">Millimeters</option><option value="micrometers">Micrometers</option><option value="nanometers">Nanometers</option><option value="angstroms">Ångströms</option></select></div><p class="cp-surface-fieldnote">Height (h) is the straight cylindrical part, excluding both rounded ends.</p>
+   <div class="cp-surface-actions"><button class="cp-surface-calculate" type="submit">Calculate <span aria-hidden="true">●</span></button><button class="cp-surface-clear" type="reset">Clear</button></div>
+   </form><div class="cp-surface-picture"><svg class="cp-surface-diagram" viewBox="0 0 110 96" role="img" aria-label="capsule geometry sketch" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="#576d78" stroke-width="1.65" stroke-linejoin="round" stroke-linecap="round"><path d="M25 30 A30 22 0 0 1 85 30 V63 A30 22 0 0 1 25 63 Z"/><ellipse cx="55" cy="30" rx="30" ry="8" stroke-dasharray="3 3"/><ellipse cx="55" cy="63" rx="30" ry="8" stroke-dasharray="3 3"/><path d="M55 12 V30 M55 30 L84 30" stroke-dasharray="3 3"/><text x="91" y="49">h</text><text x="67" y="24">r</text></g></svg></div></div>
+ </section>
+<section class="cp-surface-section" id="cp-surface-cap" data-cp-surface-shape="cap" aria-labelledby="cp-surface-title-cap">
+   <h2 class="cp-surface-heading" id="cp-surface-title-cap">Cap Surface Area</h2>
+   <div class="cp-surface-result" data-cp-surface-result hidden><div class="cp-surface-result-header"><span>Result</span><button type="button" class="cp-surface-collapse" aria-label="Collapse result" aria-expanded="true">−</button></div><div class="cp-surface-result-content" data-cp-surface-result-content aria-live="polite"></div></div>
+   <p class="cp-surface-error" data-cp-surface-error role="alert" hidden></p>
+   <div class="cp-surface-body"><form class="cp-surface-form" novalidate>
+   <div class="cp-surface-field"><label for="cp-surface-cap-radius">Base Radius (r)</label><input id="cp-surface-cap-radius" data-cp-surface-field="radius" type="number" inputmode="decimal" step="any" placeholder="Enter value" aria-label="Base Radius (r)"/><select data-cp-surface-unit="radius" aria-label="Unit for Base Radius (r)"><option value="miles">Miles</option><option value="yards">Yards</option><option value="feet" selected>Feet</option><option value="inches">Inches</option><option value="kilometers">Kilometers</option><option value="meters">Meters</option><option value="centimeters">Centimeters</option><option value="millimeters">Millimeters</option><option value="micrometers">Micrometers</option><option value="nanometers">Nanometers</option><option value="angstroms">Ångströms</option></select></div><div class="cp-surface-field"><label for="cp-surface-cap-ballRadius">Ball Radius (R)</label><input id="cp-surface-cap-ballRadius" data-cp-surface-field="ballRadius" type="number" inputmode="decimal" step="any" placeholder="Enter value" aria-label="Ball Radius (R)"/><select data-cp-surface-unit="ballRadius" aria-label="Unit for Ball Radius (R)"><option value="miles">Miles</option><option value="yards">Yards</option><option value="feet" selected>Feet</option><option value="inches">Inches</option><option value="kilometers">Kilometers</option><option value="meters">Meters</option><option value="centimeters">Centimeters</option><option value="millimeters">Millimeters</option><option value="micrometers">Micrometers</option><option value="nanometers">Nanometers</option><option value="angstroms">Ångströms</option></select></div><div class="cp-surface-field"><label for="cp-surface-cap-height">Height (h)</label><input id="cp-surface-cap-height" data-cp-surface-field="height" type="number" inputmode="decimal" step="any" placeholder="Enter value" aria-label="Height (h)"/><select data-cp-surface-unit="height" aria-label="Unit for Height (h)"><option value="miles">Miles</option><option value="yards">Yards</option><option value="feet" selected>Feet</option><option value="inches">Inches</option><option value="kilometers">Kilometers</option><option value="meters">Meters</option><option value="centimeters">Centimeters</option><option value="millimeters">Millimeters</option><option value="micrometers">Micrometers</option><option value="nanometers">Nanometers</option><option value="angstroms">Ångströms</option></select></div><p class="cp-surface-fieldnote">Enter any two measurements. With base radius and ball radius, the smaller cap is used.</p>
+   <div class="cp-surface-actions"><button class="cp-surface-calculate" type="submit">Calculate <span aria-hidden="true">●</span></button><button class="cp-surface-clear" type="reset">Clear</button></div>
+   </form><div class="cp-surface-picture"><svg class="cp-surface-diagram" viewBox="0 0 110 96" role="img" aria-label="cap geometry sketch" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="#576d78" stroke-width="1.65" stroke-linejoin="round" stroke-linecap="round"><path d="M18 54 C24 6 86 6 92 54"/><ellipse cx="55" cy="54" rx="37" ry="12"/><path d="M55 12 V54" stroke-dasharray="4 3"/><path d="M55 54 H92" stroke-dasharray="4 3"/><text x="61" y="35">h</text><text x="72" y="50">r</text></g></svg></div></div>
+ </section>
+<section class="cp-surface-section" id="cp-surface-frustum" data-cp-surface-shape="frustum" aria-labelledby="cp-surface-title-frustum">
+   <h2 class="cp-surface-heading" id="cp-surface-title-frustum">Conical Frustum Surface Area</h2>
+   <div class="cp-surface-result" data-cp-surface-result hidden><div class="cp-surface-result-header"><span>Result</span><button type="button" class="cp-surface-collapse" aria-label="Collapse result" aria-expanded="true">−</button></div><div class="cp-surface-result-content" data-cp-surface-result-content aria-live="polite"></div></div>
+   <p class="cp-surface-error" data-cp-surface-error role="alert" hidden></p>
+   <div class="cp-surface-body"><form class="cp-surface-form" novalidate>
+   <div class="cp-surface-field"><label for="cp-surface-frustum-topRadius">Top Radius (r)</label><input id="cp-surface-frustum-topRadius" data-cp-surface-field="topRadius" type="number" inputmode="decimal" step="any" placeholder="Enter value" aria-label="Top Radius (r)"/><select data-cp-surface-unit="topRadius" aria-label="Unit for Top Radius (r)"><option value="miles">Miles</option><option value="yards">Yards</option><option value="feet" selected>Feet</option><option value="inches">Inches</option><option value="kilometers">Kilometers</option><option value="meters">Meters</option><option value="centimeters">Centimeters</option><option value="millimeters">Millimeters</option><option value="micrometers">Micrometers</option><option value="nanometers">Nanometers</option><option value="angstroms">Ångströms</option></select></div><div class="cp-surface-field"><label for="cp-surface-frustum-bottomRadius">Bottom Radius (R)</label><input id="cp-surface-frustum-bottomRadius" data-cp-surface-field="bottomRadius" type="number" inputmode="decimal" step="any" placeholder="Enter value" aria-label="Bottom Radius (R)"/><select data-cp-surface-unit="bottomRadius" aria-label="Unit for Bottom Radius (R)"><option value="miles">Miles</option><option value="yards">Yards</option><option value="feet" selected>Feet</option><option value="inches">Inches</option><option value="kilometers">Kilometers</option><option value="meters">Meters</option><option value="centimeters">Centimeters</option><option value="millimeters">Millimeters</option><option value="micrometers">Micrometers</option><option value="nanometers">Nanometers</option><option value="angstroms">Ångströms</option></select></div><div class="cp-surface-field"><label for="cp-surface-frustum-height">Height (h)</label><input id="cp-surface-frustum-height" data-cp-surface-field="height" type="number" inputmode="decimal" step="any" placeholder="Enter value" aria-label="Height (h)"/><select data-cp-surface-unit="height" aria-label="Unit for Height (h)"><option value="miles">Miles</option><option value="yards">Yards</option><option value="feet" selected>Feet</option><option value="inches">Inches</option><option value="kilometers">Kilometers</option><option value="meters">Meters</option><option value="centimeters">Centimeters</option><option value="millimeters">Millimeters</option><option value="micrometers">Micrometers</option><option value="nanometers">Nanometers</option><option value="angstroms">Ångströms</option></select></div><p class="cp-surface-fieldnote">Top and bottom radii can be different.</p>
+   <div class="cp-surface-actions"><button class="cp-surface-calculate" type="submit">Calculate <span aria-hidden="true">●</span></button><button class="cp-surface-clear" type="reset">Clear</button></div>
+   </form><div class="cp-surface-picture"><svg class="cp-surface-diagram" viewBox="0 0 110 96" role="img" aria-label="frustum geometry sketch" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="#576d78" stroke-width="1.65" stroke-linejoin="round" stroke-linecap="round"><ellipse cx="55" cy="21" rx="20" ry="7"/><path d="M35 21 L18 74 M75 21 L92 74"/><ellipse cx="55" cy="74" rx="37" ry="11"/><path d="M55 21 V74" stroke-dasharray="4 3"/><text x="57" y="48">h</text><text x="71" y="17">r</text><text x="78" y="70">R</text></g></svg></div></div>
+ </section>
+<section class="cp-surface-section" id="cp-surface-ellipsoid" data-cp-surface-shape="ellipsoid" aria-labelledby="cp-surface-title-ellipsoid">
+   <h2 class="cp-surface-heading" id="cp-surface-title-ellipsoid">Ellipsoid Surface Area</h2>
+   <div class="cp-surface-result" data-cp-surface-result hidden><div class="cp-surface-result-header"><span>Result</span><button type="button" class="cp-surface-collapse" aria-label="Collapse result" aria-expanded="true">−</button></div><div class="cp-surface-result-content" data-cp-surface-result-content aria-live="polite"></div></div>
+   <p class="cp-surface-error" data-cp-surface-error role="alert" hidden></p>
+   <div class="cp-surface-body"><form class="cp-surface-form" novalidate>
+   <div class="cp-surface-field"><label for="cp-surface-ellipsoid-a">Axis 1 (a)</label><input id="cp-surface-ellipsoid-a" data-cp-surface-field="a" type="number" inputmode="decimal" step="any" placeholder="Enter value" aria-label="Axis 1 (a)"/><select data-cp-surface-unit="a" aria-label="Unit for Axis 1 (a)"><option value="miles">Miles</option><option value="yards">Yards</option><option value="feet" selected>Feet</option><option value="inches">Inches</option><option value="kilometers">Kilometers</option><option value="meters">Meters</option><option value="centimeters">Centimeters</option><option value="millimeters">Millimeters</option><option value="micrometers">Micrometers</option><option value="nanometers">Nanometers</option><option value="angstroms">Ångströms</option></select></div><div class="cp-surface-field"><label for="cp-surface-ellipsoid-b">Axis 2 (b)</label><input id="cp-surface-ellipsoid-b" data-cp-surface-field="b" type="number" inputmode="decimal" step="any" placeholder="Enter value" aria-label="Axis 2 (b)"/><select data-cp-surface-unit="b" aria-label="Unit for Axis 2 (b)"><option value="miles">Miles</option><option value="yards">Yards</option><option value="feet" selected>Feet</option><option value="inches">Inches</option><option value="kilometers">Kilometers</option><option value="meters">Meters</option><option value="centimeters">Centimeters</option><option value="millimeters">Millimeters</option><option value="micrometers">Micrometers</option><option value="nanometers">Nanometers</option><option value="angstroms">Ångströms</option></select></div><div class="cp-surface-field"><label for="cp-surface-ellipsoid-c">Axis 3 (c)</label><input id="cp-surface-ellipsoid-c" data-cp-surface-field="c" type="number" inputmode="decimal" step="any" placeholder="Enter value" aria-label="Axis 3 (c)"/><select data-cp-surface-unit="c" aria-label="Unit for Axis 3 (c)"><option value="miles">Miles</option><option value="yards">Yards</option><option value="feet" selected>Feet</option><option value="inches">Inches</option><option value="kilometers">Kilometers</option><option value="meters">Meters</option><option value="centimeters">Centimeters</option><option value="millimeters">Millimeters</option><option value="micrometers">Micrometers</option><option value="nanometers">Nanometers</option><option value="angstroms">Ångströms</option></select></div><p class="cp-surface-fieldnote">Axis values are semi-axes measured from the center to the surface.</p>
+   <div class="cp-surface-actions"><button class="cp-surface-calculate" type="submit">Calculate <span aria-hidden="true">●</span></button><button class="cp-surface-clear" type="reset">Clear</button></div>
+   </form><div class="cp-surface-picture"><svg class="cp-surface-diagram" viewBox="0 0 110 96" role="img" aria-label="ellipsoid geometry sketch" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="#576d78" stroke-width="1.65" stroke-linejoin="round" stroke-linecap="round"><ellipse cx="55" cy="47" rx="34" ry="40"/><ellipse cx="55" cy="47" rx="34" ry="13" stroke-dasharray="4 3"/><ellipse cx="55" cy="47" rx="13" ry="40" stroke-dasharray="4 3"/><path d="M55 47 L88 47 M55 47 V9"/><text x="73" y="42">a</text><text x="60" y="20">c</text><text x="48" y="66">b</text></g></svg></div></div>
+ </section>
+<section class="cp-surface-section" id="cp-surface-pyramid" data-cp-surface-shape="pyramid" aria-labelledby="cp-surface-title-pyramid">
+   <h2 class="cp-surface-heading" id="cp-surface-title-pyramid">Square Pyramid Surface Area</h2>
+   <div class="cp-surface-result" data-cp-surface-result hidden><div class="cp-surface-result-header"><span>Result</span><button type="button" class="cp-surface-collapse" aria-label="Collapse result" aria-expanded="true">−</button></div><div class="cp-surface-result-content" data-cp-surface-result-content aria-live="polite"></div></div>
+   <p class="cp-surface-error" data-cp-surface-error role="alert" hidden></p>
+   <div class="cp-surface-body"><form class="cp-surface-form" novalidate>
+   <div class="cp-surface-field"><label for="cp-surface-pyramid-edge">Base Edge (a)</label><input id="cp-surface-pyramid-edge" data-cp-surface-field="edge" type="number" inputmode="decimal" step="any" placeholder="Enter value" aria-label="Base Edge (a)"/><select data-cp-surface-unit="edge" aria-label="Unit for Base Edge (a)"><option value="miles">Miles</option><option value="yards">Yards</option><option value="feet" selected>Feet</option><option value="inches">Inches</option><option value="kilometers">Kilometers</option><option value="meters">Meters</option><option value="centimeters">Centimeters</option><option value="millimeters">Millimeters</option><option value="micrometers">Micrometers</option><option value="nanometers">Nanometers</option><option value="angstroms">Ångströms</option></select></div><div class="cp-surface-field"><label for="cp-surface-pyramid-height">Height (h)</label><input id="cp-surface-pyramid-height" data-cp-surface-field="height" type="number" inputmode="decimal" step="any" placeholder="Enter value" aria-label="Height (h)"/><select data-cp-surface-unit="height" aria-label="Unit for Height (h)"><option value="miles">Miles</option><option value="yards">Yards</option><option value="feet" selected>Feet</option><option value="inches">Inches</option><option value="kilometers">Kilometers</option><option value="meters">Meters</option><option value="centimeters">Centimeters</option><option value="millimeters">Millimeters</option><option value="micrometers">Micrometers</option><option value="nanometers">Nanometers</option><option value="angstroms">Ångströms</option></select></div>
+   <div class="cp-surface-actions"><button class="cp-surface-calculate" type="submit">Calculate <span aria-hidden="true">●</span></button><button class="cp-surface-clear" type="reset">Clear</button></div>
+   </form><div class="cp-surface-picture"><svg class="cp-surface-diagram" viewBox="0 0 110 96" role="img" aria-label="pyramid geometry sketch" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="#576d78" stroke-width="1.65" stroke-linejoin="round" stroke-linecap="round"><path d="M54 9 L16 66 L65 85 L94 62 Z M54 9 L65 85 M16 66 L43 48 L94 62"/><path d="M54 9 L43 48 L65 85" stroke-dasharray="4 3"/><text x="56" y="48">h</text><text x="36" y="84">a</text></g></svg></div></div>
+ </section>
+ <div class="cp-surface-related-inline"><strong>Related:</strong> <a href="https://www.calculator.net/volume-calculator.html">Volume Calculator</a> <a href="https://www.calculator.net/area-calculator.html">Area Calculator</a> <a href="https://www.calculator.net/body-surface-area-calculator.html">Body Surface Area Calculator</a></div>
+</div></section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><a href="#cp-surface-ball">Ball Surface Area</a><a href="#cp-surface-cone">Cone Surface Area</a><a href="#cp-surface-cube">Cube Surface Area</a><a href="#cp-surface-cylinder">Cylindrical Tank Surface Area</a><a href="#cp-surface-rectangular">Rectangular Tank Surface Area</a><a href="#cp-surface-capsule">Capsule Surface Area</a><a href="#cp-surface-cap">Cap Surface Area</a><a href="#cp-surface-frustum">Conical Frustum Surface Area</a><a href="#cp-surface-ellipsoid">Ellipsoid Surface Area</a><a href="#cp-surface-pyramid">Square Pyramid Surface Area</a><a href="https://www.calculator.net/volume-calculator.html">Volume Calculator</a><a href="https://www.calculator.net/area-calculator.html">Area Calculator</a></div></section></aside><article class="cp-article">
+<h2>How to Use the Surface Area Calculator</h2>
+<p>Select the shape you need and enter the lengths shown in its input panel. Choose the correct unit for each dimension, then click <strong>Calculate</strong>. The corresponding result appears directly above that shape’s form. The calculator converts mixed input units automatically and reports total surface area in square units based on the first measurement’s unit. Use <strong>Clear</strong> to reset only that shape.</p>
+<p>All results refer to the external area of a <strong>closed solid</strong>, unless specifically identified as a curved or lateral component. An open-top container requires subtracting its missing top area from the closed-solid total.</p>
+<h2>Surface Area Formulas for Each Shape</h2>
+<h3>Sphere (Ball)</h3><p>A sphere with radius <em>r</em> has surface area <strong>A = 4πr²</strong>. For a radius of 5 cm, A = 100π ≈ 314.159 cm².</p>
+<h3>Cone</h3><p>For a right circular cone, the total area is <strong>A = πr² + πr√(r² + h²)</strong>, with the first term for the base and the second for the sloping side. The slant height is √(r² + h²).</p>
+<h3>Cube</h3><p>A cube has six equal square faces: <strong>A = 6a²</strong>, where <em>a</em> is the edge length. A cube with a 4-inch edge has 96 in² of surface area.</p>
+<h3>Cylindrical Tank</h3><p>For a closed cylinder, <strong>A = 2πr² + 2πrh</strong>. The first term includes the two circular ends; the second represents the curved wall. To calculate an open-top tank, subtract πr² from the total.</p>
+<h3>Rectangular Tank</h3><p>A rectangular prism with length <em>l</em>, width <em>w</em>, and height <em>h</em> has <strong>A = 2(lw + lh + wh)</strong>. For a 3 × 4 × 5 ft box, the surface area is 94 ft².</p>
+<h3>Capsule</h3><p>A capsule consists of a cylinder with a hemisphere at each end. The total external surface area is <strong>A = 4πr² + 2πrh</strong>, where <em>h</em> is only the straight cylinder length. The full end-to-end capsule height is h + 2r.</p>
+<h3>Spherical Cap</h3><p>For ball radius <em>R</em>, cap height <em>h</em>, and flat-base radius <em>r</em>, the curved surface is <strong>2πRh</strong>, and the circular base is <strong>πr²</strong>. The calculator reports their sum: <strong>A = 2πRh + πr²</strong>. Since r² = 2Rh − h², you can enter any two dimensions to solve for the third. When only r and R are provided, this calculator assumes the smaller cap.</p>
+<h3>Conical Frustum</h3><p>The total area of a closed right conical frustum is <strong>A = π(R² + r²) + π(R + r)√((R − r)² + h²)</strong>. The two circular ends and the sloped wall are shown separately.</p>
+<h3>Ellipsoid</h3><p>An ellipsoid has no simple elementary general surface-area formula. This calculator uses the <strong>Knud Thomsen approximation</strong>: <strong>A ≈ 4π[((ab)<sup>p</sup> + (ac)<sup>p</sup> + (bc)<sup>p</sup>) / 3]<sup>1/p</sup></strong>, with <strong>p = 1.6</strong> to follow the reference calculator. Here <em>a</em>, <em>b</em>, and <em>c</em> are semi-axes, not full diameters. Accuracy can vary depending on the ellipsoid proportions.</p>
+<h3>Square Pyramid</h3><p>For square base edge <em>a</em> and perpendicular height <em>h</em>, <strong>A = a² + 2a√((a/2)² + h²)</strong>. The first term is the square base; the second is the combined area of four triangular sides.</p>
+<h2>How the Results Work</h2><p>The largest result is the <strong>total area</strong>. Whenever a solid has distinct faces or curved parts, the calculator also reports the component areas. All components and output conversions use the same underlying dimensions in meters, so different input units can be combined without manual conversion.</p>
+<h2>Common Area Units</h2>
+<div class="cp-table-scroll"><table class="cp-content-table"><thead><tr><th>Area unit</th><th>Square meters</th></tr></thead><tbody>
+<tr><td>1 square kilometer (km²)</td><td>1,000,000 m²</td></tr><tr><td>1 square meter (m²)</td><td>1 m²</td></tr><tr><td>1 square centimeter (cm²)</td><td>0.0001 m²</td></tr><tr><td>1 square millimeter (mm²)</td><td>0.000001 m²</td></tr><tr><td>1 square mile (mi²)</td><td>2,589,988.110336 m²</td></tr><tr><td>1 square yard (yd²)</td><td>0.83612736 m²</td></tr><tr><td>1 square foot (ft²)</td><td>0.09290304 m²</td></tr><tr><td>1 square inch (in²)</td><td>0.00064516 m²</td></tr></tbody></table></div>
+<h2>Frequently Asked Questions</h2>
+<h3>What is the difference between surface area and volume?</h3><p>Surface area measures the outside boundary of an object in square units, while volume measures the space inside it in cubic units.</p>
+<h3>Can I enter radius in centimeters and height in feet?</h3><p>Yes. Each input has its own unit dropdown. All values are converted before the formula is evaluated.</p>
+<h3>Does a cylindrical tank result include the lid?</h3><p>Yes. This calculator reports the total area of a closed tank, including its top, bottom, and curved side. Subtract one circular end for an open-top tank.</p>
+<h3>Is the curved surface alone returned for a spherical cap?</h3><p>No. The total includes both the curved dome and the circular base; the separate component areas are also reported.</p>
+<h3>Are ellipsoid results exact?</h3><p>No. The ellipsoid formula is an approximation with exponent 1.6, matching the supplied reference. For high-precision scientific or engineering work, use numerical methods or an exact special-case equation where applicable.</p>
+<h2>References</h2><p>For further derivations, see <a href="https://mathworld.wolfram.com/SphericalCap.html">Wolfram MathWorld: Spherical Cap</a>, <a href="https://www.calculator.net/surface-area-calculator.html">Calculator.net: Surface Area Calculator</a>, and <a href="https://www.pearson.com/channels/calculators/surface-area-calculator">Pearson: Surface Area Calculator</a>.</p>
+<p class="cp-page-footer">CalcPro — surface area calculations are provided for educational and general planning use. Verify inputs and modeling assumptions before engineering applications.</p>
+</article></main></div><script>
+(function(){
+  'use strict';
+  const root=document.getElementById('cp-surface-calculator');
+  if(!root)return;
+  const FACTORS=Object.freeze({miles:1609.344,yards:.9144,feet:.3048,inches:.0254,kilometers:1000,meters:1,centimeters:.01,millimeters:.001,micrometers:1e-6,nanometers:1e-9,angstroms:1e-10});
+  const SYMBOLS=Object.freeze({miles:'mi',yards:'yd',feet:'ft',inches:'in',kilometers:'km',meters:'m',centimeters:'cm',millimeters:'mm',micrometers:'μm',nanometers:'nm',angstroms:'Å'});
+  const nameOf={ball:'Sphere',cone:'Cone',cube:'Cube',cylinder:'Cylindrical tank',rectangular:'Rectangular tank',capsule:'Capsule',cap:'Spherical cap',frustum:'Conical frustum',ellipsoid:'Ellipsoid',pyramid:'Square pyramid'};
+  function fmt(n){
+    if(!Number.isFinite(n))return 'Not representable';
+    if(n===0)return '0';
+    const a=Math.abs(n);
+    if(a<1e-6||a>=1e11)return n.toExponential(6).replace('e+','e+');
+    return n.toLocaleString('en-US',{maximumFractionDigits:9});
+  }
+  function sq(n,unit){return fmt(n/(FACTORS[unit]*FACTORS[unit]))+' '+SYMBOLS[unit]+'²';}
+  function length(n,unit){return fmt(n/FACTORS[unit])+' '+SYMBOLS[unit];}
+  function safeText(v){return String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+  function read(form){
+    const values={}, raw={}, units={};
+    for(const el of form.querySelectorAll('[data-cp-surface-field]')){
+      const key=el.dataset.cpSurfaceField, txt=el.value.trim();
+      const select=form.querySelector('[data-cp-surface-unit="'+key+'"]');
+      const u=select.value;
+      if(!(u in FACTORS))throw Error('Please choose a supported measurement unit.');
+      units[key]=u;
+      if(txt===''){values[key]=null;raw[key]=null;continue;}
+      const n=Number(txt);
+      if(!Number.isFinite(n)||n<0)throw Error('All dimensions must be valid, non-negative finite numbers.');
+      values[key]=n*FACTORS[u];raw[key]=n;
+      if(!Number.isFinite(values[key]))throw Error('A measurement is too large to calculate.');
+    }
+    return {v:values,raw:raw,units:units};
+  }
+  function need(v,keys,nonZero){
+    for(const k of keys){
+      if(v[k]===null)throw Error('Please enter all required dimensions.');
+      if(v[k]<0||(nonZero!==false&&v[k]<=0))throw Error('Enter a value greater than zero for each required dimension.');
+    }
+  }
+  function result(total,parts,formula,detail,notes){
+    if(!Number.isFinite(total)||total<0)throw Error('Result is outside the supported numeric range. Try smaller measurements.');
+    for(const p of parts){if(!Number.isFinite(p.value))throw Error('The result exceeds the supported numeric range.');}
+    return {total,parts,formula,detail,notes:notes||''};
+  }
+  function calculate(shape,v){
+    const P=Math.PI;
+    if(shape==='ball'){need(v,['radius']);return result(4*P*v.radius**2,[],'A = 4πr²','4 × π × r²');}
+    if(shape==='cone'){
+      need(v,['radius','height']);const slant=Math.hypot(v.radius,v.height),base=P*v.radius**2,lateral=P*v.radius*slant;
+      return result(base+lateral,[{label:'Base area',value:base},{label:'Lateral area',value:lateral}], 'A = πr² + πr√(r² + h²)','Add the circular base to the curved surface.', 'Slant height: '+fmt(slant)+' m.');
+    }
+    if(shape==='cube'){need(v,['edge']);return result(6*v.edge**2,[],'A = 6a²','Six equal square faces.');}
+    if(shape==='cylinder'){
+      need(v,['radius','height']);const top=P*v.radius**2,lateral=2*P*v.radius*v.height;
+      return result(2*top+lateral,[{label:'Top area',value:top},{label:'Bottom area',value:top},{label:'Lateral area',value:lateral}], 'A = 2πr² + 2πrh','Closed cylinder: two ends and the curved wall.');
+    }
+    if(shape==='rectangular'){
+      need(v,['length','width','height']);const lw=2*v.length*v.width,lh=2*v.length*v.height,wh=2*v.width*v.height;
+      return result(lw+lh+wh,[{label:'Front and back',value:lh},{label:'Top and bottom',value:lw},{label:'Two sides',value:wh}], 'A = 2(lw + lh + wh)','All six faces of a closed rectangular prism.');
+    }
+    if(shape==='capsule'){
+      need(v,['radius']);need(v,['height'],false);const ends=4*P*v.radius**2,side=2*P*v.radius*v.height;
+      return result(ends+side,[{label:'Rounded ends',value:ends},{label:'Cylindrical side',value:side}], 'A = 4πr² + 2πrh','Two hemispheres plus the straight cylindrical section.','The full end-to-end length equals h + 2r.');
+    }
+    if(shape==='cap'){
+      const keys=['radius','ballRadius','height'], supplied=keys.filter(k=>v[k]!==null);
+      if(supplied.length<2)throw Error('Enter any two measurements: base radius, ball radius, or cap height.');
+      for(const k of supplied)if(v[k]<=0)throw Error('Cap dimensions must be greater than zero.');
+      let r=v.radius,R=v.ballRadius,h=v.height;
+      let derived='';
+      if(supplied.length===2){
+        if(r!==null&&R!==null){
+          if(r>R*(1+1e-12))throw Error('Base radius cannot exceed the ball radius.');
+          if(r>R)r=R;
+          h=(r*r)/(R+Math.sqrt(Math.max(0,(R-r)*(R+r))));
+          derived='Height calculated for the smaller spherical cap.';
+        }else if(r!==null&&h!==null){
+          R=(r*r+h*h)/(2*h);
+          derived='Ball radius calculated from base radius and height.';
+        }else if(R!==null&&h!==null){
+          if(h>2*R*(1+1e-12))throw Error('Cap height cannot exceed the diameter of the ball.');
+          if(h>2*R)h=2*R;
+          r=Math.sqrt(Math.max(0,h*(2*R-h)));
+          derived='Base radius calculated from ball radius and height.';
+        }
+      }else{
+        if(r>R*(1+1e-12)||h>2*R*(1+1e-12)||Math.abs(r*r-(2*R*h-h*h))>1e-7*Math.max(r*r,R*R,h*h))
+          throw Error('The three measurements are inconsistent. Enter any two, or provide three that satisfy r² = 2Rh − h².');
+        derived='All three entered measurements are geometrically consistent.';
+      }
+      if(![r,R,h].every(Number.isFinite)||R<=0||h<=0||h>2*R)throw Error('These dimensions do not describe a valid spherical cap.');
+      const curved=2*P*R*h,base=P*r*r;
+      return result(curved+base,[{label:'Curved cap area',value:curved},{label:'Circular base area',value:base}], 'A = 2πRh + πr²','The total area includes the circular base.','Calculated dimensions: r = '+fmt(r)+' m, R = '+fmt(R)+' m, h = '+fmt(h)+' m. '+derived);
+    }
+    if(shape==='frustum'){
+      need(v,['height']);need(v,['topRadius','bottomRadius'],false);
+      if(v.topRadius===0&&v.bottomRadius===0)throw Error('At least one radius must be greater than zero.');
+      const slant=Math.hypot(v.bottomRadius-v.topRadius,v.height),ends=P*(v.topRadius**2+v.bottomRadius**2),side=P*(v.topRadius+v.bottomRadius)*slant;
+      return result(ends+side,[{label:'Both circular ends',value:ends},{label:'Lateral area',value:side}],'A = π(R² + r²) + π(R + r)√((R − r)² + h²)','Two circular ends plus the sloping wall.','Slant height: '+fmt(slant)+' m.');
+    }
+    if(shape==='ellipsoid'){
+      need(v,['a','b','c']);const p=1.6;
+      /* Compute a power mean in normalized coordinates to avoid intermediate overflow. */
+      const scale=Math.max(v.a,v.b,v.c);
+      const a=v.a/scale,b=v.b/scale,c=v.c/scale;
+      const avg=(Math.pow(a*b,p)+Math.pow(a*c,p)+Math.pow(b*c,p))/3;
+      return result(4*P*Math.pow(avg,1/p)*scale*scale,[],'A ≈ 4π[((ab)^1.6 + (ac)^1.6 + (bc)^1.6) / 3]^(1/1.6)','Knud Thomsen approximation with p = 1.6.','This is an approximation, not an exact ellipsoid surface area.');
+    }
+    if(shape==='pyramid'){
+      need(v,['edge','height']);const slant=Math.hypot(v.edge/2,v.height),base=v.edge**2,lateral=2*v.edge*slant;
+      return result(base+lateral,[{label:'Square base area',value:base},{label:'Four triangular faces',value:lateral}], 'A = a² + 2a√((a/2)² + h²)','Base plus four identical triangular faces.','Face slant height: '+fmt(slant)+' m.');
+    }
+    throw Error('Unknown shape.');
+  }
+  function display(section,shape,calc,unit){
+    const resultEl=section.querySelector('[data-cp-surface-result]');
+    const body=section.querySelector('[data-cp-surface-result-content]');
+    const values=calc.parts.map(part=>'<dt>'+safeText(part.label)+'</dt><dd>'+sq(part.value,unit)+'</dd>').join('');
+    const conversions=['meters','feet','centimeters','inches'].filter(u=>u!==unit).map(u=>'<span>'+sq(calc.total,u)+'</span>').join('');
+    body.innerHTML='<div class="cp-surface-answer">Total surface area: <strong>'+sq(calc.total,unit)+'</strong></div>'+ 
+       '<p class="cp-surface-formula-line"><b>Formula:</b> '+safeText(calc.formula)+'</p>'+ 
+       '<p class="cp-surface-formula-line"><b>Calculation:</b> '+safeText(calc.detail)+'</p>'+ 
+       (values?'<dl class="cp-surface-result-list">'+values+'</dl>':'')+
+       '<div class="cp-surface-conversions" aria-label="Area in other units">'+conversions+'</div>'+ 
+       (calc.notes?'<div class="cp-surface-result-note">'+safeText(calc.notes)+'</div>':'');
+    resultEl.hidden=false;
+    const toggle=resultEl.querySelector('.cp-surface-collapse');
+    body.hidden=false;toggle.textContent='−';toggle.setAttribute('aria-expanded','true');toggle.setAttribute('aria-label','Collapse result');
+  }
+  function setError(section,message){
+    const e=section.querySelector('[data-cp-surface-error]');
+    e.textContent=message;e.hidden=false;
+    section.querySelector('[data-cp-surface-result]').hidden=true;
+  }
+  for(const section of root.querySelectorAll('[data-cp-surface-shape]')){
+    const shape=section.dataset.cpSurfaceShape,form=section.querySelector('.cp-surface-form');
+    const error=section.querySelector('[data-cp-surface-error]');
+    form.addEventListener('submit',event=>{
+      event.preventDefault();error.hidden=true;
+      try{
+        const entered=read(form),first=Array.from(form.querySelectorAll('[data-cp-surface-field]')).find(el=>el.value.trim()!=='')||form.querySelector('[data-cp-surface-field]');
+        const converted=calculate(shape,entered.v);
+        display(section,shape,converted,entered.units[first.dataset.cpSurfaceField]);
+      }catch(e){setError(section,e instanceof Error?e.message:'Please check the entered values.');}
+    });
+    form.addEventListener('reset',()=>{
+      section.querySelector('[data-cp-surface-result]').hidden=true;
+      section.querySelector('[data-cp-surface-result-content]').innerHTML='';
+      error.textContent='';error.hidden=true;
+    });
+    section.querySelector('.cp-surface-collapse').addEventListener('click',event=>{
+      const content=section.querySelector('[data-cp-surface-result-content]'),toggle=event.currentTarget;
+      content.hidden=!content.hidden;
+      toggle.textContent=content.hidden?'+':'−';
+      toggle.setAttribute('aria-expanded',String(!content.hidden));
+      toggle.setAttribute('aria-label',content.hidden?'Expand result':'Collapse result');
+    });
+  }
+})();
+</script><script data-calcpro-latest-result>
+(function () {
+  var toolRoot = document.querySelector('.cp-tool-area') || document.querySelector('main') || document.body;
+  var forms = Array.prototype.slice.call(toolRoot.querySelectorAll('form'));
+  if (forms.length < 2) return;
 
-<body>
-<!-- Main-header-page -->
+  var selector = '[id*="result"], [class*="result"], [id*="output"], [class*="output"], [id*="total"], [class*="total"], [id*="summary"], [class*="summary"], [data-result], [data-re-results], [data-cp-surface-result]';
+  var candidates = Array.prototype.slice.call(toolRoot.querySelectorAll(selector));
+  var panels = candidates.filter(function (node) {
+    return !candidates.some(function (other) { return other !== node && other.contains(node); });
+  });
+  var activeOwner = null;
+
+  function namesOf(node) {
+    var names = [node.id].concat(Array.prototype.slice.call(node.classList || []));
+    return names.map(function (name) {
+      return String(name).toLowerCase().replace(/[-_](form|result|results|output|outputs|total|totals|summary|summaries)([-_].*)?$/, '');
+    }).filter(Boolean);
+  }
+
+  function pairedForm(panel) {
+    var names = namesOf(panel);
+    var matches = forms.filter(function (form) {
+      return namesOf(form).some(function (name) { return names.indexOf(name) !== -1; });
+    });
+    return matches.length === 1 ? matches[0] : null;
+  }
+
+  function ownerOf(node) {
+    if (node.matches('form')) return node;
+    var form = node.closest('form') || pairedForm(node);
+    if (form) return form;
+    for (var current = node; current && current !== toolRoot; current = current.parentElement) {
+      var formCount = (current.matches('form') ? 1 : 0) + current.querySelectorAll('form').length;
+      if (formCount === 1 && panels.some(function (panel) { return current === panel || current.contains(panel); })) return current.querySelector('form') || current;
+    }
+    return node.closest('section') || node;
+  }
+
+  function keepOnly(owner, showActive) {
+    panels.forEach(function (panel) {
+      var isActive = ownerOf(panel) === owner;
+      if (!isActive) panel.hidden = true;
+      else if (showActive) panel.hidden = false;
+    });
+  }
+
+  function activate(owner) {
+    if (!owner) return;
+    activeOwner = owner;
+    keepOnly(owner, false);
+  }
+
+  toolRoot.addEventListener('submit', function (event) {
+    var form = event.target;
+    if (form instanceof HTMLFormElement) activate(ownerOf(form));
+  }, true);
+
+  toolRoot.addEventListener('input', function (event) {
+    var form = event.target.closest('form');
+    if (form) activeOwner = ownerOf(form);
+  }, true);
+
+  toolRoot.addEventListener('click', function (event) {
+    var button = event.target.closest('button');
+    var form = button && button.closest('form');
+    if (!form) return;
+    var label = [button.id, button.textContent, button.getAttribute('aria-label') || ''].join(' ').toLowerCase();
+    if (/\b(clear|reset)\b/.test(label) || button.type === 'reset') activeOwner = null;
+    else if (button.type === 'submit' || /\b(calculate|compute|roll|start|encode|decode|convert|generate|run|solve|estimate)\b/.test(label)) activate(ownerOf(form));
+  }, true);
+
+  var observer = new MutationObserver(function (records) {
+    records.forEach(function (record) {
+      var panel = panels.find(function (item) { return item === record.target || item.contains(record.target); });
+      if (!panel || !activeOwner || ownerOf(panel) !== activeOwner) return;
+      if (record.type === 'attributes' && panel.hidden) return;
+      keepOnly(activeOwner, true);
+    });
+  });
+  panels.forEach(function (panel) {
+    observer.observe(panel, {attributes: true, attributeFilter: ['hidden'], childList: true, characterData: true, subtree: true});
+  });
+})();
+</script>
 <script defer src="/assets/js/data.js"></script>
-<script defer src="/assets/js/style.js?v=20261111-1"></script>
-</body>
-</html>
+<script defer src="/assets/js/style.js?v=20261111-5"></script>
+</body></html>

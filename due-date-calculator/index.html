@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en-US">
-<head>
-<meta charset="utf-8">
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="content-language" content="en">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,17 +13,426 @@
   <meta name="author" content="Commingsoon">
   <meta name="publisher" content="Commingsoon">
   <meta name="robots" content="noindex, nofollow, max-image-preview:large">
-  <link rel="stylesheet" href="/assets/css/style.css?v=20261111-1" crossorigin="anonymous" data-n-g="">
+  <link rel="stylesheet" href="/assets/css/style.css?v=20261111-4" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/doc_style.css" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/side_style.css" crossorigin="anonymous" data-n-g=""> 
   <!--ogtags-->
-  <!--schema-->
-  <!--style-->
-</head>
+  <!--schema--><!--TOOL CSS INSERT HERE: Paste only calculator-specific CSS here. Use unique class/id prefixes per tool, e.g. bmi-, loan-, age-. Keep header, sidebar and article CSS in style.css.--><style>
+/* Due Date Calculator — all styles are isolated under its unique root. */
+.calcpro-due-root{font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.4;color:#171717;max-width:100%;}
+.calcpro-due-root *, .calcpro-due-root *::before, .calcpro-due-root *::after{box-sizing:border-box}
+.calcpro-due-root [hidden]{display:none!important}
+.calcpro-due-start-banner{background:#336699;color:#fff;display:flex;align-items:center;gap:12px;padding:9px 13px;font-size:14px;min-height:34px}
+.calcpro-due-start-icon{background:#fff;color:#336699;width:19px;height:19px;display:inline-flex;align-items:center;justify-content:center;border-radius:50%;font-size:13px;flex-shrink:0}
+.calcpro-due-form-panel{border:1px solid #bdbdbd;background:#efefef;padding:12px 14px 14px;margin:3px 0 0}
+.calcpro-due-form{margin:0}
+.calcpro-due-method-select-row{display:flex;align-items:center;justify-content:center;gap:8px;margin:0 0 11px}
+.calcpro-due-method-select-row label{font-weight:500}
+.calcpro-due-select,.calcpro-due-year,.calcpro-due-number{border:1px solid #496c8b;background:#fff;border-radius:2px;color:#151515;font:inherit;min-height:31px;padding:4px 7px}
+.calcpro-due-select{max-width:100%}
+.calcpro-due-main-method{min-width:155px}
+.calcpro-due-method{max-width:610px;margin:0 auto 10px}
+.calcpro-due-method-row{display:grid;grid-template-columns:minmax(145px,45%) minmax(0,55%);align-items:center;gap:9px 10px;min-height:36px;margin:3px 0}
+.calcpro-due-method-row>label:first-child,.calcpro-due-row-heading{text-align:right;font-weight:500}
+.calcpro-due-method-row>label:first-child strong{font-weight:700}
+.calcpro-due-fieldset{border:0;margin:0;padding:0;min-width:0}
+.calcpro-due-date-group{display:flex;align-items:center;gap:4px;flex-wrap:wrap;min-width:0}
+.calcpro-due-month{width:81px}
+.calcpro-due-day{width:61px}
+.calcpro-due-year{width:83px}
+.calcpro-due-native-picker{width:35px;height:31px;max-width:35px;border:1px solid #8495a5;color:transparent;background:white;padding:3px;cursor:pointer;font-size:1px}
+.calcpro-due-native-picker::-webkit-datetime-edit{display:none}
+.calcpro-due-native-picker::-webkit-calendar-picker-indicator{cursor:pointer;opacity:1;margin:0;width:21px;height:21px}
+.calcpro-due-cycle{min-width:90px}
+.calcpro-due-ultrasound-age{display:flex;align-items:center;flex-wrap:wrap;gap:7px}
+.calcpro-due-number{width:66px}
+.calcpro-due-age-label{white-space:nowrap}
+.calcpro-due-radios{display:flex;flex-wrap:wrap;gap:13px}
+.calcpro-due-radios label{white-space:nowrap;display:inline-flex;align-items:center;gap:5px;cursor:pointer}
+.calcpro-due-radios input{accent-color:#336699}
+.calcpro-due-actions{display:flex;align-items:center;justify-content:center;gap:11px;margin-top:12px}
+.calcpro-due-calculate{background:#4c8525;border:1px solid #3c6d1b;color:#fff;font:700 14px Arial,Helvetica,sans-serif;cursor:pointer;padding:7px 14px;min-height:33px}
+.calcpro-due-calculate:hover{background:#396c1a}
+.calcpro-due-calculate-icon{background:#bad6a9;border-radius:50%;font-size:10px;padding:1px 4px;margin-left:10px;color:#48802a}
+.calcpro-due-reset{background:transparent;border:0;color:#336699;font:inherit;text-decoration:underline;cursor:pointer;padding:5px 6px}
+.calcpro-due-error{color:#a62219;font-weight:700;text-align:center;margin:4px 0 7px;font-size:13px}
+.calcpro-due-results{margin:0 0 16px}
+.calcpro-due-result-heading{background:#4b8424;color:#fff;padding:7px 10px;display:flex;align-items:center;justify-content:space-between;gap:10px;line-height:1.25;font-size:18px}
+.calcpro-due-result-heading strong{font-weight:500}
+.calcpro-due-result-buttons{display:flex;gap:4px}
+.calcpro-due-result-buttons button{border:1px solid transparent;background:transparent;color:white;cursor:pointer;font:12px Arial,Helvetica,sans-serif;padding:3px 6px;display:inline-flex;align-items:center;gap:4px}
+.calcpro-due-result-buttons button:hover,.calcpro-due-result-buttons button:focus-visible{border-color:#fff}
+.calcpro-due-result-body{padding:10px 0 0}
+.calcpro-due-due-line{font-size:18px;margin:0 0 7px;line-height:1.35}
+.calcpro-due-summary-line{font-size:13px;margin:3px 0}
+.calcpro-due-progress-row{display:flex;align-items:center;flex-wrap:wrap;gap:5px;margin:6px 0 12px;font-size:13px}
+.calcpro-due-progress{width:165px;max-width:52%;height:14px;background:#cecece;position:relative;display:inline-flex;align-items:center;overflow:hidden}
+.calcpro-due-progress-fill{background:#ed0097;height:100%;transition:width .55s ease;width:0}
+.calcpro-due-progress-percentage{font-weight:700;font-size:12px;margin-left:1px}
+.calcpro-due-term-chip{display:inline-block;margin:7px 0 10px;background:#e8f1df;padding:4px 8px;border-left:3px solid #4b8424;font-size:12px}
+.calcpro-due-table-wrap{max-width:100%;overflow-x:auto;margin-top:10px;-webkit-overflow-scrolling:touch}
+.calcpro-due-table{border-collapse:collapse;width:100%;min-width:480px;font-size:12px;line-height:1.22}
+.calcpro-due-table th{text-align:left;background:#336699;color:#fff;border:1px solid #d1d1d1;font-weight:700;padding:5px 6px;white-space:nowrap}
+.calcpro-due-table td{border:1px solid #c6c6c6;padding:4px 6px;vertical-align:middle}
+.calcpro-due-table tbody tr:nth-child(even) td:not(.calcpro-due-trimester):not(.calcpro-due-milestone){background:#efefef}
+.calcpro-due-table .calcpro-due-week-col{width:78px;white-space:nowrap;font-weight:700}
+.calcpro-due-table .calcpro-due-date-col{width:38%;white-space:nowrap}
+.calcpro-due-table .calcpro-due-trimester-col{width:90px}
+.calcpro-due-table .calcpro-due-milestone-col{width:41%}
+.calcpro-due-trimester{background:#dedede!important;color:#111;text-align:center;vertical-align:middle!important;font-size:12px}
+.calcpro-due-milestone{background:#ddffe4!important}
+.calcpro-due-current-week .calcpro-due-week-col,.calcpro-due-current-week .calcpro-due-date-col{background:#f5cdf1!important;font-weight:700}
+.calcpro-due-current-week .calcpro-due-week-col{color:#7d0753}
+.calcpro-due-notes{margin:9px 0 12px;color:#333;font-size:12px;line-height:1.35}
+.calcpro-due-notes strong{color:#ba2222}
+.calcpro-due-screen-reader{position:absolute!important;clip:rect(0,0,0,0);width:1px;height:1px;overflow:hidden;white-space:nowrap}
+.calcpro-due-root :is(input,select,button):focus-visible{outline:2px solid #1257a8;outline-offset:2px}
+@media(max-width:620px){.calcpro-due-root{font-size:14px}.calcpro-due-form-panel{padding:12px 10px}.calcpro-due-method-row{grid-template-columns:1fr;gap:4px;margin:9px 0}.calcpro-due-method-row>label:first-child,.calcpro-due-row-heading{text-align:left}.calcpro-due-method-select-row{justify-content:flex-start;flex-wrap:wrap}.calcpro-due-due-line{font-size:17px}.calcpro-due-result-heading{font-size:17px}.calcpro-due-table{font-size:11.5px}.calcpro-due-table td{padding:4px 5px}}
+@media(prefers-reduced-motion:reduce){.calcpro-due-progress-fill{transition:none}}
+@media print{.calcpro-due-start-banner,.calcpro-due-form-panel,.calcpro-due-result-buttons{display:none!important}.calcpro-due-root .calcpro-due-results{display:block!important}.calcpro-due-table-wrap{overflow:visible}.calcpro-due-table{min-width:0;font-size:10px;break-inside:auto}.calcpro-due-table tr{break-inside:avoid}}
+</style>
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://www.calculator.net/fitness-and-health-calculator.html">Fitness &amp; Health</a> / Due Date Calculator</nav><h1 class="cp-page-title">Due Date Calculator</h1><p class="cp-intro">The Due Date Calculator estimates a pregnancy's delivery date from the last menstrual period (LMP), ultrasound, conception date, or IVF transfer date.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-due-root" id="calcpro-due-root">
+<div class="calcpro-due-start-banner" id="calcpro-due-start-banner"><span aria-hidden="true" class="calcpro-due-start-icon">▼</span><span>Modify the values and click the Calculate button to use</span></div>
+<section aria-label="Due date results" aria-live="polite" class="calcpro-due-results" hidden="" id="calcpro-due-results">
+<div class="calcpro-due-result-heading"><strong>Result</strong><div class="calcpro-due-result-buttons"><button id="calcpro-due-save" title="Save this result as a text file" type="button">▣ Save</button><button id="calcpro-due-print" title="Print these results" type="button">▤ Print</button></div></div>
+<div class="calcpro-due-result-body">
+<p class="calcpro-due-due-line">The estimated due date is <strong id="calcpro-due-due-date"></strong>.</p>
+<p class="calcpro-due-summary-line" id="calcpro-due-age"></p>
+<p class="calcpro-due-summary-line" id="calcpro-due-trimester"></p>
+<p class="calcpro-due-summary-line" id="calcpro-due-growth"></p>
+<p class="calcpro-due-summary-line" id="calcpro-due-conceived"></p>
+<div class="calcpro-due-progress-row"><span id="calcpro-due-progress-description"></span><span aria-label="Estimated pregnancy progress" aria-valuemax="100" aria-valuemin="0" aria-valuenow="0" class="calcpro-due-progress" id="calcpro-due-progress" role="progressbar"><span class="calcpro-due-progress-fill" id="calcpro-due-progress-fill"></span></span><span class="calcpro-due-progress-percentage" id="calcpro-due-progress-number">0%</span></div>
+<div class="calcpro-due-term-chip" hidden="" id="calcpro-due-term-category"></div>
+<div aria-label="Pregnancy week-by-week timeline, scroll horizontally for full table" class="calcpro-due-table-wrap" role="region" tabindex="0">
+<table class="calcpro-due-table"><thead><tr><th scope="col">Week</th><th scope="col">Date</th><th scope="col">Trimester</th><th scope="col">Important Milestones</th></tr></thead><tbody id="calcpro-due-table-body"></tbody></table>
+</div>
+<p class="calcpro-due-notes"><strong>Note:</strong> Dates and fetal growth are general estimates for a single pregnancy, not medical predictions. Milestone timing and development vary. Your clinician may confirm or adjust the due date using early ultrasound.</p>
+</div>
+</section>
+<div class="calcpro-due-form-panel"><form class="calcpro-due-form" id="calcpro-due-form" novalidate="">
+<div class="calcpro-due-method-select-row"><label for="calcpro-due-method">Estimate Based On:</label>
+<select class="calcpro-due-select calcpro-due-main-method" id="calcpro-due-method"><option value="lmp">Last Period</option><option value="ultrasound">Ultrasound</option><option value="conception">Conception Date</option><option value="ivf">IVF Transfer Date</option></select></div>
+<div class="calcpro-due-method" data-method="lmp">
+<div class="calcpro-due-method-row"><label><strong>First Day</strong> of Your Last Period:</label><div aria-label="Last period" class="calcpro-due-date-group" data-date-key="lmp" role="group">
+<select aria-label="Last period month" class="calcpro-due-select calcpro-due-month" data-part="month" required=""></select>
+<select aria-label="Last period day" class="calcpro-due-select calcpro-due-day" data-part="day" required=""></select>
+<input aria-label="Last period year" class="calcpro-due-year" data-part="year" max="2100" min="1900" required="" step="1" type="number"/>
+<input aria-label="Choose Last period from calendar" class="calcpro-due-native-picker" data-part="picker" title="Choose date from calendar" type="date"/>
+</div></div>
+<div class="calcpro-due-method-row"><label for="calcpro-due-cycle">Average Length of Your Cycles:</label><div><select class="calcpro-due-select calcpro-due-cycle" id="calcpro-due-cycle"><option value="22">22 days</option><option value="23">23 days</option><option value="24">24 days</option><option value="25">25 days</option><option value="26">26 days</option><option value="27">27 days</option><option selected="" value="28">28 days</option><option value="29">29 days</option><option value="30">30 days</option><option value="31">31 days</option><option value="32">32 days</option><option value="33">33 days</option><option value="34">34 days</option><option value="35">35 days</option><option value="36">36 days</option><option value="37">37 days</option><option value="38">38 days</option><option value="39">39 days</option><option value="40">40 days</option><option value="41">41 days</option><option value="42">42 days</option><option value="43">43 days</option><option value="44">44 days</option></select></div></div>
+</div>
+<div class="calcpro-due-method" data-method="conception" hidden="">
+<div class="calcpro-due-method-row"><label>Conception Date:</label><div aria-label="Conception date" class="calcpro-due-date-group" data-date-key="conception" role="group">
+<select aria-label="Conception date month" class="calcpro-due-select calcpro-due-month" data-part="month" required=""></select>
+<select aria-label="Conception date day" class="calcpro-due-select calcpro-due-day" data-part="day" required=""></select>
+<input aria-label="Conception date year" class="calcpro-due-year" data-part="year" max="2100" min="1900" required="" step="1" type="number"/>
+<input aria-label="Choose Conception date from calendar" class="calcpro-due-native-picker" data-part="picker" title="Choose date from calendar" type="date"/>
+</div></div>
+</div>
+<div class="calcpro-due-method" data-method="ultrasound" hidden="">
+<div class="calcpro-due-method-row"><label>Ultrasound Date:</label><div aria-label="Ultrasound date" class="calcpro-due-date-group" data-date-key="ultrasound" role="group">
+<select aria-label="Ultrasound date month" class="calcpro-due-select calcpro-due-month" data-part="month" required=""></select>
+<select aria-label="Ultrasound date day" class="calcpro-due-select calcpro-due-day" data-part="day" required=""></select>
+<input aria-label="Ultrasound date year" class="calcpro-due-year" data-part="year" max="2100" min="1900" required="" step="1" type="number"/>
+<input aria-label="Choose Ultrasound date from calendar" class="calcpro-due-native-picker" data-part="picker" title="Choose date from calendar" type="date"/>
+</div></div>
+<div class="calcpro-due-method-row"><label class="calcpro-due-row-heading" for="calcpro-due-ultrasound-weeks">Length of Pregnancy at the Time:</label><div class="calcpro-due-ultrasound-age"><input class="calcpro-due-number" id="calcpro-due-ultrasound-weeks" max="42" min="0" required="" step="1" type="number" value="22"/><span class="calcpro-due-age-label">weeks</span><input class="calcpro-due-number" id="calcpro-due-ultrasound-days" max="6" min="0" required="" step="1" type="number" value="6"/><span class="calcpro-due-age-label">days</span></div></div>
+</div>
+<div class="calcpro-due-method" data-method="ivf" hidden="">
+<div class="calcpro-due-method-row"><label>Transfer Date:</label><div aria-label="IVF transfer date" class="calcpro-due-date-group" data-date-key="ivf" role="group">
+<select aria-label="IVF transfer date month" class="calcpro-due-select calcpro-due-month" data-part="month" required=""></select>
+<select aria-label="IVF transfer date day" class="calcpro-due-select calcpro-due-day" data-part="day" required=""></select>
+<input aria-label="IVF transfer date year" class="calcpro-due-year" data-part="year" max="2100" min="1900" required="" step="1" type="number"/>
+<input aria-label="Choose IVF transfer date from calendar" class="calcpro-due-native-picker" data-part="picker" title="Choose date from calendar" type="date"/>
+</div></div>
+<div class="calcpro-due-method-row"><span class="calcpro-due-row-heading">Embryo Age:</span><fieldset aria-label="Embryo age" class="calcpro-due-fieldset calcpro-due-radios"><label><input name="calcpro-due-embryo-age" type="radio" value="3"/> day 3</label><label><input checked="" name="calcpro-due-embryo-age" type="radio" value="5"/> day 5</label><label><input name="calcpro-due-embryo-age" type="radio" value="6"/> day 6</label></fieldset></div>
+</div>
+<p class="calcpro-due-error" hidden="" id="calcpro-due-error" role="alert"></p>
+<div class="calcpro-due-actions"><button class="calcpro-due-calculate" type="submit">Calculate <span aria-hidden="true" class="calcpro-due-calculate-icon">▶</span></button><button class="calcpro-due-reset" id="calcpro-due-reset" type="button">Reset</button></div>
+</form></div>
+</div></section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><a href="pregnancy-calculator.html">Pregnancy</a><a href="pregnancy-conception-calculator.html">Pregnancy Conception</a><a href="pregnancy-weight-gain-calculator.html">Pregnancy Weight Gain</a><a href="conception-calculator.html">Conception</a><a href="ovulation-calculator.html">Ovulation</a><a href="period-calculator.html">Period</a><a href="bmi-calculator.html">BMI</a><a href="calorie-calculator.html">Calorie</a><a href="bmr-calculator.html">BMR</a><a href="ideal-weight-calculator.html">Ideal Weight</a><a href="body-fat-calculator.html">Body Fat</a><a href="age-calculator.html">Age</a></div></section></aside><article class="cp-article"><h2>How to Use the Due Date Calculator</h2>
+<p>Choose the information you have: the first day of your last menstrual period, a conception date, an ultrasound with gestational age, or an IVF embryo transfer. Enter the relevant dates and click <strong>Calculate</strong>. Your estimated delivery date, current gestational age, progress bar, and a 42-week pregnancy calendar appear above the form. Use <strong>Reset</strong> to start over, <strong>Save</strong> to export the estimate to a text file, or <strong>Print</strong> for a printable copy.</p>
+<h2>Due Date Formulas</h2>
+<p>Pregnancy dating uses gestational age, normally counted from the first day of the last menstrual period rather than fertilization. An average pregnancy is estimated at <strong>280 days (40 weeks)</strong> from the LMP. Our calculations use calendar-day arithmetic:</p>
+<ul>
+<li><strong>Last period:</strong> Due date = LMP + 280 days + (cycle length − 28 days). Cycle-length adjustments assume ovulation shifts with the cycle and are only approximations.</li>
+<li><strong>Conception date:</strong> Due date = conception date + 266 days (38 weeks).</li>
+<li><strong>Ultrasound:</strong> Due date = ultrasound date + [280 − (gestational weeks × 7 + gestational days)] days.</li>
+<li><strong>IVF transfer:</strong> Due date = embryo transfer date + (266 − embryo age in days) days. For a day-3 embryo, add 263 days; for day-5, 261 days; for day-6, 260 days.</li>
+</ul>
+<h3>Worked Example</h3>
+<p>If the last menstrual period began on <strong>September 5, 2026</strong> and cycles average 28 days, the estimated due date is <strong>June 12, 2027</strong>. A 32-day cycle would shift the calculated date four days later, to <strong>June 16, 2027</strong>. Both are estimates, not guarantees of delivery on that date.</p>
+<h2>Understanding Your Pregnancy Timeline</h2>
+<p>The weekly table runs from the estimated gestational start through week 42. Pregnancy is divided into the first trimester (before 14 weeks), the second (14 to under 28 weeks), and the third (28 weeks onward). Milestones and fetal-size comparisons are educational averages; they do not predict an individual pregnancy's development. The progress bar measures elapsed calendar days against the conventional 280-day gestation and is not a clinical measure of fetal development.</p>
+<p>Modern definitions distinguish <strong>early term</strong> (37 weeks 0 days through 38 weeks 6 days), <strong>full term</strong> (39 weeks 0 days through 40 weeks 6 days), <strong>late term</strong> (41 weeks 0 days through 41 weeks 6 days), and <strong>postterm</strong> (42 weeks and later). The calendar is informational and does not determine when delivery is medically indicated.</p>
+<h2>Frequently Asked Questions</h2>
+<h3>Which method is most accurate?</h3><p>For pregnancies without IVF, a properly performed first-trimester ultrasound is generally the most accurate way to establish or confirm gestational age. IVF pregnancies should use embryo-transfer dating. Discuss conflicting dates with your maternity care professional.</p>
+<h3>Will the due date change if my cycle is irregular?</h3><p>The cycle-adjusted LMP formula assumes a relatively predictable relationship between cycle length and ovulation. Irregular cycles can make this method less reliable; ultrasound dating is especially useful in that situation.</p>
+<h3>Why is my due date not the date I will definitely give birth?</h3><p>A due date is a single-day estimate from a biological process with normal variation. Birth can occur before or after it, and medical decisions depend on your individual history and care team's assessment.</p>
+<h3>Why are the IVF day-3 and day-5 calculations different?</h3><p>Embryo age is counted as part of the pregnancy's developmental timing. A day-5 embryo has developed two more days before transfer than a day-3 embryo, so the standard day-5 due-date offset is two days shorter.</p>
+<h2>Medical Sources</h2>
+<ul>
+<li><a href="https://www.acog.org/clinical/clinical-guidance/committee-opinion/articles/2017/05/methods-for-estimating-the-due-date" rel="noopener noreferrer" target="_blank">American College of Obstetricians and Gynecologists (ACOG): Methods for Estimating the Due Date</a>.</li>
+<li><a href="https://www.acog.org/clinical/clinical-guidance/committee-opinion/articles/2013/11/definition-of-term-pregnancy" rel="noopener noreferrer" target="_blank">ACOG: Definition of Term Pregnancy</a>.</li>
+<li><a href="https://my.clevelandclinic.org/health/articles/7247-fetal-development-stages-of-growth" rel="noopener noreferrer" target="_blank">Cleveland Clinic: Fetal Development, Week by Week</a>.</li>
+<li><a href="https://www.nhs.uk/best-start-in-life/pregnancy/week-by-week-guide-to-pregnancy/1st-trimester/week-9/" rel="noopener noreferrer" target="_blank">NHS: Nine Weeks Pregnant</a>.</li>
+</ul>
+<p class="cp-page-footer">CalcPro — pregnancy-date estimates are for general education only and do not replace professional prenatal care.</p></article></main></div><script>
+(function () {
+  'use strict';
+  const root = document.getElementById('calcpro-due-root');
+  if (!root) return;
+  const $ = (id) => root.querySelector('#' + id);
+  const MS = 86400000;
+  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const dateFormat = new Intl.DateTimeFormat('en-US', {month:'short',day:'numeric',year:'numeric',timeZone:'UTC'});
+  const startBanner = $('calcpro-due-start-banner');
+  const resultSection = $('calcpro-due-results');
+  const errorEl = $('calcpro-due-error');
+  let savedResult = '';
+  const dateGroups = Array.from(root.querySelectorAll('[data-date-key]'));
 
-<body>
-<!-- Main-header-page -->
-<script defer src="/assets/js/data.js"></script>
-<script defer src="/assets/js/style.js?v=20261111-1"></script>
-</body>
-</html>
+  function dayNumber(year, month, day) { return Math.floor(Date.UTC(year, month - 1, day) / MS); }
+  function currentDay() { const d = new Date(); return dayNumber(d.getFullYear(),d.getMonth()+1,d.getDate()); }
+  function ymd(n) { const d = new Date(n * MS); return [d.getUTCFullYear(),d.getUTCMonth()+1,d.getUTCDate()]; }
+  function iso(n) { const a=ymd(n); return a[0]+'-'+String(a[1]).padStart(2,'0')+'-'+String(a[2]).padStart(2,'0'); }
+  function pretty(n) { return dateFormat.format(new Date(n * MS)); }
+  function validDay(y,m,d) { if (!Number.isInteger(y)||!Number.isInteger(m)||!Number.isInteger(d)||y<1900||y>2100||m<1||m>12||d<1||d>31) return false; const t=new Date(Date.UTC(y,m-1,d)); return t.getUTCFullYear()===y&&t.getUTCMonth()===m-1&&t.getUTCDate()===d; }
+
+  function dateGroup(key) { return root.querySelector('[data-date-key="'+key+'"]'); }
+  function populateDateOptions() {
+    for (const g of dateGroups) {
+      const month=g.querySelector('[data-part="month"]');
+      const day=g.querySelector('[data-part="day"]');
+      month.innerHTML = months.map((m,i)=>'<option value="'+(i+1)+'">'+m+'</option>').join('');
+      day.innerHTML = Array.from({length:31},(_,i)=>'<option value="'+(i+1)+'">'+(i+1)+'</option>').join('');
+      g.querySelector('[data-part="picker"]').addEventListener('change',(ev)=>{
+        const parts=ev.target.value.split('-').map(Number);
+        if(parts.length===3&&validDay(parts[0],parts[1],parts[2])) writeDate(g,dayNumber(parts[0],parts[1],parts[2]));
+      });
+      for(const input of g.querySelectorAll('[data-part="month"],[data-part="day"],[data-part="year"]')) {
+        input.addEventListener('change',()=> {
+          const n=readDate(g,false);
+          if(n!==null) g.querySelector('[data-part="picker"]').value=iso(n);
+        });
+      }
+    }
+  }
+  function writeDate(g,n) {
+    const a=ymd(n);
+    g.querySelector('[data-part="month"]').value=String(a[1]);
+    g.querySelector('[data-part="day"]').value=String(a[2]);
+    g.querySelector('[data-part="year"]').value=String(a[0]);
+    g.querySelector('[data-part="picker"]').value=iso(n);
+  }
+  function readDate(g,throwInvalid=true) {
+    const m=Number(g.querySelector('[data-part="month"]').value);
+    const d=Number(g.querySelector('[data-part="day"]').value);
+    const y=Number(g.querySelector('[data-part="year"]').value);
+    if(!validDay(y,m,d)) {
+      if(throwInvalid) throw new Error('Enter a valid date between the years 1900 and 2100.');
+      return null;
+    }
+    return dayNumber(y,m,d);
+  }
+  function defaults() {
+    const today=currentDay();
+    const lmp=today-60;
+    writeDate(dateGroup('lmp'),lmp);
+    writeDate(dateGroup('conception'),lmp+14);
+    writeDate(dateGroup('ultrasound'),today);
+    writeDate(dateGroup('ivf'),lmp+19);
+    $('calcpro-due-method').value='lmp';
+    $('calcpro-due-cycle').value='28';
+    $('calcpro-due-ultrasound-weeks').value='8';
+    $('calcpro-due-ultrasound-days').value='4';
+    const ivfFive=root.querySelector('input[name="calcpro-due-embryo-age"][value="5"]');
+    ivfFive.checked=true;
+    switchMethod();
+  }
+  function switchMethod() {
+    const method=$('calcpro-due-method').value;
+    for(const box of root.querySelectorAll('[data-method]')) box.hidden=box.getAttribute('data-method')!==method;
+    clearError();
+  }
+  function clearError() { errorEl.hidden=true;errorEl.textContent=''; }
+  function showError(text) {errorEl.textContent=text; errorEl.hidden=false;}
+  function integerIn(el,min,max,label) {
+    const raw=el.value.trim();
+    const n=Number(raw);
+    if(!raw || !Number.isInteger(n) || n<min || n>max) throw new Error(label+' must be a whole number from '+min+' to '+max+'.');
+    return n;
+  }
+  function calculateModel() {
+    const method=$('calcpro-due-method').value;
+    let due, conception, note, src;
+    if(method==='lmp') {
+      const lmp=readDate(dateGroup('lmp'));
+      const cycle=integerIn($('calcpro-due-cycle'),22,44,'Cycle length');
+      const shifted=cycle-28;
+      due=lmp+280+shifted;
+      conception=lmp+14+shifted;
+      note='Estimated conception date';
+      src='Last menstrual period '+pretty(lmp)+', cycle '+cycle+' days';
+    } else if(method==='conception') {
+      conception=readDate(dateGroup('conception'));
+      due=conception+266;
+      note='Conception date entered';
+      src='Conception date '+pretty(conception);
+    } else if(method==='ultrasound') {
+      const scan=readDate(dateGroup('ultrasound'));
+      const weeks=integerIn($('calcpro-due-ultrasound-weeks'),0,42,'Ultrasound weeks');
+      const days=integerIn($('calcpro-due-ultrasound-days'),0,6,'Ultrasound days');
+      due=scan+280-(weeks*7+days);
+      conception=due-266;
+      note='Approximate conception date based on ultrasound';
+      src='Ultrasound '+pretty(scan)+' at '+weeks+' weeks '+days+' days';
+    } else if(method==='ivf') {
+      const transfer=readDate(dateGroup('ivf'));
+      const embryo=Number(root.querySelector('input[name="calcpro-due-embryo-age"]:checked')?.value);
+      if(![3,5,6].includes(embryo))throw new Error('Select the embryo age at transfer.');
+      due=transfer+266-embryo;
+      conception=null;
+      note='IVF embryo transfer';
+      src='IVF transfer '+pretty(transfer)+', day-'+embryo+' embryo';
+      return {due,anchor:due-280,conception,originalEvent:transfer,note,src,method,embryo};
+    } else {throw new Error('Select an estimation method.');}
+    return {due,anchor:due-280,conception,note,src,method};
+  }
+  // Illustrative week-wise comparisons (early values are crown-rump; later lengths are head-to-heel).
+  // These are not growth predictions or substitutes for ultrasound biometrics.
+  const growth = {
+    6:[0.5,0.2],7:[1,0.8],8:[1.6,1],9:[2.3,2],10:[3.1,4],11:[4.1,7],12:[5.4,14],
+    13:[7.4,23],14:[8.7,43],15:[10.1,70],16:[11.6,100],17:[13,140],18:[14.2,190],
+    19:[24,240],20:[25.6,300],21:[26.7,360],22:[27.8,430],23:[28.9,501],24:[30,600],
+    25:[34.6,660],26:[35.6,760],27:[36.6,875],28:[37.6,1005],29:[38.6,1150],30:[39.9,1319],
+    31:[41.1,1502],32:[42.4,1702],33:[43.7,1918],34:[45,2146],35:[46.2,2383],36:[47.4,2622],
+    37:[48.6,2859],38:[49.8,3083],39:[50.7,3288],40:[51.2,3462]
+  };
+  const milestones = {
+    3:'Conception usually occurs around this time in a 28-day cycle.',
+    4:'An early pregnancy test may become positive.',
+    6:'Early cardiac activity may be visible on ultrasound.',
+    9:'Early organ and limb development continues.',
+    13:'Approaching the end of the first trimester.',
+    19:'Some people begin to notice fetal movement.',
+    20:'The mid-pregnancy anatomy scan may assess development.',
+    23:'Very early birth carries substantial risks; outcomes vary widely.',
+    28:'Third trimester begins; lungs and brain continue to mature.',
+    38:'Early term (37w0d–38w6d).',
+    40:'Full term (39w0d–40w6d).',
+    42:'Late-term pregnancy; discuss monitoring with your clinician.'
+  };
+  function getTerm(days) {
+    if(days<0)return 'Pregnancy has not yet reached the estimated start date.';
+    if(days<14*7)return 'First trimester';
+    if(days<28*7)return 'Second trimester';
+    if(days<37*7)return 'Third trimester';
+    if(days<39*7)return 'Early term (37w0d–38w6d)';
+    if(days<41*7)return 'Full term (39w0d–40w6d)';
+    if(days<42*7)return 'Late term (41w0d–41w6d)';
+    return 'Postterm (42w0d or later)';
+  }
+  function drawTable(anchor,today) {
+    const body=$('calcpro-due-table-body');
+    const fragment=document.createDocumentFragment();
+    for(let week=1;week<=42;week++) {
+      const row=document.createElement('tr');
+      const from=anchor+(week-1)*7+1;
+      const to=from+6;
+      const isCurrent=today>=from&&today<=to;
+      if(isCurrent)row.className='calcpro-due-current-week';
+      const weekTd=document.createElement('td');weekTd.className='calcpro-due-week-col';weekTd.textContent='Week '+week;
+      const dateTd=document.createElement('td');dateTd.className='calcpro-due-date-col';dateTd.textContent=pretty(from)+' - '+pretty(to)+(isCurrent?' (today)':'');
+      row.append(weekTd,dateTd);
+      if(week===1||week===14||week===28) {
+        const td=document.createElement('td');td.className='calcpro-due-trimester';td.rowSpan=week===1?13:week===14?14:15;
+        td.textContent=week===1?'first trimester':week===14?'second trimester':'third trimester';
+        row.appendChild(td);
+      }
+      const milestone=document.createElement('td');
+      if(milestones[week]) {milestone.className='calcpro-due-milestone';milestone.textContent=milestones[week];}
+      row.appendChild(milestone);
+      fragment.appendChild(row);
+    }
+    body.replaceChildren(fragment);
+  }
+  function render(model) {
+    const today=currentDay();
+    const age=today-model.anchor;
+    const week=Math.floor(age/7);
+    const rem=age%7;
+    const currentWeek=week+1;
+    const percent=Math.max(0,Math.min(100,Math.round((age/280)*100)));
+    const inRange=age>=0&&age<=294;
+    $('calcpro-due-due-date').textContent=pretty(model.due);
+    if(age>=0) {
+      const delta=age-280;
+      $('calcpro-due-age').textContent=age<294
+        ? 'You are currently at week #'+currentWeek+' ('+week+' weeks '+rem+' days) of pregnancy.'
+        : 'The estimated gestational age is '+week+' weeks '+rem+' days. This is beyond the 42-week timeline.';
+      $('calcpro-due-trimester').textContent='You are in the '+getTerm(age).toLowerCase()+'.';
+      if(delta>0)$('calcpro-due-trimester').textContent+=' The estimated due date was '+delta+' day'+(delta===1?'':'s')+' ago.';
+    } else {
+      $('calcpro-due-age').textContent='Based on these dates, the estimated gestational start is '+(-age)+' day(s) in the future.';
+      $('calcpro-due-trimester').textContent='Pregnancy week tracking begins at the estimated gestational start date.';
+    }
+    const growthData=inRange ? growth[Math.min(40,currentWeek)] : null;
+    const growthEl=$('calcpro-due-growth');
+    if(growthData) {
+      const [cm,grams]=growthData;
+      const inch=cm/2.54;
+      const ounce=grams/28.349523125;
+      const roundedOz=ounce<1?ounce.toFixed(2):ounce.toFixed(1);
+      growthEl.textContent='Illustrative fetal size near week '+currentWeek+': around '+inch.toFixed(1)+' in ('+cm.toFixed(1)+' cm) long and '+roundedOz+' oz ('+Math.round(grams)+' g).';
+      growthEl.hidden=false;
+    } else {growthEl.textContent='';growthEl.hidden=true;}
+    $('calcpro-due-conceived').textContent=model.method==='ivf'
+      ? 'Embryo transfer date: '+pretty(model.originalEvent)+'.'
+      : model.note+': '+pretty(model.conception)+'.';
+    $('calcpro-due-progress-description').textContent=percent+'% of the way through the estimated 40-week pregnancy:';
+    $('calcpro-due-progress-number').textContent=percent+'%';
+    $('calcpro-due-progress').setAttribute('aria-valuenow',String(percent));
+    $('calcpro-due-progress-fill').style.width=percent+'%';
+    const chip=$('calcpro-due-term-category');
+    chip.textContent=getTerm(age);
+    chip.hidden=age<259;
+    drawTable(model.anchor,today);
+    savedResult='CALCPRO DUE DATE CALCULATOR\n'+model.src+'\nEstimated due date: '+pretty(model.due)+'\n'+$('calcpro-due-age').textContent+'\n'+$('calcpro-due-conceived').textContent+'\n'+$('calcpro-due-trimester').textContent+'\nEstimated progress: '+percent+'%\n\nWeek-by-week timeline (estimates):\n';
+    for(let i=1;i<=42;i++){
+      const from=model.anchor+(i-1)*7+1;
+      savedResult+='Week '+i+': '+pretty(from)+' - '+pretty(from+6)+(milestones[i]?' | '+milestones[i]:'')+'\n';
+    }
+    savedResult+='\nDates are estimates, not medical advice. Contact a clinician for personalized assessment.\n';
+    resultSection.hidden=false;
+    startBanner.hidden=true;
+  }
+  populateDateOptions();
+  defaults();
+  $('calcpro-due-method').addEventListener('change',switchMethod);
+  $('calcpro-due-form').addEventListener('submit',function(ev){
+    ev.preventDefault();
+    clearError();
+    try {
+      const model=calculateModel();
+      render(model);
+      resultSection.scrollIntoView({behavior:'auto',block:'start'});
+    } catch(err) {showError(err.message);}
+  });
+  $('calcpro-due-reset').addEventListener('click',function(){
+    defaults();clearError();resultSection.hidden=true;startBanner.hidden=false;savedResult='';
+    $('calcpro-due-table-body').replaceChildren();
+  });
+  $('calcpro-due-print').addEventListener('click',()=>window.print());
+  $('calcpro-due-save').addEventListener('click',function(){
+    if(!savedResult)return;
+    const blob=new Blob([savedResult],{type:'text/plain;charset=utf-8'});
+    const url=URL.createObjectURL(blob);
+    const link=document.createElement('a');link.href=url;link.download='due-date-estimate.txt';
+    document.body.appendChild(link);link.click();link.remove();
+    setTimeout(()=>URL.revokeObjectURL(url),1000);
+  });
+})();
+</script><script defer src="/assets/js/data.js"></script>
+<script defer src="/assets/js/style.js?v=20261111-5"></script>
+</body></html>

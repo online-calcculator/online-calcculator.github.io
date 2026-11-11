@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US">
-<head>
-<meta charset="utf-8">
+<html lang="en"><head><meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="content-language" content="en">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,17 +11,342 @@
   <meta name="author" content="Commingsoon">
   <meta name="publisher" content="Commingsoon">
   <meta name="robots" content="noindex, nofollow, max-image-preview:large">
-  <link rel="stylesheet" href="/assets/css/style.css?v=20261111-1" crossorigin="anonymous" data-n-g="">
+  <link rel="stylesheet" href="/assets/css/style.css?v=20261111-4" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/doc_style.css" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/side_style.css" crossorigin="anonymous" data-n-g=""> 
   <!--ogtags-->
-  <!--schema-->
-  <!--style-->
-</head>
-
-<body>
-<!-- Main-header-page -->
-<script defer src="/assets/js/data.js"></script>
-<script defer src="/assets/js/style.js?v=20261111-1"></script>
-</body>
-</html>
+  <!--schema--><style>
+/* Self-contained Statistics Calculator (never targets CalcPro site-level classes). */
+.calcpro-statistics{width:100%;max-width:100%;font:15px Arial,Helvetica,sans-serif;line-height:1.4;color:#111}
+.calcpro-statistics *{box-sizing:border-box}
+.calcpro-statistics__keypad{display:grid;grid-template-columns:minmax(0,249px) minmax(0,266px);gap:5px;align-items:end;width:min(535px,100%);margin:2px auto 29px;padding:8px;border:1px solid #444;background:#fff}
+.calcpro-statistics__key-left{min-width:0}
+.calcpro-statistics__message{height:15px;line-height:15px;font-size:12px;color:#33465b;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin:0 0 1px}
+.calcpro-statistics__screen{height:30px;line-height:28px;padding:0 3px;margin-bottom:3px;background:#336699;color:#fff;text-align:right;font-size:20px;font-weight:400;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;direction:ltr;font-variant-numeric:tabular-nums}
+.calcpro-statistics__keys{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:2px}
+.calcpro-statistics__key{min-width:0;height:31px;padding:0 2px;border:1px solid #6790b5;border-radius:3px;background:#bed0e3;color:#060c13;font-size:15px;line-height:27px;font-weight:700;cursor:pointer;text-align:center;touch-action:manipulation;font-family:inherit}
+.calcpro-statistics__key:hover{background:#a7c2dd}
+.calcpro-statistics__key:active{background:#88aed1}
+.calcpro-statistics__key--action{background:#e6eef7}
+.calcpro-statistics__key--add{color:#e01818}
+.calcpro-statistics__key:focus-visible,.calcpro-statistics__submit:focus-visible,.calcpro-statistics__clear:focus-visible,.calcpro-statistics__save:focus-visible,.calcpro-statistics__delete:focus-visible{outline:2px solid #024e89;outline-offset:2px}
+.calcpro-statistics__data-list{height:204px;min-width:0;overflow:auto;padding:3px 0;border:1px solid #aaa;border-radius:3px;background:#fff;overscroll-behavior:contain}
+.calcpro-statistics__data-row{display:flex;align-items:center;justify-content:space-between;margin:0 8px;min-height:25px;border-bottom:1px solid #ddd;gap:5px;text-align:right;font-size:13px;font-variant-numeric:tabular-nums}
+.calcpro-statistics__delete{flex:none;width:19px;height:19px;line-height:16px;text-align:center;padding:0;border:0;border-radius:3px;color:#fff;background:#d12d2d;font-size:16px;font-weight:bold;cursor:pointer}
+.calcpro-statistics__entry-title{margin:0 0 2px;color:#125217;font-size:20px;font-weight:700;line-height:1.3}
+.calcpro-statistics__results{margin:0 0 16px}
+.calcpro-statistics__results[hidden],.calcpro-statistics__error[hidden]{display:none!important}
+.calcpro-statistics__results-bar{display:flex;justify-content:space-between;align-items:center;min-height:36px;margin-bottom:18px;background:#4c8127;color:#fff;padding:4px 7px}
+.calcpro-statistics__results-bar h3{font-size:20px;color:#fff;margin:0;line-height:1.2;font-weight:400}
+.calcpro-statistics__save{color:#fff;border:0;background:transparent;cursor:pointer;font-size:11px;display:inline-flex;align-items:center;gap:3px;padding:3px 4px}
+.calcpro-statistics__save-icon{width:17px;height:17px;display:block;flex:none}
+.calcpro-statistics__table-wrap{overflow-x:auto;max-width:100%}
+.calcpro-statistics__results-table{border-collapse:collapse;table-layout:auto;width:340px;max-width:100%;font-size:14px;color:#111;font-variant-numeric:tabular-nums}
+.calcpro-statistics__results-table th,.calcpro-statistics__results-table td{border:1px solid #c8c8c8;padding:3px 4px;text-align:left;font-weight:400;line-height:1.24;vertical-align:top;overflow-wrap:anywhere}
+.calcpro-statistics__results-table th{width:190px;white-space:nowrap}
+.calcpro-statistics__results-table tr:nth-child(odd){background:#ededed}
+.calcpro-statistics__sorted{font-size:14px;margin:4px 0 0;overflow-wrap:anywhere}
+.calcpro-statistics__error{color:#8c1414;background:#fff3ef;border:1px solid #d9aaa0;border-radius:2px;padding:8px 10px;font-size:14px;margin:7px 0}
+.calcpro-statistics__entry-panel{width:min(598px,100%);margin:0 auto;background:#eee;border:1px solid #b8b8b8;padding:7px;text-align:center}
+.calcpro-statistics__textarea{display:block;width:100%;min-height:69px;padding:8px;border:1px solid #888;border-radius:0;background:#fff;color:#111;font:14px Arial,Helvetica,sans-serif;line-height:1.45;resize:vertical;text-align:left}
+.calcpro-statistics__buttons{display:flex;justify-content:center;align-items:center;gap:4px;margin:15px 0 0}
+.calcpro-statistics__submit,.calcpro-statistics__clear{border:0;border-radius:0;height:38px;padding:0 14px;font:700 14px Arial,Helvetica,sans-serif;cursor:pointer}
+.calcpro-statistics__submit{background:#4c8127;color:#fff}
+.calcpro-statistics__submit:hover{background:#3b681c}
+.calcpro-statistics__arrow{display:inline-flex;align-items:center;justify-content:center;background:#95b78a;color:#fff;border-radius:50%;width:21px;height:21px;line-height:1;margin-left:8px;font-size:14px}
+.calcpro-statistics__clear{background:#a6a6a6;color:white;font-weight:400;padding:0 11px}
+.calcpro-statistics__clear:hover{background:#888}
+.calcpro-statistics__help{font-size:12px;color:#58606b;text-align:center;margin:6px 0 2px}
+.calcpro-statistics__sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@media(max-width:590px){.calcpro-statistics__keypad{grid-template-columns:minmax(0,1fr);max-width:420px;margin-bottom:24px}.calcpro-statistics__key{height:38px;line-height:34px}.calcpro-statistics__data-list{height:125px}.calcpro-statistics__results-table{width:100%}.calcpro-statistics__results-table th{white-space:normal;width:53%}.calcpro-statistics__entry-title{font-size:18px}.calcpro-statistics__submit,.calcpro-statistics__clear{min-height:40px}}
+@media print{.calcpro-statistics__keypad,.calcpro-statistics__entry-panel,.calcpro-statistics__save,.calcpro-statistics__help{display:none!important}.calcpro-statistics__results[hidden]{display:none!important}.calcpro-statistics__results-bar{print-color-adjust:exact;-webkit-print-color-adjust:exact}}
+</style>
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="math-calculator.html">Math</a> / Statistics Calculator</nav><h1 class="cp-page-title">Statistics Calculator</h1><p class="cp-intro">Calculate the mean, median, mode, range, geometric mean, sample and population standard deviation, and variance from your data.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-statistics" id="calcpro-statistics-tool">
+ <section class="calcpro-statistics__keypad" aria-label="Statistics keypad" id="calcpro-statistics-keypad">
+  <div class="calcpro-statistics__key-left">
+   <div class="calcpro-statistics__message" id="calcpro-statistics-message" aria-live="polite">&nbsp;</div>
+   <div class="calcpro-statistics__screen" id="calcpro-statistics-screen" role="status" aria-label="Keypad display">0</div>
+   <div class="calcpro-statistics__keys">
+<button class="calcpro-statistics__key" type="button" data-calcpro-statistics-key="7" title="Enter 7" aria-label="Enter 7">7</button>
+<button class="calcpro-statistics__key" type="button" data-calcpro-statistics-key="8" title="Enter 8" aria-label="Enter 8">8</button>
+<button class="calcpro-statistics__key" type="button" data-calcpro-statistics-key="9" title="Enter 9" aria-label="Enter 9">9</button>
+<button class="calcpro-statistics__key calcpro-statistics__key--action" type="button" data-calcpro-statistics-key="x" title="Mean (average)" aria-label="Mean (average)">x̄</button>
+<button class="calcpro-statistics__key calcpro-statistics__key--action" type="button" data-calcpro-statistics-key="x2" title="Mean of squared values" aria-label="Mean of squared values">x̄²</button>
+<button class="calcpro-statistics__key" type="button" data-calcpro-statistics-key="4" title="Enter 4" aria-label="Enter 4">4</button>
+<button class="calcpro-statistics__key" type="button" data-calcpro-statistics-key="5" title="Enter 5" aria-label="Enter 5">5</button>
+<button class="calcpro-statistics__key" type="button" data-calcpro-statistics-key="6" title="Enter 6" aria-label="Enter 6">6</button>
+<button class="calcpro-statistics__key calcpro-statistics__key--action" type="button" data-calcpro-statistics-key="sum" title="Sum" aria-label="Sum">Σx</button>
+<button class="calcpro-statistics__key calcpro-statistics__key--action" type="button" data-calcpro-statistics-key="sum2" title="Sum of squares" aria-label="Sum of squares">Σx²</button>
+<button class="calcpro-statistics__key" type="button" data-calcpro-statistics-key="1" title="Enter 1" aria-label="Enter 1">1</button>
+<button class="calcpro-statistics__key" type="button" data-calcpro-statistics-key="2" title="Enter 2" aria-label="Enter 2">2</button>
+<button class="calcpro-statistics__key" type="button" data-calcpro-statistics-key="3" title="Enter 3" aria-label="Enter 3">3</button>
+<button class="calcpro-statistics__key calcpro-statistics__key--action" type="button" data-calcpro-statistics-key="psd" title="Population standard deviation" aria-label="Population standard deviation">σ</button>
+<button class="calcpro-statistics__key calcpro-statistics__key--action" type="button" data-calcpro-statistics-key="psd2" title="Population variance" aria-label="Population variance">σ²</button>
+<button class="calcpro-statistics__key" type="button" data-calcpro-statistics-key="0" title="Enter 0" aria-label="Enter 0">0</button>
+<button class="calcpro-statistics__key" type="button" data-calcpro-statistics-key="." title="Decimal point" aria-label="Decimal point">.</button>
+<button class="calcpro-statistics__key calcpro-statistics__key--action" type="button" data-calcpro-statistics-key="EXP" title="Scientific notation" aria-label="Scientific notation">EXP</button>
+<button class="calcpro-statistics__key calcpro-statistics__key--action" type="button" data-calcpro-statistics-key="s" title="Sample standard deviation" aria-label="Sample standard deviation">s</button>
+<button class="calcpro-statistics__key calcpro-statistics__key--action" type="button" data-calcpro-statistics-key="s2" title="Sample variance" aria-label="Sample variance">s²</button>
+<button class="calcpro-statistics__key calcpro-statistics__key--action" type="button" data-calcpro-statistics-key="CAS" title="Clear all keypad data" aria-label="Clear all keypad data">CAD</button>
+<button class="calcpro-statistics__key calcpro-statistics__key--action" type="button" data-calcpro-statistics-key="C" title="Clear keypad display" aria-label="Clear keypad display">C</button>
+<button class="calcpro-statistics__key calcpro-statistics__key--action calcpro-statistics__key--add" type="button" data-calcpro-statistics-key="ADD" title="Add displayed value" aria-label="Add displayed value">ADD</button>
+<button class="calcpro-statistics__key calcpro-statistics__key--action" type="button" data-calcpro-statistics-key="+/-" title="Change sign" aria-label="Change sign">±</button>
+<button class="calcpro-statistics__key calcpro-statistics__key--action" type="button" data-calcpro-statistics-key="GM" title="Geometric mean" aria-label="Geometric mean">GM</button>
+   </div>
+  </div>
+  <div class="calcpro-statistics__data-list" id="calcpro-statistics-keypad-list" role="list" aria-label="Values entered by keypad"></div>
+ </section>
+ <h2 class="calcpro-statistics__entry-title">or Provide Values Separated by Comma Below</h2>
+ <div class="calcpro-statistics__results" id="calcpro-statistics-results" hidden aria-live="polite">
+  <div class="calcpro-statistics__results-bar"><h3>Result</h3>
+   <button class="calcpro-statistics__save" type="button" id="calcpro-statistics-save" title="Save results as CSV" aria-label="Save results as CSV">
+    <svg class="calcpro-statistics__save-icon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M4 2h13l5 5v15H2V2h2zm2 2v6h12V4h-2v4H8V4H6zm6 9a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"/></svg>Save
+   </button>
+  </div>
+  <div class="calcpro-statistics__table-wrap"><table class="calcpro-statistics__results-table" aria-label="Descriptive statistics"><tbody id="calcpro-statistics-table-body"></tbody></table></div>
+  <p class="calcpro-statistics__sorted"><strong>Sorted data:</strong> <span id="calcpro-statistics-sorted"></span></p>
+ </div>
+ <p class="calcpro-statistics__error" id="calcpro-statistics-error" role="alert" hidden></p>
+ <form class="calcpro-statistics__entry-panel" id="calcpro-statistics-form" novalidate>
+  <label class="calcpro-statistics__sr-only" for="calcpro-statistics-values">Comma-separated values to analyze</label>
+  <textarea class="calcpro-statistics__textarea" id="calcpro-statistics-values" name="values" spellcheck="false" rows="3" placeholder="e.g. 10, 2, 38, 23, 38, 23, 21, 23">10, 2, 38, 23, 38, 23, 21, 23</textarea>
+  <div class="calcpro-statistics__buttons"><button class="calcpro-statistics__submit" type="submit">Calculate <span class="calcpro-statistics__arrow" aria-hidden="true">▶</span></button><button class="calcpro-statistics__clear" id="calcpro-statistics-clear" type="button">Clear</button></div>
+ </form>
+ <p class="calcpro-statistics__help">Use the keypad to add numbers individually, or calculate a separate list using the text field.</p>
+</div></section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><a href="mean-median-mode-range-calculator.html">Mean, Median, Mode</a><a href="standard-deviation-calculator.html">Standard Deviation</a><a href="average-calculator.html">Average</a><a href="probability-calculator.html">Probability</a><a href="z-score-calculator.html">Z-Score</a><a href="confidence-interval-calculator.html">Confidence Interval</a><a href="random-number-generator.html">Random Number</a><a href="percent-calculator.html">Percentage</a><a href="scientific-calculator.html">Scientific</a><a href="ratio-calculator.html">Ratio</a><a href="math-calculator.html">Math</a><a href="sample-size-calculator.html">Sample Size</a></div></section></aside><article class="cp-article"><h2>How to Use the Statistics Calculator</h2>
+<p>Enter observations separated by commas, spaces, or line breaks, then select <strong>Calculate</strong>. The results appear immediately above the data-entry box, including the sorted values. Select <strong>Clear</strong> to empty the text box and hide the results. The green Result bar includes a Save control that exports the current results as a CSV file.</p>
+<h3>Using the Statistics Keypad</h3>
+<p>Enter a number using the keypad and press <strong>ADD</strong> to put it into the keypad's dataset. Repeat for each observation, and select a statistic key to display its value. Use <strong>CAD</strong> to clear all keypad entries, <strong>C</strong> to clear the current display, <strong>±</strong> to change sign, and <strong>EXP</strong> to enter scientific notation. The two entry methods are independent, matching the reference calculator.</p>
+<h2>Statistics Formulas and Definitions</h2>
+<p>For <em>n</em> observations x₁, x₂, …, xₙ, the <strong>arithmetic mean</strong> is x̄ = Σx / n. The <strong>median</strong> is the middle value after sorting (or the average of the two middle values). The <strong>mode</strong> is the most frequent value, with ties reported when applicable. The <strong>range</strong> is the maximum minus the minimum.</p>
+<div class="cp-table-scroll"><table class="cp-content-table"><thead><tr><th>Statistic</th><th>Formula</th><th>When to use it</th></tr></thead><tbody>
+<tr><td>Population variance (σ²)</td><td>Σ(x − μ)² / n</td><td>When your observations represent the full population.</td></tr>
+<tr><td>Population standard deviation (σ)</td><td>√[Σ(x − μ)² / n]</td><td>Population spread in the same units as the input.</td></tr>
+<tr><td>Sample variance (s²)</td><td>Σ(x − x̄)² / (n − 1)</td><td>When your observations are a sample of a larger population.</td></tr>
+<tr><td>Sample standard deviation (s)</td><td>√[Σ(x − x̄)² / (n − 1)]</td><td>Estimated spread, with Bessel's correction.</td></tr>
+<tr><td>Geometric mean (GM)</td><td>exp[Σ ln(x) / n]</td><td>Multiplicative changes and rates, for strictly positive values.</td></tr>
+</tbody></table></div>
+<h2>Worked Example</h2>
+<p>For <strong>10, 2, 38, 23, 38, 23, 21, 23</strong>, there are 8 observations whose sum is 178. The mean is 178 / 8 = <strong>22.25</strong>; the median is <strong>23</strong>, and the mode is <strong>23</strong>, appearing 3 times. The population variance is <strong>132.4375</strong>, yielding population standard deviation of about <strong>11.508149286484</strong>. Using the sample denominator (7 rather than 8) gives sample variance about <strong>151.35714285714</strong>.</p>
+<h2>Frequently Asked Questions</h2>
+<h3>What is the difference between population and sample standard deviation?</h3><p>Population standard deviation divides squared deviations by n; sample standard deviation divides by n − 1. A sample needs at least two numbers, so sample variance and sample standard deviation are unavailable for a one-value dataset.</p>
+<h3>What if the data has no mode, or more than one mode?</h3><p>If every observation occurs once, the calculator reports “No mode.” If several values share the highest repeated frequency, they are all listed as modes.</p>
+<h3>Can I enter negative numbers or scientific notation?</h3><p>Yes. Descriptive statistics work with positive or negative numbers, decimals, and values such as 2.5e3. The real-valued geometric mean is not defined if any observation is negative; a zero observation makes the geometric mean zero when the others are non-negative.</p>
+<h3>Is there a limit to the number of observations?</h3><p>Each entry method accepts up to 5,000 finite values. Extreme magnitudes can be subject to ordinary browser floating-point precision limits.</p>
+<h2>Sources and Further Reading</h2>
+<p>See the <a href="https://www.itl.nist.gov/div898/handbook/eda/section3/eda351.htm" target="_blank" rel="noopener noreferrer">NIST/SEMATECH Measures of Location</a> and <a href="https://www.itl.nist.gov/div898/handbook/eda/section3/eda356.htm" target="_blank" rel="noopener noreferrer">Measures of Scale</a> for standard statistical definitions and context.</p>
+<p class="cp-page-footer">CalcPro — results are descriptive summaries, intended for information and education.</p></article></main></div><script>
+(() => {
+ 'use strict';
+ const root = document.getElementById('calcpro-statistics-tool');
+ if (!root) return;
+ const byId = id => root.querySelector('#' + id);
+ const form = byId('calcpro-statistics-form');
+ const textarea = byId('calcpro-statistics-values');
+ const errors = byId('calcpro-statistics-error');
+ const results = byId('calcpro-statistics-results');
+ const tbody = byId('calcpro-statistics-table-body');
+ const sorted = byId('calcpro-statistics-sorted');
+ const screen = byId('calcpro-statistics-screen');
+ const message = byId('calcpro-statistics-message');
+ const keypad = byId('calcpro-statistics-keypad');
+ const list = byId('calcpro-statistics-keypad-list');
+ const data = [];
+ const maxEntries = 5000;
+ let buffer = '0';
+ let showingStat = false;
+ let lastOutput = null;
+ const labels = [
+   ['count', 'Count'], ['sum', 'Sum'], ['mean', 'Mean (Average)'],
+   ['median', 'Median'], ['mode', 'Mode'], ['max', 'Largest'],
+   ['min', 'Smallest'], ['range', 'Range'], ['gm', 'Geometric Mean'],
+   ['popSd', 'Standard Deviation'], ['popVariance', 'Variance'],
+   ['sampleSd', 'Sample Standard Deviation'], ['sampleVariance', 'Sample Variance']
+ ];
+ function formatNumber(value) {
+   if (!Number.isFinite(value)) return 'Not defined';
+   if (Object.is(value,-0) || value === 0) return '0';
+   return Number(value.toPrecision(14)).toString();
+ }
+ function calculate(values) {
+   const n = values.length;
+   if (!n) throw new Error('Please enter at least one number.');
+   const ordered = [...values].sort((a,b) => a-b);
+   let mean = 0, m2 = 0, sum = 0, compensation = 0, sumSquares = 0, logSum = 0;
+   let positive = true, hasZero = false;
+   values.forEach((x, i) => {
+     const y = x - compensation;
+     const t = sum + y;
+     compensation = (t - sum) - y;
+     sum = t;
+     const d = x - mean;
+     mean += d / (i + 1);
+     m2 += d * (x - mean);
+     sumSquares += x * x;
+     if (x < 0) positive = false;
+     else if (x === 0) hasZero = true;
+     else logSum += Math.log(x);
+   });
+   const midpoint = Math.floor(n / 2);
+   const median = n % 2 ? ordered[midpoint] : (ordered[midpoint-1] / 2 + ordered[midpoint] / 2);
+   const frequencies = new Map();
+   ordered.forEach(x => frequencies.set(x, (frequencies.get(x) || 0) + 1));
+   const topFreq = Math.max(...frequencies.values());
+   const modes = topFreq > 1 ? [...frequencies].filter(pair => pair[1] === topFreq).map(pair => pair[0]) : [];
+   const mode = modes.length ? modes.map(formatNumber).join(', ') + (modes.length === 1 ? ', appeared ' + topFreq + ' times' : ' (each appeared ' + topFreq + ' times)') : 'No mode';
+   const popVariance = Math.max(0, m2 / n);
+   const sampleVariance = n > 1 ? Math.max(0, m2 / (n - 1)) : null;
+   // Real geometric mean is defined only for strictly positive values; zero yields 0.
+   const gm = !positive ? 'Not defined (negative values)' : hasZero ? '0' : formatNumber(Math.exp(logSum / n));
+   return {
+      count:String(n), sum:formatNumber(sum), mean:formatNumber(sum/n), median:formatNumber(median),
+      mode, max:formatNumber(ordered[n-1]), min:formatNumber(ordered[0]),
+      range:formatNumber(ordered[n-1] - ordered[0]), gm,
+      popSd:formatNumber(Math.sqrt(popVariance)), popVariance:formatNumber(popVariance),
+      sampleSd:sampleVariance === null ? 'N/A (requires 2+ values)' : formatNumber(Math.sqrt(sampleVariance)),
+      sampleVariance:sampleVariance === null ? 'N/A (requires 2+ values)' : formatNumber(sampleVariance),
+      sumSquares:formatNumber(sumSquares), meanSquares:formatNumber(sumSquares/n),
+      sorted:ordered.map(formatNumber).join(', '), raw: [...values]
+   };
+ }
+ function parseValues(text) {
+   const tokens = text.trim().split(/[,;\s]+/).filter(Boolean);
+   if (!tokens.length) throw new Error('Enter at least one value separated by commas, spaces, or line breaks.');
+   if (tokens.length > maxEntries) throw new Error('Enter no more than ' + maxEntries + ' values at one time.');
+   return tokens.map((token, index) => {
+     const normalized = token.replace(/\u2212/g,'-');
+     if (!/^[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:e[+-]?\d+)?$/i.test(normalized)) {
+       throw new Error('Value ' + (index+1) + ' (' + token + ') is not a valid number.');
+     }
+     const x = Number(normalized);
+     if (!Number.isFinite(x) || Math.abs(x) > 1e100) throw new Error('Value ' + (index+1) + ' exceeds the supported numeric range.');
+     return x;
+   });
+ }
+ function showError(text) { errors.textContent = text; errors.hidden = false; }
+ function clearError() { errors.textContent = ''; errors.hidden = true; }
+ function paintResults(report) {
+    tbody.replaceChildren();
+    labels.forEach(([key, name]) => {
+      const tr = document.createElement('tr');
+      const th = document.createElement('th'); th.scope = 'row'; th.textContent = name;
+      const td = document.createElement('td'); td.textContent = report[key];
+      tr.append(th,td); tbody.append(tr);
+    });
+    sorted.textContent = report.sorted;
+    results.hidden = false;
+    lastOutput = report;
+ }
+ form.addEventListener('submit', event => {
+   event.preventDefault();
+   clearError();
+   try { paintResults(calculate(parseValues(textarea.value))); }
+   catch (err) { results.hidden = true; lastOutput = null; showError(err.message); }
+ });
+ byId('calcpro-statistics-clear').addEventListener('click', () => {
+   textarea.value = '';
+   results.hidden = true;
+   lastOutput = null;
+   clearError();
+   textarea.focus();
+ });
+ byId('calcpro-statistics-save').addEventListener('click', () => {
+   if (!lastOutput) return;
+   const records = [['Statistic','Result'],...labels.map(([key,title])=>[title,lastOutput[key]]),['Sorted data',lastOutput.sorted]];
+   const csv = records.map(row => row.map(value => '"'+String(value).replace(/"/g,'""')+'"').join(',')).join('\r\n');
+   const url = URL.createObjectURL(new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8'}));
+   const a = document.createElement('a'); a.href=url; a.download='statistics-results.csv';
+   document.body.append(a);a.click();a.remove();
+   setTimeout(()=>URL.revokeObjectURL(url),1000);
+ });
+ function setScreen(text, description) {
+   screen.textContent = text;
+   message.textContent = description || '\u00a0';
+ }
+ function syncBuffer() { setScreen(buffer, ''); }
+ function refreshList() {
+   list.replaceChildren();
+   data.forEach((x,i) => {
+     const line=document.createElement('div'); line.className='calcpro-statistics__data-row';line.setAttribute('role','listitem');
+     const remove=document.createElement('button');remove.type='button'; remove.className='calcpro-statistics__delete';remove.textContent='×';
+     remove.title='Remove value '+(i+1);remove.setAttribute('aria-label','Remove value '+(i+1)+': '+formatNumber(x));
+     remove.addEventListener('click',()=>{data.splice(i,1);refreshList();setScreen(buffer,data.length+' value(s) in keypad');});
+     const text=document.createElement('span');text.textContent=formatNumber(x);
+     line.append(remove,text);list.append(line);
+   });
+ }
+ function press(key) {
+   if (/^[0-9]$/.test(key)) {
+     if (showingStat) buffer='0';
+     showingStat=false;
+     if (buffer.replace(/[^0-9]/g,'').length >= 22) return;
+     if (/e[+-]?$/i.test(buffer)) buffer+=key;
+     else buffer=buffer==='0'?key:buffer==='-0'?'-'+key:buffer+key;
+     syncBuffer(); return;
+   }
+   if (key==='.') {
+     if (showingStat) buffer='0';
+     showingStat=false;
+     const chunk=buffer.split(/e/i).pop();
+     if (buffer.toLowerCase().includes('e')) return;
+     if (!chunk.includes('.')) buffer+='.';
+     syncBuffer();return;
+   }
+   if (key==='EXP') {
+     if (showingStat) buffer='0';
+     showingStat=false;
+     if (!buffer.toLowerCase().includes('e')) buffer+='e';
+     syncBuffer();return;
+   }
+   if (key==='+/-') {
+     if (showingStat) buffer='0';
+     showingStat=false;
+     buffer=buffer.startsWith('-')?buffer.slice(1):'-'+buffer;
+     syncBuffer();return;
+   }
+   if (key==='C') {buffer='0'; showingStat=false; syncBuffer();return;}
+   if (key==='CAS') {data.length=0; buffer='0';showingStat=false;refreshList();setScreen('0','All keypad values cleared');return;}
+   if (key==='BACK') {
+     if (showingStat) {buffer='0';showingStat=false;}
+     else {buffer=buffer.slice(0,-1);if (!buffer || buffer==='-') buffer='0';}
+     syncBuffer();return;
+   }
+   if (key==='ADD') {
+     if (showingStat) {setScreen(screen.textContent,'Enter a new number before ADD');return;}
+     try {
+       const num=parseValues(buffer);
+       if (data.length >= maxEntries) throw new Error('Keypad limit reached ('+maxEntries+').');
+       data.push(num[0]); refreshList();buffer='0'; showingStat=false;
+       setScreen('0',data.length+' value(s) added');list.scrollTop=list.scrollHeight;
+     } catch(err) {setScreen(buffer,err.message);}
+     return;
+   }
+   const translations={x:['mean','Mean (average)'],x2:['meanSquares','Mean of squares'],sum:['sum','Sum'],sum2:['sumSquares','Sum of squares'],psd:['popSd','Population standard deviation'],psd2:['popVariance','Population variance'],s:['sampleSd','Sample standard deviation'],s2:['sampleVariance','Sample variance'],GM:['gm','Geometric mean']};
+   if (translations[key]) {
+     if (!data.length) { setScreen(buffer,'Add a number with ADD first');return; }
+     const [stat,label]=translations[key];
+     const report=calculate(data);
+     setScreen(report[stat],label+'  ·  n = '+data.length);
+     showingStat=true;
+   }
+ }
+ keypad.addEventListener('click', e => {
+   const button=e.target.closest('[data-calcpro-statistics-key]');
+   if (button && keypad.contains(button)) press(button.dataset.calcproStatisticsKey);
+ });
+ keypad.addEventListener('keydown', e => {
+   if (e.altKey || e.ctrlKey || e.metaKey) return;
+   let key=null;
+   if (/^[0-9.]$/.test(e.key)) key=e.key;
+   else if (e.key==='e'||e.key==='E') key='EXP';
+   else if (e.key==='Enter') key='ADD';
+   else if (e.key==='Backspace') key='BACK';
+   else if (e.key==='Escape') key=e.shiftKey?'CAS':'C';
+   else if (e.key==='-') key='+/-';
+   if (key){e.preventDefault();press(key);}
+ });
+ syncBuffer();
+})();
+</script><script defer src="/assets/js/data.js"></script>
+<script defer src="/assets/js/style.js?v=20261111-5"></script>
+</body></html>

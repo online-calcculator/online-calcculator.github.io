@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US">
-<head>
-<meta charset="utf-8">
+<html lang="en"><head><meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="content-language" content="en">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,17 +11,367 @@
   <meta name="author" content="Commingsoon">
   <meta name="publisher" content="Commingsoon">
   <meta name="robots" content="noindex, nofollow, max-image-preview:large">
-  <link rel="stylesheet" href="/assets/css/style.css?v=20261111-1" crossorigin="anonymous" data-n-g="">
+  <link rel="stylesheet" href="/assets/css/style.css?v=20261111-4" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/doc_style.css" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/side_style.css" crossorigin="anonymous" data-n-g=""> 
   <!--ogtags-->
-  <!--schema-->
-  <!--style-->
-</head>
+  <!--schema--><style>
+/* Pythagorean calculator styles: intentionally isolated from CalcPro site CSS. */
+.calcpro-pyth-root{font-family:Arial,Helvetica,sans-serif;color:#161616;line-height:1.45;width:100%;max-width:728px;font-size:15px}
+.calcpro-pyth-root *{box-sizing:border-box}
+.calcpro-pyth-root [hidden]{display:none!important}
+.calcpro-pyth-root .calcpro-pyth-instruction{background:#336699;color:#fff;min-height:37px;display:flex;align-items:center;justify-content:center;gap:32px;padding:7px 14px;margin:2px 0 9px;font-size:15px;text-align:center}
+.calcpro-pyth-root .calcpro-pyth-down{display:inline-grid;place-items:center;background:#fff;border-radius:50%;width:25px;height:25px;flex:none}
+.calcpro-pyth-root .calcpro-pyth-down::after{content:"";border-left:8px solid transparent;border-right:8px solid transparent;border-top:10px solid #336699;transform:translateY(2px)}
+.calcpro-pyth-root .calcpro-pyth-results{margin-bottom:23px}
+.calcpro-pyth-root .calcpro-pyth-results-header{background:#4b811d;color:#fff;display:flex;justify-content:space-between;align-items:center;min-height:36px;padding:3px 8px;font-size:20px}
+.calcpro-pyth-root .calcpro-pyth-save{border:0;background:transparent;color:white;display:inline-flex;flex-direction:column;align-items:center;justify-content:center;gap:0;padding:1px 4px;cursor:pointer;font:10px Arial,Helvetica,sans-serif;line-height:1}
+.calcpro-pyth-root .calcpro-pyth-save svg{width:16px;height:16px;fill:currentColor;display:block}
+.calcpro-pyth-root .calcpro-pyth-result-body{display:grid;grid-template-columns:minmax(0,1fr) 215px;gap:12px;align-items:start;padding:12px 6px 0 0}
+.calcpro-pyth-root .calcpro-pyth-result-text{min-width:0;line-height:1.7;font-size:15px}
+.calcpro-pyth-root .calcpro-pyth-result-text p{margin:0 0 1px}
+.calcpro-pyth-root .calcpro-pyth-solved{font-size:16px;font-weight:700;color:#b85c00}
+.calcpro-pyth-root .calcpro-pyth-result-diagram{width:100%;max-width:210px;justify-self:end;margin-top:0}
+.calcpro-pyth-root .calcpro-pyth-diagram{display:block;width:100%;height:auto;aspect-ratio:250/180;overflow:visible}
+.calcpro-pyth-root .calcpro-pyth-details{margin:16px 0 2px;font-size:15px}
+.calcpro-pyth-root .calcpro-pyth-details summary{color:#006699;text-decoration:underline;font-weight:700;cursor:pointer;list-style:none;width:fit-content}
+.calcpro-pyth-root .calcpro-pyth-details summary::-webkit-details-marker{display:none}
+.calcpro-pyth-root .calcpro-pyth-details summary::before{content:'+ ';white-space:pre}
+.calcpro-pyth-root .calcpro-pyth-details[open] summary::before{content:'− ';white-space:pre}
+.calcpro-pyth-root .calcpro-pyth-steps{border-left:3px solid #d9e4ed;margin:11px 0 0 2px;padding:4px 9px 4px 27px;line-height:1.55}
+.calcpro-pyth-root .calcpro-pyth-steps li{margin:5px 0}
+.calcpro-pyth-root .calcpro-pyth-workspace{display:grid;grid-template-columns:minmax(245px,1fr) minmax(175px,1fr);gap:17px;align-items:start;max-width:660px;margin:0 auto 10px}
+.calcpro-pyth-root .calcpro-pyth-input-panel{background:#eee;border:1px solid #bababa;max-width:272px;width:100%;padding:10px 8px 7px;margin:0 auto}
+.calcpro-pyth-root .calcpro-pyth-side-row{display:grid;grid-template-columns:19px minmax(0,104px) minmax(0,117px);align-items:center;margin:0 0 3px;column-gap:3px;min-height:34px}
+.calcpro-pyth-root .calcpro-pyth-side-label{font-size:15px;white-space:nowrap;text-align:left}
+.calcpro-pyth-root .calcpro-pyth-field{width:100%;height:30px;padding:3px 5px;background:#fff;border:1px solid #275e9a;border-radius:0;box-shadow:1px 1px 3px #9db4c4 inset;font:16px Arial,Helvetica,sans-serif;color:#111;min-width:0}
+.calcpro-pyth-root .calcpro-pyth-radical{display:flex;align-items:center;gap:2px;min-width:0;position:relative}
+.calcpro-pyth-root .calcpro-pyth-radical-mark{position:relative;font-size:27px;line-height:1;margin-top:0;flex:none;width:17px;transform:translateY(-1px)}
+.calcpro-pyth-root .calcpro-pyth-radical-mark::after{content:'';position:absolute;top:1px;right:-1px;width:2px;height:1px;background:transparent}
+.calcpro-pyth-root .calcpro-pyth-radical .calcpro-pyth-field{border-top:2px solid #111;flex:1;min-width:0}
+.calcpro-pyth-root .calcpro-pyth-actions{display:flex;align-items:center;justify-content:center;gap:5px;margin-top:10px}
+.calcpro-pyth-root .calcpro-pyth-calculate{background:#4b811d;color:white;border:0;padding:8px 12px 8px 13px;cursor:pointer;font-size:15px;font-weight:700;min-height:38px}
+.calcpro-pyth-root .calcpro-pyth-calculate .calcpro-pyth-circle-arrow{display:inline-flex;align-items:center;justify-content:center;border-radius:50%;color:#fff;background:#a3cda0;margin-left:7px;width:20px;height:20px;font-size:14px;vertical-align:middle}
+.calcpro-pyth-root .calcpro-pyth-clear{background:#aaa;color:white;border:0;padding:8px 11px;cursor:pointer;min-height:38px;font:15px Arial,Helvetica,sans-serif}
+.calcpro-pyth-root .calcpro-pyth-calculate:hover{background:#386516}
+.calcpro-pyth-root .calcpro-pyth-clear:hover{background:#868686}
+.calcpro-pyth-root .calcpro-pyth-calculate:focus-visible,.calcpro-pyth-root .calcpro-pyth-clear:focus-visible,.calcpro-pyth-root .calcpro-pyth-save:focus-visible,.calcpro-pyth-root .calcpro-pyth-field:focus-visible,.calcpro-pyth-root summary:focus-visible{outline:3px solid #e3a92d;outline-offset:2px}
+.calcpro-pyth-root .calcpro-pyth-error{color:#a30013;border:1px solid #d8858d;background:#fff0f1;padding:9px 11px;margin:0 0 9px;font-size:14px}
+.calcpro-pyth-root .calcpro-pyth-form-diagram{width:100%;max-width:238px;justify-self:center;padding-top:5px}
+.calcpro-pyth-root .calcpro-pyth-assistive{font-size:12px;color:#555;max-width:630px;margin:11px auto 0;text-align:center}
+@media(max-width:560px){.calcpro-pyth-root .calcpro-pyth-result-body{grid-template-columns:minmax(0,1fr) 142px;gap:4px}.calcpro-pyth-root .calcpro-pyth-result-diagram{max-width:140px}.calcpro-pyth-root .calcpro-pyth-workspace{gap:10px;grid-template-columns:minmax(230px,1fr) minmax(125px,0.8fr)}.calcpro-pyth-root .calcpro-pyth-instruction{gap:12px}}
+@media(max-width:430px){.calcpro-pyth-root .calcpro-pyth-result-body{grid-template-columns:minmax(0,1fr)}.calcpro-pyth-root .calcpro-pyth-result-diagram{justify-self:start;max-width:200px}.calcpro-pyth-root .calcpro-pyth-workspace{grid-template-columns:1fr;justify-items:center}.calcpro-pyth-root .calcpro-pyth-input-panel{max-width:272px}.calcpro-pyth-root .calcpro-pyth-form-diagram{max-width:210px;padding-top:0}.calcpro-pyth-root .calcpro-pyth-result-text{font-size:14px}}
+@media print{.calcpro-pyth-root .calcpro-pyth-instruction,.calcpro-pyth-root .calcpro-pyth-save,.calcpro-pyth-root .calcpro-pyth-workspace,.calcpro-pyth-root .calcpro-pyth-assistive,.calcpro-pyth-root .calcpro-pyth-error{display:none!important}.calcpro-pyth-root .calcpro-pyth-results[hidden]{display:none!important}.calcpro-pyth-root .calcpro-pyth-results{break-inside:avoid}.calcpro-pyth-root .calcpro-pyth-details:not([open]){display:none!important}}
 
-<body>
-<!-- Main-header-page -->
-<script defer src="/assets/js/data.js"></script>
-<script defer src="/assets/js/style.js?v=20261111-1"></script>
-</body>
-</html>
+</style>
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / Math / Pythagorean Theorem Calculator</nav><h1 class="cp-page-title">Pythagorean Theorem Calculator</h1><p class="cp-intro">Please provide any 2 values below to solve the Pythagorean equation: a<sup>2</sup> + b<sup>2</sup> = c<sup>2</sup>.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-pyth-root" id="calcpro-pyth-calculator">
+  <div class="calcpro-pyth-instruction" id="calcpro-pyth-instruction"><span class="calcpro-pyth-down" aria-hidden="true"></span><span>Modify the values and click the Calculate button to use</span></div>
+  <section class="calcpro-pyth-results" id="calcpro-pyth-results" aria-label="Calculated right-triangle results" hidden>
+    <div class="calcpro-pyth-results-header"><span>Result</span><button type="button" class="calcpro-pyth-save" id="calcpro-pyth-save" aria-label="Save or print the results as a PDF" title="Save or print results"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 2h13l4 4v16H3V2h1zm1 2v16h14V7l-3-3h-1v6H7V4H5zm4 0v4h4V4H9zm3 9a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7z"/></svg><small>save</small></button></div>
+    <div class="calcpro-pyth-result-body">
+      <div class="calcpro-pyth-result-text" aria-live="polite" aria-atomic="true">
+        <p id="calcpro-pyth-given"></p>
+        <p class="calcpro-pyth-solved" id="calcpro-pyth-solved"></p>
+        <p id="calcpro-pyth-angle-a"></p>
+        <p id="calcpro-pyth-angle-b"></p>
+        <p id="calcpro-pyth-area"></p>
+        <p id="calcpro-pyth-perimeter"></p>
+        <p id="calcpro-pyth-height"></p>
+      </div>
+      <div class="calcpro-pyth-result-diagram"><svg class="calcpro-pyth-diagram" id="calcpro-pyth-result-svg" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Triangle showing calculated legs and hypotenuse" viewBox="0 0 250 180"></svg></div>
+    </div>
+    <details class="calcpro-pyth-details" id="calcpro-pyth-details"><summary>Show Calculation Steps</summary><ol class="calcpro-pyth-steps" id="calcpro-pyth-steps"></ol></details>
+  </section>
+  <div class="calcpro-pyth-error" id="calcpro-pyth-error" role="alert" hidden></div>
+  <div class="calcpro-pyth-workspace">
+    <form class="calcpro-pyth-input-panel" id="calcpro-pyth-form" novalidate autocomplete="off">
+      <div class="calcpro-pyth-side-row"><label class="calcpro-pyth-side-label" for="calcpro-pyth-a">a =</label><input class="calcpro-pyth-field" type="text" inputmode="decimal" id="calcpro-pyth-a" value="2" aria-label="Coefficient for side a"><div class="calcpro-pyth-radical"><span class="calcpro-pyth-radical-mark" aria-hidden="true">√</span><input class="calcpro-pyth-field" type="text" inputmode="decimal" id="calcpro-pyth-ar" value="" aria-label="Number under square root for side a"></div></div>
+      <div class="calcpro-pyth-side-row"><label class="calcpro-pyth-side-label" for="calcpro-pyth-b">b =</label><input class="calcpro-pyth-field" type="text" inputmode="decimal" id="calcpro-pyth-b" value="" aria-label="Coefficient for side b"><div class="calcpro-pyth-radical"><span class="calcpro-pyth-radical-mark" aria-hidden="true">√</span><input class="calcpro-pyth-field" type="text" inputmode="decimal" id="calcpro-pyth-br" value="" aria-label="Number under square root for side b"></div></div>
+      <div class="calcpro-pyth-side-row"><label class="calcpro-pyth-side-label" for="calcpro-pyth-c">c =</label><input class="calcpro-pyth-field" type="text" inputmode="decimal" id="calcpro-pyth-c" value="2" aria-label="Coefficient for hypotenuse c"><div class="calcpro-pyth-radical"><span class="calcpro-pyth-radical-mark" aria-hidden="true">√</span><input class="calcpro-pyth-field" type="text" inputmode="decimal" id="calcpro-pyth-cr" value="5" aria-label="Number under square root for hypotenuse c"></div></div>
+      <div class="calcpro-pyth-actions"><button class="calcpro-pyth-calculate" type="submit">Calculate <span class="calcpro-pyth-circle-arrow" aria-hidden="true">▶</span></button><button class="calcpro-pyth-clear" id="calcpro-pyth-clear" type="button">Clear</button></div>
+    </form>
+    <div class="calcpro-pyth-form-diagram"><svg class="calcpro-pyth-diagram" id="calcpro-pyth-input-svg" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Right triangle with legs a and b, hypotenuse c, angles alpha and beta, and altitude h" viewBox="0 0 250 180"></svg></div>
+  </div>
+  <p class="calcpro-pyth-assistive">Enter any two sides. Leave both fields blank for the unknown side. For a value like 2√5, enter 2 before √ and 5 after it; use the same length unit throughout.</p>
+</div>
+</section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><!-- REPLACE these links with real related tools for each calculator; verify live slugs. --><a href="retirement-calculator.html">Retirement</a><a href="roth-ira-calculator.html">Roth IRA</a><a href="investment-calculator.html">Investment</a><a href="compound-interest-calculator.html">Compound Interest</a><a href="annuity-payout-calculator.html">Annuity Payout</a><a href="pension-calculator.html">Pension</a><a href="inflation-calculator.html">Inflation</a><a href="future-value-calculator.html">Future Value</a><a href="income-tax-calculator.html">Income Tax</a><a href="savings-calculator.html">Savings</a><a href="mortgage-calculator.html">Mortgage</a><a href="loan-calculator.html">Loan</a></div></section></aside><article class="cp-article">
+<h2>How to Use the Pythagorean Theorem Calculator</h2>
+<p>For any right triangle, enter the measurements of two sides and leave both boxes for the unknown side empty. The two short perpendicular sides are <strong>a</strong> and <strong>b</strong>; the longest side, opposite the 90° angle, is the hypotenuse <strong>c</strong>. Select <strong>Calculate</strong> to solve the missing side and display the other triangle properties above the input form.</p>
+<p>Every side has two boxes: the first is a coefficient, and the box following the square-root symbol is the radicand. For example, to enter <strong>2√5</strong>, type <strong>2</strong> in the first box and <strong>5</strong> in the square-root box. To enter a plain number like 4, type 4 in the first box and leave the radical box empty. Leave the coefficient box empty to enter √5. Use positive side lengths and a consistent unit of length.</p>
+<h2>Pythagorean Theorem Formula</h2>
+<p>The relationship between the sides of a right triangle is <strong>a² + b² = c²</strong>. Rearrange the equation according to the missing side:</p>
+<ul>
+<li><strong>Hypotenuse:</strong> c = √(a² + b²).</li>
+<li><strong>Leg a:</strong> a = √(c² − b²).</li>
+<li><strong>Leg b:</strong> b = √(c² − a²).</li>
+</ul>
+<p>If one leg and the hypotenuse are known, the hypotenuse must be longer than the leg. Both legs must be strictly positive, and no three inconsistent side lengths can describe a right triangle.</p>
+<h2>Worked Example: a = 2 and c = 2√5</h2>
+<p>We know that a² = 4 and c² = 20. Then b² = c² − a² = 20 − 4 = 16, so <strong>b = 4</strong>. The other results are an area of <strong>4 square units</strong>, a perimeter of approximately <strong>10.472135955 units</strong>, and altitude h = 4√5/5 ≈ <strong>1.788854382 units</strong>. The acute angles are approximately 26.565° and 63.435°.</p>
+<h2>Angles, Area, Perimeter, and Altitude</h2>
+<p>The result panel provides the two acute angles in decimal degrees, degrees–minutes–seconds (DMS), and radians. The lower-right angle is α = arctan(a / b); the upper-left angle is β = 90° − α.</p>
+<ul>
+<li><strong>Area:</strong> A = a × b / 2, measured in square units.</li>
+<li><strong>Perimeter:</strong> P = a + b + c, measured in the same linear units as the sides.</li>
+<li><strong>Altitude to the hypotenuse:</strong> h = a × b / c, the perpendicular segment from the right-angle vertex to side c.</li>
+</ul>
+<p>Use <strong>Show Calculation Steps</strong> to review the substitution and intermediate formulas. Use <strong>Clear</strong> to empty the input fields, and the result-panel save icon to open your browser's print dialog, where you can save the results as a PDF.</p>
+<h2>Frequently Asked Questions</h2>
+<h3>Can I enter two legs instead of the hypotenuse?</h3>
+<p>Yes. If a and b are known, the calculator finds c with c = √(a² + b²). For example, a = 3 and b = 4 produce c = 5.</p>
+<h3>How do I enter a length with a square root?</h3>
+<p>To enter 3√2, type 3 in the first box and 2 in the box after √ for the chosen side. For √7, leave the first box empty and enter 7 in the radical box.</p>
+<h3>Why does the calculator reject some measurements?</h3>
+<p>A right triangle has two positive legs and a hypotenuse longer than either leg. If all three sides are supplied, they must satisfy a² + b² = c² within numerical rounding tolerance.</p>
+<h3>Which units does the calculator use?</h3>
+<p>The calculation does not assume a particular unit. All entered sides must use the same length unit (for example, meters or inches). Perimeter and altitude use that unit; area uses the corresponding squared unit.</p>
+<h3>Are the displayed angles exactly rounded?</h3>
+<p>The underlying calculations use floating-point precision. Displayed degrees and radians are rounded for readability, and exact radical forms are shown when they can be expressed reliably.</p>
+<h2>Mathematical Reference</h2>
+<p>See <a href="https://mathworld.wolfram.com/RightTriangle.html" target="_blank" rel="noopener noreferrer">Wolfram MathWorld: Right Triangle</a> for the standard right-triangle relations.</p>
+<p class="cp-page-footer">CalcPro — calculations are provided for informational and educational use.</p>
+</article></main></div><script>
+(() => {
+  'use strict';
+  const root = document.getElementById('calcpro-pyth-calculator');
+  if (!root) return;
+  const el = (suffix) => document.getElementById('calcpro-pyth-' + suffix);
+  const form = el('form');
+  const resultPanel = el('results');
+  const instruction = el('instruction');
+  const error = el('error');
+  const details = el('details');
+  const sideNames = ['a', 'b', 'c'];
+  const decimalPattern = /^\+?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+)?$/;
+  const MAX_LENGTH = 1e100;
+  const fmt = (n) => {
+    if (!Number.isFinite(n)) return 'undefined';
+    if (Object.is(n, -0) || n === 0) return '0';
+    if (Number.isInteger(n) && Math.abs(n) < 1e14) return String(n);
+    return String(Number(n.toPrecision(14)));
+  };
+  const gcd = (a, b) => {
+    while (b) [a, b] = [b, a % b];
+    return a;
+  };
+  function squareFactors(value) {
+    let n = value, outside = 1, inside = 1;
+    for (let p = 2; p * p <= n; p += (p === 2 ? 1 : 2)) {
+      let times = 0;
+      while (n % p === 0) { n /= p; times++; }
+      if (times) {
+        outside *= Math.pow(p, Math.floor(times / 2));
+        if (times % 2) inside *= p;
+      }
+    }
+    if (n > 1) inside *= n;
+    return { outside, inside };
+  }
+  // Simplify sqrt(p/q) into a rational coefficient times a square-free radical,
+  // for moderate-size rational values. Otherwise retain a numerical answer.
+  function simplifySquare(squared) {
+    const numerical = Math.sqrt(squared);
+    if (!(squared > 0) || !Number.isFinite(numerical)) {
+      return { text: fmt(numerical), exact: false };
+    }
+    if (squared > 1e10 || squared < 1e-9) {
+      return { text: fmt(numerical), exact: false };
+    }
+    let fraction = null;
+    for (let d = 1; d <= 1000000; d *= 10) {
+      const p = Math.round(squared * d);
+      if (p > 0 && p <= 1e10 && Math.abs(squared - p / d) <= 1e-12 * Math.max(1, squared)) {
+        const g = gcd(p, d);
+        fraction = { p: p / g, d: d / g };
+        break;
+      }
+    }
+    if (!fraction) return { text: fmt(numerical), exact: false };
+    const top = squareFactors(fraction.p);
+    const bottom = squareFactors(fraction.d);
+    let numerator = top.outside;
+    let denominator = bottom.outside * bottom.inside;
+    const radical = top.inside * bottom.inside;
+    const divisor = gcd(numerator, denominator);
+    numerator /= divisor;
+    denominator /= divisor;
+    let text = '';
+    if (radical === 1) {
+      text = fmt(numerator / denominator);
+    } else {
+      text = (numerator === 1 ? '' : String(numerator)) + '√' + radical;
+      if (denominator !== 1) text += '/' + denominator;
+    }
+    return { text, exact: true, simpleNumber: radical === 1 && denominator === 1 };
+  }
+  function parseNumber(raw, descriptor) {
+    if (!decimalPattern.test(raw)) throw Error('Enter a valid nonnegative number for ' + descriptor + '.');
+    const value = Number(raw);
+    if (!Number.isFinite(value)) throw Error('The number for ' + descriptor + ' is too large.');
+    return value;
+  }
+  function parseSide(side) {
+    const coeffRaw = el(side).value.trim();
+    const radicalRaw = el(side + 'r').value.trim();
+    if (!coeffRaw && !radicalRaw) return null;
+    const coeff = coeffRaw ? parseNumber(coeffRaw, side + ' coefficient') : 1;
+    if (!(coeff > 0)) throw Error('Side ' + side + ' must be greater than zero.');
+    let radicand = 1;
+    if (radicalRaw) {
+      radicand = parseNumber(radicalRaw, '√ value of side ' + side);
+      if (!(radicand > 0)) throw Error('The number under √ for side ' + side + ' must be positive.');
+    }
+    const value = coeff * Math.sqrt(radicand);
+    if (!Number.isFinite(value) || value <= 0 || value > MAX_LENGTH) {
+      throw Error('Side ' + side + ' is outside the supported positive numerical range.');
+    }
+    let display = fmt(coeff);
+    if (radicalRaw && radicand !== 1) display = (coeff === 1 ? '' : fmt(coeff)) + '√' + fmt(radicand);
+    return { value, squared: coeff * coeff * radicand, display };
+  }
+  function degreeDMS(degrees) {
+    let seconds = Math.round(degrees * 3600);
+    const d = Math.floor(seconds / 3600);
+    seconds -= d * 3600;
+    const m = Math.floor(seconds / 60);
+    const s = seconds - m * 60;
+    return d + '°' + m + "'" + s + '"';
+  }
+  function angleString(degrees) {
+    return degrees.toFixed(3) + '° = ' + degreeDMS(degrees) + ' = ' + (degrees * Math.PI / 180).toFixed(5) + ' rad';
+  }
+  function triangleSvg(svg, a, b, filled) {
+    const h = Math.max(55, Math.min(124, 166 * a / Math.max(a, b)));
+    const w = Math.max(65, Math.min(190, 185 * b / Math.max(a, b)));
+    const x = 27, y = 147, top = y - h, right = x + w;
+    const t = h * h / (w * w + h * h);
+    const footX = x + w * t, footY = top + h * t;
+    const n = (v) => Number(v.toFixed(2));
+    const topText = top + Math.max(14, h * 0.16);
+    svg.innerHTML = `
+      <polygon points="${n(x)},${n(y)} ${n(x)},${n(top)} ${n(right)},${n(y)}" fill="${filled ? '#d0d0d0' : '#fff'}" stroke="#111" stroke-width="2.35" />
+      <path d="M ${n(x)} ${n(y - 11)} L ${n(x + 11)} ${n(y - 11)} L ${n(x + 11)} ${n(y)}" fill="none" stroke="${filled ? '#333' : '#5545df'}" stroke-width="1.1" />
+      ${filled ? '' : `<line x1="${n(x)}" y1="${n(y)}" x2="${n(footX)}" y2="${n(footY)}" stroke="#599b21" stroke-width="1.25" stroke-dasharray="4 3"/><path d="M ${n(footX - 5)} ${n(footY - 3)} L ${n(footX - 2)} ${n(footY + 1)} L ${n(footX + 2)} ${n(footY - 2)}" fill="none" stroke="#5e55e2" stroke-width="1" />`}
+      <g font-family="Arial,Helvetica,sans-serif" font-size="17" fill="#050505">
+        <text x="${n(x - 16)}" y="${n(top + h * .58)}">a</text>
+        <text x="${n(x + w * .51)}" y="${n(y + 20)}" text-anchor="middle">b</text>
+        <text x="${n(x + w * .58)}" y="${n(top + h * .43 - 4)}">c</text>
+      </g>
+      ${filled ? '' : `<g font-family="Arial,Helvetica,sans-serif" font-size="16" fill="#4d45ff"><text x="${n(x + 5)}" y="${n(topText)}">β</text><text x="${n(right - 25)}" y="${n(y - 5)}">α</text></g><text x="${n(footX + 8)}" y="${n(footY + 16)}" font-size="16" fill="#47841a" font-family="Arial,Helvetica,sans-serif">h</text>`}
+    `;
+    svg.setAttribute('aria-label', filled ? 'Calculated right triangle with a=' + fmt(a) + ', b=' + fmt(b) + ' and c=' + fmt(Math.hypot(a, b)) : 'Right triangle diagram with sides a, b, c, angles alpha and beta, and altitude h');
+  }
+  const addStep = (list, content) => {
+    const li = document.createElement('li');
+    li.textContent = content;
+    list.appendChild(li);
+  };
+  function handleCalculation() {
+    try {
+      const known = {};
+      for (const side of sideNames) known[side] = parseSide(side);
+      const entered = sideNames.filter(side => known[side]);
+      if (entered.length < 2) throw Error('Enter any two sides of the right triangle. Leave both fields for the unknown side empty.');
+      const values = {};
+      sideNames.forEach(side => { if (known[side]) values[side] = known[side].value; });
+      let unknown = null;
+      let q;
+      if (entered.length === 2) {
+        unknown = sideNames.find(side => !known[side]);
+        if (unknown === 'c') {
+          values.c = Math.hypot(values.a, values.b);
+          q = known.a.squared + known.b.squared;
+        } else {
+          const leg = unknown === 'a' ? 'b' : 'a';
+          if (!(values.c > values[leg])) throw Error('The hypotenuse c must be longer than either leg.');
+          values[unknown] = Math.sqrt((values.c - values[leg]) * (values.c + values[leg]));
+          q = known.c.squared - known[leg].squared;
+        }
+        if (!(values[unknown] > 0) || !Number.isFinite(values[unknown])) throw Error('These measurements do not form a positive right triangle.');
+      } else {
+        const expected = Math.hypot(values.a, values.b);
+        if (Math.abs(expected - values.c) > 1e-9 * Math.max(expected, values.c)) {
+          throw Error('The three sides are inconsistent: a² + b² must equal c². Enter only two sides, or correct the third.');
+        }
+      }
+      const a = values.a, b = values.b, c = values.c;
+      if (![a, b, c, a*b, a+b+c, a*b/c].every(Number.isFinite)) {
+        throw Error('The result is outside the supported numerical range. Enter smaller side lengths.');
+      }
+      const a2 = known.a ? known.a.squared : q;
+      const b2 = known.b ? known.b.squared : q;
+      const c2 = known.c ? known.c.squared : q;
+      const alpha = Math.atan2(a, b) * 180 / Math.PI;
+      const beta = 90 - alpha;
+      const area = a*b/2;
+      const height = a*b/c;
+      const perimeter = a + b + c;
+      const givenString = entered.map(k => k + '=' + known[k].display).join(entered.length === 2 ? ' and ' : ', ');
+      el('given').textContent = 'Given ' + givenString + ',';
+      if (unknown) {
+        const symbolic = simplifySquare(q);
+        const exactString = symbolic.text;
+        // Numeric exactness is meaningful for rational results; radicals additionally show a decimal.
+        el('solved').textContent = unknown + ' = ' + exactString + (symbolic.exact && exactString.includes('√') ? ' ≈ ' + fmt(values[unknown]) : '');
+      } else {
+        el('solved').textContent = 'All three sides satisfy the Pythagorean theorem.';
+      }
+      el('angle-a').textContent = '∠α = ' + angleString(alpha);
+      el('angle-b').textContent = '∠β = ' + angleString(beta);
+      el('area').textContent = 'area = ' + fmt(area);
+      el('perimeter').textContent = 'perimeter = ' + fmt(perimeter);
+      const hSquared = (a2 * b2) / c2;
+      const hSymbolic = simplifySquare(hSquared);
+      el('height').textContent = 'h = ' + (hSymbolic.exact && hSymbolic.text.includes('√') ? hSymbolic.text + ' = ' : '') + fmt(height);
+      const list = el('steps');
+      list.replaceChildren();
+      addStep(list, 'Start with the Pythagorean equation: a² + b² = c².');
+      if (unknown === 'c') {
+        addStep(list, 'Rearrange: c² = a² + b².');
+        addStep(list, 'Substitute: c² = ' + fmt(a2) + ' + ' + fmt(b2) + ' = ' + fmt(q) + '.');
+        addStep(list, 'Take the positive square root: c = √(' + fmt(q) + ') = ' + fmt(c) + '.');
+      } else if (unknown) {
+        const leg = unknown === 'a' ? 'b' : 'a';
+        addStep(list, 'Rearrange: ' + unknown + '² = c² − ' + leg + '².');
+        addStep(list, 'Substitute: ' + unknown + '² = ' + fmt(c2) + ' − ' + fmt(known[leg].squared) + ' = ' + fmt(q) + '.');
+        addStep(list, 'Take the positive square root: ' + unknown + ' = √(' + fmt(q) + ') = ' + fmt(values[unknown]) + '.');
+      } else {
+        addStep(list, 'Check: a² + b² = ' + fmt(a2) + ' + ' + fmt(b2) + ' = ' + fmt(a2+b2) + '; c² = ' + fmt(c2) + '.');
+      }
+      addStep(list, 'Find angles: α = arctan(a / b) = ' + alpha.toFixed(3) + '°; β = 90° − α = ' + beta.toFixed(3) + '°.');
+      addStep(list, 'Area = a × b / 2 = ' + fmt(a) + ' × ' + fmt(b) + ' / 2 = ' + fmt(area) + '.');
+      addStep(list, 'Perimeter = a + b + c = ' + fmt(a) + ' + ' + fmt(b) + ' + ' + fmt(c) + ' = ' + fmt(perimeter) + '.');
+      addStep(list, 'Altitude to hypotenuse: h = a × b / c = ' + fmt(a) + ' × ' + fmt(b) + ' / ' + fmt(c) + ' = ' + fmt(height) + '.');
+      error.hidden = true;
+      resultPanel.hidden = false;
+      instruction.hidden = true;
+      details.open = false;
+      triangleSvg(el('result-svg'), a, b, true);
+      triangleSvg(el('input-svg'), a, b, false);
+    } catch (err) {
+      error.textContent = err.message || 'Unable to calculate from these inputs.';
+      error.hidden = false;
+      resultPanel.hidden = true;
+      instruction.hidden = false;
+    }
+  }
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    handleCalculation();
+  });
+  el('clear').addEventListener('click', () => {
+    sideNames.forEach(side => { el(side).value = ''; el(side + 'r').value = ''; });
+    resultPanel.hidden = true;
+    error.hidden = true;
+    instruction.hidden = false;
+    details.open = false;
+    triangleSvg(el('input-svg'), 2, 4, false);
+    el('a').focus();
+  });
+  el('save').addEventListener('click', () => { window.print(); });
+  triangleSvg(el('input-svg'), 2, 4, false);
+})();
+
+</script><script defer src="/assets/js/data.js"></script>
+<script defer src="/assets/js/style.js?v=20261111-5"></script>
+</body></html>

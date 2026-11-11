@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US">
-<head>
-<meta charset="utf-8">
+<html lang="en"><head><meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="content-language" content="en">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,17 +11,457 @@
   <meta name="author" content="Commingsoon">
   <meta name="publisher" content="Commingsoon">
   <meta name="robots" content="noindex, nofollow, max-image-preview:large">
-  <link rel="stylesheet" href="/assets/css/style.css?v=20261111-1" crossorigin="anonymous" data-n-g="">
+  <link rel="stylesheet" href="/assets/css/style.css?v=20261111-4" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/doc_style.css" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/side_style.css" crossorigin="anonymous" data-n-g=""> 
   <!--ogtags-->
-  <!--schema-->
-  <!--style-->
-</head>
+  <!--schema--><style>
+/* All tool styles remain inside the unique calcpro-rental namespace. */
+.calcpro-rental{font:13px/1.35 Arial,Helvetica,sans-serif;color:#111;max-width:100%;min-width:0}
+.calcpro-rental *, .calcpro-rental *::before, .calcpro-rental *::after{box-sizing:border-box}
+.calcpro-rental [hidden]{display:none!important}
+.calcpro-rental button, .calcpro-rental input{font:inherit}
+.calcpro-rental-print-row{min-height:21px;display:flex;justify-content:flex-end;align-items:center;margin:0 0 5px}
+.calcpro-rental-print{border:0;color:#006699;text-decoration:underline;cursor:pointer;padding:0 2px;background:transparent;font-size:12px}
+.calcpro-rental-print:hover{text-decoration:none}
+.calcpro-rental-form{border:1px solid #b4b4b4;background:#eee;padding:0 16px 18px;min-width:0}
+.calcpro-rental-hint{background:#336699;color:#fff;text-align:center;margin:0 -16px 8px;font-weight:bold;min-height:29px;display:flex;align-items:center;justify-content:center;gap:26px;padding:4px 9px}
+.calcpro-rental-hint-symbol{background:#fff;color:#336699;display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:100%;font-size:12px}
+.calcpro-rental-form-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;align-items:start}
+.calcpro-rental-form-column{min-width:0}
+.calcpro-rental-form-section{margin:0 0 14px;min-width:0}
+.calcpro-rental-section-title{background:#336699;color:#fff;font-size:14px;line-height:1.35;font-weight:700;margin:0 0 7px;padding:4px 6px}
+.calcpro-rental-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(68px,92px) 44px;gap:4px;align-items:center;min-height:27px}
+.calcpro-rental-row>label, .calcpro-rental-expense-row>label{font-size:12px;overflow-wrap:normal;line-height:1.18}
+.calcpro-rental-unit{font-size:11px;white-space:nowrap}
+.calcpro-rental-money,.calcpro-rental-percent,.calcpro-rental-numeric{position:relative;display:block;min-width:0;width:100%}
+.calcpro-rental-money input,.calcpro-rental-percent input,.calcpro-rental-numeric input{width:100%;height:25px;min-width:0;border:1px solid #336699;border-radius:0;background:#fff;padding:2px 6px;color:#111;box-shadow:inset 1px 1px 2px #b2b2b2}
+.calcpro-rental-money input{padding-left:15px}
+.calcpro-rental-percent input{padding-right:17px}
+.calcpro-rental-money::before{content:'$';position:absolute;left:5px;top:5px;color:#111;pointer-events:none;font-size:12px}
+.calcpro-rental-percent::after{content:'%';position:absolute;right:5px;top:5px;color:#111;pointer-events:none;font-size:12px}
+.calcpro-rental-money input:focus,.calcpro-rental-percent input:focus,.calcpro-rental-numeric input:focus{outline:2px solid #75a9dd;outline-offset:1px}
+.calcpro-rental input.calcpro-rental-invalid{border-color:#bb2626;background:#fff4f4}
+.calcpro-rental-radio-line{display:flex;flex-wrap:wrap;align-items:center;gap:7px;padding:3px 0;margin:0 0 2px;border:0;min-width:0}
+.calcpro-rental-radio-line legend{font-size:12px;float:left;padding:2px 5px 0 0;max-width:100%}
+.calcpro-rental-radio-line label{font-size:12px;white-space:nowrap;display:inline-flex;align-items:center;gap:3px;cursor:pointer}
+.calcpro-rental-radio-line input{margin:0;width:14px;height:14px;accent-color:#336699;cursor:pointer}
+.calcpro-rental-subfields{padding-left:19px;margin:0 0 3px}
+.calcpro-rental-subfields .calcpro-rental-row{grid-template-columns:minmax(0,1fr) minmax(56px,82px) 44px}
+.calcpro-rental-expense-header,.calcpro-rental-expense-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(60px,90px) minmax(50px,72px);column-gap:4px;align-items:center}
+.calcpro-rental-expense-header{min-height:27px;font-size:11px;line-height:1.03;text-align:center}
+.calcpro-rental-expense-row{min-height:27px}
+.calcpro-rental-expense-row .calcpro-rental-percent input{padding-left:5px}
+.calcpro-rental-sell-section{margin-top:17px}
+.calcpro-rental-sell-radio{margin:4px 0 5px;gap:7px}
+.calcpro-rental-actions{display:flex;align-items:center;justify-content:center;gap:4px;margin:16px 0 0}
+.calcpro-rental-calculate,.calcpro-rental-clear{min-height:31px;border:0;padding:5px 10px;cursor:pointer;font-size:12px;font-weight:bold}
+.calcpro-rental-calculate{background:#428421;color:#fff}
+.calcpro-rental-calculate span{display:inline-flex;background:#b4dbaa;color:white;align-items:center;justify-content:center;border-radius:50%;height:16px;width:16px;margin-left:5px;font-size:9px}
+.calcpro-rental-clear{background:#aaa;color:#fff}
+.calcpro-rental-calculate:hover{background:#2f6915}.calcpro-rental-clear:hover{background:#777}
+.calcpro-rental-error{background:#fff0f0;border:1px solid #c44343;color:#902020;margin:8px 0;padding:8px 10px;font-weight:bold}
+.calcpro-rental-results{margin:0 0 21px;font-size:12px}
+.calcpro-rental-results-title{color:#fff;background:#4b8827;padding:6px 9px;font-size:15px;font-weight:bold;display:flex;justify-content:space-between;align-items:center}
+.calcpro-rental-results-symbol{font-size:12px}
+.calcpro-rental-results h2{font-size:13px;line-height:1.25;font-weight:bold;margin:13px 0 5px;color:#111}
+.calcpro-rental-results-overview{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:18px}
+.calcpro-rental-table-scroll{overflow-x:auto;max-width:100%;-webkit-overflow-scrolling:touch}
+.calcpro-rental-mini-table{border-collapse:collapse;width:100%;font-size:11px;line-height:1.3}
+.calcpro-rental-mini-table th,.calcpro-rental-mini-table td{border:1px solid #c2cdd5;padding:4px 5px;vertical-align:middle}
+.calcpro-rental-mini-table th{background:#dce5eb;text-align:right;white-space:nowrap;font-weight:bold}
+.calcpro-rental-mini-table th:first-child{text-align:left}
+.calcpro-rental-mini-table td:first-child{font-weight:500}
+.calcpro-rental-mini-table td:not(:first-child){text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+.calcpro-rental-mini-table tr:nth-child(even){background:#f4f8fb}
+.calcpro-rental-mini-table tr.calcpro-rental-emphasis{font-weight:bold;background:#eaf4e5}
+.calcpro-rental-mini-table tr.calcpro-rental-emphasis td:first-child{font-weight:bold}
+.calcpro-rental-positive{color:#28721d;font-weight:700}.calcpro-rental-negative{color:#bb1d1d;font-weight:700}
+.calcpro-rental-expense-section{padding-top:1px}
+.calcpro-rental-expense-chart-layout{display:flex;align-items:center;justify-content:center;min-height:155px;gap:23px;padding:11px 0}
+.calcpro-rental-donut{width:148px;height:148px;flex:none;border-radius:50%;background:#d4d4d4;display:grid;place-items:center}
+.calcpro-rental-donut-hole{display:flex;align-items:center;justify-content:center;flex-direction:column;width:68px;height:68px;border-radius:50%;background:#fff;text-align:center;font-size:11px;color:#333;white-space:pre-line;padding:5px}
+.calcpro-rental-chart-legend{display:grid;gap:4px;font-size:11px}
+.calcpro-rental-legend-row{display:flex;gap:6px;align-items:center}
+.calcpro-rental-legend-swatch{width:10px;height:10px;flex:none}
+.calcpro-rental-breakdown{margin:0 0 11px}
+.calcpro-rental-year-scroll{border:1px solid #336699}
+.calcpro-rental-years-table{border-collapse:collapse;width:100%;font-size:10px;line-height:1.25;min-width:700px;font-variant-numeric:tabular-nums}
+.calcpro-rental-years-table th{background:#336699;color:#fff;border:1px solid #6e91ad;text-align:center;padding:5px 3px;white-space:nowrap}
+.calcpro-rental-years-table td{border:1px solid #c4d0d9;padding:4px 4px;text-align:right;white-space:nowrap}
+.calcpro-rental-years-table td:first-child{text-align:center}
+.calcpro-rental-years-table tr:nth-child(even) td{background:#f0f6fa}
+.calcpro-rental-years-table tfoot td{background:#dfeaf1!important;font-weight:bold;border-top:2px solid #336699}
+@media(max-width:650px){.calcpro-rental-form{padding:0 10px 12px}.calcpro-rental-hint{margin:0 -10px 8px;gap:12px}.calcpro-rental-form-grid{gap:12px}.calcpro-rental-row{grid-template-columns:minmax(0,1fr) minmax(59px,82px) 35px}.calcpro-rental-expense-header,.calcpro-rental-expense-row{grid-template-columns:minmax(0,1fr) minmax(52px,82px) minmax(42px,55px)}.calcpro-rental-row>label,.calcpro-rental-expense-row>label{font-size:11px}.calcpro-rental-subfields{padding-left:8px}.calcpro-rental-subfields .calcpro-rental-row{grid-template-columns:minmax(0,1fr) minmax(52px,72px) 35px}.calcpro-rental-unit{font-size:10px}.calcpro-rental-money input,.calcpro-rental-percent input,.calcpro-rental-numeric input{font-size:11px}}
+@media(max-width:510px){.calcpro-rental-form-grid,.calcpro-rental-results-overview{grid-template-columns:minmax(0,1fr)}.calcpro-rental-form{padding:0 12px 14px}.calcpro-rental-hint{margin:0 -12px 10px}.calcpro-rental-form-grid{gap:2px}.calcpro-rental-row{grid-template-columns:minmax(0,1fr) minmax(80px,100px) 48px}.calcpro-rental-subfields{padding-left:18px}.calcpro-rental-subfields .calcpro-rental-row{grid-template-columns:minmax(0,1fr) minmax(70px,90px) 48px}.calcpro-rental-expense-header,.calcpro-rental-expense-row{grid-template-columns:minmax(0,1fr) minmax(75px,100px) minmax(60px,74px)}.calcpro-rental-row>label,.calcpro-rental-expense-row>label{font-size:12px}.calcpro-rental-money input,.calcpro-rental-percent input,.calcpro-rental-numeric input{font-size:12px}.calcpro-rental-sell-section{margin-top:0}.calcpro-rental-results-overview{gap:2px}.calcpro-rental-expense-chart-layout{gap:12px}.calcpro-rental-donut{height:128px;width:128px}.calcpro-rental-donut-hole{height:62px;width:62px}}
+@media(max-width:350px){.calcpro-rental-expense-header,.calcpro-rental-expense-row{grid-template-columns:minmax(0,1fr) 76px 60px}.calcpro-rental-row{grid-template-columns:minmax(0,1fr) 80px 45px}.calcpro-rental-expense-chart-layout{flex-wrap:wrap}}
+@media print{.calcpro-rental-print-row,.calcpro-rental-form,.calcpro-rental-actions{display:none!important}.calcpro-rental-results{display:block!important}.calcpro-rental-year-scroll{overflow:visible}.calcpro-rental-years-table{min-width:0;font-size:8px}.calcpro-rental-expense-chart-layout{min-height:115px}.calcpro-rental-donut{width:100px;height:100px}.calcpro-rental-results,.calcpro-rental-expense-section{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
 
-<body>
-<!-- Main-header-page -->
-<script defer src="/assets/js/data.js"></script>
-<script defer src="/assets/js/style.js?v=20261111-1"></script>
-</body>
-</html>
+</style>
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Rental Property Calculator</nav><h1 class="cp-page-title">Rental Property Calculator</h1><p class="cp-intro">Estimate the potential returns on a rental property, including financing, repairs, income growth, ongoing expenses, resale value, and cash flow over time.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-rental" id="calcpro-rental-root">
+  <div class="calcpro-rental-print-row"><button type="button" class="calcpro-rental-print" id="calcpro-rental-print"><span aria-hidden="true">⎙</span> Print</button></div>
+  <section class="calcpro-rental-results" id="calcpro-rental-results" aria-label="Rental property results" aria-live="polite" hidden>
+    <div class="calcpro-rental-results-title">Result <span class="calcpro-rental-results-symbol" aria-hidden="true">▦</span></div>
+    <div class="calcpro-rental-results-overview">
+      <section class="calcpro-rental-summary" aria-label="Investment return summary"><h2 id="calcpro-rental-summary-heading">Investment Summary</h2><div class="calcpro-rental-table-scroll"><table class="calcpro-rental-mini-table"><tbody id="calcpro-rental-summary-body"></tbody></table></div></section>
+      <section class="calcpro-rental-first-year" aria-label="First year income and expenses"><h2>First Year Income and Expense</h2><div class="calcpro-rental-table-scroll"><table class="calcpro-rental-mini-table"><thead><tr><th>Item</th><th>Monthly</th><th>Annual</th></tr></thead><tbody id="calcpro-rental-first-year-body"></tbody></table></div></section>
+    </div>
+    <section class="calcpro-rental-expense-section" aria-label="First year expense breakdown">
+      <h2>First Year Expense Breakdown</h2>
+      <div class="calcpro-rental-expense-chart-layout">
+        <div class="calcpro-rental-donut" id="calcpro-rental-donut" role="img" aria-label="First year expense distribution"><span class="calcpro-rental-donut-hole" id="calcpro-rental-donut-total">Expenses</span></div>
+        <div class="calcpro-rental-chart-legend" id="calcpro-rental-chart-legend"></div>
+      </div>
+    </section>
+    <section class="calcpro-rental-breakdown" aria-label="Investment breakdown over time">
+      <h2>Breakdown Over Time</h2>
+      <div class="calcpro-rental-table-scroll calcpro-rental-year-scroll"><table class="calcpro-rental-years-table"><thead><tr><th rowspan="2">Year</th><th rowspan="2">Annual<br>Income</th><th rowspan="2">Mortgage</th><th rowspan="2">Expenses</th><th rowspan="2">Cash<br>Flow</th><th rowspan="2">Cash on<br>Cash Return</th><th rowspan="2">Equity<br>Accumulated</th><th colspan="2">If Sold at Year End</th></tr><tr><th>Cash to<br>Receive</th><th>Return<br>(IRR)</th></tr></thead><tbody id="calcpro-rental-years-body"></tbody><tfoot id="calcpro-rental-years-foot"></tfoot></table></div>
+    </section>
+  </section>
+  <form id="calcpro-rental-form" class="calcpro-rental-form" novalidate>
+    <div class="calcpro-rental-hint"><span class="calcpro-rental-hint-symbol" aria-hidden="true">▼</span> Modify the values and click the Calculate button to use</div>
+    <p class="calcpro-rental-error" id="calcpro-rental-error" role="alert" hidden></p>
+    <div class="calcpro-rental-form-grid">
+      <div class="calcpro-rental-form-column">
+        <section class="calcpro-rental-form-section"><h2 class="calcpro-rental-section-title">Purchase</h2>
+          <div class="calcpro-rental-row"><label for="calcpro-rental-price">Purchase Price</label><span class="calcpro-rental-money"><input id="calcpro-rental-price" data-rental-field="price" aria-label="Purchase price" type="text" inputmode="decimal" value="200,000"></span><span></span></div>
+          <fieldset class="calcpro-rental-radio-line"><legend>Use Loan?</legend><label><input type="radio" name="calcpro-rental-use-loan" value="yes" checked> Yes</label><label><input type="radio" name="calcpro-rental-use-loan" value="no"> No</label></fieldset>
+          <div class="calcpro-rental-subfields" id="calcpro-rental-loan-fields">
+            <div class="calcpro-rental-row"><label for="calcpro-rental-down">Down Payment</label><span class="calcpro-rental-percent"><input id="calcpro-rental-down" data-rental-field="down" type="text" inputmode="decimal" value="20"></span><span></span></div>
+            <div class="calcpro-rental-row"><label for="calcpro-rental-interest">Interest Rate</label><span class="calcpro-rental-percent"><input id="calcpro-rental-interest" data-rental-field="interest" type="text" inputmode="decimal" value="6"></span><span></span></div>
+            <div class="calcpro-rental-row"><label for="calcpro-rental-term">Loan Term</label><span class="calcpro-rental-numeric"><input id="calcpro-rental-term" data-rental-field="term" type="text" inputmode="numeric" value="30"></span><span class="calcpro-rental-unit">years</span></div>
+          </div>
+          <div class="calcpro-rental-row"><label for="calcpro-rental-closing">Closing Cost</label><span class="calcpro-rental-money"><input id="calcpro-rental-closing" data-rental-field="closing" type="text" inputmode="decimal" value="6,000"></span><span></span></div>
+          <fieldset class="calcpro-rental-radio-line"><legend>Need Repairs?</legend><label><input type="radio" name="calcpro-rental-repairs" value="yes"> Yes</label><label><input type="radio" name="calcpro-rental-repairs" value="no" checked> No</label></fieldset>
+          <div class="calcpro-rental-subfields" id="calcpro-rental-repair-fields" hidden>
+            <div class="calcpro-rental-row"><label for="calcpro-rental-repair-cost">Repair Cost</label><span class="calcpro-rental-money"><input id="calcpro-rental-repair-cost" data-rental-field="repairCost" type="text" inputmode="decimal" value="20,000"></span><span></span></div>
+            <div class="calcpro-rental-row"><label for="calcpro-rental-after-repair">Value after Repairs</label><span class="calcpro-rental-money"><input id="calcpro-rental-after-repair" data-rental-field="afterRepair" type="text" inputmode="decimal" value="260,000"></span><span></span></div>
+          </div>
+        </section>
+        <section class="calcpro-rental-form-section"><h2 class="calcpro-rental-section-title">Recurring Operating Expenses</h2>
+          <div class="calcpro-rental-expense-header"><span></span><span>Annual</span><span>Annual<br>Increase</span></div>
+          <div class="calcpro-rental-expense-row"><label for="calcpro-rental-tax">Property Tax</label><span class="calcpro-rental-money"><input id="calcpro-rental-tax" data-rental-field="tax" type="text" inputmode="decimal" value="3,000"></span><span class="calcpro-rental-percent"><input id="calcpro-rental-tax-growth" data-rental-field="taxGrowth" type="text" inputmode="decimal" aria-label="Property tax annual increase percent" value="3"></span></div>
+          <div class="calcpro-rental-expense-row"><label for="calcpro-rental-insurance">Total Insurance</label><span class="calcpro-rental-money"><input id="calcpro-rental-insurance" data-rental-field="insurance" type="text" inputmode="decimal" value="1,200"></span><span class="calcpro-rental-percent"><input id="calcpro-rental-insurance-growth" data-rental-field="insuranceGrowth" type="text" inputmode="decimal" aria-label="Insurance annual increase percent" value="3"></span></div>
+          <div class="calcpro-rental-expense-row"><label for="calcpro-rental-hoa">HOA Fee</label><span class="calcpro-rental-money"><input id="calcpro-rental-hoa" data-rental-field="hoa" type="text" inputmode="decimal" value="0"></span><span class="calcpro-rental-percent"><input id="calcpro-rental-hoa-growth" data-rental-field="hoaGrowth" type="text" inputmode="decimal" aria-label="HOA annual increase percent" value="3"></span></div>
+          <div class="calcpro-rental-expense-row"><label for="calcpro-rental-maintenance">Maintenance</label><span class="calcpro-rental-money"><input id="calcpro-rental-maintenance" data-rental-field="maintenance" type="text" inputmode="decimal" value="2,000"></span><span class="calcpro-rental-percent"><input id="calcpro-rental-maintenance-growth" data-rental-field="maintenanceGrowth" type="text" inputmode="decimal" aria-label="Maintenance annual increase percent" value="3"></span></div>
+          <div class="calcpro-rental-expense-row"><label for="calcpro-rental-other">Other Costs</label><span class="calcpro-rental-money"><input id="calcpro-rental-other" data-rental-field="other" type="text" inputmode="decimal" value="500"></span><span class="calcpro-rental-percent"><input id="calcpro-rental-other-growth" data-rental-field="otherGrowth" type="text" inputmode="decimal" aria-label="Other costs annual increase percent" value="3"></span></div>
+        </section>
+      </div>
+      <div class="calcpro-rental-form-column">
+        <section class="calcpro-rental-form-section"><h2 class="calcpro-rental-section-title">Income</h2>
+          <div class="calcpro-rental-expense-header"><span></span><span></span><span>Annual<br>Increase</span></div>
+          <div class="calcpro-rental-expense-row"><label for="calcpro-rental-rent">Monthly Rent</label><span class="calcpro-rental-money"><input id="calcpro-rental-rent" data-rental-field="rent" type="text" inputmode="decimal" value="2,000"></span><span class="calcpro-rental-percent"><input id="calcpro-rental-rent-growth" data-rental-field="rentGrowth" type="text" inputmode="decimal" aria-label="Monthly rent annual increase percent" value="3"></span></div>
+          <div class="calcpro-rental-expense-row"><label for="calcpro-rental-other-income">Other Monthly Income</label><span class="calcpro-rental-money"><input id="calcpro-rental-other-income" data-rental-field="otherIncome" type="text" inputmode="decimal" value="0"></span><span class="calcpro-rental-percent"><input id="calcpro-rental-other-income-growth" data-rental-field="otherIncomeGrowth" type="text" inputmode="decimal" aria-label="Other monthly income annual increase percent" value="3"></span></div>
+          <div class="calcpro-rental-row"><label for="calcpro-rental-vacancy">Vacancy Rate</label><span class="calcpro-rental-percent"><input id="calcpro-rental-vacancy" data-rental-field="vacancy" type="text" inputmode="decimal" value="5"></span><span></span></div>
+          <div class="calcpro-rental-row"><label for="calcpro-rental-management">Management Fee</label><span class="calcpro-rental-percent"><input id="calcpro-rental-management" data-rental-field="management" type="text" inputmode="decimal" value="0"></span><span></span></div>
+        </section>
+        <section class="calcpro-rental-form-section calcpro-rental-sell-section"><h2 class="calcpro-rental-section-title">Sell</h2>
+          <fieldset class="calcpro-rental-radio-line calcpro-rental-sell-radio"><legend>Do You Know the Sell Price?</legend><label><input type="radio" name="calcpro-rental-known-sell" value="yes"> Yes</label><label><input type="radio" name="calcpro-rental-known-sell" value="no" checked> No</label></fieldset>
+          <div class="calcpro-rental-row" id="calcpro-rental-appreciation-row"><label for="calcpro-rental-appreciation">Value Appreciation</label><span class="calcpro-rental-percent"><input id="calcpro-rental-appreciation" data-rental-field="appreciation" type="text" inputmode="decimal" value="3"></span><span class="calcpro-rental-unit">per year</span></div>
+          <div class="calcpro-rental-row" id="calcpro-rental-sale-price-row" hidden><label for="calcpro-rental-sell-price">Sell Price</label><span class="calcpro-rental-money"><input id="calcpro-rental-sell-price" data-rental-field="sellPrice" type="text" inputmode="decimal" value="400,000"></span><span></span></div>
+          <div class="calcpro-rental-row"><label for="calcpro-rental-holding">Holding Length</label><span class="calcpro-rental-numeric"><input id="calcpro-rental-holding" data-rental-field="holding" type="text" inputmode="numeric" value="20"></span><span class="calcpro-rental-unit">years</span></div>
+          <div class="calcpro-rental-row"><label for="calcpro-rental-selling-cost">Cost to Sell</label><span class="calcpro-rental-percent"><input id="calcpro-rental-selling-cost" data-rental-field="sellCost" type="text" inputmode="decimal" value="8"></span><span></span></div>
+        </section>
+        <div class="calcpro-rental-actions"><button class="calcpro-rental-calculate" type="submit">Calculate <span aria-hidden="true">▶</span></button><button class="calcpro-rental-clear" type="reset">Clear</button></div>
+      </div>
+    </div>
+  </form>
+</div>
+</section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><!-- REPLACE these links with real related tools for each calculator; verify live slugs. --><a href="mortgage-calculator.html">Mortgage</a><a href="amortization-calculator.html">Amortization</a><a href="investment-calculator.html">Investment</a><a href="average-return-calculator.html">Average Return</a><a href="house-affordability-calculator.html">House Affordability</a><a href="refinance-calculator.html">Refinance</a><a href="down-payment-calculator.html">Down Payment</a><a href="interest-calculator.html">Interest</a><a href="inflation-calculator.html">Inflation</a><a href="future-value-calculator.html">Future Value</a><a href="income-tax-calculator.html">Income Tax</a><a href="loan-calculator.html">Loan</a></div></section></aside><article class="cp-article"><h2>How to Use the Rental Property Calculator</h2>
+<p>Use this rental investment calculator to project monthly cash flow, operating expenses, mortgage payments, property equity, and the potential return from selling a property after a chosen holding period.</p>
+<ol>
+  <li><strong>Enter the purchase details.</strong> Add the property price, closing costs, and (if applicable) your down payment, mortgage interest rate, and loan term. Choose <strong>Need Repairs?</strong> to include initial repair costs and the estimated value after renovation.</li>
+  <li><strong>Estimate rental income.</strong> Enter the monthly rent, other monthly income, vacancy rate, management fee, and annual income increases.</li>
+  <li><strong>Add annual property expenses.</strong> Include property tax, insurance, HOA fees, maintenance, and other operating costs. You can assign a different annual increase to each category.</li>
+  <li><strong>Set the exit assumptions.</strong> Enter how many years you plan to hold the property, the selling cost percentage, and either a yearly appreciation rate or a known final selling price.</li>
+  <li>Click <strong>Calculate</strong> to view the results <strong>above the form</strong>, including a first-year expense chart and a full year-by-year analysis. Use <strong>Clear</strong> to restore the example values.</li>
+</ol>
+<h2>Rental Property Calculation Formulas</h2>
+<h3>Mortgage payment</h3>
+<p>For a fixed-rate, fully amortizing loan, the monthly principal-and-interest payment is <strong>M = P × r / [1 − (1 + r)<sup>−n</sup>]</strong>, where <em>P</em> is the borrowed amount, <em>r</em> is the annual interest rate divided by 12, and <em>n</em> is the number of monthly installments. At a 0% interest rate, the payment is simply the principal divided by the number of months. Mortgage principal and interest are kept separate from property operating expenses.</p>
+<h3>Income, net operating income, and cash flow</h3>
+<p><strong>Gross annual income</strong> = 12 × (monthly rent + other monthly income). <strong>Vacancy loss</strong> = gross income × vacancy rate. Management fees in this model apply to income after the vacancy allowance. Property tax, insurance, HOA, maintenance, and other recurring expenses increase at their individually selected annual rates.</p>
+<p><strong>Net operating income (NOI)</strong> = gross income − vacancy loss − management fees − recurring operating expenses. <strong>Annual cash flow</strong> = NOI − that year's mortgage principal-and-interest payments. <strong>Capitalization rate</strong> = first-year NOI ÷ purchase price × 100. These are before-income-tax estimates.</p>
+<h3>Sale proceeds, cash-on-cash returns, and IRR</h3>
+<p><strong>Initial cash invested</strong> = down payment (or the full price without a loan) + closing costs + initial repairs. The projected sale proceeds are the selling price minus selling costs and the mortgage balance still outstanding. <strong>Total profit</strong> = all operating cash flows + net sale proceeds − initial cash invested. The summary's cumulative cash-on-cash return is total profit divided by initial cash invested; each annual table row separately shows that year's cash flow divided by initial cash invested.</p>
+<p><strong>Internal rate of return (IRR)</strong> is the annual discount rate that makes the net present value of the initial investment, annual cash flows, and final net sale proceeds equal zero. If the cash flows do not support a conventional IRR or no initial cash is invested, the calculator displays N/A. When you supply a known selling price, intermediate sale-year values use the annual growth rate implied by the starting property value and your final selling price.</p>
+<h2>Worked Example</h2>
+<p>Consider a $200,000 property with a 20% down payment, a 6% fixed interest rate over 30 years, and $6,000 in closing costs. With $2,000 monthly rent, 5% vacancy, $3,000 in annual property tax, $1,200 insurance, $2,000 maintenance, and $500 in other costs, first-year gross rent is $24,000. Vacancy loss is $1,200 and the other stated operating costs total $6,700, leaving <strong>$16,100 in first-year NOI</strong> and an <strong>8.05% cap rate</strong>. The mortgage, projected appreciation, and changing annual expenses affect subsequent-year cash flow and the final IRR.</p>
+<h2>Understanding the Results</h2>
+<p>The <strong>first-year income and expense table</strong> separates scheduled income, financing payments, vacancy, management, and every recurring expense. The <strong>expense chart</strong> shows how your first-year outflows are distributed. The <strong>Breakdown Over Time</strong> table shows projected income, debt service, operating expenses, cash flow, investment yield, equity, and what you could receive if you sold at the end of each year.</p>
+<h2>Frequently Asked Questions</h2>
+<h3>Does the calculator include property taxes and insurance in the mortgage payment?</h3>
+<p>No. Mortgage payments cover principal and interest only. Property taxes and insurance are added separately to avoid counting them twice.</p>
+<h3>Are rental income taxes, depreciation, or capital gains taxes included?</h3>
+<p>No. This is a pre-tax investment projection. It does not model income taxes, depreciation, tax deductions, refinancing, capital improvements after purchase, special assessments, or changes to the loan terms. Tax rules depend on your circumstances and location.</p>
+<h3>What if I plan to buy the property without financing?</h3>
+<p>Select <strong>No</strong> under Use Loan. The full purchase price will be treated as cash invested, and the mortgage payment and outstanding loan balance will be zero.</p>
+<h3>Can the returns be negative?</h3>
+<p>Yes. Negative operating cash flow, large expenses, price depreciation, high selling costs, or a remaining mortgage balance can reduce or eliminate the projected investment gain.</p>
+<h2>Sources and Further Reading</h2>
+<p>For mortgage amortization, see the <a href="https://www.consumerfinance.gov/ask-cfpb/how-do-mortgage-lenders-calculate-monthly-payments-en-1965/" rel="noopener noreferrer" target="_blank">Consumer Financial Protection Bureau's mortgage payment explanation</a>. For U.S. rental tax treatment, consult <a href="https://www.irs.gov/publications/p527" rel="noopener noreferrer" target="_blank">IRS Publication 527, Residential Rental Property</a>. For additional comparison, see the <a href="https://www.calculator.net/rental-property-calculator.html" rel="noopener noreferrer" target="_blank">reference rental property calculator</a>.</p>
+<p class="cp-page-footer">CalcPro — estimates are for educational and planning purposes, not investment, lending, or tax advice.</p>
+</article></main></div><script>
+(() => {
+  'use strict';
+  const root = document.getElementById('calcpro-rental-root');
+  if (!root) return;
+  const form = root.querySelector('#calcpro-rental-form');
+  const results = root.querySelector('#calcpro-rental-results');
+  const error = root.querySelector('#calcpro-rental-error');
+  const field = name => root.querySelector('[data-rental-field="' + name + '"]');
+  const getRadio = name => form.querySelector('input[name="calcpro-rental-' + name + '"]:checked')?.value || 'no';
+  const money = (value, decimals = 2) => Number.isFinite(value)
+    ? (value < 0 ? '-$' : '$') + Math.abs(value).toLocaleString('en-US', {minimumFractionDigits: decimals, maximumFractionDigits: decimals})
+    : 'N/A';
+  const percent = (value, decimals = 2) => Number.isFinite(value) ? value.toFixed(decimals) + '%' : 'N/A';
+  const setText = (id, value) => { const item = root.querySelector('#' + id); if (item) item.textContent = value; };
+  const spec = {
+    price: ['Purchase price', 0.01, 1e12], down: ['Down payment', 0, 100],
+    interest: ['Interest rate', 0, 100], term: ['Loan term', 1, 100, true],
+    closing: ['Closing cost', 0, 1e12], repairCost: ['Repair cost', 0, 1e12],
+    afterRepair: ['Value after repairs', 0.01, 1e12],
+    tax: ['Property tax', 0, 1e12], taxGrowth: ['Property tax annual increase', -100, 1000],
+    insurance: ['Insurance', 0, 1e12], insuranceGrowth: ['Insurance annual increase', -100, 1000],
+    hoa: ['HOA fee', 0, 1e12], hoaGrowth: ['HOA annual increase', -100, 1000],
+    maintenance: ['Maintenance', 0, 1e12], maintenanceGrowth: ['Maintenance annual increase', -100, 1000],
+    other: ['Other operating costs', 0, 1e12], otherGrowth: ['Other costs annual increase', -100, 1000],
+    rent: ['Monthly rent', 0, 1e12], rentGrowth: ['Rent annual increase', -100, 1000],
+    otherIncome: ['Other monthly income', 0, 1e12], otherIncomeGrowth: ['Other income annual increase', -100, 1000],
+    vacancy: ['Vacancy rate', 0, 100], management: ['Management fee', 0, 100],
+    appreciation: ['Property appreciation', -100, 1000], sellPrice: ['Sell price', 0.01, 1e12],
+    holding: ['Holding length', 1, 100, true], sellCost: ['Cost to sell', 0, 100]
+  };
+  const inactive = () => ({
+    useLoan: getRadio('use-loan') === 'yes',
+    repair: getRadio('repairs') === 'yes',
+    knownSell: getRadio('known-sell') === 'yes'
+  });
+  function syncOptions() {
+    const selected = inactive();
+    root.querySelector('#calcpro-rental-loan-fields').hidden = !selected.useLoan;
+    root.querySelector('#calcpro-rental-repair-fields').hidden = !selected.repair;
+    root.querySelector('#calcpro-rental-appreciation-row').hidden = selected.knownSell;
+    root.querySelector('#calcpro-rental-sale-price-row').hidden = !selected.knownSell;
+    return selected;
+  }
+  function readInputs() {
+    const selected = syncOptions();
+    const output = { ...selected };
+    const omitted = new Set([
+      ...(!selected.useLoan ? ['down','interest','term'] : []),
+      ...(!selected.repair ? ['repairCost','afterRepair'] : []),
+      ...(selected.knownSell ? ['appreciation'] : ['sellPrice'])
+    ]);
+    root.querySelectorAll('.calcpro-rental-invalid').forEach(el => el.classList.remove('calcpro-rental-invalid'));
+    for (const [name, [label, min, max, integer]] of Object.entries(spec)) {
+      if (omitted.has(name)) { output[name] = 0; continue; }
+      const input = field(name);
+      const raw = input.value.trim().replace(/[$,%\s]/g, '');
+      if (!/^-?(?:\d+\.?\d*|\.\d+)$/.test(raw)) {
+        input.classList.add('calcpro-rental-invalid');
+        throw { message: 'Enter a valid number for ' + label + '.', input };
+      }
+      const number = Number(raw);
+      if (!Number.isFinite(number) || number < min || number > max || (integer && !Number.isInteger(number))) {
+        input.classList.add('calcpro-rental-invalid');
+        const range = integer ? 'a whole number from ' + min + ' to ' + max : 'a number from ' + min + ' to ' + max;
+        throw { message: label + ' must be ' + range + '.', input };
+      }
+      output[name] = number;
+    }
+    return output;
+  }
+  function makeModel(v) {
+    const invest = v.price * (v.useLoan ? v.down / 100 : 1) + v.closing + (v.repair ? v.repairCost : 0);
+    const principal = v.useLoan ? v.price * (1 - v.down / 100) : 0;
+    const monthlyRate = v.interest / 1200;
+    const months = v.useLoan ? v.term * 12 : 0;
+    const payment = principal <= 0 ? 0 : monthlyRate === 0 ? principal / months
+      : principal * monthlyRate / (1 - Math.pow(1 + monthlyRate, -months));
+    const baseSaleValue = v.repair ? v.afterRepair : v.price;
+    let loanBalance = principal;
+    let cumulativeCash = 0;
+    let totalIncome = 0;
+    let totalMortgage = 0;
+    let totalExpenses = 0;
+    let totalNOI = 0;
+    const cashFlows = [-invest];
+    const years = [];
+    const grow = (amount, rate, y) => amount * Math.pow(1 + rate / 100, y - 1);
+    const valueAt = y => {
+      if (!v.knownSell) return baseSaleValue * Math.pow(1 + v.appreciation / 100, y);
+      // If a final sale price is supplied, use its implied annual appreciation for intermediate years.
+      if (baseSaleValue > 0 && v.sellPrice > 0) return baseSaleValue * Math.pow(v.sellPrice / baseSaleValue, y / v.holding);
+      return baseSaleValue + (v.sellPrice - baseSaleValue) * y / v.holding;
+    };
+    for (let y = 1; y <= v.holding; y++) {
+      const income = 12 * (grow(v.rent, v.rentGrowth, y) + grow(v.otherIncome, v.otherIncomeGrowth, y));
+      const vacancy = income * v.vacancy / 100;
+      const management = (income - vacancy) * v.management / 100;
+      const tax = grow(v.tax, v.taxGrowth, y);
+      const insurance = grow(v.insurance, v.insuranceGrowth, y);
+      const hoa = grow(v.hoa, v.hoaGrowth, y);
+      const maintenance = grow(v.maintenance, v.maintenanceGrowth, y);
+      const other = grow(v.other, v.otherGrowth, y);
+      const operating = vacancy + management + tax + insurance + hoa + maintenance + other;
+      const noi = income - operating;
+      let mortgage = 0;
+      for (let m = 0; m < 12 && (y - 1) * 12 + m < months; m++) {
+        if (loanBalance <= 1e-7) { loanBalance = 0; break; }
+        const interestPaid = loanBalance * monthlyRate;
+        const actual = Math.min(payment, loanBalance + interestPaid);
+        loanBalance = Math.max(0, loanBalance + interestPaid - actual);
+        mortgage += actual;
+      }
+      const cashFlow = noi - mortgage;
+      cumulativeCash += cashFlow;
+      totalIncome += income;
+      totalMortgage += mortgage;
+      totalExpenses += operating;
+      totalNOI += noi;
+      cashFlows.push(cashFlow);
+      const marketValue = valueAt(y);
+      const netSaleProceeds = marketValue * (1 - v.sellCost / 100) - loanBalance;
+      const cashToReceive = cumulativeCash + netSaleProceeds;
+      const scenarioCash = cashFlows.slice();
+      scenarioCash[scenarioCash.length - 1] += netSaleProceeds;
+      const irr = invest > 0 ? annualIRR(scenarioCash) : NaN;
+      const year = { y, income, mortgage, vacancy, management, tax, insurance, hoa, maintenance, other,
+        operating, noi, cashFlow, marketValue, loanBalance, equity: marketValue - loanBalance,
+        cumulativeCash, netSaleProceeds, cashToReceive, irr, coc: invest > 0 ? cashFlow / invest * 100 : NaN };
+      if (Object.values(year).some(x => typeof x === 'number' && !Number.isFinite(x) && !Number.isNaN(x)))
+        throw { message: 'The assumptions produce numbers too large to calculate. Reduce the annual increases or holding length.' };
+      years.push(year);
+    }
+    const finalYear = years[years.length - 1];
+    return { v, invest, principal, payment, years, first: years[0], finalYear,
+      totalIncome, totalMortgage, totalExpenses, totalNOI,
+      totalProfit: finalYear.cashToReceive - invest,
+      totalReturn: invest > 0 ? (finalYear.cashToReceive - invest) / invest * 100 : NaN,
+      capRate: years[0].noi / v.price * 100,
+      irr: finalYear.irr };
+  }
+  function annualIRR(flows) {
+    const npv = rate => flows.reduce((sum, cash, t) => sum + cash / Math.pow(1 + rate, t), 0);
+    let lo = -0.999999, hi = 1;
+    let atLo = npv(lo), atHi = npv(hi);
+    if (!Number.isFinite(atLo)) atLo = Math.sign(atLo) * Number.MAX_VALUE;
+    for (let i = 0; i < 35 && Math.sign(atLo) === Math.sign(atHi); i++) {
+      hi = hi * 2 + 1;
+      atHi = npv(hi);
+    }
+    if (!Number.isFinite(atLo) || !Number.isFinite(atHi) || Math.sign(atLo) === Math.sign(atHi)) return NaN;
+    for (let i = 0; i < 120; i++) {
+      const mid = (lo + hi) / 2;
+      const x = npv(mid);
+      if (Math.sign(x) === Math.sign(atLo)) { lo = mid; atLo = x; }
+      else hi = mid;
+    }
+    return (lo + hi) * 50;
+  }
+  function moneyCell(n, decimals = 2) { return '<td>' + money(n, decimals) + '</td>'; }
+  function percentCell(n) { return '<td>' + percent(n) + '</td>'; }
+  function classFor(n) { return n < 0 ? 'calcpro-rental-negative' : 'calcpro-rental-positive'; }
+  function render(model) {
+    const { v, years, first, finalYear, invest } = model;
+    setText('calcpro-rental-summary-heading', 'For the ' + v.holding + ' Year' + (v.holding === 1 ? '' : 's') + ' Invested');
+    const summary = [
+      ['Return (IRR)', percent(model.irr) + ' per year', true],
+      ['Total Profit when Sold', money(model.totalProfit), true],
+      ['Cash on Cash Return', percent(model.totalReturn), true],
+      ['Capitalization Rate', percent(model.capRate), false],
+      ['Total Rental Income', money(model.totalIncome), false],
+      ['Total Mortgage Payments', money(model.totalMortgage), false],
+      ['Total Expenses', money(model.totalExpenses), false],
+      ['Total Net Operating Income', money(model.totalNOI), false],
+      ['Initial Cash Invested', money(invest), false]
+    ];
+    root.querySelector('#calcpro-rental-summary-body').innerHTML = summary.map(([label, data, emphasis]) =>
+      '<tr class="' + (emphasis ? 'calcpro-rental-emphasis' : '') + '"><td>' + label + '</td><td>' + data + '</td></tr>').join('');
+    const firstYearRows = [
+      ['Income', first.income], ['Mortgage Pay', first.mortgage],
+      ['Vacancy (' + v.vacancy + '%)', first.vacancy], ['Management Fee (' + v.management + '%)', first.management],
+      ['Property Tax', first.tax], ['Total Insurance', first.insurance], ['HOA Fee', first.hoa],
+      ['Maintenance Cost', first.maintenance], ['Other Cost', first.other],
+      ['Cash Flow', first.cashFlow], ['Net Operating Income (NOI)', first.noi]
+    ];
+    root.querySelector('#calcpro-rental-first-year-body').innerHTML = firstYearRows.map(([label, amount], i) =>
+      '<tr class="' + (i > 8 ? 'calcpro-rental-emphasis' : '') + '"><td>' + label + '</td>' + moneyCell(amount / 12) + moneyCell(amount) + '</tr>').join('');
+    const parts = [
+      ['Mortgage', first.mortgage, '#336699'], ['Vacancy', first.vacancy, '#18a5d5'],
+      ['Management Fee', first.management, '#9458b4'], ['Property Tax', first.tax, '#ec9823'],
+      ['Total Insurance', first.insurance, '#1baa75'], ['Maintenance Cost', first.maintenance, '#cf477e'],
+      ['Other Cost', first.other, '#cc4836'], ['HOA Fee', first.hoa, '#5b636b']
+    ].filter(([,amount]) => amount > 0);
+    const totalPie = parts.reduce((total, [,amount]) => total + amount, 0);
+    let start = 0;
+    const stops = parts.map(([label, amount, color]) => {
+      const end = start + amount / totalPie * 100;
+      const segment = color + ' ' + start.toFixed(4) + '% ' + end.toFixed(4) + '%';
+      start = end;
+      return segment;
+    });
+    const donut = root.querySelector('#calcpro-rental-donut');
+    donut.style.background = totalPie > 0 ? 'conic-gradient(' + stops.join(',') + ')' : '#d5d5d5';
+    donut.setAttribute('aria-label', totalPie > 0 ? 'Annual expense breakdown: ' + parts.map(([name, val]) => name + ' ' + money(val)).join(', ') : 'No annual expenses');
+    setText('calcpro-rental-donut-total', totalPie > 0 ? money(totalPie, 0) + '\nper year' : 'No\nexpenses');
+    root.querySelector('#calcpro-rental-chart-legend').innerHTML = parts.length
+      ? parts.map(([label, amount, color]) => '<div class="calcpro-rental-legend-row"><span class="calcpro-rental-legend-swatch" style="background:' + color + '"></span><span>' + label + ' (' + percent(amount / totalPie * 100, 1) + ')</span></div>').join('')
+      : '<span>No expenses for the first year.</span>';
+    root.querySelector('#calcpro-rental-years-body').innerHTML = years.map(x =>
+      '<tr><td>' + x.y + '</td>' + moneyCell(x.income, 0) + moneyCell(x.mortgage, 0) +
+      moneyCell(x.operating, 0) + moneyCell(x.cashFlow, 0) + percentCell(x.coc) +
+      moneyCell(x.equity, 0) + moneyCell(x.cashToReceive, 0) + percentCell(x.irr) + '</tr>').join('');
+    const totalCash = years.reduce((sum, x) => sum + x.cashFlow, 0);
+    root.querySelector('#calcpro-rental-years-foot').innerHTML = '<tr><td>Total</td>' +
+      moneyCell(model.totalIncome, 0) + moneyCell(model.totalMortgage, 0) + moneyCell(model.totalExpenses, 0) +
+      moneyCell(totalCash, 0) + '<td>—</td><td>—</td>' + moneyCell(finalYear.cashToReceive, 0) + percentCell(model.irr) + '</tr>';
+    results.hidden = false;
+  }
+  function calculate(scroll) {
+    try {
+      const values = readInputs();
+      const model = makeModel(values);
+      render(model);
+      error.hidden = true;
+      error.textContent = '';
+      if (scroll) requestAnimationFrame(() => results.scrollIntoView({behavior: 'smooth', block: 'start'}));
+      return true;
+    } catch (e) {
+      error.textContent = e.message || 'Unable to calculate. Check the entered values.';
+      error.hidden = false;
+      results.hidden = true;
+      if (e.input) e.input.focus();
+      return false;
+    }
+  }
+  root.querySelectorAll('input[type="radio"]').forEach(input => input.addEventListener('change', syncOptions));
+  root.querySelectorAll('[data-rental-field]').forEach(input => {
+    input.addEventListener('input', () => input.classList.remove('calcpro-rental-invalid'));
+    input.addEventListener('blur', () => {
+      const value = input.value.trim().replace(/[$,\s]/g, '');
+      if (/^-?(?:\d+\.?\d*|\.\d+)$/.test(value) && input.closest('.calcpro-rental-money')) {
+        input.value = Number(value).toLocaleString('en-US', {maximumFractionDigits: 2});
+      }
+    });
+  });
+  form.addEventListener('submit', event => { event.preventDefault(); calculate(true); });
+  form.addEventListener('reset', () => {
+    requestAnimationFrame(() => {
+      syncOptions();
+      results.hidden = true;
+      error.hidden = true;
+      error.textContent = '';
+      root.querySelectorAll('.calcpro-rental-invalid').forEach(el => el.classList.remove('calcpro-rental-invalid'));
+    });
+  });
+  root.querySelector('#calcpro-rental-print').addEventListener('click', () => {
+    if (!results.hidden || calculate(false)) window.print();
+  });
+  syncOptions();
+})();
+
+</script><script defer src="/assets/js/data.js"></script>
+<script defer src="/assets/js/style.js?v=20261111-5"></script>
+</body></html>

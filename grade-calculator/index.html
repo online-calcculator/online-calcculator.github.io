@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US">
-<head>
-<meta charset="utf-8">
+<html lang="en"><head><meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="content-language" content="en">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,17 +11,492 @@
   <meta name="author" content="Commingsoon">
   <meta name="publisher" content="Commingsoon">
   <meta name="robots" content="noindex, nofollow, max-image-preview:large">
-  <link rel="stylesheet" href="/assets/css/style.css?v=20261111-1" crossorigin="anonymous" data-n-g="">
+  <link rel="stylesheet" href="/assets/css/style.css?v=20261111-4" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/doc_style.css" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/side_style.css" crossorigin="anonymous" data-n-g=""> 
   <!--ogtags-->
-  <!--schema-->
-  <!--style-->
-</head>
+  <!--schema--><style>
 
-<body>
-<!-- Main-header-page -->
+/* Grade Calculator – isolated from CalcPro's global cp-* styles. */
+.calcpro-grade-root {--calcpro-grade-blue:#356798;--calcpro-grade-green:#4b8625;--calcpro-grade-navy:#125217;--calcpro-grade-border:#c7c7c7; color:#111; font:14px/1.4 Arial,Helvetica,sans-serif; max-width:100%;}
+.calcpro-grade-root *, .calcpro-grade-root *::before, .calcpro-grade-root *::after {box-sizing:border-box}
+.calcpro-grade-root [hidden]{display:none!important}
+.calcpro-grade-root .calcpro-grade-course-form {margin:0 0 32px}
+.calcpro-grade-root .calcpro-grade-panel{width:326px;max-width:100%;background:#f0f0f0;border:1px solid var(--calcpro-grade-border);padding:8px 7px 9px}
+.calcpro-grade-root .calcpro-grade-fields-head,.calcpro-grade-root .calcpro-grade-row {display:grid;grid-template-columns:minmax(0,1fr) 55px 76px;gap:3px;align-items:start}
+.calcpro-grade-root .calcpro-grade-fields-head{font-weight:bold;text-align:center;font-size:12px;line-height:1.18;padding:0 1px 6px}
+.calcpro-grade-root .calcpro-grade-fields-head small{font-weight:normal;font-size:11px}
+.calcpro-grade-root .calcpro-grade-row{margin:3px 0;align-items:center}
+.calcpro-grade-root input[type="text"],.calcpro-grade-root select {width:100%;min-width:0;min-height:27px;padding:3px 5px;font:13px Arial,Helvetica,sans-serif;color:#222;background:#fff;border:1px solid #6489b4;border-radius:1px;box-shadow:inset 0 0 0 1px #e3eff9}
+.calcpro-grade-root input:focus-visible,.calcpro-grade-root select:focus-visible {outline:2px solid #2f71bf;outline-offset:1px}
+.calcpro-grade-root .calcpro-grade-weight-field{position:relative;min-width:0}
+.calcpro-grade-root .calcpro-grade-weight-field input{padding-right:20px}
+.calcpro-grade-root .calcpro-grade-weight-unit{position:absolute;right:5px;top:5px;font-size:12px;pointer-events:none;color:#444}
+.calcpro-grade-root .calcpro-grade-add-wrap{text-align:center;padding:4px 0 2px}
+.calcpro-grade-root .calcpro-grade-link{background:none;border:0;padding:0;cursor:pointer;color:#006699;text-decoration:underline;font:inherit}
+.calcpro-grade-root .calcpro-grade-link:hover{text-decoration:none}
+.calcpro-grade-root .calcpro-grade-subtitle{margin:7px 0 3px;background:var(--calcpro-grade-blue);color:#fff;font-size:14px;padding:4px 5px;font-weight:bold}
+.calcpro-grade-root .calcpro-grade-planning-row{display:grid;grid-template-columns:minmax(0,1fr) 84px;gap:4px;align-items:center;min-height:28px;margin:1px 11px 2px}
+.calcpro-grade-root .calcpro-grade-planning-row label{font-size:12px;line-height:1.28}
+.calcpro-grade-root .calcpro-grade-settings-content{padding:4px 8px 3px}
+.calcpro-grade-root .calcpro-grade-setting-group{margin:6px 0}
+.calcpro-grade-root .calcpro-grade-setting-group strong{display:block;font-size:12px;margin-bottom:3px}
+.calcpro-grade-root .calcpro-grade-setting-option{display:flex;align-items:center;gap:5px;margin:3px 0;font-size:12px;cursor:pointer}
+.calcpro-grade-root input[type="radio"],.calcpro-grade-root input[type="checkbox"]{accent-color:#356798}
+.calcpro-grade-root .calcpro-grade-actions {display:flex;flex-wrap:wrap;gap:4px;justify-content:center;align-items:center;margin:9px 0 1px}
+.calcpro-grade-root .calcpro-grade-button{display:inline-flex;align-items:center;justify-content:center;border:1px solid transparent;font:bold 13px Arial,Helvetica,sans-serif;cursor:pointer;min-height:30px;padding:4px 10px;color:white}
+.calcpro-grade-root .calcpro-grade-calculate{background:#498421}
+.calcpro-grade-root .calcpro-grade-calculate:hover{background:#346b12}
+.calcpro-grade-root .calcpro-grade-clear{background:#a3a3a3}
+.calcpro-grade-root .calcpro-grade-clear:hover{background:#7a7a7a}
+.calcpro-grade-root .calcpro-grade-arrow{border-radius:50%;background:#8fba79;font-size:11px;line-height:16px;width:16px;height:16px;margin-left:8px;text-align:center}
+.calcpro-grade-root .calcpro-grade-settings-trigger{padding:4px 5px;margin-left:2px;font-size:12px;font-weight:bold}
+.calcpro-grade-root .calcpro-grade-error{background:#fff1ee;color:#9d2424;border-left:3px solid #b13232;padding:6px 8px;margin:7px 0;font-size:12px}
+.calcpro-grade-root .calcpro-grade-result{margin:0 0 24px;max-width:100%}
+.calcpro-grade-root .calcpro-grade-result-header{background:var(--calcpro-grade-green);display:flex;align-items:center;justify-content:space-between;gap:6px;color:#fff;font-size:16px;line-height:1.25;padding:5px 7px}
+.calcpro-grade-root .calcpro-grade-save{border:0;background:transparent;color:white;cursor:pointer;font:bold 11px Arial,Helvetica,sans-serif;padding:2px 4px;text-decoration:underline}
+.calcpro-grade-root .calcpro-grade-result-line{font-size:17px;margin:11px 0 14px}
+.calcpro-grade-root .calcpro-grade-success{color:green;font-weight:bold}
+.calcpro-grade-root .calcpro-grade-result-table-wrap{overflow-x:auto;max-width:100%}
+.calcpro-grade-root .calcpro-grade-result-table{border-collapse:collapse;margin:0;font-size:12px;line-height:1.25;width:auto;min-width:260px}
+.calcpro-grade-root .calcpro-grade-result-table th,.calcpro-grade-root .calcpro-grade-result-table td{border:1px solid #555;padding:4px 6px;text-align:left}
+.calcpro-grade-root .calcpro-grade-result-table thead th{color:#fff;background:#343434}
+.calcpro-grade-root .calcpro-grade-result-table tbody tr:nth-child(even){background:#f0f0f0}
+.calcpro-grade-root .calcpro-grade-result-table tfoot th,.calcpro-grade-root .calcpro-grade-result-table tfoot td{background:#555;color:#fff}
+.calcpro-grade-root .calcpro-grade-result-details{color:#505050;font-size:12px;margin:6px 0}
+.calcpro-grade-root .calcpro-grade-result-print{display:block;width:max-content;margin:4px 0 0;font-size:12px}
+.calcpro-grade-root .calcpro-grade-plan-answer{padding:8px 10px;background:#f2f7eb;border-left:3px solid #548c33;margin:12px 0 0;max-width:580px}
+.calcpro-grade-root .calcpro-grade-final{margin-top:29px;max-width:100%}
+.calcpro-grade-root .calcpro-grade-final h2{color:var(--calcpro-grade-navy);font-size:20px;margin:0 0 2px;line-height:1.25}
+.calcpro-grade-root .calcpro-grade-final>p{margin:0 0 10px;max-width:640px;font-size:13px;line-height:1.35}
+.calcpro-grade-root .calcpro-grade-final-panel{max-width:100%;width:296px;background:#f0f0f0;border:1px solid var(--calcpro-grade-border);padding:11px 9px}
+.calcpro-grade-root .calcpro-grade-final-row{display:grid;grid-template-columns:minmax(0,1fr) 100px;align-items:center;gap:6px;margin:4px 1px 8px}
+.calcpro-grade-root .calcpro-grade-final-row label{font-size:12px;font-weight:bold;text-align:right}
+.calcpro-grade-root .calcpro-grade-final-result{margin:0 0 14px}
+.calcpro-grade-root .calcpro-grade-final-message{margin:11px 0 0;font-size:14px}
+.calcpro-grade-root .calcpro-grade-final-note{font-size:12px;color:#535353;margin:6px 0 0}
+.calcpro-grade-root .calcpro-grade-related{background:#ededed;padding:7px 10px;margin:29px 0 0;max-width:580px;font-size:13px}
+.calcpro-grade-root .calcpro-grade-related strong{font-size:13px;margin-right:7px}
+.calcpro-grade-root .calcpro-grade-related a{display:inline-block;padding:3px 6px;background:#356798;color:#fff;text-decoration:none}
+.calcpro-grade-root .calcpro-grade-related a:hover{text-decoration:underline}
+.calcpro-grade-root .calcpro-grade-format-note{color:#555;font-size:11px;margin:5px 0 0}
+@media(max-width:480px){.calcpro-grade-root .calcpro-grade-panel{width:100%;max-width:350px}.calcpro-grade-root .calcpro-grade-fields-head,.calcpro-grade-root .calcpro-grade-row{grid-template-columns:minmax(0,1fr) 58px 69px}.calcpro-grade-root .calcpro-grade-final-panel{width:100%;max-width:350px}.calcpro-grade-root .calcpro-grade-result-header{font-size:15px}}
+@media print{.calcpro-grade-root .calcpro-grade-settings-trigger,.calcpro-grade-root .calcpro-grade-add-wrap,.calcpro-grade-root .calcpro-grade-actions,.calcpro-grade-root .calcpro-grade-save,.calcpro-grade-root .calcpro-grade-related,.calcpro-grade-root .calcpro-grade-result-print{display:none!important}.calcpro-grade-root .calcpro-grade-panel,.calcpro-grade-root .calcpro-grade-final-panel{border:0;background:white;padding:4px}.calcpro-grade-root .calcpro-grade-result-header{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+
+</style>
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/">Calculators</a> / Grade Calculator</nav><h1 class="cp-page-title">Grade Calculator</h1><p class="cp-intro">Use this calculator to find your course grade from a weighted average of assignments and exams. Mix letter grades with percentages or grade points, and work out the score you need on the final to reach your goal.</p><section aria-label="Calculator" class="cp-tool-area">
+<div class="calcpro-grade-root" id="calcpro-grade-root">
+  <section class="calcpro-grade-result" id="calcpro-grade-course-result" aria-label="Course grade result" aria-live="polite" hidden>
+    <div class="calcpro-grade-result-header"><span>Result</span><button class="calcpro-grade-save" id="calcpro-grade-course-save" type="button" title="Save result as text">▣ Save</button></div>
+    <p class="calcpro-grade-result-line">Average grade: <strong class="calcpro-grade-success" id="calcpro-grade-course-summary"></strong></p>
+    <div class="calcpro-grade-result-table-wrap"><table class="calcpro-grade-result-table"><thead><tr><th scope="col">Assignment/Exam</th><th scope="col">Grade</th><th scope="col">Weight</th></tr></thead><tbody id="calcpro-grade-result-rows"></tbody><tfoot id="calcpro-grade-result-footer"></tfoot></table></div>
+    <p class="calcpro-grade-result-details" id="calcpro-grade-course-detail"></p>
+    <div class="calcpro-grade-plan-answer" id="calcpro-grade-plan-answer" hidden></div>
+    <button class="calcpro-grade-link calcpro-grade-result-print" id="calcpro-grade-course-print" type="button">Print result</button>
+  </section>
+
+  <form class="calcpro-grade-course-form" id="calcpro-grade-course-form" novalidate>
+    <div class="calcpro-grade-panel">
+      <div class="calcpro-grade-fields-head"><span>Assignment/Exam<br><small>(optional)</small></span><span>Grade</span><span>Weight</span></div>
+      <div id="calcpro-grade-course-rows"></div>
+      <div class="calcpro-grade-add-wrap"><button type="button" class="calcpro-grade-link" id="calcpro-grade-add">+ add more rows</button></div>
+      <div id="calcpro-grade-planning">
+        <h3 class="calcpro-grade-subtitle">Final Grade Planning (Optional)</h3>
+        <div class="calcpro-grade-planning-row"><label for="calcpro-grade-goal" title="Target overall course grade">Final Grade Goal</label><input id="calcpro-grade-goal" type="text" aria-label="Final grade goal, letter, percent, or points" autocomplete="off"></div>
+        <div class="calcpro-grade-planning-row"><label for="calcpro-grade-remaining">Weight of Remaining Tasks</label><div class="calcpro-grade-weight-field"><input id="calcpro-grade-remaining" type="text" inputmode="decimal" autocomplete="off" aria-label="Weight of remaining assignments"><span class="calcpro-grade-weight-unit" id="calcpro-grade-remaining-unit">%</span></div></div>
+      </div>
+      <div id="calcpro-grade-settings" hidden>
+        <h3 class="calcpro-grade-subtitle">Settings</h3>
+        <div class="calcpro-grade-settings-content">
+          <div class="calcpro-grade-setting-group"><strong>Grade Format:</strong><label class="calcpro-grade-setting-option"><input type="radio" name="calcpro-grade-grade-format" value="mix" checked>Points, percentage, mix</label><label class="calcpro-grade-setting-option"><input type="radio" name="calcpro-grade-grade-format" value="letters">Letters</label></div>
+          <div class="calcpro-grade-setting-group"><strong>Weight Format:</strong><label class="calcpro-grade-setting-option"><input type="radio" name="calcpro-grade-weight-format" value="percentage" checked>Percentage</label><label class="calcpro-grade-setting-option"><input type="radio" name="calcpro-grade-weight-format" value="points">Points</label></div>
+          <label class="calcpro-grade-setting-option"><input type="checkbox" id="calcpro-grade-show-plan" checked>Show Final Grade Planning Options</label>
+          <p class="calcpro-grade-format-note">Mixed grades accept letters, percentages, or grade points (0–4.3). Weight points are relative weights, not earned marks.</p>
+        </div>
+      </div>
+      <div class="calcpro-grade-error" id="calcpro-grade-course-error" role="alert" hidden></div>
+      <div class="calcpro-grade-actions"><button type="submit" class="calcpro-grade-button calcpro-grade-calculate">Calculate <span class="calcpro-grade-arrow" aria-hidden="true">▶</span></button><button type="button" class="calcpro-grade-button calcpro-grade-clear" id="calcpro-grade-course-clear">Clear</button><button type="button" class="calcpro-grade-link calcpro-grade-settings-trigger" id="calcpro-grade-settings-trigger" aria-expanded="false" aria-controls="calcpro-grade-settings">Settings</button></div>
+    </div>
+  </form>
+
+  <section class="calcpro-grade-final" aria-labelledby="calcpro-grade-final-title">
+    <h2 id="calcpro-grade-final-title">Final Grade Calculator</h2>
+    <p>Find out what score you need on your final exam to reach your desired overall grade. Enter percentages, compatible grade points, or letter grades.</p>
+    <section class="calcpro-grade-final-result" id="calcpro-grade-final-result" aria-live="polite" aria-label="Final exam grade result" hidden>
+      <div class="calcpro-grade-result-header"><span>Result</span><button class="calcpro-grade-save" type="button" id="calcpro-grade-final-save" title="Save result as text">▣ Save</button></div>
+      <p class="calcpro-grade-final-message" id="calcpro-grade-final-message"></p>
+      <p class="calcpro-grade-final-note" id="calcpro-grade-final-note"></p>
+      <button type="button" class="calcpro-grade-link calcpro-grade-result-print" id="calcpro-grade-final-print">Print result</button>
+    </section>
+    <form id="calcpro-grade-final-form" novalidate>
+      <div class="calcpro-grade-final-panel">
+        <div class="calcpro-grade-final-row"><label for="calcpro-grade-current">Your current grade:</label><input type="text" id="calcpro-grade-current" value="88" autocomplete="off"></div>
+        <div class="calcpro-grade-final-row"><label for="calcpro-grade-target">The grade you want:</label><input type="text" id="calcpro-grade-target" value="85" autocomplete="off"></div>
+        <div class="calcpro-grade-final-row"><label for="calcpro-grade-final-weight">Your final is worth:</label><div class="calcpro-grade-weight-field"><input type="text" id="calcpro-grade-final-weight" value="40" inputmode="decimal" autocomplete="off"><span class="calcpro-grade-weight-unit">%</span></div></div>
+        <div class="calcpro-grade-error" id="calcpro-grade-final-error" role="alert" hidden></div>
+        <div class="calcpro-grade-actions"><button type="submit" class="calcpro-grade-button calcpro-grade-calculate">Calculate <span class="calcpro-grade-arrow" aria-hidden="true">▶</span></button><button type="button" class="calcpro-grade-button calcpro-grade-clear" id="calcpro-grade-final-clear">Clear</button></div>
+      </div>
+    </form>
+  </section>
+  <div class="calcpro-grade-related"><strong>Related</strong> <a href="https://www.calculator.net/gpa-calculator.html" target="_blank" rel="noopener noreferrer">GPA Calculator</a></div>
+</div>
+</section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><!-- REPLACE these links with real related tools for each calculator; verify live slugs. --><a href="retirement-calculator.html">Retirement</a><a href="roth-ira-calculator.html">Roth IRA</a><a href="investment-calculator.html">Investment</a><a href="compound-interest-calculator.html">Compound Interest</a><a href="annuity-payout-calculator.html">Annuity Payout</a><a href="pension-calculator.html">Pension</a><a href="inflation-calculator.html">Inflation</a><a href="future-value-calculator.html">Future Value</a><a href="income-tax-calculator.html">Income Tax</a><a href="savings-calculator.html">Savings</a><a href="mortgage-calculator.html">Mortgage</a><a href="loan-calculator.html">Loan</a></div></section></aside><article class="cp-article">
+<h2>How to Use the Grade Calculator</h2>
+<p>Enter the assignment or exam name, the grade earned, and the weight assigned to it. A name is optional, but every graded row needs a grade and a weight. Click <strong>Calculate</strong> to see your current weighted course grade and a breakdown of all included assessments.</p>
+<p>By default, you can mix letter grades, percentages, and grade points. Open <strong>Settings</strong> to choose letter-grade dropdowns, switch from percentage weights to relative weight points, or hide the optional final-grade planning fields. The <strong>+ add more rows</strong> control adds three assignments at a time.</p>
+<h2>Weighted Grade Formula</h2>
+<p>The calculator first converts every assignment grade to its grade-point equivalent on the table below. It then computes the weighted average:</p>
+<p><strong>Average grade points = Σ(grade points × assignment weight) ÷ Σ(assignment weights)</strong></p>
+<p>As an example, suppose homework is 90% with 5% weight, a project is B with 20% weight, and a midterm is 88% with 20% weight. Their equivalents are 3.7, 3.0, and 3.3 grade points. The result is (3.7 × 5 + 3.0 × 20 + 3.3 × 20) ÷ 45 = <strong>3.21 grade points (B+)</strong> after rounding. Because the entries total 45%, the average reflects only the work entered, rather than treating the missing 55% as zero.</p>
+<h3>Letter Grades and Grade Points</h3>
+<p>The following is a common example grading scale, not a universal school policy. Numeric grades above 4.3 are interpreted as percentages; values from 0 through 4.3 are interpreted as grade points unless an explicit percent sign is entered. For letter labels, the weighted point average is assigned to the nearest grade-point category.</p>
+<div class="cp-table-scroll"><table class="cp-content-table"><thead><tr><th scope="col">Letter grade</th><th scope="col">Grade points</th><th scope="col">Percentage range</th></tr></thead><tbody>
+<tr><td>A+</td><td>4.3</td><td>97–100%</td></tr><tr><td>A</td><td>4.0</td><td>93–96%</td></tr><tr><td>A−</td><td>3.7</td><td>90–92%</td></tr><tr><td>B+</td><td>3.3</td><td>87–89%</td></tr><tr><td>B</td><td>3.0</td><td>83–86%</td></tr><tr><td>B−</td><td>2.7</td><td>80–82%</td></tr><tr><td>C+</td><td>2.3</td><td>77–79%</td></tr><tr><td>C</td><td>2.0</td><td>73–76%</td></tr><tr><td>C−</td><td>1.7</td><td>70–72%</td></tr><tr><td>D+</td><td>1.3</td><td>67–69%</td></tr><tr><td>D</td><td>1.0</td><td>63–66%</td></tr><tr><td>D−</td><td>0.7</td><td>60–62%</td></tr><tr><td>F</td><td>0</td><td>0–59%</td></tr>
+</tbody></table></div>
+<h2>Final Grade Planning</h2>
+<p>The optional planner in the first calculator works in grade points: <strong>required remaining grade = [goal points × (completed weight + remaining weight) − Σ(completed grade points × weights)] ÷ remaining weight</strong>. An entered goal such as A− or 90% is converted to 3.7 points using the scale above. Values above 4.3 grade points cannot be achieved within this scale without extra credit.</p>
+<h3>Final Exam Grade Formula</h3>
+<p>For the separate Final Grade Calculator, use a current course grade, target course grade, and percentage of the course grade assigned to the final exam. It calculates:</p>
+<p><strong>Required final exam score = (target − current × (1 − final weight)) ÷ final weight</strong>, where the weight is expressed as a decimal.</p>
+<p>For example, if your current grade is 88%, your goal is 85%, and the final is worth 40%, your required final score is [85 − 88 × 0.60] ÷ 0.40 = <strong>80.5%</strong>. This formula assumes the current grade represents all coursework outside the final.</p>
+<div class="cp-note"><strong>Grading assumptions:</strong> Schools use different cutoffs and may apply curving, extra credit, dropped assignments, and category weights. In the final exam calculator, letters are approximated as the middle of their percentage range for a current grade and the lower boundary for a desired grade. Enter exact numerical grades for the most precise estimate.</div>
+<h2>Frequently Asked Questions</h2>
+<h3>Do assignment weights need to total 100%?</h3><p>No. The course calculator divides by the sum of the weights you entered. This gives the average for completed work, even if some work remains. For a final-course projection, specify the remaining weight in the optional planner.</p>
+<h3>What is the difference between percentage weights and weight points?</h3><p>Percentage weights describe each assignment's contribution to an entire course. Weight points express relative importance: weights of 2 and 3 produce the same weighted average as 40% and 60%. When planning a final grade, the remaining-task weight must use the same format as the completed assignments.</p>
+<h3>Can I use letter grades with percentages?</h3><p>Yes. In the default mixed mode, enter grades such as 90, B+, 3.7, or 90%. The grade-point conversion follows the table above. Choose <strong>Letters</strong> in Settings for grade dropdowns instead.</p>
+<h3>What if the required final exam grade exceeds 100%?</h3><p>The result indicates that the stated target is not possible on a 0–100 scale without additional points or extra credit. If your course uses a grade-point scale, the analogous maximum in this calculator is 4.3 points.</p>
+<h2>Reference</h2><p>Calculation interface and example grading bands cross-checked against <a href="https://www.calculator.net/grade-calculator.html" target="_blank" rel="noopener noreferrer">Calculator.net’s Grade Calculator</a>. The examples are illustrative; consult your institution's syllabus for its exact rules.</p>
+<p class="cp-page-footer">CalcPro — results are estimates based on your entered grades, weights, and the sample grading scale.</p>
+</article></main></div><script>
+
+(function(){
+  'use strict';
+  const root = document.getElementById('calcpro-grade-root');
+  if(!root) return;
+  const $ = (id) => document.getElementById(id);
+  const grades = [
+    {letter:'A+',point:4.3,min:97,max:100}, {letter:'A',point:4,min:93,max:96},
+    {letter:'A-',point:3.7,min:90,max:92}, {letter:'B+',point:3.3,min:87,max:89},
+    {letter:'B',point:3,min:83,max:86}, {letter:'B-',point:2.7,min:80,max:82},
+    {letter:'C+',point:2.3,min:77,max:79}, {letter:'C',point:2,min:73,max:76},
+    {letter:'C-',point:1.7,min:70,max:72}, {letter:'D+',point:1.3,min:67,max:69},
+    {letter:'D',point:1,min:63,max:66}, {letter:'D-',point:.7,min:60,max:62},
+    {letter:'F',point:0,min:0,max:59}
+  ];
+  const defaults = [
+    {name:'Homework 1',grade:'90',weight:'5'},
+    {name:'Project',grade:'B',weight:'20'},
+    {name:'Midterm exam',grade:'88',weight:'20'}
+  ];
+  const rows = $('calcpro-grade-course-rows');
+  const mainResult = $('calcpro-grade-course-result');
+  const finalResult = $('calcpro-grade-final-result');
+  let gradeFormat='mix', weightFormat='percentage', remainingManuallyEdited=false;
+  let courseReport='', finalReport='';
+  const format = (n, places=2) => Number(n.toFixed(places)).toString();
+  const esc = (s) => String(s).replace(/[&<>"']/g, x => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[x]));
+  const byLetter = (v) => grades.find(g=>g.letter===String(v).trim().toUpperCase());
+  const letterFromPercent = (n) => grades.find(g=>n>=g.min) || grades[grades.length-1];
+  const letterFromPoint = (n) => {
+    for(let i=0;i<grades.length-1;i++) if(n >= (grades[i].point + grades[i+1].point)/2 - 1e-9) return grades[i];
+    return grades[grades.length-1];
+  };
+  function parseNumber(input){
+    const s=String(input).trim().replace(/,/g,'');
+    if(!s || !/^(?:\d+(?:\.\d*)?|\.\d+)$/.test(s)) return NaN;
+    return Number(s);
+  }
+  function parseGrade(value){
+    const raw=String(value).trim();
+    const letter=byLetter(raw);
+    if(letter) return {point:letter.point,letter:letter.letter,kind:'letter'};
+    const isPercent=raw.endsWith('%');
+    const num=parseNumber(isPercent?raw.slice(0,-1):raw);
+    if(!Number.isFinite(num) || num<0 || num>100) return null;
+    if(isPercent || num>4.3) {
+      const g=letterFromPercent(num);
+      return {point:g.point,letter:g.letter,kind:'percentage'};
+    }
+    return {point:num,letter:letterFromPoint(num).letter,kind:'points'};
+  }
+  function parseWeight(value){
+    return parseNumber(String(value).trim().replace(/%$/, ''));
+  }
+  function mainError(message){
+    const el=$('calcpro-grade-course-error');el.textContent=message;el.hidden=!message;
+    if(message) mainResult.hidden=true;
+  }
+  function examError(message){
+    const el=$('calcpro-grade-final-error');el.textContent=message;el.hidden=!message;
+    if(message) finalResult.hidden=true;
+  }
+  function addRow(rowData={}){
+    const index=rows.children.length+1;
+    const row=document.createElement('div');row.className='calcpro-grade-row';row.dataset.row=String(index);
+    const name=document.createElement('input');name.type='text';name.className='calcpro-grade-name';name.setAttribute('aria-label','Assignment or exam '+index);name.value=rowData.name||'';name.autocomplete='off';
+    const gradeText=document.createElement('input');gradeText.type='text';gradeText.className='calcpro-grade-grade-text';gradeText.setAttribute('aria-label','Grade for assignment '+index);gradeText.value=rowData.grade||'';gradeText.autocomplete='off';
+    const gradeSelect=document.createElement('select');gradeSelect.className='calcpro-grade-grade-select';gradeSelect.setAttribute('aria-label','Letter grade for assignment '+index);
+    gradeSelect.innerHTML='<option value="">–</option>'+grades.map(g=>'<option value="'+g.letter+'">'+g.letter+'</option>').join('');
+    gradeSelect.value=gradeText.value?(parseGrade(gradeText.value)?.letter||''):'';
+    gradeSelect.hidden=gradeFormat!=='letters';gradeText.hidden=gradeFormat==='letters';
+    gradeSelect.addEventListener('change',()=>{gradeText.value=gradeSelect.value;});
+    const gradeCell=document.createElement('div');gradeCell.append(gradeText,gradeSelect);
+    const weightCell=document.createElement('div');weightCell.className='calcpro-grade-weight-field';
+    const weight=document.createElement('input');weight.type='text';weight.inputMode='decimal';weight.className='calcpro-grade-weight';weight.setAttribute('aria-label','Weight for assignment '+index);weight.value=rowData.weight||'';weight.autocomplete='off';
+    const unit=document.createElement('span');unit.className='calcpro-grade-weight-unit';unit.textContent=weightFormat==='percentage'?'%':'pts';
+    weight.addEventListener('input',updateRemaining);
+    weightCell.append(weight,unit);row.append(name,gradeCell,weightCell);rows.append(row);
+    return row;
+  }
+  function populate(){rows.replaceChildren();for(let i=0;i<8;i++)addRow(defaults[i]||{});}
+  function updateRemaining(){
+    if(weightFormat!=='percentage'||remainingManuallyEdited) return;
+    let sum=0;
+    rows.querySelectorAll('.calcpro-grade-weight').forEach(input=>{
+      const n=parseWeight(input.value);if(Number.isFinite(n)&&n>=0)sum+=n;
+    });
+    $('calcpro-grade-remaining').value=format(Math.max(0,100-sum),4);
+  }
+  function setGradeFormat(value){
+    gradeFormat=value;
+    rows.querySelectorAll('.calcpro-grade-row').forEach(row=>{
+      const input=row.querySelector('.calcpro-grade-grade-text');
+      const select=row.querySelector('.calcpro-grade-grade-select');
+      if(value==='letters')select.value=parseGrade(input.value)?.letter||'';
+      input.hidden=value==='letters';select.hidden=value!=='letters';
+    });
+    // Goal remains a text field so a user can enter either a letter or number.
+  }
+  function setWeightFormat(value){
+    weightFormat=value;
+    root.querySelectorAll('.calcpro-grade-row .calcpro-grade-weight-unit').forEach(el=>el.textContent=value==='percentage'?'%':'pts');
+    $('calcpro-grade-remaining-unit').textContent=value==='percentage'?'%':'pts';
+    if(value==='points'&&!remainingManuallyEdited)$('calcpro-grade-remaining').value='';
+    if(value==='percentage'&&!remainingManuallyEdited) updateRemaining();
+  }
+  function getEntries(){
+    const valid=[];
+    Array.from(rows.children).forEach((row,i)=>{
+      const name=row.querySelector('.calcpro-grade-name').value.trim();
+      const rawGrade=(gradeFormat==='letters'?row.querySelector('.calcpro-grade-grade-select').value:row.querySelector('.calcpro-grade-grade-text').value).trim();
+      const rawWeight=row.querySelector('.calcpro-grade-weight').value.trim();
+      if(!rawGrade&&!rawWeight) return;
+      if(!rawGrade||!rawWeight) throw Error('Row '+(i+1)+': both grade and weight are required.');
+      const grade=parseGrade(rawGrade);
+      if(!grade) throw Error('Row '+(i+1)+': enter a letter grade (A+ to F), a percentage from 0 to 100, or grade points from 0 to 4.3.');
+      const weight=parseWeight(rawWeight);
+      if(!Number.isFinite(weight)||weight<0||weight>1000000)throw Error('Row '+(i+1)+': enter a valid, nonnegative weight.');
+      if(weight>0)valid.push({name:name||'Assignment '+(i+1), rawGrade, grade, weight});
+    });
+    if(!valid.length)throw Error('Enter at least one grade with a weight greater than zero.');
+    return valid;
+  }
+  function calcCourse(ev){
+    ev.preventDefault();
+    try{
+      const entries=getEntries();
+      const total=entries.reduce((s,r)=>s+r.weight,0);
+      const weighted=entries.reduce((s,r)=>s+r.weight*r.grade.point,0);
+      const gp=weighted/total;
+      const letter=letterFromPoint(gp).letter;
+      const unit=weightFormat==='percentage'?'%':' pts';
+      $('calcpro-grade-course-summary').textContent=letter+' ('+gp.toFixed(2)+')';
+      const body=$('calcpro-grade-result-rows');body.replaceChildren();
+      entries.forEach(entry=>{
+        const tr=document.createElement('tr');
+        [entry.name,entry.rawGrade,format(entry.weight,4)+unit].forEach(value=>{
+          const td=document.createElement('td');td.textContent=value;tr.append(td);
+        });body.append(tr);
+      });
+      const foot=$('calcpro-grade-result-footer');foot.replaceChildren();
+      const tr1=document.createElement('tr');tr1.innerHTML='<th colspan="2" scope="row">Total:</th><td>'+esc(format(total,4)+unit)+'</td>';
+      const tr2=document.createElement('tr');tr2.innerHTML='<th colspan="2" scope="row">Average Grade:</th><td>'+esc(letter+' ('+gp.toFixed(2)+')')+'</td>';
+      foot.append(tr1,tr2);
+      const detail=[];
+      detail.push('Grades are converted to the displayed GPA scale before averaging.');
+      if(weightFormat==='percentage'&&Math.abs(total-100)>0.01)detail.push('Entered weights total '+format(total,4)+'%; the current grade is normalized to those entries.');
+      $('calcpro-grade-course-detail').textContent=detail.join(' ');
+      const plan=$('calcpro-grade-plan-answer');plan.hidden=true;plan.replaceChildren();
+      let planText='';
+      if($('calcpro-grade-show-plan').checked){
+        const goalRaw=$('calcpro-grade-goal').value.trim();
+        const remainRaw=$('calcpro-grade-remaining').value.trim();
+        if(goalRaw){
+          if(!remainRaw)throw Error('For final grade planning, enter both a final grade goal and the remaining weight.');
+          const target=parseGrade(goalRaw), remain=parseWeight(remainRaw);
+          if(!target)throw Error('Enter a valid final grade goal (letter grade, percent, or grade points).');
+          if(!Number.isFinite(remain)||remain<=0||remain>1000000)throw Error('Remaining task weight must be greater than zero.');
+          const required=(target.point*(total+remain)-weighted)/remain;
+          if(required>4.3+1e-9)planText='Goal '+goalRaw+': impossible within the 4.3-grade-point scale; you would need '+format(required,2)+' grade points on remaining tasks.';
+          else if(required<=0)planText='Goal '+goalRaw+': already secured on this scale. You need no additional grade points on the remaining tasks.';
+          else planText='To finish with '+goalRaw+', you need an average of at least '+format(required,2)+' grade points (approximately '+letterFromPoint(required).letter+') over the remaining tasks.';
+          plan.textContent=planText;plan.hidden=false;
+        }
+      }
+      courseReport='Course Grade Result\nAverage: '+letter+' ('+gp.toFixed(2)+')\n'+entries.map(r=>r.name+' | '+r.rawGrade+' | '+format(r.weight,4)+unit).join('\n')+'\nTotal weight: '+format(total,4)+unit+(planText?'\n'+planText:'');
+      mainError('');mainResult.hidden=false;
+    }catch(e){mainError(e.message||'Unable to calculate this grade.');}
+  }
+  function clearCourse(){
+    rows.replaceChildren();for(let i=0;i<8;i++)addRow();
+    $('calcpro-grade-goal').value='';$('calcpro-grade-remaining').value='';remainingManuallyEdited=false;
+    mainError('');mainResult.hidden=true;courseReport='';
+  }
+  function gradeEntryForFinal(value,isTarget,mode){
+    const raw=String(value).trim();const g=byLetter(raw);
+    if(g){
+      if(mode==='gpa')return {value:g.point,letter:g.letter,assumed:false};
+      return {value:isTarget?g.min:(g.min+g.max)/2,letter:g.letter,assumed:true};
+    }
+    const isPercent=raw.endsWith('%'),n=parseNumber(isPercent?raw.slice(0,-1):raw);
+    if(!Number.isFinite(n)||n<0||(mode==='percentage'&&n>100)||(mode==='gpa'&&n>4.3))return null;
+    if(mode==='gpa'&&isPercent)return null;
+    return {value:n,assumed:false};
+  }
+  function calcFinal(ev){
+    ev.preventDefault();
+    const rawCurrent=$('calcpro-grade-current').value.trim();
+    const rawTarget=$('calcpro-grade-target').value.trim();
+    const rawWeight=$('calcpro-grade-final-weight').value.trim();
+    const w=parseWeight(rawWeight);
+    if(!rawCurrent||!rawTarget){examError('Enter both your current grade and your desired grade.');return;}
+    if(!Number.isFinite(w)||w<=0||w>100){examError('The final exam weight must be greater than 0% and no more than 100%.');return;}
+    const hasPercent=(v)=>String(v).includes('%')||(!byLetter(v)&&parseNumber(v)>4.3);
+    const mode=(hasPercent(rawCurrent)||hasPercent(rawTarget))?'percentage':'gpa';
+    const current=gradeEntryForFinal(rawCurrent,false,mode),target=gradeEntryForFinal(rawTarget,true,mode);
+    if(!current||!target){examError('Enter compatible grades: percentages (0–100), grade points (0–4.3), or letter grades.');return;}
+    const needed=(target.value-current.value*(1-w/100))/(w/100);
+    const max=mode==='gpa'?4.3:100,units=mode==='gpa'?' grade points':'%';
+    let result='';
+    if(needed>max+1e-8){result='You would need a grade of '+format(needed,2)+units+' on the final—above the maximum '+max+units+' on this scale.';}
+    else if(needed<=0){result='You have already met your target. No minimum final exam score is needed to maintain it.';}
+    else {result='You will need a grade of '+format(needed,2)+units+' or higher on the final.';}
+    const note='Formula: (target grade − current grade × (1 − final weight)) ÷ final weight. '+(mode==='gpa'?'Calculation uses the 0–4.3 GPA scale.':'Calculation uses the 0–100 percentage scale.')+
+      ((current.assumed||target.assumed)?' Current letter grades use their percentage-band midpoint; target letter grades use the minimum of their band.':'');
+    $('calcpro-grade-final-message').textContent=result;
+    $('calcpro-grade-final-note').textContent=note;
+    finalReport='Final Grade Calculator\nCurrent: '+rawCurrent+'\nGoal: '+rawTarget+'\nFinal weight: '+format(w,3)+'%\n'+result+'\n'+note;
+    examError('');finalResult.hidden=false;
+  }
+  function clearFinal(){
+    $('calcpro-grade-current').value='';$('calcpro-grade-target').value='';$('calcpro-grade-final-weight').value='';
+    examError('');finalResult.hidden=true;finalReport='';
+  }
+  function saveText(text,fileName){
+    if(!text)return;
+    const blob=new Blob([text+'\n'],{type:'text/plain;charset=utf-8'});
+    const url=URL.createObjectURL(blob);
+    const link=document.createElement('a');link.href=url;link.download=fileName;document.body.append(link);link.click();link.remove();
+    setTimeout(()=>URL.revokeObjectURL(url),1000);
+  }
+  populate();
+  $('calcpro-grade-course-form').addEventListener('submit',calcCourse);
+  $('calcpro-grade-course-clear').addEventListener('click',clearCourse);
+  $('calcpro-grade-add').addEventListener('click',()=>{
+    if(rows.children.length>=200){mainError('Maximum of 200 rows reached.');return;}
+    for(let i=0;i<3&&rows.children.length<200;i++)addRow();
+  });
+  $('calcpro-grade-settings-trigger').addEventListener('click',()=>{
+    const panel=$('calcpro-grade-settings');panel.hidden=!panel.hidden;
+    $('calcpro-grade-settings-trigger').setAttribute('aria-expanded',String(!panel.hidden));
+  });
+  root.querySelectorAll('input[name="calcpro-grade-grade-format"]').forEach(el=>el.addEventListener('change',()=>{if(el.checked)setGradeFormat(el.value);}));
+  root.querySelectorAll('input[name="calcpro-grade-weight-format"]').forEach(el=>el.addEventListener('change',()=>{if(el.checked)setWeightFormat(el.value);}));
+  $('calcpro-grade-show-plan').addEventListener('change',ev=>{$('calcpro-grade-planning').hidden=!ev.target.checked;});
+  $('calcpro-grade-remaining').addEventListener('input',()=>{remainingManuallyEdited=true;});
+  $('calcpro-grade-final-form').addEventListener('submit',calcFinal);
+  $('calcpro-grade-final-clear').addEventListener('click',clearFinal);
+  $('calcpro-grade-course-print').addEventListener('click',()=>window.print());
+  $('calcpro-grade-final-print').addEventListener('click',()=>window.print());
+  $('calcpro-grade-course-save').addEventListener('click',()=>saveText(courseReport,'course-grade-result.txt'));
+  $('calcpro-grade-final-save').addEventListener('click',()=>saveText(finalReport,'final-grade-result.txt'));
+})();
+
+</script><script data-calcpro-latest-result>
+(function () {
+  var toolRoot = document.querySelector('.cp-tool-area') || document.querySelector('main') || document.body;
+  var forms = Array.prototype.slice.call(toolRoot.querySelectorAll('form'));
+  if (forms.length < 2) return;
+
+  var selector = '[id*="result"], [class*="result"], [id*="output"], [class*="output"], [id*="total"], [class*="total"], [id*="summary"], [class*="summary"], [data-result], [data-re-results], [data-cp-surface-result]';
+  var candidates = Array.prototype.slice.call(toolRoot.querySelectorAll(selector));
+  var panels = candidates.filter(function (node) {
+    return !candidates.some(function (other) { return other !== node && other.contains(node); });
+  });
+  var activeOwner = null;
+
+  function namesOf(node) {
+    var names = [node.id].concat(Array.prototype.slice.call(node.classList || []));
+    return names.map(function (name) {
+      return String(name).toLowerCase().replace(/[-_](form|result|results|output|outputs|total|totals|summary|summaries)([-_].*)?$/, '');
+    }).filter(Boolean);
+  }
+
+  function pairedForm(panel) {
+    var names = namesOf(panel);
+    var matches = forms.filter(function (form) {
+      return namesOf(form).some(function (name) { return names.indexOf(name) !== -1; });
+    });
+    return matches.length === 1 ? matches[0] : null;
+  }
+
+  function ownerOf(node) {
+    if (node.matches('form')) return node;
+    var form = node.closest('form') || pairedForm(node);
+    if (form) return form;
+    for (var current = node; current && current !== toolRoot; current = current.parentElement) {
+      var formCount = (current.matches('form') ? 1 : 0) + current.querySelectorAll('form').length;
+      if (formCount === 1 && panels.some(function (panel) { return current === panel || current.contains(panel); })) return current.querySelector('form') || current;
+    }
+    return node.closest('section') || node;
+  }
+
+  function keepOnly(owner, showActive) {
+    panels.forEach(function (panel) {
+      var isActive = ownerOf(panel) === owner;
+      if (!isActive) panel.hidden = true;
+      else if (showActive) panel.hidden = false;
+    });
+  }
+
+  function activate(owner) {
+    if (!owner) return;
+    activeOwner = owner;
+    keepOnly(owner, false);
+  }
+
+  toolRoot.addEventListener('submit', function (event) {
+    var form = event.target;
+    if (form instanceof HTMLFormElement) activate(ownerOf(form));
+  }, true);
+
+  toolRoot.addEventListener('input', function (event) {
+    var form = event.target.closest('form');
+    if (form) activeOwner = ownerOf(form);
+  }, true);
+
+  toolRoot.addEventListener('click', function (event) {
+    var button = event.target.closest('button');
+    var form = button && button.closest('form');
+    if (!form) return;
+    var label = [button.id, button.textContent, button.getAttribute('aria-label') || ''].join(' ').toLowerCase();
+    if (/\b(clear|reset)\b/.test(label) || button.type === 'reset') activeOwner = null;
+    else if (button.type === 'submit' || /\b(calculate|compute|roll|start|encode|decode|convert|generate|run|solve|estimate)\b/.test(label)) activate(ownerOf(form));
+  }, true);
+
+  var observer = new MutationObserver(function (records) {
+    records.forEach(function (record) {
+      var panel = panels.find(function (item) { return item === record.target || item.contains(record.target); });
+      if (!panel || !activeOwner || ownerOf(panel) !== activeOwner) return;
+      if (record.type === 'attributes' && panel.hidden) return;
+      keepOnly(activeOwner, true);
+    });
+  });
+  panels.forEach(function (panel) {
+    observer.observe(panel, {attributes: true, attributeFilter: ['hidden'], childList: true, characterData: true, subtree: true});
+  });
+})();
+</script>
 <script defer src="/assets/js/data.js"></script>
-<script defer src="/assets/js/style.js?v=20261111-1"></script>
-</body>
-</html>
+<script defer src="/assets/js/style.js?v=20261111-5"></script>
+</body></html>

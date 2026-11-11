@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US">
-<head>
-<meta charset="utf-8">
+<html lang="en"><head><meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="content-language" content="en">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,17 +11,338 @@
   <meta name="author" content="Commingsoon">
   <meta name="publisher" content="Commingsoon">
   <meta name="robots" content="noindex, nofollow, max-image-preview:large">
-  <link rel="stylesheet" href="/assets/css/style.css?v=20261111-1" crossorigin="anonymous" data-n-g="">
+  <link rel="stylesheet" href="/assets/css/style.css?v=20261111-4" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/doc_style.css" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/side_style.css" crossorigin="anonymous" data-n-g=""> 
   <!--ogtags-->
-  <!--schema-->
-  <!--style-->
-</head>
+  <!--schema--><style>
 
-<body>
-<!-- Main-header-page -->
-<script defer src="/assets/js/data.js"></script>
-<script defer src="/assets/js/style.js?v=20261111-1"></script>
-</body>
-</html>
+/* Carbohydrate calculator — intentionally scoped. No CalcPro global selectors are changed. */
+.calcpro-carb-tool{--calcpro-carb-blue:#35699b;--calcpro-carb-green:#4b8425;--calcpro-carb-border:#bfc4c9;color:#111;font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:1.35;width:100%;max-width:100%}
+.calcpro-carb-tool *, .calcpro-carb-tool *::before, .calcpro-carb-tool *::after{box-sizing:border-box}
+.calcpro-carb-tool [hidden]{display:none!important}
+.calcpro-carb-print{display:flex;justify-content:flex-end;margin:-6px 0 7px}
+.calcpro-carb-print button{border:0;background:transparent;color:#006699;cursor:pointer;text-decoration:underline;font:inherit;padding:2px 0}
+.calcpro-carb-instructions{display:flex;align-items:center;justify-content:center;gap:18px;min-height:42px;background:var(--calcpro-carb-blue);color:#fff;font-size:17px;text-align:center;padding:7px 12px;margin:0 0 3px}
+.calcpro-carb-instructions-icon{font-size:19px;display:inline-flex;background:#fff;color:var(--calcpro-carb-blue);border-radius:50%;width:27px;height:27px;justify-content:center;align-items:center;flex:0 0 auto}
+.calcpro-carb-result{margin:0 0 24px}
+.calcpro-carb-result-head{display:flex;align-items:center;justify-content:space-between;background:var(--calcpro-carb-green);color:#fff;padding:7px 10px;font-size:22px;line-height:1.2}
+.calcpro-carb-save{color:white;background:transparent;border:1px solid transparent;cursor:pointer;display:flex;flex-direction:column;align-items:center;font:11px Arial,Helvetica,sans-serif;line-height:1.05;gap:0;padding:0 2px}
+.calcpro-carb-save-symbol{font-size:19px;line-height:1}
+.calcpro-carb-lead{font-size:17px;margin:13px 0 14px}
+.calcpro-carb-table-scroll{max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 0 8px}
+.calcpro-carb-results-table{border-collapse:collapse;width:100%;min-width:615px;font-size:15px;text-align:center;line-height:1.18}
+.calcpro-carb-results-table th,.calcpro-carb-results-table td{border:1px solid #c7c7c7;padding:5px 4px;vertical-align:middle;white-space:nowrap}
+.calcpro-carb-results-table thead th{background:var(--calcpro-carb-blue);color:#fff;font-size:14px;font-weight:700}
+.calcpro-carb-results-table tbody th{font-weight:400;text-align:left;padding-left:6px}
+.calcpro-carb-results-table tbody td:nth-child(n+3){font-weight:bold}
+.calcpro-carb-results-table tbody tr:nth-child(even){background:#eee}
+.calcpro-carb-result-footnote{margin:9px 0 0;font-size:14px;line-height:1.35}
+.calcpro-carb-result-warning{border-left:3px solid #ab7800;padding:7px 10px;background:#fff7e6;font-size:13px;margin:10px 0 0}
+.calcpro-carb-pending{margin:0 0 9px;font-size:13px;color:#725000}
+.calcpro-carb-tabs{display:flex;align-items:flex-end;flex-wrap:wrap;gap:4px;margin:0;padding:0}
+.calcpro-carb-tab{font:700 15px Arial,Helvetica,sans-serif;background:var(--calcpro-carb-blue);color:#fff;cursor:pointer;border:1px solid var(--calcpro-carb-blue);padding:8px 9px;min-height:39px}
+.calcpro-carb-tab[aria-pressed="true"]{background:#fff;color:#000;border-color:var(--calcpro-carb-border);border-bottom-color:#f0f0f0;position:relative;z-index:1}
+.calcpro-carb-tab:hover:not([aria-pressed="true"]){background:#194f82}
+.calcpro-carb-otherpanel{padding:12px 14px;border:1px solid var(--calcpro-carb-border);border-bottom:0;background:#f7fafc;font-size:14px}
+.calcpro-carb-otherpanel h3{margin:0 0 5px;font-size:16px;color:#125217}
+.calcpro-carb-other-controls{display:flex;flex-wrap:wrap;gap:7px;align-items:center;margin:8px 0}
+.calcpro-carb-other-controls input{width:88px}
+.calcpro-carb-other-controls select{width:auto;max-width:145px}
+.calcpro-carb-otherpanel input,.calcpro-carb-otherpanel select{border:1px solid #7390a5;border-radius:2px;min-height:33px;padding:4px 7px;background:#fff;font:inherit}
+.calcpro-carb-other-output{font-weight:700;margin:8px 0;min-height:21px}
+.calcpro-carb-apply{border:0;color:#fff;background:#35699b;border-radius:2px;padding:8px 12px;cursor:pointer;font-weight:700}
+.calcpro-carb-form{background:#efefef;border:1px solid var(--calcpro-carb-border);padding:12px 13px 13px;margin:0}
+.calcpro-carb-form-grid{display:grid;grid-template-columns:72px minmax(0,1fr);row-gap:8px;column-gap:8px;align-items:center}
+.calcpro-carb-field-label{margin:0;font-size:15px}
+.calcpro-carb-field-wrap{min-width:0;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.calcpro-carb-field-help{font-size:14px}
+.calcpro-carb-number,.calcpro-carb-select{font:16px Arial,Helvetica,sans-serif;border:1px solid #35699b;border-radius:2px;min-height:33px;background:#fff;color:#111;padding:4px 6px;box-shadow:1px 2px 2px #0002}
+.calcpro-carb-number:focus-visible,.calcpro-carb-select:focus-visible,.calcpro-carb-tool button:focus-visible,.calcpro-carb-tool select:focus-visible{outline:2px solid #174b80;outline-offset:2px}
+.calcpro-carb-age{width:106px;max-width:100%}
+.calcpro-carb-gender{display:flex;align-items:center;gap:14px;flex-wrap:wrap;border:0;padding:0;margin:0;min-width:0}
+.calcpro-carb-radio-label{display:inline-flex;align-items:center;gap:5px;white-space:nowrap;cursor:pointer}
+.calcpro-carb-radio-label input{width:18px;height:18px;margin:0;accent-color:#35699b}
+.calcpro-carb-measure{width:218px;max-width:100%;position:relative}
+.calcpro-carb-measure input{width:100%;padding-right:44px}
+.calcpro-carb-unit-label{position:absolute;right:8px;top:50%;transform:translateY(-50%);color:#777;pointer-events:none;font-size:14px}
+.calcpro-carb-imperial{display:flex;gap:9px;align-items:center;flex-wrap:wrap}
+.calcpro-carb-imperial .calcpro-carb-measure{width:106px}
+.calcpro-carb-imperial .calcpro-carb-measure input{padding-right:28px}
+.calcpro-carb-select{width:100%;max-width:420px;min-height:34px;padding:4px 7px}
+.calcpro-carb-settings-toggle{display:inline-block;border:0;background:transparent;text-decoration:underline;color:#006699;font:700 14px Arial,Helvetica,sans-serif;cursor:pointer;padding:0;margin:3px 0}
+.calcpro-carb-settings{margin:2px 0 5px;max-width:100%}
+.calcpro-carb-settings-title{font-weight:700;font-size:14px;margin:5px 0}
+.calcpro-carb-settings .calcpro-carb-radio-label{font-size:14px;margin:0 12px 5px 0}
+.calcpro-carb-fat{width:80px;min-height:30px;font-size:14px;margin-left:4px}
+.calcpro-carb-bodyfat{display:inline-flex;align-items:center;gap:3px;flex-wrap:wrap;font-size:14px}
+.calcpro-carb-bodyfat a{color:#006699}
+.calcpro-carb-actions{display:flex;align-items:center;gap:5px;margin-top:3px}
+.calcpro-carb-calculate{border:0;background:#4b8425;color:#fff;font-weight:700;font-size:15px;padding:10px 14px;min-height:42px;cursor:pointer}
+.calcpro-carb-calculate span{background:#acd0a7;color:#fff;border-radius:100%;display:inline-flex;width:23px;height:23px;margin-left:10px;justify-content:center;align-items:center;font-size:12px}
+.calcpro-carb-clear{border:0;background:#b1b1b1;color:#fff;font-size:15px;min-height:42px;cursor:pointer;padding:10px 12px}
+.calcpro-carb-form-error{background:#fff0f0;color:#9b1919;border-left:3px solid #bd3333;margin:0 0 10px;padding:9px;font-size:14px}
+.calcpro-carb-exercise-notes{margin:4px 0 8px;padding-left:21px;font-size:12px;line-height:1.2}
+.calcpro-carb-exercise-notes li{margin:0}
+.calcpro-carb-tool button:disabled{cursor:not-allowed;opacity:.6}
+@media(max-width:580px){.calcpro-carb-instructions{font-size:14px;gap:9px}.calcpro-carb-instructions-icon{font-size:16px;width:23px;height:23px}.calcpro-carb-form{padding:12px 8px}.calcpro-carb-form-grid{grid-template-columns:62px minmax(0,1fr);column-gap:6px}.calcpro-carb-field-label{font-size:14px}.calcpro-carb-gender{gap:10px}.calcpro-carb-measure{width:100%;max-width:225px}.calcpro-carb-select{font-size:13px}.calcpro-carb-tab{font-size:13px;padding:8px 7px;min-height:37px}.calcpro-carb-results-table{font-size:13px}.calcpro-carb-result-footnote{font-size:13px}.calcpro-carb-other-controls{gap:4px}}
+@media(max-width:360px){.calcpro-carb-imperial{gap:4px}.calcpro-carb-imperial .calcpro-carb-measure{width:87px}.calcpro-carb-tab{font-size:12px;padding:7px 5px}.calcpro-carb-age{width:85px}}
+@media print{.calcpro-carb-print,.calcpro-carb-actions,.calcpro-carb-tabs,.calcpro-carb-otherpanel,.calcpro-carb-form-error,.calcpro-carb-pending{display:none!important}.calcpro-carb-form{background:#fff;border:1px solid #aaa}.calcpro-carb-results-table{min-width:0;font-size:11px}.calcpro-carb-results-table th,.calcpro-carb-results-table td{padding:4px 3px}.calcpro-carb-result-head,.calcpro-carb-results-table thead th{-webkit-print-color-adjust:exact;print-color-adjust:exact}.calcpro-carb-save{display:none!important}}
+
+</style>
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/fitness-and-health-calculators/">Fitness &amp; Health</a> / Carbohydrate Calculator</nav><h1 class="cp-page-title">Carbohydrate Calculator</h1><p class="cp-intro">The Carb Calculator estimates the percentage of carbohydrates a person should consume each day.</p><section aria-label="Calculator" class="cp-tool-area">
+<div class="calcpro-carb-tool" id="calcpro-carb-tool">
+  <div class="calcpro-carb-print"><button id="calcpro-carb-print" type="button" aria-label="Print this calculator and its results">Print</button></div>
+  <div class="calcpro-carb-instructions" id="calcpro-carb-instructions"><span class="calcpro-carb-instructions-icon" aria-hidden="true">▼</span><span>Modify the values and click the Calculate button to use</span></div>
+  <section class="calcpro-carb-result" id="calcpro-carb-result" aria-label="Carbohydrate calculation results" aria-live="polite" hidden>
+    <div class="calcpro-carb-result-head"><span>Result</span><button type="button" class="calcpro-carb-save" id="calcpro-carb-save" title="Save these results as a text file"><span aria-hidden="true" class="calcpro-carb-save-symbol">▣</span><span>save</span></button></div>
+    <p class="calcpro-carb-lead">It is recommended that carbohydrates comprise 40–75% of daily caloric intake.</p>
+    <div class="calcpro-carb-table-scroll" tabindex="0" role="region" aria-label="Carbohydrate targets by calorie goal; scroll horizontally if needed"><table class="calcpro-carb-results-table"><thead><tr><th scope="col">Goal</th><th scope="col">Daily Calorie Allowance</th><th scope="col">40%*</th><th scope="col">55%*</th><th scope="col">65%*</th><th scope="col">75%*</th></tr></thead><tbody id="calcpro-carb-table-body"></tbody></table></div>
+    <p class="calcpro-carb-result-footnote">*These columns mirror the reference calculator. For most healthy adults, the North American acceptable macronutrient distribution range for carbohydrates is <strong>45–65%</strong> of daily energy. The 40% and 75% columns are comparison scenarios, not individualized dietary prescriptions.</p>
+    <p class="calcpro-carb-result-warning" id="calcpro-carb-result-warning" hidden>One or more weight-loss scenarios produces a very low daily calorie allowance. Those rows are mathematical estimates, not a recommended diet. Consult a qualified clinician or dietitian before pursuing an aggressive calorie deficit.</p>
+  </section>
+  <p class="calcpro-carb-pending" id="calcpro-carb-pending" hidden>Inputs changed. Select Calculate to refresh the results above.</p>
+  <div class="calcpro-carb-tabs" role="group" aria-label="Measurement units">
+    <button type="button" class="calcpro-carb-tab" id="calcpro-carb-tab-us" data-carb-unit="us" aria-pressed="false">US Units</button>
+    <button type="button" class="calcpro-carb-tab" id="calcpro-carb-tab-metric" data-carb-unit="metric" aria-pressed="true">Metric Units</button>
+    <button type="button" class="calcpro-carb-tab" id="calcpro-carb-tab-other" data-carb-unit="other" aria-pressed="false">Other Units</button>
+  </div>
+  <div class="calcpro-carb-otherpanel" id="calcpro-carb-otherpanel" hidden>
+    <h3>Quick unit converter</h3>
+    <p style="margin:0">Convert height or weight measurements, then apply a value to the form below.</p>
+    <div class="calcpro-carb-other-controls"><label for="calcpro-carb-convert-value">Value</label><input id="calcpro-carb-convert-value" type="number" inputmode="decimal" step="any" value="1.8"/><label for="calcpro-carb-convert-from">From</label><select id="calcpro-carb-convert-from"><option value="m" selected>meters</option><option value="cm">centimeters</option><option value="ft">feet</option><option value="in">inches</option><option value="kg">kilograms</option><option value="lb">pounds</option><option value="st">stone</option></select><label for="calcpro-carb-convert-to">To</label><select id="calcpro-carb-convert-to"><option value="cm" selected>centimeters</option><option value="m">meters</option><option value="ft">feet</option><option value="in">inches</option><option value="kg">kilograms</option><option value="lb">pounds</option><option value="st">stone</option></select></div>
+    <div class="calcpro-carb-other-output" id="calcpro-carb-convert-output" role="status">1.8 meters = 180 centimeters</div>
+    <button type="button" class="calcpro-carb-apply" id="calcpro-carb-convert-apply">Apply converted height to form</button>
+  </div>
+  <form class="calcpro-carb-form" id="calcpro-carb-form" novalidate>
+    <div id="calcpro-carb-error" class="calcpro-carb-form-error" role="alert" hidden></div>
+    <div class="calcpro-carb-form-grid">
+      <label class="calcpro-carb-field-label" for="calcpro-carb-age">Age</label>
+      <div class="calcpro-carb-field-wrap"><input class="calcpro-carb-number calcpro-carb-age" type="number" id="calcpro-carb-age" name="age" inputmode="numeric" min="18" max="80" step="1" value="25" required/><span class="calcpro-carb-field-help">ages 18 – 80</span></div>
+      <span class="calcpro-carb-field-label" id="calcpro-carb-sex-label">Gender</span>
+      <fieldset class="calcpro-carb-gender" aria-labelledby="calcpro-carb-sex-label"><label class="calcpro-carb-radio-label"><input type="radio" name="gender" value="m" checked/>male</label><label class="calcpro-carb-radio-label"><input type="radio" name="gender" value="f"/>female</label></fieldset>
+      <label class="calcpro-carb-field-label" for="calcpro-carb-height-cm" id="calcpro-carb-height-label">Height</label>
+      <div class="calcpro-carb-field-wrap">
+        <div class="calcpro-carb-measure" id="calcpro-carb-metric-height"><input type="number" id="calcpro-carb-height-cm" class="calcpro-carb-number" inputmode="decimal" min="50" max="300" step="any" value="180" aria-label="Height in centimeters"/><span class="calcpro-carb-unit-label">cm</span></div>
+        <div class="calcpro-carb-imperial" id="calcpro-carb-us-height" hidden><div class="calcpro-carb-measure"><input type="number" id="calcpro-carb-height-ft" class="calcpro-carb-number" inputmode="numeric" min="0" max="9" step="1" value="5" aria-label="Feet"/><span class="calcpro-carb-unit-label">ft</span></div><div class="calcpro-carb-measure"><input type="number" id="calcpro-carb-height-in" class="calcpro-carb-number" inputmode="decimal" min="0" max="11.99" step="any" value="10.87" aria-label="Inches"/><span class="calcpro-carb-unit-label">in</span></div></div>
+      </div>
+      <label class="calcpro-carb-field-label" for="calcpro-carb-weight-kg" id="calcpro-carb-weight-label">Weight</label>
+      <div class="calcpro-carb-field-wrap">
+        <div class="calcpro-carb-measure" id="calcpro-carb-metric-weight"><input type="number" id="calcpro-carb-weight-kg" class="calcpro-carb-number" inputmode="decimal" min="1" max="1000" step="any" value="60" aria-label="Weight in kilograms"/><span class="calcpro-carb-unit-label">kg</span></div>
+        <div class="calcpro-carb-measure" id="calcpro-carb-us-weight" hidden><input type="number" id="calcpro-carb-weight-lb" class="calcpro-carb-number" inputmode="decimal" min="1" max="2204.62" step="any" value="132.28" aria-label="Weight in pounds"/><span class="calcpro-carb-unit-label">lb</span></div>
+      </div>
+      <label class="calcpro-carb-field-label" for="calcpro-carb-activity">Activity</label>
+      <div class="calcpro-carb-field-wrap"><select class="calcpro-carb-select" id="calcpro-carb-activity" name="activity"><option value="1.2">Sedentary: little or no exercise</option><option value="1.375" selected>Light: exercise 1-3 times/week</option><option value="1.465">Moderate: exercise 4-5 times/week</option><option value="1.55">Active: daily exercise or intense exercise 3-4 times/week</option><option value="1.725">Very Active: intense exercise 6-7 times/week</option><option value="1.9">Extra Active: very intense exercise daily, or physical job</option></select></div>
+      <span aria-hidden="true"></span><div><button type="button" id="calcpro-carb-settings-toggle" class="calcpro-carb-settings-toggle" aria-expanded="false" aria-controls="calcpro-carb-settings">+ Settings</button><div id="calcpro-carb-settings" class="calcpro-carb-settings" hidden><div class="calcpro-carb-settings-title">BMR estimation formula:</div><label class="calcpro-carb-radio-label"><input type="radio" name="formula" value="m" checked/>Mifflin St Jeor</label><div><label class="calcpro-carb-radio-label"><input type="radio" name="formula" value="k"/>Katch-McArdle</label><label class="calcpro-carb-bodyfat" for="calcpro-carb-bodyfat">Body fat: <input class="calcpro-carb-number calcpro-carb-fat" type="number" id="calcpro-carb-bodyfat" inputmode="decimal" step="any" min="0" max="99.9" value="20"/> %</label></div><p style="font-size:12px;margin:6px 0">Katch-McArdle uses lean body mass, so a body-fat percentage is required.</p></div></div>
+      <span aria-hidden="true"></span><div class="calcpro-carb-actions"><button type="submit" class="calcpro-carb-calculate">Calculate <span aria-hidden="true">▶</span></button><button type="button" class="calcpro-carb-clear" id="calcpro-carb-clear">Clear</button></div>
+    </div>
+  </form>
+  <ul class="calcpro-carb-exercise-notes"><li><strong>Exercise:</strong> 15–30 minutes of elevated heart-rate activity.</li><li><strong>Intense exercise:</strong> 45–120 minutes of elevated heart-rate activity.</li><li><strong>Very intense exercise:</strong> 2+ hours of elevated heart-rate activity.</li></ul>
+</div>
+</section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><a href="calorie-calculator.html">Calorie</a><a href="macro-calculator.html">Macro</a><a href="protein-calculator.html">Protein</a><a href="fat-intake-calculator.html">Fat Intake</a><a href="bmr-calculator.html">BMR</a><a href="bmi-calculator.html">BMI</a><a href="body-fat-calculator.html">Body Fat</a><a href="tdee-calculator.html">TDEE</a><a href="ideal-weight-calculator.html">Ideal Weight</a></div></section></aside><article class="cp-article"><h2>How to Use the Carbohydrate Calculator</h2>
+<p>Enter your age, sex, height, weight and typical activity level. Choose metric or US units, then click <strong>Calculate</strong>. The result table appears <strong>above the input form</strong> and shows daily carbohydrate grams at four percentages of estimated daily calories. Expand <strong>Settings</strong> to use Katch–McArdle if you know your body-fat percentage.</p>
+<h2>Carbohydrate Calculator Formula</h2>
+<p>The calculator first estimates resting energy expenditure, then multiplies it by your selected activity factor. Mifflin–St Jeor uses weight in kilograms, height in centimeters and age in years:</p>
+<ul><li><strong>Male:</strong> 10 × weight + 6.25 × height − 5 × age + 5</li><li><strong>Female:</strong> 10 × weight + 6.25 × height − 5 × age − 161</li></ul>
+<p><strong>Katch–McArdle:</strong> RMR = 370 + 21.6 × lean body mass (kg), where lean body mass = body weight × (1 − body fat percentage ÷ 100).</p>
+<p><strong>Maintenance energy:</strong> estimated resting energy × activity factor. For comparisons with the reference calculator, the weight-loss and weight-gain rows subtract or add 500 or 1,000 kcal per day. The table converts a selected carbohydrate share to grams with <strong>carbohydrate grams = (daily kcal × carbohydrate share) ÷ 3.75</strong>. This reference-specific conversion is slightly different from the commonly rounded nutrition-label value of 4 kcal/g.</p>
+<h2>Worked Example</h2>
+<p>For a 25-year-old man, 180 cm tall, weighing 60 kg and lightly active, Mifflin–St Jeor estimates 1,605 kcal/day at rest. An activity factor of 1.375 gives about <strong>2,207 kcal/day</strong> for weight maintenance. At 55% of calories from carbohydrates, the calculator displays approximately <strong>324 grams per day</strong> (2,206.875 × 0.55 ÷ 3.75).</p>
+<h2>Understanding the Result</h2>
+<p>The 40%, 55%, 65% and 75% columns are scenarios for comparison, not prescriptions. The established North American <em>acceptable macronutrient distribution range</em> (AMDR) for carbohydrates in adults is <strong>45%–65%</strong> of energy. Energy estimates are approximate and can differ significantly from actual daily needs. Very low calorie values in aggressive weight-loss rows may be inappropriate.</p>
+<h2>Frequently Asked Questions</h2>
+<h3>How many grams of carbohydrate are in 55% of a 2,000-calorie diet?</h3>
+<p>With the reference calculator’s 3.75 kcal/g conversion, 2,000 × 0.55 ÷ 3.75 ≈ 293 grams. Using the standard rounded 4 kcal/g factor would give 275 grams; the two conventions should not be mixed when comparing results.</p>
+<h3>What is the difference between the two BMR estimation methods?</h3>
+<p>Mifflin–St Jeor uses age, sex, height and weight. Katch–McArdle uses estimated lean body mass, so its accuracy depends partly on the quality of your body-fat estimate.</p>
+<h3>Does this calculator include a personalized meal plan?</h3>
+<p>No. It estimates energy and carbohydrate ranges; it does not assess medical history, diet quality, medications, pregnancy, athletic performance needs, or individual clinical nutrition requirements.</p>
+<h2>Sources and Methodology</h2>
+<p>The Mifflin–St Jeor equation is documented in the <a href="https://pubmed.ncbi.nlm.nih.gov/2305711/" rel="noopener noreferrer">original published study</a>. The adult carbohydrate AMDR can be checked in the <a href="https://www.canada.ca/en/health-canada/services/food-nutrition/healthy-eating/dietary-reference-intakes/tables/reference-values-macronutrients.html" rel="noopener noreferrer">Health Canada Dietary Reference Intakes tables</a>. The 40%, 55%, 65%, 75% columns, activity factors and 500/1,000 kcal/day goal offsets are implemented for comparison with the <a href="https://www.calculator.net/carbohydrate-calculator.html" rel="noopener noreferrer">reference carbohydrate calculator</a>.</p>
+<p class="cp-page-footer">CalcPro — estimates are for general informational use, not individualized medical or dietary advice.</p></article></main></div><script>
+
+(function () {
+  'use strict';
+  const root = document.getElementById('calcpro-carb-tool');
+  if (!root) return;
+  const el = (id) => root.querySelector('#calcpro-carb-' + id);
+  const form = el('form');
+  const result = el('result');
+  const note = el('instructions');
+  const error = el('error');
+  const pending = el('pending');
+  const tableBody = el('table-body');
+  const warn = el('result-warning');
+  const nf = new Intl.NumberFormat('en-US', { maximumFractionDigits: 0 });
+  const activityFactors = new Set([1.2, 1.375, 1.465, 1.55, 1.725, 1.9]);
+  const defaults = {age:25, gender:'m', heightCm:180, weightKg:60, activity:1.375, formula:'m', bodyfat:20};
+  const units = {cm:1, m:100, ft:30.48, in:2.54, kg:1, lb:0.45359237, st:6.35029318};
+  const names = {cm:'centimeters', m:'meters', ft:'feet', in:'inches', kg:'kilograms', lb:'pounds', st:'stone'};
+  let mode = 'metric';
+  let saved = null;
+  let activeTab = 'metric';
+  const n = (id) => Number(el(id).value);
+  const raw = (id) => el(id).value.trim();
+  const fmt = (num, digits=2) => Number(Number(num).toFixed(digits)).toLocaleString('en-US', {maximumFractionDigits:digits});
+  const plain = (num, digits=3) => String(Number(Number(num).toFixed(digits)));
+
+  function invalid(message, focusTarget) {
+    error.textContent = message;
+    error.hidden = false;
+    if (focusTarget) el(focusTarget).focus();
+    return null;
+  }
+  function measurements() {
+    if (mode === 'metric') {
+      if (raw('height-cm') === '' || raw('weight-kg') === '') return null;
+      return { heightCm:n('height-cm'), weightKg:n('weight-kg') };
+    }
+    if (raw('height-ft') === '' || raw('height-in') === '' || raw('weight-lb') === '') return null;
+    return {heightCm:(n('height-ft')*12+n('height-in'))*2.54, weightKg:n('weight-lb')*units.lb};
+  }
+  function writeMeasurements(heightCm, weightKg, newMode) {
+    if (newMode === 'metric') {
+      el('height-cm').value = plain(heightCm,3);
+      el('weight-kg').value = plain(weightKg,3);
+    } else {
+      const inches = heightCm/2.54;
+      let feet = Math.floor(inches/12);
+      let remainder = Number((inches-feet*12).toFixed(3));
+      if (remainder >= 12) { feet++; remainder=0; }
+      el('height-ft').value = feet;
+      el('height-in').value = remainder;
+      el('weight-lb').value = plain(weightKg/units.lb,3);
+    }
+  }
+  function markPending() { if (!result.hidden) pending.hidden = false; }
+  function switchUnit(which) {
+    if (which !== 'other' && which !== mode) {
+      const prev = measurements();
+      if (prev && Number.isFinite(prev.heightCm) && Number.isFinite(prev.weightKg)) writeMeasurements(prev.heightCm, prev.weightKg, which);
+      mode = which;
+    }
+    activeTab = which;
+    el('metric-height').hidden = mode !== 'metric';
+    el('metric-weight').hidden = mode !== 'metric';
+    el('us-height').hidden = mode !== 'us';
+    el('us-weight').hidden = mode !== 'us';
+    el('otherpanel').hidden = which !== 'other';
+    for (const tab of root.querySelectorAll('[data-carb-unit]')) tab.setAttribute('aria-pressed', String(tab.dataset.carbUnit === which));
+    if (which !== 'other') markPending();
+  }
+  function getInputs() {
+    error.hidden = true;
+    const age = n('age');
+    if (raw('age') === '' || !Number.isInteger(age) || age < 18 || age > 80) return invalid('Enter an age in whole years from 18 to 80.', 'age');
+    if (mode === 'us' && (!Number.isInteger(n('height-ft')) || n('height-ft') < 0 || n('height-ft') > 9 || n('height-in') < 0 || n('height-in') >= 12)) return invalid('Enter valid feet (0–9) and inches (0–11.99).', 'height-ft');
+    const m = measurements();
+    if (!m || !Number.isFinite(m.heightCm) || m.heightCm < 50 || m.heightCm > 300) return invalid('Enter a height between 50 and 300 cm (about 1 ft 8 in–9 ft 10 in).', mode==='metric' ? 'height-cm':'height-ft');
+    if (!Number.isFinite(m.weightKg) || m.weightKg < 1 || m.weightKg > 1000) return invalid('Enter a weight between 1 and 1,000 kg (about 2.2–2,205 lb).', mode==='metric' ? 'weight-kg':'weight-lb');
+    const activity = n('activity');
+    if (!activityFactors.has(activity)) return invalid('Choose an activity level.', 'activity');
+    const gender = form.querySelector('input[name="gender"]:checked').value;
+    const formula = form.querySelector('input[name="formula"]:checked').value;
+    const bf = n('bodyfat');
+    if (formula === 'k' && (raw('bodyfat') === '' || !Number.isFinite(bf) || bf < 0 || bf >= 100)) return invalid('Enter a body-fat percentage from 0 up to (but not including) 100 for Katch-McArdle.', 'bodyfat');
+    return {age, gender, activity, formula, bodyfat:bf, ...m};
+  }
+  function calculate(v) {
+    // Mifflin–St Jeor: kcal/day. Katch–McArdle: lean mass (kg) derived from body-fat percent.
+    const bmr = v.formula === 'k' ? 370 + 21.6*v.weightKg*(1-v.bodyfat/100) : 10*v.weightKg + 6.25*v.heightCm - 5*v.age + (v.gender === 'm' ? 5 : -161);
+    const tdee = bmr*v.activity;
+    return { bmr, tdee, rows:[
+      ['Weight Maintenance',tdee],
+      ['Lose 0.5 kg/week',tdee-500],
+      ['Lose 1 kg/week',tdee-1000],
+      ['Gain 0.5 kg/week',tdee+500],
+      ['Gain 1 kg/week',tdee+1000]
+    ].map(([goal, energy]) => ({goal, calories:Math.max(0,energy), clipped:energy<0, grams:[.4,.55,.65,.75].map(p=>Math.round(Math.max(0,energy)*p/3.75))}))};
+  }
+  function draw(data, v) {
+    tableBody.innerHTML = data.rows.map(r => '<tr><th scope="row">'+r.goal+'</th><td>'+nf.format(Math.round(r.calories))+' Calories</td>'+r.grams.map(g=>'<td>'+nf.format(g)+' grams</td>').join('')+'</tr>').join('');
+    warn.hidden = !data.rows.some((r,index)=> index===1 || index===2 ? r.calories < (v.gender==='m' ? 1500 : 1200) : r.clipped);
+    result.hidden = false;
+    note.hidden = true;
+    pending.hidden = true;
+    saved = {data, v};
+    // The reference renders a new result page with results above its form; reproduce the focus on that result in-page.
+    if (typeof result.scrollIntoView === 'function') result.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'start'});
+  }
+  form.addEventListener('submit', (event)=> {
+    event.preventDefault();
+    const v = getInputs();
+    if (!v) return;
+    draw(calculate(v),v);
+  });
+  el('clear').addEventListener('click', () => {
+    form.reset();
+    mode='metric';
+    writeMeasurements(defaults.heightCm,defaults.weightKg,'metric');
+    switchUnit('metric');
+    el('settings').hidden = true;
+    el('settings-toggle').setAttribute('aria-expanded','false');
+    el('settings-toggle').textContent = '+ Settings';
+    el('convert-value').value = '1.8'; el('convert-from').value='m'; el('convert-to').value='cm';
+    error.hidden = true;
+    pending.hidden = true;
+    result.hidden = true;
+    note.hidden = false;
+    saved=null;
+    convert();
+  });
+  root.querySelectorAll('[data-carb-unit]').forEach(b=> b.addEventListener('click',()=>switchUnit(b.dataset.carbUnit)));
+  el('settings-toggle').addEventListener('click',()=> {
+    const shown=el('settings').hidden;
+    el('settings').hidden = !shown;
+    el('settings-toggle').setAttribute('aria-expanded',String(shown));
+    el('settings-toggle').textContent=shown?'- Settings':'+ Settings';
+  });
+  form.querySelectorAll('input,select').forEach(e=>e.addEventListener('input',markPending));
+  form.querySelectorAll('input,select').forEach(e=>e.addEventListener('change',markPending));
+  el('print').addEventListener('click',()=>window.print());
+  el('save').addEventListener('click',()=> {
+    if (!saved) return;
+    const {data,v}=saved;
+    const lines=['CalcPro Carbohydrate Calculator','Age: '+v.age,'Gender: '+(v.gender==='m'?'Male':'Female'),'Height (cm): '+fmt(v.heightCm,2),'Weight (kg): '+fmt(v.weightKg,2),'BMR method: '+(v.formula==='m'?'Mifflin-St Jeor':'Katch-McArdle'),'Activity factor: '+v.activity,'Estimated maintenance calories: '+nf.format(Math.round(data.tdee)),'','Goal | Daily Calories | Carbohydrate at 40% | 55% | 65% | 75%',...data.rows.map(r=>r.goal+' | '+nf.format(Math.round(r.calories))+' | '+r.grams.map(g=>g+' g').join(' | ')),'','Note: comparison scenarios are estimates; consult a professional for individual nutrition advice.'];
+    const blob=new Blob([lines.join('\n')+'\n'],{type:'text/plain;charset=utf-8'});
+    const url=URL.createObjectURL(blob);
+    const a=document.createElement('a');a.href=url;a.download='carbohydrate-calculator-results.txt';document.body.appendChild(a);a.click();a.remove();
+    setTimeout(()=>URL.revokeObjectURL(url),1000);
+  });
+  function convert() {
+    const value = n('convert-value');
+    const from=el('convert-from').value, to=el('convert-to').value;
+    const isLength = x=>['cm','m','ft','in'].includes(x);
+    if (isLength(from)!==isLength(to)) {
+      const selected = isLength(from) ? 'cm':'kg';
+      el('convert-to').value = selected;
+    }
+    const target=el('convert-to').value;
+    const v = value*units[from]/units[target];
+    el('convert-output').textContent = raw('convert-value')==='' || !Number.isFinite(value) || value<=0 ? 'Enter a positive value to convert.' : fmt(value,4)+' '+names[from]+' = '+fmt(v,4)+' '+names[target];
+    const length=isLength(from);
+    el('convert-apply').textContent=length?'Apply converted height to form':'Apply converted weight to form';
+    el('convert-apply').disabled=!(value>0 && Number.isFinite(value) && Number.isFinite(v));
+    return {v,length,from,target};
+  }
+  ['convert-value','convert-from','convert-to'].forEach(id=>el(id).addEventListener(id==='convert-value'?'input':'change',convert));
+  el('convert-apply').addEventListener('click',()=> {
+    const {v,length,target} = convert();
+    const base=v*units[target];
+    if (!Number.isFinite(base) || base<=0) return;
+    if (length) {
+      if (mode==='metric') el('height-cm').value=plain(base,3);
+      else { const inches=base/2.54,feet=Math.floor(inches/12);el('height-ft').value=feet;el('height-in').value=plain(inches-12*feet,3); }
+    } else {
+      if (mode==='metric') el('weight-kg').value=plain(base,3);
+      else el('weight-lb').value=plain(base/units.lb,3);
+    }
+    markPending();
+    error.hidden=true;
+  });
+  convert();
+})();
+
+</script><script defer src="/assets/js/data.js"></script>
+<script defer src="/assets/js/style.js?v=20261111-5"></script>
+</body></html>

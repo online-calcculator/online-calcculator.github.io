@@ -1,7 +1,5 @@
-<!DOCTYPE html>
-<html lang="en-US">
-<head>
-<meta charset="utf-8">
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="content-language" content="en">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,17 +11,392 @@
   <meta name="author" content="Commingsoon">
   <meta name="publisher" content="Commingsoon">
   <meta name="robots" content="noindex, nofollow, max-image-preview:large">
-  <link rel="stylesheet" href="/assets/css/style.css?v=20261111-1" crossorigin="anonymous" data-n-g="">
+  <link rel="stylesheet" href="/assets/css/style.css?v=20261111-4" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/doc_style.css" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/side_style.css" crossorigin="anonymous" data-n-g=""> 
   <!--ogtags-->
-  <!--schema-->
-  <!--style-->
-</head>
+  <!--schema--><!--TOOL CSS INSERT HERE: Paste only calculator-specific CSS here. Use unique class/id prefixes per tool, e.g. bmi-, loan-, age-. Keep header, sidebar and article CSS in style.css.--><style>
+/* IRA calculator styles: scoped under .calcpro-ira; no changes to CalcPro site styles. */
+.calcpro-ira{font-family:Arial,Helvetica,sans-serif;color:#182d40;font-size:14px;line-height:1.45;width:100%;max-width:100%;--calcpro-ira-blue:#1f5886;--calcpro-ira-green:#447f23;--calcpro-ira-border:#d3e0e9}
+.calcpro-ira *{box-sizing:border-box}
+.calcpro-ira .calcpro-ira-topline{display:flex;align-items:center;justify-content:flex-end;gap:10px;margin:0 0 9px}
+.calcpro-ira .calcpro-ira-action{color:var(--calcpro-ira-blue);background:none;border:0;text-decoration:underline;font-size:12px;cursor:pointer;padding:2px 4px}
+.calcpro-ira .calcpro-ira-panels{display:grid;grid-template-columns:minmax(238px,0.88fr) minmax(0,1.32fr);gap:16px;align-items:start}
+.calcpro-ira .calcpro-ira-formbox{padding:14px;background:#f2f5f7;border:1px solid #cdd7df;border-radius:4px}
+.calcpro-ira .calcpro-ira-formtitle{margin:0 0 12px;color:#143d60;font-size:16px;font-weight:700}
+.calcpro-ira .calcpro-ira-formgrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(102px,136px);gap:10px 9px;align-items:center}
+.calcpro-ira .calcpro-ira-formgrid label{font-size:12.5px;font-weight:600;line-height:1.35}
+.calcpro-ira .calcpro-ira-hint{font-size:11px;color:#61768a;font-weight:400;display:block;margin-top:3px}
+.calcpro-ira .calcpro-ira-inputwrap{position:relative;min-width:0}
+.calcpro-ira .calcpro-ira-inputwrap .calcpro-ira-affix{position:absolute;left:9px;top:50%;transform:translateY(-50%);color:#4e657a;font-weight:600;pointer-events:none;font-size:13px}
+.calcpro-ira .calcpro-ira-inputwrap .calcpro-ira-affix.calcpro-ira-percent{left:auto;right:10px}
+.calcpro-ira input.calcpro-ira-input{display:block;background:#fff;color:#142e43;border:1px solid #8eaabc;border-radius:3px;box-shadow:inset 0 1px 2px #0000000b;width:100%;height:35px;padding:6px 9px;font:14px Arial,Helvetica,sans-serif;font-variant-numeric:tabular-nums;min-width:0}
+.calcpro-ira .calcpro-ira-withdollar input{padding-left:23px}
+.calcpro-ira .calcpro-ira-withpercent input{padding-right:24px}
+.calcpro-ira input.calcpro-ira-input:focus{border-color:#225b87;outline:2px solid #8bc2e0;outline-offset:0}
+.calcpro-ira input.calcpro-ira-input[aria-invalid=true]{border-color:#a92525;background:#fff8f6}
+.calcpro-ira .calcpro-ira-buttons{display:flex;align-items:center;justify-content:flex-end;gap:8px;margin-top:15px}
+.calcpro-ira .calcpro-ira-btn{font:700 13px Arial,Helvetica,sans-serif;border-radius:3px;border:1px solid transparent;cursor:pointer;min-height:34px;padding:8px 13px}
+.calcpro-ira .calcpro-ira-btn.calcpro-ira-primary{background:var(--calcpro-ira-green);color:#fff;border-color:#32641d}
+.calcpro-ira .calcpro-ira-btn.calcpro-ira-primary:hover{background:#34661b}
+.calcpro-ira .calcpro-ira-btn.calcpro-ira-secondary{background:#fff;color:#36536a;border-color:#a7bbc8}
+.calcpro-ira .calcpro-ira-btn.calcpro-ira-secondary:hover{background:#e6edf2}
+.calcpro-ira .calcpro-ira-error{background:#fff0f0;border-left:3px solid #ba3232;margin-top:12px;color:#8c1616;padding:9px 10px;font-size:12px}
+.calcpro-ira .calcpro-ira-resultbox{min-width:0}
+.calcpro-ira .calcpro-ira-bar{display:flex;align-items:center;justify-content:space-between;background:var(--calcpro-ira-green);padding:7px 10px;margin:0 0 0;color:#fff;font-size:15px;font-weight:700;line-height:1.3}
+.calcpro-ira .calcpro-ira-barbutton{font-size:12px;font-weight:400;border:1px solid #a8c49a;background:#fff;color:#32621d;padding:3px 7px;cursor:pointer;border-radius:2px}
+.calcpro-ira .calcpro-ira-resultscroll{overflow-x:auto;max-width:100%}
+.calcpro-ira .calcpro-ira-resulttable{border-collapse:collapse;width:100%;min-width:330px;table-layout:fixed;font-size:12px;text-align:right;color:#1b2c3a}
+.calcpro-ira .calcpro-ira-resulttable th{font-size:11px;text-align:center;line-height:1.25;background:#285b92;color:#fff;padding:9px 5px;vertical-align:bottom;border:1px solid #d3e2f0}
+.calcpro-ira .calcpro-ira-resulttable th:first-child{width:26%;background:#f0f4f6;color:#203848;text-align:left;border:1px solid #dae3eb}
+.calcpro-ira .calcpro-ira-resulttable td{padding:9px 4px;border-bottom:1px solid #d5e0e7;white-space:nowrap;font-variant-numeric:tabular-nums}
+.calcpro-ira .calcpro-ira-resulttable td:first-child{white-space:normal;text-align:left;line-height:1.2}
+.calcpro-ira .calcpro-ira-resulttable tr:nth-child(odd) td{background:#eef2f5}
+.calcpro-ira .calcpro-ira-resulttable tr:last-child td{font-weight:700}
+.calcpro-ira .calcpro-ira-resultnote{font-size:13px;margin:12px 1px 6px;line-height:1.5;color:#263e50}
+.calcpro-ira .calcpro-ira-snapshot-status{font-size:12px;color:#32621d;margin:4px 0 0;min-height:0}
+.calcpro-ira .calcpro-ira-chartbox{margin:22px 0 12px;padding:14px 12px 8px;border:1px solid #dbe5ed;border-radius:4px;background:#fff;position:relative}
+.calcpro-ira .calcpro-ira-sectiontitle{text-align:center;margin:0;color:#123e63;font-size:17px;line-height:1.35;font-weight:700}
+.calcpro-ira .calcpro-ira-chartkey{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 12px;margin:13px 0 2px;font-size:11px}
+.calcpro-ira .calcpro-ira-keyitem{display:flex;align-items:center;gap:6px;min-width:0;line-height:1.3}
+.calcpro-ira .calcpro-ira-keysquare{width:17px;height:5px;flex:0 0 auto;border-radius:4px}
+.calcpro-ira .calcpro-ira-chart{width:100%;height:auto;display:block;overflow:visible;touch-action:pan-y}
+.calcpro-ira .calcpro-ira-tooltip{position:absolute;left:0;top:0;pointer-events:none;background:#133755;color:#fff;padding:8px 10px;font-size:12px;border-radius:4px;box-shadow:0 3px 10px #0003;z-index:3;max-width:240px;white-space:pre-line;line-height:1.5}
+.calcpro-ira .calcpro-ira-smallnote{font-size:12px;color:#536c7d;margin:8px 0 0}
+.calcpro-ira .calcpro-ira-scheduletitle{margin:20px 0 9px;color:#123e63;font-size:18px}
+.calcpro-ira .calcpro-ira-schedulewrap{overflow-x:auto;border:1px solid #cbdbe7;max-width:100%;margin-top:8px;scrollbar-width:thin}
+.calcpro-ira .calcpro-ira-schedule{border-collapse:separate;border-spacing:0;width:100%;min-width:710px;font-size:11.2px;line-height:1.3;text-align:right;color:#162c3d;font-variant-numeric:tabular-nums}
+.calcpro-ira .calcpro-ira-schedule th{padding:7px 6px;border-bottom:1px solid #aabfd0;border-right:1px solid #c4d7e6;background:#ddecf8;text-align:center;color:#103d60;line-height:1.24;font-weight:700}
+.calcpro-ira .calcpro-ira-schedule thead tr:last-child th{background:#eaf3fb;font-size:11px}
+.calcpro-ira .calcpro-ira-schedule td{padding:6px 7px;border-right:1px solid #dfe7ee;border-bottom:1px solid #e2e9ee;white-space:nowrap}
+.calcpro-ira .calcpro-ira-schedule tbody tr:nth-child(odd) td{background:#f0f4f7}
+.calcpro-ira .calcpro-ira-schedule tbody tr:hover td{background:#dfeefa}
+.calcpro-ira .calcpro-ira-schedule td:first-child,.calcpro-ira .calcpro-ira-schedule th:first-child{position:sticky;left:0;z-index:1;text-align:center;font-weight:700;border-right:2px solid #9eb8cb}
+.calcpro-ira .calcpro-ira-schedule tbody tr:nth-child(even) td:first-child{background:#fff}
+.calcpro-ira .calcpro-ira-schedule tbody tr:nth-child(odd) td:first-child{background:#f0f4f7}
+.calcpro-ira .calcpro-ira-chartempty{padding:20px;text-align:center}
+@media(max-width:720px){.calcpro-ira .calcpro-ira-panels{grid-template-columns:minmax(0,1fr)}.calcpro-ira .calcpro-ira-formgrid{grid-template-columns:minmax(0,1fr) minmax(100px,160px)}.calcpro-ira .calcpro-ira-chartbox{margin-top:17px}}
+@media(max-width:480px){.calcpro-ira .calcpro-ira-formbox{padding:12px}.calcpro-ira .calcpro-ira-formgrid label{font-size:12px}.calcpro-ira .calcpro-ira-chartkey{grid-template-columns:minmax(0,1fr)}.calcpro-ira .calcpro-ira-resulttable{font-size:11px}.calcpro-ira .calcpro-ira-chartbox{padding:12px 6px 6px}}
+@media print{.calcpro-ira .calcpro-ira-topline,.calcpro-ira .calcpro-ira-buttons,.calcpro-ira .calcpro-ira-barbutton{display:none!important}.calcpro-ira .calcpro-ira-panels{grid-template-columns:240px 1fr;gap:12px}.calcpro-ira .calcpro-ira-chartbox{break-inside:avoid}.calcpro-ira .calcpro-ira-schedulewrap{overflow:visible}.calcpro-ira .calcpro-ira-schedule{min-width:0;font-size:9px}.calcpro-ira .calcpro-ira-schedule td,.calcpro-ira .calcpro-ira-schedule th{padding:3px 2px}.calcpro-ira .calcpro-ira-resulttable{min-width:0}}
+</style>
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / IRA Calculator</nav><h1 class="cp-page-title">IRA Calculator</h1><p class="cp-intro">Compare tax-deferred Traditional, SIMPLE, or SEP IRA growth with Roth IRA savings and a regular taxable account. Adjust your balance, contributions, growth rate, ages, and tax assumptions to see after-tax estimates and a year-by-year schedule.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-ira" id="calcpro-ira-root">
+<div class="calcpro-ira-topline"><button class="calcpro-ira-action" id="calcpro-ira-print" type="button">Print results</button></div>
+<div class="calcpro-ira-panels">
+<form class="calcpro-ira-formbox" id="calcpro-ira-form" novalidate="">
+<h2 class="calcpro-ira-formtitle">IRA savings assumptions</h2>
+<div class="calcpro-ira-formgrid">
+<label for="calcpro-ira-balance">Current balance <span class="calcpro-ira-hint">Before-tax equivalent</span></label><div class="calcpro-ira-inputwrap calcpro-ira-withdollar"><span class="calcpro-ira-affix">$</span><input autocomplete="off" class="calcpro-ira-input" id="calcpro-ira-balance" inputmode="decimal" name="balance" type="text" value="50,000"/></div>
+<label for="calcpro-ira-contribution">Annual before-tax contribution <span class="calcpro-ira-hint">Added at the end of each year</span></label><div class="calcpro-ira-inputwrap calcpro-ira-withdollar"><span class="calcpro-ira-affix">$</span><input autocomplete="off" class="calcpro-ira-input" id="calcpro-ira-contribution" inputmode="decimal" name="contribution" type="text" value="7,500"/></div>
+<label for="calcpro-ira-return">Expected annual rate of return</label><div class="calcpro-ira-inputwrap calcpro-ira-withpercent"><input autocomplete="off" class="calcpro-ira-input" id="calcpro-ira-return" inputmode="decimal" name="return" type="text" value="6"/><span class="calcpro-ira-affix calcpro-ira-percent">%</span></div>
+<label for="calcpro-ira-age">Current age</label><div class="calcpro-ira-inputwrap"><input class="calcpro-ira-input" id="calcpro-ira-age" max="119" min="0" name="age" step="1" type="number" value="30"/></div>
+<label for="calcpro-ira-retirement">Retirement age</label><div class="calcpro-ira-inputwrap"><input class="calcpro-ira-input" id="calcpro-ira-retirement" max="120" min="1" name="retirement" step="1" type="number" value="65"/></div>
+<label for="calcpro-ira-currenttax">Current marginal tax rate</label><div class="calcpro-ira-inputwrap calcpro-ira-withpercent"><input autocomplete="off" class="calcpro-ira-input" id="calcpro-ira-currenttax" inputmode="decimal" name="currenttax" type="text" value="25"/><span class="calcpro-ira-affix calcpro-ira-percent">%</span></div>
+<label for="calcpro-ira-retirementtax">Expected tax rate in retirement</label><div class="calcpro-ira-inputwrap calcpro-ira-withpercent"><input autocomplete="off" class="calcpro-ira-input" id="calcpro-ira-retirementtax" inputmode="decimal" name="retirementtax" type="text" value="15"/><span class="calcpro-ira-affix calcpro-ira-percent">%</span></div>
+</div>
+<div class="calcpro-ira-buttons"><button class="calcpro-ira-btn calcpro-ira-secondary" id="calcpro-ira-clear" type="button">Clear</button><button class="calcpro-ira-btn calcpro-ira-primary" type="submit">Calculate ▸</button></div>
+<div class="calcpro-ira-error" hidden="" id="calcpro-ira-error" role="alert"></div>
+</form>
+<section aria-label="IRA comparison results" class="calcpro-ira-resultbox">
+<h2 class="calcpro-ira-bar"><span>Result</span><button class="calcpro-ira-barbutton" id="calcpro-ira-save" title="Save the current calculation as a text file" type="button">Save calculation</button></h2>
+<div class="calcpro-ira-resultscroll"><table class="calcpro-ira-resulttable">
+<thead><tr><th scope="col"> </th><th scope="col">Traditional,<br/>SIMPLE, or<br/>SEP IRA</th><th scope="col">Roth IRA</th><th scope="col">Regular taxable<br/>savings</th></tr></thead>
+<tbody><tr><td id="calcpro-ira-balance-label">Balance at age 65</td><td id="calcpro-ira-trad-gross">—</td><td id="calcpro-ira-roth-gross">—</td><td id="calcpro-ira-taxable-gross">—</td></tr>
+<tr><td id="calcpro-ira-after-label">Balance at age 65 (after tax)</td><td id="calcpro-ira-trad-net">—</td><td id="calcpro-ira-roth-net">—</td><td id="calcpro-ira-taxable-net">—</td></tr></tbody>
+</table></div>
+<p aria-live="polite" class="calcpro-ira-resultnote" id="calcpro-ira-explanation"></p>
+<p aria-live="polite" class="calcpro-ira-snapshot-status" id="calcpro-ira-save-status" role="status"></p>
+</section>
+</div>
+<section aria-label="Balance accumulation graph" class="calcpro-ira-chartbox">
+<h2 class="calcpro-ira-sectiontitle">Balance Accumulation Graph</h2>
+<div aria-hidden="true" class="calcpro-ira-chartkey">
+<div class="calcpro-ira-keyitem"><span class="calcpro-ira-keysquare" style="background:#2b7ddb"></span>Traditional/SIMPLE/SEP IRA (before tax)</div>
+<div class="calcpro-ira-keyitem"><span class="calcpro-ira-keysquare" style="background:#78a72b"></span>Traditional/SIMPLE/SEP IRA (after tax)</div>
+<div class="calcpro-ira-keyitem"><span class="calcpro-ira-keysquare" style="background:#ac393e"></span>Roth IRA (after tax)</div>
+<div class="calcpro-ira-keyitem"><span class="calcpro-ira-keysquare" style="background:#12a6c3"></span>Regular taxable savings (after tax)</div>
+<div class="calcpro-ira-keyitem"><span class="calcpro-ira-keysquare" style="background:#69519b"></span>After-tax principal contributed</div>
+</div>
+<svg aria-label="Line graph comparing IRA and taxable savings balances by age" class="calcpro-ira-chart" id="calcpro-ira-chart" role="img" viewbox="0 0 670 300"></svg>
+<div class="calcpro-ira-tooltip" hidden="" id="calcpro-ira-tooltip"></div>
+<p class="calcpro-ira-smallnote">Values are projections, not guaranteed investment outcomes. Hover or tap the graph to view an age-specific balance.</p>
+</section>
+<section aria-label="Annual IRA savings schedule">
+<h2 class="calcpro-ira-scheduletitle">Annual Schedule</h2>
+<p class="calcpro-ira-smallnote">Each row runs from the start of the listed age to the next birthday. Swipe horizontally to see all columns on smaller screens.</p>
+<div aria-label="Scrollable IRA annual schedule" class="calcpro-ira-schedulewrap" role="region" tabindex="0">
+<table class="calcpro-ira-schedule" id="calcpro-ira-schedule">
+<thead><tr><th rowspan="2" scope="col">Age</th><th colspan="2" scope="colgroup">Traditional/SIMPLE/SEP IRA<br/>(Before Tax)</th><th colspan="2" scope="colgroup">Traditional/SIMPLE/SEP IRA<br/>(After Tax)</th><th colspan="2" scope="colgroup">Roth IRA<br/>(After Tax)</th><th colspan="2" scope="colgroup">Regular Taxable Savings<br/>(After Tax)</th></tr>
+<tr><th scope="col">Start</th><th scope="col">End</th><th scope="col">Start</th><th scope="col">End</th><th scope="col">Start</th><th scope="col">End</th><th scope="col">Start</th><th scope="col">End</th></tr></thead>
+<tbody id="calcpro-ira-schedule-rows"></tbody>
+</table>
+</div>
+</section>
+</div></section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><!-- REPLACE these links with real related tools for each calculator; verify live slugs. --><a href="retirement-calculator.html">Retirement</a><a href="roth-ira-calculator.html">Roth IRA</a><a href="investment-calculator.html">Investment</a><a href="compound-interest-calculator.html">Compound Interest</a><a href="annuity-payout-calculator.html">Annuity Payout</a><a href="pension-calculator.html">Pension</a><a href="inflation-calculator.html">Inflation</a><a href="future-value-calculator.html">Future Value</a><a href="income-tax-calculator.html">Income Tax</a><a href="savings-calculator.html">Savings</a><a href="mortgage-calculator.html">Mortgage</a><a href="loan-calculator.html">Loan</a></div></section></aside><article class="cp-article"><h2>How to Use the IRA Calculator</h2>
+<p>Enter your current balance, planned yearly <strong>before-tax</strong> contribution, expected annual investment return, current age, and target retirement age. Set your current marginal income tax rate and the rate you expect to pay in retirement. Select <strong>Calculate</strong> to update the comparisons, interactive growth graph, and annual schedule. The <strong>Clear</strong> button empties the inputs and removes the previous results.</p>
+<h2>How the IRA Comparison Works</h2>
+<p>This model is designed to compare the same amount of <em>pre-tax economic resources</em> across the three options. Traditional, SIMPLE, and SEP arrangements are grouped together for an illustrative tax-deferred comparison, even though they have different eligibility and contribution rules. For the Roth and taxable scenarios, both the starting balance and each annual contribution are reduced by the current tax rate to create comparable after-tax funding.</p>
+<h3>Formulas and Timing</h3>
+<p>Let <strong>B</strong> be the starting balance, <strong>C</strong> the annual before-tax contribution, <strong>r</strong> the annual return as a decimal, <strong>t<sub>now</sub></strong> the current tax rate, and <strong>t<sub>ret</sub></strong> the retirement tax rate. The model adds contributions at the <strong>end</strong> of each year:</p>
+<ul><li><strong>Traditional/SIMPLE/SEP before tax:</strong> B<sub>n+1</sub> = B<sub>n</sub> × (1 + r) + C. Estimated value after withdrawal tax is B<sub>n</sub> × (1 − t<sub>ret</sub>).</li>
+<li><strong>Roth IRA:</strong> R<sub>0</sub> = B × (1 − t<sub>now</sub>); R<sub>n+1</sub> = R<sub>n</sub> × (1 + r) + C × (1 − t<sub>now</sub>). Qualified Roth withdrawals are assumed tax-free.</li>
+<li><strong>Taxable savings:</strong> S<sub>0</sub> = B × (1 − t<sub>now</sub>); S<sub>n+1</sub> = S<sub>n</sub> × [1 + r × (1 − t<sub>now</sub>)] + C × (1 − t<sub>now</sub>). The model approximates tax on investment gains annually at the current marginal rate.</li></ul>
+<h3>Example: $50,000 Starting Balance</h3>
+<p>At age 30, with $50,000 initially, $7,500 in annual before-tax contributions, 6% annual growth, a current marginal rate of 25%, and an expected retirement tax rate of 15%, the model projects approximately <strong>$1,220,065</strong> in a traditional-style account before tax by age 65. This becomes <strong>$1,037,055 after tax</strong>; the comparable Roth IRA is approximately <strong>$915,049</strong>, and taxable savings is approximately <strong>$633,444</strong>. These are constant-rate hypothetical values rather than forecasts.</p>
+<h2>Interpreting the Results</h2>
+<p>The first results row shows projected account balances. The second row shows the estimates <strong>after tax</strong>. A traditional-style balance is discounted by your assumed retirement tax rate; the Roth and taxable figures are already presented after tax under this model. The graph also includes the amount contributed from after-tax resources, while the schedule shows each year's beginning and ending values.</p>
+<h2>Frequently Asked Questions</h2>
+<h3>Does this calculator enforce annual IRA contribution limits?</h3>
+<p>No. Contributions remain editable for broad scenarios, including SEP and SIMPLE comparisons. For 2026, the IRS lists a combined traditional/Roth IRA regular annual limit of <strong>$7,500</strong>, or <strong>$8,600</strong> if you are age 50 or older, subject to eligibility and compensation. SEP and SIMPLE accounts have different rules. The tool does not automatically raise contributions at age 50 or model income-based phaseouts.</p>
+<h3>When does a Roth IRA have an advantage?</h3>
+<p>Under equal before-tax resources and the same investment return, the assumed tax rate now versus the expected effective tax on traditional withdrawals is a key driver. Lower current taxes can favor Roth contributions, while lower retirement taxes can favor deductible contributions, assuming you qualify for the applicable tax treatment.</p>
+<h3>Does the taxable investment model cover capital gains taxes and dividends precisely?</h3>
+<p>No. It uses a simplified annual tax drag on returns at the entered current tax rate. Actual tax treatment depends on asset type, holding periods, realized gains, dividends, losses, and other factors. It also assumes constant rates, no investment fees, no inflation adjustment, no required minimum distributions, and no early-withdrawal penalties.</p>
+<h3>Are these actual IRA tax or investment recommendations?</h3>
+<p>No. Actual deductibility, Roth eligibility, qualified withdrawal rules, contribution limits, employer funding, and tax treatment must be checked against the relevant year’s IRS guidance and individual circumstances.</p>
+<h2>Sources and Further Reading</h2>
+<p>See the <a href="https://www.irs.gov/retirement-plans/traditional-and-roth-iras" rel="noopener noreferrer" target="_blank">IRS guide to Traditional and Roth IRAs</a>, <a href="https://www.irs.gov/retirement-plans/plan-participant-employee/retirement-topics-ira-contribution-limits" rel="noopener noreferrer" target="_blank">IRS contribution limits</a>, and <a href="https://www.irs.gov/publications/p590b" rel="noopener noreferrer" target="_blank">IRS Publication 590-B</a>. The comparative structure follows <a href="https://www.calculator.net/ira-calculator.html" rel="noopener noreferrer" target="_blank">Calculator.net’s IRA Calculator</a>; the implementation and descriptive content here are original.</p>
+<p class="cp-page-footer">CalcPro — projections are for planning and informational purposes only, not personalized tax or investment advice.</p></article></main></div><script>
+(function () {
+  'use strict';
+  const root = document.getElementById('calcpro-ira-root');
+  if (!root) return;
+  const $ = (id) => document.getElementById('calcpro-ira-' + id);
+  const form = $('form');
+  const errorBox = $('error');
+  const status = $('save-status');
+  const fields = {
+    balance: $('balance'), contribution: $('contribution'), rate: $('return'),
+    age: $('age'), retirement: $('retirement'), currentTax: $('currenttax'), retirementTax: $('retirementtax')
+  };
+  const C = { gross: '#2b7ddb', traditional: '#78a72b', roth: '#ac393e', taxable: '#12a6c3', principal: '#69519b' };
+  const usd = (v) => '$' + Math.round(v).toLocaleString('en-US', {maximumFractionDigits: 0});
+  const fmtNum = (v) => Number(v).toLocaleString('en-US', {maximumFractionDigits: 2});
+  let last = null;
+  let points = [];
+  let frame = null;
 
-<body>
-<!-- Main-header-page -->
-<script defer src="/assets/js/data.js"></script>
-<script defer src="/assets/js/style.js?v=20261111-1"></script>
-</body>
-</html>
+  function parseMoneyOrRate(el, label, min, max) {
+    const raw = el.value.trim().replace(/[$,%\s]/g, '');
+    if (!raw || !/^[+-]?(?:\d+\.?\d*|\.\d+)$/.test(raw)) throw new Error(label + ' must be a valid number.');
+    const num = Number(raw);
+    if (!Number.isFinite(num) || num < min || num > max) throw new Error(label + ' must be between ' + fmtNum(min) + ' and ' + fmtNum(max) + '.');
+    return num;
+  }
+  function read() {
+    for (const el of Object.values(fields)) el.removeAttribute('aria-invalid');
+    const get = (key, label, min, max) => {
+      try { return parseMoneyOrRate(fields[key], label, min, max); }
+      catch (err) { fields[key].setAttribute('aria-invalid', 'true'); fields[key].focus(); throw err; }
+    };
+    const balance = get('balance', 'Current balance', 0, 1e12);
+    const contribution = get('contribution', 'Annual contribution', 0, 1e12);
+    const rate = get('rate', 'Expected annual return (%)', -100, 100);
+    const age = get('age', 'Current age', 0, 119);
+    const retirement = get('retirement', 'Retirement age', 1, 120);
+    const currentTax = get('currentTax', 'Current tax rate (%)', 0, 100);
+    const retirementTax = get('retirementTax', 'Retirement tax rate (%)', 0, 100);
+    if (!Number.isInteger(age) || !Number.isInteger(retirement)) {
+      fields[!Number.isInteger(age) ? 'age' : 'retirement'].setAttribute('aria-invalid', 'true');
+      throw new Error('Ages must be whole years.');
+    }
+    if (retirement <= age) {
+      fields.retirement.setAttribute('aria-invalid', 'true'); fields.retirement.focus();
+      throw new Error('Retirement age must be greater than current age.');
+    }
+    return { balance, contribution, rate, age, retirement, currentTax, retirementTax };
+  }
+  // Each annual deposit is made at year-end. Taxable earnings are taxed at the
+  // current marginal rate every year, as in the calculator.net comparison model.
+  function calculate(p) {
+    const r = p.rate / 100, now = p.currentTax / 100, later = p.retirementTax / 100;
+    const netDeposit = p.contribution * (1 - now);
+    let traditional = p.balance, roth = p.balance * (1 - now), taxable = roth;
+    let principal = roth;
+    const series = [{age: p.age, gross: traditional, traditional: traditional * (1 - later), roth, taxable, principal}];
+    const rows = [];
+    for (let age = p.age; age < p.retirement; age++) {
+      const start = {traditional, traditionalNet: traditional * (1 - later), roth, taxable};
+      traditional = traditional * (1 + r) + p.contribution;
+      roth = roth * (1 + r) + netDeposit;
+      taxable = taxable * (1 + r * (1 - now)) + netDeposit;
+      principal += netDeposit;
+      if (![traditional, roth, taxable, principal].every(Number.isFinite)) throw new Error('Inputs result in a balance too large to display.');
+      const end = {traditional, traditionalNet: traditional * (1 - later), roth, taxable};
+      rows.push({age, start, end});
+      series.push({age: age + 1, gross: traditional, traditional: end.traditionalNet, roth, taxable, principal});
+    }
+    return {p, rows, series, end: series[series.length - 1]};
+  }
+  function writeText(id, value) { $(id).textContent = value; }
+  function updateSummary(data) {
+    const a = data.end, n = data.p.retirement;
+    writeText('balance-label', 'Balance at age ' + n);
+    writeText('after-label', 'Balance at age ' + n + ' (after tax)');
+    writeText('trad-gross', usd(a.gross)); writeText('trad-net', usd(a.traditional));
+    writeText('roth-gross', usd(a.roth)); writeText('roth-net', usd(a.roth));
+    writeText('taxable-gross', usd(a.taxable)); writeText('taxable-net', usd(a.taxable));
+    const d1 = a.traditional - a.roth;
+    const d2 = a.roth - a.taxable;
+    const choice = (d1 >= 0 ? 'Traditional, SIMPLE, or SEP IRA' : 'Roth IRA');
+    const other = (d1 >= 0 ? 'Roth IRA' : 'Traditional, SIMPLE, or SEP IRA');
+    let desc = 'With these assumptions, a ' + choice + ' has ' + usd(Math.abs(d1)) +
+      ' more estimated after-tax value than a ' + other + ' at age ' + n + '. ';
+    desc += d2 >= 0 ? 'A Roth IRA has ' + usd(d2) + ' more than regular taxable savings.' :
+      'Regular taxable savings has ' + usd(Math.abs(d2)) + ' more than a Roth IRA.';
+    writeText('explanation', desc);
+  }
+  function renderSchedule(data) {
+    const fragment = document.createDocumentFragment();
+    for (const row of data.rows) {
+      const tr = document.createElement('tr');
+      const vals = [row.age, row.start.traditional, row.end.traditional,
+        row.start.traditionalNet, row.end.traditionalNet,
+        row.start.roth, row.end.roth, row.start.taxable, row.end.taxable];
+      vals.forEach((v, idx) => {
+        const td = document.createElement('td'); td.textContent = idx ? usd(v) : String(v); tr.appendChild(td);
+      });
+      fragment.appendChild(tr);
+    }
+    $('schedule-rows').replaceChildren(fragment);
+  }
+  function svgNode(tag, at, text) {
+    const n = document.createElementNS('http://www.w3.org/2000/svg', tag);
+    for (const [k,v] of Object.entries(at || {})) n.setAttribute(k,String(v));
+    if (text !== undefined) n.textContent = text;
+    return n;
+  }
+  function shortMoney(v) {
+    if (v >= 1e12) return '$' + (v/1e12).toFixed(1).replace(/\.0$/, '') + 'T';
+    if (v >= 1e9) return '$' + (v/1e9).toFixed(1).replace(/\.0$/, '') + 'B';
+    if (v >= 1e6) return '$' + (v/1e6).toFixed(1).replace(/\.0$/, '') + 'M';
+    if (v >= 1e3) return '$' + (v/1e3).toFixed(0) + 'K';
+    return usd(v);
+  }
+  function niceCeiling(x) {
+    if (x <= 0) return 1;
+    const step = Math.pow(10, Math.floor(Math.log10(x / 4)));
+    const unit = x / (4 * step);
+    const nice = unit <= 1 ? 1 : unit <= 2 ? 2 : unit <= 2.5 ? 2.5 : unit <= 5 ? 5 : 10;
+    return 4 * nice * step;
+  }
+  function chart(data) {
+    const svg = $('chart'), tooltip = $('tooltip');
+    svg.replaceChildren(); tooltip.hidden = true;
+    const w = 670, h = 300, x1 = 74, x2 = 649, y1 = 20, y2 = 253;
+    const series = data.series;
+    const keys = ['gross','traditional','roth','taxable','principal'];
+    const rawMax = Math.max(1, ...series.flatMap(d => keys.map(k => Math.max(0,d[k]))));
+    const rawMin = Math.min(0, ...series.flatMap(d => keys.map(k => d[k])));
+    const ymax = niceCeiling(rawMax), ymin = rawMin < 0 ? -niceCeiling(Math.abs(rawMin)) : 0;
+    const sx = (i) => x1 + (i / (series.length - 1)) * (x2 - x1);
+    const sy = (v) => y2 - (v - ymin) / (ymax - ymin) * (y2 - y1);
+    for (let j = 0; j <= 4; j++) {
+      const y = y2 - j * (y2-y1)/4;
+      svg.appendChild(svgNode('line',{x1,y1:y,x2,y2:y,stroke:'#dce5ec','stroke-width':1}));
+      svg.appendChild(svgNode('text',{x:65,y:y+4,'text-anchor':'end','font-size':12,fill:'#60778a'},shortMoney(ymin+(ymax-ymin)*j/4)));
+    }
+    const n = series.length - 1;
+    const tickCount = Math.min(7,n);
+    const last = new Set();
+    for (let j = 0; j <= tickCount; j++) {
+      const idx = Math.round(j*n/tickCount);
+      if (last.has(idx)) continue;
+      last.add(idx);
+      const x = sx(idx);
+      svg.appendChild(svgNode('line',{x1:x,y1,x2:x,y2,stroke:'#edf2f6','stroke-width':1}));
+      svg.appendChild(svgNode('text',{x,y:y2+19,'text-anchor':'middle','font-size':12,fill:'#60778a'},String(series[idx].age)));
+    }
+    svg.appendChild(svgNode('rect',{x:x1,y:y1,width:x2-x1,height:y2-y1,fill:'none',stroke:'#a4b8c8','stroke-width':1}));
+    svg.appendChild(svgNode('text',{x:(x1+x2)/2,y:293,'text-anchor':'middle','font-size':13,fill:'#354e61'},'Age'));
+    for (const key of keys) {
+      const pts = series.map((d,i) => sx(i).toFixed(2)+','+sy(d[key]).toFixed(2)).join(' ');
+      svg.appendChild(svgNode('polyline',{points:pts,fill:'none',stroke:C[key],'stroke-width':key==='principal'?2:2.8,'stroke-linecap':'round','stroke-linejoin':'round'}));
+    }
+    // Crosshair and interaction are confined to the graph; no external dependencies.
+    const hover = svgNode('g',{visibility:'hidden','pointer-events':'none'});
+    const marker = svgNode('line',{x1:x1,y1,x2:x1,y2,stroke:'#4a6578','stroke-width':1.25,'stroke-dasharray':'4 4'});
+    hover.appendChild(marker);
+    for (const key of keys) hover.appendChild(svgNode('circle',{r:4.3,fill:C[key],stroke:'#fff','stroke-width':1.4,'data-key':key}));
+    svg.appendChild(hover);
+    function hide() {hover.setAttribute('visibility','hidden'); tooltip.hidden=true;}
+    const rect = svgNode('rect',{x:x1,y:y1,width:x2-x1,height:y2-y1,fill:'transparent',style:'cursor:crosshair'});
+    rect.addEventListener('pointermove',(ev) => {
+      const bounds=svg.getBoundingClientRect();
+      if (!bounds.width || !bounds.height) return;
+      const px = (ev.clientX - bounds.left) * (w / bounds.width);
+      const idx=Math.max(0,Math.min(series.length-1,Math.round((px-x1)/(x2-x1)*n)));
+      const d=series[idx], x=sx(idx);
+      marker.setAttribute('x1',x);marker.setAttribute('x2',x);
+      hover.querySelectorAll('circle').forEach(node=>{
+        const key=node.getAttribute('data-key');node.setAttribute('cx',x);node.setAttribute('cy',sy(d[key]));
+      });
+      hover.setAttribute('visibility','visible');
+      tooltip.textContent='Age '+d.age+'\nTraditional before tax: '+usd(d.gross)+'\nTraditional after tax: '+usd(d.traditional)+'\nRoth: '+usd(d.roth)+'\nTaxable savings: '+usd(d.taxable)+'\nPrincipal: '+usd(d.principal);
+      tooltip.hidden=false;
+      const rootBox=tooltip.parentElement.getBoundingClientRect();
+      const relX=ev.clientX-rootBox.left, relY=ev.clientY-rootBox.top;
+      const maxLeft=rootBox.width-tooltip.offsetWidth-8;
+      tooltip.style.left=Math.max(6,Math.min(relX+12,maxLeft))+'px';
+      tooltip.style.top=Math.max(4,relY-tooltip.offsetHeight-9)+'px';
+    });
+    rect.addEventListener('pointerleave',hide);
+    svg.appendChild(rect);
+    points=series;
+  }
+  function recalc() {
+    try {
+      const p=read();
+      const result=calculate(p);
+      updateSummary(result);renderSchedule(result);chart(result);
+      errorBox.hidden=true;errorBox.textContent='';status.textContent='';last=result;
+      for (const key of ['balance','contribution']) fields[key].value=fmtNum(p[key]);
+    } catch(e) {
+      errorBox.textContent=e.message;errorBox.hidden=false;
+      // Preserve last valid result but clearly report that the new inputs have not been calculated.
+    }
+  }
+  form.addEventListener('submit',e=>{e.preventDefault();recalc();});
+  $('clear').addEventListener('click',()=>{
+    // The reference site's Clear control empties the form rather than restoring
+    // example values. Blank out the previous output so it cannot be mistaken
+    // for the result of an unsubmitted edit.
+    for (const el of Object.values(fields)) {
+      el.value=''; el.removeAttribute('aria-invalid');
+    }
+    for (const name of ['trad-gross','trad-net','roth-gross','roth-net','taxable-gross','taxable-net']) writeText(name,'—');
+    writeText('balance-label','Balance at retirement');
+    writeText('after-label','Balance at retirement (after tax)');
+    writeText('explanation','Enter your assumptions and choose Calculate to see results.');
+    $('schedule-rows').replaceChildren();
+    $('chart').replaceChildren(svgNode('text',{x:335,y:140,'text-anchor':'middle','font-size':16,fill:'#64788a'},'Enter values and select Calculate to view the graph.'));
+    $('tooltip').hidden=true;
+    errorBox.textContent='';errorBox.hidden=true;status.textContent='';last=null;
+    fields.balance.focus();
+  });
+  $('print').addEventListener('click',()=>window.print());
+  $('save').addEventListener('click',()=>{
+    if (!last) {status.textContent='Calculate first to save results.';return;}
+    const p=last.p, a=last.end;
+    const out=['CalcPro IRA comparison','',
+      'Inputs:','Current balance: '+usd(p.balance),'Annual before-tax contribution: '+usd(p.contribution),
+      'Annual return: '+p.rate+'%','Current age: '+p.age,'Retirement age: '+p.retirement,
+      'Current marginal tax rate: '+p.currentTax+'%','Tax rate in retirement: '+p.retirementTax+'%',
+      '', 'Results at age '+p.retirement+':',
+      'Traditional / SIMPLE / SEP before tax: '+usd(a.gross),
+      'Traditional / SIMPLE / SEP after tax: '+usd(a.traditional),
+      'Roth IRA after tax: '+usd(a.roth),'Taxable savings after tax: '+usd(a.taxable),
+      '', 'Annual Schedule (age, traditional start, traditional end, traditional after tax start, traditional after tax end, roth start, roth end, taxable start, taxable end)',
+      ...last.rows.map(row => [row.age,row.start.traditional,row.end.traditional,row.start.traditionalNet,row.end.traditionalNet,row.start.roth,row.end.roth,row.start.taxable,row.end.taxable].map((v,i)=>i?v.toFixed(2):v).join(',')),
+      '', 'Model assumes year-end contributions, constant annual returns and tax rates, and qualified Roth withdrawals. It does not validate tax eligibility or legal contribution limits.'
+    ].join('\n');
+    const url=URL.createObjectURL(new Blob([out],{type:'text/plain;charset=utf-8'}));
+    const link=document.createElement('a');link.href=url;link.download='ira-calculation.txt';
+    document.body.appendChild(link);link.click();link.remove();
+    setTimeout(()=>URL.revokeObjectURL(url),1000);
+    status.textContent='Calculation saved as ira-calculation.txt.';
+  });
+  recalc();
+})();
+</script><script defer src="/assets/js/data.js"></script>
+<script defer src="/assets/js/style.js?v=20261111-5"></script>
+</body></html>

@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US">
-<head>
-<meta charset="utf-8">
+<html lang="en"><head><meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="content-language" content="en">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,17 +11,241 @@
   <meta name="author" content="Commingsoon">
   <meta name="publisher" content="Commingsoon">
   <meta name="robots" content="noindex, nofollow, max-image-preview:large">
-  <link rel="stylesheet" href="/assets/css/style.css?v=20261111-1" crossorigin="anonymous" data-n-g="">
+  <link rel="stylesheet" href="/assets/css/style.css?v=20261111-4" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/doc_style.css" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/side_style.css" crossorigin="anonymous" data-n-g=""> 
   <!--ogtags-->
-  <!--schema-->
-  <!--style-->
-</head>
+  <!--schema--><style>
 
-<body>
-<!-- Main-header-page -->
-<script defer src="/assets/js/data.js"></script>
-<script defer src="/assets/js/style.js?v=20261111-1"></script>
-</body>
-</html>
+/* Boat loan calculator UI is deliberately isolated from the CalcPro global layout. */
+.calcpro-boat-tool{--calcpro-boat-blue:#336699;--calcpro-boat-navy:#125217;--calcpro-boat-green:#4d8427;--calcpro-boat-principal:#2d7ddd;--calcpro-boat-interest:#85bf22;color:#111;font:16px/1.35 Arial,Helvetica,sans-serif;min-width:0;width:100%;container-type:inline-size}
+.calcpro-boat-tool *{box-sizing:border-box}
+.calcpro-boat-tool button,.calcpro-boat-tool input,.calcpro-boat-tool select{font:inherit}
+.calcpro-boat-tool button{cursor:pointer}
+.calcpro-boat-tool button:focus-visible,.calcpro-boat-tool input:focus-visible,.calcpro-boat-tool select:focus-visible,.calcpro-boat-tool summary:focus-visible{outline:2px solid #155ea3;outline-offset:2px}
+.calcpro-boat-topbar{min-height:28px;display:flex;justify-content:flex-end;align-items:center;gap:10px;margin-bottom:3px}
+.calcpro-boat-print{padding:0;background:none;border:0;color:#006699;text-decoration:underline;font-size:13px!important}
+.calcpro-boat-guide{background:var(--calcpro-boat-blue);color:white;display:flex;justify-content:center;align-items:center;min-height:42px;gap:22px;font-size:16px;font-weight:bold;padding:8px 12px;text-align:center}
+.calcpro-boat-guide-icon{background:#fff;color:var(--calcpro-boat-blue);width:27px;height:27px;display:inline-flex;align-items:center;justify-content:center;border-radius:50%;font-size:17px;line-height:1;flex:none}
+.calcpro-boat-columns{display:grid;grid-template-columns:minmax(0,325px) minmax(0,1fr);gap:18px;align-items:start;margin-top:7px}
+.calcpro-boat-entry,.calcpro-boat-results{min-width:0}
+.calcpro-boat-tabs{display:flex;align-items:flex-end;gap:4px;height:38px;overflow:visible}
+.calcpro-boat-tab{background:#336699;color:#fff;border:1px solid #336699;border-bottom:0;font-weight:bold;padding:9px 6px 8px;font-size:14px!important;line-height:20px;white-space:nowrap}
+.calcpro-boat-tab[aria-selected="true"]{background:#f0f0f0;color:#101010;border-color:#b9b9b9}
+.calcpro-boat-form{background:#eee;border:1px solid #bcbcbc;padding:9px 10px 11px}
+.calcpro-boat-fields{display:grid;gap:5px}
+.calcpro-boat-field{display:grid;grid-template-columns:120px minmax(0,1fr);align-items:center;gap:6px;min-width:0}
+.calcpro-boat-field>label{line-height:1.25;white-space:nowrap;font-size:15px}
+.calcpro-boat-inputline{display:flex;align-items:stretch;gap:5px;min-width:0}
+.calcpro-boat-moneywrap,.calcpro-boat-percentwrap{position:relative;display:inline-flex;min-width:0;flex:1 1 auto;max-width:130px}
+.calcpro-boat-moneywrap::before{content:'$';position:absolute;left:6px;top:6px;pointer-events:none;font-size:15px}
+.calcpro-boat-percentwrap::after{content:'%';position:absolute;right:7px;top:6px;pointer-events:none;font-size:15px}
+.calcpro-boat-input{border:1px solid #34689a;border-radius:2px;background:#fff;color:#111;min-width:0;width:100%;height:33px;padding:4px 7px;font-size:15px!important;box-shadow:1px 1px 2px #aaa}
+.calcpro-boat-moneywrap .calcpro-boat-input{padding-left:18px}
+.calcpro-boat-percentwrap .calcpro-boat-input{padding-right:22px}
+.calcpro-boat-short{width:66px;flex:none}
+.calcpro-boat-termrow .calcpro-boat-input{max-width:66px}
+.calcpro-boat-select{height:33px;min-width:0;max-width:100%;border:1px solid #34689a;background:white;box-shadow:1px 1px 2px #aaa;border-radius:2px;padding:3px 4px;font-size:15px!important}
+.calcpro-boat-termsel{width:92px}
+.calcpro-boat-downsel{width:56px;flex:none}
+.calcpro-boat-downwrap{flex:1 1 auto;max-width:96px}
+.calcpro-boat-tip{display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;border:1px solid #999;border-radius:50%;font-size:11px;font-weight:bold;color:#888;cursor:help;vertical-align:middle;line-height:1}
+.calcpro-boat-checkboxrow{margin-top:7px;display:flex;align-items:center;gap:7px;font-size:15px;cursor:pointer}
+.calcpro-boat-checkboxrow input{appearance:none;flex:none;width:20px;height:20px;border:2px solid #326b9f;background:#fff;margin:0;display:inline-grid;place-items:center}
+.calcpro-boat-checkboxrow input:checked::after{content:'✔';color:#336699;font-size:15px;font-weight:bold}
+.calcpro-boat-actions{display:flex;justify-content:center;gap:5px;margin-top:10px}
+.calcpro-boat-calculate{border:0;background:#4c8427;color:#fff;padding:9px 14px;font-weight:bold;font-size:15px!important;min-height:40px}
+.calcpro-boat-calculate::after{content:'▶';display:inline-grid;place-items:center;margin-left:11px;width:23px;height:23px;background:#86b97b;border-radius:50%;font-size:12px}
+.calcpro-boat-clear{background:#aaa;color:white;border:0;padding:9px 10px;font-size:14px!important}
+.calcpro-boat-error{background:#fff2ed;border:1px solid #b43d29;color:#852d19;padding:8px;margin-bottom:8px;font-size:13px}
+.calcpro-boat-error[hidden],.calcpro-boat-results[hidden],.calcpro-boat-amort[hidden],.calcpro-boat-scheduleview[hidden],.calcpro-boat-modefield[hidden]{display:none!important}
+.calcpro-boat-results{padding-top:0}
+.calcpro-boat-summarybar{background:#125217;color:#fff;min-height:40px;display:flex;align-items:center;padding:4px 7px;gap:6px}
+.calcpro-boat-summarylabel{font-size:21px;line-height:1.2;flex:none}
+.calcpro-boat-summaryvalue{font-size:21px;white-space:nowrap;flex:1 1 auto}
+.calcpro-boat-save{margin-left:auto;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1;color:#fff;background:transparent;border:0;padding:1px 2px;font-size:10px!important;min-width:25px}
+.calcpro-boat-save svg{width:17px;height:17px;fill:#fff}
+.calcpro-boat-save span{font-size:9px}
+.calcpro-boat-breakdown{margin:4px 5px 0 5px;font-size:15px}
+.calcpro-boat-stat{display:flex;justify-content:space-between;align-items:baseline;gap:9px;min-height:27px}
+.calcpro-boat-stat[hidden]{display:none!important}
+.calcpro-boat-stat dt{margin:0;line-height:1.25;min-width:0}
+.calcpro-boat-stat dd{margin:0;font-variant-numeric:tabular-nums;white-space:nowrap;text-align:right}
+.calcpro-boat-stat-space{margin-top:16px}
+.calcpro-boat-chart{margin:18px auto 0;text-align:center;max-width:300px}
+.calcpro-boat-chartheading{font-size:19px;line-height:1.2;margin:0 0 3px;font-weight:bold}
+.calcpro-boat-chart svg{display:block;width:min(100%,280px);height:auto;margin:0 auto;overflow:visible}
+.calcpro-boat-chart text{font-family:Arial,Helvetica,sans-serif}
+.calcpro-boat-chartsegment{transition:stroke-dasharray .28s ease,stroke-dashoffset .28s ease}
+.calcpro-boat-chartlabel{fill:white;font-size:12px;font-weight:bold;text-anchor:middle;dominant-baseline:middle;paint-order:stroke;stroke-width:2px}
+.calcpro-boat-chartlegend{font-size:14px;fill:#111}
+.calcpro-boat-notice{min-height:17px;font-size:12px;color:#4c8427;padding-top:5px}
+.calcpro-boat-amort{border-top:1px solid #ccd4db;margin-top:22px;padding-top:12px}
+.calcpro-boat-scheduleheading{font-size:19px;color:var(--calcpro-boat-navy);margin:0 0 10px;font-weight:bold}
+.calcpro-boat-schedulemenu{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:9px;font-size:14px}
+.calcpro-boat-scheduletab{border:1px solid #336699;color:#006699;background:#fff;padding:6px 10px;font-size:13px!important}
+.calcpro-boat-scheduletab[aria-selected="true"]{background:#336699;color:#fff;font-weight:bold}
+.calcpro-boat-tablescroll{overflow-x:auto;max-width:100%;border:1px solid #c9d5df}
+.calcpro-boat-table{width:100%;border-collapse:collapse;font-size:13px;font-variant-numeric:tabular-nums}
+.calcpro-boat-table th{color:#fff;background:#336699;border:1px solid #c9d5df;text-align:right;padding:8px 10px}
+.calcpro-boat-table td{border:1px solid #d4dfe8;text-align:right;padding:7px 10px;white-space:nowrap}
+.calcpro-boat-table th:first-child,.calcpro-boat-table td:first-child{text-align:left}
+.calcpro-boat-table tbody tr:nth-child(even){background:#f3f7f9}
+.calcpro-boat-table tbody tr:hover{background:#e4eff7}
+.calcpro-boat-table tfoot{font-weight:bold;background:#e9f3ea}
+.calcpro-boat-saved{margin-top:17px;font-size:13px}
+.calcpro-boat-saved summary{color:#006699;text-decoration:underline;cursor:pointer;width:max-content;max-width:100%}
+.calcpro-boat-savedlist{margin:9px 0;padding:0;list-style:none}
+.calcpro-boat-savedlist li{padding:6px;border:1px solid #ccd4df;margin-bottom:5px;display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.calcpro-boat-savedname{min-width:175px;flex:1 1 auto}
+.calcpro-boat-smallbutton{border:1px solid #32669a;color:#32669a;background:white;padding:5px 8px;font-size:12px!important;margin-left:4px}
+.calcpro-boat-smallbutton.calcpro-boat-delete{border-color:#a23636;color:#a23636}
+.calcpro-boat-note{color:#666;font-size:12px;margin-top:6px}
+@container (max-width:680px){.calcpro-boat-columns{grid-template-columns:minmax(0,1fr);gap:16px}.calcpro-boat-entry{width:min(100%,390px)}.calcpro-boat-results{width:100%;max-width:520px}.calcpro-boat-field{grid-template-columns:125px minmax(0,1fr)}.calcpro-boat-chart{margin-top:12px}}
+@container (max-width:380px){.calcpro-boat-field{grid-template-columns:108px minmax(0,1fr);gap:4px}.calcpro-boat-form{padding:8px 6px}.calcpro-boat-tab{font-size:13px!important}.calcpro-boat-guide{gap:9px;font-size:14px}.calcpro-boat-summarylabel,.calcpro-boat-summaryvalue{font-size:18px}.calcpro-boat-breakdown{font-size:14px}.calcpro-boat-field>label{font-size:13px}.calcpro-boat-moneywrap,.calcpro-boat-percentwrap{max-width:100%}}
+@media print{.calcpro-boat-guide,.calcpro-boat-print,.calcpro-boat-tabs,.calcpro-boat-form,.calcpro-boat-save,.calcpro-boat-schedulemenu,.calcpro-boat-saved,.calcpro-boat-note,.calcpro-boat-notice{display:none!important}.calcpro-boat-columns{display:block}.calcpro-boat-results{max-width:none!important}.calcpro-boat-chart svg{margin-left:0}.calcpro-boat-amort{break-before:avoid}.calcpro-boat-table{font-size:11px}.calcpro-boat-table th,.calcpro-boat-table td{padding:3px 5px}}
+
+</style>
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Boat Loan Calculator</nav><h1 class="cp-page-title">Boat Loan Calculator</h1><p class="cp-intro">Estimate monthly boat loan payments, loan interest, upfront purchase costs, and affordable boat prices. Compare loan terms, down payments, tax and financing options.</p><section aria-label="Calculator" class="cp-tool-area">
+<section class="calcpro-boat-tool" data-calcpro-boat aria-label="Boat loan calculator">
+  <div class="calcpro-boat-topbar"><button type="button" class="calcpro-boat-print" data-boat-print>Print</button></div>
+  <div class="calcpro-boat-guide"><span class="calcpro-boat-guide-icon" aria-hidden="true">▼</span><span>Modify the values and click the Calculate button to use</span></div>
+  <div class="calcpro-boat-columns">
+    <div class="calcpro-boat-entry">
+      <div class="calcpro-boat-tabs" role="tablist" aria-label="Calculate using">
+        <button class="calcpro-boat-tab" role="tab" type="button" data-boat-mode="standard" aria-selected="true">Total Price</button>
+        <button class="calcpro-boat-tab" role="tab" type="button" data-boat-mode="reverse" aria-selected="false">Monthly Payment</button>
+      </div>
+      <form class="calcpro-boat-form" id="calcpro-boat-form" novalidate>
+        <div class="calcpro-boat-error" role="alert" id="calcpro-boat-error" hidden></div>
+        <div class="calcpro-boat-fields">
+          <div class="calcpro-boat-field calcpro-boat-modefield" data-boat-standard>
+            <label for="calcpro-boat-price">Boat Price</label>
+            <div class="calcpro-boat-inputline"><span class="calcpro-boat-moneywrap"><input class="calcpro-boat-input" id="calcpro-boat-price" name="price" type="text" inputmode="decimal" value="35,000" autocomplete="off" aria-label="Boat price in dollars"></span></div>
+          </div>
+          <div class="calcpro-boat-field calcpro-boat-modefield" data-boat-reverse hidden>
+            <label for="calcpro-boat-target">Monthly Payment</label>
+            <div class="calcpro-boat-inputline"><span class="calcpro-boat-moneywrap"><input class="calcpro-boat-input" id="calcpro-boat-target" name="target" type="text" inputmode="decimal" value="350" autocomplete="off" aria-label="Target monthly payment in dollars"></span></div>
+          </div>
+          <div class="calcpro-boat-field">
+            <label for="calcpro-boat-term">Loan Term</label>
+            <div class="calcpro-boat-inputline calcpro-boat-termrow"><input class="calcpro-boat-input calcpro-boat-short" id="calcpro-boat-term" name="term" type="text" inputmode="decimal" value="10" autocomplete="off"><select class="calcpro-boat-select calcpro-boat-termsel" name="termUnit" id="calcpro-boat-term-unit" aria-label="Loan term unit"><option value="years">years</option><option value="months">months</option></select></div>
+          </div>
+          <div class="calcpro-boat-field"><label for="calcpro-boat-rate">Interest Rate</label><div class="calcpro-boat-inputline"><span class="calcpro-boat-percentwrap"><input class="calcpro-boat-input" id="calcpro-boat-rate" name="rate" type="text" inputmode="decimal" value="7" autocomplete="off" aria-label="Annual interest rate percent"></span></div></div>
+          <div class="calcpro-boat-field"><label for="calcpro-boat-down">Down Payment</label><div class="calcpro-boat-inputline"><span class="calcpro-boat-moneywrap calcpro-boat-downwrap" id="calcpro-boat-down-wrap"><input class="calcpro-boat-input" id="calcpro-boat-down" name="down" type="text" inputmode="decimal" value="7,000" autocomplete="off"></span><select class="calcpro-boat-select calcpro-boat-downsel" id="calcpro-boat-down-unit" name="downUnit" aria-label="Down payment unit"><option value="d">$</option><option value="p">%</option></select></div></div>
+          <div class="calcpro-boat-field"><label for="calcpro-boat-trade">Trade-in Value</label><div class="calcpro-boat-inputline"><span class="calcpro-boat-moneywrap"><input class="calcpro-boat-input" id="calcpro-boat-trade" name="trade" type="text" inputmode="decimal" value="0" autocomplete="off"></span></div></div>
+          <div class="calcpro-boat-field"><label for="calcpro-boat-tax">Sales Tax</label><div class="calcpro-boat-inputline"><span class="calcpro-boat-percentwrap"><input class="calcpro-boat-input" id="calcpro-boat-tax" name="tax" type="text" inputmode="decimal" value="7" autocomplete="off"></span></div></div>
+          <div class="calcpro-boat-field"><label for="calcpro-boat-fees">Fees <span class="calcpro-boat-tip" tabindex="0" title="Title, registration, lender or documentation charges, and other purchase fees.">?</span></label><div class="calcpro-boat-inputline"><span class="calcpro-boat-moneywrap"><input class="calcpro-boat-input" id="calcpro-boat-fees" name="fees" type="text" inputmode="decimal" value="2,000" autocomplete="off"></span></div></div>
+        </div>
+        <label class="calcpro-boat-checkboxrow" for="calcpro-boat-finance-fees"><input id="calcpro-boat-finance-fees" name="financeFees" type="checkbox"><span>Include all fees in loan</span></label>
+        <div class="calcpro-boat-actions"><button class="calcpro-boat-calculate" type="submit">Calculate</button><button class="calcpro-boat-clear" data-boat-clear type="button">Clear</button></div>
+      </form>
+    </div>
+    <section class="calcpro-boat-results" id="calcpro-boat-results" aria-label="Loan estimate" aria-live="polite">
+      <div class="calcpro-boat-summarybar"><span class="calcpro-boat-summarylabel" id="calcpro-boat-summary-label">Monthly Pay:</span><strong class="calcpro-boat-summaryvalue" id="calcpro-boat-summary-value">$325.10</strong><button type="button" class="calcpro-boat-save" data-boat-save title="Save this calculation in this browser" aria-label="Save this calculation"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 3h14l3 3v15H3V3h1zm3 1v6h10V4h-2v4H9V4H7zm5 9a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"/></svg><span>save</span></button></div>
+      <dl class="calcpro-boat-breakdown">
+        <div class="calcpro-boat-stat" id="calcpro-boat-monthly-row" hidden><dt>Monthly Pay</dt><dd id="calcpro-boat-monthly-extra"></dd></div>
+        <div class="calcpro-boat-stat"><dt>Total Loan Amount</dt><dd id="calcpro-boat-loan-total">$28,000.00</dd></div>
+        <div class="calcpro-boat-stat"><dt>Sale Tax</dt><dd id="calcpro-boat-tax-total">$2,450.00</dd></div>
+        <div class="calcpro-boat-stat"><dt>Upfront Payment <span class="calcpro-boat-tip" tabindex="0" title="Cash due at purchase: down payment plus taxes and fees paid upfront. Trade-in value has already reduced the financed principal.">?</span></dt><dd id="calcpro-boat-upfront">$11,450.00</dd></div>
+        <div class="calcpro-boat-stat calcpro-boat-stat-space"><dt id="calcpro-boat-payment-count">Total of 120 Loan Payments</dt><dd id="calcpro-boat-total-payments">$39,012.45</dd></div>
+        <div class="calcpro-boat-stat"><dt>Total Loan Interest</dt><dd id="calcpro-boat-total-interest">$11,012.45</dd></div>
+        <div class="calcpro-boat-stat"><dt>Total Cost (price, interest, tax, fees)</dt><dd id="calcpro-boat-all-cost">$50,462.45</dd></div>
+      </dl>
+      <div class="calcpro-boat-chart"><h3 class="calcpro-boat-chartheading">Loan Breakdown</h3><svg role="img" viewBox="0 0 280 138" id="calcpro-boat-donut" aria-label="72 percent principal and 28 percent interest" xmlns="http://www.w3.org/2000/svg"><circle cx="72" cy="70" r="43" stroke="#eef2f3" stroke-width="25" fill="none"/><circle id="calcpro-boat-principal-ring" class="calcpro-boat-chartsegment" cx="72" cy="70" r="43" stroke="#2d7ddd" stroke-width="25" fill="none" transform="rotate(-90 72 70)"/><circle id="calcpro-boat-interest-ring" class="calcpro-boat-chartsegment" cx="72" cy="70" r="43" stroke="#85bf22" stroke-width="25" fill="none" transform="rotate(-90 72 70)"/><text class="calcpro-boat-chartlabel" id="calcpro-boat-principal-pct" x="106" y="100" stroke="#2d7ddd">72%</text><text class="calcpro-boat-chartlabel" id="calcpro-boat-interest-pct" x="45" y="43" stroke="#85bf22">28%</text><rect x="146" y="30" width="18" height="15" rx="3" fill="#2d7ddd"/><text class="calcpro-boat-chartlegend" x="169" y="43">Principal</text><rect x="146" y="52" width="18" height="15" rx="3" fill="#85bf22"/><text class="calcpro-boat-chartlegend" x="169" y="65">Interest</text></svg></div>
+      <div class="calcpro-boat-notice" aria-live="polite" id="calcpro-boat-notice"></div>
+    </section>
+  </div>
+  <section class="calcpro-boat-amort" id="calcpro-boat-amort" aria-label="Amortization schedule">
+    <h2 class="calcpro-boat-scheduleheading">Amortization schedule</h2>
+    <div class="calcpro-boat-schedulemenu" role="tablist" aria-label="Amortization schedule view"><button type="button" role="tab" class="calcpro-boat-scheduletab" data-boat-schedule="annual" aria-selected="true">Annual Schedule</button><button type="button" role="tab" class="calcpro-boat-scheduletab" data-boat-schedule="monthly" aria-selected="false">Monthly Schedule</button><button type="button" class="calcpro-boat-smallbutton" data-boat-csv>Export CSV</button></div>
+    <div class="calcpro-boat-scheduleview" data-boat-scheduleview="annual"><div class="calcpro-boat-tablescroll"><table class="calcpro-boat-table"><thead><tr><th>Year</th><th>Interest</th><th>Principal</th><th>Ending Balance</th></tr></thead><tbody id="calcpro-boat-annual-body"></tbody><tfoot><tr><td>Total</td><td id="calcpro-boat-annual-interest"></td><td id="calcpro-boat-annual-principal"></td><td>$0.00</td></tr></tfoot></table></div></div>
+    <div class="calcpro-boat-scheduleview" data-boat-scheduleview="monthly" hidden><div class="calcpro-boat-tablescroll"><table class="calcpro-boat-table"><thead><tr><th>Month</th><th>Interest</th><th>Principal</th><th>Ending Balance</th></tr></thead><tbody id="calcpro-boat-monthly-body"></tbody><tfoot><tr><td>Total</td><td id="calcpro-boat-monthly-interest"></td><td id="calcpro-boat-monthly-principal"></td><td>$0.00</td></tr></tfoot></table></div></div>
+  </section>
+  <details class="calcpro-boat-saved" id="calcpro-boat-saved"><summary>Saved calculations (<span id="calcpro-boat-savedcount">0</span>)</summary><ul class="calcpro-boat-savedlist" id="calcpro-boat-savedlist"></ul><p class="calcpro-boat-note">Saved locally in this browser only; not sent to CalcPro or the reference website.</p></details>
+</section>
+</section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><!-- REPLACE these links with real related tools for each calculator; verify live slugs. --><a href="retirement-calculator.html">Retirement</a><a href="roth-ira-calculator.html">Roth IRA</a><a href="investment-calculator.html">Investment</a><a href="compound-interest-calculator.html">Compound Interest</a><a href="annuity-payout-calculator.html">Annuity Payout</a><a href="pension-calculator.html">Pension</a><a href="inflation-calculator.html">Inflation</a><a href="future-value-calculator.html">Future Value</a><a href="income-tax-calculator.html">Income Tax</a><a href="savings-calculator.html">Savings</a><a href="mortgage-calculator.html">Mortgage</a><a href="loan-calculator.html">Loan</a></div></section></aside><article class="cp-article"><h2>How to Use the Boat Loan Calculator</h2>
+<p>Use this calculator to estimate a fixed-rate boat loan's monthly payment, cash needed at purchase, total interest, and overall boat purchase cost. Choose <strong>Total Price</strong> to start with a boat's price, or <strong>Monthly Payment</strong> to estimate the boat price supported by a desired payment.</p>
+<ol><li>Enter the boat price (or target monthly payment), repayment term, and annual interest rate.</li><li>Enter a dollar or percentage down payment, any trade-in value, the expected sales tax rate, and purchasing fees.</li><li>Choose whether to include sales tax and all listed fees in the loan, then press <strong>Calculate</strong>.</li><li>Review the payment, purchase cost and principal-versus-interest chart, then switch between annual and monthly amortization schedules. The <strong>Export CSV</strong> option saves the monthly schedule on demand.</li></ol>
+<h2>Boat Loan Formula</h2>
+<p>For a fixed-rate, fully amortizing loan, the monthly payment is:</p>
+<p><strong>M = P × r ÷ [1 − (1 + r)<sup>−n</sup>]</strong>, where <strong>P</strong> is the financed principal, <strong>r</strong> is the annual interest rate divided by 12 and 100, and <strong>n</strong> is the number of monthly payments. For a 0% interest rate, <strong>M = P ÷ n</strong>.</p>
+<p>With taxes and fees paid upfront, <strong>P = boat price − down payment − trade-in value</strong>. If you check <strong>Include all fees in loan</strong>, the calculator adds <strong>sales tax + entered fees</strong> to the financed principal. The modeled sales tax is the boat price multiplied by your entered tax rate, without jurisdiction-specific deductions or exemptions.</p>
+<h3>Worked Example</h3>
+<p>Suppose you buy a $35,000 boat, put $7,000 down, trade in nothing, borrow for 10 years at 7% interest, pay 7% sales tax, and have $2,000 in fees. If tax and fees are paid upfront, the financed balance is <strong>$28,000</strong>. The estimated payment is <strong>$325.10</strong> per month, with <strong>$11,012.45</strong> in interest over 120 payments.</p>
+<div class="cp-table-scroll"><table class="cp-content-table"><thead><tr><th>Estimate</th><th>Amount</th></tr></thead><tbody><tr><td>Boat price</td><td>$35,000.00</td></tr><tr><td>Down payment</td><td>$7,000.00</td></tr><tr><td>Sales tax (7%)</td><td>$2,450.00</td></tr><tr><td>Other fees</td><td>$2,000.00</td></tr><tr><td>Upfront cash</td><td>$11,450.00</td></tr><tr><td>Total of 120 loan payments</td><td>$39,012.45</td></tr><tr><td>Total purchase cost including interest</td><td>$50,462.45</td></tr></tbody></table></div>
+<h2>Understanding the Results</h2>
+<p><strong>Loan amount</strong> is the principal borrowed. <strong>Upfront payment</strong> is the cash down payment plus any sales tax and fees that are not financed; the trade-in is applied as a separate credit against the loan principal. <strong>Total loan interest</strong> is the combined loan payments less the original principal. <strong>Total cost</strong> adds boat price, sales tax, fees, and loan interest; it is not your remaining cash obligation after accounting for trade-in equity.</p>
+<p>In the <strong>Monthly Payment</strong> tab, the calculator reverses the same payment formula to estimate the boat price based on the selected down payment, trade-in, tax treatment, and fees. This is a budgeting estimate, not a lender approval decision.</p>
+<h2>Frequently Asked Questions</h2>
+<h3>Does financing sales tax and fees increase the monthly payment?</h3><p>Yes. When sales tax and fees are added to principal, the initial cash due at purchase is lower, but you pay interest on those charges for the life of the loan.</p>
+<h3>Can I use a down payment percentage instead of dollars?</h3><p>Yes. Select <strong>%</strong> next to Down Payment. The calculator calculates that percentage of the boat's price, including the estimated price in reverse mode.</p>
+<h3>What expenses are not included?</h3><p>Insurance, marina slips, storage, maintenance, fuel, winterization, repairs, and future registration renewals are excluded unless you explicitly enter a purchase cost in Fees. Actual tax rules, loan charges, early payoff conditions, and monthly bills may differ.</p>
+<h3>Are saved estimates private?</h3><p>The Save control stores up to 20 estimates locally in your browser, without transmitting them to the reference website. Clearing your browser's site data can remove them.</p>
+<h2>Reference</h2><p>Interface and feature comparison: <a href="https://www.calculator.net/boat-loan-calculator.html" target="_blank" rel="noopener noreferrer">Calculator.net Boat Loan Calculator</a>. Calculation and amortization logic on this CalcPro page is independently implemented in JavaScript.</p>
+<p class="cp-page-footer">CalcPro — estimates are informational and assume equal monthly payments at a fixed annual interest rate, with no extra principal payments or interest-rate changes.</p></article></main></div><script>
+(()=>{
+'use strict';
+const root=document.querySelector('[data-calcpro-boat]');if(!root)return;
+const el=id=>root.querySelector('#calcpro-boat-'+id);
+const form=el('form');const results=el('results');const error=el('error');
+const storageKey='calcpro-boat-loan-v1';let mode='standard';let scheduleView='annual';let latest=null;let savedFallback=[];
+const currency=n=>new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',minimumFractionDigits:2,maximumFractionDigits:2}).format(Math.abs(n)<0.000001?0:n);
+const moneyInput=n=>Number.isFinite(n)?new Intl.NumberFormat('en-US',{maximumFractionDigits:6}).format(+n.toFixed(6)):'';
+const parse=(id,description)=>{const raw=el(id).value.trim().replace(/[$,%\s]/g,'');if(!raw||!/^\d+(?:\.\d+)?$/.test(raw))throw Error('Enter a valid non-negative '+description+'.');const n=Number(raw);if(!Number.isFinite(n)||n>1e12)throw Error(description+' must be a number from 0 to 1 trillion.');return n;};
+function getInputs(){const price=mode==='standard'?parse('price','boat price'):null;const target=mode==='reverse'?parse('target','monthly payment'):null;const term=parse('term','loan term');const termUnit=el('term-unit').value;const n=Math.round(term*(termUnit==='years'?12:1));if(term<=0||n<1||n>600)throw Error('Loan term must be between 1 and 600 months (50 years).');const rate=parse('rate','annual interest rate');if(rate>100)throw Error('Annual interest rate cannot exceed 100%.');const down=parse('down','down payment');const downUnit=el('down-unit').value;if(downUnit==='p'&&down>100)throw Error('Down payment percentage cannot exceed 100%.');const trade=parse('trade','trade-in value');const tax=parse('tax','sales tax rate');if(tax>100)throw Error('Sales tax cannot exceed 100%.');const fees=parse('fees','fees');const financeFees=el('finance-fees').checked;return{price,target,term,termUnit,n,rate,down,downUnit,trade,tax,fees,financeFees,mode};}
+// Equivalent to principal*r / (1 - (1+r)^(-n)), with a stable zero-rate branch.
+function pay(principal,r,n){if(principal===0)return 0;return r===0?principal/n:principal*r/(-Math.expm1(-n*Math.log1p(r)));}
+function presentValue(monthly,r,n){return r===0?monthly*n:monthly*(-Math.expm1(-n*Math.log1p(r)))/r;}
+function compute(a){let price=a.price;const r=a.rate/1200;const taxRate=a.tax/100;
+if(a.mode==='reverse'){
+ const pv=presentValue(a.target,r,a.n);const factor=1-(a.downUnit==='p'?a.down/100:0)+(a.financeFees?taxRate:0);
+ const other=(a.downUnit==='d'?a.down:0)+a.trade-(a.financeFees?a.fees:0);
+ if(factor<=0)throw Error('This down-payment percentage does not allow a unique boat-price estimate. Reduce it below 100%.');
+ price=(pv+other)/factor;
+ if(price<0||!Number.isFinite(price))throw Error('The requested payment cannot cover the trade-in/fee assumptions. Adjust the inputs.');
+}
+const downAmount=a.downUnit==='p'?price*a.down/100:a.down;
+if(downAmount+ a.trade>price+0.000001)throw Error('Down payment plus trade-in value cannot exceed the boat price.');
+const salesTax=price*taxRate;const financedAddons=a.financeFees?salesTax+a.fees:0;
+const principal=Math.max(0,price-downAmount-a.trade+financedAddons);
+if(a.mode==='reverse'&&a.target===0&&principal===0&&a.downUnit==='p'&&a.down===100)throw Error('A $0 payment with a 100% down payment does not determine a unique boat price.');
+const monthly=pay(principal,r,a.n);const totalPayments=monthly*a.n;const interest=Math.max(0,totalPayments-principal);
+const upfront=downAmount+(a.financeFees?0:salesTax+a.fees);
+const totalCost=price+salesTax+a.fees+interest;
+return{...a,price,downAmount,salesTax,principal,monthly,totalPayments,interest,upfront,totalCost,r};}
+function amortize(c){let bal=c.principal;const arr=[];for(let i=1;i<=c.n;i++){const int=bal*c.r;let princ=c.monthly-int;if(i===c.n||princ>bal){princ=bal;}bal=Math.max(0,bal-princ);arr.push({i,int,princ,bal});}return arr;}
+function showError(message){error.textContent=message;error.hidden=false;el('notice').textContent='';}
+function clearError(){error.textContent='';error.hidden=true;}
+function setText(id,value){el(id).textContent=value;}
+const ringC=2*Math.PI*43;
+function redrawChart(c){const full=c.principal+c.interest;const fraction=full>0?c.principal/full:0;const blue=root.querySelector('#calcpro-boat-principal-ring');const green=root.querySelector('#calcpro-boat-interest-ring');const blueLength=ringC*fraction;const greenLength=ringC-blueLength;blue.style.strokeDasharray=blueLength+' '+(ringC-blueLength);blue.style.strokeDashoffset='0';green.style.strokeDasharray=greenLength+' '+(ringC-greenLength);green.style.strokeDashoffset='-'+blueLength;const a=el('principal-pct');const b=el('interest-pct');const put=(text,start,share,color)=>{if(!share||share<.09){text.style.display='none';return;}const angle=(-90+360*(start+share/2))*Math.PI/180;const radius=44;text.setAttribute('x',String((72+Math.cos(angle)*radius).toFixed(2)));text.setAttribute('y',String((70+Math.sin(angle)*radius).toFixed(2)));text.textContent=Math.round(share*100)+'%';text.style.display='';text.setAttribute('stroke',color);};put(a,0,fraction,'#2d7ddd');put(b,fraction,1-fraction,'#85bf22');el('donut').setAttribute('aria-label',Math.round(fraction*100)+' percent principal and '+Math.round((1-fraction)*100)+' percent interest');}
+function schedule(c){const rows=amortize(c);c.rows=rows;const annual=[];for(let i=0;i<rows.length;i+=12){const group=rows.slice(i,i+12);annual.push({i:annual.length+1,int:group.reduce((a,x)=>a+x.int,0),princ:group.reduce((a,x)=>a+x.princ,0),bal:group[group.length-1].bal});}
+const table=(list)=>list.map(x=>'<tr><td>'+x.i+'</td><td>'+currency(x.int)+'</td><td>'+currency(x.princ)+'</td><td>'+currency(x.bal)+'</td></tr>').join('');el('annual-body').innerHTML=table(annual);el('monthly-body').innerHTML=table(rows);setText('annual-interest',currency(c.interest));setText('annual-principal',currency(c.principal));setText('monthly-interest',currency(c.interest));setText('monthly-principal',currency(c.principal));el('amort').hidden=false;setSchedule(scheduleView);}
+function setSchedule(value){scheduleView=value;root.querySelectorAll('[data-boat-schedule]').forEach(x=>x.setAttribute('aria-selected',String(x.dataset.boatSchedule===value)));root.querySelectorAll('[data-boat-scheduleview]').forEach(x=>x.hidden=x.dataset.boatScheduleview!==value);}
+function update(c){latest=c;clearError();results.hidden=false;setText('summary-label',c.mode==='reverse'?'Boat Price:':'Monthly Pay:');setText('summary-value',currency(c.mode==='reverse'?c.price:c.monthly));el('monthly-row').hidden=c.mode!=='reverse';setText('monthly-extra',currency(c.monthly));setText('loan-total',currency(c.principal));setText('tax-total',currency(c.salesTax));setText('upfront',currency(c.upfront));setText('payment-count','Total of '+c.n+' Loan Payments');setText('total-payments',currency(c.totalPayments));setText('total-interest',currency(c.interest));setText('all-cost',currency(c.totalCost));redrawChart(c);schedule(c);el('notice').textContent='';}
+function calculate(){try{const args=getInputs();const c=compute(args);update(c);return true;}catch(e){showError(e.message||'Please check your inputs.');return false;}}
+function setMode(value){mode=value;root.querySelectorAll('[data-boat-mode]').forEach(x=>x.setAttribute('aria-selected',String(x.dataset.boatMode===value)));root.querySelector('[data-boat-standard]').hidden=value!=='standard';root.querySelector('[data-boat-reverse]').hidden=value!=='reverse';}
+function state(){return{mode,price:el('price').value,target:el('target').value,term:el('term').value,termUnit:el('term-unit').value,rate:el('rate').value,down:el('down').value,downUnit:el('down-unit').value,trade:el('trade').value,tax:el('tax').value,fees:el('fees').value,financeFees:el('finance-fees').checked};}
+function applyState(s){setMode(s.mode==='reverse'?'reverse':'standard');['price','target','term','rate','down','trade','tax','fees'].forEach(x=>{el(x).value=typeof s[x]==='string'?s[x]:String(s[x]??'');});el('term-unit').value=s.termUnit==='months'?'months':'years';el('down-unit').value=s.downUnit==='p'?'p':'d';el('finance-fees').checked=!!s.financeFees;setDownUnitVisual();}
+function setDownUnitVisual(){const wrap=el('down-wrap');wrap.classList.toggle('calcpro-boat-moneywrap',el('down-unit').value==='d');wrap.classList.toggle('calcpro-boat-percentwrap',el('down-unit').value==='p');}
+function changeDownUnit(){const old=el('down-unit').dataset.last||'d';const next=el('down-unit').value;try{const down=parse('down','down payment');let base=mode==='standard'?parse('price','boat price'):(latest&&latest.price>0?latest.price:parse('price','boat price'));if(base>0&&old!==next){const result=next==='p'?(down/base)*100:base*down/100;el('down').value=moneyInput(result);}else if(base===0&&next==='p'){el('down').value='0';}}catch(_){}el('down-unit').dataset.last=next;setDownUnitVisual();}
+function changeTermUnit(){const old=el('term-unit').dataset.last||'years';const next=el('term-unit').value;if(next!==old){try{let value=parse('term','loan term');value=next==='months'?value*12:value/12;el('term').value=moneyInput(value);}catch(_){}}el('term-unit').dataset.last=next;}
+function getSaved(){try{const data=JSON.parse(localStorage.getItem(storageKey)||'[]');if(Array.isArray(data))return data.slice(0,20);}catch(_){}return savedFallback;}
+function storeSaved(items){savedFallback=items;try{localStorage.setItem(storageKey,JSON.stringify(items));return true;}catch(_){return false;}}
+function renderSaved(){const saved=getSaved();setText('savedcount',String(saved.length));const list=el('savedlist');list.replaceChildren();if(!saved.length){const li=document.createElement('li');li.textContent='No saved calculations yet.';list.append(li);return;}saved.forEach((s,i)=>{const li=document.createElement('li');const name=document.createElement('span');name.className='calcpro-boat-savedname';name.textContent=s.label;li.append(name);for(const [action,label] of [['restore','Restore'],['delete','Delete']]){const btn=document.createElement('button');btn.type='button';btn.className='calcpro-boat-smallbutton'+(action==='delete'?' calcpro-boat-delete':'');btn.dataset.boatSavedAction=action;btn.dataset.boatIndex=String(i);btn.textContent=label;li.append(btn);}list.append(li);});}
+function saveCurrent(){if(!latest){showError('Calculate a valid loan before saving.');return;}const a=getSaved();a.unshift({label:(latest.mode==='reverse'?'Boat '+currency(latest.price):'Monthly '+currency(latest.monthly))+' · '+new Date().toLocaleString(),input:state()});a.length=Math.min(a.length,20);const persisted=storeSaved(a);renderSaved();el('saved').open=true;el('notice').textContent=persisted?'Calculation saved in this browser.':'Saved temporarily for this page; browser storage is unavailable.';}
+function reset(){['price','target','term','rate','down','trade','tax','fees'].forEach(x=>el(x).value='');el('term-unit').value='years';el('down-unit').value='d';el('term-unit').dataset.last='years';el('down-unit').dataset.last='d';el('finance-fees').checked=false;setMode('standard');setDownUnitVisual();clearError();latest=null;results.hidden=true;el('amort').hidden=true;el('price').focus();}
+function downloadCSV(){if(!latest||!latest.rows)return;const arr=[['Month','Interest','Principal','Ending Balance'],...latest.rows.map(x=>[x.i,x.int.toFixed(2),x.princ.toFixed(2),x.bal.toFixed(2)])];const csv=arr.map(r=>r.join(',')).join('\r\n');const blob=new Blob([csv],{type:'text/csv;charset=utf-8'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='boat-loan-amortization.csv';a.style.display='none';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),200);}
+form.addEventListener('submit',e=>{e.preventDefault();calculate();});
+root.querySelectorAll('[data-boat-mode]').forEach(button=>button.addEventListener('click',()=>setMode(button.dataset.boatMode)));
+root.querySelectorAll('[data-boat-schedule]').forEach(button=>button.addEventListener('click',()=>setSchedule(button.dataset.boatSchedule)));
+el('down-unit').addEventListener('change',changeDownUnit);el('down-unit').dataset.last='d';el('term-unit').addEventListener('change',changeTermUnit);el('term-unit').dataset.last='years';
+root.querySelector('[data-boat-clear]').addEventListener('click',reset);root.querySelector('[data-boat-save]').addEventListener('click',saveCurrent);root.querySelector('[data-boat-print]').addEventListener('click',()=>window.print());root.querySelector('[data-boat-csv]').addEventListener('click',downloadCSV);
+el('savedlist').addEventListener('click',e=>{const b=e.target.closest('[data-boat-saved-action]');if(!b)return;const idx=Number(b.dataset.boatIndex);const entries=getSaved();if(!(idx>=0&&idx<entries.length))return;if(b.dataset.boatSavedAction==='delete'){entries.splice(idx,1);storeSaved(entries);renderSaved();return;}applyState(entries[idx].input);calculate();el('notice').textContent='Saved calculation restored.';});
+root.querySelectorAll('.calcpro-boat-input').forEach(input=>input.addEventListener('blur',()=>{const raw=input.value.trim().replace(/[$,%\s]/g,'');if(/^\d+(?:\.\d+)?$/.test(raw)&&['price','target','down','trade','fees'].includes(input.name)){input.value=moneyInput(Number(raw));}}));
+renderSaved();calculate();
+})();
+</script><script defer src="/assets/js/data.js"></script>
+<script defer src="/assets/js/style.js?v=20261111-5"></script>
+</body></html>

@@ -1,7 +1,6 @@
 <!DOCTYPE html>
-<html lang="en-US">
-<head>
-<meta charset="utf-8">
+
+<html lang="en"><head><meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="content-language" content="en">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,17 +12,384 @@
   <meta name="author" content="Commingsoon">
   <meta name="publisher" content="Commingsoon">
   <meta name="robots" content="noindex, nofollow, max-image-preview:large">
-  <link rel="stylesheet" href="/assets/css/style.css?v=20261111-1" crossorigin="anonymous" data-n-g="">
+  <link rel="stylesheet" href="/assets/css/style.css?v=20261111-4" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/doc_style.css" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/side_style.css" crossorigin="anonymous" data-n-g=""> 
   <!--ogtags-->
-  <!--schema-->
-  <!--style-->
-</head>
+  <!--schema--><!--TOOL CSS INSERT HERE: Paste only calculator-specific CSS here. Use unique class/id prefixes per tool, e.g. bmi-, loan-, age-. Keep header, sidebar and article CSS in style.css.--><style id="calcpro-pension-tool-css">
+/* CalcPro pension calculator. All rules scoped to its unique tool root. */
+.calcpro-pension-root{--cpp-navy:#073c70;--cpp-blue:#356b9d;--cpp-green:#4c8b23;--cpp-muted:#f0f2f4;--cpp-border:#ced6dc;--cpp-text:#132a3e;color:var(--cpp-text);font:14px/1.46 Arial,Helvetica,sans-serif;max-width:100%}
+.calcpro-pension-root *{box-sizing:border-box}
+.calcpro-pension-root .calcpro-pension-section{margin:0 0 28px}
+.calcpro-pension-root .calcpro-pension-section h2{font-size:20px;line-height:1.25;color:var(--cpp-navy);margin:17px 0 6px;font-weight:700}
+.calcpro-pension-root .calcpro-pension-explainer{font-size:14px;line-height:1.48;margin:4px 0 13px;max-width:710px}
+.calcpro-pension-root .calcpro-pension-panel{width:min(100%,405px);margin:11px auto 2px;background:#eef0f1;border:1px solid #d3d5d6;padding:9px 10px 10px}
+.calcpro-pension-root .calcpro-pension-field{display:grid;grid-template-columns:minmax(135px,1.55fr) minmax(90px,0.92fr) minmax(56px,.65fr);gap:6px;align-items:center;min-height:32px;font-size:12px}
+.calcpro-pension-root .calcpro-pension-field label{line-height:1.2}
+.calcpro-pension-root .calcpro-pension-field .calcpro-pension-unit{font-size:11px;white-space:nowrap}
+.calcpro-pension-root .calcpro-pension-field input{border:1px solid #829fb9;border-radius:1px;outline-offset:2px;height:27px;width:100%;padding:4px 5px;font:13px Arial,sans-serif;color:#10283e;background:#fff;min-width:0}
+.calcpro-pension-root .calcpro-pension-field input:focus{outline:2px solid #89b7dd}
+.calcpro-pension-root .calcpro-pension-field input[aria-invalid=true]{border-color:#b32323;background:#fff4f4}
+.calcpro-pension-root .calcpro-pension-subtitle{background:var(--cpp-blue);color:#fff;font-size:13px;font-weight:bold;line-height:1.4;margin:10px 0 4px;padding:4px 7px}
+.calcpro-pension-root .calcpro-pension-actions{display:flex;justify-content:flex-end;align-items:center;flex-wrap:wrap;gap:7px;margin-top:10px}
+.calcpro-pension-root .calcpro-pension-btn{border:0;border-radius:2px;color:#fff;padding:7px 12px;cursor:pointer;font-size:12px;font-weight:bold;line-height:1.25;min-height:30px}
+.calcpro-pension-root .calcpro-pension-btn-primary{background:#477f1c}
+.calcpro-pension-root .calcpro-pension-btn-primary:hover{background:#386a13}
+.calcpro-pension-root .calcpro-pension-btn-clear{background:#9c9c9c}
+.calcpro-pension-root .calcpro-pension-btn-clear:hover{background:#717171}
+.calcpro-pension-root .calcpro-pension-btn-restore{color:#246295;background:transparent;border:1px solid #a9bac9}
+.calcpro-pension-root .calcpro-pension-btn-restore:hover{background:#dfeaf2}
+.calcpro-pension-root .calcpro-pension-form-error{color:#a01818;margin:6px 0 0;font-weight:600;font-size:12px;min-height:0}
+.calcpro-pension-root .calcpro-pension-result{max-width:710px;margin:10px 0 17px;scroll-margin-top:18px}
+.calcpro-pension-root .calcpro-pension-result[hidden]{display:none!important}
+.calcpro-pension-root .calcpro-pension-result-head{display:flex;justify-content:space-between;align-items:center;gap:8px;background:var(--cpp-green);padding:5px 9px;color:#fff;font-size:15px;font-weight:bold}
+.calcpro-pension-root .calcpro-pension-result-actions{display:flex;gap:6px}
+.calcpro-pension-root .calcpro-pension-result-actions button{font-size:11px;cursor:pointer;border:1px solid rgba(255,255,255,.5);background:transparent;color:#fff;padding:3px 6px;border-radius:2px}
+.calcpro-pension-root .calcpro-pension-result-actions button:hover{background:rgba(255,255,255,.18)}
+.calcpro-pension-root .calcpro-pension-result-body{padding:10px 0 4px;font-size:14px}
+.calcpro-pension-root .calcpro-pension-result-body p{margin:0 0 9px;line-height:1.49}
+.calcpro-pension-root .calcpro-pension-result-body strong{color:#173d61}
+.calcpro-pension-root .calcpro-pension-chart-title{text-align:center;font-weight:bold;color:#183d5d;margin:14px 0 2px;font-size:14px}
+.calcpro-pension-root .calcpro-pension-chart-legend{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;font-size:11px;margin:3px 0 1px}
+.calcpro-pension-root .calcpro-pension-chart-legend span{display:flex;align-items:center;gap:5px}
+.calcpro-pension-root .calcpro-pension-chart-key{display:inline-block;width:15px;height:3px}
+.calcpro-pension-root .calcpro-pension-svg-wrap{max-width:680px;overflow:hidden;margin:0 auto}
+.calcpro-pension-root .calcpro-pension-svg-wrap svg{width:100%;height:auto;display:block}
+.calcpro-pension-root .calcpro-pension-note{font-size:12px;color:#3c505f;margin-top:9px!important}
+.calcpro-pension-root .calcpro-pension-stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:10px 0 13px}
+.calcpro-pension-root .calcpro-pension-stat{background:#eff5f8;border-left:3px solid #356b9d;padding:9px 10px}
+.calcpro-pension-root .calcpro-pension-stat small{font-size:11px;display:block;color:#536577}
+.calcpro-pension-root .calcpro-pension-stat b{display:block;font-size:19px;word-break:break-word;color:#123f70}
+.calcpro-pension-root .calcpro-pension-breakdown{width:100%;border-collapse:collapse;margin:12px 0;font-size:12px}
+.calcpro-pension-root .calcpro-pension-breakdown th,.calcpro-pension-root .calcpro-pension-breakdown td{padding:7px;border:1px solid #cad6df;text-align:right}
+.calcpro-pension-root .calcpro-pension-breakdown th:first-child,.calcpro-pension-root .calcpro-pension-breakdown td:first-child{text-align:left}
+.calcpro-pension-root .calcpro-pension-breakdown thead th{background:#dfe9f1;color:#173c5f}
+.calcpro-pension-root .calcpro-pension-info{font-size:12px;line-height:1.46;color:#4e5f6a;margin:8px 0 4px}
+.calcpro-pension-root .calcpro-pension-below-links{background:#f0f0f0;border-top:1px solid #dde2e5;padding:10px 12px;font-size:12px;margin:17px 0}
+.calcpro-pension-root .calcpro-pension-below-links b{display:block;margin-bottom:4px}
+.calcpro-pension-root .calcpro-pension-below-links a{display:inline-block;margin:2px 7px 2px 0;background:#356b9d;color:#fff;text-decoration:none;padding:3px 7px}
+.calcpro-pension-root .calcpro-pension-below-links a:hover{text-decoration:underline}
+@media(max-width:480px){.calcpro-pension-root .calcpro-pension-field{grid-template-columns:minmax(0,1.35fr) minmax(0,.9fr);gap:5px}.calcpro-pension-root .calcpro-pension-field .calcpro-pension-unit{grid-column:2;margin:-5px 0 4px;white-space:normal}.calcpro-pension-root .calcpro-pension-section h2{font-size:18px}.calcpro-pension-root .calcpro-pension-panel{padding:8px}.calcpro-pension-root .calcpro-pension-stats{grid-template-columns:1fr}.calcpro-pension-root .calcpro-pension-btn{padding:7px 9px}.calcpro-pension-root .calcpro-pension-result-head{font-size:14px}}
+@media print{.calcpro-pension-root .calcpro-pension-panel,.calcpro-pension-root .calcpro-pension-result-actions,.calcpro-pension-root .calcpro-pension-below-links{display:none!important}.calcpro-pension-root .calcpro-pension-result[hidden]{display:none!important}.calcpro-pension-root .calcpro-pension-result{break-inside:avoid}.calcpro-pension-root .calcpro-pension-section{break-inside:avoid}}
+</style>
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Pension Calculator</nav><h1 class="cp-page-title">Pension Calculator</h1><p class="cp-intro">Review three important retirement pension choices: lump sum versus monthly income, single-life versus joint-and-survivor benefits, and working longer for a larger pension.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-pension-root" id="calcpro-pension-root"><section aria-labelledby="calcpro-pension-lump-title" class="calcpro-pension-section" id="calcpro-pension-lump-section">
+<h2 id="calcpro-pension-lump-title">Lump sum payout or monthly pension income?</h2>
+<p class="calcpro-pension-explainer">A pension may be offered as a one-time lump sum or as monthly payments. Compare the value of investing the lump sum with the present value of income that may increase annually with a cost-of-living adjustment.</p>
+<div aria-live="polite" class="calcpro-pension-result" hidden="" id="calcpro-pension-lump-result"><div class="calcpro-pension-result-head"><span>Result</span><span class="calcpro-pension-result-actions"><button aria-label="Print lump comparison" data-calcpro-pension-print="lump" type="button">Print</button><button aria-label="Save lump comparison as CSV" data-calcpro-pension-save="lump" type="button">Save</button></span></div><div class="calcpro-pension-result-body" id="calcpro-pension-lump-output"></div></div>
+<form class="calcpro-pension-panel" id="calcpro-pension-lump-form" novalidate="">
+<div class="calcpro-pension-field"><label for="calcpro-pension-lump-retire">Your retirement age</label><input aria-describedby="calcpro-pension-lump-retire-unit" autocomplete="off" data-calcpro-pension-default="65" data-calcpro-pension-kind="age" id="calcpro-pension-lump-retire" inputmode="decimal" name="retire" type="text" value="65"/><span class="calcpro-pension-unit" id="calcpro-pension-lump-retire-unit"></span></div><div class="calcpro-pension-subtitle">Option 1: lump sum payment</div><div class="calcpro-pension-field"><label for="calcpro-pension-lump-amount">Lump sum payment amount</label><input aria-describedby="calcpro-pension-lump-amount-unit" autocomplete="off" data-calcpro-pension-default="$800,000" data-calcpro-pension-kind="cash" id="calcpro-pension-lump-amount" inputmode="decimal" name="amount" type="text" value="$800,000"/><span class="calcpro-pension-unit" id="calcpro-pension-lump-amount-unit"></span></div><div class="calcpro-pension-field"><label for="calcpro-pension-lump-return">Your investment return</label><input aria-describedby="calcpro-pension-lump-return-unit" autocomplete="off" data-calcpro-pension-default="5%" data-calcpro-pension-kind="rate" id="calcpro-pension-lump-return" inputmode="decimal" name="return" type="text" value="5%"/><span class="calcpro-pension-unit" id="calcpro-pension-lump-return-unit">per year</span></div><div class="calcpro-pension-subtitle">Option 2: monthly pension payment</div><div class="calcpro-pension-field"><label for="calcpro-pension-lump-monthly">Monthly pension income</label><input aria-describedby="calcpro-pension-lump-monthly-unit" autocomplete="off" data-calcpro-pension-default="$5,000" data-calcpro-pension-kind="cash" id="calcpro-pension-lump-monthly" inputmode="decimal" name="monthly" type="text" value="$5,000"/><span class="calcpro-pension-unit" id="calcpro-pension-lump-monthly-unit">per month</span></div><div class="calcpro-pension-field"><label for="calcpro-pension-lump-cola">Cost-of-living adjustment¹</label><input aria-describedby="calcpro-pension-lump-cola-unit" autocomplete="off" data-calcpro-pension-default="3.5%" data-calcpro-pension-kind="rate" id="calcpro-pension-lump-cola" inputmode="decimal" name="cola" type="text" value="3.5%"/><span class="calcpro-pension-unit" id="calcpro-pension-lump-cola-unit">per year</span></div>
+<div class="calcpro-pension-form-error" id="calcpro-pension-lump-error" role="alert"></div>
+<div class="calcpro-pension-actions"><button class="calcpro-pension-btn calcpro-pension-btn-primary" type="submit">Calculate ▸</button><button class="calcpro-pension-btn calcpro-pension-btn-clear" data-calcpro-pension-clear="lump" type="button">Clear</button><button class="calcpro-pension-btn calcpro-pension-btn-restore" data-calcpro-pension-restore="lump" title="Restore original example numbers" type="button">Defaults</button></div>
+</form></section><section aria-labelledby="calcpro-pension-survivor-title" class="calcpro-pension-section" id="calcpro-pension-survivor-section">
+<h2 id="calcpro-pension-survivor-title">Single-life or joint-and-survivor pension payout?</h2>
+<p class="calcpro-pension-explainer">A single-life pension generally pays more while you are alive but ends at your death. A joint-and-survivor option pays less initially, but it continues benefits to your spouse after your death. Compare the investment value of the difference and the remaining survivor payments.</p>
+<div aria-live="polite" class="calcpro-pension-result" hidden="" id="calcpro-pension-survivor-result"><div class="calcpro-pension-result-head"><span>Result</span><span class="calcpro-pension-result-actions"><button aria-label="Print survivor comparison" data-calcpro-pension-print="survivor" type="button">Print</button><button aria-label="Save survivor comparison as CSV" data-calcpro-pension-save="survivor" type="button">Save</button></span></div><div class="calcpro-pension-result-body" id="calcpro-pension-survivor-output"></div></div>
+<form class="calcpro-pension-panel" id="calcpro-pension-survivor-form" novalidate="">
+<div class="calcpro-pension-field"><label for="calcpro-pension-survivor-retire">Your retirement age</label><input aria-describedby="calcpro-pension-survivor-retire-unit" autocomplete="off" data-calcpro-pension-default="65" data-calcpro-pension-kind="age" id="calcpro-pension-survivor-retire" inputmode="decimal" name="retire" type="text" value="65"/><span class="calcpro-pension-unit" id="calcpro-pension-survivor-retire-unit"></span></div><div class="calcpro-pension-field"><label for="calcpro-pension-survivor-life">Your life expectancy</label><input aria-describedby="calcpro-pension-survivor-life-unit" autocomplete="off" data-calcpro-pension-default="77" data-calcpro-pension-kind="age" id="calcpro-pension-survivor-life" inputmode="decimal" name="life" type="text" value="77"/><span class="calcpro-pension-unit" id="calcpro-pension-survivor-life-unit"></span></div><div class="calcpro-pension-field"><label for="calcpro-pension-survivor-spouseage">Spouse's age when you retire</label><input aria-describedby="calcpro-pension-survivor-spouseage-unit" autocomplete="off" data-calcpro-pension-default="62" data-calcpro-pension-kind="age" id="calcpro-pension-survivor-spouseage" inputmode="decimal" name="spouseage" type="text" value="62"/><span class="calcpro-pension-unit" id="calcpro-pension-survivor-spouseage-unit"></span></div><div class="calcpro-pension-field"><label for="calcpro-pension-survivor-spouselife">Spouse's life expectancy</label><input aria-describedby="calcpro-pension-survivor-spouselife-unit" autocomplete="off" data-calcpro-pension-default="82" data-calcpro-pension-kind="age" id="calcpro-pension-survivor-spouselife" inputmode="decimal" name="spouselife" type="text" value="82"/><span class="calcpro-pension-unit" id="calcpro-pension-survivor-spouselife-unit"></span></div><div class="calcpro-pension-field"><label for="calcpro-pension-survivor-single">Single life pension</label><input aria-describedby="calcpro-pension-survivor-single-unit" autocomplete="off" data-calcpro-pension-default="$5,000" data-calcpro-pension-kind="cash" id="calcpro-pension-survivor-single" inputmode="decimal" name="single" type="text" value="$5,000"/><span class="calcpro-pension-unit" id="calcpro-pension-survivor-single-unit">per month</span></div><div class="calcpro-pension-field"><label for="calcpro-pension-survivor-joint">Joint survivor pension</label><input aria-describedby="calcpro-pension-survivor-joint-unit" autocomplete="off" data-calcpro-pension-default="$3,000" data-calcpro-pension-kind="cash" id="calcpro-pension-survivor-joint" inputmode="decimal" name="joint" type="text" value="$3,000"/><span class="calcpro-pension-unit" id="calcpro-pension-survivor-joint-unit">per month</span></div><div class="calcpro-pension-field"><label for="calcpro-pension-survivor-return">Your investment return</label><input aria-describedby="calcpro-pension-survivor-return-unit" autocomplete="off" data-calcpro-pension-default="5%" data-calcpro-pension-kind="rate" id="calcpro-pension-survivor-return" inputmode="decimal" name="return" type="text" value="5%"/><span class="calcpro-pension-unit" id="calcpro-pension-survivor-return-unit">per year</span></div><div class="calcpro-pension-field"><label for="calcpro-pension-survivor-cola">Cost-of-living adjustment¹</label><input aria-describedby="calcpro-pension-survivor-cola-unit" autocomplete="off" data-calcpro-pension-default="3.5%" data-calcpro-pension-kind="rate" id="calcpro-pension-survivor-cola" inputmode="decimal" name="cola" type="text" value="3.5%"/><span class="calcpro-pension-unit" id="calcpro-pension-survivor-cola-unit">per year</span></div>
+<div class="calcpro-pension-form-error" id="calcpro-pension-survivor-error" role="alert"></div>
+<div class="calcpro-pension-actions"><button class="calcpro-pension-btn calcpro-pension-btn-primary" type="submit">Calculate ▸</button><button class="calcpro-pension-btn calcpro-pension-btn-clear" data-calcpro-pension-clear="survivor" type="button">Clear</button><button class="calcpro-pension-btn calcpro-pension-btn-restore" data-calcpro-pension-restore="survivor" title="Restore original example numbers" type="button">Defaults</button></div>
+</form></section><section aria-labelledby="calcpro-pension-work-title" class="calcpro-pension-section" id="calcpro-pension-work-section">
+<h2 id="calcpro-pension-work-title">Should you work longer for a better pension?</h2>
+<p class="calcpro-pension-explainer">Delaying retirement may increase the monthly pension, but also means giving up earlier payments. This comparison models the invested value of both payment streams through a selected future age.</p>
+<div aria-live="polite" class="calcpro-pension-result" hidden="" id="calcpro-pension-work-result"><div class="calcpro-pension-result-head"><span>Result</span><span class="calcpro-pension-result-actions"><button aria-label="Print work comparison" data-calcpro-pension-print="work" type="button">Print</button><button aria-label="Save work comparison as CSV" data-calcpro-pension-save="work" type="button">Save</button></span></div><div class="calcpro-pension-result-body" id="calcpro-pension-work-output"></div></div>
+<form class="calcpro-pension-panel" id="calcpro-pension-work-form" novalidate="">
+<div class="calcpro-pension-subtitle">Pension option 1</div><div class="calcpro-pension-field"><label for="calcpro-pension-work-age1">Retirement age</label><input aria-describedby="calcpro-pension-work-age1-unit" autocomplete="off" data-calcpro-pension-default="60" data-calcpro-pension-kind="age" id="calcpro-pension-work-age1" inputmode="decimal" name="age1" type="text" value="60"/><span class="calcpro-pension-unit" id="calcpro-pension-work-age1-unit"></span></div><div class="calcpro-pension-field"><label for="calcpro-pension-work-pay1">Monthly pension income</label><input aria-describedby="calcpro-pension-work-pay1-unit" autocomplete="off" data-calcpro-pension-default="$2,500" data-calcpro-pension-kind="cash" id="calcpro-pension-work-pay1" inputmode="decimal" name="pay1" type="text" value="$2,500"/><span class="calcpro-pension-unit" id="calcpro-pension-work-pay1-unit">per month</span></div><div class="calcpro-pension-subtitle">Pension option 2 (work longer)</div><div class="calcpro-pension-field"><label for="calcpro-pension-work-age2">Retirement age</label><input aria-describedby="calcpro-pension-work-age2-unit" autocomplete="off" data-calcpro-pension-default="65" data-calcpro-pension-kind="age" id="calcpro-pension-work-age2" inputmode="decimal" name="age2" type="text" value="65"/><span class="calcpro-pension-unit" id="calcpro-pension-work-age2-unit"></span></div><div class="calcpro-pension-field"><label for="calcpro-pension-work-pay2">Monthly pension income</label><input aria-describedby="calcpro-pension-work-pay2-unit" autocomplete="off" data-calcpro-pension-default="$3,800" data-calcpro-pension-kind="cash" id="calcpro-pension-work-pay2" inputmode="decimal" name="pay2" type="text" value="$3,800"/><span class="calcpro-pension-unit" id="calcpro-pension-work-pay2-unit">per month</span></div><div class="calcpro-pension-subtitle">Other information</div><div class="calcpro-pension-field"><label for="calcpro-pension-work-return">Your investment return</label><input aria-describedby="calcpro-pension-work-return-unit" autocomplete="off" data-calcpro-pension-default="5%" data-calcpro-pension-kind="rate" id="calcpro-pension-work-return" inputmode="decimal" name="return" type="text" value="5%"/><span class="calcpro-pension-unit" id="calcpro-pension-work-return-unit">per year</span></div><div class="calcpro-pension-field"><label for="calcpro-pension-work-cola">Cost-of-living adjustment¹</label><input aria-describedby="calcpro-pension-work-cola-unit" autocomplete="off" data-calcpro-pension-default="3.5%" data-calcpro-pension-kind="rate" id="calcpro-pension-work-cola" inputmode="decimal" name="cola" type="text" value="3.5%"/><span class="calcpro-pension-unit" id="calcpro-pension-work-cola-unit">per year</span></div>
+<div class="calcpro-pension-form-error" id="calcpro-pension-work-error" role="alert"></div>
+<div class="calcpro-pension-actions"><button class="calcpro-pension-btn calcpro-pension-btn-primary" type="submit">Calculate ▸</button><button class="calcpro-pension-btn calcpro-pension-btn-clear" data-calcpro-pension-clear="work" type="button">Clear</button><button class="calcpro-pension-btn calcpro-pension-btn-restore" data-calcpro-pension-restore="work" title="Restore original example numbers" type="button">Defaults</button></div>
+</form></section><p class="calcpro-pension-info">¹ Cost-of-living adjustment (COLA) is the annual percentage increase assumed for the pension payments. Use 0% if the plan does not provide increases. All ages, lifetimes, rates, and benefit amounts are assumptions, not guaranteed outcomes.</p>
+<nav aria-label="Other retirement calculators" class="calcpro-pension-below-links"><b>Related retirement tools</b><a href="401k-calculator.html">401(k) Calculator</a><a href="roth-ira-calculator.html">Roth IRA Calculator</a><a href="retirement-calculator.html">Retirement Calculator</a></nav></div></section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><!-- REPLACE these links with real related tools for each calculator; verify live slugs. --><a href="retirement-calculator.html">Retirement</a><a href="roth-ira-calculator.html">Roth IRA</a><a href="investment-calculator.html">Investment</a><a href="compound-interest-calculator.html">Compound Interest</a><a href="annuity-payout-calculator.html">Annuity Payout</a><a href="pension-calculator.html">Pension</a><a href="inflation-calculator.html">Inflation</a><a href="future-value-calculator.html">Future Value</a><a href="income-tax-calculator.html">Income Tax</a><a href="savings-calculator.html">Savings</a><a href="mortgage-calculator.html">Mortgage</a><a href="loan-calculator.html">Loan</a></div></section></aside><article class="cp-article">
+<h2>How to Use the Pension Calculator</h2>
+<p>Choose the comparison that matches your pension decision. In the first section, enter your retirement age, lump-sum offer, investment return, monthly pension, and annual cost-of-living adjustment (COLA). In the second, enter both partners' ages and life expectancies plus the single-life and joint-and-survivor benefit amounts. In the third, enter the two possible retirement ages and their expected monthly benefits.</p>
+<p>Press <strong>Calculate</strong> within a section. The result appears immediately above that section's input form. You can adjust the assumptions and recalculate, print the result, or save its data as a CSV file. <strong>Clear</strong> removes current entries; <strong>Defaults</strong> restores the illustrative values.</p>
+<h2>Pension Comparison Formulas</h2>
+<h3>1. Lump sum versus a monthly pension</h3>
+<p>The calculator compares a lump sum received at retirement with the <strong>present value of monthly pension checks</strong>. For each future payment, the amount is increased according to the annual COLA and discounted to the retirement date using the specified monthly investment return.</p>
+<p><strong>Present value = Σ [P × (1 + g)<sup>⌊m/12⌋</sup> ÷ (1 + r)<sup>m+1</sup>]</strong>, where <em>P</em> is the starting monthly benefit, <em>g</em> is annual COLA, <em>r</em> is the annual investment return divided by 12, and <em>m</em> counts months from zero. The break-even age is the first age when cumulative discounted pension payments equal the lump sum.</p>
+<h3>2. Single-life versus joint-and-survivor</h3>
+<p>The calculation applies the same present-value method to the two benefit streams using the entered life expectancies. It also calculates how much the monthly difference between the pensions could accumulate if invested over the retiree's expected lifetime. For the survivor comparison, the stated joint pension is assumed to continue in full after the retiree dies; actual plan continuation percentages may differ.</p>
+<h3>3. Working longer versus retiring earlier</h3>
+<p>Each monthly pension payment is treated as money invested at the user-selected return. Payments grow in accordance with COLA at each annual anniversary. The account evolves as <strong>Balance next month = Balance this month × (1 + r) + that month's pension payment</strong>. The break-even age occurs when the accumulated value of the later-starting pension catches up to the earlier option.</p>
+<h2>Worked Example</h2>
+<p>Consider retirement at age 65 with a <strong>$800,000</strong> lump-sum offer or a <strong>$5,000 monthly pension</strong>, assuming a <strong>5% annual investment return</strong> and <strong>3.5% annual COLA</strong>. Compare the chart at each age: the lump-sum line stays at its starting present value, while the estimated discounted value of monthly pension payments rises as more checks are received. The crossing point provides a financial break-even estimate, not a prediction of lifespan.</p>
+<h2>What These Results Mean</h2>
+<p>A later crossover age favors a lump sum for shorter assumed lifetimes, while living longer generally increases the value of lifetime pension checks. Survivor pensions can provide income security for a surviving spouse, but usually reduce the initial monthly payment. Working longer may increase a monthly pension while sacrificing payments that could have been received earlier.</p>
+<p class="cp-note">The estimates assume payments at the end of each month, a constant annual investment return expressed as a nominal rate compounded monthly, and one COLA increase every 12 months. They do not model market risk, taxes, pension funding, guarantees, insurance costs, or salary earned during delayed retirement. Your plan documents determine actual benefit terms.</p>
+<h2>Frequently Asked Questions</h2>
+<h3>What does the break-even age mean?</h3>
+<p>It is the age at which one modeled option's value first catches up with another under your assumptions. It is not a recommended retirement date or a forecast of how long you will live.</p>
+<h3>How should I enter a pension that has no COLA?</h3>
+<p>Enter 0 for the annual cost-of-living adjustment. The monthly benefit will remain constant in nominal dollars in this model.</p>
+<h3>Does a joint-and-survivor pension always pay 100% after death?</h3>
+<p>No. Survivor percentages vary. This calculator accepts the ongoing joint pension as a stated amount and assumes that full amount continues to the spouse. For a 50%, 66%, or 75% survivor continuation arrangement, adjust the figures carefully or use your plan's precise benefit schedule for a more detailed analysis.</p>
+<h3>Should I choose the highest calculated amount?</h3>
+<p>Not necessarily. Consider guaranteed lifetime income, investment risk, inflation, taxes, survivor protection, health, beneficiaries, and how much flexibility you need. The figures are planning comparisons, not individualized financial or actuarial advice.</p>
+<h2>References</h2>
+<p>For background on these pension choices, consult the <a href="https://www.calculator.net/pension-calculator.html" rel="noopener noreferrer" target="_blank">reference Pension Calculator</a> and the benefit terms published by your pension administrator. For U.S. private defined-benefit plans, the <a href="https://www.pbgc.gov/" rel="noopener noreferrer" target="_blank">Pension Benefit Guaranty Corporation (PBGC)</a> provides information about pension protections and coverage.</p>
+<p class="cp-page-footer">CalcPro — estimates are for educational planning and are not a guarantee of future benefits.</p>
+</article></main></div><script>
+(()=>{'use strict';
+const prefix='calcpro-pension-', root=document.getElementById(prefix+'root');
+if(!root)return;
+const $=(suffix)=>document.getElementById(prefix+suffix);
+const currency=n=>new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0}).format(n);
+const money2=n=>new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',minimumFractionDigits:2,maximumFractionDigits:2}).format(n);
+const number=n=>new Intl.NumberFormat('en-US',{maximumFractionDigits:1}).format(n);
+const parseAmount=v=>Number(String(v).replace(/[$,%\s]/g,'').replace(/,/g,''));
+const monthlyRate=percent=>percent/1200;
+const annualGrowth=percent=>1+percent/100;
+// Pension paid at the end of each month. COLA occurs at every 12-month anniversary.
+function presentValuePension(payment,months,rate,cola,anniversaryOffset=0){
+  let pv=0, discount=1, r=monthlyRate(rate), growth=annualGrowth(cola);
+  for(let m=0;m<months;m++){
+    discount*=1+r;
+    pv+=payment*Math.pow(growth,Math.floor((m+anniversaryOffset)/12))/discount;
+  }
+  return pv;
+}
+function investmentValue(payment,months,rate,cola){
+  let balance=0,r=monthlyRate(rate),growth=annualGrowth(cola);
+  for(let m=0;m<months;m++)balance=balance*(1+r)+payment*Math.pow(growth,Math.floor(m/12));
+  return balance;
+}
+function seriesInvestment(startAge,payment,targetAge,rate,cola){
+ const months=Math.max(0,Math.round((targetAge-startAge)*12));
+ return investmentValue(payment,months,rate,cola);
+}
+function nMonths(young,old){return Math.max(0,Math.round(12*(old-young)));}
+function compactMoney(v){const a=Math.abs(v);return (v<0?'-':'')+'$'+(a>=1e9?(a/1e9).toFixed(1)+'b':a>=1e6?(a/1e6).toFixed(1)+'m':a>=1e3?(a/1e3).toFixed(a<10000?1:0)+'k':Math.round(a).toString());}
+function numericInput(element,kind){
+ const raw=element.value.trim();
+ if(raw==='')throw new Error('Enter a value for '+element.previousElementSibling.textContent.replace('¹','').trim()+'.');
+ if(!/^[+-]?(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?$/.test(raw.replace(/[$%\s]/g,'')))throw new Error('Enter a valid number for '+element.previousElementSibling.textContent.replace('¹','').trim()+'.');
+ const v=parseAmount(raw);
+ if(!Number.isFinite(v))throw new Error('Please enter finite numbers.');
+ if(kind==='cash'&&(v<0||v>1e12))throw new Error('Pension and lump-sum amounts must be between $0 and $1 trillion.');
+ if(kind==='rate'&&(v < -50 || v > 50))throw new Error('Investment return and COLA must be between -50% and 50%.');
+ if(kind==='age'&&(v<0||v>120))throw new Error('Ages must be between 0 and 120.');
+ return v;
+}
+function getValues(key){
+ const inputs=Array.from($(key+'-form').querySelectorAll('input'));
+ const values={};let firstInvalid=null;
+ inputs.forEach(input=>input.removeAttribute('aria-invalid'));
+ for(const input of inputs){
+  try{values[input.name]=numericInput(input,input.getAttribute('data-'+prefix+'kind'));}
+  catch(err){input.setAttribute('aria-invalid','true');firstInvalid=input;$(key+'-error').textContent=err.message;break;}
+ }
+ if(firstInvalid){firstInvalid.focus();return null;}
+ if(key==='lump'&&values.retire<18){$(key+'-error').textContent='Retirement age must be at least 18.';return null;}
+ if(key==='survivor'){
+  if(values.retire<18||values.spouseage<18){$(key+'-error').textContent='Retirement and spouse ages must be at least 18.';return null;}
+  if(values.life<=values.retire){$(key+'-error').textContent='Your life expectancy must exceed your retirement age.';return null;}
+  if(values.spouselife<=values.spouseage){$(key+'-error').textContent='Spouse life expectancy must exceed the spouse age at retirement.';return null;}
+ }
+ if(key==='work'&&(values.age1<18||values.age2<18||values.age2<=values.age1)){
+ $(key+'-error').textContent='Enter realistic retirement ages. Option 2 must start after option 1.';return null;}
+ $(key+'-error').textContent='';return values;
+}
+function makeChart(target,series,xTitle){
+ const svgNS='http://www.w3.org/2000/svg',width=650,height=250,pl=69,pr=17,pt=16,pb=40;
+ let xMin=Math.min(...series.flatMap(s=>s.points.map(p=>p.x))),xMax=Math.max(...series.flatMap(s=>s.points.map(p=>p.x)));
+ let yMax=Math.max(1,...series.flatMap(s=>s.points.map(p=>p.y)))*1.07;
+ if(xMin===xMax)xMax=xMin+1;
+ const xx=x=>pl+(x-xMin)/(xMax-xMin)*(width-pl-pr);
+ const yy=y=>height-pb-y/yMax*(height-pt-pb);
+ const svg=document.createElementNS(svgNS,'svg');svg.setAttribute('viewBox',`0 0 ${width} ${height}`);svg.setAttribute('role','img');svg.setAttribute('aria-label','Line chart: '+series.map(s=>s.name).join(' versus '));
+ function append(tag,attributes,text){const e=document.createElementNS(svgNS,tag);for(const [k,v] of Object.entries(attributes||{}))e.setAttribute(k,v);if(text!==undefined)e.textContent=text;svg.appendChild(e);return e;}
+ for(let t=0;t<=4;t++){const y=yMax*t/4;
+  append('line',{x1:pl,x2:width-pr,y1:yy(y),y2:yy(y),stroke:'#d7e0e7','stroke-width':'1'});
+  append('text',{x:pl-9,y:yy(y)+3,'text-anchor':'end',fill:'#5a6874','font-size':11},compactMoney(y));
+ }
+ let interval=Math.max(1,Math.ceil((xMax-xMin)/9));
+ for(let a=Math.ceil(xMin/interval)*interval;a<=xMax;a+=interval){append('line',{x1:xx(a),x2:xx(a),y1:pt,y2:height-pb,stroke:'#edf0f2','stroke-width':'1'});
+  append('text',{x:xx(a),y:height-pb+16,'text-anchor':'middle',fill:'#5a6874','font-size':11},number(a));}
+ append('text',{x:width/2,y:height-4,'text-anchor':'middle',fill:'#536477','font-size':12},xTitle);
+ for(const item of series){
+  const d=item.points.map((p,i)=>(i?'L':'M')+xx(p.x).toFixed(2)+' '+yy(p.y).toFixed(2)).join(' ');
+  append('path',{d,fill:'none',stroke:item.color,'stroke-width':'3','stroke-linejoin':'round','stroke-linecap':'round'});
+ }
+ target.replaceChildren(svg);
+}
+function wrapChart(title,series,xTitle){
+ const frag=document.createDocumentFragment();const label=document.createElement('div');label.className=prefix+'chart-title';label.textContent=title;frag.append(label);
+ const legend=document.createElement('div');legend.className=prefix+'chart-legend';
+ for(const s of series){const l=document.createElement('span');const bar=document.createElement('i');bar.className=prefix+'chart-key';bar.style.background=s.color;l.append(bar,document.createTextNode(s.name));legend.append(l);}frag.append(legend);
+ const holder=document.createElement('div');holder.className=prefix+'svg-wrap';makeChart(holder,series,xTitle);frag.append(holder);return frag;
+}
+function paragraph(text){const p=document.createElement('p');p.textContent=text;return p;}
+function emphasisParagraph(lead,tail){const p=document.createElement('p');const b=document.createElement('strong');b.textContent=lead;p.append(b,document.createTextNode(tail));return p;}
+function statGrid(stats){const grid=document.createElement('div');grid.className=prefix+'stats';for(const [caption,value] of stats){const card=document.createElement('div');card.className=prefix+'stat';const small=document.createElement('small');small.textContent=caption;const b=document.createElement('b');b.textContent=value;card.append(small,b);grid.append(card);}return grid;}
+function resultLump(v,target){
+ const maxAge=120,limit=nMonths(v.retire,maxAge),data=[];
+ let crossing=null;
+ for(let m=0;m<=limit;m++){
+   const pv=presentValuePension(v.monthly,m,v.return,v.cola);
+   if(crossing===null&&pv>=v.amount)crossing=v.retire+m/12;
+   if(m%12===0||m===limit)data.push({x:v.retire+m/12,y:pv});
+ }
+ const endPv=presentValuePension(v.monthly,limit,v.return,v.cola);
+ if(crossing!==null){const round=Math.ceil(crossing);
+ target.append(emphasisParagraph('Break-even age: '+number(crossing)+'. ',`At about age ${round} or later, the present value of the monthly pension payments reaches or exceeds the ${currency(v.amount)} lump sum under these assumptions.`));
+ }else target.append(emphasisParagraph('No break-even through age 120. ',`Even at age 120, the estimated pension present value is ${currency(endPv)}, compared with ${currency(v.amount)} paid at retirement.`));
+ const projectionAge=Math.min(120,Math.max(85,v.retire+20));
+ target.append(statGrid([['Lump sum today',currency(v.amount)],[`Pension PV through age ${number(projectionAge)}`,currency(presentValuePension(v.monthly,nMonths(v.retire,projectionAge),v.return,v.cola))]]));
+ const series=[{name:'Lump sum amount',color:'#2280c5',points:data.map(p=>({x:p.x,y:v.amount}))},{name:'Monthly pension present value',color:'#82b92c',points:data}];
+ target.append(wrapChart('Equivalent present value of the options',series,'Age (years)'));
+ target.append(paragraph('The chart discounts future pension payments to the retirement date using your assumed investment return. It does not guarantee investment performance or the lifespan of any individual. Taxes and pension plan guarantees are excluded.'));
+ return {rows:data.map(p=>[number(p.x),v.amount,p.y]),head:['Age','Lump sum','Present value of pension']};
+}
+function resultSurvivor(v,target){
+ const yourMonths=nMonths(v.retire,v.life),spouseMonths=nMonths(v.spouseage,v.spouselife);
+ const jointMonths=Math.max(yourMonths,spouseMonths),survivorMonths=Math.max(0,spouseMonths-yourMonths);
+ const difference=v.single-v.joint;
+ const startingReplacement=presentValuePension(v.joint,spouseMonths,v.return,v.cola);
+ const singlePv=presentValuePension(v.single,yourMonths,v.return,v.cola);
+ const jointPv=presentValuePension(v.joint,jointMonths,v.return,v.cola);
+ const saved=investmentValue(difference,yourMonths,v.return,v.cola);
+ const survivorMonthlyAtDeath=v.joint*Math.pow(annualGrowth(v.cola),Math.floor(yourMonths/12));
+ const survivorPvAtDeath=presentValuePension(survivorMonthlyAtDeath,survivorMonths,v.return,v.cola,yourMonths%12);
+ const spouseAgeAtDeath=v.spouseage+(v.life-v.retire);
+ target.append(emphasisParagraph('Survivor benefit replacement at retirement: '+currency(startingReplacement)+'. ',`If the retiree died immediately at age ${number(v.retire)}, this estimated sum would finance the ${currency(v.joint)} starting monthly survivor pension until the spouse's assumed life expectancy of ${number(v.spouselife)}, with the selected return and COLA.`));
+ target.append(paragraph(`The single-life benefit is ${currency(v.single)} per month versus ${currency(v.joint)} for the joint-and-survivor option: a starting difference of ${currency(difference)} per month.`));
+ target.append(statGrid([['Single-life benefit PV to your life expectancy',currency(singlePv)],['Joint-and-survivor total PV',currency(jointPv)],['Invested payment difference by your death',currency(saved)],['Remaining survivor pension PV at your death',currency(survivorPvAtDeath)]]));
+ target.append(paragraph(`At your assumed death at age ${number(v.life)}, your spouse would be about ${number(spouseAgeAtDeath)} years old. Investing the monthly benefit difference throughout your retirement would build approximately ${currency(saved)}. The joint-plan survivor benefit remaining at that point has an estimated value of ${currency(survivorPvAtDeath)} for ${number(survivorMonths/12)} more years.`));
+ target.append(paragraph('An actual life-insurance policy is not priced here. Compare quoted term length, underwriting, premiums, guarantees, survivor benefit percentages, taxes, and plan-specific rules before selecting a payout. The model assumes 100% continuation of the stated joint pension to the spouse.'));
+ return {head:['Metric','Amount'],rows:[['Immediate survivor benefit replacement',startingReplacement],['Single-life pension PV',singlePv],['Joint pension PV',jointPv],['Invested difference at death',saved],['Survivor benefit PV at death',survivorPvAtDeath]]};
+}
+function resultWork(v,target){
+ const start=v.age1,end=120,rows=[];
+ const calc1=age=>seriesInvestment(v.age1,v.pay1,age,v.return,v.cola);
+ const calc2=age=>seriesInvestment(v.age2,v.pay2,age,v.return,v.cola);
+ let crossing=null;
+ for(let m=0;m<=nMonths(start,end);m++){
+  const age=start+m/12,b1=calc1(age),b2=calc2(age);
+  if(age>=v.age2&&crossing===null&&b2>=b1)crossing=age;
+  if(m%12===0||m===nMonths(start,end))rows.push({x:age,p1:b1,p2:b2});
+ }
+ if(crossing!==null){
+  const yr=Math.floor(crossing),months=Math.round((crossing-yr)*12);
+  target.append(emphasisParagraph('Break-even age: about '+number(crossing)+'. ',`The later, larger pension overtakes the invested value of retiring at ${number(v.age1)} around age ${yr}${months?` and ${months} months`:''}. Before that point, the earlier pension has the greater accumulated value under the selected assumptions.`));
+ }else target.append(emphasisParagraph('No break-even through age 120. ',`Retiring at ${number(v.age1)} retains the larger invested pension value through age 120 under these assumptions.`));
+ const projection=Math.min(120,Math.max(90,v.age2));
+ target.append(statGrid([[`Retire at ${number(v.age1)}: value at age ${projection}`,currency(calc1(projection))],[`Retire at ${number(v.age2)}: value at age ${projection}`,currency(calc2(projection))]]));
+ target.append(wrapChart('Equivalent invested value of the pension options',[
+ {name:`Retire at age ${number(v.age1)}`,color:'#2280c5',points:rows.map(p=>({x:p.x,y:p.p1}))},
+ {name:`Retire at age ${number(v.age2)}`,color:'#82b92c',points:rows.map(p=>({x:p.x,y:p.p2}))}
+ ],'Age (years)'));
+ target.append(paragraph('This comparison assumes every monthly pension payment can be invested at the chosen rate, with annual COLA increases. It excludes salary earned while working longer, Social Security, income taxes, investment volatility, and actual pension-plan restrictions.'));
+ return {head:['Age',`Retire at ${number(v.age1)}`,`Retire at ${number(v.age2)}`],rows:rows.map(p=>[number(p.x),p.p1,p.p2])};
+}
+const lastResult={};
+function calculate(key){const v=getValues(key);if(!v){$(key+'-result').hidden=true;delete lastResult[key];return;}
+ const result=$(key+'-result'),body=$(key+'-output');body.replaceChildren();
+ const values=(key==='lump')?resultLump(v,body):(key==='survivor')?resultSurvivor(v,body):resultWork(v,body);
+ lastResult[key]=values;result.hidden=false;
+ // Preserve the reference's result-above-form placement without reloading or redirecting.
+ const rect=result.getBoundingClientRect();if(rect.top<0||rect.top>window.innerHeight*.78)result.scrollIntoView({behavior:'smooth',block:'start'});
+}
+function csvValue(value){return '"'+String(value).replace(/"/g,'""')+'"';}
+function saveCSV(key){const data=lastResult[key];if(!data)return;
+ const rows=[data.head,...data.rows].map(row=>row.map(csvValue).join(',')).join('\r\n');
+ const blob=new Blob([rows],{type:'text/csv;charset=utf-8;'}),url=URL.createObjectURL(blob),a=document.createElement('a');
+ a.href=url;a.download='calcpro-pension-'+key+'-results.csv';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),0);
+}
+for(const key of ['lump','survivor','work']){
+ const form=$(key+'-form');form.addEventListener('submit',event=>{event.preventDefault();calculate(key);});
+ root.querySelector('[data-'+prefix+'clear="'+key+'"]').addEventListener('click',()=>{for(const input of form.querySelectorAll('input')){input.value='';input.removeAttribute('aria-invalid');}$(key+'-error').textContent='';$(key+'-result').hidden=true;delete lastResult[key];});
+ root.querySelector('[data-'+prefix+'restore="'+key+'"]').addEventListener('click',()=>{for(const input of form.querySelectorAll('input')){input.value=input.getAttribute('data-'+prefix+'default');input.removeAttribute('aria-invalid');}$(key+'-error').textContent='';$(key+'-result').hidden=true;delete lastResult[key];});
+ root.querySelector('[data-'+prefix+'print="'+key+'"]').addEventListener('click',()=>window.print());
+ root.querySelector('[data-'+prefix+'save="'+key+'"]').addEventListener('click',()=>saveCSV(key));
+ for(const input of form.querySelectorAll('input')){
+  input.addEventListener('input',()=>{input.removeAttribute('aria-invalid');$(key+'-error').textContent='';});
+  input.addEventListener('blur',()=>{const raw=input.value.trim();if(raw==='')return;const value=parseAmount(raw);if(Number.isFinite(value)&&value>=0&&input.getAttribute('data-'+prefix+'kind')==='cash')input.value='$'+new Intl.NumberFormat('en-US',{maximumFractionDigits:2}).format(value);});
+ }
+}
+})();
+</script><script data-calcpro-latest-result>
+(function () {
+  var toolRoot = document.querySelector('.cp-tool-area') || document.querySelector('main') || document.body;
+  var forms = Array.prototype.slice.call(toolRoot.querySelectorAll('form'));
+  if (forms.length < 2) return;
 
-<body>
-<!-- Main-header-page -->
+  var selector = '[id*="result"], [class*="result"], [id*="output"], [class*="output"], [id*="total"], [class*="total"], [id*="summary"], [class*="summary"], [data-result], [data-re-results], [data-cp-surface-result]';
+  var candidates = Array.prototype.slice.call(toolRoot.querySelectorAll(selector));
+  var panels = candidates.filter(function (node) {
+    return !candidates.some(function (other) { return other !== node && other.contains(node); });
+  });
+  var activeOwner = null;
+
+  function namesOf(node) {
+    var names = [node.id].concat(Array.prototype.slice.call(node.classList || []));
+    return names.map(function (name) {
+      return String(name).toLowerCase().replace(/[-_](form|result|results|output|outputs|total|totals|summary|summaries)([-_].*)?$/, '');
+    }).filter(Boolean);
+  }
+
+  function pairedForm(panel) {
+    var names = namesOf(panel);
+    var matches = forms.filter(function (form) {
+      return namesOf(form).some(function (name) { return names.indexOf(name) !== -1; });
+    });
+    return matches.length === 1 ? matches[0] : null;
+  }
+
+  function ownerOf(node) {
+    if (node.matches('form')) return node;
+    var form = node.closest('form') || pairedForm(node);
+    if (form) return form;
+    for (var current = node; current && current !== toolRoot; current = current.parentElement) {
+      var formCount = (current.matches('form') ? 1 : 0) + current.querySelectorAll('form').length;
+      if (formCount === 1 && panels.some(function (panel) { return current === panel || current.contains(panel); })) return current.querySelector('form') || current;
+    }
+    return node.closest('section') || node;
+  }
+
+  function keepOnly(owner, showActive) {
+    panels.forEach(function (panel) {
+      var isActive = ownerOf(panel) === owner;
+      if (!isActive) panel.hidden = true;
+      else if (showActive) panel.hidden = false;
+    });
+  }
+
+  function activate(owner) {
+    if (!owner) return;
+    activeOwner = owner;
+    keepOnly(owner, false);
+  }
+
+  toolRoot.addEventListener('submit', function (event) {
+    var form = event.target;
+    if (form instanceof HTMLFormElement) activate(ownerOf(form));
+  }, true);
+
+  toolRoot.addEventListener('input', function (event) {
+    var form = event.target.closest('form');
+    if (form) activeOwner = ownerOf(form);
+  }, true);
+
+  toolRoot.addEventListener('click', function (event) {
+    var button = event.target.closest('button');
+    var form = button && button.closest('form');
+    if (!form) return;
+    var label = [button.id, button.textContent, button.getAttribute('aria-label') || ''].join(' ').toLowerCase();
+    if (/\b(clear|reset)\b/.test(label) || button.type === 'reset') activeOwner = null;
+    else if (button.type === 'submit' || /\b(calculate|compute|roll|start|encode|decode|convert|generate|run|solve|estimate)\b/.test(label)) activate(ownerOf(form));
+  }, true);
+
+  var observer = new MutationObserver(function (records) {
+    records.forEach(function (record) {
+      var panel = panels.find(function (item) { return item === record.target || item.contains(record.target); });
+      if (!panel || !activeOwner || ownerOf(panel) !== activeOwner) return;
+      if (record.type === 'attributes' && panel.hidden) return;
+      keepOnly(activeOwner, true);
+    });
+  });
+  panels.forEach(function (panel) {
+    observer.observe(panel, {attributes: true, attributeFilter: ['hidden'], childList: true, characterData: true, subtree: true});
+  });
+})();
+</script>
 <script defer src="/assets/js/data.js"></script>
-<script defer src="/assets/js/style.js?v=20261111-1"></script>
-</body>
-</html>
+<script defer src="/assets/js/style.js?v=20261111-5"></script>
+</body></html>

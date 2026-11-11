@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US">
-<head>
-<meta charset="utf-8">
+<html lang="en"><head><meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="content-language" content="en">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,17 +11,404 @@
   <meta name="author" content="Commingsoon">
   <meta name="publisher" content="Commingsoon">
   <meta name="robots" content="noindex, nofollow, max-image-preview:large">
-  <link rel="stylesheet" href="/assets/css/style.css?v=20261111-1" crossorigin="anonymous" data-n-g="">
+  <link rel="stylesheet" href="/assets/css/style.css?v=20261111-4" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/doc_style.css" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/side_style.css" crossorigin="anonymous" data-n-g=""> 
   <!--ogtags-->
-  <!--schema-->
-  <!--style-->
-</head>
+  <!--schema--><style>
+/* Hex Calculator: all component rules scoped to this calculator. */
+.calcpro-hex-root{--calcpro-hex-navy:#174e7b;--calcpro-hex-green:#43852d;--calcpro-hex-panel:#f0f0f0;--calcpro-hex-line:#d8d8d8;max-width:100%;font-family:Arial,Helvetica,sans-serif;color:#202020;line-height:1.45}
+.calcpro-hex-root *,.calcpro-hex-root *::before,.calcpro-hex-root *::after{box-sizing:border-box}
+.calcpro-hex-root .calcpro-hex-hint{background:#356e9b;color:#fff;font-size:13px;padding:8px 13px;border-radius:2px;margin:0 0 16px;text-align:center}
+.calcpro-hex-root .calcpro-hex-block{margin:0 0 22px;max-width:100%}
+.calcpro-hex-root .calcpro-hex-heading{color:var(--calcpro-hex-navy);font-size:18px;font-weight:700;line-height:1.32;margin:0 0 6px}
+.calcpro-hex-root .calcpro-hex-form{margin:0;padding:17px 12px 14px;background:var(--calcpro-hex-panel);border:1px solid var(--calcpro-hex-line);border-radius:2px;max-width:100%}
+.calcpro-hex-root .calcpro-hex-controls{display:flex;gap:7px;flex-wrap:wrap;align-items:center;justify-content:center;min-width:0}
+.calcpro-hex-root .calcpro-hex-field-label{font-size:13px;font-weight:600;margin:0 5px 0 0;white-space:nowrap}
+.calcpro-hex-root .calcpro-hex-input,.calcpro-hex-root .calcpro-hex-select{appearance:auto;background:#fff;color:#172a3b;border:1px solid #829bb1;border-radius:2px;min-height:34px;padding:6px 9px;font:inherit;font-size:15px;box-shadow:inset 0 0 0 1px #e9f0f5}
+.calcpro-hex-root .calcpro-hex-input{width:166px;max-width:100%;min-width:0}
+.calcpro-hex-root .calcpro-hex-input--wide{width:222px}
+.calcpro-hex-root .calcpro-hex-select{width:61px;text-align:center;padding:6px}
+.calcpro-hex-root .calcpro-hex-equals{font-size:16px;font-weight:700;white-space:nowrap}
+.calcpro-hex-root .calcpro-hex-actions{display:flex;justify-content:center;align-items:center;gap:7px;flex-wrap:wrap;margin-top:12px}
+.calcpro-hex-root .calcpro-hex-btn{font:inherit;font-size:14px;font-weight:700;min-height:34px;cursor:pointer;border-radius:2px;padding:6px 13px;border:1px solid transparent;transition:filter .12s ease}
+.calcpro-hex-root .calcpro-hex-btn:hover{filter:brightness(.92)}
+.calcpro-hex-root .calcpro-hex-btn--calculate{color:#fff;background:#43852d;border-color:#2f7221}
+.calcpro-hex-root .calcpro-hex-btn--clear{color:#333;background:#d1d1d1;border-color:#aaa}
+.calcpro-hex-root .calcpro-hex-btn:focus-visible,.calcpro-hex-root .calcpro-hex-input:focus-visible,.calcpro-hex-root .calcpro-hex-select:focus-visible{outline:3px solid #2c80ba;outline-offset:2px}
+.calcpro-hex-root .calcpro-hex-input[aria-invalid="true"]{border-color:#af2c25;box-shadow:0 0 0 1px #af2c25}
+.calcpro-hex-root .calcpro-hex-error{font-size:13px;color:#a02719;text-align:center;margin:9px 0 0;font-weight:600}
+.calcpro-hex-root .calcpro-hex-error:empty{display:none}
+.calcpro-hex-root .calcpro-hex-result{border:1px solid #b8d9ac;margin:0 0 9px;overflow-wrap:anywhere}
+.calcpro-hex-root .calcpro-hex-result[hidden],.calcpro-hex-root .calcpro-hex-hint[hidden],.calcpro-hex-root .calcpro-hex-detail[hidden]{display:none!important}
+.calcpro-hex-root .calcpro-hex-result-bar{background:var(--calcpro-hex-green);color:#fff;padding:5px 10px;min-height:36px;display:flex;gap:10px;align-items:center;justify-content:space-between;font-size:15px;font-weight:700}
+.calcpro-hex-root .calcpro-hex-result-actions{display:flex;gap:5px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+.calcpro-hex-root .calcpro-hex-result-actions button{border:1px solid #94c587;background:#f8fff5;color:#246015;border-radius:3px;padding:3px 8px;font-size:12px;font-weight:700;cursor:pointer;min-height:25px}
+.calcpro-hex-root .calcpro-hex-result-actions button:hover{background:#ddf3d5}
+.calcpro-hex-root .calcpro-hex-result-actions button:focus-visible{outline:2px solid #f7fbf4;outline-offset:2px}
+.calcpro-hex-root .calcpro-hex-result-content{background:#fff;padding:10px 12px 12px;font-size:15px}
+.calcpro-hex-root .calcpro-hex-result-label{font-size:14px;margin:2px 0 1px}
+.calcpro-hex-root .calcpro-hex-result-line{font-size:17px;overflow-wrap:anywhere;word-break:break-word;margin:0 0 8px;font-variant-numeric:tabular-nums}
+.calcpro-hex-root .calcpro-hex-result-line:last-child{margin-bottom:0}
+.calcpro-hex-root .calcpro-hex-result-number{color:#218022;font-weight:700}
+.calcpro-hex-root .calcpro-hex-detail{font-size:13px;margin:7px 0 0;color:#333}
+.calcpro-hex-root .calcpro-hex-result-status{font-size:12px;font-weight:400;color:#f8fff5;min-width:0}
+.calcpro-hex-root .calcpro-hex-related{border-top:1px solid #e0e4e8;background:#f4f5f6;margin:14px 0 6px;padding:9px 10px 11px;display:flex;align-items:center;flex-wrap:wrap;gap:9px;font-size:13px}
+.calcpro-hex-root .calcpro-hex-related-label{font-weight:700;color:#333}
+.calcpro-hex-root .calcpro-hex-related a{background:#356c99;color:#fff;text-decoration:none;border-radius:2px;font-size:12px;padding:5px 7px}
+.calcpro-hex-root .calcpro-hex-related a:hover{text-decoration:underline}
+@media(max-width:540px){.calcpro-hex-root .calcpro-hex-heading{font-size:17px}.calcpro-hex-root .calcpro-hex-form{padding:13px 9px}.calcpro-hex-root .calcpro-hex-controls{gap:6px}.calcpro-hex-root .calcpro-hex-input{width:132px}.calcpro-hex-root .calcpro-hex-input--wide{width:195px}.calcpro-hex-root .calcpro-hex-field-label{width:100%;text-align:center}.calcpro-hex-root .calcpro-hex-result-bar{flex-wrap:wrap}.calcpro-hex-root .calcpro-hex-result-actions{gap:4px}.calcpro-hex-root .calcpro-hex-result-content{font-size:14px}}
+@media(max-width:360px){.calcpro-hex-root .calcpro-hex-input{width:108px}.calcpro-hex-root .calcpro-hex-input--wide{width:170px}.calcpro-hex-root .calcpro-hex-select{width:53px}.calcpro-hex-root .calcpro-hex-equals{font-size:13px}.calcpro-hex-root .calcpro-hex-result-actions button{font-size:11px;padding:3px 5px}}
+@media print{.calcpro-hex-root .calcpro-hex-hint,.calcpro-hex-root .calcpro-hex-related,.calcpro-hex-root .calcpro-hex-actions,.calcpro-hex-root .calcpro-hex-result-actions{display:none!important}.calcpro-hex-root .calcpro-hex-form{padding:8px}}
+</style>
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/math-calculator/">Math</a> / Hex Calculator</nav><h1 class="cp-page-title">Hex Calculator</h1><p class="cp-intro">Add, subtract, multiply, or divide hexadecimal numbers, and convert between hexadecimal and decimal—without leaving the page.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-hex-root" id="calcpro-hex-root">
+  <div class="calcpro-hex-hint" id="calcpro-hex-hint">Modify the values and click <strong>Calculate</strong> to see results.</div>
+  <section class="calcpro-hex-block" id="calcpro-hex-arithmetic" aria-labelledby="calcpro-hex-arithmetic-title">
+    <h2 class="calcpro-hex-heading" id="calcpro-hex-arithmetic-title">Hexadecimal Calculation—Add, Subtract, Multiply, or Divide</h2>
+    <div class="calcpro-hex-result" id="calcpro-hex-arithmetic-result" aria-live="polite" hidden>
+      <div class="calcpro-hex-result-bar"><span>Result</span><div class="calcpro-hex-result-actions"><span class="calcpro-hex-result-status" data-calcpro-hex-status="arithmetic" aria-live="polite"></span><button type="button" data-calcpro-hex-action="copy" data-calcpro-hex-section="arithmetic" aria-label="Copy arithmetic result">Copy</button><button type="button" data-calcpro-hex-action="save" data-calcpro-hex-section="arithmetic" aria-label="Save arithmetic result as text">Save</button><button type="button" data-calcpro-hex-action="print" data-calcpro-hex-section="arithmetic" aria-label="Print arithmetic result">Print</button></div></div>
+      <div class="calcpro-hex-result-content"><p class="calcpro-hex-result-label">Hex value:</p><p class="calcpro-hex-result-line"><span id="calcpro-hex-expression-hex"></span> = <strong class="calcpro-hex-result-number" id="calcpro-hex-operation-hex"></strong></p><p class="calcpro-hex-result-label">Decimal value:</p><p class="calcpro-hex-result-line"><span id="calcpro-hex-expression-decimal"></span> = <strong class="calcpro-hex-result-number" id="calcpro-hex-operation-decimal"></strong></p><p class="calcpro-hex-detail" id="calcpro-hex-division-detail" hidden></p></div>
+    </div>
+    <form class="calcpro-hex-form" id="calcpro-hex-arithmetic-form" novalidate>
+      <div class="calcpro-hex-controls"><input class="calcpro-hex-input" id="calcpro-hex-operand-1" type="text" inputmode="text" spellcheck="false" autocomplete="off" maxlength="256" aria-label="First hexadecimal number" value="8AB" required/><select class="calcpro-hex-select" id="calcpro-hex-operator" aria-label="Hexadecimal operation"><option value="+">+</option><option value="-">−</option><option value="*">×</option><option value="/">÷</option></select><input class="calcpro-hex-input" id="calcpro-hex-operand-2" type="text" inputmode="text" spellcheck="false" autocomplete="off" maxlength="256" aria-label="Second hexadecimal number" value="B78" required/><span class="calcpro-hex-equals" aria-hidden="true">= ?</span></div>
+      <div class="calcpro-hex-actions"><button class="calcpro-hex-btn calcpro-hex-btn--calculate" type="submit">Calculate ▸</button><button class="calcpro-hex-btn calcpro-hex-btn--clear" data-calcpro-hex-clear="arithmetic" type="button">Clear</button></div><p class="calcpro-hex-error" id="calcpro-hex-arithmetic-error" role="alert"></p>
+    </form>
+  </section>
+  <section class="calcpro-hex-block" id="calcpro-hex-convert-to-decimal" aria-labelledby="calcpro-hex-to-decimal-title">
+    <h2 class="calcpro-hex-heading" id="calcpro-hex-to-decimal-title">Convert Hexadecimal Value to Decimal Value</h2>
+    <div class="calcpro-hex-result" id="calcpro-hex-to-decimal-result" aria-live="polite" hidden>
+      <div class="calcpro-hex-result-bar"><span>Result</span><div class="calcpro-hex-result-actions"><span class="calcpro-hex-result-status" data-calcpro-hex-status="to-decimal" aria-live="polite"></span><button type="button" data-calcpro-hex-action="copy" data-calcpro-hex-section="to-decimal" aria-label="Copy decimal result">Copy</button><button type="button" data-calcpro-hex-action="save" data-calcpro-hex-section="to-decimal" aria-label="Save decimal result as text">Save</button><button type="button" data-calcpro-hex-action="print" data-calcpro-hex-section="to-decimal" aria-label="Print decimal result">Print</button></div></div>
+      <div class="calcpro-hex-result-content"><p class="calcpro-hex-result-label">Decimal value:</p><p class="calcpro-hex-result-line"><strong class="calcpro-hex-result-number" id="calcpro-hex-to-decimal-value"></strong></p></div>
+    </div>
+    <form class="calcpro-hex-form" id="calcpro-hex-to-decimal-form" novalidate><div class="calcpro-hex-controls"><label class="calcpro-hex-field-label" for="calcpro-hex-to-decimal-input">Hexadecimal Value:</label><input class="calcpro-hex-input calcpro-hex-input--wide" id="calcpro-hex-to-decimal-input" type="text" inputmode="text" spellcheck="false" autocomplete="off" maxlength="256" value="DAD" required/><span class="calcpro-hex-equals" aria-hidden="true">= ?</span></div><div class="calcpro-hex-actions"><button class="calcpro-hex-btn calcpro-hex-btn--calculate" type="submit">Calculate ▸</button><button class="calcpro-hex-btn calcpro-hex-btn--clear" data-calcpro-hex-clear="to-decimal" type="button">Clear</button></div><p class="calcpro-hex-error" id="calcpro-hex-to-decimal-error" role="alert"></p></form>
+  </section>
+  <section class="calcpro-hex-block" id="calcpro-hex-convert-to-hex" aria-labelledby="calcpro-hex-to-hex-title">
+    <h2 class="calcpro-hex-heading" id="calcpro-hex-to-hex-title">Convert Decimal Value to Hexadecimal Value</h2>
+    <div class="calcpro-hex-result" id="calcpro-hex-to-hex-result" aria-live="polite" hidden>
+      <div class="calcpro-hex-result-bar"><span>Result</span><div class="calcpro-hex-result-actions"><span class="calcpro-hex-result-status" data-calcpro-hex-status="to-hex" aria-live="polite"></span><button type="button" data-calcpro-hex-action="copy" data-calcpro-hex-section="to-hex" aria-label="Copy hexadecimal result">Copy</button><button type="button" data-calcpro-hex-action="save" data-calcpro-hex-section="to-hex" aria-label="Save hexadecimal result as text">Save</button><button type="button" data-calcpro-hex-action="print" data-calcpro-hex-section="to-hex" aria-label="Print hexadecimal result">Print</button></div></div>
+      <div class="calcpro-hex-result-content"><p class="calcpro-hex-result-label">Hexadecimal value:</p><p class="calcpro-hex-result-line"><strong class="calcpro-hex-result-number" id="calcpro-hex-to-hex-value"></strong></p></div>
+    </div>
+    <form class="calcpro-hex-form" id="calcpro-hex-to-hex-form" novalidate><div class="calcpro-hex-controls"><label class="calcpro-hex-field-label" for="calcpro-hex-to-hex-input">Decimal Value:</label><input class="calcpro-hex-input calcpro-hex-input--wide" id="calcpro-hex-to-hex-input" type="text" inputmode="numeric" spellcheck="false" autocomplete="off" maxlength="256" value="170" required/><span class="calcpro-hex-equals" aria-hidden="true">= ?</span></div><div class="calcpro-hex-actions"><button class="calcpro-hex-btn calcpro-hex-btn--calculate" type="submit">Calculate ▸</button><button class="calcpro-hex-btn calcpro-hex-btn--clear" data-calcpro-hex-clear="to-hex" type="button">Clear</button></div><p class="calcpro-hex-error" id="calcpro-hex-to-hex-error" role="alert"></p></form>
+  </section>
+  <nav class="calcpro-hex-related" aria-label="Related number system calculators"><span class="calcpro-hex-related-label">Related:</span><a href="binary-calculator.html">Binary Calculator</a><a href="ip-subnet-calculator.html">IP Subnet Calculator</a></nav>
+</div></section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><a href="binary-calculator.html">Binary Calculator</a><a href="ip-subnet-calculator.html">IP Subnet Calculator</a><a href="scientific-calculator.html">Scientific Calculator</a><a href="basic-calculator.html">Basic Calculator</a><a href="big-number-calculator.html">Big Number Calculator</a><a href="fraction-calculator.html">Fraction Calculator</a><a href="conversion-calculator.html">Conversion Calculator</a><a href="percent-calculator.html">Percentage Calculator</a><a href="random-number-generator.html">Random Number Generator</a><a href="standard-deviation-calculator.html">Standard Deviation Calculator</a><a href="math-calculator.html">Math Calculators</a><a href="volume-calculator.html">Volume Calculator</a></div></section></aside><article class="cp-article"><h2>How to Use the Hex Calculator</h2>
+<p>This calculator works with whole numbers in base 16. Use the first form to add, subtract, multiply, or divide two hexadecimal values. Enter digits 0–9 and letters A–F, choose an operation, and select <strong>Calculate</strong>. Results appear immediately <strong>above the relevant form</strong> in hexadecimal and decimal. The other two forms convert a single number between hexadecimal and decimal.</p>
+<p>The sample values are <strong>8AB</strong> and <strong>B78</strong> for arithmetic, <strong>DAD</strong> for hexadecimal-to-decimal, and <strong>170</strong> for decimal-to-hexadecimal. Each form has its own Clear button. Negative integers and optional <code>0x</code> hex prefixes are supported.</p>
+<h2>Hexadecimal and Decimal Number Systems</h2>
+<p>Hexadecimal (base 16) uses sixteen symbols: 0–9 represent zero through nine, and A–F represent decimal ten through fifteen. Each hexadecimal position is a power of 16, and each hexadecimal digit corresponds to four binary bits.</p>
+<div class="cp-table-scroll"><table class="cp-content-table" aria-label="Hexadecimal binary and decimal conversion values"><caption>Hexadecimal, Binary, and Decimal Conversion</caption><thead><tr><th scope="col">Hex</th><th scope="col">Binary</th><th scope="col">Decimal</th></tr></thead><tbody><tr><td>0</td><td>0</td><td>0</td></tr>
+<tr><td>1</td><td>1</td><td>1</td></tr>
+<tr><td>2</td><td>10</td><td>2</td></tr>
+<tr><td>3</td><td>11</td><td>3</td></tr>
+<tr><td>4</td><td>100</td><td>4</td></tr>
+<tr><td>5</td><td>101</td><td>5</td></tr>
+<tr><td>6</td><td>110</td><td>6</td></tr>
+<tr><td>7</td><td>111</td><td>7</td></tr>
+<tr><td>8</td><td>1000</td><td>8</td></tr>
+<tr><td>9</td><td>1001</td><td>9</td></tr>
+<tr><td>A</td><td>1010</td><td>10</td></tr>
+<tr><td>B</td><td>1011</td><td>11</td></tr>
+<tr><td>C</td><td>1100</td><td>12</td></tr>
+<tr><td>D</td><td>1101</td><td>13</td></tr>
+<tr><td>E</td><td>1110</td><td>14</td></tr>
+<tr><td>F</td><td>1111</td><td>15</td></tr>
+<tr><td>14</td><td>10100</td><td>20</td></tr>
+<tr><td>3F</td><td>111111</td><td>63</td></tr></tbody></table></div>
+<h2>Hexadecimal Conversion Formulas</h2>
+<h3>Hexadecimal to Decimal</h3>
+<p>Multiply each hexadecimal digit by 16 raised to its position, counting from zero at the right. Add the terms together:</p>
+<p><strong>Decimal = d<sub>n</sub> × 16<sup>n</sup> + … + d<sub>1</sub> × 16 + d<sub>0</sub></strong>.</p>
+<p>For example, <strong>2AA<sub>16</sub></strong> = 2 × 16² + 10 × 16 + 10 = <strong>682<sub>10</sub></strong>. The default conversion <strong>DAD<sub>16</sub></strong> = 13 × 256 + 10 × 16 + 13 = <strong>3501<sub>10</sub></strong>.</p>
+<h3>Decimal to Hexadecimal</h3>
+<p>Divide a nonnegative decimal integer repeatedly by 16. Read the remainders in reverse order, replacing values 10–15 with A–F. For example, 170 ÷ 16 = 10 remainder 10; the digits are A and A, so <strong>170<sub>10</sub> = AA<sub>16</sub></strong>. Apply the negative sign after converting the magnitude of a negative integer.</p>
+<h2>Hexadecimal Arithmetic</h2>
+<h3>Addition</h3>
+<p>Add columns from right to left, carrying one whenever a column reaches 16. The reference example <strong>8AB + B78 = 1423</strong> in hexadecimal; equivalently, <strong>2219 + 2936 = 5155</strong> in decimal.</p>
+<h3>Subtraction</h3>
+<p>Subtract from right to left, borrowing 16 from the next higher column when needed. For example, <strong>5DC − 3AF = 22D</strong>. A negative result is displayed with a leading minus sign, not as a fixed-width two’s-complement value.</p>
+<h3>Multiplication</h3>
+<p>Multiply digits just as you would in decimal, but use base-16 carries and place values. For example, <strong>FA × C3 = BE6E</strong>. The multiplication table below can be used to check single-digit products.</p>
+<h3>Division and Exactness</h3>
+<p>Divide the numeric values and convert the quotient into each number system. An exact whole-number quotient is shown without a fractional part. A non-integer quotient is shown to up to <strong>24 hexadecimal digits</strong> and <strong>20 decimal digits</strong> after the point; an ellipsis indicates a continuing expansion rather than an exact terminated value. The integer quotient and remainder are also shown exactly, including for negative values. Division by zero is not allowed.</p>
+<h2>Hexadecimal Multiplication Table</h2>
+<div class="cp-table-scroll"><table class="cp-content-table" aria-label="Hexadecimal multiplication table from one to ten in hex"><caption>Products in hexadecimal notation (10 in the headings means decimal sixteen)</caption><thead><tr><th>×</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th><th>F</th><th>10</th></tr></thead><tbody><tr><th scope="row">1</th><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>A</td><td>B</td><td>C</td><td>D</td><td>E</td><td>F</td><td>10</td></tr>
+<tr><th scope="row">2</th><td>2</td><td>4</td><td>6</td><td>8</td><td>A</td><td>C</td><td>E</td><td>10</td><td>12</td><td>14</td><td>16</td><td>18</td><td>1A</td><td>1C</td><td>1E</td><td>20</td></tr>
+<tr><th scope="row">3</th><td>3</td><td>6</td><td>9</td><td>C</td><td>F</td><td>12</td><td>15</td><td>18</td><td>1B</td><td>1E</td><td>21</td><td>24</td><td>27</td><td>2A</td><td>2D</td><td>30</td></tr>
+<tr><th scope="row">4</th><td>4</td><td>8</td><td>C</td><td>10</td><td>14</td><td>18</td><td>1C</td><td>20</td><td>24</td><td>28</td><td>2C</td><td>30</td><td>34</td><td>38</td><td>3C</td><td>40</td></tr>
+<tr><th scope="row">5</th><td>5</td><td>A</td><td>F</td><td>14</td><td>19</td><td>1E</td><td>23</td><td>28</td><td>2D</td><td>32</td><td>37</td><td>3C</td><td>41</td><td>46</td><td>4B</td><td>50</td></tr>
+<tr><th scope="row">6</th><td>6</td><td>C</td><td>12</td><td>18</td><td>1E</td><td>24</td><td>2A</td><td>30</td><td>36</td><td>3C</td><td>42</td><td>48</td><td>4E</td><td>54</td><td>5A</td><td>60</td></tr>
+<tr><th scope="row">7</th><td>7</td><td>E</td><td>15</td><td>1C</td><td>23</td><td>2A</td><td>31</td><td>38</td><td>3F</td><td>46</td><td>4D</td><td>54</td><td>5B</td><td>62</td><td>69</td><td>70</td></tr>
+<tr><th scope="row">8</th><td>8</td><td>10</td><td>18</td><td>20</td><td>28</td><td>30</td><td>38</td><td>40</td><td>48</td><td>50</td><td>58</td><td>60</td><td>68</td><td>70</td><td>78</td><td>80</td></tr>
+<tr><th scope="row">9</th><td>9</td><td>12</td><td>1B</td><td>24</td><td>2D</td><td>36</td><td>3F</td><td>48</td><td>51</td><td>5A</td><td>63</td><td>6C</td><td>75</td><td>7E</td><td>87</td><td>90</td></tr>
+<tr><th scope="row">A</th><td>A</td><td>14</td><td>1E</td><td>28</td><td>32</td><td>3C</td><td>46</td><td>50</td><td>5A</td><td>64</td><td>6E</td><td>78</td><td>82</td><td>8C</td><td>96</td><td>A0</td></tr>
+<tr><th scope="row">B</th><td>B</td><td>16</td><td>21</td><td>2C</td><td>37</td><td>42</td><td>4D</td><td>58</td><td>63</td><td>6E</td><td>79</td><td>84</td><td>8F</td><td>9A</td><td>A5</td><td>B0</td></tr>
+<tr><th scope="row">C</th><td>C</td><td>18</td><td>24</td><td>30</td><td>3C</td><td>48</td><td>54</td><td>60</td><td>6C</td><td>78</td><td>84</td><td>90</td><td>9C</td><td>A8</td><td>B4</td><td>C0</td></tr>
+<tr><th scope="row">D</th><td>D</td><td>1A</td><td>27</td><td>34</td><td>41</td><td>4E</td><td>5B</td><td>68</td><td>75</td><td>82</td><td>8F</td><td>9C</td><td>A9</td><td>B6</td><td>C3</td><td>D0</td></tr>
+<tr><th scope="row">E</th><td>E</td><td>1C</td><td>2A</td><td>38</td><td>46</td><td>54</td><td>62</td><td>70</td><td>7E</td><td>8C</td><td>9A</td><td>A8</td><td>B6</td><td>C4</td><td>D2</td><td>E0</td></tr>
+<tr><th scope="row">F</th><td>F</td><td>1E</td><td>2D</td><td>3C</td><td>4B</td><td>5A</td><td>69</td><td>78</td><td>87</td><td>96</td><td>A5</td><td>B4</td><td>C3</td><td>D2</td><td>E1</td><td>F0</td></tr>
+<tr><th scope="row">10</th><td>10</td><td>20</td><td>30</td><td>40</td><td>50</td><td>60</td><td>70</td><td>80</td><td>90</td><td>A0</td><td>B0</td><td>C0</td><td>D0</td><td>E0</td><td>F0</td><td>100</td></tr></tbody></table></div>
+<h2>Frequently Asked Questions</h2>
+<h3>Can I enter lowercase hexadecimal letters?</h3><p>Yes. The calculator accepts both uppercase and lowercase A–F and displays hexadecimal results in uppercase.</p>
+<h3>Can I use the 0x prefix or negative numbers?</h3><p>Yes. For example, <code>0xFF</code> and <code>-0xFF</code> work in hexadecimal fields. Negative decimal whole numbers also work in the decimal-to-hex converter.</p>
+<h3>How large can the values be?</h3><p>The calculator uses JavaScript <code>BigInt</code> for exact integer arithmetic, avoiding the rounding that can occur with ordinary floating-point numbers. Inputs accept up to 256 characters per field. Non-terminating division results are explicitly marked as truncated.</p>
+<h3>Does the calculator accept fractional input values?</h3><p>No. Inputs are whole numbers, as in the supplied reference form. Division can produce a fractional result. For hexadecimal fractions, the digits after the point have weights 16<sup>−1</sup>, 16<sup>−2</sup>, and so on.</p>
+<h3>Can I copy, save, or print a result?</h3><p>Yes. After calculating, use Copy to copy the result text, Save to download it as a text file, or Print to open the browser print dialog.</p>
+<h2>Reference</h2><p>The functionality and result placement were compared with the <a href="https://www.calculator.net/hex-calculator.html" rel="noopener noreferrer">Calculator.net Hex Calculator</a> reference page. This CalcPro implementation runs entirely in the browser.</p>
+<p class="cp-page-footer">CalcPro — hexadecimal arithmetic and base conversions for educational and general-purpose use.</p></article></main></div><script>
+(function () {
+  'use strict';
+  const root = document.getElementById('calcpro-hex-root');
+  if (!root) return;
+  const byId = (id) => document.getElementById('calcpro-hex-' + id);
+  const hint = byId('hint');
+  const savedText = Object.create(null);
+  const opSymbols = { '+': '+', '-': '−', '*': '×', '/': '÷' };
 
-<body>
-<!-- Main-header-page -->
+  function parseHex(input) {
+    const raw = input.value.trim();
+    if (!raw) throw new Error('Please enter a hexadecimal value.');
+    if (!/^[+-]?(?:0[xX])?[0-9a-fA-F]+$/.test(raw)) throw new Error('Use only hexadecimal digits 0–9 and A–F, with an optional leading sign or 0x.');
+    const sign = raw.charAt(0) === '-' ? -1n : 1n;
+    const body = raw.replace(/^[+-]/, '').replace(/^0[xX]/, '');
+    return sign * BigInt('0x' + body);
+  }
+  function parseDecimal(input) {
+    const raw = input.value.trim();
+    if (!raw) throw new Error('Please enter a decimal value.');
+    if (!/^[+-]?\d+$/.test(raw)) throw new Error('Enter a whole decimal number using digits 0–9 and an optional sign.');
+    return BigInt(raw);
+  }
+  function hex(value) { return value.toString(16).toUpperCase(); }
+  function rational(value, divisor, base, maxDigits) {
+    if (divisor === 0n) throw new Error('Cannot divide by zero.');
+    const negative = (value < 0n) !== (divisor < 0n);
+    let numerator = value < 0n ? -value : value;
+    const denominator = divisor < 0n ? -divisor : divisor;
+    const prefix = (negative && numerator !== 0n) ? '-' : '';
+    const whole = numerator / denominator;
+    let rest = numerator % denominator;
+    let text = prefix + whole.toString(base).toUpperCase();
+    if (rest === 0n) return { text, approximate: false };
+    text += '.';
+    for (let i = 0; i < maxDigits && rest !== 0n; i++) {
+      rest *= BigInt(base);
+      text += (rest / denominator).toString(base).toUpperCase();
+      rest %= denominator;
+    }
+    return { text: text + (rest !== 0n ? '…' : ''), approximate: rest !== 0n };
+  }
+  function clearErrors(section) {
+    byId(section + '-error').textContent = '';
+    const form = byId(section + '-form');
+    for (const field of form.querySelectorAll('[aria-invalid]')) field.removeAttribute('aria-invalid');
+  }
+  function reportError(section, error, field) {
+    byId(section + '-result').hidden = true;
+    byId(section + '-error').textContent = error.message || 'Could not calculate this value.';
+    if (field) {
+      field.setAttribute('aria-invalid', 'true');
+      field.focus();
+    }
+  }
+  function showResult(section, text) {
+    clearErrors(section);
+    byId(section + '-result').hidden = false;
+    savedText[section] = text;
+    hint.hidden = true;
+    const status = root.querySelector('[data-calcpro-hex-status="' + section + '"]');
+    if (status) status.textContent = '';
+  }
+  function submitArithmetic(event) {
+    event.preventDefault();
+    const left = byId('operand-1'), right = byId('operand-2');
+    clearErrors('arithmetic');
+    let a, b;
+    try { a = parseHex(left); } catch (error) { reportError('arithmetic', error, left); return; }
+    try { b = parseHex(right); } catch (error) { reportError('arithmetic', error, right); return; }
+    const op = byId('operator').value;
+    if (op === '/' && b === 0n) { reportError('arithmetic', new Error('Division by zero is undefined. Enter a nonzero divisor.'), right); return; }
+    let hexResult, decimalResult, detail = '';
+    if (op === '/') {
+      hexResult = rational(a, b, 16, 24);
+      decimalResult = rational(a, b, 10, 20);
+      const q = a / b, r = a % b;
+      detail = 'Integer quotient: ' + hex(q) + '₁₆ (' + q.toString() + '₁₀); remainder: ' + hex(r) + '₁₆ (' + r.toString() + '₁₀).';
+      if (hexResult.approximate || decimalResult.approximate) detail += ' An ellipsis means that the fractional expansion continues; displayed digits are truncated, while the integer quotient and remainder are exact.';
+    } else {
+      const answer = op === '+' ? a + b : op === '-' ? a - b : a * b;
+      hexResult = { text: hex(answer) };
+      decimalResult = { text: answer.toString() };
+    }
+    const hexExpression = hex(a) + ' ' + opSymbols[op] + ' ' + hex(b);
+    const decimalExpression = a.toString() + ' ' + opSymbols[op] + ' ' + b.toString();
+    byId('expression-hex').textContent = hexExpression;
+    byId('operation-hex').textContent = hexResult.text;
+    byId('expression-decimal').textContent = decimalExpression;
+    byId('operation-decimal').textContent = decimalResult.text;
+    byId('division-detail').textContent = detail;
+    byId('division-detail').hidden = !detail;
+    showResult('arithmetic', 'Hex value:\n' + hexExpression + ' = ' + hexResult.text + '\nDecimal value:\n' + decimalExpression + ' = ' + decimalResult.text + (detail ? '\n' + detail : ''));
+  }
+  function submitToDecimal(event) {
+    event.preventDefault();
+    const input = byId('to-decimal-input');
+    clearErrors('to-decimal');
+    let value;
+    try { value = parseHex(input); } catch (error) { reportError('to-decimal', error, input); return; }
+    const answer = value.toString();
+    byId('to-decimal-value').textContent = answer;
+    showResult('to-decimal', hex(value) + ' (hex) = ' + answer + ' (decimal)');
+  }
+  function submitToHex(event) {
+    event.preventDefault();
+    const input = byId('to-hex-input');
+    clearErrors('to-hex');
+    let value;
+    try { value = parseDecimal(input); } catch (error) { reportError('to-hex', error, input); return; }
+    const answer = hex(value);
+    byId('to-hex-value').textContent = answer;
+    showResult('to-hex', value.toString() + ' (decimal) = ' + answer + ' (hex)');
+  }
+  byId('arithmetic-form').addEventListener('submit', submitArithmetic);
+  byId('to-decimal-form').addEventListener('submit', submitToDecimal);
+  byId('to-hex-form').addEventListener('submit', submitToHex);
+  root.querySelectorAll('[data-calcpro-hex-clear]').forEach((button) => {
+    button.addEventListener('click', () => {
+      const section = button.getAttribute('data-calcpro-hex-clear');
+      const form = byId(section + '-form');
+      form.querySelectorAll('input').forEach((input) => { input.value = ''; });
+      if (section === 'arithmetic') byId('operator').value = '+';
+      clearErrors(section);
+      byId(section + '-result').hidden = true;
+      savedText[section] = '';
+      form.querySelector('input').focus();
+    });
+  });
+  function downloadText(content, name) {
+    const blob = new Blob([content + '\n'], { type: 'text/plain;charset=utf-8' });
+    const address = URL.createObjectURL(blob);
+    const anchor = document.createElement('a');
+    anchor.href = address;
+    anchor.download = 'hex-calculator-' + name + '-result.txt';
+    anchor.style.display = 'none';
+    document.body.appendChild(anchor);
+    anchor.click();
+    anchor.remove();
+    setTimeout(() => URL.revokeObjectURL(address), 1000);
+  }
+  root.querySelectorAll('[data-calcpro-hex-action]').forEach((button) => {
+    button.addEventListener('click', async () => {
+      const section = button.getAttribute('data-calcpro-hex-section');
+      const action = button.getAttribute('data-calcpro-hex-action');
+      const content = savedText[section];
+      if (!content) return;
+      const status = root.querySelector('[data-calcpro-hex-status="' + section + '"]');
+      if (action === 'print') { window.print(); return; }
+      if (action === 'save') { downloadText(content, section); if (status) status.textContent = 'Saved'; return; }
+      try {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          await navigator.clipboard.writeText(content);
+        } else {
+          const temp = document.createElement('textarea');
+          temp.value = content;
+          temp.style.position = 'fixed'; temp.style.left = '-9999px';
+          document.body.appendChild(temp); temp.select();
+          const succeeded = document.execCommand('copy');
+          temp.remove();
+          if (!succeeded) throw new Error('Copy not available');
+        }
+        if (status) status.textContent = 'Copied';
+      } catch (error) {
+        if (status) status.textContent = 'Copy unavailable; use Save';
+      }
+    });
+  });
+})();
+</script><script data-calcpro-latest-result>
+(function () {
+  var toolRoot = document.querySelector('.cp-tool-area') || document.querySelector('main') || document.body;
+  var forms = Array.prototype.slice.call(toolRoot.querySelectorAll('form'));
+  if (forms.length < 2) return;
+
+  var selector = '[id*="result"], [class*="result"], [id*="output"], [class*="output"], [id*="total"], [class*="total"], [id*="summary"], [class*="summary"], [data-result], [data-re-results], [data-cp-surface-result]';
+  var candidates = Array.prototype.slice.call(toolRoot.querySelectorAll(selector));
+  var panels = candidates.filter(function (node) {
+    return !candidates.some(function (other) { return other !== node && other.contains(node); });
+  });
+  var activeOwner = null;
+
+  function namesOf(node) {
+    var names = [node.id].concat(Array.prototype.slice.call(node.classList || []));
+    return names.map(function (name) {
+      return String(name).toLowerCase().replace(/[-_](form|result|results|output|outputs|total|totals|summary|summaries)([-_].*)?$/, '');
+    }).filter(Boolean);
+  }
+
+  function pairedForm(panel) {
+    var names = namesOf(panel);
+    var matches = forms.filter(function (form) {
+      return namesOf(form).some(function (name) { return names.indexOf(name) !== -1; });
+    });
+    return matches.length === 1 ? matches[0] : null;
+  }
+
+  function ownerOf(node) {
+    if (node.matches('form')) return node;
+    var form = node.closest('form') || pairedForm(node);
+    if (form) return form;
+    for (var current = node; current && current !== toolRoot; current = current.parentElement) {
+      var formCount = (current.matches('form') ? 1 : 0) + current.querySelectorAll('form').length;
+      if (formCount === 1 && panels.some(function (panel) { return current === panel || current.contains(panel); })) return current.querySelector('form') || current;
+    }
+    return node.closest('section') || node;
+  }
+
+  function keepOnly(owner, showActive) {
+    panels.forEach(function (panel) {
+      var isActive = ownerOf(panel) === owner;
+      if (!isActive) panel.hidden = true;
+      else if (showActive) panel.hidden = false;
+    });
+  }
+
+  function activate(owner) {
+    if (!owner) return;
+    activeOwner = owner;
+    keepOnly(owner, false);
+  }
+
+  toolRoot.addEventListener('submit', function (event) {
+    var form = event.target;
+    if (form instanceof HTMLFormElement) activate(ownerOf(form));
+  }, true);
+
+  toolRoot.addEventListener('input', function (event) {
+    var form = event.target.closest('form');
+    if (form) activeOwner = ownerOf(form);
+  }, true);
+
+  toolRoot.addEventListener('click', function (event) {
+    var button = event.target.closest('button');
+    var form = button && button.closest('form');
+    if (!form) return;
+    var label = [button.id, button.textContent, button.getAttribute('aria-label') || ''].join(' ').toLowerCase();
+    if (/\b(clear|reset)\b/.test(label) || button.type === 'reset') activeOwner = null;
+    else if (button.type === 'submit' || /\b(calculate|compute|roll|start|encode|decode|convert|generate|run|solve|estimate)\b/.test(label)) activate(ownerOf(form));
+  }, true);
+
+  var observer = new MutationObserver(function (records) {
+    records.forEach(function (record) {
+      var panel = panels.find(function (item) { return item === record.target || item.contains(record.target); });
+      if (!panel || !activeOwner || ownerOf(panel) !== activeOwner) return;
+      if (record.type === 'attributes' && panel.hidden) return;
+      keepOnly(activeOwner, true);
+    });
+  });
+  panels.forEach(function (panel) {
+    observer.observe(panel, {attributes: true, attributeFilter: ['hidden'], childList: true, characterData: true, subtree: true});
+  });
+})();
+</script>
 <script defer src="/assets/js/data.js"></script>
-<script defer src="/assets/js/style.js?v=20261111-1"></script>
-</body>
-</html>
+<script defer src="/assets/js/style.js?v=20261111-5"></script>
+</body></html>

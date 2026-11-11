@@ -369,6 +369,13 @@
     if (!heading && result.previousElementSibling && result.previousElementSibling.matches(headingSelector)) {
       heading = result.previousElementSibling;
     }
+    if (heading) {
+      var headingSave = heading.querySelector('.cp-universal-save');
+      if (headingSave) {
+        saveTargets.set(headingSave, result);
+        return;
+      }
+    }
 
     var existing = Array.prototype.find.call(
       result.querySelectorAll('button,input[type="button"],input[type="submit"]'),
@@ -449,7 +456,7 @@
 
     var note = document.createElement('p');
     note.className = 'cp-save-dialog-note';
-    note.textContent = 'PDF export opens your browser’s print dialog. Choose “Save as PDF” as the destination.';
+    note.textContent = 'In the print dialog, choose Save as PDF to download the page-style result.';
     dialog.appendChild(note);
 
     var status = document.createElement('p');
@@ -462,7 +469,7 @@
       if (!action) return;
       var type = action.getAttribute('data-cp-export');
       if (type === 'text') downloadText();
-      else if (type === 'print' || type === 'pdf') printResults();
+      else if (type === 'pdf' || type === 'print') printResults();
     });
     dialog.addEventListener('click', function (event) {
       if (event.target === dialog) dialog.close();
@@ -486,13 +493,64 @@
   function resultText() {
     var clone = exportClone();
     if (!clone) return '';
-    var staging = document.createElement('div');
-    staging.className = 'cp-save-export-staging';
-    staging.appendChild(clone);
-    document.body.appendChild(staging);
-    var text = (clone.innerText || clone.textContent || '').replace(/\u00a0/g, ' ').replace(/[ \t]+\n/g, '\n').replace(/\n{3,}/g, '\n\n').trim();
-    staging.remove();
-    return text;
+    var blockTags = /^(ADDRESS|ARTICLE|ASIDE|BLOCKQUOTE|DD|DIV|DL|DT|FIELDSET|FIGCAPTION|FIGURE|FOOTER|H[1-6]|HEADER|HR|LI|MAIN|NAV|OL|P|SECTION|SUMMARY|UL)$/;
+
+    function ignored(element) {
+      return element.hidden || element.hasAttribute('hidden') ||
+        element.getAttribute('aria-hidden') === 'true' ||
+        /^(BUTTON|INPUT|SELECT|SCRIPT|STYLE|TEXTAREA)$/.test(element.tagName) ||
+        element.matches('.cp-universal-save,.cp-save-toolbar,[data-cp-exclude-export]');
+    }
+
+    function inlineText(node) {
+      if (node.nodeType === 3) return node.nodeValue || '';
+      if (node.nodeType !== 1 || ignored(node)) return '';
+      if (node.tagName === 'BR') return ' ';
+      if (node.tagName === 'SVG') {
+        var description = node.getAttribute('aria-label');
+        return description ? 'Chart: ' + description : '';
+      }
+      return Array.prototype.map.call(node.childNodes, inlineText).join('');
+    }
+
+    function tableRows(node, rows) {
+      Array.prototype.forEach.call(node.children, function (child) {
+        if (child.tagName === 'TR') rows.push(child);
+        else if (child.tagName !== 'TABLE') tableRows(child, rows);
+      });
+    }
+
+    function blockText(node) {
+      if (node.nodeType === 3) return node.nodeValue || '';
+      if (node.nodeType !== 1 || ignored(node)) return '';
+      if (node.tagName === 'SVG') {
+        var description = node.getAttribute('aria-label');
+        return description ? '\nChart: ' + description + '\n' : '';
+      }
+      if (node.tagName === 'TABLE') {
+        var rows = [];
+        tableRows(node, rows);
+        return '\n' + rows.map(function (row) {
+          var cells = Array.prototype.filter.call(row.children, function (child) {
+            return child.tagName === 'TH' || child.tagName === 'TD';
+          });
+          return cells.map(function (cell) { return inlineText(cell).replace(/\s+/g, ' ').trim(); })
+            .filter(Boolean).join(' | ');
+        }).filter(Boolean).join('\n') + '\n';
+      }
+      if (node.tagName === 'DETAILS' && !node.open) {
+        var summary = node.querySelector('summary');
+        return summary ? '\n' + inlineText(summary).replace(/\s+/g, ' ').trim() + '\n' : '';
+      }
+
+      var content = Array.prototype.map.call(node.childNodes, blockText).join('');
+      if (node.tagName === 'LI') content = '- ' + content;
+      return blockTags.test(node.tagName) ? '\n' + content + '\n' : content;
+    }
+
+    return blockText(clone).replace(/\u00a0/g, ' ').split('\n')
+      .map(function (line) { return line.replace(/[ \t]+/g, ' ').trim(); })
+      .join('\n').replace(/\n{3,}/g, '\n\n').trim();
   }
 
   function fileName(extension) {

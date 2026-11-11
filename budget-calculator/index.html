@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US">
-<head>
-<meta charset="utf-8">
+<html lang="en"><head><meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="content-language" content="en">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,17 +11,521 @@
   <meta name="author" content="Commingsoon">
   <meta name="publisher" content="Commingsoon">
   <meta name="robots" content="noindex, nofollow, max-image-preview:large">
-  <link rel="stylesheet" href="/assets/css/style.css?v=20261111-1" crossorigin="anonymous" data-n-g="">
+  <link rel="stylesheet" href="/assets/css/style.css?v=20261111-4" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/doc_style.css" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/side_style.css" crossorigin="anonymous" data-n-g=""> 
   <!--ogtags-->
-  <!--schema-->
-  <!--style-->
-</head>
+  <!--schema--><style>
 
-<body>
-<!-- Main-header-page -->
-<script defer src="/assets/js/data.js"></script>
-<script defer src="/assets/js/style.js?v=20261111-1"></script>
-</body>
-</html>
+/* Budget calculator only — keep the existing CalcPro cp-* layout untouched. */
+.calcpro-budget{width:100%;max-width:728px;color:#14263b;font:14px/1.42 Arial,Helvetica,sans-serif;--calcpro-budget-blue:#336699;--calcpro-budget-border:#b9c7d6}
+.calcpro-budget *, .calcpro-budget *::before, .calcpro-budget *::after{box-sizing:border-box}
+.calcpro-budget [hidden]{display:none!important}
+.calcpro-budget button,.calcpro-budget input,.calcpro-budget select{font:inherit}
+.calcpro-budget .calcpro-budget-formbar{background:var(--calcpro-budget-blue);color:#fff;padding:9px 11px;font-weight:700;margin-top:12px;border-radius:2px 2px 0 0}
+.calcpro-budget .calcpro-budget-formfields{background:#dedede;border:1px solid #d3d3d3;border-top:0}
+.calcpro-budget .calcpro-budget-sectionhead{background:#336699;color:#fff;font-weight:700;padding:7px 10px}
+.calcpro-budget .calcpro-budget-grouphead{background:#bbc0c5;color:#18232f;font-size:14px;font-weight:700;padding:6px 10px;border-top:1px solid #eee}
+.calcpro-budget .calcpro-budget-grouphead:first-child{background:#336699;color:#fff;border-top:0}
+.calcpro-budget .calcpro-budget-fieldrow{display:grid;grid-template-columns:minmax(150px,1.32fr) minmax(85px,112px) minmax(88px,106px) minmax(145px,1.45fr);column-gap:9px;align-items:center;padding:5px 10px;min-height:35px;border-bottom:1px solid rgba(255,255,255,.42)}
+.calcpro-budget .calcpro-budget-fieldlabel{font-size:13px;line-height:1.25;min-width:0}
+.calcpro-budget .calcpro-budget-money,.calcpro-budget .calcpro-budget-percent{background:#fff;border:1px solid #819bb3;display:flex;align-items:center;border-radius:2px;min-width:0;min-height:28px}
+.calcpro-budget .calcpro-budget-money>span{padding:0 0 0 6px;color:#6c7884;font-size:12px}
+.calcpro-budget .calcpro-budget-percent>span{padding:0 7px 0 0;color:#6c7884}
+.calcpro-budget .calcpro-budget-money input,.calcpro-budget .calcpro-budget-percent input{border:0;width:100%;min-width:0;padding:4px 6px;background:transparent;outline:none;color:#162a3a;min-height:26px}
+.calcpro-budget .calcpro-budget-money:focus-within,.calcpro-budget .calcpro-budget-percent:focus-within{outline:2px solid #2f70c0;outline-offset:1px}
+.calcpro-budget .calcpro-budget-fieldrow input[aria-invalid="true"]{background:#fff2f2}
+.calcpro-budget .calcpro-budget-frequency{width:100%;max-width:106px;min-width:0;min-height:28px;border:1px solid #819bb3;background:#fff;color:#172838;padding:3px 4px;border-radius:2px;cursor:pointer}
+.calcpro-budget .calcpro-budget-fieldnote{font-size:11px;color:#515d66;line-height:1.22;min-width:0}
+.calcpro-budget .calcpro-budget-actions{display:flex;justify-content:center;gap:8px;background:#dedede;padding:11px 8px 13px;border:1px solid #d3d3d3;border-top:0}
+.calcpro-budget .calcpro-budget-actions button{border:0;border-radius:3px;color:#fff;padding:8px 18px;min-height:35px;font-weight:700;cursor:pointer}
+.calcpro-budget .calcpro-budget-calculate{background:#327b21}
+.calcpro-budget .calcpro-budget-calculate:hover{background:#256419}
+.calcpro-budget .calcpro-budget-reset{background:#898989}
+.calcpro-budget .calcpro-budget-reset:hover{background:#626262}
+.calcpro-budget .calcpro-budget-results{border:1px solid #d5e0e9;border-radius:3px;background:#fff;margin-bottom:15px}
+.calcpro-budget .calcpro-budget-resultsbar{background:#4f881b;color:#fff;display:flex;justify-content:space-between;align-items:center;padding:9px 11px}
+.calcpro-budget .calcpro-budget-resultsbar h2{margin:0;font:bold 18px Arial,sans-serif;color:#fff}
+.calcpro-budget .calcpro-budget-print{color:#fff;background:transparent;border:1px solid rgba(255,255,255,.65);padding:4px 9px;border-radius:2px;cursor:pointer;font-size:12px}
+.calcpro-budget .calcpro-budget-print:hover{background:#426f19}
+.calcpro-budget .calcpro-budget-resultbody{padding:10px 13px 13px}
+.calcpro-budget .calcpro-budget-subtitle{color:#1c3549;font-weight:bold;font-size:15px;margin:9px 0 6px}
+.calcpro-budget .calcpro-budget-scroll{max-width:100%;overflow-x:auto}
+.calcpro-budget .calcpro-budget-summarytable,.calcpro-budget .calcpro-budget-breakdown{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums;font-size:13px}
+.calcpro-budget .calcpro-budget-summarytable th,.calcpro-budget .calcpro-budget-breakdown th{background:var(--calcpro-budget-blue);color:#fff;text-align:left;padding:7px 8px}
+.calcpro-budget .calcpro-budget-summarytable th:not(:first-child),.calcpro-budget .calcpro-budget-breakdown th:not(:first-child){text-align:right}
+.calcpro-budget .calcpro-budget-summarytable td,.calcpro-budget .calcpro-budget-breakdown td{border-bottom:1px solid #e1e5e9;padding:7px 8px;text-align:right;white-space:nowrap}
+.calcpro-budget .calcpro-budget-summarytable td:first-child,.calcpro-budget .calcpro-budget-breakdown td:first-child{text-align:left;white-space:normal}
+.calcpro-budget .calcpro-budget-summarytable tbody tr:nth-child(even),.calcpro-budget .calcpro-budget-breakdown tbody tr:nth-child(even){background:#f1f4f6}
+.calcpro-budget .calcpro-budget-highlight{font-weight:700;background:#e7f1e4!important}
+.calcpro-budget .calcpro-budget-negative{color:#a51b1b}
+.calcpro-budget .calcpro-budget-ratios{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-top:12px}
+.calcpro-budget .calcpro-budget-ratios>div{background:#f4f7fa;border:1px solid #d9e1e8;padding:10px;min-width:0}
+.calcpro-budget .calcpro-budget-ratios strong{display:block;font-size:13px}
+.calcpro-budget .calcpro-budget-ratios span{display:block;font-size:21px;font-weight:700;color:#14537c;margin:2px 0}
+.calcpro-budget .calcpro-budget-ratios p{font-size:11px;color:#5a6570;margin:1px 0 0}
+.calcpro-budget .calcpro-budget-chartwrap{display:flex;align-items:center;gap:26px;padding:7px 4px 12px;flex-wrap:wrap}
+.calcpro-budget .calcpro-budget-donut-wrap{flex:0 0 180px}
+.calcpro-budget .calcpro-budget-donut{display:block;max-width:100%;height:auto}
+.calcpro-budget .calcpro-budget-donut-caption{font:12px Arial,sans-serif;fill:#667786}
+.calcpro-budget .calcpro-budget-donut-value{font:700 17px Arial,sans-serif;fill:#243b51}
+.calcpro-budget .calcpro-budget-chartlegend{flex:1 1 250px;list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr;gap:5px}
+.calcpro-budget .calcpro-budget-chartlegend li{display:flex;justify-content:space-between;gap:8px;font-size:12px;line-height:1.3}
+.calcpro-budget .calcpro-budget-chartlegend li span:first-child{display:flex;align-items:center;gap:7px}
+.calcpro-budget .calcpro-budget-chartlegend i{width:10px;height:10px;display:inline-block;border-radius:2px;flex-shrink:0}
+.calcpro-budget .calcpro-budget-chartlegend strong{white-space:nowrap;font-variant-numeric:tabular-nums}
+.calcpro-budget .calcpro-budget-resultnote{font-size:12px;color:#64717d;margin:10px 0 2px}
+.calcpro-budget .calcpro-budget-error{border-left:4px solid #b02d2d;padding:9px 12px;color:#7d1111;background:#fff1f1;margin:10px 0}
+.calcpro-budget .calcpro-budget-related-mini{background:#f0f0f0;margin:15px 0;padding:9px 11px;display:flex;align-items:center;flex-wrap:wrap;gap:7px 12px;font-size:12px}
+.calcpro-budget .calcpro-budget-related-mini strong{color:#425669}
+.calcpro-budget .calcpro-budget-related-mini a{color:#075b87!important;text-decoration:underline}
+@media(max-width:680px){.calcpro-budget .calcpro-budget-fieldrow{grid-template-columns:minmax(150px,1.3fr) minmax(80px,100px) minmax(80px,92px);column-gap:7px}.calcpro-budget .calcpro-budget-fieldnote{grid-column:1/-1;margin-top:1px;margin-left:2px}.calcpro-budget .calcpro-budget-fieldnote:empty{display:none}.calcpro-budget .calcpro-budget-freqblank{display:none}.calcpro-budget .calcpro-budget-taxrow .calcpro-budget-fieldnote{grid-column:1/-1}}
+@media(max-width:460px){.calcpro-budget{font-size:13px}.calcpro-budget .calcpro-budget-fieldrow{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:4px 9px;padding:7px 9px}.calcpro-budget .calcpro-budget-fieldlabel{grid-column:1/-1;font-size:13px;font-weight:500}.calcpro-budget .calcpro-budget-frequency{max-width:none}.calcpro-budget .calcpro-budget-fieldnote{grid-column:1/-1}.calcpro-budget .calcpro-budget-taxrow .calcpro-budget-percent{grid-column:1/2}.calcpro-budget .calcpro-budget-resultbody{padding:9px 8px}.calcpro-budget .calcpro-budget-chartwrap{justify-content:center;gap:8px}.calcpro-budget .calcpro-budget-ratios{grid-template-columns:1fr}.calcpro-budget .calcpro-budget-chartlegend{flex-basis:100%}.calcpro-budget .calcpro-budget-summarytable,.calcpro-budget .calcpro-budget-breakdown{font-size:12px}.calcpro-budget .calcpro-budget-summarytable td,.calcpro-budget .calcpro-budget-breakdown td{padding:6px 5px}.calcpro-budget .calcpro-budget-summarytable th,.calcpro-budget .calcpro-budget-breakdown th{padding:7px 5px}.calcpro-budget .calcpro-budget-actions button{min-height:42px}}
+@media print{.calcpro-budget .calcpro-budget-formbar,.calcpro-budget #calcpro-budget-form,.calcpro-budget .calcpro-budget-related-mini,.calcpro-budget .calcpro-budget-print,.calcpro-budget .calcpro-budget-error{display:none!important}.calcpro-budget .calcpro-budget-results{display:block!important;border:0;margin:0}.calcpro-budget .calcpro-budget-chartwrap{break-inside:avoid}.calcpro-budget .calcpro-budget-breakdown{break-inside:avoid}.calcpro-budget .calcpro-budget-ratios>div{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+
+</style>
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Budget Calculator</nav><h1 class="cp-page-title">Budget Calculator</h1><p class="cp-intro">Plan your personal budget using before-tax income, monthly and annual expenses, planned savings and debt payments. Review your cash flow and spending breakdown in one place.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-budget" id="calcpro-budget-tool">
+  <div class="calcpro-budget-error" id="calcpro-budget-errors" role="alert" hidden></div>
+  <section class="calcpro-budget-results" id="calcpro-budget-results" aria-labelledby="calcpro-budget-results-title" aria-live="polite" hidden>
+    <div class="calcpro-budget-resultsbar"><h2 id="calcpro-budget-results-title">Results</h2><button class="calcpro-budget-print" type="button" id="calcpro-budget-print" aria-label="Print budget results">Print <span aria-hidden="true">↗</span></button></div>
+    <div class="calcpro-budget-resultbody">
+      <h3 class="calcpro-budget-subtitle">Summary</h3>
+      <div class="calcpro-budget-scroll"><table class="calcpro-budget-summarytable" aria-label="Income and expense summary"><thead><tr><th scope="col">Budget summary</th><th scope="col">Annual</th><th scope="col">Monthly</th></tr></thead><tbody id="calcpro-budget-summary-rows"></tbody></table></div>
+      <div class="calcpro-budget-ratios"><div><strong>Debt-to-Income (DTI) Ratio</strong><span id="calcpro-budget-dti">—</span><p id="calcpro-budget-dti-note"></p></div><div><strong>Expenses-to-Income Ratio</strong><span id="calcpro-budget-expense-ratio">—</span><p>Planned spending and savings ÷ estimated take-home income</p></div></div>
+      <h3 class="calcpro-budget-subtitle">Expense Breakdown</h3>
+      <div class="calcpro-budget-chartwrap"><div class="calcpro-budget-donut-wrap"><svg class="calcpro-budget-donut" id="calcpro-budget-donut" viewBox="0 0 180 180" width="180" height="180" role="img" aria-label="Expense breakdown chart"><circle cx="90" cy="90" r="63" fill="none" stroke="#e4ebf0" stroke-width="31"></circle><g id="calcpro-budget-slices" transform="rotate(-90 90 90)"></g><text x="90" y="86" text-anchor="middle" class="calcpro-budget-donut-caption">Monthly</text><text x="90" y="107" text-anchor="middle" class="calcpro-budget-donut-value" id="calcpro-budget-donut-total">$0</text></svg></div><ul class="calcpro-budget-chartlegend" id="calcpro-budget-legend"></ul></div>
+      <h3 class="calcpro-budget-subtitle">Budget by Category</h3>
+      <div class="calcpro-budget-scroll"><table class="calcpro-budget-breakdown" aria-label="Detailed budget category totals"><thead><tr><th scope="col">Category</th><th scope="col">Annual</th><th scope="col">Monthly</th><th scope="col">% of Take-Home Income</th></tr></thead><tbody id="calcpro-budget-breakdown-rows"></tbody></table></div>
+      <p class="calcpro-budget-resultnote" id="calcpro-budget-resultnote"></p>
+    </div>
+  </section>
+  <div class="calcpro-budget-formbar" id="calcpro-budget-formbar">Enter amounts and click Calculate to review your budget.</div>
+  <form id="calcpro-budget-form" novalidate>
+    <div class="calcpro-budget-formfields"><div class="calcpro-budget-grouphead">Incomes (Before Tax)</div>
+<div class="calcpro-budget-fieldrow">
+      <label for="calcpro-budget-salary" class="calcpro-budget-fieldlabel">Salary &amp; Earned Income</label>
+      <div class="calcpro-budget-money"><span aria-hidden="true">$</span><input id="calcpro-budget-salary" name="salary" data-budget-key="salary" data-budget-amount type="text" inputmode="decimal" autocomplete="off" value="80,000" aria-label="Salary &amp; Earned Income amount"></div>
+      <select class="calcpro-budget-frequency" name="lgsalary" data-budget-unit="salary" aria-label="Salary &amp; Earned Income frequency"><option value="m">Month</option><option value="y" selected>Year</option></select>
+      <small class="calcpro-budget-fieldnote"></small>
+    </div>
+<div class="calcpro-budget-fieldrow">
+      <label for="calcpro-budget-pension" class="calcpro-budget-fieldlabel">Pension &amp; Social Security</label>
+      <div class="calcpro-budget-money"><span aria-hidden="true">$</span><input id="calcpro-budget-pension" name="pension" data-budget-key="pension" data-budget-amount type="text" inputmode="decimal" autocomplete="off" value="0" aria-label="Pension &amp; Social Security amount"></div>
+      <select class="calcpro-budget-frequency" name="lgpension" data-budget-unit="pension" aria-label="Pension &amp; Social Security frequency"><option value="m">Month</option><option value="y" selected>Year</option></select>
+      <small class="calcpro-budget-fieldnote"></small>
+    </div>
+<div class="calcpro-budget-fieldrow">
+      <label for="calcpro-budget-investment" class="calcpro-budget-fieldlabel">Investments &amp; Savings</label>
+      <div class="calcpro-budget-money"><span aria-hidden="true">$</span><input id="calcpro-budget-investment" name="investment" data-budget-key="investment" data-budget-amount type="text" inputmode="decimal" autocomplete="off" value="1,000" aria-label="Investments &amp; Savings amount"></div>
+      <select class="calcpro-budget-frequency" name="lginvestment" data-budget-unit="investment" aria-label="Investments &amp; Savings frequency"><option value="m">Month</option><option value="y" selected>Year</option></select>
+      <small class="calcpro-budget-fieldnote">Interest, capital gains, dividends, rent</small>
+    </div>
+<div class="calcpro-budget-fieldrow">
+      <label for="calcpro-budget-otherincome" class="calcpro-budget-fieldlabel">Other Income</label>
+      <div class="calcpro-budget-money"><span aria-hidden="true">$</span><input id="calcpro-budget-otherincome" name="otherincome" data-budget-key="otherincome" data-budget-amount type="text" inputmode="decimal" autocomplete="off" value="2,000" aria-label="Other Income amount"></div>
+      <select class="calcpro-budget-frequency" name="lgotherincome" data-budget-unit="otherincome" aria-label="Other Income frequency"><option value="m">Month</option><option value="y" selected>Year</option></select>
+      <small class="calcpro-budget-fieldnote">Gifts, alimony, support, tax refunds</small>
+    </div>
+<div class="calcpro-budget-fieldrow calcpro-budget-taxrow">
+<label for="calcpro-budget-taxrate" class="calcpro-budget-fieldlabel">Income Tax Rate</label>
+<div class="calcpro-budget-percent"><input id="calcpro-budget-taxrate" type="text" inputmode="decimal" name="taxrate" value="28" aria-label="Estimated effective income tax rate"><span aria-hidden="true">%</span></div>
+<div class="calcpro-budget-freqblank"></div><small class="calcpro-budget-fieldnote">Estimated combined federal, state, and local rate</small></div>
+<div class="calcpro-budget-sectionhead">Expenses</div>
+<div class="calcpro-budget-grouphead">Housing &amp; Utilities</div>
+<div class="calcpro-budget-fieldrow">
+      <label for="calcpro-budget-mortgage" class="calcpro-budget-fieldlabel">Mortgage</label>
+      <div class="calcpro-budget-money"><span aria-hidden="true">$</span><input id="calcpro-budget-mortgage" name="mortgage" data-budget-key="mortgage" data-budget-amount type="text" inputmode="decimal" autocomplete="off" value="0" aria-label="Mortgage amount"></div>
+      <select class="calcpro-budget-frequency" name="lgmortgage" data-budget-unit="mortgage" aria-label="Mortgage frequency"><option value="m" selected>Month</option><option value="y">Year</option></select>
+      <small class="calcpro-budget-fieldnote"></small>
+    </div>
+<div class="calcpro-budget-fieldrow">
+      <label for="calcpro-budget-propertytax" class="calcpro-budget-fieldlabel">Property Tax</label>
+      <div class="calcpro-budget-money"><span aria-hidden="true">$</span><input id="calcpro-budget-propertytax" name="propertytax" data-budget-key="propertytax" data-budget-amount type="text" inputmode="decimal" autocomplete="off" value="0" aria-label="Property Tax amount"></div>
+      <select class="calcpro-budget-frequency" name="lgpropertytax" data-budget-unit="propertytax" aria-label="Property Tax frequency"><option value="m">Month</option><option value="y" selected>Year</option></select>
+      <small class="calcpro-budget-fieldnote"></small>
+    </div>
+<div class="calcpro-budget-fieldrow">
+      <label for="calcpro-budget-rental" class="calcpro-budget-fieldlabel">Rental</label>
+      <div class="calcpro-budget-money"><span aria-hidden="true">$</span><input id="calcpro-budget-rental" name="rental" data-budget-key="rental" data-budget-amount type="text" inputmode="decimal" autocomplete="off" value="1,400" aria-label="Rental amount"></div>
+      <select class="calcpro-budget-frequency" name="lgrental" data-budget-unit="rental" aria-label="Rental frequency"><option value="m" selected>Month</option><option value="y">Year</option></select>
+      <small class="calcpro-budget-fieldnote"></small>
+    </div>
+<div class="calcpro-budget-fieldrow">
+      <label for="calcpro-budget-houseinsurance" class="calcpro-budget-fieldlabel">Insurance</label>
+      <div class="calcpro-budget-money"><span aria-hidden="true">$</span><input id="calcpro-budget-houseinsurance" name="houseinsurance" data-budget-key="houseinsurance" data-budget-amount type="text" inputmode="decimal" autocomplete="off" value="200" aria-label="Insurance amount"></div>
+      <select class="calcpro-budget-frequency" name="lghouseinsurance" data-budget-unit="houseinsurance" aria-label="Insurance frequency"><option value="m">Month</option><option value="y" selected>Year</option></select>
+      <small class="calcpro-budget-fieldnote">Home, renters, or warranty coverage</small>
+    </div>
+<div class="calcpro-budget-fieldrow">
+      <label for="calcpro-budget-hoafee" class="calcpro-budget-fieldlabel">HOA/Co-Op Fee</label>
+      <div class="calcpro-budget-money"><span aria-hidden="true">$</span><input id="calcpro-budget-hoafee" name="hoafee" data-budget-key="hoafee" data-budget-amount type="text" inputmode="decimal" autocomplete="off" value="0" aria-label="HOA/Co-Op Fee amount"></div>
+      <select class="calcpro-budget-frequency" name="lghoafee" data-budget-unit="hoafee" aria-label="HOA/Co-Op Fee frequency"><option value="m">Month</option><option value="y" selected>Year</option></select>
+      <small class="calcpro-budget-fieldnote"></small>
+    </div>
+<div class="calcpro-budget-fieldrow">
+      <label for="calcpro-budget-homemaintenance" class="calcpro-budget-fieldlabel">Home Maintenance</label>
+      <div class="calcpro-budget-money"><span aria-hidden="true">$</span><input id="calcpro-budget-homemaintenance" name="homemaintenance" data-budget-key="homemaintenance" data-budget-amount type="text" inputmode="decimal" autocomplete="off" value="0" aria-label="Home Maintenance amount"></div>
+      <select class="calcpro-budget-frequency" name="lghomemaintenance" data-budget-unit="homemaintenance" aria-label="Home Maintenance frequency"><option value="m" selected>Month</option><option value="y">Year</option></select>
+      <small class="calcpro-budget-fieldnote">Repair, cleaning, and appliances</small>
+    </div>
+<div class="calcpro-budget-fieldrow">
+      <label for="calcpro-budget-utilities" class="calcpro-budget-fieldlabel">Utilities</label>
+      <div class="calcpro-budget-money"><span aria-hidden="true">$</span><input id="calcpro-budget-utilities" name="utilities" data-budget-key="utilities" data-budget-amount type="text" inputmode="decimal" autocomplete="off" value="250" aria-label="Utilities amount"></div>
+      <select class="calcpro-budget-frequency" name="lgutilities" data-budget-unit="utilities" aria-label="Utilities frequency"><option value="m" selected>Month</option><option value="y">Year</option></select>
+      <small class="calcpro-budget-fieldnote">Electricity, gas, water, phone, and internet</small>
+    </div>
+<div class="calcpro-budget-grouphead">Transportation</div>
+<div class="calcpro-budget-fieldrow">
+      <label for="calcpro-budget-autoloan" class="calcpro-budget-fieldlabel">Auto Loan</label>
+      <div class="calcpro-budget-money"><span aria-hidden="true">$</span><input id="calcpro-budget-autoloan" name="autoloan" data-budget-key="autoloan" data-budget-amount type="text" inputmode="decimal" autocomplete="off" value="250" aria-label="Auto Loan amount"></div>
+      <select class="calcpro-budget-frequency" name="lgautoloan" data-budget-unit="autoloan" aria-label="Auto Loan frequency"><option value="m" selected>Month</option><option value="y">Year</option></select>
+      <small class="calcpro-budget-fieldnote"></small>
+    </div>
+<div class="calcpro-budget-fieldrow">
+      <label for="calcpro-budget-autoinsurance" class="calcpro-budget-fieldlabel">Auto Insurance</label>
+      <div class="calcpro-budget-money"><span aria-hidden="true">$</span><input id="calcpro-budget-autoinsurance" name="autoinsurance" data-budget-key="autoinsurance" data-budget-amount type="text" inputmode="decimal" autocomplete="off" value="700" aria-label="Auto Insurance amount"></div>
+      <select class="calcpro-budget-frequency" name="lgautoinsurance" data-budget-unit="autoinsurance" aria-label="Auto Insurance frequency"><option value="m">Month</option><option value="y" selected>Year</option></select>
+      <small class="calcpro-budget-fieldnote"></small>
+    </div>
+<div class="calcpro-budget-fieldrow">
+      <label for="calcpro-budget-gasoline" class="calcpro-budget-fieldlabel">Gasoline</label>
+      <div class="calcpro-budget-money"><span aria-hidden="true">$</span><input id="calcpro-budget-gasoline" name="gasoline" data-budget-key="gasoline" data-budget-amount type="text" inputmode="decimal" autocomplete="off" value="100" aria-label="Gasoline amount"></div>
+      <select class="calcpro-budget-frequency" name="lggasoline" data-budget-unit="gasoline" aria-label="Gasoline frequency"><option value="m" selected>Month</option><option value="y">Year</option></select>
+      <small class="calcpro-budget-fieldnote"></small>
+    </div>
+<div class="calcpro-budget-fieldrow">
+      <label for="calcpro-budget-automaintenance" class="calcpro-budget-fieldlabel">Auto Maintenance</label>
+      <div class="calcpro-budget-money"><span aria-hidden="true">$</span><input id="calcpro-budget-automaintenance" name="automaintenance" data-budget-key="automaintenance" data-budget-amount type="text" inputmode="decimal" autocomplete="off" value="600" aria-label="Auto Maintenance amount"></div>
+      <select class="calcpro-budget-frequency" name="lgautomaintenance" data-budget-unit="automaintenance" aria-label="Auto Maintenance frequency"><option value="m">Month</option><option value="y" selected>Year</option></select>
+      <small class="calcpro-budget-fieldnote"></small>
+    </div>
+<div class="calcpro-budget-fieldrow">
+      <label for="calcpro-budget-parkingtoll" class="calcpro-budget-fieldlabel">Parking/Tolls</label>
+      <div class="calcpro-budget-money"><span aria-hidden="true">$</span><input id="calcpro-budget-parkingtoll" name="parkingtoll" data-budget-key="parkingtoll" data-budget-amount type="text" inputmode="decimal" autocomplete="off" value="20" aria-label="Parking/Tolls amount"></div>
+      <select class="calcpro-budget-frequency" name="lgparkingtoll" data-budget-unit="parkingtoll" aria-label="Parking/Tolls frequency"><option value="m" selected>Month</option><option value="y">Year</option></select>
+      <small class="calcpro-budget-fieldnote"></small>
+    </div>
+<div class="calcpro-budget-fieldrow">
+      <label for="calcpro-budget-othertransportation" class="calcpro-budget-fieldlabel">Other Transportation Costs</label>
+      <div class="calcpro-budget-money"><span aria-hidden="true">$</span><input id="calcpro-budget-othertransportation" name="othertransportation" data-budget-key="othertransportation" data-budget-amount type="text" inputmode="decimal" autocomplete="off" value="0" aria-label="Other Transportation Costs amount"></div>
+      <select class="calcpro-budget-frequency" name="lgothertransportation" data-budget-unit="othertransportation" aria-label="Other Transportation Costs frequency"><option value="m" selected>Month</option><option value="y">Year</option></select>
+      <small class="calcpro-budget-fieldnote">Tickets, taxis, and registration</small>
+    </div>
+<div class="calcpro-budget-grouphead">Other Debt &amp; Loan Payments</div>
+<div class="calcpro-budget-fieldrow">
+      <label for="calcpro-budget-creditcard" class="calcpro-budget-fieldlabel">Credit Card</label>
+      <div class="calcpro-budget-money"><span aria-hidden="true">$</span><input id="calcpro-budget-creditcard" name="creditcard" data-budget-key="creditcard" data-budget-amount type="text" inputmode="decimal" autocomplete="off" value="0" aria-label="Credit Card amount"></div>
+      <select class="calcpro-budget-frequency" name="lgcreditcard" data-budget-unit="creditcard" aria-label="Credit Card frequency"><option value="m" selected>Month</option><option value="y">Year</option></select>
+      <small class="calcpro-budget-fieldnote">Recurring payments toward outstanding balances</small>
+    </div>
+<div class="calcpro-budget-fieldrow">
+      <label for="calcpro-budget-studentloan" class="calcpro-budget-fieldlabel">Student Loan</label>
+      <div class="calcpro-budget-money"><span aria-hidden="true">$</span><input id="calcpro-budget-studentloan" name="studentloan" data-budget-key="studentloan" data-budget-amount type="text" inputmode="decimal" autocomplete="off" value="250" aria-label="Student Loan amount"></div>
+      <select class="calcpro-budget-frequency" name="lgstudentloan" data-budget-unit="studentloan" aria-label="Student Loan frequency"><option value="m" selected>Month</option><option value="y">Year</option></select>
+      <small class="calcpro-budget-fieldnote"></small>
+    </div>
+<div class="calcpro-budget-fieldrow">
+      <label for="calcpro-budget-otherloan" class="calcpro-budget-fieldlabel">Other Loans &amp; Liabilities</label>
+      <div class="calcpro-budget-money"><span aria-hidden="true">$</span><input id="calcpro-budget-otherloan" name="otherloan" data-budget-key="otherloan" data-budget-amount type="text" inputmode="decimal" autocomplete="off" value="0" aria-label="Other Loans &amp; Liabilities amount"></div>
+      <select class="calcpro-budget-frequency" name="lgotherloan" data-budget-unit="otherloan" aria-label="Other Loans &amp; Liabilities frequency"><option value="m" selected>Month</option><option value="y">Year</option></select>
+      <small class="calcpro-budget-fieldnote">Personal loans and store cards</small>
+    </div>
+<div class="calcpro-budget-grouphead">Living Expenses</div>
+<div class="calcpro-budget-fieldrow">
+      <label for="calcpro-budget-food" class="calcpro-budget-fieldlabel">Food</label>
+      <div class="calcpro-budget-money"><span aria-hidden="true">$</span><input id="calcpro-budget-food" name="food" data-budget-key="food" data-budget-amount type="text" inputmode="decimal" autocomplete="off" value="400" aria-label="Food amount"></div>
+      <select class="calcpro-budget-frequency" name="lgfood" data-budget-unit="food" aria-label="Food frequency"><option value="m" selected>Month</option><option value="y">Year</option></select>
+      <small class="calcpro-budget-fieldnote"></small>
+    </div>
+<div class="calcpro-budget-fieldrow">
+      <label for="calcpro-budget-clothing" class="calcpro-budget-fieldlabel">Clothing</label>
+      <div class="calcpro-budget-money"><span aria-hidden="true">$</span><input id="calcpro-budget-clothing" name="clothing" data-budget-key="clothing" data-budget-amount type="text" inputmode="decimal" autocomplete="off" value="100" aria-label="Clothing amount"></div>
+      <select class="calcpro-budget-frequency" name="lgclothing" data-budget-unit="clothing" aria-label="Clothing frequency"><option value="m" selected>Month</option><option value="y">Year</option></select>
+      <small class="calcpro-budget-fieldnote"></small>
+    </div>
+<div class="calcpro-budget-fieldrow">
+      <label for="calcpro-budget-grocery" class="calcpro-budget-fieldlabel">Household Supplies</label>
+      <div class="calcpro-budget-money"><span aria-hidden="true">$</span><input id="calcpro-budget-grocery" name="grocery" data-budget-key="grocery" data-budget-amount type="text" inputmode="decimal" autocomplete="off" value="100" aria-label="Household Supplies amount"></div>
+      <select class="calcpro-budget-frequency" name="lggrocery" data-budget-unit="grocery" aria-label="Household Supplies frequency"><option value="m" selected>Month</option><option value="y">Year</option></select>
+      <small class="calcpro-budget-fieldnote"></small>
+    </div>
+<div class="calcpro-budget-fieldrow">
+      <label for="calcpro-budget-mealout" class="calcpro-budget-fieldlabel">Meals Out</label>
+      <div class="calcpro-budget-money"><span aria-hidden="true">$</span><input id="calcpro-budget-mealout" name="mealout" data-budget-key="mealout" data-budget-amount type="text" inputmode="decimal" autocomplete="off" value="200" aria-label="Meals Out amount"></div>
+      <select class="calcpro-budget-frequency" name="lgmealout" data-budget-unit="mealout" aria-label="Meals Out frequency"><option value="m" selected>Month</option><option value="y">Year</option></select>
+      <small class="calcpro-budget-fieldnote"></small>
+    </div>
+<div class="calcpro-budget-fieldrow">
+      <label for="calcpro-budget-otherliving" class="calcpro-budget-fieldlabel">Other</label>
+      <div class="calcpro-budget-money"><span aria-hidden="true">$</span><input id="calcpro-budget-otherliving" name="otherliving" data-budget-key="otherliving" data-budget-amount type="text" inputmode="decimal" autocomplete="off" value="200" aria-label="Other amount"></div>
+      <select class="calcpro-budget-frequency" name="lgotherliving" data-budget-unit="otherliving" aria-label="Other frequency"><option value="m" selected>Month</option><option value="y">Year</option></select>
+      <small class="calcpro-budget-fieldnote">Laundry, personal care, and other household items</small>
+    </div>
+<div class="calcpro-budget-grouphead">Healthcare</div>
+<div class="calcpro-budget-fieldrow">
+      <label for="calcpro-budget-medicalinsurance" class="calcpro-budget-fieldlabel">Medical Insurance</label>
+      <div class="calcpro-budget-money"><span aria-hidden="true">$</span><input id="calcpro-budget-medicalinsurance" name="medicalinsurance" data-budget-key="medicalinsurance" data-budget-amount type="text" inputmode="decimal" autocomplete="off" value="0" aria-label="Medical Insurance amount"></div>
+      <select class="calcpro-budget-frequency" name="lgmedicalinsurance" data-budget-unit="medicalinsurance" aria-label="Medical Insurance frequency"><option value="m" selected>Month</option><option value="y">Year</option></select>
+      <small class="calcpro-budget-fieldnote"></small>
+    </div>
+<div class="calcpro-budget-fieldrow">
+      <label for="calcpro-budget-medicalspending" class="calcpro-budget-fieldlabel">Medical Spending</label>
+      <div class="calcpro-budget-money"><span aria-hidden="true">$</span><input id="calcpro-budget-medicalspending" name="medicalspending" data-budget-key="medicalspending" data-budget-amount type="text" inputmode="decimal" autocomplete="off" value="200" aria-label="Medical Spending amount"></div>
+      <select class="calcpro-budget-frequency" name="lgmedicalspending" data-budget-unit="medicalspending" aria-label="Medical Spending frequency"><option value="m" selected>Month</option><option value="y">Year</option></select>
+      <small class="calcpro-budget-fieldnote">Copays, uncovered visits, and medicines</small>
+    </div>
+<div class="calcpro-budget-grouphead">Children &amp; Education</div>
+<div class="calcpro-budget-fieldrow">
+      <label for="calcpro-budget-childcare" class="calcpro-budget-fieldlabel">Child &amp; Personal Care</label>
+      <div class="calcpro-budget-money"><span aria-hidden="true">$</span><input id="calcpro-budget-childcare" name="childcare" data-budget-key="childcare" data-budget-amount type="text" inputmode="decimal" autocomplete="off" value="0" aria-label="Child &amp; Personal Care amount"></div>
+      <select class="calcpro-budget-frequency" name="lgchildcare" data-budget-unit="childcare" aria-label="Child &amp; Personal Care frequency"><option value="m" selected>Month</option><option value="y">Year</option></select>
+      <small class="calcpro-budget-fieldnote"></small>
+    </div>
+<div class="calcpro-budget-fieldrow">
+      <label for="calcpro-budget-tuition" class="calcpro-budget-fieldlabel">Tuition &amp; Supplies</label>
+      <div class="calcpro-budget-money"><span aria-hidden="true">$</span><input id="calcpro-budget-tuition" name="tuition" data-budget-key="tuition" data-budget-amount type="text" inputmode="decimal" autocomplete="off" value="0" aria-label="Tuition &amp; Supplies amount"></div>
+      <select class="calcpro-budget-frequency" name="lgtuition" data-budget-unit="tuition" aria-label="Tuition &amp; Supplies frequency"><option value="m" selected>Month</option><option value="y">Year</option></select>
+      <small class="calcpro-budget-fieldnote"></small>
+    </div>
+<div class="calcpro-budget-fieldrow">
+      <label for="calcpro-budget-childsupport" class="calcpro-budget-fieldlabel">Child Support Payments</label>
+      <div class="calcpro-budget-money"><span aria-hidden="true">$</span><input id="calcpro-budget-childsupport" name="childsupport" data-budget-key="childsupport" data-budget-amount type="text" inputmode="decimal" autocomplete="off" value="0" aria-label="Child Support Payments amount"></div>
+      <select class="calcpro-budget-frequency" name="lgchildsupport" data-budget-unit="childsupport" aria-label="Child Support Payments frequency"><option value="m" selected>Month</option><option value="y">Year</option></select>
+      <small class="calcpro-budget-fieldnote"></small>
+    </div>
+<div class="calcpro-budget-fieldrow">
+      <label for="calcpro-budget-othereducation" class="calcpro-budget-fieldlabel">Other Spending</label>
+      <div class="calcpro-budget-money"><span aria-hidden="true">$</span><input id="calcpro-budget-othereducation" name="othereducation" data-budget-key="othereducation" data-budget-amount type="text" inputmode="decimal" autocomplete="off" value="100" aria-label="Other Spending amount"></div>
+      <select class="calcpro-budget-frequency" name="lgothereducation" data-budget-unit="othereducation" aria-label="Other Spending frequency"><option value="m" selected>Month</option><option value="y">Year</option></select>
+      <small class="calcpro-budget-fieldnote">Books, software, and educational materials</small>
+    </div>
+<div class="calcpro-budget-grouphead">Savings &amp; Investments</div>
+<div class="calcpro-budget-fieldrow">
+      <label for="calcpro-budget-ira401k" class="calcpro-budget-fieldlabel">401(k) &amp; IRA</label>
+      <div class="calcpro-budget-money"><span aria-hidden="true">$</span><input id="calcpro-budget-ira401k" name="ira401k" data-budget-key="ira401k" data-budget-amount type="text" inputmode="decimal" autocomplete="off" value="10,000" aria-label="401(k) &amp; IRA amount"></div>
+      <select class="calcpro-budget-frequency" name="lgira401k" data-budget-unit="ira401k" aria-label="401(k) &amp; IRA frequency"><option value="m">Month</option><option value="y" selected>Year</option></select>
+      <small class="calcpro-budget-fieldnote">Before-tax contribution; tax-adjusted for cash flow</small>
+    </div>
+<div class="calcpro-budget-fieldrow">
+      <label for="calcpro-budget-collegesaving" class="calcpro-budget-fieldlabel">College Saving</label>
+      <div class="calcpro-budget-money"><span aria-hidden="true">$</span><input id="calcpro-budget-collegesaving" name="collegesaving" data-budget-key="collegesaving" data-budget-amount type="text" inputmode="decimal" autocomplete="off" value="0" aria-label="College Saving amount"></div>
+      <select class="calcpro-budget-frequency" name="lgcollegesaving" data-budget-unit="collegesaving" aria-label="College Saving frequency"><option value="m">Month</option><option value="y" selected>Year</option></select>
+      <small class="calcpro-budget-fieldnote">Before-tax contribution; tax-adjusted for cash flow</small>
+    </div>
+<div class="calcpro-budget-fieldrow">
+      <label for="calcpro-budget-stockbond" class="calcpro-budget-fieldlabel">Investments</label>
+      <div class="calcpro-budget-money"><span aria-hidden="true">$</span><input id="calcpro-budget-stockbond" name="stockbond" data-budget-key="stockbond" data-budget-amount type="text" inputmode="decimal" autocomplete="off" value="0" aria-label="Investments amount"></div>
+      <select class="calcpro-budget-frequency" name="lgstockbond" data-budget-unit="stockbond" aria-label="Investments frequency"><option value="m">Month</option><option value="y" selected>Year</option></select>
+      <small class="calcpro-budget-fieldnote">Stocks, bonds, funds, and property</small>
+    </div>
+<div class="calcpro-budget-fieldrow">
+      <label for="calcpro-budget-othersavings" class="calcpro-budget-fieldlabel">Emergency Fund &amp; Other</label>
+      <div class="calcpro-budget-money"><span aria-hidden="true">$</span><input id="calcpro-budget-othersavings" name="othersavings" data-budget-key="othersavings" data-budget-amount type="text" inputmode="decimal" autocomplete="off" value="0" aria-label="Emergency Fund &amp; Other amount"></div>
+      <select class="calcpro-budget-frequency" name="lgothersavings" data-budget-unit="othersavings" aria-label="Emergency Fund &amp; Other frequency"><option value="m" selected>Month</option><option value="y">Year</option></select>
+      <small class="calcpro-budget-fieldnote">Savings and major purchases</small>
+    </div>
+<div class="calcpro-budget-grouphead">Miscellaneous Expenses</div>
+<div class="calcpro-budget-fieldrow">
+      <label for="calcpro-budget-pet" class="calcpro-budget-fieldlabel">Pet</label>
+      <div class="calcpro-budget-money"><span aria-hidden="true">$</span><input id="calcpro-budget-pet" name="pet" data-budget-key="pet" data-budget-amount type="text" inputmode="decimal" autocomplete="off" value="200" aria-label="Pet amount"></div>
+      <select class="calcpro-budget-frequency" name="lgpet" data-budget-unit="pet" aria-label="Pet frequency"><option value="m" selected>Month</option><option value="y">Year</option></select>
+      <small class="calcpro-budget-fieldnote"></small>
+    </div>
+<div class="calcpro-budget-fieldrow">
+      <label for="calcpro-budget-giftdonation" class="calcpro-budget-fieldlabel">Gifts &amp; Donations</label>
+      <div class="calcpro-budget-money"><span aria-hidden="true">$</span><input id="calcpro-budget-giftdonation" name="giftdonation" data-budget-key="giftdonation" data-budget-amount type="text" inputmode="decimal" autocomplete="off" value="300" aria-label="Gifts &amp; Donations amount"></div>
+      <select class="calcpro-budget-frequency" name="lggiftdonation" data-budget-unit="giftdonation" aria-label="Gifts &amp; Donations frequency"><option value="m">Month</option><option value="y" selected>Year</option></select>
+      <small class="calcpro-budget-fieldnote"></small>
+    </div>
+<div class="calcpro-budget-fieldrow">
+      <label for="calcpro-budget-hobbiesport" class="calcpro-budget-fieldlabel">Hobbies &amp; Sports</label>
+      <div class="calcpro-budget-money"><span aria-hidden="true">$</span><input id="calcpro-budget-hobbiesport" name="hobbiesport" data-budget-key="hobbiesport" data-budget-amount type="text" inputmode="decimal" autocomplete="off" value="100" aria-label="Hobbies &amp; Sports amount"></div>
+      <select class="calcpro-budget-frequency" name="lghobbiesport" data-budget-unit="hobbiesport" aria-label="Hobbies &amp; Sports frequency"><option value="m" selected>Month</option><option value="y">Year</option></select>
+      <small class="calcpro-budget-fieldnote">Tickets and gym membership</small>
+    </div>
+<div class="calcpro-budget-fieldrow">
+      <label for="calcpro-budget-entertainment" class="calcpro-budget-fieldlabel">Entertainment &amp; Tickets</label>
+      <div class="calcpro-budget-money"><span aria-hidden="true">$</span><input id="calcpro-budget-entertainment" name="entertainment" data-budget-key="entertainment" data-budget-amount type="text" inputmode="decimal" autocomplete="off" value="100" aria-label="Entertainment &amp; Tickets amount"></div>
+      <select class="calcpro-budget-frequency" name="lgentertainment" data-budget-unit="entertainment" aria-label="Entertainment &amp; Tickets frequency"><option value="m" selected>Month</option><option value="y">Year</option></select>
+      <small class="calcpro-budget-fieldnote"></small>
+    </div>
+<div class="calcpro-budget-fieldrow">
+      <label for="calcpro-budget-vacation" class="calcpro-budget-fieldlabel">Travel &amp; Vacation</label>
+      <div class="calcpro-budget-money"><span aria-hidden="true">$</span><input id="calcpro-budget-vacation" name="vacation" data-budget-key="vacation" data-budget-amount type="text" inputmode="decimal" autocomplete="off" value="2,000" aria-label="Travel &amp; Vacation amount"></div>
+      <select class="calcpro-budget-frequency" name="lgvacation" data-budget-unit="vacation" aria-label="Travel &amp; Vacation frequency"><option value="m">Month</option><option value="y" selected>Year</option></select>
+      <small class="calcpro-budget-fieldnote"></small>
+    </div>
+<div class="calcpro-budget-fieldrow">
+      <label for="calcpro-budget-allother" class="calcpro-budget-fieldlabel">Other Expenses</label>
+      <div class="calcpro-budget-money"><span aria-hidden="true">$</span><input id="calcpro-budget-allother" name="allother" data-budget-key="allother" data-budget-amount type="text" inputmode="decimal" autocomplete="off" value="100" aria-label="Other Expenses amount"></div>
+      <select class="calcpro-budget-frequency" name="lgallother" data-budget-unit="allother" aria-label="Other Expenses frequency"><option value="m" selected>Month</option><option value="y">Year</option></select>
+      <small class="calcpro-budget-fieldnote"></small>
+    </div></div>
+    <div class="calcpro-budget-actions"><button class="calcpro-budget-calculate" type="submit">Calculate <span aria-hidden="true">➜</span></button><button class="calcpro-budget-reset" id="calcpro-budget-clear" type="reset">Clear</button></div>
+  </form>
+  <nav class="calcpro-budget-related-mini" aria-label="Related budget tools"><strong>Related:</strong><a href="debt-ratio-calculator.html">Debt Ratio Calculator</a><a href="credit-card-calculator.html">Credit Card Calculator</a><a href="college-cost-calculator.html">College Cost Calculator</a></nav>
+</div></section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><!-- REPLACE these links with real related tools for each calculator; verify live slugs. --><a href="retirement-calculator.html">Retirement</a><a href="roth-ira-calculator.html">Roth IRA</a><a href="investment-calculator.html">Investment</a><a href="compound-interest-calculator.html">Compound Interest</a><a href="annuity-payout-calculator.html">Annuity Payout</a><a href="pension-calculator.html">Pension</a><a href="inflation-calculator.html">Inflation</a><a href="future-value-calculator.html">Future Value</a><a href="income-tax-calculator.html">Income Tax</a><a href="savings-calculator.html">Savings</a><a href="mortgage-calculator.html">Mortgage</a><a href="loan-calculator.html">Loan</a></div></section></aside><article class="cp-article"><h2>How to Use This Budget Calculator</h2>
+<p>Enter your income before taxes, choose <strong>Month</strong> or <strong>Year</strong> for each line, and enter an estimated overall income-tax rate. Then complete the expense sections with your regular spending and planned savings. Click <strong>Calculate</strong> to see an annual and monthly summary, a category-by-category table, and an expense chart. Select <strong>Clear</strong> to start a fresh budget with zero amounts.</p>
+<h2>Budget Calculator Formulas</h2>
+<p>Because bills arrive on different schedules, this calculator converts every entry to an equivalent monthly amount before combining values. Yearly entries are divided by 12; monthly entries are used as entered.</p>
+<div class="cp-note"><strong>Monthly amount</strong> = yearly amount ÷ 12 (if entered per year).<br><strong>Gross monthly income</strong> = sum of monthly income amounts.<br><strong>Estimated take-home income</strong> = gross monthly income × (1 − tax rate ÷ 100).<br><strong>Monthly budget balance</strong> = estimated take-home income − total monthly expenses and savings.<br><strong>Annual totals</strong> = monthly totals × 12.</div>
+<p>Contributions entered under <strong>401(k) &amp; IRA</strong> and <strong>College Saving</strong> are labeled as before-tax in the reference calculator. To avoid overstating their effect on post-tax cash flow, this estimator includes them in expense totals at their <em>after-tax equivalent cost</em>: contribution × (1 − estimated tax rate). This is a simplified tax model, not a payroll or tax return calculation.</p>
+<h3>Debt-to-Income Ratio</h3>
+<p>The displayed estimated debt-to-income ratio (DTI) is the selected monthly housing and loan obligations divided by gross monthly income, multiplied by 100. Included items are mortgage, property tax, rent, housing insurance, HOA fees, auto loan, credit card payments, student loan, and other loans. Utilities, routine maintenance, and general living expenses are excluded. Lenders may count obligations differently, and this budget DTI should not be treated as an underwriting determination.</p>
+<h2>Worked Budget Example</h2>
+<p>Suppose your combined gross income is <strong>$5,000 per month</strong>, with an estimated 20% income-tax rate. Take-home income is $4,000. If housing is $1,400, groceries are $450, transportation is $350, and savings are $600, planned expenses and savings total $2,800 per month. The remaining monthly balance is <strong>$1,200</strong>, or $14,400 per year. This is money not yet assigned to a budget category.</p>
+<h2>Understanding Your Results</h2>
+<h3>Summary and Cash Flow</h3>
+<p>The summary separates gross income, estimated taxes, take-home income, total planned outflows, and your remaining surplus or deficit. A negative result means the amounts assigned exceed estimated after-tax income. Savings contributions are included among planned outflows, so the balance represents the amount left <em>after</em> those contributions.</p>
+<h3>Expense Breakdown Chart</h3>
+<p>The doughnut chart and detailed table show how much goes to housing, transportation, debts, living expenses, healthcare, children and education, savings and investments, and miscellaneous costs. Category percentages in the table use estimated after-tax income as the denominator. Together, they show which items use the largest portion of your available cash flow.</p>
+<h3>Tips for a More Reliable Budget</h3>
+<ul><li>Use actual take-home pay and tax information to refine the estimated tax rate.</li><li>Include infrequent expenses such as annual insurance, holiday travel, vehicle repairs, and gifts.</li><li>Do not count the same purchase under both a spending category and its credit-card repayment.</li><li>Revisit the budget when your income, rent, debt payments, or savings goals change.</li></ul>
+<h2>Frequently Asked Questions</h2>
+<h3>Can I mix monthly and annual amounts?</h3><p>Yes. Each income and expense entry has its own Month/Year selector. A $1,200 annual insurance premium becomes $100 per month before totals are calculated.</p>
+<h3>What happens if expenses exceed income?</h3><p>The result shows a negative net balance, indicating a budget deficit. You can adjust any input and calculate again to compare alternatives.</p>
+<h3>Is the income tax estimate precise?</h3><p>No. A single rate does not account for progressive tax brackets, deductions, tax credits, payroll taxes, or jurisdiction-specific rules. The rate should represent your best estimate of your overall effective tax burden.</p>
+<h3>Does this calculator tell me whether I qualify for a loan?</h3><p>No. The DTI calculation is an educational indicator. Lenders use product-specific definitions, documentation, and criteria.</p>
+<h3>Does Clear restore the example values?</h3><p>No. Clear sets the income, expense, and tax inputs to zero and hides previous results, so you can enter a new budget.</p>
+<h2>Sources and Further Reading</h2>
+<p>For general budgeting guidance, see the <a href="https://consumer.gov/your-money/making-budget">FTC's Making a Budget guide</a>. For the standard definition of debt-to-income ratio, see the <a href="https://www.consumerfinance.gov/ask-cfpb/what-is-a-debt-to-income-ratio-en-1791/">Consumer Financial Protection Bureau's DTI explanation</a>. See also the <a href="https://www.calculator.net/budget-calculator.html">reference budget calculator</a> for the input categories and result presentation this implementation is modeled on.</p>
+<p class="cp-page-footer">CalcPro — budgeting results are estimates for planning and informational use, not financial, lending, or tax advice.</p></article></main></div><script>
+
+(()=>{
+  'use strict';
+  const config={"incomeKeys":["salary","pension","investment","otherincome"],"groups":[{"key":"housing","title":"Housing & Utilities","keys":["mortgage","propertytax","rental","houseinsurance","hoafee","homemaintenance","utilities"]},{"key":"transport","title":"Transportation","keys":["autoloan","autoinsurance","gasoline","automaintenance","parkingtoll","othertransportation"]},{"key":"debt","title":"Other Debt & Loan Payments","keys":["creditcard","studentloan","otherloan"]},{"key":"living","title":"Living Expenses","keys":["food","clothing","grocery","mealout","otherliving"]},{"key":"health","title":"Healthcare","keys":["medicalinsurance","medicalspending"]},{"key":"children","title":"Children & Education","keys":["childcare","tuition","childsupport","othereducation"]},{"key":"savings","title":"Savings & Investments","keys":["ira401k","collegesaving","stockbond","othersavings"]},{"key":"misc","title":"Miscellaneous Expenses","keys":["pet","giftdonation","hobbiesport","entertainment","vacation","allother"]}],"dtiKeys":["mortgage","propertytax","rental","houseinsurance","hoafee","autoloan","creditcard","studentloan","otherloan"],"colors":["#1e78b7","#f28e2b","#6a4cab","#2a9d8f","#de5a61","#e2bd28","#4288cc","#8f9ca5"]};
+  const root=document.getElementById('calcpro-budget-tool');
+  if(!root) return;
+  const form=root.querySelector('#calcpro-budget-form');
+  const output=root.querySelector('#calcpro-budget-results');
+  const errors=root.querySelector('#calcpro-budget-errors');
+  const money=new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',minimumFractionDigits:0,maximumFractionDigits:2});
+  const moneyWithCents=new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',minimumFractionDigits:2,maximumFractionDigits:2});
+  const pct=new Intl.NumberFormat('en-US',{minimumFractionDigits:1,maximumFractionDigits:2});
+  const allKeys=[...config.incomeKeys,...config.groups.flatMap(g=>g.keys)];
+  const $id=id=>root.querySelector('#calcpro-budget-'+id);
+  function parseNum(raw){
+    const text=raw.trim().replace(/^\$/, '');
+    if(text==='') return 0;
+    if(!/^(?:\d+(?:,\d{3})*(?:\.\d*)?|\d*\.\d+)$/.test(text))return NaN;
+    const n=Number(text.replaceAll(',',''));
+    return Number.isFinite(n)&&n>=0&&n<=1e12?n:NaN;
+  }
+  function labelFor(key){const el=$id(key);return el?.closest('.calcpro-budget-fieldrow')?.querySelector('label')?.textContent||key;}
+  function readInputs(){
+    const values={},issues=[];
+    for(const key of allKeys){
+      const el=$id(key);const n=parseNum(el.value);
+      if(!Number.isFinite(n)){issues.push('Enter a valid, non-negative amount for '+labelFor(key)+'.');el.setAttribute('aria-invalid','true');}
+      else{el.removeAttribute('aria-invalid');values[key]=n;}
+    }
+    const taxEl=$id('taxrate');const tax=parseNum(taxEl.value);
+    if(!Number.isFinite(tax)||tax>100){issues.push('Enter an income tax rate between 0% and 100%.');taxEl.setAttribute('aria-invalid','true');}
+    else{taxEl.removeAttribute('aria-invalid');}
+    if(issues.length)return {issues};
+    const monthly={};
+    for(const key of allKeys){
+      const unit=root.querySelector('[data-budget-unit="'+key+'"]');
+      monthly[key]=unit.value==='y'?values[key]/12:values[key];
+    }
+    return {monthly,tax:tax/100,issues:[]};
+  }
+  function compute(data){
+    const v=data.monthly;
+    const gross=config.incomeKeys.reduce((s,k)=>s+v[k],0);
+    const net=gross*(1-data.tax);
+    const tax=gross-net;
+    const categories=config.groups.map((g,i)=>({
+      key:g.key,title:g.title,color:config.colors[i],
+      amount:g.keys.reduce((s,k)=>s+v[k]*((k==='ira401k'||k==='collegesaving')?(1-data.tax):1),0)
+    }));
+    const expenses=categories.reduce((s,c)=>s+c.amount,0);
+    const dtiPayments=config.dtiKeys.reduce((s,k)=>s+v[k],0);
+    return {gross,net,tax,categories,expenses,balance:net-expenses,
+      dti:gross>0?100*dtiPayments/gross:null,
+      spendingRatio:net>0?100*expenses/net:null,
+      dtiPayments};
+  }
+  function currency(value){const clean=Math.abs(value)<0.000001?0:value;return (Math.abs(clean-Math.round(clean))<0.0000001?money:moneyWithCents).format(clean);}
+  function percentage(value){return value===null?'N/A':pct.format(value)+'%';}
+  function addTableRow(body,label,annual,monthly,emphasis=false,negative=false){
+    const tr=document.createElement('tr');
+    if(emphasis)tr.className='calcpro-budget-highlight';
+    const tdLabel=document.createElement('td');tdLabel.textContent=label;tr.append(tdLabel);
+    for(const amount of [annual,monthly]){const td=document.createElement('td');td.textContent=currency(amount);if(negative)td.classList.add('calcpro-budget-negative');tr.append(td);}
+    body.append(tr);
+  }
+  function drawChart(categories,total){
+    const svg=$id('slices');svg.replaceChildren();
+    const legend=$id('legend');legend.replaceChildren();
+    const circumference=2*Math.PI*63;
+    let progress=0;
+    categories.forEach(category=>{
+      const fraction=total>0?category.amount/total:0;
+      if(fraction>0){
+        const slice=document.createElementNS('http://www.w3.org/2000/svg','circle');
+        for(const [key,value] of Object.entries({cx:90,cy:90,r:63,fill:'none',stroke:category.color,'stroke-width':31,'stroke-dasharray':`${Math.max(0,fraction*circumference-0.9)} ${circumference}`,'stroke-dashoffset':(-progress*circumference).toString()}))slice.setAttribute(key,String(value));
+        const title=document.createElementNS('http://www.w3.org/2000/svg','title');title.textContent=category.title+': '+currency(category.amount);slice.append(title);svg.append(slice);
+        progress+=fraction;
+      }
+      const li=document.createElement('li');const name=document.createElement('span');const swatch=document.createElement('i');swatch.style.backgroundColor=category.color;swatch.setAttribute('aria-hidden','true');name.append(swatch,document.createTextNode(category.title));
+      const value=document.createElement('strong');value.textContent=total>0?percentage(100*fraction):'0%';li.append(name,value);legend.append(li);
+    });
+    $id('donut-total').textContent=currency(total);
+    $id('donut').setAttribute('aria-label','Monthly expenses of '+currency(total)+' split across '+categories.length+' categories');
+  }
+  function render(result){
+    const summary=$id('summary-rows');summary.replaceChildren();
+    addTableRow(summary,'Total Before-Tax Income',result.gross*12,result.gross);
+    addTableRow(summary,'Estimated Income Tax',result.tax*12,result.tax);
+    addTableRow(summary,'Total After-Tax Income',result.net*12,result.net,true);
+    addTableRow(summary,'Total Expenses and Savings',result.expenses*12,result.expenses);
+    addTableRow(summary,result.balance<0?'Net Deficit':'Net Surplus',result.balance*12,result.balance,true,result.balance<0);
+    $id('dti').textContent=percentage(result.dti);
+    $id('expense-ratio').textContent=percentage(result.spendingRatio);
+    $id('dti-note').textContent='Selected monthly housing and loan payments ('+currency(result.dtiPayments)+') ÷ gross monthly income. An estimate, not a lending decision.';
+    drawChart(result.categories,result.expenses);
+    const table=$id('breakdown-rows');table.replaceChildren();
+    result.categories.forEach(c=>{
+      const tr=document.createElement('tr');
+      for(const [index,content] of [c.title,currency(c.amount*12),currency(c.amount),result.net>0?percentage(100*c.amount/result.net):'N/A'].entries()){
+        const td=document.createElement('td');td.textContent=content;if(index===0){const dot=document.createElement('span');dot.style.cssText='display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:6px;background:'+c.color;dot.setAttribute('aria-hidden','true');td.prepend(dot);}tr.append(td);
+      }table.append(tr);
+    });
+    const tr=document.createElement('tr');tr.className='calcpro-budget-highlight';
+    for(const cell of ['Total Expenses and Savings',currency(result.expenses*12),currency(result.expenses),result.net>0?percentage(result.spendingRatio):'N/A']){const td=document.createElement('td');td.textContent=cell;tr.append(td);}table.append(tr);
+    $id('resultnote').textContent='The two before-tax savings inputs (401(k)/IRA and College Saving) are reduced by the estimated income tax rate for cash-flow comparison. All other expenses are included at their entered values. Figures are estimates rounded only for display.';
+    output.hidden=false;
+    $id('formbar').textContent='Modify any amounts and click Calculate to update the results.';
+  }
+  form.addEventListener('submit',event=>{
+    event.preventDefault();
+    const data=readInputs();
+    if(data.issues.length){
+      errors.replaceChildren();
+      const strong=document.createElement('strong');strong.textContent='Please check your entries:';errors.append(strong);
+      const list=document.createElement('ul');list.style.margin='5px 0 0';
+      for(const issue of data.issues){const li=document.createElement('li');li.textContent=issue;list.append(li);}errors.append(list);
+      errors.hidden=false;
+      errors.scrollIntoView({behavior:'smooth',block:'center'});
+      return;
+    }
+    errors.hidden=true;errors.textContent='';
+    render(compute(data));
+    output.scrollIntoView({behavior:'smooth',block:'start'});
+  });
+  form.addEventListener('reset',event=>{
+    event.preventDefault();
+    root.querySelectorAll('[data-budget-amount]').forEach(el=>{el.value='0';el.removeAttribute('aria-invalid');});
+    root.querySelectorAll('[data-budget-unit]').forEach(el=>{const first=[...el.options].find(x=>x.defaultSelected);el.value=first?.value||'m';});
+    $id('taxrate').value='0';$id('taxrate').removeAttribute('aria-invalid');
+    output.hidden=true;errors.hidden=true;errors.textContent='';
+    $id('formbar').textContent='Enter amounts and click Calculate to review your budget.';
+    $id('salary').focus();
+  });
+  $id('print').addEventListener('click',()=>window.print());
+})();
+
+</script><script defer src="/assets/js/data.js"></script>
+<script defer src="/assets/js/style.js?v=20261111-5"></script>
+</body></html>

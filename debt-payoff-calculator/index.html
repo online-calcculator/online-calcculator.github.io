@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US">
-<head>
-<meta charset="utf-8">
+<html lang="en"><head><meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="content-language" content="en">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,17 +11,415 @@
   <meta name="author" content="Commingsoon">
   <meta name="publisher" content="Commingsoon">
   <meta name="robots" content="noindex, nofollow, max-image-preview:large">
-  <link rel="stylesheet" href="/assets/css/style.css?v=20261111-1" crossorigin="anonymous" data-n-g="">
+  <link rel="stylesheet" href="/assets/css/style.css?v=20261111-4" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/doc_style.css" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/side_style.css" crossorigin="anonymous" data-n-g=""> 
   <!--ogtags-->
-  <!--schema-->
-  <!--style-->
-</head>
+  <!--schema--><style>
 
-<body>
-<!-- Main-header-page -->
-<script defer src="/assets/js/data.js"></script>
-<script defer src="/assets/js/style.js?v=20261111-1"></script>
-</body>
-</html>
+/* Self-contained debt-payoff calculator. All rules are isolated under its unique prefix. */
+.calcpro-debt-root{--calcpro-debt-blue:#336699;--calcpro-debt-navy:#125217;--calcpro-debt-green:#377a12;--calcpro-debt-border:#c7cbd1;font-family:Arial,Helvetica,sans-serif;color:#132033;font-size:14px;line-height:1.45;max-width:100%;}
+.calcpro-debt-root *{box-sizing:border-box}
+.calcpro-debt-root [hidden]{display:none!important}
+.calcpro-debt-sr{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.calcpro-debt-result{margin:0 0 19px}
+.calcpro-debt-result-header{display:flex;justify-content:space-between;align-items:center;gap:8px;background:var(--calcpro-debt-green);color:white;padding:9px 13px;font-weight:700;font-size:16px}
+.calcpro-debt-print{border:1px solid rgba(255,255,255,.7);border-radius:3px;background:transparent;color:white;font:inherit;font-size:12px;padding:3px 9px;cursor:pointer}
+.calcpro-debt-summary{padding:11px 2px 4px;font-size:14px;line-height:1.55}
+.calcpro-debt-summary strong{color:#286a0b}
+.calcpro-debt-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:12px 0 16px}
+.calcpro-debt-stat{border:1px solid #d5dde4;border-radius:4px;padding:11px;background:#f6f9fb;min-width:0}
+.calcpro-debt-stat span{display:block;color:#536675;font-size:12px}
+.calcpro-debt-stat b{display:block;color:var(--calcpro-debt-navy);font-size:16px;overflow-wrap:anywhere}
+.calcpro-debt-graphic{display:flex;justify-content:center;align-items:center;gap:18px;margin:12px 0 21px;flex-wrap:wrap}
+.calcpro-debt-ring{width:126px;height:126px;flex:0 0 126px;border-radius:50%;background:conic-gradient(#336e9e 0 80%,#81bd36 80% 100%);display:grid;place-items:center;position:relative}
+.calcpro-debt-ring:before{content:"";position:absolute;width:78px;height:78px;border-radius:50%;background:#fff}
+.calcpro-debt-ring-label{position:relative;z-index:1;display:block;text-align:center;color:#295a84;font-size:14px;font-weight:700;line-height:1.15}
+.calcpro-debt-ring-label small{display:block;font-size:9px;color:#536675;font-weight:400}
+.calcpro-debt-legend{display:grid;gap:8px}
+.calcpro-debt-legend-item{display:flex;align-items:center;gap:8px;font-size:13px}
+.calcpro-debt-key{display:inline-block;width:12px;height:12px;flex:0 0 12px;background:#336e9e}
+.calcpro-debt-key-interest{background:#81bd36}
+.calcpro-debt-legend-item strong{margin-left:auto;padding-left:12px}
+.calcpro-debt-explain{margin:10px 2px 7px;font-size:13px}
+.calcpro-debt-table-scroll{max-width:100%;overflow-x:auto}
+.calcpro-debt-report-table{width:100%;border-collapse:collapse;min-width:550px;font-size:12px;line-height:1.3}
+.calcpro-debt-report-table th{background:var(--calcpro-debt-blue);color:white;padding:8px;text-align:left;font-weight:700;border:1px solid #23537e;vertical-align:top}
+.calcpro-debt-report-table td{border:1px solid #c4c9ce;padding:8px;vertical-align:top;overflow-wrap:anywhere}
+.calcpro-debt-report-table tbody tr:nth-child(odd){background:#f5f6f7}
+.calcpro-debt-report-table .calcpro-debt-monetary{text-align:right;white-space:nowrap}
+.calcpro-debt-report-table .calcpro-debt-schedule{min-width:145px}
+.calcpro-debt-report-table small{font-size:11px;color:#455766}
+.calcpro-debt-form{background:#f0f0f0;border:1px solid #bdbdbd;padding:12px 12px 13px;}
+.calcpro-debt-instruction{background:var(--calcpro-debt-blue);color:#fff;text-align:center;font-size:14px;font-weight:700;margin:-12px -12px 12px;padding:8px 12px}
+.calcpro-debt-instruction span{display:inline-flex;align-items:center;justify-content:center;border-radius:50%;width:18px;height:18px;background:white;color:var(--calcpro-debt-blue);margin-right:12px;font-weight:800}
+.calcpro-debt-input-scroll{max-width:100%}
+.calcpro-debt-input-table{border-collapse:separate;border-spacing:4px 3px;width:100%;table-layout:fixed;font-size:12px;line-height:1.12}
+.calcpro-debt-input-table thead th{font-weight:700;text-align:center;padding:0 3px 4px;vertical-align:bottom;color:#0e1925}
+.calcpro-debt-input-table thead th:nth-child(1){width:28px}
+.calcpro-debt-input-table thead th:nth-child(2){width:33%}
+.calcpro-debt-input-table thead th:nth-child(3){width:20%}
+.calcpro-debt-input-table thead th:nth-child(4){width:23%}
+.calcpro-debt-input-table thead th:nth-child(5){width:15%}
+.calcpro-debt-input-table tbody td{padding:0;vertical-align:middle}
+.calcpro-debt-input-table .calcpro-debt-ordinal{text-align:right;white-space:nowrap;padding-right:2px}
+.calcpro-debt-control{display:flex;align-items:center;position:relative;min-width:0}
+.calcpro-debt-control input{display:block;width:100%;min-width:0;height:28px;border:1px solid #165186;border-radius:0;background:white;box-shadow:inset 0 0 0 1px #e0e4e8;padding:3px 5px;font-family:inherit;font-size:13px;color:#172535;}
+.calcpro-debt-control input:focus{outline:2px solid #78a8d7;outline-offset:0;z-index:1}
+.calcpro-debt-control.calcpro-debt-currency input{padding-left:19px}
+.calcpro-debt-control.calcpro-debt-percent input{padding-right:19px}
+.calcpro-debt-unit{position:absolute;pointer-events:none;color:#162432;font-size:12px;z-index:2}
+.calcpro-debt-currency .calcpro-debt-unit{left:6px}
+.calcpro-debt-percent .calcpro-debt-unit{right:6px}
+.calcpro-debt-more{background:none;border:0;color:#006699;text-decoration:underline;font-weight:600;font-size:13px;cursor:pointer;padding:6px 0 9px 36px}
+.calcpro-debt-more:hover{text-decoration:none}
+.calcpro-debt-extra-title{font-weight:700;margin:5px 0 2px;font-size:14px}
+.calcpro-debt-extra-row{display:flex;align-items:center;gap:8px;margin:4px 0;flex-wrap:wrap}
+.calcpro-debt-extra-row .calcpro-debt-control{width:120px}
+.calcpro-debt-extra-row label{font-size:13px}
+.calcpro-debt-onetime{width:68px!important}
+.calcpro-debt-extra-row .calcpro-debt-suffix{font-size:13px}
+.calcpro-debt-fixed{margin:12px 0 2px}
+.calcpro-debt-fixed legend{font-weight:700;font-size:14px;padding:0}
+.calcpro-debt-radio{display:inline-flex;gap:6px;align-items:center;cursor:pointer;font-size:14px;margin:1px 13px 0 0}
+.calcpro-debt-radio input{accent-color:#336699;width:15px;height:15px}
+.calcpro-debt-help{font-size:12px;line-height:1.35;margin:5px 0 10px;color:#26323e}
+.calcpro-debt-errors{border:1px solid #b22;background:#fff3f2;color:#80201d;padding:9px 11px;margin:10px 0;font-size:13px}
+.calcpro-debt-actions{display:flex;align-items:center;justify-content:center;gap:7px;margin-top:10px}
+.calcpro-debt-calculate{border:0;background:#347b14;color:#fff;font-weight:700;cursor:pointer;border-radius:2px;padding:9px 16px;font-size:14px}
+.calcpro-debt-calculate:after{content:'▶';display:inline-grid;place-items:center;color:#397b17;background:#d6e6ce;width:19px;height:19px;border-radius:50%;font-size:10px;margin-left:11px}
+.calcpro-debt-clear{border:0;background:#aaa;color:white;cursor:pointer;padding:9px 13px;font-size:14px;border-radius:2px}
+.calcpro-debt-calculate:hover{background:#285e12}
+.calcpro-debt-clear:hover{background:#888}
+.calcpro-debt-footnote{color:#637280;font-size:12px;margin:8px 2px 0}
+@media(max-width:640px){
+ .calcpro-debt-stats{grid-template-columns:1fr 1fr}
+ .calcpro-debt-stats .calcpro-debt-stat:first-child{grid-column:1/-1}
+ .calcpro-debt-input-table{border-spacing:0;display:block;width:100%}
+ .calcpro-debt-input-table thead{display:none}
+ .calcpro-debt-input-table tbody{display:block}
+ .calcpro-debt-input-table tbody tr{display:grid;grid-template-columns:1fr 1fr;gap:6px 9px;margin:0 0 10px;padding:9px;background:#fff;border:1px solid #d0d6dc;border-radius:3px}
+ .calcpro-debt-input-table tbody tr[hidden]{display:none!important}
+ .calcpro-debt-input-table tbody td{display:block;min-width:0}
+ .calcpro-debt-input-table tbody td:nth-child(1){grid-column:1/-1;text-align:left;font-weight:700;color:#345c79}
+ .calcpro-debt-input-table tbody td:nth-child(2){grid-column:1/-1}
+ .calcpro-debt-input-table tbody td:before{content:attr(data-label);display:block;font-size:11px;color:#384656;margin:0 0 3px}
+ .calcpro-debt-input-table tbody td:nth-child(1):before{display:none}
+ .calcpro-debt-input-table tbody td:nth-child(5){grid-column:1/-1}
+ .calcpro-debt-input-table tbody td:nth-child(5) .calcpro-debt-control{max-width:50%}
+ .calcpro-debt-more{padding-left:3px}
+ .calcpro-debt-graphic{gap:12px}
+}
+@media(max-width:400px){
+ .calcpro-debt-form{padding:10px 9px}
+ .calcpro-debt-instruction{margin:-10px -9px 12px;font-size:12px}
+ .calcpro-debt-stats{grid-template-columns:1fr}
+ .calcpro-debt-stats .calcpro-debt-stat:first-child{grid-column:auto}
+ .calcpro-debt-input-table tbody tr{gap:6px}
+ .calcpro-debt-extra-row .calcpro-debt-control{width:105px}
+}
+@media print{
+ .calcpro-debt-result[hidden]{display:none!important}
+ .calcpro-debt-result{break-inside:avoid}
+ .calcpro-debt-form,.calcpro-debt-print{display:none!important}
+ .calcpro-debt-report-table{min-width:0}
+}
+
+</style>
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Debt Payoff Calculator</nav><h1 class="cp-page-title">Debt Payoff Calculator</h1><p class="cp-intro">Estimate how long it will take to pay off multiple debts, the interest you will pay, and the most cost-efficient repayment sequence using the debt avalanche method. Adjust payments, annual extras, and one-time contributions to compare scenarios.</p><section aria-label="Calculator" class="cp-tool-area">
+<div class="calcpro-debt-root" id="calcpro-debt-root">
+  <section id="calcpro-debt-result" class="calcpro-debt-result" aria-live="polite" aria-label="Debt payoff results" hidden>
+    <div class="calcpro-debt-result-header"><span>Results</span><button class="calcpro-debt-print" type="button" id="calcpro-debt-print" title="Print calculated results">Print results</button></div>
+    <div id="calcpro-debt-summary" class="calcpro-debt-summary"></div>
+    <div class="calcpro-debt-stats">
+      <div class="calcpro-debt-stat"><span>Total debt principal</span><b id="calcpro-debt-stat-principal"></b></div>
+      <div class="calcpro-debt-stat"><span>Total interest</span><b id="calcpro-debt-stat-interest"></b></div>
+      <div class="calcpro-debt-stat"><span>Total payments</span><b id="calcpro-debt-stat-paid"></b></div>
+    </div>
+    <div class="calcpro-debt-graphic">
+      <div class="calcpro-debt-ring" id="calcpro-debt-ring" role="img" aria-label="Principal versus interest chart"><div class="calcpro-debt-ring-label" id="calcpro-debt-ring-label"></div></div>
+      <div class="calcpro-debt-legend">
+        <div class="calcpro-debt-legend-item"><span class="calcpro-debt-key"></span><span>Principal</span><strong id="calcpro-debt-share-principal"></strong></div>
+        <div class="calcpro-debt-legend-item"><span class="calcpro-debt-key calcpro-debt-key-interest"></span><span>Interest</span><strong id="calcpro-debt-share-interest"></strong></div>
+      </div>
+    </div>
+    <p class="calcpro-debt-explain">The debt avalanche targets the highest interest rate first while maintaining the required payments on other debts. The schedule below shows the monthly payment changes and estimated payoff dates for each debt.</p>
+    <div class="calcpro-debt-table-scroll"><table class="calcpro-debt-report-table"><thead><tr><th scope="col">Debt</th><th scope="col">Payoff length</th><th scope="col">Total interest</th><th scope="col">Total payments</th><th scope="col">Payment schedule</th></tr></thead><tbody id="calcpro-debt-report-body"></tbody></table></div>
+    <p class="calcpro-debt-footnote">Estimates assume fixed APRs, interest compounded monthly, and no new charges or late fees. Final lender payments may differ.</p>
+  </section>
+  <form class="calcpro-debt-form" id="calcpro-debt-form" novalidate>
+    <div class="calcpro-debt-instruction"><span aria-hidden="true">▼</span>Modify the values and click the Calculate button to use</div>
+    <div class="calcpro-debt-input-scroll"><table class="calcpro-debt-input-table" aria-label="Debt details">
+      <thead><tr><th scope="col">&nbsp;</th><th scope="col">Debt name</th><th scope="col">Remaining<br>balance</th><th scope="col">Monthly or min.<br>payment</th><th scope="col">Interest rate</th></tr></thead>
+      <tbody>
+<tr data-calcpro-debt-row="1"><td class="calcpro-debt-ordinal" data-label="">1.</td><td data-label="Debt name"><div class="calcpro-debt-control"><input id="calcpro-debt-name-1" type="text" inputmode="decimal" autocomplete="off" aria-label="Debt 1: Debt name" data-calcpro-debt-type="name" value="Auto loan"></div></td><td data-label="Remaining balance"><div class="calcpro-debt-control calcpro-debt-currency"><span class="calcpro-debt-unit" aria-hidden="true">$</span><input id="calcpro-debt-balance-1" type="text" inputmode="decimal" autocomplete="off" aria-label="Debt 1: Remaining balance" data-calcpro-debt-type="balance" value="25,000"></div></td><td data-label="Monthly or min. payment"><div class="calcpro-debt-control calcpro-debt-currency"><span class="calcpro-debt-unit" aria-hidden="true">$</span><input id="calcpro-debt-payment-1" type="text" inputmode="decimal" autocomplete="off" aria-label="Debt 1: Monthly or min. payment" data-calcpro-debt-type="payment" value="519"></div></td><td data-label="Interest rate"><div class="calcpro-debt-control calcpro-debt-percent"><input id="calcpro-debt-rate-1" type="text" inputmode="decimal" autocomplete="off" aria-label="Debt 1: Interest rate" data-calcpro-debt-type="rate" value="4.9"><span class="calcpro-debt-unit" aria-hidden="true">%</span></div></td></tr>
+<tr data-calcpro-debt-row="2"><td class="calcpro-debt-ordinal" data-label="">2.</td><td data-label="Debt name"><div class="calcpro-debt-control"><input id="calcpro-debt-name-2" type="text" inputmode="decimal" autocomplete="off" aria-label="Debt 2: Debt name" data-calcpro-debt-type="name" value="Home mortgage"></div></td><td data-label="Remaining balance"><div class="calcpro-debt-control calcpro-debt-currency"><span class="calcpro-debt-unit" aria-hidden="true">$</span><input id="calcpro-debt-balance-2" type="text" inputmode="decimal" autocomplete="off" aria-label="Debt 2: Remaining balance" data-calcpro-debt-type="balance" value="250,000"></div></td><td data-label="Monthly or min. payment"><div class="calcpro-debt-control calcpro-debt-currency"><span class="calcpro-debt-unit" aria-hidden="true">$</span><input id="calcpro-debt-payment-2" type="text" inputmode="decimal" autocomplete="off" aria-label="Debt 2: Monthly or min. payment" data-calcpro-debt-type="payment" value="1,800"></div></td><td data-label="Interest rate"><div class="calcpro-debt-control calcpro-debt-percent"><input id="calcpro-debt-rate-2" type="text" inputmode="decimal" autocomplete="off" aria-label="Debt 2: Interest rate" data-calcpro-debt-type="rate" value="4"><span class="calcpro-debt-unit" aria-hidden="true">%</span></div></td></tr>
+<tr data-calcpro-debt-row="3"><td class="calcpro-debt-ordinal" data-label="">3.</td><td data-label="Debt name"><div class="calcpro-debt-control"><input id="calcpro-debt-name-3" type="text" inputmode="decimal" autocomplete="off" aria-label="Debt 3: Debt name" data-calcpro-debt-type="name" value="Credit card 1"></div></td><td data-label="Remaining balance"><div class="calcpro-debt-control calcpro-debt-currency"><span class="calcpro-debt-unit" aria-hidden="true">$</span><input id="calcpro-debt-balance-3" type="text" inputmode="decimal" autocomplete="off" aria-label="Debt 3: Remaining balance" data-calcpro-debt-type="balance" value="6,000"></div></td><td data-label="Monthly or min. payment"><div class="calcpro-debt-control calcpro-debt-currency"><span class="calcpro-debt-unit" aria-hidden="true">$</span><input id="calcpro-debt-payment-3" type="text" inputmode="decimal" autocomplete="off" aria-label="Debt 3: Monthly or min. payment" data-calcpro-debt-type="payment" value="150"></div></td><td data-label="Interest rate"><div class="calcpro-debt-control calcpro-debt-percent"><input id="calcpro-debt-rate-3" type="text" inputmode="decimal" autocomplete="off" aria-label="Debt 3: Interest rate" data-calcpro-debt-type="rate" value="18.99"><span class="calcpro-debt-unit" aria-hidden="true">%</span></div></td></tr>
+<tr data-calcpro-debt-row="4"><td class="calcpro-debt-ordinal" data-label="">4.</td><td data-label="Debt name"><div class="calcpro-debt-control"><input id="calcpro-debt-name-4" type="text" inputmode="decimal" autocomplete="off" aria-label="Debt 4: Debt name" data-calcpro-debt-type="name" value="Credit card 2"></div></td><td data-label="Remaining balance"><div class="calcpro-debt-control calcpro-debt-currency"><span class="calcpro-debt-unit" aria-hidden="true">$</span><input id="calcpro-debt-balance-4" type="text" inputmode="decimal" autocomplete="off" aria-label="Debt 4: Remaining balance" data-calcpro-debt-type="balance" value="3,000"></div></td><td data-label="Monthly or min. payment"><div class="calcpro-debt-control calcpro-debt-currency"><span class="calcpro-debt-unit" aria-hidden="true">$</span><input id="calcpro-debt-payment-4" type="text" inputmode="decimal" autocomplete="off" aria-label="Debt 4: Monthly or min. payment" data-calcpro-debt-type="payment" value="60"></div></td><td data-label="Interest rate"><div class="calcpro-debt-control calcpro-debt-percent"><input id="calcpro-debt-rate-4" type="text" inputmode="decimal" autocomplete="off" aria-label="Debt 4: Interest rate" data-calcpro-debt-type="rate" value="16.99"><span class="calcpro-debt-unit" aria-hidden="true">%</span></div></td></tr>
+<tr data-calcpro-debt-row="5"><td class="calcpro-debt-ordinal" data-label="">5.</td><td data-label="Debt name"><div class="calcpro-debt-control"><input id="calcpro-debt-name-5" type="text" inputmode="decimal" autocomplete="off" aria-label="Debt 5: Debt name" data-calcpro-debt-type="name" value=""></div></td><td data-label="Remaining balance"><div class="calcpro-debt-control calcpro-debt-currency"><span class="calcpro-debt-unit" aria-hidden="true">$</span><input id="calcpro-debt-balance-5" type="text" inputmode="decimal" autocomplete="off" aria-label="Debt 5: Remaining balance" data-calcpro-debt-type="balance" value=""></div></td><td data-label="Monthly or min. payment"><div class="calcpro-debt-control calcpro-debt-currency"><span class="calcpro-debt-unit" aria-hidden="true">$</span><input id="calcpro-debt-payment-5" type="text" inputmode="decimal" autocomplete="off" aria-label="Debt 5: Monthly or min. payment" data-calcpro-debt-type="payment" value=""></div></td><td data-label="Interest rate"><div class="calcpro-debt-control calcpro-debt-percent"><input id="calcpro-debt-rate-5" type="text" inputmode="decimal" autocomplete="off" aria-label="Debt 5: Interest rate" data-calcpro-debt-type="rate" value=""><span class="calcpro-debt-unit" aria-hidden="true">%</span></div></td></tr>
+<tr data-calcpro-debt-row="6"><td class="calcpro-debt-ordinal" data-label="">6.</td><td data-label="Debt name"><div class="calcpro-debt-control"><input id="calcpro-debt-name-6" type="text" inputmode="decimal" autocomplete="off" aria-label="Debt 6: Debt name" data-calcpro-debt-type="name" value=""></div></td><td data-label="Remaining balance"><div class="calcpro-debt-control calcpro-debt-currency"><span class="calcpro-debt-unit" aria-hidden="true">$</span><input id="calcpro-debt-balance-6" type="text" inputmode="decimal" autocomplete="off" aria-label="Debt 6: Remaining balance" data-calcpro-debt-type="balance" value=""></div></td><td data-label="Monthly or min. payment"><div class="calcpro-debt-control calcpro-debt-currency"><span class="calcpro-debt-unit" aria-hidden="true">$</span><input id="calcpro-debt-payment-6" type="text" inputmode="decimal" autocomplete="off" aria-label="Debt 6: Monthly or min. payment" data-calcpro-debt-type="payment" value=""></div></td><td data-label="Interest rate"><div class="calcpro-debt-control calcpro-debt-percent"><input id="calcpro-debt-rate-6" type="text" inputmode="decimal" autocomplete="off" aria-label="Debt 6: Interest rate" data-calcpro-debt-type="rate" value=""><span class="calcpro-debt-unit" aria-hidden="true">%</span></div></td></tr>
+<tr data-calcpro-debt-row="7" class="calcpro-debt-extra" hidden><td class="calcpro-debt-ordinal" data-label="">7.</td><td data-label="Debt name"><div class="calcpro-debt-control"><input id="calcpro-debt-name-7" type="text" inputmode="decimal" autocomplete="off" aria-label="Debt 7: Debt name" data-calcpro-debt-type="name" value=""></div></td><td data-label="Remaining balance"><div class="calcpro-debt-control calcpro-debt-currency"><span class="calcpro-debt-unit" aria-hidden="true">$</span><input id="calcpro-debt-balance-7" type="text" inputmode="decimal" autocomplete="off" aria-label="Debt 7: Remaining balance" data-calcpro-debt-type="balance" value=""></div></td><td data-label="Monthly or min. payment"><div class="calcpro-debt-control calcpro-debt-currency"><span class="calcpro-debt-unit" aria-hidden="true">$</span><input id="calcpro-debt-payment-7" type="text" inputmode="decimal" autocomplete="off" aria-label="Debt 7: Monthly or min. payment" data-calcpro-debt-type="payment" value=""></div></td><td data-label="Interest rate"><div class="calcpro-debt-control calcpro-debt-percent"><input id="calcpro-debt-rate-7" type="text" inputmode="decimal" autocomplete="off" aria-label="Debt 7: Interest rate" data-calcpro-debt-type="rate" value=""><span class="calcpro-debt-unit" aria-hidden="true">%</span></div></td></tr>
+<tr data-calcpro-debt-row="8" class="calcpro-debt-extra" hidden><td class="calcpro-debt-ordinal" data-label="">8.</td><td data-label="Debt name"><div class="calcpro-debt-control"><input id="calcpro-debt-name-8" type="text" inputmode="decimal" autocomplete="off" aria-label="Debt 8: Debt name" data-calcpro-debt-type="name" value=""></div></td><td data-label="Remaining balance"><div class="calcpro-debt-control calcpro-debt-currency"><span class="calcpro-debt-unit" aria-hidden="true">$</span><input id="calcpro-debt-balance-8" type="text" inputmode="decimal" autocomplete="off" aria-label="Debt 8: Remaining balance" data-calcpro-debt-type="balance" value=""></div></td><td data-label="Monthly or min. payment"><div class="calcpro-debt-control calcpro-debt-currency"><span class="calcpro-debt-unit" aria-hidden="true">$</span><input id="calcpro-debt-payment-8" type="text" inputmode="decimal" autocomplete="off" aria-label="Debt 8: Monthly or min. payment" data-calcpro-debt-type="payment" value=""></div></td><td data-label="Interest rate"><div class="calcpro-debt-control calcpro-debt-percent"><input id="calcpro-debt-rate-8" type="text" inputmode="decimal" autocomplete="off" aria-label="Debt 8: Interest rate" data-calcpro-debt-type="rate" value=""><span class="calcpro-debt-unit" aria-hidden="true">%</span></div></td></tr>
+<tr data-calcpro-debt-row="9" class="calcpro-debt-extra" hidden><td class="calcpro-debt-ordinal" data-label="">9.</td><td data-label="Debt name"><div class="calcpro-debt-control"><input id="calcpro-debt-name-9" type="text" inputmode="decimal" autocomplete="off" aria-label="Debt 9: Debt name" data-calcpro-debt-type="name" value=""></div></td><td data-label="Remaining balance"><div class="calcpro-debt-control calcpro-debt-currency"><span class="calcpro-debt-unit" aria-hidden="true">$</span><input id="calcpro-debt-balance-9" type="text" inputmode="decimal" autocomplete="off" aria-label="Debt 9: Remaining balance" data-calcpro-debt-type="balance" value=""></div></td><td data-label="Monthly or min. payment"><div class="calcpro-debt-control calcpro-debt-currency"><span class="calcpro-debt-unit" aria-hidden="true">$</span><input id="calcpro-debt-payment-9" type="text" inputmode="decimal" autocomplete="off" aria-label="Debt 9: Monthly or min. payment" data-calcpro-debt-type="payment" value=""></div></td><td data-label="Interest rate"><div class="calcpro-debt-control calcpro-debt-percent"><input id="calcpro-debt-rate-9" type="text" inputmode="decimal" autocomplete="off" aria-label="Debt 9: Interest rate" data-calcpro-debt-type="rate" value=""><span class="calcpro-debt-unit" aria-hidden="true">%</span></div></td></tr>
+<tr data-calcpro-debt-row="10" class="calcpro-debt-extra" hidden><td class="calcpro-debt-ordinal" data-label="">10.</td><td data-label="Debt name"><div class="calcpro-debt-control"><input id="calcpro-debt-name-10" type="text" inputmode="decimal" autocomplete="off" aria-label="Debt 10: Debt name" data-calcpro-debt-type="name" value=""></div></td><td data-label="Remaining balance"><div class="calcpro-debt-control calcpro-debt-currency"><span class="calcpro-debt-unit" aria-hidden="true">$</span><input id="calcpro-debt-balance-10" type="text" inputmode="decimal" autocomplete="off" aria-label="Debt 10: Remaining balance" data-calcpro-debt-type="balance" value=""></div></td><td data-label="Monthly or min. payment"><div class="calcpro-debt-control calcpro-debt-currency"><span class="calcpro-debt-unit" aria-hidden="true">$</span><input id="calcpro-debt-payment-10" type="text" inputmode="decimal" autocomplete="off" aria-label="Debt 10: Monthly or min. payment" data-calcpro-debt-type="payment" value=""></div></td><td data-label="Interest rate"><div class="calcpro-debt-control calcpro-debt-percent"><input id="calcpro-debt-rate-10" type="text" inputmode="decimal" autocomplete="off" aria-label="Debt 10: Interest rate" data-calcpro-debt-type="rate" value=""><span class="calcpro-debt-unit" aria-hidden="true">%</span></div></td></tr>
+<tr data-calcpro-debt-row="11" class="calcpro-debt-extra" hidden><td class="calcpro-debt-ordinal" data-label="">11.</td><td data-label="Debt name"><div class="calcpro-debt-control"><input id="calcpro-debt-name-11" type="text" inputmode="decimal" autocomplete="off" aria-label="Debt 11: Debt name" data-calcpro-debt-type="name" value=""></div></td><td data-label="Remaining balance"><div class="calcpro-debt-control calcpro-debt-currency"><span class="calcpro-debt-unit" aria-hidden="true">$</span><input id="calcpro-debt-balance-11" type="text" inputmode="decimal" autocomplete="off" aria-label="Debt 11: Remaining balance" data-calcpro-debt-type="balance" value=""></div></td><td data-label="Monthly or min. payment"><div class="calcpro-debt-control calcpro-debt-currency"><span class="calcpro-debt-unit" aria-hidden="true">$</span><input id="calcpro-debt-payment-11" type="text" inputmode="decimal" autocomplete="off" aria-label="Debt 11: Monthly or min. payment" data-calcpro-debt-type="payment" value=""></div></td><td data-label="Interest rate"><div class="calcpro-debt-control calcpro-debt-percent"><input id="calcpro-debt-rate-11" type="text" inputmode="decimal" autocomplete="off" aria-label="Debt 11: Interest rate" data-calcpro-debt-type="rate" value=""><span class="calcpro-debt-unit" aria-hidden="true">%</span></div></td></tr>
+<tr data-calcpro-debt-row="12" class="calcpro-debt-extra" hidden><td class="calcpro-debt-ordinal" data-label="">12.</td><td data-label="Debt name"><div class="calcpro-debt-control"><input id="calcpro-debt-name-12" type="text" inputmode="decimal" autocomplete="off" aria-label="Debt 12: Debt name" data-calcpro-debt-type="name" value=""></div></td><td data-label="Remaining balance"><div class="calcpro-debt-control calcpro-debt-currency"><span class="calcpro-debt-unit" aria-hidden="true">$</span><input id="calcpro-debt-balance-12" type="text" inputmode="decimal" autocomplete="off" aria-label="Debt 12: Remaining balance" data-calcpro-debt-type="balance" value=""></div></td><td data-label="Monthly or min. payment"><div class="calcpro-debt-control calcpro-debt-currency"><span class="calcpro-debt-unit" aria-hidden="true">$</span><input id="calcpro-debt-payment-12" type="text" inputmode="decimal" autocomplete="off" aria-label="Debt 12: Monthly or min. payment" data-calcpro-debt-type="payment" value=""></div></td><td data-label="Interest rate"><div class="calcpro-debt-control calcpro-debt-percent"><input id="calcpro-debt-rate-12" type="text" inputmode="decimal" autocomplete="off" aria-label="Debt 12: Interest rate" data-calcpro-debt-type="rate" value=""><span class="calcpro-debt-unit" aria-hidden="true">%</span></div></td></tr>
+<tr data-calcpro-debt-row="13" class="calcpro-debt-extra" hidden><td class="calcpro-debt-ordinal" data-label="">13.</td><td data-label="Debt name"><div class="calcpro-debt-control"><input id="calcpro-debt-name-13" type="text" inputmode="decimal" autocomplete="off" aria-label="Debt 13: Debt name" data-calcpro-debt-type="name" value=""></div></td><td data-label="Remaining balance"><div class="calcpro-debt-control calcpro-debt-currency"><span class="calcpro-debt-unit" aria-hidden="true">$</span><input id="calcpro-debt-balance-13" type="text" inputmode="decimal" autocomplete="off" aria-label="Debt 13: Remaining balance" data-calcpro-debt-type="balance" value=""></div></td><td data-label="Monthly or min. payment"><div class="calcpro-debt-control calcpro-debt-currency"><span class="calcpro-debt-unit" aria-hidden="true">$</span><input id="calcpro-debt-payment-13" type="text" inputmode="decimal" autocomplete="off" aria-label="Debt 13: Monthly or min. payment" data-calcpro-debt-type="payment" value=""></div></td><td data-label="Interest rate"><div class="calcpro-debt-control calcpro-debt-percent"><input id="calcpro-debt-rate-13" type="text" inputmode="decimal" autocomplete="off" aria-label="Debt 13: Interest rate" data-calcpro-debt-type="rate" value=""><span class="calcpro-debt-unit" aria-hidden="true">%</span></div></td></tr>
+<tr data-calcpro-debt-row="14" class="calcpro-debt-extra" hidden><td class="calcpro-debt-ordinal" data-label="">14.</td><td data-label="Debt name"><div class="calcpro-debt-control"><input id="calcpro-debt-name-14" type="text" inputmode="decimal" autocomplete="off" aria-label="Debt 14: Debt name" data-calcpro-debt-type="name" value=""></div></td><td data-label="Remaining balance"><div class="calcpro-debt-control calcpro-debt-currency"><span class="calcpro-debt-unit" aria-hidden="true">$</span><input id="calcpro-debt-balance-14" type="text" inputmode="decimal" autocomplete="off" aria-label="Debt 14: Remaining balance" data-calcpro-debt-type="balance" value=""></div></td><td data-label="Monthly or min. payment"><div class="calcpro-debt-control calcpro-debt-currency"><span class="calcpro-debt-unit" aria-hidden="true">$</span><input id="calcpro-debt-payment-14" type="text" inputmode="decimal" autocomplete="off" aria-label="Debt 14: Monthly or min. payment" data-calcpro-debt-type="payment" value=""></div></td><td data-label="Interest rate"><div class="calcpro-debt-control calcpro-debt-percent"><input id="calcpro-debt-rate-14" type="text" inputmode="decimal" autocomplete="off" aria-label="Debt 14: Interest rate" data-calcpro-debt-type="rate" value=""><span class="calcpro-debt-unit" aria-hidden="true">%</span></div></td></tr>
+<tr data-calcpro-debt-row="15" class="calcpro-debt-extra" hidden><td class="calcpro-debt-ordinal" data-label="">15.</td><td data-label="Debt name"><div class="calcpro-debt-control"><input id="calcpro-debt-name-15" type="text" inputmode="decimal" autocomplete="off" aria-label="Debt 15: Debt name" data-calcpro-debt-type="name" value=""></div></td><td data-label="Remaining balance"><div class="calcpro-debt-control calcpro-debt-currency"><span class="calcpro-debt-unit" aria-hidden="true">$</span><input id="calcpro-debt-balance-15" type="text" inputmode="decimal" autocomplete="off" aria-label="Debt 15: Remaining balance" data-calcpro-debt-type="balance" value=""></div></td><td data-label="Monthly or min. payment"><div class="calcpro-debt-control calcpro-debt-currency"><span class="calcpro-debt-unit" aria-hidden="true">$</span><input id="calcpro-debt-payment-15" type="text" inputmode="decimal" autocomplete="off" aria-label="Debt 15: Monthly or min. payment" data-calcpro-debt-type="payment" value=""></div></td><td data-label="Interest rate"><div class="calcpro-debt-control calcpro-debt-percent"><input id="calcpro-debt-rate-15" type="text" inputmode="decimal" autocomplete="off" aria-label="Debt 15: Interest rate" data-calcpro-debt-type="rate" value=""><span class="calcpro-debt-unit" aria-hidden="true">%</span></div></td></tr>
+<tr data-calcpro-debt-row="16" class="calcpro-debt-extra" hidden><td class="calcpro-debt-ordinal" data-label="">16.</td><td data-label="Debt name"><div class="calcpro-debt-control"><input id="calcpro-debt-name-16" type="text" inputmode="decimal" autocomplete="off" aria-label="Debt 16: Debt name" data-calcpro-debt-type="name" value=""></div></td><td data-label="Remaining balance"><div class="calcpro-debt-control calcpro-debt-currency"><span class="calcpro-debt-unit" aria-hidden="true">$</span><input id="calcpro-debt-balance-16" type="text" inputmode="decimal" autocomplete="off" aria-label="Debt 16: Remaining balance" data-calcpro-debt-type="balance" value=""></div></td><td data-label="Monthly or min. payment"><div class="calcpro-debt-control calcpro-debt-currency"><span class="calcpro-debt-unit" aria-hidden="true">$</span><input id="calcpro-debt-payment-16" type="text" inputmode="decimal" autocomplete="off" aria-label="Debt 16: Monthly or min. payment" data-calcpro-debt-type="payment" value=""></div></td><td data-label="Interest rate"><div class="calcpro-debt-control calcpro-debt-percent"><input id="calcpro-debt-rate-16" type="text" inputmode="decimal" autocomplete="off" aria-label="Debt 16: Interest rate" data-calcpro-debt-type="rate" value=""><span class="calcpro-debt-unit" aria-hidden="true">%</span></div></td></tr>
+<tr data-calcpro-debt-row="17" class="calcpro-debt-extra" hidden><td class="calcpro-debt-ordinal" data-label="">17.</td><td data-label="Debt name"><div class="calcpro-debt-control"><input id="calcpro-debt-name-17" type="text" inputmode="decimal" autocomplete="off" aria-label="Debt 17: Debt name" data-calcpro-debt-type="name" value=""></div></td><td data-label="Remaining balance"><div class="calcpro-debt-control calcpro-debt-currency"><span class="calcpro-debt-unit" aria-hidden="true">$</span><input id="calcpro-debt-balance-17" type="text" inputmode="decimal" autocomplete="off" aria-label="Debt 17: Remaining balance" data-calcpro-debt-type="balance" value=""></div></td><td data-label="Monthly or min. payment"><div class="calcpro-debt-control calcpro-debt-currency"><span class="calcpro-debt-unit" aria-hidden="true">$</span><input id="calcpro-debt-payment-17" type="text" inputmode="decimal" autocomplete="off" aria-label="Debt 17: Monthly or min. payment" data-calcpro-debt-type="payment" value=""></div></td><td data-label="Interest rate"><div class="calcpro-debt-control calcpro-debt-percent"><input id="calcpro-debt-rate-17" type="text" inputmode="decimal" autocomplete="off" aria-label="Debt 17: Interest rate" data-calcpro-debt-type="rate" value=""><span class="calcpro-debt-unit" aria-hidden="true">%</span></div></td></tr>
+<tr data-calcpro-debt-row="18" class="calcpro-debt-extra" hidden><td class="calcpro-debt-ordinal" data-label="">18.</td><td data-label="Debt name"><div class="calcpro-debt-control"><input id="calcpro-debt-name-18" type="text" inputmode="decimal" autocomplete="off" aria-label="Debt 18: Debt name" data-calcpro-debt-type="name" value=""></div></td><td data-label="Remaining balance"><div class="calcpro-debt-control calcpro-debt-currency"><span class="calcpro-debt-unit" aria-hidden="true">$</span><input id="calcpro-debt-balance-18" type="text" inputmode="decimal" autocomplete="off" aria-label="Debt 18: Remaining balance" data-calcpro-debt-type="balance" value=""></div></td><td data-label="Monthly or min. payment"><div class="calcpro-debt-control calcpro-debt-currency"><span class="calcpro-debt-unit" aria-hidden="true">$</span><input id="calcpro-debt-payment-18" type="text" inputmode="decimal" autocomplete="off" aria-label="Debt 18: Monthly or min. payment" data-calcpro-debt-type="payment" value=""></div></td><td data-label="Interest rate"><div class="calcpro-debt-control calcpro-debt-percent"><input id="calcpro-debt-rate-18" type="text" inputmode="decimal" autocomplete="off" aria-label="Debt 18: Interest rate" data-calcpro-debt-type="rate" value=""><span class="calcpro-debt-unit" aria-hidden="true">%</span></div></td></tr>
+<tr data-calcpro-debt-row="19" class="calcpro-debt-extra" hidden><td class="calcpro-debt-ordinal" data-label="">19.</td><td data-label="Debt name"><div class="calcpro-debt-control"><input id="calcpro-debt-name-19" type="text" inputmode="decimal" autocomplete="off" aria-label="Debt 19: Debt name" data-calcpro-debt-type="name" value=""></div></td><td data-label="Remaining balance"><div class="calcpro-debt-control calcpro-debt-currency"><span class="calcpro-debt-unit" aria-hidden="true">$</span><input id="calcpro-debt-balance-19" type="text" inputmode="decimal" autocomplete="off" aria-label="Debt 19: Remaining balance" data-calcpro-debt-type="balance" value=""></div></td><td data-label="Monthly or min. payment"><div class="calcpro-debt-control calcpro-debt-currency"><span class="calcpro-debt-unit" aria-hidden="true">$</span><input id="calcpro-debt-payment-19" type="text" inputmode="decimal" autocomplete="off" aria-label="Debt 19: Monthly or min. payment" data-calcpro-debt-type="payment" value=""></div></td><td data-label="Interest rate"><div class="calcpro-debt-control calcpro-debt-percent"><input id="calcpro-debt-rate-19" type="text" inputmode="decimal" autocomplete="off" aria-label="Debt 19: Interest rate" data-calcpro-debt-type="rate" value=""><span class="calcpro-debt-unit" aria-hidden="true">%</span></div></td></tr>
+<tr data-calcpro-debt-row="20" class="calcpro-debt-extra" hidden><td class="calcpro-debt-ordinal" data-label="">20.</td><td data-label="Debt name"><div class="calcpro-debt-control"><input id="calcpro-debt-name-20" type="text" inputmode="decimal" autocomplete="off" aria-label="Debt 20: Debt name" data-calcpro-debt-type="name" value=""></div></td><td data-label="Remaining balance"><div class="calcpro-debt-control calcpro-debt-currency"><span class="calcpro-debt-unit" aria-hidden="true">$</span><input id="calcpro-debt-balance-20" type="text" inputmode="decimal" autocomplete="off" aria-label="Debt 20: Remaining balance" data-calcpro-debt-type="balance" value=""></div></td><td data-label="Monthly or min. payment"><div class="calcpro-debt-control calcpro-debt-currency"><span class="calcpro-debt-unit" aria-hidden="true">$</span><input id="calcpro-debt-payment-20" type="text" inputmode="decimal" autocomplete="off" aria-label="Debt 20: Monthly or min. payment" data-calcpro-debt-type="payment" value=""></div></td><td data-label="Interest rate"><div class="calcpro-debt-control calcpro-debt-percent"><input id="calcpro-debt-rate-20" type="text" inputmode="decimal" autocomplete="off" aria-label="Debt 20: Interest rate" data-calcpro-debt-type="rate" value=""><span class="calcpro-debt-unit" aria-hidden="true">%</span></div></td></tr>
+      </tbody>
+    </table></div>
+    <button type="button" class="calcpro-debt-more" id="calcpro-debt-more" aria-expanded="false">Show more input fields</button>
+    <div class="calcpro-debt-extra-title">Extra payments:</div>
+    <div class="calcpro-debt-extra-row"><div class="calcpro-debt-control calcpro-debt-currency"><span class="calcpro-debt-unit" aria-hidden="true">$</span><input id="calcpro-debt-extra-monthly" type="text" value="100" inputmode="decimal" aria-label="Extra monthly payment"></div><label for="calcpro-debt-extra-monthly">per month</label></div>
+    <div class="calcpro-debt-extra-row"><div class="calcpro-debt-control calcpro-debt-currency"><span class="calcpro-debt-unit" aria-hidden="true">$</span><input id="calcpro-debt-extra-yearly" type="text" value="0" inputmode="decimal" aria-label="Extra annual payment"></div><label for="calcpro-debt-extra-yearly">per year (months 12, 24, ...)</label></div>
+    <div class="calcpro-debt-extra-row"><div class="calcpro-debt-control calcpro-debt-currency"><span class="calcpro-debt-unit" aria-hidden="true">$</span><input id="calcpro-debt-extra-once" type="text" value="0" inputmode="decimal" aria-label="One-time extra payment"></div><label for="calcpro-debt-extra-once">one-time payment during month</label><div class="calcpro-debt-control calcpro-debt-onetime"><input id="calcpro-debt-extra-once-month" type="number" min="1" max="3600" step="1" inputmode="numeric" value="5" aria-label="One-time payment month"></div></div>
+    <fieldset class="calcpro-debt-fixed"><legend>Fixed total amount towards monthly payment?</legend><label class="calcpro-debt-radio"><input type="radio" name="calcpro-debt-fixed" value="yes" checked> Yes</label><label class="calcpro-debt-radio"><input type="radio" name="calcpro-debt-fixed" value="no"> No</label></fieldset>
+    <p class="calcpro-debt-help">If “Yes” is chosen, payments previously allocated to a debt that is paid off will be redirected to the remaining debts, keeping the original monthly budget fixed. If “No” is chosen, those former minimum payments are not redirected, so the combined monthly payment gradually decreases. Extra monthly payments continue toward the highest-rate remaining debt in either case.</p>
+    <div class="calcpro-debt-errors" id="calcpro-debt-errors" role="alert" hidden></div>
+    <div class="calcpro-debt-actions"><button type="submit" class="calcpro-debt-calculate">Calculate</button><button type="button" class="calcpro-debt-clear" id="calcpro-debt-clear">Clear</button></div>
+  </form>
+</div>
+</section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><a href="debt-consolidation-calculator.html">Debt Consolidation</a><a href="payment-calculator.html">Payment</a><a href="credit-card-payoff-calculator.html">Credit Card Payoff</a><a href="credit-card-calculator.html">Credit Card</a><a href="mortgage-payoff-calculator.html">Mortgage Payoff</a><a href="mortgage-calculator.html">Mortgage</a><a href="loan-calculator.html">Loan</a><a href="auto-loan-calculator.html">Auto Loan</a><a href="amortization-calculator.html">Amortization</a><a href="interest-calculator.html">Interest</a><a href="apr-calculator.html">APR</a><a href="budget-calculator.html">Budget</a></div></section></aside><article class="cp-article"><h2>How to Use the Debt Payoff Calculator</h2>
+<p>Enter the remaining balance, the monthly or minimum payment, and the annual interest rate for each debt. The first four example debts can be edited or removed. Use <strong>Show more input fields</strong> to enter up to 20 debts. Include the amount you can contribute above the regular payments each month, each year, or in one chosen month.</p>
+<p>Select <strong>Yes</strong> to keep your total original monthly budget steady by directing a paid-off account’s former minimum payment to the other debts. Select <strong>No</strong> if that amount will leave your repayment budget when the account is cleared. Choose <strong>Calculate</strong> to display the results above the form, or <strong>Clear</strong> to start a fresh scenario.</p>
+<h2>Debt Avalanche Formula</h2>
+<p>The debt avalanche method applies the required payment to every outstanding balance and sends additional money to the highest-interest-rate debt first. Once a debt is cleared, extra money goes to the next-highest-rate debt. Each month the calculator approximates interest using:</p>
+<p><strong>Monthly interest = remaining balance × (annual interest rate ÷ 100 ÷ 12)</strong></p>
+<p><strong>Next balance = previous balance + monthly interest − payments applied</strong></p>
+<p>The calculator repeats this process month by month until all debts have been paid. Annual extra payments are assigned in months 12, 24, 36 and so on. A one-time payment is assigned to the selected month. A final payment is limited to the actual amount owed rather than the usual monthly amount.</p>
+<h2>Example Repayment Plan</h2>
+<p>For the default scenario, an auto loan of $25,000 at 4.9%, a mortgage of $250,000 at 4%, two credit cards of $6,000 at 18.99% and $3,000 at 16.99%, and an additional $100 each month, the combined fixed monthly budget starts at $2,629. Using the avalanche strategy and keeping this budget fixed produces an estimated payoff period of <strong>136 months</strong> and about <strong>$72,852.87</strong> in interest, assuming monthly interest accrual with no additional fees or new borrowing.</p>
+<h2>Understanding the Results</h2>
+<p>The results show your projected debt-free timeframe, original principal, total interest and total payments. The doughnut chart separates principal from interest, and the detailed table lists each debt’s total interest, payoff month and changing payment schedule. The highest-APR debt appears first, even if other debts are settled sooner using their scheduled payments.</p>
+<h2>Frequently Asked Questions</h2>
+<h3>What is the difference between avalanche and snowball repayment?</h3>
+<p>The avalanche strategy targets the highest annual interest rate first, generally reducing interest charges. The snowball strategy pays off the smallest balances first, which can provide psychological motivation. This calculator implements the avalanche method shown in the reference.</p>
+<h3>What happens when I choose a fixed monthly payment?</h3>
+<p>Choosing Yes reallocates the money from paid-off debts to remaining balances. Choosing No does not roll those former minimum payments forward. In both modes, your regular extra monthly contribution still targets the highest-APR outstanding debt.</p>
+<h3>Will my creditor’s balance match this estimate?</h3>
+<p>Possibly not exactly. Credit-card issuers may compound interest daily, some minimums change as balances shrink, mortgage or loan agreements may use different accrual conventions, and fees or variable rates may affect the amount due. Check statements and payoff quotes before making financial decisions.</p>
+<h3>What if my minimum payment is too low?</h3>
+<p>If payments do not cover the accruing interest, balances may grow. The calculator reports when an entered plan cannot repay the debts within the supported simulation horizon; try increasing the monthly or extra payment.</p>
+<h2>Reference and Further Reading</h2>
+<p>See the <a href="https://www.calculator.net/debt-payoff-calculator.html" rel="noopener noreferrer">Debt Payoff Calculator reference</a> for the original input structure and the <a href="https://www.consumerfinance.gov/consumer-tools/credit-cards/" rel="noopener noreferrer">Consumer Financial Protection Bureau’s credit-card resources</a> for consumer information about interest and balances.</p>
+<p class="cp-page-footer">CalcPro — debt repayment estimates are for planning and informational purposes, not financial advice.</p></article></main></div><script>
+(function () {
+  'use strict';
+  const root = document.getElementById('calcpro-debt-root');
+  if (!root) return;
+  const id = suffix => document.getElementById('calcpro-debt-' + suffix);
+  const form = id('form');
+  const result = id('result');
+  const errors = id('errors');
+  const moreButton = id('more');
+  const money = value => '$' + Number(value).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+  const fmtInput = value => Number(value).toLocaleString('en-US',{maximumFractionDigits:2});
+  const readableDuration = count => {
+    const years = Math.floor(count / 12), months = count % 12;
+    const parts = [];
+    if (years) parts.push(years + (years === 1 ? ' year' : ' years'));
+    if (months) parts.push(months + (months === 1 ? ' month' : ' months'));
+    return parts.length ? parts.join(' and ') : '0 months';
+  };
+  const showErrors = message => {
+    errors.textContent = message;
+    errors.hidden = false;
+    result.hidden = true;
+  };
+  const cleanNumeric = raw => String(raw).trim().replace(/[$,\s]/g,'');
+  function parseNumber(raw, label, emptyIsZero) {
+    const cleaned = cleanNumeric(raw);
+    if (!cleaned && emptyIsZero) return 0;
+    if (!cleaned || !/^(?:\d+(?:\.\d*)?|\.\d+)$/.test(cleaned)) throw Error('Enter a valid non-negative number for ' + label + '.');
+    const val = Number(cleaned);
+    if (!Number.isFinite(val) || val > 100000000000) throw Error(label + ' is outside the supported range.');
+    return val;
+  }
+  function collect() {
+    const debts = [];
+    for (let i = 1; i <= 20; i++) {
+      const row = root.querySelector('[data-calcpro-debt-row="' + i + '"]');
+      const rawName = id('name-' + i).value.trim();
+      const balanceText = id('balance-' + i).value.trim();
+      const paymentText = id('payment-' + i).value.trim();
+      const rateText = id('rate-' + i).value.trim();
+      if (!balanceText && !paymentText && !rateText) continue;
+      if (!balanceText || !paymentText || !rateText) {
+        if (row.hidden) { row.hidden = false; moreButton.setAttribute('aria-expanded','true'); moreButton.textContent = 'Show fewer input fields'; }
+        throw Error('Debt ' + i + ': provide a balance, monthly payment, and interest rate.');
+      }
+      const balance = parseNumber(balanceText,'debt ' + i + ' balance',false);
+      const minimum = parseNumber(paymentText,'debt ' + i + ' monthly payment',false);
+      const apr = parseNumber(rateText,'debt ' + i + ' interest rate',false);
+      if (balance <= 0) throw Error('Debt ' + i + ': remaining balance must be greater than zero.');
+      if (apr > 1000) throw Error('Debt ' + i + ': enter an annual interest rate of 1000% or less.');
+      debts.push({index:i,name:rawName || 'Debt ' + i,balance,minimum,apr});
+    }
+    if (!debts.length) throw Error('Enter at least one debt with a balance, monthly payment, and interest rate.');
+    const extraMonthly = parseNumber(id('extra-monthly').value,'extra monthly payment',true);
+    const extraYearly = parseNumber(id('extra-yearly').value,'extra annual payment',true);
+    const extraOnce = parseNumber(id('extra-once').value,'one-time extra payment',true);
+    const rawMonth = id('extra-once-month').value.trim();
+    const extraOnceMonth = rawMonth ? Number(rawMonth) : 5;
+    if (!Number.isInteger(extraOnceMonth) || extraOnceMonth < 1 || extraOnceMonth > 3600) throw Error('One-time payment month must be an integer between 1 and 3600.');
+    const fixed = form.querySelector('input[name="calcpro-debt-fixed"]:checked').value === 'yes';
+    return {debts,extraMonthly,extraYearly,extraOnce,extraOnceMonth,fixed};
+  }
+  function plan(input) {
+    const states = input.debts.map(debt => ({...debt, remaining:debt.balance,interest:0,payoffMonth:null,payments:[]}));
+    const order = [...states].sort((a,b)=>b.apr-a.apr || a.index-b.index);
+    const minSum = states.reduce((sum,s)=>sum+s.minimum,0);
+    let totalInterest = 0;
+    let month = 0;
+    const EPS = 0.0000001;
+    for (month=1;month<=3600;month++) {
+      const thisMonth = new Map(states.map(s=>[s.index,0]));
+      let minApplied=0;
+      // Add monthly interest (APR/12), then pay every outstanding debt's entered minimum.
+      for (const s of states) {
+        if (s.remaining <= EPS) continue;
+        const interest = s.remaining * s.apr / 1200;
+        if (!Number.isFinite(interest)) throw Error('The balances grew beyond the supported calculation range.');
+        s.interest += interest;
+        totalInterest += interest;
+        s.remaining += interest;
+        const pay = Math.min(s.minimum,s.remaining);
+        s.remaining -= pay;
+        minApplied += pay;
+        thisMonth.set(s.index,pay);
+      }
+      // Yes: recycle every freed minimum (including any unused final-month amount).
+      // No: permit only independent minimums plus the selected extras.
+      let pool = input.extraMonthly;
+      if (input.fixed) pool += Math.max(0,minSum-minApplied);
+      if (month%12===0) pool += input.extraYearly;
+      if (month===input.extraOnceMonth) pool += input.extraOnce;
+      for (const s of order) {
+        if (s.remaining <= EPS || pool <= EPS) continue;
+        const pay = Math.min(pool,s.remaining);
+        s.remaining -= pay;
+        pool -= pay;
+        thisMonth.set(s.index,thisMonth.get(s.index)+pay);
+      }
+      for (const s of states) {
+        s.payments.push(thisMonth.get(s.index));
+        if (s.remaining <= EPS && s.payoffMonth===null) {
+          s.remaining=0;
+          s.payoffMonth=month;
+        }
+      }
+      if (states.every(s=>s.remaining===0)) break;
+      // No amortizing plan is possible when the remaining principal grows indefinitely.
+      if (states.some(s=>s.remaining > 1e14)) throw Error('The debt grows instead of being paid off. Increase the monthly payments or extra payments.');
+    }
+    if (month>3600) throw Error('These payments do not repay all debts within 300 years. Increase the monthly payments or extra payments.');
+    const principal=states.reduce((sum,s)=>sum+s.balance,0);
+    // Sum of loan-level interest; this also equals total actual payments minus principal.
+    return {states,order,months:month,principal,totalInterest,totalPaid:principal+totalInterest,minSum};
+  }
+  function scheduleLines(s) {
+    const actual=s.payments.slice(0,s.payoffMonth);
+    const segments=[];
+    actual.forEach((amount,i)=>{
+      const value=Math.round(amount*100)/100;
+      const prior=segments[segments.length-1];
+      if (prior && Math.abs(prior.amount-value)<0.005) prior.end=i+1;
+      else segments.push({start:i+1,end:i+1,amount:value});
+    });
+    return segments.map((segment,i)=>{
+      const last=i===segments.length-1;
+      const amount=money(segment.amount);
+      if (segment.amount === 0) return segment.start === segment.end ? 'No payment in month ' + segment.start + '.' : 'No payments from month ' + segment.start + ' through month ' + segment.end + '.';
+      if (segment.start===segment.end) return 'Pay ' + amount + ' in month ' + segment.start + (last?' to pay off.':'.');
+      return 'Pay ' + amount + ' per month from month ' + segment.start + ' through month ' + segment.end + (last?' to pay off.':'.');
+    });
+  }
+  function appendText(node, text) {node.appendChild(document.createTextNode(text));}
+  function render(input,output) {
+    const duration=readableDuration(output.months);
+    const head=id('summary');
+    head.replaceChildren();
+    appendText(head,'You can pay off your debts in ');
+    const a=document.createElement('strong');a.textContent=output.months+(output.months===1?' month':' months')+(output.months>=12?' ('+duration+')':'');head.appendChild(a);
+    appendText(head,input.fixed?' by making fixed monthly payments of '+money(output.minSum+input.extraMonthly):' with initial scheduled monthly payments of '+money(output.minSum+input.extraMonthly));
+    appendText(head,', including '+money(input.extraMonthly)+' in additional monthly payments.');
+    if (input.extraYearly>0 || input.extraOnce>0) {
+      appendText(head,' This plan also includes ');
+      if (input.extraYearly>0) appendText(head,money(input.extraYearly)+' every 12th month');
+      if (input.extraYearly>0 && input.extraOnce>0) appendText(head,' and ');
+      if (input.extraOnce>0) appendText(head,money(input.extraOnce)+' once in month '+input.extraOnceMonth);
+      appendText(head,'.');
+    }
+    appendText(head,' Total estimated payments are ');
+    const b=document.createElement('strong');b.textContent=money(output.totalPaid);head.appendChild(b);
+    appendText(head,', including '+money(output.totalInterest)+' in interest.');
+    id('stat-principal').textContent=money(output.principal);
+    id('stat-interest').textContent=money(output.totalInterest);
+    id('stat-paid').textContent=money(output.totalPaid);
+    const share=(output.principal/output.totalPaid)*100;
+    id('ring').style.background='conic-gradient(#336e9e 0 '+share+'%,#81bd36 '+share+'% 100%)';
+    id('ring').setAttribute('aria-label','Principal '+share.toFixed(1)+'%, interest '+(100-share).toFixed(1)+'% of total payments');
+    id('ring-label').replaceChildren();
+    const percentage=document.createTextNode(share.toFixed(1)+'%');
+    const small=document.createElement('small');small.textContent='principal';
+    id('ring-label').append(percentage,small);
+    id('share-principal').textContent=share.toFixed(1)+'%';
+    id('share-interest').textContent=(100-share).toFixed(1)+'%';
+    const body=id('report-body');body.replaceChildren();
+    for(const s of output.order) {
+      const tr=document.createElement('tr');
+      const cells=[s.name+' (debt '+s.index+')',s.payoffMonth+(s.payoffMonth===1?' month':' months')+(s.payoffMonth>=12?' ('+readableDuration(s.payoffMonth)+')':''),money(s.interest),money(s.balance+s.interest)];
+      for(let i=0;i<cells.length;i++) {
+        const td=document.createElement('td');td.textContent=cells[i];
+        if(i===2||i===3) td.className='calcpro-debt-monetary';
+        tr.appendChild(td);
+      }
+      const sched=document.createElement('td');sched.className='calcpro-debt-schedule';
+      scheduleLines(s).forEach(line=>{const p=document.createElement('div');p.textContent=line;p.style.marginBottom='4px';sched.appendChild(p);});
+      tr.appendChild(sched);body.appendChild(tr);
+    }
+    errors.hidden=true;
+    result.hidden=false;
+  }
+  form.addEventListener('submit',event=>{
+    event.preventDefault();
+    try { const input=collect();render(input,plan(input)); }
+    catch(error){showErrors(error.message||'Unable to calculate these payments.');}
+  });
+  moreButton.addEventListener('click',()=>{
+    const expanded=moreButton.getAttribute('aria-expanded')==='true';
+    root.querySelectorAll('.calcpro-debt-extra').forEach(row=>row.hidden=expanded);
+    moreButton.setAttribute('aria-expanded',String(!expanded));
+    moreButton.textContent=expanded?'Show more input fields':'Show fewer input fields';
+  });
+  id('clear').addEventListener('click',()=>{
+    form.querySelectorAll('input[type="text"]').forEach(input=>input.value='');
+    id('extra-monthly').value='0';id('extra-yearly').value='0';id('extra-once').value='0';
+    id('extra-once-month').value='5';
+    form.querySelector('input[name="calcpro-debt-fixed"][value="yes"]').checked=true;
+    root.querySelectorAll('.calcpro-debt-extra').forEach(row=>row.hidden=true);
+    moreButton.setAttribute('aria-expanded','false');moreButton.textContent='Show more input fields';
+    errors.hidden=true;result.hidden=true;
+    id('name-1').focus();
+  });
+  // Cosmetic grouping only: calculations parse the unformatted value safely.
+  root.querySelectorAll('input[type="text"]').forEach(input=>{
+    const t=input.getAttribute('data-calcpro-debt-type');
+    const isMoney=t==='balance'||t==='payment'||input.id.startsWith('calcpro-debt-extra-');
+    if(!isMoney) return;
+    input.addEventListener('blur',()=>{
+      const value=cleanNumeric(input.value);
+      if(value && /^(?:\d+(?:\.\d*)?|\.\d+)$/.test(value) && Number.isFinite(Number(value))) input.value=fmtInput(value);
+    });
+  });
+  id('print').addEventListener('click',()=>window.print());
+})();
+</script><script defer src="/assets/js/data.js"></script>
+<script defer src="/assets/js/style.js?v=20261111-5"></script>
+</body></html>

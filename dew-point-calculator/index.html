@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US">
-<head>
-<meta charset="utf-8">
+<html lang="en"><head><meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="content-language" content="en">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,17 +11,210 @@
   <meta name="author" content="Commingsoon">
   <meta name="publisher" content="Commingsoon">
   <meta name="robots" content="noindex, nofollow, max-image-preview:large">
-  <link rel="stylesheet" href="/assets/css/style.css?v=20261111-1" crossorigin="anonymous" data-n-g="">
+  <link rel="stylesheet" href="/assets/css/style.css?v=20261111-4" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/doc_style.css" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/side_style.css" crossorigin="anonymous" data-n-g=""> 
   <!--ogtags-->
-  <!--schema-->
-  <!--style-->
-</head>
+  <!--schema--><style>
+/* Dew Point Calculator: all rules are scoped to this calculator only. */
+.calcpro-dew-tool{font:13px Arial,Helvetica,sans-serif;color:#111;max-width:100%;line-height:1.35}
+.calcpro-dew-tool *{box-sizing:border-box}
+.calcpro-dew-tipbar{height:27px;background:#376894;color:#fff;display:flex;align-items:center;justify-content:center;padding:4px 9px;font-weight:700;font-size:12px;margin:0 0 3px}
+.calcpro-dew-tipbar::before{content:'▼';border-radius:50%;display:inline-grid;place-items:center;font-size:11px;font-weight:700;background:#fff;color:#376894;width:18px;height:18px;margin-right:16px;line-height:1}
+.calcpro-dew-result{margin:0 0 14px}
+.calcpro-dew-result[hidden],.calcpro-dew-tipbar[hidden],.calcpro-dew-error[hidden]{display:none!important}
+.calcpro-dew-resultbar{min-height:27px;background:#4e8629;color:#fff;display:flex;justify-content:space-between;align-items:center;gap:10px;padding:3px 4px 3px 5px;margin-bottom:9px}
+.calcpro-dew-resultbar-title{font:16px Arial,Helvetica,sans-serif}
+.calcpro-dew-save{border:0;background:transparent;color:#fff;font:bold 9px Arial,Helvetica,sans-serif;display:flex;flex-direction:column;align-items:center;gap:0;cursor:pointer;padding:0 4px}
+.calcpro-dew-save svg{display:block;width:15px;height:15px;fill:currentColor}
+.calcpro-dew-save:hover{text-decoration:underline}
+.calcpro-dew-save:focus-visible{outline:2px solid white;outline-offset:1px}
+.calcpro-dew-primary{display:flex;flex-wrap:wrap;align-items:baseline;column-gap:5px;row-gap:1px;font-size:16px;margin:0 0 4px}
+.calcpro-dew-mainvalue{font-weight:700;color:#00831d;font-size:17px}
+.calcpro-dew-alternatives{font-size:12px}
+.calcpro-dew-details{margin:0;padding:0;list-style:none;font-size:12px}
+.calcpro-dew-details li{margin:0 0 3px;padding:0}
+.calcpro-dew-panel{width:324px;max-width:100%;border:1px solid #bbb;background:#eee;padding:7px 8px 6px;margin:0}
+.calcpro-dew-fields{display:grid;gap:2px}
+.calcpro-dew-field{display:grid;grid-template-columns:126px 76px 100px;align-items:center;gap:2px;min-height:21px}
+.calcpro-dew-field label{font-size:12px;font-weight:700;text-align:right;white-space:nowrap;padding-right:2px}
+.calcpro-dew-input,.calcpro-dew-unit{height:22px;min-width:0;background:#fff;color:#111;border:1px solid #265c87;border-radius:0;box-shadow:0 0 0 1px #d4e3ec inset;font:12px Arial,Helvetica,sans-serif;padding:2px 4px}
+.calcpro-dew-input{width:76px}
+.calcpro-dew-unit{width:100px;cursor:pointer}
+.calcpro-dew-input:focus,.calcpro-dew-unit:focus{outline:2px solid #1e6aa6;outline-offset:1px}
+.calcpro-dew-humidity{display:block;position:relative;width:76px}
+.calcpro-dew-humidity .calcpro-dew-input{padding-right:16px}
+.calcpro-dew-suffix{position:absolute;right:6px;top:3px;pointer-events:none;font:bold 12px Arial,Helvetica,sans-serif}
+.calcpro-dew-actions{display:flex;align-items:center;justify-content:center;gap:5px;margin:8px 0 0}
+.calcpro-dew-calculate,.calcpro-dew-clear{height:30px;border:0;border-radius:0;color:#fff;font:bold 12px Arial,Helvetica,sans-serif;cursor:pointer;padding:0 12px}
+.calcpro-dew-calculate{background:#4e8629;display:flex;align-items:center;gap:10px}
+.calcpro-dew-calculate:hover{background:#396a1e}
+.calcpro-dew-arrow{color:#528f38;background:#fff;border-radius:50%;width:15px;height:15px;display:inline-grid;place-items:center;font-size:10px}
+.calcpro-dew-clear{background:#a9a9a9;padding:0 9px}
+.calcpro-dew-clear:hover{background:#777}
+.calcpro-dew-error{color:#8c1111;font-size:12px;padding:8px 9px;margin:8px 0;border:1px solid #b54b4b;background:#fff3f3;max-width:430px}
+.calcpro-dew-note{font-size:11px;color:#565656;max-width:460px;margin:8px 0 0}
+@media(max-width:390px){.calcpro-dew-panel{width:100%;padding:8px 7px}.calcpro-dew-field{grid-template-columns:minmax(112px,1.3fr) minmax(65px,.77fr) minmax(90px,1fr);gap:3px}.calcpro-dew-field label{white-space:normal;font-size:11px}.calcpro-dew-input,.calcpro-dew-humidity,.calcpro-dew-unit{width:100%}.calcpro-dew-primary{font-size:15px}}
+@media(max-width:335px){.calcpro-dew-field{grid-template-columns:minmax(0,1fr) minmax(65px,.8fr);gap:3px 5px}.calcpro-dew-field label{font-size:12px}.calcpro-dew-unit{grid-column:2;width:100%}.calcpro-dew-field:nth-child(2) .calcpro-dew-unit{display:none}}
+@media print{.calcpro-dew-actions,.calcpro-dew-save,.calcpro-dew-tipbar{display:none!important}.calcpro-dew-result[hidden]{display:none!important}}
 
-<body>
-<!-- Main-header-page -->
-<script defer src="/assets/js/data.js"></script>
-<script defer src="/assets/js/style.js?v=20261111-1"></script>
-</body>
-</html>
+</style>
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / Dew Point Calculator</nav><h1 class="cp-page-title">Dew Point Calculator</h1><p class="cp-intro">Calculate the dew point, relative humidity, or air temperature from any two of these values. The result includes moisture and vapor-pressure details.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-dew-tool" id="calcpro-dew-root">
+  <div class="calcpro-dew-tipbar" id="calcpro-dew-tipbar">Modify the values and click the Calculate button to use</div>
+  <section class="calcpro-dew-result" id="calcpro-dew-result" aria-label="Calculation results" aria-live="polite" hidden>
+    <div class="calcpro-dew-resultbar"><span class="calcpro-dew-resultbar-title">Result</span>
+      <button class="calcpro-dew-save" id="calcpro-dew-save" type="button" title="Save this calculation as a text file" aria-label="Save this calculation">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h15l3 3v15H3V3zm3 1v6h11V4h-2v4H9V4H6zm6 9a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"/></svg><span>SAVE</span></button>
+    </div>
+    <div class="calcpro-dew-primary"><span id="calcpro-dew-result-label">Dew Point Temperature:</span><strong class="calcpro-dew-mainvalue" id="calcpro-dew-result-main"></strong><span class="calcpro-dew-alternatives" id="calcpro-dew-result-alt"></span></div>
+    <ul class="calcpro-dew-details">
+      <li>Water Vapor Pressure: <span id="calcpro-dew-vapor"></span> Pa</li>
+      <li>Saturation Water Vapor Pressure: <span id="calcpro-dew-saturation"></span> Pa</li>
+      <li>Absolute Humidity: <span id="calcpro-dew-absolute"></span> g/m<sup>3</sup></li>
+      <li>Moisture Volume Concentration: <span id="calcpro-dew-volume"></span> ppm (<span id="calcpro-dew-volume-percent"></span>%)</li>
+      <li>Moisture Weight Concentration: <span id="calcpro-dew-weight"></span> ppm (<span id="calcpro-dew-weight-percent"></span>%)</li>
+    </ul>
+  </section>
+  <form id="calcpro-dew-form" novalidate>
+    <div class="calcpro-dew-panel"><div class="calcpro-dew-fields">
+      <div class="calcpro-dew-field"><label for="calcpro-dew-air">Air Temperature</label><input class="calcpro-dew-input" type="text" inputmode="decimal" autocomplete="off" id="calcpro-dew-air" value="20" placeholder="e.g. 20"><select class="calcpro-dew-unit" id="calcpro-dew-air-unit" aria-label="Air temperature unit"><option value="c" selected>Celsius °C</option><option value="f">Fahrenheit °F</option><option value="k">Kelvin</option></select></div>
+      <div class="calcpro-dew-field"><label for="calcpro-dew-rh">Relative Humidity</label><span class="calcpro-dew-humidity"><input class="calcpro-dew-input" type="text" inputmode="decimal" autocomplete="off" id="calcpro-dew-rh" value="65" placeholder="0–100"><span class="calcpro-dew-suffix">%</span></span><span></span></div>
+      <div class="calcpro-dew-field"><label for="calcpro-dew-point">Dew Point Temperature</label><input class="calcpro-dew-input" type="text" inputmode="decimal" autocomplete="off" id="calcpro-dew-point" placeholder="Leave one blank"><select class="calcpro-dew-unit" id="calcpro-dew-point-unit" aria-label="Dew point temperature unit"><option value="c" selected>Celsius °C</option><option value="f">Fahrenheit °F</option><option value="k">Kelvin</option></select></div>
+    </div><div class="calcpro-dew-actions"><button type="submit" class="calcpro-dew-calculate">Calculate <span class="calcpro-dew-arrow" aria-hidden="true">▶</span></button><button type="button" class="calcpro-dew-clear" id="calcpro-dew-clear">Clear</button></div></div>
+  </form>
+  <div id="calcpro-dew-error" class="calcpro-dew-error" role="alert" hidden></div>
+</div></section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><!-- REPLACE these links with real related tools for each calculator; verify live slugs. --><a href="retirement-calculator.html">Retirement</a><a href="roth-ira-calculator.html">Roth IRA</a><a href="investment-calculator.html">Investment</a><a href="compound-interest-calculator.html">Compound Interest</a><a href="annuity-payout-calculator.html">Annuity Payout</a><a href="pension-calculator.html">Pension</a><a href="inflation-calculator.html">Inflation</a><a href="future-value-calculator.html">Future Value</a><a href="income-tax-calculator.html">Income Tax</a><a href="savings-calculator.html">Savings</a><a href="mortgage-calculator.html">Mortgage</a><a href="loan-calculator.html">Loan</a></div></section></aside><article class="cp-article"><h2>How to Use the Dew Point Calculator</h2>
+<p>Enter <strong>any two</strong> of the three measurements: air temperature, relative humidity, and dew point temperature. Leave the unknown measurement blank, then select <strong>Calculate</strong>. The answer appears immediately <strong>above the form</strong>, together with moisture measurements. Choose Celsius, Fahrenheit, or Kelvin independently for each temperature field; switching units converts an entered temperature. Use <strong>Clear</strong> to return to the sample values, or <strong>Save</strong> on the results bar to save a text summary.</p>
+<h2>Dew Point Formula and Method</h2>
+<p>The dew point is the temperature at which the existing water vapor reaches saturation, assuming the same moisture content. This tool uses the Buck (1996) saturation vapor-pressure approximation over liquid water, which closely reproduces the reference calculator’s values at normal atmospheric temperatures:</p>
+<p><strong>e<sub>s</sub>(T) = 611.21 × exp[((18.678 − T/234.5) × T)/(257.14 + T)] Pa</strong>, where <strong>T</strong> is the air temperature in degrees Celsius. Actual vapor pressure is <strong>e = (RH/100) × e<sub>s</sub>(T)</strong>. Dew point <strong>T<sub>d</sub></strong> satisfies <strong>e<sub>s</sub>(T<sub>d</sub>) = e</strong>.</p>
+<p>For the inverse calculations: when air temperature and dew point are known, <strong>RH = 100 × e<sub>s</sub>(T<sub>d</sub>)/e<sub>s</sub>(T)</strong>. When relative humidity and dew point are known, solve <strong>e<sub>s</sub>(T) = e<sub>s</sub>(T<sub>d</sub>) × 100/RH</strong> for air temperature using the algebraic inverse of the same Buck equation.</p>
+<h3>Worked Example: 20°C and 65% Relative Humidity</h3>
+<p>At an air temperature of <strong>20°C</strong>, saturation vapor pressure is approximately <strong>2,338 Pa</strong>. At <strong>65%</strong> relative humidity, actual vapor pressure is approximately <strong>1,520 Pa</strong>. The corresponding dew point is approximately <strong>13.2°C (55.8°F)</strong>. Air cooled to that temperature reaches saturation and condensation can begin.</p>
+<h2>Understanding the Additional Results</h2>
+<div class="cp-table-scroll"><table class="cp-content-table"><thead><tr><th>Measurement</th><th>Meaning and calculation</th></tr></thead><tbody>
+<tr><td>Water vapor pressure</td><td>The partial pressure exerted by water vapor, e = RH × e<sub>s</sub>/100, expressed in pascals.</td></tr>
+<tr><td>Saturation water vapor pressure</td><td>The maximum equilibrium vapor pressure over liquid water at the current air temperature, e<sub>s</sub>(T).</td></tr>
+<tr><td>Absolute humidity</td><td>Water vapor mass per air volume: ρ = 1000e/[461.5(T + 273.15)], in g/m³, with pressure e in pascals.</td></tr>
+<tr><td>Moisture volume concentration</td><td>Vapor pressure divided by assumed total air pressure (101,325 Pa), expressed as parts per million and percent by volume.</td></tr>
+<tr><td>Moisture weight concentration</td><td>An approximate mass-equivalent ppm value: volume ppm × 0.62186 (molecular-mass ratio of water vapor to dry air). This follows the reference-style reporting convention; it is <em>not</em> the exact moist-air mass fraction.</td></tr>
+</tbody></table></div>
+<div class="cp-note"><strong>Assumptions:</strong> The Buck approximation is formulated for saturation over liquid water. Temperatures substantially outside about −40°C to +50°C are extrapolations and may be less accurate. Below freezing, a <em>frost point</em> calculated over ice differs from the liquid-water dew point. Concentration calculations assume standard total pressure of 101,325 Pa; the calculator does not accept altitude or local air pressure as inputs.</div>
+<h2>Frequently Asked Questions</h2>
+<h3>What is the difference between dew point and relative humidity?</h3>
+<p>Dew point measures the temperature at which the air becomes saturated if cooled without changing moisture content. Relative humidity is a percentage expressing how close air is to saturation <em>at its current temperature</em>; it can change when temperature changes even if the vapor content stays the same.</p>
+<h3>Can the dew point be greater than the air temperature?</h3>
+<p>Not under the unsaturated equilibrium conditions modeled here. Dew point equals air temperature at 100% relative humidity. If an input combination would imply more than 100% relative humidity, the tool displays a validation message.</p>
+<h3>Can I calculate the air temperature or relative humidity instead?</h3>
+<p>Yes. To calculate air temperature, enter relative humidity and dew point and leave air temperature empty. To calculate relative humidity, enter air temperature and dew point and leave relative humidity empty.</p>
+<h3>Why can't I enter 0% relative humidity?</h3>
+<p>An exact 0% relative humidity has zero water vapor pressure. The inverse formula does not yield a finite dew point for zero vapor pressure, so this tool requires a positive relative humidity.</p>
+<h3>What happens when I change temperature units?</h3>
+<p>Existing temperature values convert immediately among Celsius, Fahrenheit, and Kelvin. All physical calculations are performed internally in Celsius, then formatted using the selected units.</p>
+<h2>References</h2>
+<p><a href="https://www.eol.ucar.edu/data-software/conventions-and-standards/water-vapor-pressure-formulations" target="_blank" rel="noopener noreferrer">NCAR/UCAR — Water Vapor Pressure Formulations</a> (Buck saturation equation); <a href="https://www.calculator.net/dew-point-calculator.html" target="_blank" rel="noopener noreferrer">Calculator.net — Dew Point Calculator</a> (reference interface and sample results).</p>
+<p class="cp-page-footer">CalcPro — estimates for educational and informational use; not a substitute for calibrated meteorological instruments.</p></article></main></div><script>
+(()=>{
+ 'use strict';
+ const root=document.getElementById('calcpro-dew-root');
+ if(!root)return;
+ const $=id=>root.querySelector('#'+id);
+ const form=$('calcpro-dew-form'),air=$('calcpro-dew-air'),rh=$('calcpro-dew-rh'),dp=$('calcpro-dew-point');
+ const airUnit=$('calcpro-dew-air-unit'),dpUnit=$('calcpro-dew-point-unit');
+ const result=$('calcpro-dew-result'),tip=$('calcpro-dew-tipbar'),error=$('calcpro-dew-error');
+ const seaLevelPa=101325;
+ // Buck (1996) saturation vapor-pressure correlation over liquid water, pascals.
+ // Coefficient 611.2155 Pa is within 0.001% of the conventional rounded 611.21 Pa.
+ // https://www.eol.ucar.edu/data-software/conventions-and-standards/water-vapor-pressure-formulations
+ function saturationPa(tC){return 611.2155*Math.exp((18.678-tC/234.5)*tC/(257.14+tC));}
+ // Algebraic inverse of the SAME Buck equation, avoiding mixed approximations.
+ function temperatureForVaporPa(vaporPa){
+   const y=Math.log(vaporPa/611.2155),b=18.678,c=257.14,d=234.5;
+   const discriminant=(b-y)**2-4*c*y/d;
+   if(discriminant<0)throw Error('These conditions are outside the supported temperature range.');
+   return d*(b-y-Math.sqrt(discriminant))/2;
+ }
+ function inCelsius(v,unit){return unit==='f'?(v-32)*5/9:unit==='k'?v-273.15:v;}
+ function fromCelsius(v,unit){return unit==='f'?v*9/5+32:unit==='k'?v+273.15:v;}
+ function symbol(unit){return unit==='f'?'°F':unit==='k'?'K':'°C';}
+ function num(v,decimal){return Number(v).toLocaleString('en-US',{minimumFractionDigits:decimal,maximumFractionDigits:decimal});}
+ function short(v){return Number(v.toFixed(6)).toString();}
+ function getValue(el){const s=el.value.trim();if(s==='')return null; if(!/^[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:e[+-]?\d+)?$/i.test(s))return NaN; return Number(s);}
+ function hideResult(){result.hidden=true;tip.hidden=false;error.hidden=true;error.textContent='';last=null;}
+ function fail(message){result.hidden=true;tip.hidden=false;last=null;error.textContent=message;error.hidden=false;}
+ let last=null;
+ function allowedTemp(t){return Number.isFinite(t)&&t>=-100&&t<=100;}
+ function validateTemp(t,label){if(!allowedTemp(t))throw Error(label+' must be between −100°C and 100°C (or the equivalent in the selected unit).');}
+ function calculate(event){
+   event.preventDefault();
+   try{
+     const a=getValue(air),h=getValue(rh),d=getValue(dp);
+     if([a,h,d].some(v=>v!==null&&!Number.isFinite(v)))throw Error('Enter valid numbers in the fields you use.');
+     const count=[a,h,d].filter(v=>v!==null).length;
+     if(count!==2)throw Error('Enter exactly two values and leave the variable you want to calculate blank.');
+     if(h!==null && (h<=0||h>100))throw Error('Relative humidity must be greater than 0% and at most 100%.');
+     let t=a===null?null:inCelsius(a,airUnit.value);
+     let dew=d===null?null:inCelsius(d,dpUnit.value);
+     if(t!==null)validateTemp(t,'Air temperature');
+     if(dew!==null)validateTemp(dew,'Dew point temperature');
+     let humidity=h;
+     let missing;
+     if(dew===null){missing='dew';const actual=saturationPa(t)*humidity/100;dew=temperatureForVaporPa(actual);}
+     else if(t===null){missing='air';t=temperatureForVaporPa(saturationPa(dew)*100/humidity);}
+     else{missing='rh';humidity=100*saturationPa(dew)/saturationPa(t);}
+     validateTemp(t,'Calculated air temperature');
+     validateTemp(dew,'Calculated dew point temperature');
+     if(dew>t+1e-7 || humidity>100.00001 || humidity<=0)
+       throw Error('Dew point cannot exceed air temperature in an unsaturated air sample (relative humidity must not exceed 100%).');
+     humidity=Math.min(100,humidity);
+     const sat=saturationPa(t),vapor=sat*humidity/100;
+     if(vapor>=seaLevelPa)throw Error('Vapor pressure must be below standard atmospheric pressure (101,325 Pa).');
+     // Ideal-gas vapor density; water-vapor gas constant 461.5 J/(kg·K).
+     const absolute=vapor*1000/(461.5*(t+273.15));
+     const volPpm=vapor/seaLevelPa*1e6;
+     // Molecular-weight approximation used for ppm mass-equivalent reporting.
+     const weightPpm=volPpm*0.62186;
+     const unit=missing==='air'?airUnit.value:missing==='dew'?dpUnit.value:'%';
+     const primary=missing==='air'?t:missing==='dew'?dew:humidity;
+     const primaryDisplay=missing==='rh'?num(primary,1)+'%':num(fromCelsius(primary,unit),1)+symbol(unit);
+     const alts=missing==='rh'?`(dew point ${num(dew,1)}°C, air ${num(t,1)}°C)`:
+       '('+(['c','f','k'].filter(u=>u!==unit).map(u=>num(fromCelsius(primary,u),1)+symbol(u))).join(' or ')+')';
+     $('calcpro-dew-result-label').textContent=missing==='air'?'Air Temperature:':missing==='rh'?'Relative Humidity:':'Dew Point Temperature:';
+     $('calcpro-dew-result-main').textContent=primaryDisplay;
+     $('calcpro-dew-result-alt').textContent=alts;
+     $('calcpro-dew-vapor').textContent=num(vapor,0);
+     $('calcpro-dew-saturation').textContent=num(sat,0);
+     $('calcpro-dew-absolute').textContent=num(absolute,4);
+     $('calcpro-dew-volume').textContent=num(volPpm,0);
+     $('calcpro-dew-volume-percent').textContent=num(volPpm/10000,4);
+     $('calcpro-dew-weight').textContent=num(weightPpm,0);
+     $('calcpro-dew-weight-percent').textContent=num(weightPpm/10000,4);
+     tip.hidden=true;error.hidden=true;result.hidden=false;
+     last={label:$('calcpro-dew-result-label').textContent,primary:primaryDisplay,alts,
+       vapor:num(vapor,0)+' Pa',sat:num(sat,0)+' Pa',absolute:num(absolute,4)+' g/m³',
+       volume:num(volPpm,0)+' ppm ('+num(volPpm/10000,4)+'%)',weight:num(weightPpm,0)+' ppm ('+num(weightPpm/10000,4)+'%)',
+       inputAir:air.value,inputHumidity:rh.value,inputDew:dp.value,airUnit:airUnit.options[airUnit.selectedIndex].text,dewUnit:dpUnit.options[dpUnit.selectedIndex].text};
+   }catch(ex){fail(ex.message||'Unable to calculate the selected values.');}
+ }
+ form.addEventListener('submit',calculate);
+ $('calcpro-dew-clear').addEventListener('click',()=>{air.value='20';rh.value='65';dp.value='';airUnit.value='c';dpUnit.value='c';airUnit.dataset.previous='c';dpUnit.dataset.previous='c';hideResult();air.focus();});
+ [air,rh,dp].forEach(input=>input.addEventListener('input',hideResult));
+ // Switching units converts a populated temperature without changing its physical value.
+ for(const [unitSelect,field] of [[airUnit,air],[dpUnit,dp]]){
+   unitSelect.dataset.previous=unitSelect.value;
+   unitSelect.addEventListener('change',()=>{
+     const v=getValue(field);const prev=unitSelect.dataset.previous||'c';
+     if(v!==null&&Number.isFinite(v)){const adjusted=fromCelsius(inCelsius(v,prev),unitSelect.value);field.value=short(adjusted);}
+     unitSelect.dataset.previous=unitSelect.value;hideResult();
+   });
+ }
+ $('calcpro-dew-save').addEventListener('click',()=>{
+   if(!last)return;
+   const lines=['CalcPro — Dew Point Calculator','',`Air temperature: ${last.inputAir||'(calculated)'} ${last.airUnit}`,`Relative humidity: ${last.inputHumidity||'(calculated)'}%`,`Dew point temperature: ${last.inputDew||'(calculated)'} ${last.dewUnit}`,'',`${last.label} ${last.primary} ${last.alts}`,`Water vapor pressure: ${last.vapor}`,`Saturation water vapor pressure: ${last.sat}`,`Absolute humidity: ${last.absolute}`,`Moisture volume concentration: ${last.volume}`,`Moisture weight concentration: ${last.weight}`,'','Assumes standard atmospheric pressure of 101,325 Pa.'];
+   const url=URL.createObjectURL(new Blob([lines.join('\n')],{type:'text/plain;charset=utf-8'}));
+   const link=document.createElement('a');link.href=url;link.download='dew-point-calculation.txt';link.style.display='none';document.body.appendChild(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
+ });
+})();
+</script><script defer src="/assets/js/data.js"></script>
+<script defer src="/assets/js/style.js?v=20261111-5"></script>
+</body></html>

@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US">
-<head>
-<meta charset="utf-8">
+<html lang="en"><head><meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="content-language" content="en">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,17 +11,367 @@
   <meta name="author" content="Commingsoon">
   <meta name="publisher" content="Commingsoon">
   <meta name="robots" content="noindex, nofollow, max-image-preview:large">
-  <link rel="stylesheet" href="/assets/css/style.css?v=20261111-1" crossorigin="anonymous" data-n-g="">
+  <link rel="stylesheet" href="/assets/css/style.css?v=20261111-4" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/doc_style.css" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/side_style.css" crossorigin="anonymous" data-n-g=""> 
   <!--ogtags-->
-  <!--schema-->
-  <!--style-->
-</head>
+  <!--schema--><style>
+/* Isolated styles for the Rounding Calculator only. */
+.calcpro-rounding{max-width:100%;font-family:Arial,Helvetica,sans-serif;font-size:16px;color:#111;line-height:1.4}
+.calcpro-rounding *{box-sizing:border-box}
+.calcpro-rounding [hidden]{display:none!important}
+.calcpro-rounding .calcpro-rounding-result{margin:0 0 14px}
+.calcpro-rounding .calcpro-rounding-result-header{min-height:36px;padding:6px 8px;background:#4c802b;color:#fff;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.calcpro-rounding .calcpro-rounding-result-title{margin:0;font-size:21px;line-height:1.1;font-weight:400;color:#fff}
+.calcpro-rounding .calcpro-rounding-save{color:#fff;background:transparent;border:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;min-width:32px;cursor:pointer;font-size:10px;line-height:1.05;padding:0 2px}
+.calcpro-rounding .calcpro-rounding-save:hover{text-decoration:underline}
+.calcpro-rounding .calcpro-rounding-save svg{display:block;width:17px;height:17px;fill:currentColor}
+.calcpro-rounding .calcpro-rounding-result-value{font-size:23px;line-height:1.3;margin:13px 0 5px;overflow-wrap:anywhere;font-variant-numeric:tabular-nums}
+.calcpro-rounding .calcpro-rounding-result-note{margin:0 0 12px;font-size:16px;overflow-wrap:anywhere}
+.calcpro-rounding .calcpro-rounding-subvalue{margin:0 0 8px;font-size:14px;color:#444;overflow-wrap:anywhere}
+.calcpro-rounding .calcpro-rounding-panel{background:#efefef;border:1px solid #bcbcbc;padding:6px 12px 9px;width:100%;}
+.calcpro-rounding .calcpro-rounding-input-grid{display:grid;grid-template-columns:max-content minmax(0,217px);align-items:center;column-gap:7px;row-gap:3px;justify-content:center;margin:0 auto}
+.calcpro-rounding .calcpro-rounding-label{text-align:right;font-size:16px;white-space:nowrap}
+.calcpro-rounding .calcpro-rounding-input,.calcpro-rounding .calcpro-rounding-select{font:16px Arial,Helvetica,sans-serif;width:100%;min-width:0;height:29px;padding:2px 6px;border:1px solid #003c79;border-radius:0;background:#fff;color:#111}
+.calcpro-rounding .calcpro-rounding-input:focus,.calcpro-rounding .calcpro-rounding-select:focus{outline:2px solid #6699cc;outline-offset:1px}
+.calcpro-rounding .calcpro-rounding-custom-desc{font-size:12px;color:#4b4b4b;margin-top:3px}
+.calcpro-rounding .calcpro-rounding-settings{max-width:385px;margin:12px auto 4px;background:#fff;border:1px solid #d7d7d7;padding:10px 12px 11px}
+.calcpro-rounding .calcpro-rounding-settings-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:7px}
+.calcpro-rounding .calcpro-rounding-settings-head strong{font-size:18px;font-weight:700}
+.calcpro-rounding .calcpro-rounding-settings-close{cursor:pointer;border:0;background:transparent;font-size:24px;line-height:1;color:#444;padding:0 3px}
+.calcpro-rounding .calcpro-rounding-settings-label{font-size:14px;display:block;margin:9px 0 3px}
+.calcpro-rounding .calcpro-rounding-settings-select{width:100%;font-size:14px;min-width:0;height:31px;border:1px solid #7c9fbd;background:#fff;padding:3px 5px}
+.calcpro-rounding .calcpro-rounding-radio{display:flex;gap:7px;align-items:center;margin:5px 0;font-size:14px;cursor:pointer}
+.calcpro-rounding .calcpro-rounding-radio input{accent-color:#306fa1;width:15px;height:15px;margin:0}
+.calcpro-rounding .calcpro-rounding-actions{display:flex;align-items:center;justify-content:center;gap:5px;margin-top:9px;flex-wrap:wrap}
+.calcpro-rounding .calcpro-rounding-calculate{display:flex;gap:13px;align-items:center;border:0;background:#4c802b;color:white;min-height:37px;font-size:15px;font-weight:bold;padding:6px 10px 6px 15px;cursor:pointer}
+.calcpro-rounding .calcpro-rounding-calculate:hover{background:#3c6b1b}
+.calcpro-rounding .calcpro-rounding-arrow{width:20px;height:20px;display:inline-flex;align-items:center;justify-content:center;background:#93bd83;border-radius:50%;color:#fff;font-size:14px}
+.calcpro-rounding .calcpro-rounding-clear{border:0;background:#b8b8b8;color:#fff;min-height:37px;padding:7px 9px;font:16px Arial,Helvetica,sans-serif;cursor:pointer}
+.calcpro-rounding .calcpro-rounding-clear:hover{background:#999}
+.calcpro-rounding .calcpro-rounding-settings-toggle{background:none;border:none;padding:6px 5px;color:#006699;font:14px Arial,Helvetica,sans-serif;text-decoration:underline;cursor:pointer}
+.calcpro-rounding .calcpro-rounding-helper{font-size:12px;line-height:1.4;margin:0 0 8px}
+.calcpro-rounding .calcpro-rounding-error{background:#fff2ee;border-left:3px solid #bd3535;color:#90201c;margin:8px 0;padding:8px 10px;font-size:14px}
+.calcpro-rounding button:focus-visible,.calcpro-rounding a:focus-visible,.calcpro-rounding input:focus-visible,.calcpro-rounding select:focus-visible{outline:2px solid #1f639f;outline-offset:2px}
+@media (max-width:480px){
+ .calcpro-rounding .calcpro-rounding-panel{padding:11px 9px}
+ .calcpro-rounding .calcpro-rounding-input-grid{grid-template-columns:minmax(0,1fr);gap:4px;max-width:360px}
+ .calcpro-rounding .calcpro-rounding-label{text-align:left;font-size:14px;margin-top:5px}
+ .calcpro-rounding .calcpro-rounding-settings{max-width:100%}
+ .calcpro-rounding .calcpro-rounding-result-title{font-size:19px}
+ .calcpro-rounding .calcpro-rounding-result-value{font-size:22px}
+}
+@media print{
+ .calcpro-rounding .calcpro-rounding-panel,.calcpro-rounding .calcpro-rounding-helper,.calcpro-rounding .calcpro-rounding-save,.calcpro-rounding .calcpro-rounding-error{display:none!important}
+ .calcpro-rounding .calcpro-rounding-result{display:block!important}
+}
+</style>
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="math-calculator.html">Math</a> / Rounding Calculator</nav><h1 class="cp-page-title">Rounding Calculator</h1><p class="cp-intro">Round a positive or negative number to a chosen decimal place, whole-number place, or fraction. Use Settings to change the rounding rule or enter custom precision.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-rounding" id="calcpro-rounding-root">
+  <section class="calcpro-rounding-result" id="calcpro-rounding-result" aria-label="Rounding result" aria-live="polite" hidden>
+    <div class="calcpro-rounding-result-header">
+      <h2 class="calcpro-rounding-result-title">Result</h2>
+      <button class="calcpro-rounding-save" type="button" id="calcpro-rounding-save" title="Print or save this result as a PDF" aria-label="Print or save this result as PDF">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h15l3 3v15H3V3zm3 1.8V10h11V4.8H6zm6 8.2a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7z"/></svg><span>save</span>
+      </button>
+    </div>
+    <div class="calcpro-rounding-result-value" id="calcpro-rounding-value"></div>
+    <p class="calcpro-rounding-subvalue" id="calcpro-rounding-decimal" hidden></p>
+    <p class="calcpro-rounding-result-note" id="calcpro-rounding-explanation"></p>
+  </section>
 
-<body>
-<!-- Main-header-page -->
-<script defer src="/assets/js/data.js"></script>
-<script defer src="/assets/js/style.js?v=20261111-1"></script>
-</body>
-</html>
+  <form id="calcpro-rounding-form" novalidate>
+    <div class="calcpro-rounding-panel">
+      <div class="calcpro-rounding-input-grid">
+        <label for="calcpro-rounding-number" class="calcpro-rounding-label">Number</label>
+        <input class="calcpro-rounding-input" type="text" inputmode="decimal" name="roundingNumber" id="calcpro-rounding-number" autocomplete="off" spellcheck="false" value="" />
+        <label for="calcpro-rounding-precision" class="calcpro-rounding-label" id="calcpro-rounding-precision-label">Precision</label>
+        <div id="calcpro-rounding-preset-wrap">
+          <select class="calcpro-rounding-select" name="roundingPrecision" id="calcpro-rounding-precision">
+            <optgroup label="Decimal">
+              <option value="1">Tenths (1)</option><option value="2">Hundredths (2)</option>
+              <option value="3">Thousandths (3)</option><option value="4">Ten Thousandths (4)</option>
+              <option value="5">Hundred Thousandths (5)</option><option value="6">Millionths (6)</option>
+            </optgroup>
+            <optgroup label="Whole Number">
+              <option value="0" selected>Ones (0)</option><option value="-1">Tens (-1)</option>
+              <option value="-2">Hundreds (-2)</option><option value="-3">Thousands (-3)</option><option value="-6">Millions (-6)</option>
+            </optgroup>
+            <optgroup label="Fraction">
+              <option value="frac2">1/2</option><option value="frac4">1/4</option>
+              <option value="frac8">1/8</option><option value="frac16">1/16</option>
+              <option value="frac32">1/32</option><option value="frac64">1/64</option>
+            </optgroup>
+          </select>
+        </div>
+        <div id="calcpro-rounding-custom-wrap" hidden>
+          <input class="calcpro-rounding-input" id="calcpro-rounding-custom" type="number" step="1" min="-1000" max="1000" value="2" aria-label="Custom precision in digits" />
+          <div class="calcpro-rounding-custom-desc">Precision of -1000 to 1000 digits</div>
+        </div>
+      </div>
+
+      <section class="calcpro-rounding-settings" id="calcpro-rounding-settings" aria-label="Rounding settings" hidden>
+        <div class="calcpro-rounding-settings-head"><strong>Settings</strong><button type="button" class="calcpro-rounding-settings-close" id="calcpro-rounding-settings-close" aria-label="Close settings">&times;</button></div>
+        <label class="calcpro-rounding-settings-label" for="calcpro-rounding-mode">Rounding Mode:</label>
+        <select class="calcpro-rounding-settings-select" id="calcpro-rounding-mode">
+          <option value="nearest">Round to the nearest (default)</option>
+          <option value="up">Round half up</option>
+          <option value="down">Round half down</option>
+          <option value="ceil">Round up (ceiling)</option>
+          <option value="floor">Round down (floor)</option>
+          <option value="even">Round half to even</option>
+          <option value="odd">Round half to odd</option>
+          <option value="away">Round half away from zero</option>
+          <option value="toward">Round half towards zero</option>
+        </select>
+        <div class="calcpro-rounding-settings-label" id="calcpro-rounding-setting-precision-title">Rounding Precision:</div>
+        <div role="group" aria-labelledby="calcpro-rounding-setting-precision-title">
+          <label class="calcpro-rounding-radio" for="calcpro-rounding-use-preset"><input type="radio" name="calcpro-rounding-precision-mode" id="calcpro-rounding-use-preset" value="preset" checked /> Select a precision level</label>
+          <label class="calcpro-rounding-radio" for="calcpro-rounding-use-custom"><input type="radio" name="calcpro-rounding-precision-mode" id="calcpro-rounding-use-custom" value="custom" /> Input a precision level</label>
+        </div>
+      </section>
+      <div class="calcpro-rounding-actions">
+        <button class="calcpro-rounding-calculate" type="submit">Calculate <span class="calcpro-rounding-arrow" aria-hidden="true">&#9654;</span></button>
+        <button class="calcpro-rounding-clear" id="calcpro-rounding-clear" type="button">Clear</button>
+        <button class="calcpro-rounding-settings-toggle" id="calcpro-rounding-settings-toggle" type="button" aria-controls="calcpro-rounding-settings" aria-expanded="false">Settings</button>
+      </div>
+    </div>
+    <p class="calcpro-rounding-helper">Click "Settings" to set the rounding method or define your own precision level.</p>
+    <p class="calcpro-rounding-error" id="calcpro-rounding-error" role="alert" hidden></p>
+  </form>
+</div></section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><a href="scientific-calculator.html">Scientific</a><a href="fraction-calculator.html">Fraction</a><a href="percent-calculator.html">Percent</a><a href="average-calculator.html">Average</a><a href="standard-deviation-calculator.html">Standard Deviation</a><a href="root-calculator.html">Root</a><a href="ratio-calculator.html">Ratio</a><a href="exponent-calculator.html">Exponent</a><a href="basic-calculator.html">Basic</a><a href="number-sequence-calculator.html">Number Sequence</a><a href="prime-factorization-calculator.html">Prime Factorization</a><a href="big-number-calculator.html">Big Number</a></div></section></aside><article class="cp-article"><h2>How to Use the Rounding Calculator</h2>
+<ol>
+<li>Enter the number you want to round. Positive, negative, and decimal values are supported.</li>
+<li>Choose a precision, such as <strong>Hundredths (2)</strong>, <strong>Tens (-1)</strong>, or <strong>1/8</strong>.</li>
+<li>For an alternative method, open <strong>Settings</strong> to choose one of nine rounding rules.</li>
+<li>To set precision directly, select <strong>Input a precision level</strong> in Settings. Enter a whole number from -1000 to 1000: 4 retains four decimal places; -2 rounds to hundreds.</li>
+<li>Click <strong>Calculate</strong>. The rounded number appears above the form; <strong>Clear</strong> resets the calculator. Use <strong>save</strong> to open your browser's print/save-as-PDF dialog.</li>
+</ol>
+<h2>Rounding Formula and Examples</h2>
+<p>For decimal precision <em>p</em>, the rounding step is <strong>10<sup>-p</sup></strong>. The number is divided by the step, rounded to an integer according to the selected method, and multiplied by the step again:</p>
+<p><strong>Rounded value = round(x / 10<sup>-p</sup>) &times; 10<sup>-p</sup></strong></p>
+<div class="cp-table-scroll"><table class="cp-content-table"><thead><tr><th>Input</th><th>Precision</th><th>Result</th><th>Explanation</th></tr></thead><tbody>
+<tr><td>25</td><td>4 decimal places</td><td>25.0000</td><td>Retains four decimal digits (including trailing zeros).</td></tr>
+<tr><td>12.3456</td><td>Hundredths (2)</td><td>12.35</td><td>Rounds to the nearest 0.01.</td></tr>
+<tr><td>1487</td><td>Hundreds (-2)</td><td>1500</td><td>Rounds to the nearest 100.</td></tr>
+<tr><td>15.65</td><td>1/8</td><td>15 5/8</td><td>The decimal equivalent is 15.625.</td></tr>
+</tbody></table></div>
+<h3>Rounding to a Fraction</h3>
+<p>For fractions such as 1/8, multiply the number by the denominator, round to the nearest integer using the chosen method, and divide by that denominator. For example, 15.65 &times; 8 = 125.2, which rounds to 125, yielding 125/8 = 15 5/8 = 15.625.</p>
+<h3>Which Rounding Rule Should I Use?</h3>
+<p><strong>Round to the nearest</strong> selects the closest multiple. At an exact halfway tie, this calculator's default chooses away from zero. <strong>Half up</strong> resolves ties toward positive infinity; <strong>half down</strong> resolves them toward negative infinity. <strong>Ceiling</strong> always rounds toward positive infinity, and <strong>floor</strong> always rounds toward negative infinity. <strong>Half to even</strong> or <strong>half to odd</strong> uses the parity of the retained digit to resolve ties. <strong>Half away from zero</strong> and <strong>half towards zero</strong> explicitly control ties relative to zero.</p>
+<h2>Frequently Asked Questions</h2>
+<h3>Why does rounding 25 to four decimal places show 25.0000?</h3>
+<p>The numeric value does not change, but four trailing zeros show that it has been formatted to four decimal places.</p>
+<h3>How do I round to the nearest 10, 100, or 1,000?</h3>
+<p>Choose Tens (-1), Hundreds (-2), or Thousands (-3). In custom precision, enter -1, -2, or -3 respectively.</p>
+<h3>How are negative numbers rounded?</h3>
+<p>The result depends on the selected rule. For example, ceiling rounds -5.5 to -5, while floor rounds -5.5 to -6. With the default nearest rule, an exact halfway value of -5.5 rounds to -6.</p>
+<h3>Why might this differ from a programming language's built-in rounding function?</h3>
+<p>Languages can use different halfway rules or binary floating-point arithmetic. This calculator works with the entered decimal digits using integer arithmetic, so values like 1.005 can be rounded to two decimal places without binary floating-point surprises.</p>
+<h3>What is the maximum custom precision?</h3>
+<p>The custom field accepts -1000 through 1000. Very large precision values can create long results; they may be hard to read or print.</p>
+<h2>Further Reading</h2>
+<p>For background on rounding methods and fraction precision, see the <a href="https://www.calculator.net/rounding-calculator.html" rel="noopener noreferrer">Calculator.net rounding reference</a>.</p>
+<p class="cp-page-footer">CalcPro — numerical results are provided for educational and informational use.</p></article></main></div><script>
+(() => {
+  'use strict';
+  const root = document.getElementById('calcpro-rounding-root');
+  if (!root) return;
+  const get = (suffix) => root.querySelector('#calcpro-rounding-' + suffix);
+  const form = get('form');
+  const number = get('number');
+  const precision = get('precision');
+  const custom = get('custom');
+  const presetWrap = get('preset-wrap');
+  const customWrap = get('custom-wrap');
+  const presetRadio = get('use-preset');
+  const customRadio = get('use-custom');
+  const mode = get('mode');
+  const settings = get('settings');
+  const toggle = get('settings-toggle');
+  const error = get('error');
+  const result = get('result');
+  const output = get('value');
+  const decimalOutput = get('decimal');
+  const explanation = get('explanation');
+
+  // Retain all entered digits with BigInt instead of converting through
+  // IEEE-754 doubles (which can incorrectly round 1.005 or exact 0.5 ties).
+  function parseDecimal(text) {
+    const value = text.trim();
+    const match = /^([+-]?)(?:(\d+)(?:\.(\d*))?|\.(\d+))(?:[eE]([+-]?\d+))?$/.exec(value);
+    if (!match) throw new Error('Enter a valid number, such as 25, -5.5, or 1.005.');
+    const fraction = match[3] ?? match[4] ?? '';
+    const whole = match[2] ?? '0';
+    const exponent = Number(match[5] || '0');
+    if (!Number.isSafeInteger(exponent) || Math.abs(exponent) > 1000) {
+      throw new Error('For scientific notation, use an exponent from -1000 to 1000.');
+    }
+    const digits = (whole + fraction).replace(/^0+(?=\d)/, '');
+    if (digits.length > 10000) throw new Error('Please enter no more than 10,000 digits.');
+    return { magnitude: BigInt(digits), negative: match[1] === '-', exponent: exponent - fraction.length, original: value };
+  }
+
+  function pow10(exponent) { return 10n ** BigInt(exponent); }
+
+  function chooseInteger(numerator, denominator, negative, roundingMode) {
+    let integer = numerator / denominator;
+    const remainder = numerator % denominator;
+    if (remainder === 0n) return integer;
+    if (roundingMode === 'ceil') return integer + (negative ? 0n : 1n);
+    if (roundingMode === 'floor') return integer + (negative ? 1n : 0n);
+    const difference = 2n * remainder - denominator;
+    if (difference > 0n) return integer + 1n;
+    if (difference < 0n) return integer;
+    let increment = false;
+    switch (roundingMode) {
+      case 'nearest':
+      case 'away': increment = true; break;
+      case 'up': increment = !negative; break;
+      case 'down': increment = negative; break;
+      case 'even': increment = integer % 2n !== 0n; break;
+      case 'odd': increment = integer % 2n === 0n; break;
+      case 'toward': increment = false; break;
+      default: throw new Error('Select a valid rounding mode.');
+    }
+    return increment ? integer + 1n : integer;
+  }
+
+  function asQuotient(parsed, precisionDigits, fractionDenominator) {
+    let shiftedExponent = parsed.exponent;
+    let top = parsed.magnitude;
+    if (fractionDenominator !== null) {
+      top *= BigInt(fractionDenominator);
+    } else {
+      shiftedExponent += precisionDigits;
+    }
+    if (shiftedExponent >= 0) return { top: top * pow10(shiftedExponent), bottom: 1n };
+    return { top, bottom: pow10(-shiftedExponent) };
+  }
+
+  function decimalAtDigits(magnitude, precisionDigits) {
+    const text = magnitude.toString();
+    if (precisionDigits < 0) {
+      return magnitude === 0n ? '0' : text + '0'.repeat(-precisionDigits);
+    }
+    if (precisionDigits === 0) return text;
+    const padded = text.padStart(precisionDigits + 1, '0');
+    return padded.slice(0, -precisionDigits) + '.' + padded.slice(-precisionDigits);
+  }
+
+  function precisionStep(precisionDigits) {
+    if (precisionDigits <= 0) return '1' + '0'.repeat(-precisionDigits);
+    return '0.' + '0'.repeat(precisionDigits - 1) + '1';
+  }
+
+  function mixedFraction(magnitude, denominator) {
+    const den = BigInt(denominator);
+    const whole = magnitude / den;
+    let remaining = magnitude % den;
+    if (remaining === 0n) return whole.toString();
+    let gcdA = remaining, gcdB = den;
+    while (gcdB) [gcdA, gcdB] = [gcdB, gcdA % gcdB];
+    remaining /= gcdA;
+    const reducedDenominator = den / gcdA;
+    return (whole ? whole.toString() + ' ' : '') + remaining.toString() + '/' + reducedDenominator.toString();
+  }
+
+  function fractionAsDecimal(magnitude, denominator) {
+    const scale = Math.log2(denominator);
+    const scaled = magnitude * 5n ** BigInt(scale);
+    return decimalAtDigits(scaled, scale).replace(/(\.\d*?[1-9])0+$|\.0+$/, '$1');
+  }
+
+  function compute(raw, selectedPrecision, selectedMode, isCustom) {
+    const parsed = parseDecimal(raw);
+    const fraction = !isCustom && selectedPrecision.startsWith('frac');
+    const denominator = fraction ? Number(selectedPrecision.slice(4)) : null;
+    const digits = fraction ? null : Number(selectedPrecision);
+    if (!fraction && (!Number.isInteger(digits) || digits < -1000 || digits > 1000)) {
+      throw new Error('Precision must be a whole number between -1000 and 1000.');
+    }
+    if (fraction && ![2, 4, 8, 16, 32, 64].includes(denominator)) {
+      throw new Error('Select a supported fraction precision.');
+    }
+    const { top, bottom } = asQuotient(parsed, digits, denominator);
+    const magnitude = chooseInteger(top, bottom, parsed.negative, selectedMode);
+    const sign = parsed.negative && magnitude !== 0n ? '-' : '';
+    if (fraction) {
+      const mixed = sign + mixedFraction(magnitude, denominator);
+      const asDecimal = sign + fractionAsDecimal(magnitude, denominator);
+      return { value: mixed, decimal: 'Decimal equivalent: ' + asDecimal,
+        note: 'is the result of rounding ' + parsed.original + ' to the nearest 1/' + denominator +
+          (selectedMode === 'nearest' ? '.' : ' (' + mode.selectedOptions[0].textContent.toLowerCase() + ').') };
+    }
+    return {
+      value: sign + decimalAtDigits(magnitude, digits), decimal: '',
+      note: 'is the result of rounding ' + parsed.original + ' to the nearest ' + precisionStep(digits) +
+        (selectedMode === 'nearest' ? '.' : ' (' + mode.selectedOptions[0].textContent.toLowerCase() + ').')
+    };
+  }
+
+  function clearResult() { result.hidden = true; error.hidden = true; error.textContent = ''; }
+  function showError(text) { result.hidden = true; error.textContent = text; error.hidden = false; }
+  function updatePrecisionMode() {
+    const usingCustom = customRadio.checked;
+    presetWrap.hidden = usingCustom;
+    customWrap.hidden = !usingCustom;
+    const label = get('precision-label');
+    label.htmlFor = usingCustom ? custom.id : precision.id;
+    clearResult();
+  }
+  function setSettings(open) {
+    settings.hidden = !open;
+    toggle.setAttribute('aria-expanded', String(open));
+  }
+
+  form.addEventListener('submit', event => {
+    event.preventDefault();
+    error.hidden = true;
+    try {
+      const selected = customRadio.checked ? custom.value.trim() : precision.value;
+      const calculated = compute(number.value, selected, mode.value, customRadio.checked);
+      output.textContent = calculated.value;
+      decimalOutput.textContent = calculated.decimal;
+      decimalOutput.hidden = !calculated.decimal;
+      explanation.textContent = calculated.note;
+      result.hidden = false;
+    } catch (exception) {
+      showError(exception.message || 'Unable to round this number.');
+    }
+  });
+  get('clear').addEventListener('click', () => {
+    form.reset();
+    number.value = '';
+    precision.value = '0';
+    custom.value = '2';
+    mode.value = 'nearest';
+    presetRadio.checked = true;
+    updatePrecisionMode();
+    setSettings(false);
+    number.focus();
+  });
+  get('settings-close').addEventListener('click', () => setSettings(false));
+  toggle.addEventListener('click', () => setSettings(settings.hidden));
+  root.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && !settings.hidden) {
+      setSettings(false); toggle.focus();
+    }
+  });
+  presetRadio.addEventListener('change', updatePrecisionMode);
+  customRadio.addEventListener('change', updatePrecisionMode);
+  [number, precision, custom, mode].forEach(element => {
+    element.addEventListener('input', clearResult);
+    element.addEventListener('change', clearResult);
+  });
+  get('save').addEventListener('click', () => window.print());
+  updatePrecisionMode();
+  setSettings(false);
+  // Expose a private, test-only calculation function in local development only.
+  if (location.hostname === 'localhost' || location.hostname === '127.0.0.1' || location.protocol === 'file:' || location.protocol === 'about:') {
+    root.calcproRoundingCompute = compute;
+  }
+})();
+</script><script defer src="/assets/js/data.js"></script>
+<script defer src="/assets/js/style.js?v=20261111-5"></script>
+</body></html>

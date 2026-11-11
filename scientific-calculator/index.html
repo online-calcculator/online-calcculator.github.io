@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US">
-<head>
-<meta charset="utf-8">
+<html lang="en"><head><meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="content-language" content="en">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,17 +11,383 @@
   <meta name="author" content="Commingsoon">
   <meta name="publisher" content="Commingsoon">
   <meta name="robots" content="noindex, nofollow, max-image-preview:large">
-  <link rel="stylesheet" href="/assets/css/style.css?v=20261111-1" crossorigin="anonymous" data-n-g="">
+  <link rel="stylesheet" href="/assets/css/style.css?v=20261111-4" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/doc_style.css" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/side_style.css" crossorigin="anonymous" data-n-g=""> 
   <!--ogtags-->
-  <!--schema-->
-  <!--style-->
-</head>
+  <!--schema--><style>
 
-<body>
-<!-- Main-header-page -->
-<script defer src="/assets/js/data.js"></script>
-<script defer src="/assets/js/style.js?v=20261111-1"></script>
-</body>
-</html>
+/* Scientific calculator: all selectors scoped to this tool. */
+.calcpro-sci-root, .calcpro-sci-root *{box-sizing:border-box}
+.calcpro-sci-root{width:100%;color:#111;font-family:Arial,Helvetica,sans-serif;line-height:1.3}
+.calcpro-sci-shell{width:266px;max-width:100%;margin:7px auto 3px;padding:7px;border:1px solid #333;background:#fff}
+.calcpro-sci-display{width:100%;margin:0 0 4px}
+.calcpro-sci-expression{display:block;width:100%;height:24px;padding:1px 2px;border:0;border-radius:0;box-shadow:none;background:white;color:#111;font-size:16px;text-align:right;font-family:Arial,Helvetica,sans-serif;line-height:21px;outline-offset:1px}
+.calcpro-sci-output{display:flex;align-items:center;justify-content:flex-end;min-width:0;width:100%;height:30px;padding:1px 4px;overflow:hidden;white-space:nowrap;background:#125217;color:#fff;font-size:20px;font-weight:400;text-align:right;font-variant-numeric:tabular-nums}
+.calcpro-sci-output[data-small="true"]{font-size:15px}
+.calcpro-sci-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:2px;width:100%;margin-top:3px}
+.calcpro-sci-btn{min-width:0;height:30px;padding:0 1px;border:1px solid #9eb9d6;border-radius:3px;background:#e6edf5;color:#000;cursor:pointer;font:bold 15px Arial,Helvetica,sans-serif;line-height:1;touch-action:manipulation;user-select:none}
+.calcpro-sci-btn:hover{background:#d3e3f3}
+.calcpro-sci-btn:active{background:#b7cde4;transform:translateY(1px)}
+.calcpro-sci-btn:focus-visible{outline:2px solid #034f9b;outline-offset:1px;position:relative;z-index:1}
+.calcpro-sci-number{background:#a9c4e2;border-color:#759bc3}
+.calcpro-sci-number:hover{background:#91b2d5}
+.calcpro-sci-equals{background:#8eb2d8;border-color:#5786b9}
+.calcpro-sci-btn sup{font-size:10px;line-height:0;vertical-align:super}
+.calcpro-sci-modes{grid-column:span 2;display:flex;align-items:center;justify-content:center;gap:3px;min-width:0;white-space:nowrap;font:12px Arial,Helvetica,sans-serif}
+.calcpro-sci-modes label{display:flex;align-items:center;gap:1px;cursor:pointer;font-size:12px}
+.calcpro-sci-modes input{appearance:auto;margin:0;width:12px;height:12px;accent-color:#0073ff;flex:0 0 auto;padding:0;box-shadow:none}
+.calcpro-sci-btn[data-memory-active="true"]{border-color:#316ba1;background:#d0e5f8}
+.calcpro-sci-history{height:auto;min-height:12px;max-height:56px;overflow:auto;margin-top:3px;color:#718197;text-align:right;font:11px/1.35 Arial,Helvetica,sans-serif;overflow-wrap:anywhere}
+.calcpro-sci-history-line{margin:0 0 2px}
+.calcpro-sci-sr-only{position:absolute;clip:rect(0,0,0,0);width:1px;height:1px;overflow:hidden;white-space:nowrap}
+@media(max-width:340px){.calcpro-sci-shell{padding:6px}.calcpro-sci-btn{font-size:14px}.calcpro-sci-modes{gap:2px}}
+@media print{.calcpro-sci-btn,.calcpro-sci-modes{print-color-adjust:exact;-webkit-print-color-adjust:exact}}
+
+</style>
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="math-calculator.html">Math</a> / Scientific Calculator</nav><h1 class="cp-page-title">Scientific Calculator</h1><p class="cp-intro">Use the scientific calculator for trigonometry, powers, roots, logarithms, factorials and everyday arithmetic. Click the keypad or type an expression and press Enter to calculate.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-sci-root" id="calcpro-sci-root" aria-label="Scientific calculator">
+ <div class="calcpro-sci-shell">
+  <div class="calcpro-sci-display">
+   <label class="calcpro-sci-sr-only" for="calcpro-sci-expression">Mathematical expression. Type and press Enter to calculate.</label>
+   <input type="text" id="calcpro-sci-expression" class="calcpro-sci-expression" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="250" aria-describedby="calcpro-sci-keyboard-tip">
+   <div id="calcpro-sci-output" class="calcpro-sci-output" aria-label="Calculation result" aria-live="polite">0</div>
+  </div>
+  <div class="calcpro-sci-grid" role="group" aria-label="Scientific calculator keys">
+  <button type="button" class="calcpro-sci-btn " data-calcpro-sci-action="sin" aria-label="sin">sin</button><button type="button" class="calcpro-sci-btn " data-calcpro-sci-action="cos" aria-label="cos">cos</button><button type="button" class="calcpro-sci-btn " data-calcpro-sci-action="tan" aria-label="tan">tan</button><div class="calcpro-sci-modes" role="group" aria-label="Angle mode"><label><input type="radio" name="calcpro-sci-angle" value="deg" checked>Deg</label><label><input type="radio" name="calcpro-sci-angle" value="rad">Rad</label></div>
+<button type="button" class="calcpro-sci-btn " data-calcpro-sci-action="asin" aria-label="inverse sine">sin<sup>-1</sup></button><button type="button" class="calcpro-sci-btn " data-calcpro-sci-action="acos" aria-label="inverse cosine">cos<sup>-1</sup></button><button type="button" class="calcpro-sci-btn " data-calcpro-sci-action="atan" aria-label="inverse tangent">tan<sup>-1</sup></button><button type="button" class="calcpro-sci-btn " data-calcpro-sci-action="pi" aria-label="pi">π</button><button type="button" class="calcpro-sci-btn " data-calcpro-sci-action="e" aria-label="Euler number e">e</button>
+<button type="button" class="calcpro-sci-btn " data-calcpro-sci-action="pow" aria-label="x to the power y">x<sup>y</sup></button><button type="button" class="calcpro-sci-btn " data-calcpro-sci-action="cube" aria-label="cube">x<sup>3</sup></button><button type="button" class="calcpro-sci-btn " data-calcpro-sci-action="square" aria-label="square">x<sup>2</sup></button><button type="button" class="calcpro-sci-btn " data-calcpro-sci-action="exp" aria-label="e to the power x">e<sup>x</sup></button><button type="button" class="calcpro-sci-btn " data-calcpro-sci-action="tenpow" aria-label="ten to the power x">10<sup>x</sup></button>
+<button type="button" class="calcpro-sci-btn " data-calcpro-sci-action="root" aria-label="y-th root of x"><sup>y</sup>√x</button><button type="button" class="calcpro-sci-btn " data-calcpro-sci-action="cbrt" aria-label="cube root"><sup>3</sup>√x</button><button type="button" class="calcpro-sci-btn " data-calcpro-sci-action="sqrt" aria-label="square root">√x</button><button type="button" class="calcpro-sci-btn " data-calcpro-sci-action="ln" aria-label="ln">ln</button><button type="button" class="calcpro-sci-btn " data-calcpro-sci-action="log" aria-label="log">log</button>
+<button type="button" class="calcpro-sci-btn " data-calcpro-sci-action="lpar" aria-label="open parenthesis">(</button><button type="button" class="calcpro-sci-btn " data-calcpro-sci-action="rpar" aria-label="close parenthesis">)</button><button type="button" class="calcpro-sci-btn " data-calcpro-sci-action="recip" aria-label="reciprocal 1 over x">1/x</button><button type="button" class="calcpro-sci-btn " data-calcpro-sci-action="percent" aria-label="percent">%</button><button type="button" class="calcpro-sci-btn " data-calcpro-sci-action="fact" aria-label="factorial">n!</button>
+<button type="button" class="calcpro-sci-btn calcpro-sci-number" data-calcpro-sci-action="7" aria-label="7">7</button><button type="button" class="calcpro-sci-btn calcpro-sci-number" data-calcpro-sci-action="8" aria-label="8">8</button><button type="button" class="calcpro-sci-btn calcpro-sci-number" data-calcpro-sci-action="9" aria-label="9">9</button><button type="button" class="calcpro-sci-btn " data-calcpro-sci-action="plus" aria-label="plus">+</button><button type="button" class="calcpro-sci-btn " data-calcpro-sci-action="back" aria-label="backspace">Back</button>
+<button type="button" class="calcpro-sci-btn calcpro-sci-number" data-calcpro-sci-action="4" aria-label="4">4</button><button type="button" class="calcpro-sci-btn calcpro-sci-number" data-calcpro-sci-action="5" aria-label="5">5</button><button type="button" class="calcpro-sci-btn calcpro-sci-number" data-calcpro-sci-action="6" aria-label="6">6</button><button type="button" class="calcpro-sci-btn " data-calcpro-sci-action="minus" aria-label="minus">−</button><button type="button" class="calcpro-sci-btn " data-calcpro-sci-action="ans" aria-label="previous answer">Ans</button>
+<button type="button" class="calcpro-sci-btn calcpro-sci-number" data-calcpro-sci-action="1" aria-label="1">1</button><button type="button" class="calcpro-sci-btn calcpro-sci-number" data-calcpro-sci-action="2" aria-label="2">2</button><button type="button" class="calcpro-sci-btn calcpro-sci-number" data-calcpro-sci-action="3" aria-label="3">3</button><button type="button" class="calcpro-sci-btn " data-calcpro-sci-action="mul" aria-label="multiply">×</button><button type="button" class="calcpro-sci-btn " data-calcpro-sci-action="mplus" aria-label="memory add">M+</button>
+<button type="button" class="calcpro-sci-btn calcpro-sci-number" data-calcpro-sci-action="0" aria-label="0">0</button><button type="button" class="calcpro-sci-btn calcpro-sci-number" data-calcpro-sci-action="dot" aria-label="decimal point">.</button><button type="button" class="calcpro-sci-btn " data-calcpro-sci-action="EXP" aria-label="scientific notation EXP">EXP</button><button type="button" class="calcpro-sci-btn " data-calcpro-sci-action="div" aria-label="divide">÷</button><button type="button" class="calcpro-sci-btn " data-calcpro-sci-action="mminus" aria-label="memory subtract">M-</button>
+<button type="button" class="calcpro-sci-btn " data-calcpro-sci-action="sign" aria-label="change sign">±</button><button type="button" class="calcpro-sci-btn " data-calcpro-sci-action="rnd" aria-label="random number">RND</button><button type="button" class="calcpro-sci-btn calcpro-sci-equals" data-calcpro-sci-action="clear" aria-label="all clear">AC</button><button type="button" class="calcpro-sci-btn calcpro-sci-equals" data-calcpro-sci-action="equal" aria-label="calculate">=</button><button type="button" class="calcpro-sci-btn " data-calcpro-sci-action="mr" aria-label="memory recall">MR</button>
+  </div>
+  <div class="calcpro-sci-history" id="calcpro-sci-history" aria-label="Recent calculations" aria-live="polite"></div>
+ </div>
+ <span class="calcpro-sci-sr-only" id="calcpro-sci-keyboard-tip">You can type numbers and operations with your keyboard. Press Enter for a result, Escape to clear.</span>
+</div></section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><a href="scientific-calculator.html">Scientific</a><a href="basic-calculator.html">Basic</a><a href="fraction-calculator.html">Fraction</a><a href="percent-calculator.html">Percentage</a><a href="exponent-calculator.html">Exponent</a><a href="scientific-notation-calculator.html">Scientific Notation</a><a href="random-number-generator.html">Random Numbers</a><a href="standard-deviation-calculator.html">Standard Deviation</a><a href="average-calculator.html">Average</a><a href="factor-calculator.html">Factor</a><a href="triangle-calculator.html">Triangle</a><a href="volume-calculator.html">Volume</a></div></section></aside><article class="cp-article"><!-- ================ PAGE CONTENT INSERT HERE ================
+      Write unique SEO content for each calculator, with H2/H3 headings,
+      examples, formulas, FAQs and helpful sources. This appears BELOW the tool
+      in the main column. It is NOT inside the tool section.
+      ========================================================== --><h2>How to Use the Scientific Calculator</h2>
+<p>Enter a mathematical expression using the keypad or your keyboard, then select <strong>=</strong> or press <strong>Enter</strong>. Your expression stays in the top input line; the computed answer appears in the blue result display immediately beneath it. Use <strong>Back</strong> to delete a character and <strong>AC</strong> to clear the current calculation. Press <strong>Escape</strong> to clear when typing.</p>
+<p>Select <strong>Deg</strong> to use degrees or <strong>Rad</strong> for radians. Use <strong>Ans</strong> to insert the previous successful result, <strong>RND</strong> to insert a random value from 0 to 1, <strong>M+</strong> or <strong>M-</strong> to adjust memory, and <strong>MR</strong> to recall memory.</p>
+<h2>Functions, Notation, and Formulas</h2>
+<div class="cp-table-scroll"><table class="cp-content-table"><thead><tr><th>Keys</th><th>What they compute</th><th>Example</th></tr></thead><tbody>
+<tr><td>sin, cos, tan</td><td>Trigonometric functions in selected angle mode</td><td>sin(30) = 0.5 in degree mode</td></tr>
+<tr><td>sin<sup>−1</sup>, cos<sup>−1</sup>, tan<sup>−1</sup></td><td>Inverse trig functions; outputs use degrees or radians</td><td>asin(0.5) = 30° in degree mode</td></tr>
+<tr><td>ln, log</td><td>Natural logarithm (base e); common logarithm (base 10)</td><td>ln(e) = 1; log(100) = 2</td></tr>
+<tr><td>x<sup>y</sup>, x², x³</td><td>Exponentiation: x<sup>y</sup></td><td>2^3 = 8</td></tr>
+<tr><td>√x, ³√x, ʸ√x</td><td>Square, cube, and indexed roots</td><td>√(81) = 9; root(3,27) = 3</td></tr>
+<tr><td>n!, 1/x, %</td><td>Factorial; reciprocal; percentage of 100</td><td>5! = 120; 1/4 = 0.25; 25% = 0.25</td></tr>
+<tr><td>EXP</td><td>Scientific exponent notation: aE b = a × 10<sup>b</sup></td><td>2.5E3 = 2500</td></tr>
+</tbody></table></div>
+<h3>Worked Examples</h3>
+<p><strong>Order of operations:</strong> 2 + 3 × 4 = 14, while (2 + 3) × 4 = 20. Exponentiation is right-associative: 2^3^2 = 512. Trigonometry: in degree mode, sin(30) × 10 = 5. Factorials: 6! = 6 × 5 × 4 × 3 × 2 × 1 = 720.</p>
+<p>For the <strong>ʸ√x</strong> key, enter the root index first (for example, 3), press the indexed-root key, enter the radicand (27), and close the parenthesis to obtain <code>root(3,27)</code>. The input also accepts function names such as <code>sqrt(81)</code> and <code>cbrt(-8)</code>, plus implied multiplication such as <code>2π</code>.</p>
+<h2>Frequently Asked Questions</h2>
+<h3>How are degrees and radians different?</h3>
+<p>A complete circle contains 360 degrees or 2π radians. In degree mode, sin(30) is 0.5; in radian mode, sin(π/6) is 0.5.</p>
+<h3>Why does the calculator show Error?</h3>
+<p>The expression may be incomplete or outside a function's real-number domain. For example, division by zero, √(−1), log(0), and negative-integer factorials do not return finite real numbers. Factorial accepts integers from 0 through 170, reflecting JavaScript's finite-number limit.</p>
+<h3>What is the difference between e and EXP?</h3>
+<p>The <strong>e</strong> key inserts Euler's constant, approximately 2.71828. <strong>EXP</strong> is a base-10 exponent marker in a numeric literal: <code>1.2E4</code> means 12,000.</p>
+<h3>How does the percent button work?</h3>
+<p>It divides the preceding value by 100. Thus <code>20%</code> evaluates to 0.2; to calculate 20 percent of 150, enter <code>150 × 20%</code>, which gives 30.</p>
+<h3>Are answers exact?</h3>
+<p>Results use standard JavaScript floating-point arithmetic and are rounded for display to about 13 significant digits. Large values may be shown using scientific notation. The calculator works in the real-number system; it does not handle complex-number outputs.</p>
+<h2>References</h2>
+<p>Function conventions follow standard trigonometry, exponentiation, and logarithm definitions. For JavaScript numeric behavior, see <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math" target="_blank" rel="noopener noreferrer">MDN's JavaScript Math documentation</a>. The reference keypad and result placement are based on <a href="https://www.calculator.net/scientific-calculator.html" target="_blank" rel="noopener noreferrer">Calculator.net's Scientific Calculator</a>.</p>
+<p class="cp-page-footer">CalcPro — calculator estimates are for informational purposes.</p></article></main></div><script>
+(()=>{
+  'use strict';
+  const root=document.getElementById('calcpro-sci-root');
+  if(!root)return;
+  const field=root.querySelector('#calcpro-sci-expression');
+  const output=root.querySelector('#calcpro-sci-output');
+  const history=root.querySelector('#calcpro-sci-history');
+  const recallButton=root.querySelector('[data-calcpro-sci-action="mr"]');
+  let mode='deg',lastAnswer=0,memory=0,resultReady=false;
+  const EPS=1e-12;
+
+  function formatted(value){
+    if(!Number.isFinite(value))throw Error('Result is not finite');
+    if(Object.is(value,-0))value=0;
+    const abs=Math.abs(value);
+    if(abs===0)return '0';
+    if(abs>=1e13 || abs<1e-9){
+      return Number(value.toPrecision(13)).toExponential(12).replace(/(?:\.0+|(?<=\d)0+)e/,'e').replace(/e\+?/,'e');
+    }
+    return Number(value.toPrecision(13)).toString();
+  }
+  function tokenize(raw){
+    const source=raw.replace(/−/g,'-').replace(/[×·]/g,'*').replace(/÷/g,'/').replace(/\u2212/g,'-');
+    const tokens=[];
+    let i=0;
+    while(i<source.length){
+      const c=source[i];
+      if(/\s/.test(c)){i++;continue;}
+      if('()+-*/^!%,'.includes(c)){tokens.push({type:c,value:c});i++;continue;}
+      if(c==='√'||c==='∛'){tokens.push({type:'id',value:c==='√'?'sqrt':'cbrt'});i++;continue;}
+      if(c==='π'){tokens.push({type:'id',value:'pi'});i++;continue;}
+      const n=source.slice(i).match(/^(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+)?/);
+      if(n){const value=Number(n[0]);if(!Number.isFinite(value))throw Error('Invalid numeric literal');tokens.push({type:'num',value});i+=n[0].length;continue;}
+      const name=source.slice(i).match(/^[A-Za-z]+/);
+      if(name){const id=name[0].toLowerCase();if(!['sin','cos','tan','asin','acos','atan','ln','log','sqrt','cbrt','root','exp','pi','e','ans','abs'].includes(id))throw Error('Unknown function: '+name[0]);tokens.push({type:'id',value:id});i+=name[0].length;continue;}
+      throw Error('Unexpected character: '+c);
+    }
+    // Adjacent operands imply multiplication, e.g. 2π, (2)(3), 2sin(30).
+    const out=[];
+    const funcs=new Set(['sin','cos','tan','asin','acos','atan','ln','log','sqrt','cbrt','root','exp','abs']);
+    for(const t of tokens){
+      const p=out[out.length-1];
+      if(p){
+        const ends=(p.type==='num'||p.type===')'||p.type==='!'||p.type==='%'||(p.type==='id'&&!funcs.has(p.value)));
+        const starts=(t.type==='num'||t.type==='('||t.type==='id');
+        if(ends&&starts)out.push({type:'*',value:'*'});
+      }
+      out.push(t);
+    }
+    out.push({type:'EOF',value:''});
+    return out;
+  }
+  function factorial(n){
+    if(!Number.isInteger(n)||n<0||n>170)throw Error('Factorial requires an integer from 0 to 170');
+    let v=1;for(let i=2;i<=n;i++)v*=i;return v;
+  }
+  function nthRoot(n,x){
+    if(n===0)throw Error('Zero root index');
+    if(x<0){
+      if(!Number.isInteger(n)||Math.abs(n%2)!==1)throw Error('Even or fractional root of a negative number');
+      return -Math.pow(-x,1/n);
+    }
+    if(x===0&&n<0)throw Error('Division by zero');
+    return Math.pow(x,1/n);
+  }
+  function applyFunction(fn,args){
+    const two=fn==='root';
+    if(args.length!==(two?2:1))throw Error('Invalid argument count');
+    const x=args[0],radians=mode==='deg'?x*Math.PI/180:x;
+    let y;
+    switch(fn){
+      case 'sin':y=Math.sin(radians);break;
+      case 'cos':y=Math.cos(radians);break;
+      case 'tan':if(Math.abs(Math.cos(radians))<EPS)throw Error('Tangent is undefined');y=Math.tan(radians);break;
+      case 'asin':if(x < -1||x > 1)throw Error('asin outside domain');y=Math.asin(x)*(mode==='deg'?180/Math.PI:1);break;
+      case 'acos':if(x < -1||x > 1)throw Error('acos outside domain');y=Math.acos(x)*(mode==='deg'?180/Math.PI:1);break;
+      case 'atan':y=Math.atan(x)*(mode==='deg'?180/Math.PI:1);break;
+      case 'ln':if(x<=0)throw Error('Natural logarithm domain');y=Math.log(x);break;
+      case 'log':if(x<=0)throw Error('Common logarithm domain');y=Math.log10(x);break;
+      case 'sqrt':if(x<0)throw Error('Negative square root');y=Math.sqrt(x);break;
+      case 'cbrt':y=Math.cbrt(x);break;
+      case 'root':y=nthRoot(args[0],args[1]);break;
+      case 'exp':y=Math.exp(x);break;
+      case 'abs':y=Math.abs(x);break;
+      default:throw Error('Unknown function');
+    }
+    if(['sin','cos','tan'].includes(fn) && Math.abs(x)>1e-8 && Math.abs(y)<1e-14)y=0;
+    return y;
+  }
+  function calculate(raw){
+    if(!raw.trim())return 0;
+    const ts=tokenize(raw);let pos=0;
+    const peek=()=>ts[pos];
+    const eat=(type)=>{if(peek().type!==type)throw Error('Expected '+type);return ts[pos++];};
+    function expr(minBP){
+      let t=ts[pos++],left;
+      if(t.type==='num')left=t.value;
+      else if(t.type==='('){left=expr(0);eat(')');}
+      else if(t.type==='+'||t.type==='-'){
+        const v=expr(45);left=t.type==='-'?-v:v;
+      }
+      else if(t.type==='id'){
+        if(t.value==='pi')left=Math.PI;
+        else if(t.value==='e')left=Math.E;
+        else if(t.value==='ans')left=lastAnswer;
+        else{
+          eat('(');
+          const args=[];
+          if(peek().type!==')'){
+            args.push(expr(0));
+            while(peek().type===','){pos++;args.push(expr(0));}
+          }
+          eat(')');left=applyFunction(t.value,args);
+        }
+      }
+      else throw Error('Expected a number, constant, or function');
+      while(true){
+        const op=peek().type;
+        if(op==='!'||op==='%'){
+          if(60<minBP)break;
+          pos++;left=op==='!'?factorial(left):left/100;continue;
+        }
+        const bp=op==='^'?50:(op==='*'||op==='/')?40:(op==='+'||op==='-')?30:-1;
+        if(bp<minBP)break;
+        pos++;const right=expr(op==='^'?bp:bp+1);
+        if(op==='+')left+=right;
+        else if(op==='-')left-=right;
+        else if(op==='*')left*=right;
+        else if(op==='/'){if(right===0)throw Error('Division by zero');left/=right;}
+        else if(op==='^')left=Math.pow(left,right);
+        if(!Number.isFinite(left))throw Error('Result is not finite');
+      }
+      return left;
+    }
+    const value=expr(0);
+    if(peek().type!=='EOF')throw Error('Unexpected trailing input');
+    if(!Number.isFinite(value))throw Error('Result is not finite');
+    return value;
+  }
+  function setOutput(text){
+    output.textContent=text;
+    output.dataset.small=String(text.length>16);
+  }
+  function setEditing(){resultReady=false;setOutput('');}
+  function addHistory(expression,result){
+    const line=document.createElement('div');line.className='calcpro-sci-history-line';
+    line.textContent=expression+' = '+result;
+    history.prepend(line);
+    while(history.children.length>3)history.lastElementChild.remove();
+  }
+  function doEquals(){
+    const expression=field.value.trim();
+    try{
+      const value=calculate(expression);
+      setOutput(formatted(value));
+      lastAnswer=value;resultReady=true;
+      if(expression)addHistory(expression,formatted(value));
+    }catch(err){setOutput('Error');resultReady=false;addHistory(expression,'Error');}
+  }
+  function selectionInsert(text,caretOffset){
+    const start=field.selectionStart??field.value.length,end=field.selectionEnd??start;
+    field.value=field.value.slice(0,start)+text+field.value.slice(end);
+    const dest=start+(caretOffset===undefined?text.length:caretOffset);
+    field.focus({preventScroll:true});field.setSelectionRange(dest,dest);setEditing();
+  }
+  function insertWrapped(fn){selectionInsert(fn+'()',fn.length+1);}
+  function getLastOperand(text){
+    // Prefix/suffix surrounding the last editable value for unary actions.
+    const match=text.match(/(\(-?(?:\d+(?:\.\d*)?|\.\d+)\)|(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+)?|Ans|π|e|\))$/);
+    if(!match)return null;
+    let idx=text.length-match[0].length;
+    if(match[0]===')'){
+      let depth=0,from=-1;
+      for(let k=text.length-1;k>=0;k--){if(text[k]===')')depth++;else if(text[k]==='('){depth--;if(depth===0){from=k;break;}}}
+      if(from>=0){idx=from;while(idx>0&&/[a-zA-Z√∛]/.test(text[idx-1]))idx--;}
+    }
+    return {start:idx,value:text.slice(idx)};
+  }
+  function wrapLast(make,empty){
+    const before=field.value.slice(0,field.selectionStart??field.value.length);
+    const after=field.value.slice(field.selectionEnd??field.value.length);
+    const last=getLastOperand(before);
+    if(!last){insertWrapped(empty);return;}
+    const replacement=make(last.value);
+    field.value=before.slice(0,last.start)+replacement+after;
+    const cursor=before.slice(0,last.start).length+replacement.length;
+    field.focus({preventScroll:true});field.setSelectionRange(cursor,cursor);setEditing();
+  }
+  function back(){
+    let a=field.selectionStart??field.value.length,b=field.selectionEnd??a;
+    if(a===b&&a>0)a--;
+    field.value=field.value.slice(0,a)+field.value.slice(b);
+    field.focus({preventScroll:true});field.setSelectionRange(a,a);setEditing();
+    if(!field.value)setOutput('0');
+  }
+  function allClear(){
+    field.value='';setOutput('0');resultReady=false;
+    history.replaceChildren();
+    field.focus({preventScroll:true});field.setSelectionRange(0,0);
+  }
+  function toggleSign(){
+    const a=field.selectionStart??field.value.length;
+    let before=field.value.slice(0,a),after=field.value.slice(field.selectionEnd??a);
+    if(!before&&resultReady&&output.textContent!=='Error')before=output.textContent;
+    const wrapped=before.match(/\(-((?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+)?)\)$/);
+    if(wrapped)before=before.slice(0,-wrapped[0].length)+wrapped[1];
+    else{
+      const n=before.match(/(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+)?$/);
+      if(n)before=before.slice(0,-n[0].length)+'(-'+n[0]+')';
+      else if(before)before='-('+before+')';
+      else before='-';
+    }
+    field.value=before+after;field.focus({preventScroll:true});field.setSelectionRange(before.length,before.length);setEditing();
+  }
+  function getValueForMemory(){
+    if(resultReady&&output.textContent!=='Error')return Number(output.textContent);
+    if(field.value.trim())return calculate(field.value);
+    return lastAnswer;
+  }
+  function updateMemoryUI(){recallButton.dataset.memoryActive=String(memory!==0);recallButton.title='Stored memory: '+formatted(memory);}
+  function processAction(action){
+    if(action==='equal'){doEquals();return;}
+    if(action==='clear'){allClear();return;}
+    if(action==='back'){back();return;}
+    if(action==='sign'){toggleSign();return;}
+    if(action==='mplus'||action==='mminus'){
+      try{const next=memory+(action==='mplus'?1:-1)*getValueForMemory();if(!Number.isFinite(next))throw Error('Memory overflow');memory=next;updateMemoryUI();}
+      catch(e){setOutput('Error');}return;
+    }
+    if(action==='mr'){selectionInsert('('+formatted(memory)+')');return;}
+    if(action==='rnd'){selectionInsert(formatted(Math.random()));return;}
+    if(action==='ans'){selectionInsert('Ans');return;}
+    const basic={plus:'+',minus:'−',mul:'×',div:'÷',pow:'^',cube:'^3',square:'^2',percent:'%',fact:'!',lpar:'(',rpar:')',dot:'.',EXP:'E',pi:'π',e:'e'};
+    if(action==='rpar'&&field.value.charAt(field.selectionStart??field.value.length)===')'){
+      const point=(field.selectionStart??field.value.length)+1;
+      field.focus({preventScroll:true});field.setSelectionRange(point,point);return;
+    }
+    if(action in basic){selectionInsert(basic[action]);return;}
+    if(/^\d$/.test(action)){selectionInsert(action);return;}
+    if(['sin','cos','tan','asin','acos','atan','ln','log','exp'].includes(action)){insertWrapped(action);return;}
+    if(action==='sqrt'){insertWrapped('√');return;}
+    if(action==='cbrt'){insertWrapped('∛');return;}
+    if(action==='tenpow'){
+      const before=field.value.slice(0,field.selectionStart??field.value.length);
+      const implicit=/(?:[\dπe!)%]|Ans)$/.test(before);
+      selectionInsert(implicit?'×10^()':'10^()',implicit?5:4);return;
+    }
+    if(action==='root'){
+      // Press 3, y√x, 27, ) to enter root(3,27).
+      const caret=field.selectionStart??field.value.length;
+      const before=field.value.slice(0,caret),last=getLastOperand(before);
+      if(last){
+        const after=field.value.slice(field.selectionEnd??caret);
+        const head=before.slice(0,last.start)+'root('+last.value+',';
+        field.value=head+')'+after;
+        field.focus({preventScroll:true});field.setSelectionRange(head.length,head.length);setEditing();
+      }else selectionInsert('root(,)',5);
+      return;
+    }
+    if(action==='recip'){wrapLast(v=>'1/('+v+')','1/');return;}
+  }
+  root.querySelectorAll('[data-calcpro-sci-action]').forEach(btn=>{
+    btn.addEventListener('click',()=>processAction(btn.dataset.calcproSciAction));
+  });
+  root.querySelectorAll('input[name="calcpro-sci-angle"]').forEach(radio=>{
+    radio.addEventListener('change',()=>{
+      if(!radio.checked)return;
+      mode=radio.value;
+      if(resultReady&&field.value.trim())doEquals();
+    });
+  });
+  field.addEventListener('input',()=>{setEditing();if(field.value==='')setOutput('0');});
+  field.addEventListener('keydown',e=>{
+    if(e.key==='Enter'||e.key==='='){e.preventDefault();doEquals();}
+    else if(e.key==='Escape'){e.preventDefault();allClear();}
+  });
+  // Calculator-like typing also works when focus is on the page itself.
+  document.addEventListener('keydown',e=>{
+    if(e.defaultPrevented||e.ctrlKey||e.metaKey||e.altKey||e.target===field)return;
+    if(e.target instanceof HTMLElement && (e.target.isContentEditable||['INPUT','TEXTAREA','SELECT','BUTTON','A'].includes(e.target.tagName)))return;
+    const key=e.key;
+    if(/^[0-9.()+\-*/^%!π]$/.test(key)){
+      e.preventDefault();field.focus({preventScroll:true});field.setSelectionRange(field.value.length,field.value.length);selectionInsert(key);
+    }else if(key==='Enter'&&root.contains(e.target)){e.preventDefault();doEquals();}
+  });
+  updateMemoryUI();
+})();
+</script><script defer src="/assets/js/data.js"></script>
+<script defer src="/assets/js/style.js?v=20261111-5"></script>
+</body></html>

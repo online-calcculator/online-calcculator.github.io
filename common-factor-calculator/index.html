@@ -1,7 +1,6 @@
 <!DOCTYPE html>
-<html lang="en-US">
-<head>
-<meta charset="utf-8">
+
+<html lang="en"><head><meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="content-language" content="en">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,17 +12,300 @@
   <meta name="author" content="Commingsoon">
   <meta name="publisher" content="Commingsoon">
   <meta name="robots" content="noindex, nofollow, max-image-preview:large">
-  <link rel="stylesheet" href="/assets/css/style.css?v=20261111-1" crossorigin="anonymous" data-n-g="">
+  <link rel="stylesheet" href="/assets/css/style.css?v=20261111-4" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/doc_style.css" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/side_style.css" crossorigin="anonymous" data-n-g=""> 
   <!--ogtags-->
-  <!--schema-->
-  <!--style-->
-</head>
+  <!--schema--><!--TOOL CSS INSERT HERE: Paste only calculator-specific CSS here. Use unique class/id prefixes per tool, e.g. bmi-, loan-, age-. Keep header, sidebar and article CSS in style.css.--><style>
 
-<body>
-<!-- Main-header-page -->
-<script defer src="/assets/js/data.js"></script>
-<script defer src="/assets/js/style.js?v=20261111-1"></script>
-</body>
-</html>
+/* Common Factor Calculator: all selectors isolated to calcpro-cf- */
+.calcpro-cf { width:100%; color:#111; font-family:Arial,Helvetica,sans-serif; font-size:16px; line-height:1.45; }
+.calcpro-cf *, .calcpro-cf *::before, .calcpro-cf *::after { box-sizing:border-box; }
+.calcpro-cf [hidden] { display:none !important; }
+.calcpro-cf .calcpro-cf-visually-hidden { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+.calcpro-cf .calcpro-cf-results { margin:0 0 28px; }
+.calcpro-cf .calcpro-cf-result-bar { display:flex; align-items:center; justify-content:space-between; gap:12px; min-height:40px; padding:4px 8px; color:#fff; background:#4d8327; }
+.calcpro-cf .calcpro-cf-result-title { margin:0; color:#fff; font-size:23px; font-weight:400; line-height:1.3; }
+.calcpro-cf .calcpro-cf-save { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0; width:29px; min-height:31px; padding:0; border:0; color:#fff; background:transparent; cursor:pointer; line-height:1; font-family:inherit; }
+.calcpro-cf .calcpro-cf-save svg { width:17px; height:17px; fill:currentColor; }
+.calcpro-cf .calcpro-cf-save span { font-size:9px; line-height:1; font-weight:700; }
+.calcpro-cf .calcpro-cf-save:hover { background:rgba(255,255,255,.12); }
+.calcpro-cf .calcpro-cf-summary { margin:13px 0 13px; font-size:22px; line-height:1.4; }
+.calcpro-cf .calcpro-cf-common-values { color:#078309; font-weight:700; overflow-wrap:anywhere; }
+.calcpro-cf .calcpro-cf-gcf { margin:13px 0 29px; font-size:16px; overflow-wrap:anywhere; }
+.calcpro-cf .calcpro-cf-steps-title { margin:0 0 5px; font-size:16px; font-weight:700; }
+.calcpro-cf .calcpro-cf-step-label { margin:0 0 7px; }
+.calcpro-cf .calcpro-cf-factor-list { margin:0 0 21px; }
+.calcpro-cf .calcpro-cf-factor-row { margin:0 0 2px; line-height:1.45; overflow-wrap:anywhere; }
+.calcpro-cf .calcpro-cf-final-step { margin:21px 0 0; overflow-wrap:anywhere; }
+.calcpro-cf .calcpro-cf-error { width:min(100%,674px); margin:0 auto 14px; padding:10px 12px; border:1px solid #d39a9a; background:#fff3f3; color:#812020; font-size:14px; }
+.calcpro-cf .calcpro-cf-panel { width:min(100%,674px); margin:0 auto; padding:9px; border:1px solid #c0c0c0; background:#eee; }
+.calcpro-cf .calcpro-cf-form { margin:0; }
+.calcpro-cf .calcpro-cf-input { display:block; width:100%; min-height:118px; padding:8px 9px; border:1px solid #888; border-radius:0; background:#fff; color:#111; font:16px/1.4 Arial,Helvetica,sans-serif; resize:vertical; }
+.calcpro-cf .calcpro-cf-input:focus-visible { outline:2px solid #276d94; outline-offset:2px; }
+.calcpro-cf .calcpro-cf-actions { display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:4px; margin-top:24px; }
+.calcpro-cf .calcpro-cf-calculate { display:inline-flex; align-items:center; justify-content:center; gap:14px; min-height:43px; padding:8px 14px 8px 18px; border:0; border-radius:0; color:#fff; background:#4b8026; font:700 16px Arial,Helvetica,sans-serif; cursor:pointer; }
+.calcpro-cf .calcpro-cf-calculate:hover { background:#376a18; }
+.calcpro-cf .calcpro-cf-calculate:disabled { opacity:.7; cursor:progress; }
+.calcpro-cf .calcpro-cf-play { display:inline-flex; align-items:center; justify-content:center; width:23px; height:23px; border-radius:50%; background:#90b98f; }
+.calcpro-cf .calcpro-cf-play::after { display:block; content:''; margin-left:2px; border-top:8px solid transparent; border-bottom:8px solid transparent; border-left:9px solid #fff; }
+.calcpro-cf .calcpro-cf-clear { min-height:43px; padding:8px 10px; border:0; border-radius:0; background:#a7a7a7; color:#fff; font:16px Arial,Helvetica,sans-serif; cursor:pointer; }
+.calcpro-cf .calcpro-cf-clear:hover { background:#858585; }
+.calcpro-cf .calcpro-cf-save:focus-visible, .calcpro-cf .calcpro-cf-calculate:focus-visible, .calcpro-cf .calcpro-cf-clear:focus-visible { outline:2px solid #275f98; outline-offset:3px; }
+@media(max-width:580px) {
+  .calcpro-cf .calcpro-cf-summary { font-size:19px; }
+  .calcpro-cf .calcpro-cf-result-title { font-size:21px; }
+  .calcpro-cf .calcpro-cf-panel { padding:8px; }
+  .calcpro-cf .calcpro-cf-factor-row { font-size:14px; }
+  .calcpro-cf .calcpro-cf-actions { margin-top:18px; }
+}
+@media print {
+  .calcpro-cf .calcpro-cf-save, .calcpro-cf .calcpro-cf-actions, .calcpro-cf .calcpro-cf-error { display:none!important; }
+  .calcpro-cf .calcpro-cf-panel { background:#fff; border:0; }
+  .calcpro-cf .calcpro-cf-result-bar { print-color-adjust:exact; -webkit-print-color-adjust:exact; }
+}
+
+</style>
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="math-calculator.html">Math</a> / Common Factor Calculator</nav><h1 class="cp-page-title">Common Factor Calculator</h1><p class="cp-intro">Enter positive integers separated by commas to find their common factors, greatest common factor (GCF), and each number's complete list of factors.</p><section aria-label="Calculator" class="cp-tool-area">
+<div class="calcpro-cf" id="calcpro-cf-root">
+<section aria-labelledby="calcpro-cf-result-title" class="calcpro-cf-results" hidden="" id="calcpro-cf-results">
+<div class="calcpro-cf-result-bar">
+<h2 class="calcpro-cf-result-title" id="calcpro-cf-result-title">Result</h2>
+<button aria-label="Save results as a text file" class="calcpro-cf-save" id="calcpro-cf-save" title="Save results as a text file" type="button">
+<svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M17 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V7l-4-4zM7 4.5h9V10H7V4.5zm5 14a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7zM9.5 5.5h4V9h-4V5.5z"></path></svg>
+<span>save</span>
+</button>
+</div>
+<p aria-live="polite" class="calcpro-cf-summary">The common factors are <strong class="calcpro-cf-common-values" id="calcpro-cf-common-values"></strong></p>
+<p class="calcpro-cf-gcf" id="calcpro-cf-gcf"></p>
+<div class="calcpro-cf-steps">
+<h3 class="calcpro-cf-steps-title">Steps:</h3>
+<p class="calcpro-cf-step-label">Find the factors of the numbers:</p>
+<div class="calcpro-cf-factor-list" id="calcpro-cf-factor-list"></div>
+<p class="calcpro-cf-final-step" id="calcpro-cf-final-step"></p>
+</div>
+</section>
+<p class="calcpro-cf-error" hidden="" id="calcpro-cf-error" role="alert"></p>
+<div class="calcpro-cf-panel">
+<form class="calcpro-cf-form" id="calcpro-cf-form" novalidate="">
+<label class="calcpro-cf-visually-hidden" for="calcpro-cf-input">Positive integers, separated by commas</label>
+<textarea class="calcpro-cf-input" id="calcpro-cf-input" name="numbers" placeholder="Example: 330, 75, 450, 225" rows="5" spellcheck="false">330, 75, 450, 225</textarea>
+<div class="calcpro-cf-actions">
+<button class="calcpro-cf-calculate" id="calcpro-cf-calculate" type="submit">Calculate <span aria-hidden="true" class="calcpro-cf-play"></span></button>
+<button class="calcpro-cf-clear" id="calcpro-cf-clear" type="button">Clear</button>
+</div>
+</form>
+</div>
+</div>
+</section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><a href="gcf-calculator.html">GCF</a><a href="factor-calculator.html">Factor</a><a href="lcm-calculator.html">LCM</a><a href="prime-factorization-calculator.html">Prime Factorization</a><a href="fraction-calculator.html">Fraction</a><a href="percentage-calculator.html">Percentage</a><a href="scientific-calculator.html">Scientific</a><a href="average-calculator.html">Average</a><a href="long-division-calculator.html">Long Division</a><a href="ratio-calculator.html">Ratio</a><a href="exponent-calculator.html">Exponent</a><a href="number-sequence-calculator.html">Number Sequence</a></div></section></aside><article class="cp-article">
+<h2>How to Use the Common Factor Calculator</h2>
+<ol>
+<li>Enter one or more positive whole numbers separated by commas, such as <strong>330, 75, 450, 225</strong>.</li>
+<li>Click <strong>Calculate</strong> to see the factors shared by every number and the greatest common factor.</li>
+<li>Read the <strong>Steps</strong> section to review all positive divisors of each number. Use <strong>save</strong> to download a text copy of the result, or <strong>Clear</strong> to start over.</li>
+</ol>
+<h2>What Are Common Factors?</h2>
+<p>A factor of a positive integer is a positive whole number that divides it with no remainder. A <strong>common factor</strong> divides every number in a group. For example, 1, 2, and 4 are common factors of 12 and 16.</p>
+<p>The <strong>greatest common factor (GCF)</strong>, also called the greatest common divisor (GCD), is the largest positive integer that divides all the inputs. Every positive divisor of the GCF is also a common factor of the original numbers.</p>
+<h2>Formula and Calculation Method</h2>
+<p>First, find the greatest common divisor using the Euclidean algorithm: <strong>GCD(a, b) = GCD(b, a mod b)</strong>. Repeat until the remainder is zero. For more than two numbers, apply the same process successively: <strong>GCD(a, b, c) = GCD(GCD(a, b), c)</strong>.</p>
+<p>To find all common factors, list the positive divisors of the resulting GCF. The calculator also factors each individual input to show why the answer is correct.</p>
+<h3>Worked Example: 330, 75, 450, and 225</h3>
+<p>The GCF of 330 and 75 is 15. Both 450 and 225 are divisible by 15, so <strong>GCF(330, 75, 450, 225) = 15</strong>. The positive divisors of 15 are <strong>1, 3, 5, and 15</strong>; these are the common factors of all four numbers.</p>
+<div class="cp-tip">A GCF of 1 means the numbers have no common factor larger than 1. Such numbers are called relatively prime as a group.</div>
+<h2>Frequently Asked Questions</h2>
+<h3>Can I find common factors of more than two numbers?</h3>
+<p>Yes. Enter several positive integers separated by commas. The calculator finds the factors shared by every input, not just a pair.</p>
+<h3>What if one of the numbers is 1?</h3>
+<p>The only positive factor of 1 is 1. Therefore, if any input is 1, the only common factor is 1 and the GCF is 1.</p>
+<h3>What is the difference between a factor and a multiple?</h3>
+<p>A factor divides a number evenly. A multiple is the result of multiplying a number by an integer. For example, 5 is a factor of 15, while 15 is a multiple of 5.</p>
+<h3>Can I enter zero, negative numbers, or decimals?</h3>
+<p>No. Like the reference calculator, this tool accepts <strong>positive integers only</strong>. Decimals, zero, and negative values produce a validation message. To ensure exact JavaScript integer arithmetic, each number must be at most 9,007,199,254,740,991; up to 50 numbers can be entered at once.</p>
+<h2>Related Math Resources</h2>
+<p>For a comparison of the reference calculator's terminology and input method, see the <a href="https://www.calculator.net/common-factor-calculator.html" rel="noopener noreferrer">Common Factor Calculator at Calculator.net</a>.</p>
+<p class="cp-page-footer">CalcPro — calculations use exact positive integers within the supported safe-integer range.</p>
+</article></main></div><script>
+
+(() => {
+  'use strict';
+  const root = document.getElementById('calcpro-cf-root');
+  if (!root) return;
+
+  const form = root.querySelector('#calcpro-cf-form');
+  const input = root.querySelector('#calcpro-cf-input');
+  const result = root.querySelector('#calcpro-cf-results');
+  const error = root.querySelector('#calcpro-cf-error');
+  const commonOutput = root.querySelector('#calcpro-cf-common-values');
+  const gcdOutput = root.querySelector('#calcpro-cf-gcf');
+  const factorList = root.querySelector('#calcpro-cf-factor-list');
+  const finalStep = root.querySelector('#calcpro-cf-final-step');
+  const save = root.querySelector('#calcpro-cf-save');
+  const clear = root.querySelector('#calcpro-cf-clear');
+  const calculate = root.querySelector('#calcpro-cf-calculate');
+  const MAX_NUMBERS = 50;
+  let savedText = '';
+  let operationId = 0;
+
+  function parseNumbers(raw) {
+    if (!raw.trim()) throw new Error('Enter at least one positive integer separated by commas.');
+    const items = raw.split(',');
+    if (items.length > MAX_NUMBERS) throw new Error(`Enter no more than ${MAX_NUMBERS} integers at a time.`);
+    return items.map((item, index) => {
+      const token = item.trim();
+      if (!/^\d+$/.test(token) || !/[1-9]/.test(token)) {
+        throw new Error(`Entry ${index + 1} must be a positive whole number (greater than zero). Use commas to separate numbers.`);
+      }
+      const n = Number(token);
+      if (!Number.isSafeInteger(n)) {
+        throw new Error(`Entry ${index + 1} is too large. Enter integers no greater than 9,007,199,254,740,991.`);
+      }
+      return n;
+    });
+  }
+
+  function gcd(a, b) {
+    while (b !== 0) {
+      const remainder = a % b;
+      a = b;
+      b = remainder;
+    }
+    return a;
+  }
+
+  // Prime factorization reduces work compared with testing every possible divisor.
+  // Yield periodically to keep the browser responsive for large safe integers.
+  async function getDivisors(n, thisOperation) {
+    if (n === 1) return [1];
+    const primes = [];
+    let remaining = n;
+    for (const small of [2, 3]) {
+      if (remaining % small === 0) {
+        let exponent = 0;
+        do { remaining /= small; exponent++; } while (remaining % small === 0);
+        primes.push([small, exponent]);
+      }
+    }
+    let iterations = 0;
+    for (let k = 5; k <= remaining / k; k += 6) {
+      for (const p of [k, k + 2]) {
+        if (p > remaining / p) break;
+        if (remaining % p === 0) {
+          let exponent = 0;
+          do { remaining /= p; exponent++; } while (remaining % p === 0);
+          primes.push([p, exponent]);
+        }
+      }
+      if (++iterations % 25000 === 0) {
+        await new Promise(resolve => setTimeout(resolve, 0));
+        if (thisOperation !== operationId) return null;
+      }
+    }
+    if (remaining > 1) primes.push([remaining, 1]);
+    const divisors = [1];
+    for (const [prime, exponent] of primes) {
+      const previous = divisors.slice();
+      let power = 1;
+      for (let e = 1; e <= exponent; e++) {
+        power *= prime;
+        for (const d of previous) divisors.push(d * power);
+      }
+    }
+    divisors.sort((a, b) => a - b);
+    return divisors;
+  }
+
+  function showError(message) {
+    result.hidden = true;
+    savedText = '';
+    error.textContent = message;
+    error.hidden = false;
+  }
+
+  function render(numbers, divisorArrays, commonFactors, greatest) {
+    commonOutput.textContent = commonFactors.join(', ');
+    gcdOutput.textContent = `GCF(${numbers.join(', ')}) = ${greatest}`;
+    factorList.replaceChildren();
+    divisorArrays.forEach((divisors, index) => {
+      const row = document.createElement('div');
+      row.className = 'calcpro-cf-factor-row';
+      row.textContent = `${numbers[index]}: ${divisors.join(', ')}`;
+      factorList.appendChild(row);
+    });
+    finalStep.textContent = `Find the common factors: ${commonFactors.join(', ')}`;
+    savedText = [
+      'Common Factor Calculator — CalcPro',
+      `Numbers: ${numbers.join(', ')}`,
+      `Common factors: ${commonFactors.join(', ')}`,
+      `GCF(${numbers.join(', ')}) = ${greatest}`,
+      '',
+      'Steps:',
+      'Find the factors of the numbers:',
+      ...divisorArrays.map((divisors, index) => `${numbers[index]}: ${divisors.join(', ')}`),
+      '',
+      `Find the common factors: ${commonFactors.join(', ')}`,
+    ].join('\n');
+    error.hidden = true;
+    result.hidden = false;
+  }
+
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const thisOperation = ++operationId;
+    let numbers;
+    try { numbers = parseNumbers(input.value); }
+    catch (err) { showError(err.message); return; }
+    result.hidden = true;
+    error.hidden = true;
+    calculate.disabled = true;
+    calculate.firstChild.textContent = 'Calculating ';
+    try {
+      const greatest = numbers.reduce((acc, n) => gcd(acc, n));
+      const divisorArrays = [];
+      for (const n of numbers) {
+        const divisors = await getDivisors(n, thisOperation);
+        if (divisors === null || thisOperation !== operationId) return;
+        divisorArrays.push(divisors);
+      }
+      const commonFactors = await getDivisors(greatest, thisOperation);
+      if (commonFactors === null || thisOperation !== operationId) return;
+      render(numbers, divisorArrays, commonFactors, greatest);
+    } catch (err) {
+      if (thisOperation === operationId) showError('Unable to calculate these values. Please check your input.');
+      console.error('Common Factor Calculator:', err);
+    } finally {
+      if (thisOperation === operationId) {
+        calculate.disabled = false;
+        calculate.firstChild.textContent = 'Calculate ';
+      }
+    }
+  });
+
+  clear.addEventListener('click', () => {
+    ++operationId;
+    input.value = '';
+    savedText = '';
+    result.hidden = true;
+    error.hidden = true;
+    error.textContent = '';
+    calculate.disabled = false;
+    calculate.firstChild.textContent = 'Calculate ';
+    input.focus();
+  });
+
+  save.addEventListener('click', () => {
+    if (!savedText || result.hidden) return;
+    const url = URL.createObjectURL(new Blob([savedText], { type: 'text/plain;charset=utf-8' }));
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'common-factor-results.txt';
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  });
+})();
+
+</script><script defer src="/assets/js/data.js"></script>
+<script defer src="/assets/js/style.js?v=20261111-5"></script>
+</body></html>

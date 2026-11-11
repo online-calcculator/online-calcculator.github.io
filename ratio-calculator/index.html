@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US">
-<head>
-<meta charset="utf-8">
+<html lang="en"><head><meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="content-language" content="en">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,17 +11,441 @@
   <meta name="author" content="Commingsoon">
   <meta name="publisher" content="Commingsoon">
   <meta name="robots" content="noindex, nofollow, max-image-preview:large">
-  <link rel="stylesheet" href="/assets/css/style.css?v=20261111-1" crossorigin="anonymous" data-n-g="">
+  <link rel="stylesheet" href="/assets/css/style.css?v=20261111-4" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/doc_style.css" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/side_style.css" crossorigin="anonymous" data-n-g=""> 
   <!--ogtags-->
-  <!--schema-->
-  <!--style-->
-</head>
+  <!--schema--><style>
+/* All styles for this calculator are scoped to its dedicated root. */
+.calcpro-ratio{--calcpro-ratio-navy:#0f2b45;--calcpro-ratio-blue:#317dd4;--calcpro-ratio-green:#4e8428;--calcpro-ratio-border:#cbd4da;color:#162534;font:15px/1.5 Arial,Helvetica,sans-serif;max-width:100%;}
+.calcpro-ratio *, .calcpro-ratio *::before,.calcpro-ratio *::after{box-sizing:border-box}
+.calcpro-ratio [hidden]{display:none!important}
+.calcpro-ratio h2{font-size:21px;color:#125217;margin:26px 0 10px;line-height:1.25}
+.calcpro-ratio h3{font-size:16px;margin:19px 0 8px;color:#172638}
+.calcpro-ratio p{margin:6px 0 12px}
+.calcpro-ratio .calcpro-ratio-subtitle{font-size:14px;color:#47586a;margin-top:-5px}
+.calcpro-ratio .calcpro-ratio-form-panel{background:#f0f0f0;border:1px solid #d1d1d1;padding:14px 14px 12px;margin:6px 0 23px;width:min(100%,520px);border-radius:2px}
+.calcpro-ratio .calcpro-ratio-equation{display:flex;justify-content:center;align-items:flex-end;gap:8px;flex-wrap:wrap}
+.calcpro-ratio .calcpro-ratio-pair{display:flex;justify-content:center;align-items:flex-end;gap:8px;min-width:0}
+.calcpro-ratio .calcpro-ratio-field{display:flex;flex-direction:column;align-items:center;gap:4px;font-size:13px;font-weight:600;color:#283d50;min-width:0}
+.calcpro-ratio .calcpro-ratio-input{height:34px;width:95px;max-width:100%;border:1px solid #7f9ebc;border-radius:2px;background:#fff;padding:4px 7px;color:#1a2e42;font:15px Arial,Helvetica,sans-serif;min-width:0}
+.calcpro-ratio .calcpro-ratio-input:focus,.calcpro-ratio select:focus{border-color:#2c74b4;outline:2px solid #b8d8f4;outline-offset:1px}
+.calcpro-ratio .calcpro-ratio-operator{font-size:23px;font-weight:700;line-height:34px;color:#24384b;white-space:nowrap}
+.calcpro-ratio .calcpro-ratio-pair-operator{margin:0 1px}
+.calcpro-ratio .calcpro-ratio-actions{display:flex;justify-content:center;align-items:center;gap:8px;margin-top:12px}
+.calcpro-ratio button{font:inherit;cursor:pointer}
+.calcpro-ratio .calcpro-ratio-calculate{background:var(--calcpro-ratio-green);color:#fff;border:1px solid #467a23;font-size:14px;font-weight:700;padding:8px 14px;min-height:36px;border-radius:2px}
+.calcpro-ratio .calcpro-ratio-calculate:hover{background:#3e6f1b}
+.calcpro-ratio .calcpro-ratio-clear{background:#a9a9a9;color:white;border:1px solid #a2a2a2;font-size:14px;min-height:36px;padding:8px 12px;border-radius:2px}
+.calcpro-ratio .calcpro-ratio-clear:hover{background:#858585}
+.calcpro-ratio button:focus-visible{outline:3px solid #68a5de;outline-offset:2px}
+.calcpro-ratio .calcpro-ratio-error{color:#9c2626;background:#fff0f0;border-left:3px solid #b53333;padding:8px 10px;margin:10px 0 0;font-size:14px}
+.calcpro-ratio .calcpro-ratio-result{margin:7px 0 17px;width:min(100%,520px);animation:calcpro-ratio-reveal .16s ease-out}
+@keyframes calcpro-ratio-reveal{from{opacity:.45}to{opacity:1}}
+.calcpro-ratio .calcpro-ratio-result-heading{background:#4d842c;color:#fff;font-size:18px;line-height:1.3;padding:5px 8px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.calcpro-ratio .calcpro-ratio-save{border:1px solid rgba(255,255,255,.5);border-radius:2px;padding:3px 8px;background:#4d842c;color:#fff;font-size:12px;white-space:nowrap}
+.calcpro-ratio .calcpro-ratio-save:hover{background:#37671e}
+.calcpro-ratio .calcpro-ratio-answer{font-size:19px;line-height:1.4;padding:6px 0;color:#111;overflow-wrap:anywhere}
+.calcpro-ratio .calcpro-ratio-answer strong{color:#148000}
+.calcpro-ratio .calcpro-ratio-math-lines{margin:9px 0 15px;font-size:14px;color:#182c3f}
+.calcpro-ratio .calcpro-ratio-math-lines div{margin:4px 0;overflow-wrap:anywhere}
+.calcpro-ratio .calcpro-ratio-percent{font-size:14px;margin:8px 0 8px}
+.calcpro-ratio .calcpro-ratio-visuals{margin:15px 0 0}
+.calcpro-ratio .calcpro-ratio-visuals h3{margin:0 0 8px}
+.calcpro-ratio .calcpro-ratio-chart-caption{font-size:13px;margin:10px 0 4px;line-height:1.3}
+.calcpro-ratio .calcpro-ratio-pie{display:block;width:122px;height:122px;max-width:100%;overflow:visible}
+.calcpro-ratio .calcpro-ratio-bar{height:32px;max-width:140px;display:flex;overflow:hidden;box-shadow:0 0 0 1px #d2d9df inset}
+.calcpro-ratio .calcpro-ratio-bar>div{min-width:0;display:flex;align-items:center;justify-content:center;font-size:12px;color:#fff;overflow:hidden}
+.calcpro-ratio .calcpro-ratio-bar>.calcpro-ratio-bar-first{background:var(--calcpro-ratio-navy)}
+.calcpro-ratio .calcpro-ratio-bar>.calcpro-ratio-bar-second{background:var(--calcpro-ratio-blue)}
+.calcpro-ratio .calcpro-ratio-rectangle{display:block;background:var(--calcpro-ratio-navy);min-width:1px;min-height:1px;max-width:100%}
+.calcpro-ratio .calcpro-ratio-chart-hint{font-size:13px;color:#596778;margin:5px 0}
+.calcpro-ratio .calcpro-ratio-scaling-form{display:flex;align-items:center;gap:9px;flex-wrap:wrap;justify-content:center}
+.calcpro-ratio .calcpro-ratio-scaling-form .calcpro-ratio-input{width:90px}
+.calcpro-ratio .calcpro-ratio-scaling-form label{display:flex;align-items:center;gap:5px}
+.calcpro-ratio .calcpro-ratio-scaling-form select{height:34px;font:14px Arial,Helvetica,sans-serif;color:#203548;padding:4px 6px;background:white;border:1px solid #7f9ebc;border-radius:2px;max-width:100%}
+.calcpro-ratio .calcpro-ratio-scale-end{font-weight:700;white-space:nowrap}
+.calcpro-ratio .calcpro-ratio-scale-graph{max-width:100%;overflow:visible;display:block}
+.calcpro-ratio .calcpro-ratio-scale-label{font-size:14px;font-weight:600;margin:10px 0 6px}
+.calcpro-ratio .calcpro-ratio-scale-key{font-size:12px;color:#3d536a;display:flex;gap:16px;flex-wrap:wrap;margin:5px 0}
+.calcpro-ratio .calcpro-ratio-scale-key span{display:inline-flex;align-items:center;gap:5px}
+.calcpro-ratio .calcpro-ratio-scale-key i{width:11px;height:11px;display:inline-block}
+.calcpro-ratio .calcpro-ratio-inline-related{background:#f1f1f1;border-top:1px solid #ddd;padding:11px 12px;margin-top:22px;font-size:13px}
+.calcpro-ratio .calcpro-ratio-inline-related strong{margin-right:8px}
+.calcpro-ratio .calcpro-ratio-inline-related a{background:#32689c;color:#fff;text-decoration:none;padding:4px 7px;display:inline-block}
+.calcpro-ratio .calcpro-ratio-inline-related a:hover{text-decoration:underline}
+.calcpro-ratio .calcpro-ratio-hidden-note{color:#536476;font-size:13px}
+@media(max-width:580px){.calcpro-ratio .calcpro-ratio-form-panel{padding:12px 8px}.calcpro-ratio .calcpro-ratio-equation{gap:5px}.calcpro-ratio .calcpro-ratio-pair{gap:5px}.calcpro-ratio .calcpro-ratio-input{width:82px}.calcpro-ratio .calcpro-ratio-scaling-form .calcpro-ratio-input{width:76px}.calcpro-ratio .calcpro-ratio-operator{font-size:19px}.calcpro-ratio .calcpro-ratio-scale-end{font-size:13px}.calcpro-ratio .calcpro-ratio-answer{font-size:17px}}
+@media(max-width:380px){.calcpro-ratio .calcpro-ratio-pair{width:100%}.calcpro-ratio .calcpro-ratio-equals{width:100%;text-align:center;line-height:22px}.calcpro-ratio .calcpro-ratio-equation{gap:2px}.calcpro-ratio .calcpro-ratio-scaling-form{gap:6px}}
+@media(prefers-reduced-motion:reduce){.calcpro-ratio .calcpro-ratio-result{animation:none}}
+</style>
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/math-calculator/">Math</a> / Ratio Calculator</nav><h1 class="cp-page-title">Ratio Calculator</h1><p class="cp-intro">Provide any three values below to calculate the fourth in the ratio <strong>A:B = C:D</strong>. You can also enlarge or shrink a ratio below.</p><section aria-label="Calculator" class="cp-tool-area">
+<section class="calcpro-ratio" id="calcpro-ratio-widget" aria-label="Ratio and ratio scaling calculators">
+  <div class="calcpro-ratio-result" id="calcpro-ratio-proportion-result" role="region" aria-label="Ratio solution" hidden>
+    <div class="calcpro-ratio-result-heading"><strong>Result</strong><button class="calcpro-ratio-save" id="calcpro-ratio-proportion-save" type="button" title="Save ratio result as a PNG image">▣ Save</button></div>
+    <div class="calcpro-ratio-answer" id="calcpro-ratio-proportion-answer" aria-live="polite"></div>
+    <div class="calcpro-ratio-math-lines" id="calcpro-ratio-proportion-steps"></div>
+    <div class="calcpro-ratio-visuals" id="calcpro-ratio-proportion-visuals">
+      <h3>Visual Representations of the Ratio</h3>
+      <div class="calcpro-ratio-chart-caption">Pie Chart</div>
+      <svg class="calcpro-ratio-pie" id="calcpro-ratio-pie" viewBox="0 0 160 160" role="img" aria-label="Pie chart showing the first and second term shares"></svg>
+      <div class="calcpro-ratio-chart-caption" id="calcpro-ratio-bar-caption"></div>
+      <div class="calcpro-ratio-bar" id="calcpro-ratio-bar" role="img" aria-label="Ratio portion bar">
+        <div class="calcpro-ratio-bar-first" id="calcpro-ratio-bar-first"></div><div class="calcpro-ratio-bar-second" id="calcpro-ratio-bar-second"></div>
+      </div>
+      <div class="calcpro-ratio-chart-caption" id="calcpro-ratio-rectangle-caption"></div>
+      <div class="calcpro-ratio-rectangle" id="calcpro-ratio-rectangle" role="img" aria-label="Rectangle representing the ratio"></div>
+    </div>
+  </div>
+  <form class="calcpro-ratio-form-panel" id="calcpro-ratio-proportion-form" novalidate>
+    <div class="calcpro-ratio-equation">
+      <div class="calcpro-ratio-pair">
+        <label class="calcpro-ratio-field" for="calcpro-ratio-a">A<input class="calcpro-ratio-input" type="text" inputmode="decimal" id="calcpro-ratio-a" name="calcpro-ratio-a" value="3" autocomplete="off"></label>
+        <span class="calcpro-ratio-operator calcpro-ratio-pair-operator" aria-hidden="true">:</span>
+        <label class="calcpro-ratio-field" for="calcpro-ratio-b">B<input class="calcpro-ratio-input" type="text" inputmode="decimal" id="calcpro-ratio-b" name="calcpro-ratio-b" value="4" autocomplete="off"></label>
+      </div>
+      <span class="calcpro-ratio-operator calcpro-ratio-equals" aria-hidden="true">=</span>
+      <div class="calcpro-ratio-pair">
+        <label class="calcpro-ratio-field" for="calcpro-ratio-c">C<input class="calcpro-ratio-input" type="text" inputmode="decimal" id="calcpro-ratio-c" name="calcpro-ratio-c" value="600" autocomplete="off"></label>
+        <span class="calcpro-ratio-operator calcpro-ratio-pair-operator" aria-hidden="true">:</span>
+        <label class="calcpro-ratio-field" for="calcpro-ratio-d">D<input class="calcpro-ratio-input" type="text" inputmode="decimal" id="calcpro-ratio-d" name="calcpro-ratio-d" value="" autocomplete="off"></label>
+      </div>
+    </div>
+    <div class="calcpro-ratio-actions"><button class="calcpro-ratio-calculate" type="submit">Calculate&nbsp; ●</button><button class="calcpro-ratio-clear" id="calcpro-ratio-proportion-clear" type="button">Clear</button></div>
+    <div class="calcpro-ratio-error" id="calcpro-ratio-proportion-error" role="alert" hidden></div>
+  </form>
 
-<body>
-<!-- Main-header-page -->
+  <h2>Ratio Scaling Calculator</h2>
+  <div class="calcpro-ratio-result" id="calcpro-ratio-scaling-result" role="region" aria-label="Ratio scaling solution" hidden>
+    <div class="calcpro-ratio-result-heading"><strong>Result</strong><button class="calcpro-ratio-save" id="calcpro-ratio-scaling-save" type="button" title="Save scaling result as a PNG image">▣ Save</button></div>
+    <div class="calcpro-ratio-answer" id="calcpro-ratio-scaling-answer" aria-live="polite"></div>
+    <div class="calcpro-ratio-scale-label" id="calcpro-ratio-scaling-label"></div>
+    <svg class="calcpro-ratio-scale-graph" id="calcpro-ratio-scaling-graph" viewBox="0 0 360 270" width="360" height="270" preserveAspectRatio="xMinYMin meet" role="img" aria-label="Before and after proportional rectangles"></svg>
+    <div class="calcpro-ratio-scale-key"><span><i style="background:#317dd4"></i>Larger size</span><span><i style="background:#0f2b45"></i>Smaller size</span></div>
+  </div>
+  <form class="calcpro-ratio-form-panel" id="calcpro-ratio-scaling-form" novalidate>
+    <div class="calcpro-ratio-scaling-form">
+      <label for="calcpro-ratio-scale-first" aria-label="First ratio value"><input class="calcpro-ratio-input" type="text" inputmode="decimal" value="250" id="calcpro-ratio-scale-first" autocomplete="off"></label>
+      <span class="calcpro-ratio-operator" aria-hidden="true">:</span>
+      <label for="calcpro-ratio-scale-second" aria-label="Second ratio value"><input class="calcpro-ratio-input" type="text" inputmode="decimal" value="280" id="calcpro-ratio-scale-second" autocomplete="off"></label>
+      <label for="calcpro-ratio-scale-direction"><span class="calcpro-ratio-hidden-note" style="position:absolute;clip:rect(0,0,0,0);width:1px;height:1px;overflow:hidden">Scale direction</span><select id="calcpro-ratio-scale-direction"><option value="enlarge">Enlarge</option><option value="shrink" selected>Shrink</option></select></label>
+      <label for="calcpro-ratio-scale-factor" aria-label="Scaling factor"><input class="calcpro-ratio-input" type="text" inputmode="decimal" id="calcpro-ratio-scale-factor" value="2.5" autocomplete="off"></label>
+      <span class="calcpro-ratio-scale-end">times = ?</span>
+    </div>
+    <div class="calcpro-ratio-actions"><button type="submit" class="calcpro-ratio-calculate">Calculate&nbsp; ●</button><button type="button" class="calcpro-ratio-clear" id="calcpro-ratio-scaling-clear">Clear</button></div>
+    <div class="calcpro-ratio-error" id="calcpro-ratio-scaling-error" role="alert" hidden></div>
+  </form>
+  <div class="calcpro-ratio-inline-related"><strong>Related:</strong><a href="fraction-calculator.html">Fraction Calculator</a></div>
+</section>
+</section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><a href="fraction-calculator.html">Fraction</a><a href="percent-calculator.html">Percentage</a><a href="triangle-calculator.html">Triangle</a><a href="scientific-calculator.html">Scientific</a><a href="average-calculator.html">Average</a><a href="standard-deviation-calculator.html">Standard Deviation</a><a href="volume-calculator.html">Volume</a><a href="common-factor-calculator.html">Common Factor</a><a href="random-number-generator.html">Random Number</a><a href="factor-calculator.html">Factor</a><a href="scientific-notation-calculator.html">Scientific Notation</a><a href="right-triangle-calculator.html">Right Triangle</a></div></section></aside><article class="cp-article">
+<h2>What Is a Ratio?</h2>
+<p>A ratio compares two quantities. For example, <strong>3:4</strong> describes three parts of one quantity for every four parts of another. A <em>proportion</em> states that two ratios are equal, such as <strong>3:4 = 600:800</strong>. Ratios can describe recipes, map scales, mixtures, screen dimensions, and comparable measurements.</p>
+<h2>How to Use the Ratio Calculator</h2>
+<ol><li>Enter any three known numbers in A, B, C, and D. Leave the unknown field blank.</li><li>Select <strong>Calculate</strong> to solve the missing value and review the equation and charts immediately above the form.</li><li>Alternatively, enter all four values to check whether the two ratios are equivalent.</li><li>Select <strong>Clear</strong> to remove the entries, or <strong>Save</strong> to save a PNG of a displayed result.</li></ol>
+<h2>Ratio Formulas</h2>
+<p>Two ratios are equivalent when <strong>A/B = C/D</strong>, provided that B and D are nonzero. Cross-multiplication gives <strong>A × D = B × C</strong>. Solve for any unknown using one of these equations:</p>
+<ul><li>A = (B × C) ÷ D</li><li>B = (A × D) ÷ C</li><li>C = (A × D) ÷ B</li><li>D = (B × C) ÷ A</li></ul>
+<h3>Worked example: solve 3:4 = 600:D</h3>
+<p>Cross-multiply to get 3 × D = 4 × 600. Therefore <strong>D = 2,400 ÷ 3 = 800</strong>, and the completed proportion is <strong>3:4 = 600:800</strong>. The first term is 3 ÷ (3 + 4) × 100 ≈ <strong>42.8571%</strong> of the combined two-term total.</p>
+<h2>How Ratio Scaling Works</h2>
+<p>The scaling tool multiplies or divides <em>both</em> parts of a ratio by the same positive factor, without changing their relative proportions. To enlarge A:B by k, calculate <strong>(A × k):(B × k)</strong>. To shrink it by k, calculate <strong>(A ÷ k):(B ÷ k)</strong>.</p>
+<h3>Worked example: shrink 250:280 by 2.5</h3>
+<p>250 ÷ 2.5 = 100 and 280 ÷ 2.5 = 112. The new pair is <strong>100:112</strong>. The result includes overlapping rectangles to illustrate the original and scaled dimensions. If the input values describe pixels or other linear measurements, keep the units consistent.</p>
+<h2>Typical Aspect Ratios and Sizes of Screens and Videos</h2>
+<p>An aspect ratio compares display width to height. The table gives common resolutions and their corresponding width-to-height relationships. Approximate ratios are marked with ~.</p>
+<div class="cp-table-scroll"><table class="cp-content-table"><thead><tr><th>Name</th><th>Aspect ratio</th><th>Width (pixels)</th><th>Height (pixels)</th></tr></thead><tbody><tr><td>480p</td><td>3:2</td><td>720</td><td>480</td></tr><tr><td>576p</td><td>5:4</td><td>720</td><td>576</td></tr><tr><td>720p</td><td>16:9</td><td>1280</td><td>720</td></tr><tr><td>1080p</td><td>16:9</td><td>1920</td><td>1080</td></tr><tr><td>2160p (4K UHD)</td><td>16:9</td><td>3840</td><td>2160</td></tr><tr><td>4320p (8K UHD)</td><td>16:9</td><td>7680</td><td>4320</td></tr><tr><td>8640p</td><td>16:9</td><td>15360</td><td>8640</td></tr><tr><td>SVGA</td><td>4:3</td><td>800</td><td>600</td></tr><tr><td>WSVGA</td><td>~17:10</td><td>1024</td><td>600</td></tr><tr><td>XGA</td><td>4:3</td><td>1024</td><td>768</td></tr><tr><td>XGA+</td><td>4:3</td><td>1152</td><td>864</td></tr><tr><td>WXGA</td><td>16:9</td><td>1280</td><td>720</td></tr><tr><td>WXGA</td><td>5:3</td><td>1280</td><td>768</td></tr><tr><td>WXGA</td><td>16:10</td><td>1280</td><td>800</td></tr><tr><td>SXGA (UVGA)</td><td>4:3</td><td>1280</td><td>960</td></tr><tr><td>SXGA</td><td>5:4</td><td>1280</td><td>1024</td></tr><tr><td>HD</td><td>~16:9</td><td>1360</td><td>768</td></tr><tr><td>HD</td><td>~16:9</td><td>1366</td><td>768</td></tr><tr><td>SXGA+</td><td>4:3</td><td>1400</td><td>1050</td></tr><tr><td>WXGA+</td><td>16:10</td><td>1440</td><td>900</td></tr><tr><td>HD+</td><td>16:9</td><td>1600</td><td>900</td></tr><tr><td>UXGA</td><td>4:3</td><td>1600</td><td>1200</td></tr><tr><td>WSXGA+</td><td>16:10</td><td>1680</td><td>1050</td></tr><tr><td>FHD</td><td>16:9</td><td>1920</td><td>1080</td></tr><tr><td>WUXGA</td><td>16:10</td><td>1920</td><td>1200</td></tr><tr><td>QWXGA</td><td>16:9</td><td>2048</td><td>1152</td></tr><tr><td>WQHD</td><td>16:9</td><td>2560</td><td>1440</td></tr><tr><td>WQXGA</td><td>16:10</td><td>2560</td><td>1600</td></tr></tbody></table></div>
+<h2>Frequently Asked Questions</h2>
+<h3>Can I enter decimals?</h3><p>Yes. Decimal and scientific-notation inputs are accepted. Results are formatted to readable precision, with additional digits used for very small or large values.</p>
+<h3>Why do I see an error for some zeros?</h3><p>In the fraction form A/B = C/D, B and D cannot equal zero. A missing term also cannot be determined uniquely when the formula requires dividing by zero.</p>
+<h3>Are negative ratios supported?</h3><p>Signed numbers are supported when solving a valid proportion. Pie, bar, and rectangle charts are displayed only when the chosen ratio terms describe nonnegative proportions.</p>
+<h3>Are the visualizations exact drawings at real-life scale?</h3><p>No. They preserve the proportions of the entered values but scale the drawing to fit the available page space.</p>
+<h2>Further Reading</h2><p><a href="https://openstax.org/books/elementary-algebra-2e/pages/8-7-solve-proportion-and-similar-figure-applications" target="_blank" rel="noopener noreferrer">OpenStax: Solve Proportion and Similar Figure Applications</a> explains cross-products, proportion equations, and scaling.</p>
+<p class="cp-page-footer">CalcPro — mathematical results are for informational and educational use.</p>
+</article></main></div><script>
+(()=>{
+  'use strict';
+  const root=document.getElementById('calcpro-ratio-widget');
+  if(!root)return;
+  const el=id=>root.querySelector('#'+id);
+  const keys=['a','b','c','d'];
+  const mathLabels=['A','B','C','D'];
+  const proportionResult=el('calcpro-ratio-proportion-result');
+  const scalingResult=el('calcpro-ratio-scaling-result');
+  let lastProportion=null;
+  let lastScaling=null;
+  const numberPattern=/^[+-]?(?:\d+\.?\d*|\.\d+)(?:e[+-]?\d+)?$/i;
+  function parseNum(raw){
+    const value=raw.trim();
+    if(!numberPattern.test(value))return null;
+    const num=Number(value);
+    return Number.isFinite(num)?num:null;
+  }
+  function format(num,digits=12){
+    if(!Number.isFinite(num))return 'undefined';
+    if(Object.is(num,-0)||num===0)return '0';
+    if(Math.abs(num)<1e-9||Math.abs(num)>=1e15)return num.toExponential(9).replace(/\.?0+e/,'e').replace('e+','e+');
+    const rounded=Number(num.toPrecision(13));
+    return rounded.toLocaleString('en-US',{useGrouping:false,maximumFractionDigits:digits});
+  }
+  function safeMulDiv(a,b,c){
+    for(const guess of [(a/c)*b,a*(b/c),(a*b)/c])if(Number.isFinite(guess))return guess;
+    return NaN;
+  }
+  function errorBox(id,message){const target=el(id);target.textContent=message;target.hidden=false;}
+  function clearError(id){const target=el(id);target.textContent='';target.hidden=true;}
+  function appendText(container,tag,text,cls){const node=document.createElement(tag);node.textContent=text;if(cls)node.className=cls;container.appendChild(node);return node;}
+  function resultAnswer(container,prefix,value,suffix){
+    container.textContent='';
+    container.append(document.createTextNode(prefix));
+    const strong=document.createElement('strong');strong.textContent=value;container.append(strong);
+    if(suffix)container.append(document.createTextNode(suffix));
+  }
+  function svgEl(tag,attrs={},txt){const node=document.createElementNS('http://www.w3.org/2000/svg',tag);Object.entries(attrs).forEach(([key,val])=>node.setAttribute(key,String(val)));if(txt!==undefined)node.textContent=txt;return node;}
+  function polar(cx,cy,r,angle){const radians=(angle-90)*Math.PI/180;return [cx+r*Math.cos(radians),cy+r*Math.sin(radians)];}
+  function pieSlice(cx,cy,r,start,end){
+    const [x1,y1]=polar(cx,cy,r,start),[x2,y2]=polar(cx,cy,r,end);
+    return `M ${cx} ${cy} L ${x1} ${y1} A ${r} ${r} 0 ${end-start>180?1:0} 1 ${x2} ${y2} Z`;
+  }
+  function shareFirst(a,b){const large=Math.max(a,b);return large===0?0:(a/large)/((a/large)+(b/large));}
+  function drawPie(a,b){
+    const svg=el('calcpro-ratio-pie');svg.replaceChildren();
+    const frac=shareFirst(a,b);
+    if(frac<=0||frac>=1){svg.appendChild(svgEl('circle',{cx:80,cy:80,r:73,fill:frac>=1?'#0f2b45':'#317dd4'}));}
+    else{
+      svg.appendChild(svgEl('path',{d:pieSlice(80,80,73,0,(1-frac)*360),fill:'#317dd4'}));
+      svg.appendChild(svgEl('path',{d:pieSlice(80,80,73,(1-frac)*360,360),fill:'#0f2b45'}));
+    }
+    for(const [portion,start,end,txt] of [[a,(1-frac)*360,360,format(a,6)],[b,0,(1-frac)*360,format(b,6)]]){
+      if(portion<=0||end-start<10)continue;
+      const [x,y]=polar(80,80,45,(start+end)/2);
+      const text=svgEl('text',{x,y,fill:'white','font-size':'13','font-weight':'700','text-anchor':'middle','dominant-baseline':'middle'},txt);
+      svg.appendChild(text);
+    }
+    svg.setAttribute('aria-label',`${format(a)} versus ${format(b)}; first share ${format(frac*100,6)} percent`);
+  }
+  function drawVisuals(a,b){
+    const visuals=el('calcpro-ratio-proportion-visuals');
+    if(a<0||b<=0||a+b<=0){visuals.hidden=true;return;}
+    visuals.hidden=false;
+    drawPie(a,b);
+    const pct=shareFirst(a,b)*100;
+    el('calcpro-ratio-bar-caption').textContent=`Left ${format(a)}, Right ${format(b)}`;
+    const bar=el('calcpro-ratio-bar');bar.setAttribute('aria-label',`Left ${format(pct,6)}%, right ${format(100-pct,6)}%`);
+    el('calcpro-ratio-bar-first').style.width=pct+'%';
+    el('calcpro-ratio-bar-second').style.width=(100-pct)+'%';
+    // As on the reference, the geometric example labels B as width and A as height.
+    el('calcpro-ratio-rectangle-caption').textContent=`Width ${format(b)}, Height ${format(a)}`;
+    const rectangle=el('calcpro-ratio-rectangle');
+    const multiplier=Math.min(128/b,96/Math.max(a,.00000001));
+    rectangle.style.width=Math.max(1,b*multiplier)+'px';
+    rectangle.style.height=Math.max(1,a*multiplier)+'px';
+    rectangle.setAttribute('aria-label',`Width ${format(b)} and height ${format(a)}`);
+  }
+  function solveProportion(event){
+    if(event)event.preventDefault();
+    clearError('calcpro-ratio-proportion-error');
+    const raws=keys.map(key=>el('calcpro-ratio-'+key).value);
+    const blanks=raws.map((value,index)=>value.trim()===''?index:-1).filter(index=>index>=0);
+    if(blanks.length>1){proportionResult.hidden=true;errorBox('calcpro-ratio-proportion-error','Enter any three numbers and leave exactly one field empty.');return;}
+    const nums=raws.map((value,index)=>blanks.includes(index)?null:parseNum(value));
+    if(nums.some((value,index)=>!blanks.includes(index)&&value===null)){
+      proportionResult.hidden=true;errorBox('calcpro-ratio-proportion-error','Use valid finite numbers (decimals and scientific notation are supported).');return;
+    }
+    if(blanks.length===0){
+      const [a,b,c,d]=nums;
+      if(b===0||d===0){proportionResult.hidden=true;errorBox('calcpro-ratio-proportion-error','B and D must be nonzero because they are ratio denominators.');return;}
+      const left=a/b,right=c/d;
+      const equal=Math.abs(left-right)<=1e-10*Math.max(1,Math.abs(left),Math.abs(right));
+      if(!equal){proportionResult.hidden=true;errorBox('calcpro-ratio-proportion-error',`These ratios are not equivalent: ${format(a)} : ${format(b)} ≠ ${format(c)} : ${format(d)}. Clear one field to solve it.`);return;}
+      showProportion(nums,null);
+      return;
+    }
+    const missing=blanks[0], numeratorPairs=[[1,2],[0,3],[0,3],[1,2]], divisors=[3,2,1,0];
+    const divisor=nums[divisors[missing]];
+    if(divisor===0){proportionResult.hidden=true;errorBox('calcpro-ratio-proportion-error','This proportion has no unique finite solution because the value used as a divisor is zero.');return;}
+    const product=numeratorPairs[missing].map(index=>nums[index]);
+    nums[missing]=safeMulDiv(product[0],product[1],divisor);
+    if(!Number.isFinite(nums[missing])){proportionResult.hidden=true;errorBox('calcpro-ratio-proportion-error','The calculated value is outside the supported numeric range.');return;}
+    if(nums[1]===0||nums[3]===0){proportionResult.hidden=true;errorBox('calcpro-ratio-proportion-error','The completed proportion would contain a zero denominator (B or D), which is undefined.');return;}
+    showProportion(nums,missing,product,divisor);
+  }
+  function showProportion(nums,missing,product,divisor){
+    const [a,b,c,d]=nums;
+    const answer=el('calcpro-ratio-proportion-answer');
+    answer.textContent='';
+    function writePiece(i){const span=document.createElement(i===missing?'strong':'span');span.textContent=format(nums[i]);answer.append(span);}
+    writePiece(0);answer.append(document.createTextNode(' : '));writePiece(1);answer.append(document.createTextNode(' = '));writePiece(2);answer.append(document.createTextNode(' : '));writePiece(3);
+    const steps=el('calcpro-ratio-proportion-steps');steps.replaceChildren();
+    if(missing!==null){
+      appendText(steps,'div',`${mathLabels[0]} × ${mathLabels[3]} = ${mathLabels[1]} × ${mathLabels[2]}`);
+      appendText(steps,'div',`${mathLabels[missing]} = (${format(product[0])} × ${format(product[1])}) ÷ ${format(divisor)} = ${format(nums[missing])}`);
+    }else appendText(steps,'div','Both entered ratios are equivalent.');
+    if(a!==0&&b!==0){appendText(steps,'div',`${format(a)} : ${format(b)} = 1 : ${format(b/a)}`);appendText(steps,'div',`= ${format(a/b)} : 1`);}
+    else if(b!==0)appendText(steps,'div','0 : 1 (zero first term)');
+    const sum=a+b;
+    if(a>=0&&b>0&&sum>0)appendText(steps,'div',`${format(a)} ÷ (${format(a)} + ${format(b)}) × 100 = ${format(shareFirst(a,b)*100)}%`);
+    drawVisuals(a,b);
+    proportionResult.hidden=false;
+    lastProportion={main:`${format(a)} : ${format(b)} = ${format(c)} : ${format(d)}`,detail:missing===null?'Equivalent ratios':`${mathLabels[missing]} = ${format(nums[missing])}`,ratio:[a,b]};
+  }
+  function drawScaleGraph(a,b,c,d){
+    const graph=el('calcpro-ratio-scaling-graph');graph.replaceChildren();
+    if(a<=0||b<=0||c<=0||d<=0){graph.hidden=true;return;}
+    graph.hidden=false;
+    // The larger rectangle is blue and the smaller rectangle is navy.
+    const maxWidth=Math.max(b,d),maxHeight=Math.max(a,c);
+    const pixelScale=Math.min(200/maxWidth,185/maxHeight);
+    const rects=[{x:0,y:0,w:maxWidth*pixelScale,h:maxHeight*pixelScale,fill:'#317dd4'},
+      {x:0,y:0,w:Math.min(b,d)*pixelScale,h:Math.min(a,c)*pixelScale,fill:'#0f2b45'}];
+    rects.forEach(rect=>graph.appendChild(svgEl('rect',{x:rect.x,y:rect.y,width:rect.w,height:rect.h,fill:rect.fill})));
+    graph.setAttribute('viewBox',`0 0 ${Math.max(1,Math.ceil(rects[0].w+2))} ${Math.max(1,Math.ceil(rects[0].h+2))}`);
+    graph.setAttribute('width',String(Math.max(1,Math.ceil(rects[0].w))));
+    graph.setAttribute('height',String(Math.max(1,Math.ceil(rects[0].h))));
+    graph.setAttribute('aria-label',`Original ${format(a)} by ${format(b)}; scaled ${format(c)} by ${format(d)}`);
+  }
+  function solveScaling(event){
+    if(event)event.preventDefault();clearError('calcpro-ratio-scaling-error');
+    const raws=['first','second','factor'].map(suffix=>el('calcpro-ratio-scale-'+suffix).value);
+    if(raws.some(value=>value.trim()==='')){scalingResult.hidden=true;errorBox('calcpro-ratio-scaling-error','Enter both ratio values and a scale factor.');return;}
+    const values=raws.map(parseNum);
+    if(values.some(value=>value===null)){scalingResult.hidden=true;errorBox('calcpro-ratio-scaling-error','Please enter valid finite numbers.');return;}
+    const [a,b,factor]=values;
+    if(factor<=0){scalingResult.hidden=true;errorBox('calcpro-ratio-scaling-error','The scale factor must be greater than zero.');return;}
+    if(a<0||b<=0){scalingResult.hidden=true;errorBox('calcpro-ratio-scaling-error','Use a nonnegative first term and a positive second term for scaling and size charts.');return;}
+    const mode=el('calcpro-ratio-scale-direction').value;
+    const c=mode==='shrink'?a/factor:a*factor,d=mode==='shrink'?b/factor:b*factor;
+    if(!Number.isFinite(c)||!Number.isFinite(d)||d===0){scalingResult.hidden=true;errorBox('calcpro-ratio-scaling-error','The scaled result is too large or small to display reliably.');return;}
+    resultAnswer(el('calcpro-ratio-scaling-answer'),`${format(a)}:${format(b)} ${mode==='shrink'?'Shrink':'Enlarge'} ${format(factor)} times = `,`${format(c)}:${format(d)}`);
+    el('calcpro-ratio-scaling-label').textContent=`${format(a)}×${format(b)} and ${format(c)}×${format(d)} Size in Screen Pixels:`;
+    drawScaleGraph(a,b,c,d);
+    scalingResult.hidden=false;
+    lastScaling={main:`${format(a)}:${format(b)} ${mode==='shrink'?'Shrink':'Enlarge'} ${format(factor)} = ${format(c)}:${format(d)}`,detail:`Original ${format(a)}×${format(b)}; scaled ${format(c)}×${format(d)}`,ratio:[a,b],scaled:[c,d]};
+  }
+  function savePng(data,filename){
+    if(!data)return;
+    const canvas=document.createElement('canvas');canvas.width=950;canvas.height=340;
+    const ctx=canvas.getContext('2d');if(!ctx)return;
+    ctx.fillStyle='#fff';ctx.fillRect(0,0,950,340);
+    ctx.fillStyle='#4d842c';ctx.fillRect(0,0,950,72);
+    ctx.font='bold 31px Arial';ctx.fillStyle='#fff';ctx.fillText('CalcPro Ratio Calculator — Result',26,47);
+    ctx.fillStyle='#0f2b45';ctx.font='bold 28px Arial';
+    const primary=data.main;
+    if(ctx.measureText(primary).width>890){ctx.font='bold 22px Arial';}
+    if(ctx.measureText(primary).width>890){ctx.font='bold 17px Arial';}
+    ctx.fillText(primary,26,143,890);
+    ctx.font='20px Arial';ctx.fillText(data.detail,26,185,890);
+    if(data.ratio){
+      const [a,b]=data.ratio;
+      if(a>=0&&b>0&&a+b>0){
+        ctx.fillStyle='#0f2b45';ctx.fillRect(26,235,Math.max(0,400*a/(a+b)),38);
+        ctx.fillStyle='#317dd4';ctx.fillRect(26+400*a/(a+b),235,400*b/(a+b),38);
+        ctx.fillStyle='#354b63';ctx.font='16px Arial';ctx.fillText(`${format(a)} : ${format(b)}`,26,218);
+      }
+    }
+    canvas.toBlob(blob=>{
+      if(!blob)return;
+      const url=URL.createObjectURL(blob),anchor=document.createElement('a');
+      anchor.href=url;anchor.download=filename;anchor.style.display='none';document.body.appendChild(anchor);anchor.click();anchor.remove();setTimeout(()=>URL.revokeObjectURL(url),1500);
+    },'image/png');
+  }
+  el('calcpro-ratio-proportion-form').addEventListener('submit',solveProportion);
+  el('calcpro-ratio-scaling-form').addEventListener('submit',solveScaling);
+  el('calcpro-ratio-proportion-clear').addEventListener('click',()=>{
+    keys.forEach(key=>el('calcpro-ratio-'+key).value='');
+    clearError('calcpro-ratio-proportion-error');proportionResult.hidden=true;lastProportion=null;el('calcpro-ratio-a').focus();
+  });
+  el('calcpro-ratio-scaling-clear').addEventListener('click',()=>{
+    ['first','second','factor'].forEach(key=>el('calcpro-ratio-scale-'+key).value='');
+    el('calcpro-ratio-scale-direction').value='shrink';clearError('calcpro-ratio-scaling-error');scalingResult.hidden=true;lastScaling=null;el('calcpro-ratio-scale-first').focus();
+  });
+  el('calcpro-ratio-proportion-save').addEventListener('click',()=>savePng(lastProportion,'calcpro-ratio-result.png'));
+  el('calcpro-ratio-scaling-save').addEventListener('click',()=>savePng(lastScaling,'calcpro-ratio-scaling-result.png'));
+})();
+</script><script data-calcpro-latest-result>
+(function () {
+  var toolRoot = document.querySelector('.cp-tool-area') || document.querySelector('main') || document.body;
+  var forms = Array.prototype.slice.call(toolRoot.querySelectorAll('form'));
+  if (forms.length < 2) return;
+
+  var selector = '[id*="result"], [class*="result"], [id*="output"], [class*="output"], [id*="total"], [class*="total"], [id*="summary"], [class*="summary"], [data-result], [data-re-results], [data-cp-surface-result]';
+  var candidates = Array.prototype.slice.call(toolRoot.querySelectorAll(selector));
+  var panels = candidates.filter(function (node) {
+    return !candidates.some(function (other) { return other !== node && other.contains(node); });
+  });
+  var activeOwner = null;
+
+  function namesOf(node) {
+    var names = [node.id].concat(Array.prototype.slice.call(node.classList || []));
+    return names.map(function (name) {
+      return String(name).toLowerCase().replace(/[-_](form|result|results|output|outputs|total|totals|summary|summaries)([-_].*)?$/, '');
+    }).filter(Boolean);
+  }
+
+  function pairedForm(panel) {
+    var names = namesOf(panel);
+    var matches = forms.filter(function (form) {
+      return namesOf(form).some(function (name) { return names.indexOf(name) !== -1; });
+    });
+    return matches.length === 1 ? matches[0] : null;
+  }
+
+  function ownerOf(node) {
+    if (node.matches('form')) return node;
+    var form = node.closest('form') || pairedForm(node);
+    if (form) return form;
+    for (var current = node; current && current !== toolRoot; current = current.parentElement) {
+      var formCount = (current.matches('form') ? 1 : 0) + current.querySelectorAll('form').length;
+      if (formCount === 1 && panels.some(function (panel) { return current === panel || current.contains(panel); })) return current.querySelector('form') || current;
+    }
+    return node.closest('section') || node;
+  }
+
+  function keepOnly(owner, showActive) {
+    panels.forEach(function (panel) {
+      var isActive = ownerOf(panel) === owner;
+      if (!isActive) panel.hidden = true;
+      else if (showActive) panel.hidden = false;
+    });
+  }
+
+  function activate(owner) {
+    if (!owner) return;
+    activeOwner = owner;
+    keepOnly(owner, false);
+  }
+
+  toolRoot.addEventListener('submit', function (event) {
+    var form = event.target;
+    if (form instanceof HTMLFormElement) activate(ownerOf(form));
+  }, true);
+
+  toolRoot.addEventListener('input', function (event) {
+    var form = event.target.closest('form');
+    if (form) activeOwner = ownerOf(form);
+  }, true);
+
+  toolRoot.addEventListener('click', function (event) {
+    var button = event.target.closest('button');
+    var form = button && button.closest('form');
+    if (!form) return;
+    var label = [button.id, button.textContent, button.getAttribute('aria-label') || ''].join(' ').toLowerCase();
+    if (/\b(clear|reset)\b/.test(label) || button.type === 'reset') activeOwner = null;
+    else if (button.type === 'submit' || /\b(calculate|compute|roll|start|encode|decode|convert|generate|run|solve|estimate)\b/.test(label)) activate(ownerOf(form));
+  }, true);
+
+  var observer = new MutationObserver(function (records) {
+    records.forEach(function (record) {
+      var panel = panels.find(function (item) { return item === record.target || item.contains(record.target); });
+      if (!panel || !activeOwner || ownerOf(panel) !== activeOwner) return;
+      if (record.type === 'attributes' && panel.hidden) return;
+      keepOnly(activeOwner, true);
+    });
+  });
+  panels.forEach(function (panel) {
+    observer.observe(panel, {attributes: true, attributeFilter: ['hidden'], childList: true, characterData: true, subtree: true});
+  });
+})();
+</script>
 <script defer src="/assets/js/data.js"></script>
-<script defer src="/assets/js/style.js?v=20261111-1"></script>
-</body>
-</html>
+<script defer src="/assets/js/style.js?v=20261111-5"></script>
+</body></html>

@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US">
-<head>
-<meta charset="utf-8">
+<html lang="en-GB"><head><meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="content-language" content="en">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,17 +11,393 @@
   <meta name="author" content="Commingsoon">
   <meta name="publisher" content="Commingsoon">
   <meta name="robots" content="noindex, nofollow, max-image-preview:large">
-  <link rel="stylesheet" href="/assets/css/style.css?v=20261111-1" crossorigin="anonymous" data-n-g="">
+  <link rel="stylesheet" href="/assets/css/style.css?v=20261111-4" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/doc_style.css" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/side_style.css" crossorigin="anonymous" data-n-g=""> 
   <!--ogtags-->
-  <!--schema-->
-  <!--style-->
-</head>
+  <!--schema--><style>
+/* UK mortgage calculator: isolated from all CalcPro site-wide styling. */
+.calcpro-mortgage-uk{--mg-blue:#326699;--mg-green:#397e20;--mg-border:#ced7df;--mg-ink:#182638;max-width:100%;color:var(--mg-ink);font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.38}
+.calcpro-mortgage-uk *, .calcpro-mortgage-uk *::before, .calcpro-mortgage-uk *::after{box-sizing:border-box}
+.calcpro-mortgage-uk button,.calcpro-mortgage-uk input,.calcpro-mortgage-uk select{font:inherit}
+.calcpro-mortgage-uk button{cursor:pointer}
+.calcpro-mortgage-uk button:focus-visible,.calcpro-mortgage-uk input:focus-visible,.calcpro-mortgage-uk select:focus-visible{outline:2px solid #2364a0;outline-offset:2px}
+.calcpro-mortgage-uk-banner{background:#336699;color:white;padding:8px 10px;font-size:12px;font-weight:600;margin-bottom:12px}
+.calcpro-mortgage-uk-top{display:grid;grid-template-columns:minmax(230px,265px) minmax(0,1fr);gap:15px;align-items:start}
+.calcpro-mortgage-uk-panel{border:1px solid #b8b8b8;background:#f1f1f1;padding:11px 9px 12px;min-width:0}
+.calcpro-mortgage-uk-fields{display:grid;gap:8px}
+.calcpro-mortgage-uk-field{display:grid;grid-template-columns:minmax(0,46%) minmax(0,54%);align-items:center;gap:7px}
+.calcpro-mortgage-uk-field>label{text-align:right;font-size:12px;line-height:1.18}
+.calcpro-mortgage-uk-control{position:relative;display:flex;align-items:center;min-width:0}
+.calcpro-mortgage-uk-control input{width:100%;height:31px;min-width:0;border:1px solid #326699;background:#fff;border-radius:1px;padding:5px 8px 5px 17px;color:#111}
+.calcpro-mortgage-uk-control:not(:has(.calcpro-mortgage-uk-prefix)) input{padding-left:8px}
+.calcpro-mortgage-uk-prefix{position:absolute;left:6px;z-index:1;color:#334;font-size:12px;pointer-events:none}
+.calcpro-mortgage-uk-suffix{position:absolute;right:7px;top:50%;transform:translateY(-50%);color:#58697d;pointer-events:none;font-size:11px}
+.calcpro-mortgage-uk-suffixed input{padding-right:44px}
+.calcpro-mortgage-uk-date{display:grid;grid-template-columns:minmax(0,1fr) 67px;gap:5px}
+.calcpro-mortgage-uk-date select,.calcpro-mortgage-uk-date input{min-width:0;width:100%;height:31px;border:1px solid #326699;background:white;color:#111;border-radius:1px;padding:4px 5px}
+.calcpro-mortgage-uk-optionals{border:0;margin:0;padding:0;display:grid;gap:8px;min-width:0}
+.calcpro-mortgage-uk-optional-toggle{display:flex;gap:7px;align-items:center;font-weight:bold;font-size:12px;padding:5px 0 3px;cursor:pointer}
+.calcpro-mortgage-uk-optional-toggle input{width:15px;height:15px;accent-color:#326699;margin:0}
+.calcpro-mortgage-uk-hidden{display:none!important}
+.calcpro-mortgage-uk-actions{display:flex;gap:8px;justify-content:center;margin-top:12px}
+.calcpro-mortgage-uk-primary{background:#397c1d;border:1px solid #2c6d13;color:white;font-weight:bold;border-radius:2px;padding:7px 15px}
+.calcpro-mortgage-uk-primary:hover{background:#2e6717}
+.calcpro-mortgage-uk-secondary{background:#8e959b;border:1px solid #717b84;color:#fff;font-weight:bold;border-radius:2px;padding:7px 12px}
+.calcpro-mortgage-uk-secondary:hover{background:#6d777f}
+.calcpro-mortgage-uk-error{margin:7px 0 0;color:#a72324;font-size:12px;font-weight:bold;line-height:1.4}
+.calcpro-mortgage-uk-invalid{border-color:#c62828!important;box-shadow:0 0 0 1px #c62828}
+.calcpro-mortgage-uk-result{min-width:0}
+.calcpro-mortgage-uk-summary-title{display:flex;align-items:center;justify-content:space-between;gap:8px;background:#397c1d;color:white;padding:7px 10px;margin:0 0 5px;font-size:15px;line-height:1.3;font-weight:bold}
+.calcpro-mortgage-uk-summary-title strong{font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+.calcpro-mortgage-uk-summary-title .calcpro-mortgage-uk-save{background:transparent;color:white;border:1px solid #bed6b1;padding:2px 6px;font-weight:600;font-size:11px;border-radius:2px}
+.calcpro-mortgage-uk-summary-main{min-width:0;display:flex;align-items:center;gap:7px}
+.calcpro-mortgage-uk-summary-title-secondary{margin-top:3px}
+.calcpro-mortgage-uk-result-table{width:100%;border-collapse:collapse;margin-top:10px;font-size:12px;line-height:1.4;table-layout:auto}
+.calcpro-mortgage-uk-result-table th{text-align:right;font-weight:bold;white-space:nowrap;border-bottom:1px solid #b7c2cc}
+.calcpro-mortgage-uk-result-table th:first-child{text-align:left}
+.calcpro-mortgage-uk-result-table td{padding:3px 3px;vertical-align:top;border-bottom:1px solid #f0f1f2}
+.calcpro-mortgage-uk-result-table td:not(:first-child){text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+.calcpro-mortgage-uk-result-table tr.calcpro-mortgage-uk-total td{font-weight:bold;border-top:2px solid #596875;border-bottom:1px solid #b7c2cc;background:#f5f8fa}
+.calcpro-mortgage-uk-result-table tr.calcpro-mortgage-uk-stat td{border-bottom:0;padding-top:5px}
+.calcpro-mortgage-uk-pie-area{display:flex;align-items:center;justify-content:center;gap:14px;padding:14px 2px 6px;flex-wrap:wrap}
+.calcpro-mortgage-uk-donut{width:129px;height:129px;border-radius:50%;background:#d5dce2;display:grid;place-items:center;flex:none;position:relative}
+.calcpro-mortgage-uk-donut::before{content:"";position:absolute;inset:29px;border-radius:50%;background:#fff}
+.calcpro-mortgage-uk-donut-center{z-index:1;position:relative;font-size:15px;font-weight:bold;color:#244966;text-align:center}
+.calcpro-mortgage-uk-donut-center small{display:block;font-size:10px;color:#5e6d7a;font-weight:normal}
+.calcpro-mortgage-uk-legend{display:grid;gap:5px;font-size:11px;line-height:1.25;max-width:190px}
+.calcpro-mortgage-uk-legend-item{display:flex;align-items:center;gap:6px}
+.calcpro-mortgage-uk-swatch{width:11px;height:11px;display:inline-block;flex:none;border-radius:1px}
+.calcpro-mortgage-uk-pie-caption{text-align:center;color:#6d7986;font-size:11px;margin-top:0}
+.calcpro-mortgage-uk-small-actions{display:flex;align-items:center;justify-content:flex-end;gap:10px;margin-top:9px;flex-wrap:wrap;font-size:12px}
+.calcpro-mortgage-uk-text-button{border:0;background:none;padding:2px;color:#005b9b;text-decoration:underline;font-size:12px}
+.calcpro-mortgage-uk-text-button:hover{text-decoration:none}
+.calcpro-mortgage-uk-status{min-height:18px;font-size:11px;color:#376b27;margin-top:4px;text-align:right}
+.calcpro-mortgage-uk-schedule{margin-top:27px}
+.calcpro-mortgage-uk-schedule h2{font-size:18px;margin:0 0 8px;color:#125217}
+.calcpro-mortgage-uk-tabs{display:flex;gap:6px;margin-bottom:9px;flex-wrap:wrap}
+.calcpro-mortgage-uk-tab{background:transparent;border:1px solid #b7c9d7;border-radius:3px;padding:6px 10px;color:#006699;font-weight:600;font-size:12px}
+.calcpro-mortgage-uk-tab[aria-selected=true]{background:#336699;border-color:#336699;color:white;text-decoration:none}
+.calcpro-mortgage-uk-schedule-layout{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,0.95fr);gap:17px;align-items:start}
+.calcpro-mortgage-uk-schedule-wrap{min-width:0;overflow-x:auto;max-height:720px;overflow-y:auto;border:1px solid #d0d8de}
+.calcpro-mortgage-uk-schedule-table{border-collapse:collapse;width:100%;font-size:11px;line-height:1.22;font-variant-numeric:tabular-nums}
+.calcpro-mortgage-uk-schedule-table th,.calcpro-mortgage-uk-schedule-table td{padding:6px 4px;border-right:1px solid #d6e0e9;border-bottom:1px solid #d6e0e9;text-align:right;white-space:nowrap}
+.calcpro-mortgage-uk-schedule-table th{position:sticky;top:0;z-index:1;background:#336699;color:white;text-align:right}
+.calcpro-mortgage-uk-schedule-table th:nth-child(2),.calcpro-mortgage-uk-schedule-table td:nth-child(2){text-align:center}
+.calcpro-mortgage-uk-schedule-table tr:nth-child(even) td{background:#f5f8fa}
+.calcpro-mortgage-uk-schedule-table tr.calcpro-mortgage-uk-group-row td{text-align:center;background:#e6edf4;font-weight:700;color:#125217}
+.calcpro-mortgage-uk-graph{min-width:0;padding:7px 2px}
+.calcpro-mortgage-uk-graph svg{display:block;max-width:100%;width:100%;height:auto}
+.calcpro-mortgage-uk-graph-caption{font-size:11px;color:#576b7a;margin:4px 0;text-align:center}
+.calcpro-mortgage-uk-footnote{font-size:12px;color:#61707b;margin:13px 0 0}
+@media(max-width:710px){.calcpro-mortgage-uk-top{grid-template-columns:minmax(210px,244px) minmax(0,1fr);gap:11px}.calcpro-mortgage-uk-panel{padding:10px 7px}.calcpro-mortgage-uk-summary-title{font-size:13px;padding:7px}.calcpro-mortgage-uk-result-table{font-size:11px}.calcpro-mortgage-uk-result-table td{padding:3px 2px}.calcpro-mortgage-uk-schedule-layout{gap:9px}.calcpro-mortgage-uk-schedule-table{font-size:10px}.calcpro-mortgage-uk-schedule-table th,.calcpro-mortgage-uk-schedule-table td{padding:5px 2px}}
+@media(max-width:625px){.calcpro-mortgage-uk-top{grid-template-columns:minmax(0,1fr)}.calcpro-mortgage-uk-panel{width:100%;max-width:390px;margin:0 auto}.calcpro-mortgage-uk-field{grid-template-columns:minmax(0,45%) minmax(0,55%)}.calcpro-mortgage-uk-result{width:100%}.calcpro-mortgage-uk-result-table{font-size:12px}.calcpro-mortgage-uk-schedule-layout{grid-template-columns:minmax(0,1fr)}.calcpro-mortgage-uk-graph{order:-1;max-width:520px;margin:0 auto}.calcpro-mortgage-uk-schedule-wrap{max-height:480px}.calcpro-mortgage-uk-summary-title{font-size:15px}}
+@media(max-width:380px){.calcpro-mortgage-uk-result-table{font-size:11px}.calcpro-mortgage-uk-summary-title{font-size:13px}.calcpro-mortgage-uk-summary-main{gap:4px}.calcpro-mortgage-uk-schedule-table{font-size:10px}}
+@media print{.calcpro-mortgage-uk-banner,.calcpro-mortgage-uk-actions,.calcpro-mortgage-uk-small-actions,.calcpro-mortgage-uk-status,.calcpro-mortgage-uk-tabs,.calcpro-mortgage-uk-save{display:none!important}.calcpro-mortgage-uk-top{grid-template-columns:250px minmax(0,1fr)}.calcpro-mortgage-uk-panel{background:#fff}.calcpro-mortgage-uk-schedule-wrap{max-height:none;overflow:visible}.calcpro-mortgage-uk-schedule-table th{position:static}.calcpro-mortgage-uk-schedule-table tr{break-inside:avoid}}
+</style>
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Mortgage Calculator UK</nav><h1 class="cp-page-title">Mortgage Calculator UK</h1><p class="cp-intro">Estimate UK mortgage repayments and interest-only payments in GBP, with optional annual costs, charts and a full amortization schedule.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-mortgage-uk" id="calcpro-mortgage-uk-root">
+  <div class="calcpro-mortgage-uk-banner">Modify the values and select Calculate to update your UK mortgage estimate.</div>
+  <div class="calcpro-mortgage-uk-top">
+    <form id="calcpro-mortgage-uk-form" class="calcpro-mortgage-uk-panel" novalidate>
+      <div class="calcpro-mortgage-uk-fields">
+        <div class="calcpro-mortgage-uk-field"><label for="calcpro-mortgage-uk-price">Home Price</label><div class="calcpro-mortgage-uk-control"><span class="calcpro-mortgage-uk-prefix">£</span><input id="calcpro-mortgage-uk-price" name="price" inputmode="decimal" type="text" value="500,000" autocomplete="off"></div></div>
+        <div class="calcpro-mortgage-uk-field"><label for="calcpro-mortgage-uk-deposit">Mortgage Deposit</label><div class="calcpro-mortgage-uk-control calcpro-mortgage-uk-suffixed"><input id="calcpro-mortgage-uk-deposit" name="deposit" inputmode="decimal" type="text" value="25"><span class="calcpro-mortgage-uk-suffix">%</span></div></div>
+        <div class="calcpro-mortgage-uk-field"><label for="calcpro-mortgage-uk-years">Loan Term</label><div class="calcpro-mortgage-uk-control calcpro-mortgage-uk-suffixed"><input id="calcpro-mortgage-uk-years" name="years" inputmode="decimal" type="text" value="25"><span class="calcpro-mortgage-uk-suffix">years</span></div></div>
+        <div class="calcpro-mortgage-uk-field"><label for="calcpro-mortgage-uk-rate">Interest Rate</label><div class="calcpro-mortgage-uk-control calcpro-mortgage-uk-suffixed"><input id="calcpro-mortgage-uk-rate" name="rate" inputmode="decimal" type="text" value="5"><span class="calcpro-mortgage-uk-suffix">%</span></div></div>
+        <label class="calcpro-mortgage-uk-optional-toggle" for="calcpro-mortgage-uk-add-options"><input type="checkbox" id="calcpro-mortgage-uk-add-options" checked>Include Optionals Below</label>
+        <fieldset class="calcpro-mortgage-uk-optionals" id="calcpro-mortgage-uk-optionals" aria-label="Optional property costs">
+          <div class="calcpro-mortgage-uk-field"><label for="calcpro-mortgage-uk-tax">Taxes</label><div class="calcpro-mortgage-uk-control calcpro-mortgage-uk-suffixed"><input id="calcpro-mortgage-uk-tax" name="tax" inputmode="decimal" type="text" value="1.2"><span class="calcpro-mortgage-uk-suffix">% /year</span></div></div>
+          <div class="calcpro-mortgage-uk-field"><label for="calcpro-mortgage-uk-home-ins">Home Insurance</label><div class="calcpro-mortgage-uk-control calcpro-mortgage-uk-suffixed"><span class="calcpro-mortgage-uk-prefix">£</span><input id="calcpro-mortgage-uk-home-ins" name="homeIns" inputmode="decimal" type="text" value="2,500"><span class="calcpro-mortgage-uk-suffix">/year</span></div></div>
+          <div class="calcpro-mortgage-uk-field"><label for="calcpro-mortgage-uk-mort-ins">Mortgage Insurance</label><div class="calcpro-mortgage-uk-control calcpro-mortgage-uk-suffixed"><span class="calcpro-mortgage-uk-prefix">£</span><input id="calcpro-mortgage-uk-mort-ins" name="mortIns" inputmode="decimal" type="text" value="0"><span class="calcpro-mortgage-uk-suffix">/year</span></div></div>
+          <div class="calcpro-mortgage-uk-field"><label for="calcpro-mortgage-uk-other">Other Costs</label><div class="calcpro-mortgage-uk-control calcpro-mortgage-uk-suffixed"><span class="calcpro-mortgage-uk-prefix">£</span><input id="calcpro-mortgage-uk-other" name="other" inputmode="decimal" type="text" value="6,000"><span class="calcpro-mortgage-uk-suffix">/year</span></div></div>
+        </fieldset>
+        <div class="calcpro-mortgage-uk-field"><label for="calcpro-mortgage-uk-month">Start Date</label><div class="calcpro-mortgage-uk-date"><select id="calcpro-mortgage-uk-month" name="month" aria-label="Start month"><option value="1">Jan</option><option value="2">Feb</option><option value="3">Mar</option><option value="4">Apr</option><option value="5">May</option><option value="6">Jun</option><option value="7">Jul</option><option value="8">Aug</option><option value="9">Sep</option><option value="10">Oct</option><option value="11" selected>Nov</option><option value="12">Dec</option></select><input id="calcpro-mortgage-uk-year" name="year" type="text" inputmode="numeric" value="2026" aria-label="Start year"></div></div>
+      </div>
+      <div class="calcpro-mortgage-uk-actions"><button class="calcpro-mortgage-uk-primary" type="submit">Calculate ▸</button><button class="calcpro-mortgage-uk-secondary" type="button" id="calcpro-mortgage-uk-clear">Clear</button></div>
+      <p class="calcpro-mortgage-uk-error" id="calcpro-mortgage-uk-error" role="alert" aria-live="assertive" hidden></p>
+    </form>
+    <section class="calcpro-mortgage-uk-result" id="calcpro-mortgage-uk-results" aria-label="Mortgage results" aria-live="polite">
+      <h2 class="calcpro-mortgage-uk-summary-title"><span>Interest Only: <strong id="calcpro-mortgage-uk-interest-only">£1,562.50</strong></span><button type="button" class="calcpro-mortgage-uk-save" id="calcpro-mortgage-uk-save" title="Copy link with these inputs">Save link</button></h2>
+      <h2 class="calcpro-mortgage-uk-summary-title calcpro-mortgage-uk-summary-title-secondary"><span>Monthly Repayment: <strong id="calcpro-mortgage-uk-repayment">£2,192.21</strong></span></h2>
+      <table class="calcpro-mortgage-uk-result-table" aria-label="Mortgage repayment and cost breakdown"><thead><tr><th scope="col">&nbsp;</th><th scope="col">Monthly</th><th scope="col">Total</th></tr></thead><tbody id="calcpro-mortgage-uk-breakdown"></tbody></table>
+      <div class="calcpro-mortgage-uk-pie-area"><div class="calcpro-mortgage-uk-donut" id="calcpro-mortgage-uk-donut" role="img" aria-label="Lifetime out-of-pocket cost breakdown"><span class="calcpro-mortgage-uk-donut-center" id="calcpro-mortgage-uk-donut-center">64%<small>Repayment</small></span></div><div class="calcpro-mortgage-uk-legend" id="calcpro-mortgage-uk-legend"></div></div>
+      <p class="calcpro-mortgage-uk-pie-caption">Share of total payments over the loan term</p>
+      <div class="calcpro-mortgage-uk-small-actions"><button type="button" class="calcpro-mortgage-uk-text-button" id="calcpro-mortgage-uk-print">Print results</button><button type="button" class="calcpro-mortgage-uk-text-button" id="calcpro-mortgage-uk-export">Download schedule CSV</button></div>
+      <div class="calcpro-mortgage-uk-status" id="calcpro-mortgage-uk-status" role="status" aria-live="polite"></div>
+    </section>
+  </div>
+  <section class="calcpro-mortgage-uk-schedule" aria-labelledby="calcpro-mortgage-uk-schedule-title">
+    <h2 id="calcpro-mortgage-uk-schedule-title">Amortization schedule</h2>
+    <div class="calcpro-mortgage-uk-tabs" role="tablist" aria-label="Amortization schedule views"><button class="calcpro-mortgage-uk-tab" role="tab" id="calcpro-mortgage-uk-annual-tab" aria-controls="calcpro-mortgage-uk-schedule-content" aria-selected="true" type="button">Annual Schedule</button><button class="calcpro-mortgage-uk-tab" role="tab" id="calcpro-mortgage-uk-monthly-tab" aria-controls="calcpro-mortgage-uk-schedule-content" aria-selected="false" type="button">Monthly Schedule</button></div>
+    <div class="calcpro-mortgage-uk-schedule-layout"><div class="calcpro-mortgage-uk-schedule-wrap" id="calcpro-mortgage-uk-schedule-content" role="tabpanel" aria-labelledby="calcpro-mortgage-uk-annual-tab"><table class="calcpro-mortgage-uk-schedule-table" aria-label="Amortization schedule"><thead id="calcpro-mortgage-uk-schedule-head"></thead><tbody id="calcpro-mortgage-uk-schedule-body"></tbody></table></div><div class="calcpro-mortgage-uk-graph"><svg id="calcpro-mortgage-uk-svg" viewBox="0 0 430 260" role="img" aria-label="Mortgage balance, cumulative interest, and cumulative mortgage repayments over time"><title>Mortgage amortization over time</title></svg><p class="calcpro-mortgage-uk-graph-caption">Mortgage balance, cumulative interest and cumulative repayments</p></div></div>
+    <p class="calcpro-mortgage-uk-footnote">Estimates assume a constant annual interest rate and monthly repayments. Optional costs are held constant, do not reduce your loan balance, and are not included in the amortization table.</p>
+  </section>
+</div></section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><a href="house-affordability-calculator.html">House Affordability</a><a href="down-payment-calculator.html">Down Payment</a><a href="amortization-calculator.html">Amortization</a><a href="mortgage-payoff-calculator.html">Mortgage Payoff</a><a href="refinance-calculator.html">Refinance</a><a href="rent-vs-buy-calculator.html">Rent vs Buy</a><a href="home-equity-loan-calculator.html">Home Equity Loan</a><a href="loan-calculator.html">Loan</a><a href="interest-rate-calculator.html">Interest Rate</a><a href="apr-calculator.html">APR</a><a href="mortgage-calculator.html">Mortgage</a><a href="budget-calculator.html">Budget</a></div></section></aside><article class="cp-article"><h2>How to Use the Mortgage Calculator UK</h2>
+<p>Enter the property price in pounds, your deposit as a percentage, the mortgage term in years, and the estimated annual interest rate. Select <strong>Calculate</strong> to compare the interest-only amount with a capital-and-interest monthly repayment. Change the start month or year to adjust the amortization dates.</p>
+<p>Tick <strong>Include Optionals Below</strong> to include estimated annual property taxes (entered as a percentage of the home price), home insurance, mortgage insurance and other annual homeownership costs. These are added to the monthly budget, not to your mortgage principal. Use the annual or monthly schedule tabs to explore principal, interest and remaining balance. You can print the results, copy a link to your inputs, or export the schedule as CSV.</p>
+<h2>Mortgage Repayment Formula</h2>
+<p>For a fixed interest rate and equal monthly repayments, the monthly capital-and-interest payment is:</p>
+<p><strong>M = P × r ÷ [1 − (1 + r)<sup>−n</sup>]</strong></p>
+<p>Here, <strong>P</strong> is the amount borrowed (home price minus deposit), <strong>r</strong> is the annual rate divided by 12 and by 100, and <strong>n</strong> is the number of monthly repayments (term in years × 12). At a 0% rate, the monthly payment is simply P ÷ n. The interest-only comparison is <strong>P × r</strong> each month, leaving the principal to be repaid separately.</p>
+<h3>Worked Example</h3>
+<p>For a £500,000 property with a 25% deposit (£125,000), a £375,000 mortgage over 25 years at a 5% annual interest rate gives an estimated <strong>£2,192.21 monthly repayment</strong> and <strong>£1,562.50 monthly interest-only payment</strong>. Over 300 repayments, the mortgage-only interest comes to approximately <strong>£282,663.80</strong>.</p>
+<p>With the example optional amounts (1.2% annually for taxes, £2,500 per year for home insurance and £6,000 per year for other costs), the estimated monthly out-of-pocket cost is <strong>£3,400.55</strong>. These optional amounts are illustrative; they are not automatically calculated UK Council Tax or purchase-related Stamp Duty.</p>
+<h2>Understanding Your Results</h2>
+<h3>Interest-only versus repayment</h3><p>An interest-only amount pays the current month's interest but does not pay down principal. A repayment mortgage reduces the outstanding balance throughout the term. Both figures assume the annual interest rate remains unchanged.</p>
+<h3>Annual and monthly amortization</h3><p>Each schedule row calculates interest on the opening monthly loan balance. The rest of that month's mortgage payment goes toward principal. The graph compares the declining balance against cumulative interest and mortgage payments, while the doughnut chart displays the total breakdown of included costs.</p>
+<h3>Costs that are not included</h3><p>The model does not calculate fees, affordability, changing or introductory rates, early repayment charges, overpayments or one-off property purchase taxes. In the UK, Council Tax is generally based on local authority and valuation band rather than a flat percentage of the purchase price. For an accurate budget, use your actual recurring costs in the optional fields or disable them.</p>
+<h2>Frequently Asked Questions</h2>
+<h3>What does the mortgage deposit percentage mean?</h3><p>A 20% deposit on a £300,000 property is £60,000, so the amount borrowed is £240,000. The calculator accepts deposits from 0% through 100%.</p>
+<h3>Can I compare different interest rates?</h3><p>Yes. Enter a new annual rate and press Calculate. Higher rates generally increase monthly repayments and lifetime interest for the same loan and term.</p>
+<h3>Does the interest-only amount repay my mortgage?</h3><p>No. It represents interest only; the outstanding principal remains payable at the end of the loan term unless you make separate repayments.</p>
+<h3>Is this a UK mortgage offer or affordability decision?</h3><p>No. It is an illustration based on your inputs, using a fixed-rate mathematical model. A lender determines the actual payment schedule and whether you qualify.</p>
+<h2>Further Reading</h2><p>For practical guidance on repayments, interest-only mortgages and other homebuying costs, see <a href="https://www.moneyhelper.org.uk/en/homes/buying-a-home/mortgage-repayment-calculator" target="_blank" rel="noopener noreferrer">MoneyHelper's mortgage repayment guide</a> and its <a href="https://www.moneyhelper.org.uk/en/homes/buying-a-home/estimate-your-overall-buying-and-moving-costs" target="_blank" rel="noopener noreferrer">homebuying costs guide</a>.</p>
+<p class="cp-page-footer">CalcPro — estimates are informational and are not personalised mortgage advice.</p></article></main></div><script>
+(function () {
+  'use strict';
+  const root = document.getElementById('calcpro-mortgage-uk-root');
+  if (!root) return;
+  const $ = (id) => root.querySelector('#calcpro-mortgage-uk-' + id);
+  const form = $('form');
+  const defaults = { price: '500,000', deposit: '25', years: '25', rate: '5', tax: '1.2', homeIns: '2,500', mortIns: '0', other: '6,000' };
+  const fields = { price: $('price'), deposit: $('deposit'), years: $('years'), rate: $('rate'), tax: $('tax'), homeIns: $('home-ins'), mortIns: $('mort-ins'), other: $('other') };
+  const monthsEnglish = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  const colors = {payment:'#3689df',tax:'#61a92f',homeIns:'#f2b519',mortIns:'#7943b5',other:'#d43b35'};
+  const gbp = (value, digits = 2) => '£' + (Math.abs(value) < 0.0000005 ? 0 : value).toLocaleString('en-GB',{minimumFractionDigits:digits,maximumFractionDigits:digits});
+  const compactGbp = value => gbp(value, 0);
+  let model = null;
+  let view = 'annual';
+  const currentDate = new Date();
+  const startDefault = {month: currentDate.getMonth()+1, year: currentDate.getFullYear()};
 
-<body>
-<!-- Main-header-page -->
-<script defer src="/assets/js/data.js"></script>
-<script defer src="/assets/js/style.js?v=20261111-1"></script>
-</body>
-</html>
+  function setStatus(message) { $('status').textContent = message; }
+  function clearError() {
+    const el = $('error'); el.textContent = ''; el.hidden = true;
+    Object.values(fields).concat([$('year')]).forEach(input => { input.classList.remove('calcpro-mortgage-uk-invalid'); input.removeAttribute('aria-invalid'); });
+  }
+  function invalid(input, description) {
+    input.classList.add('calcpro-mortgage-uk-invalid'); input.setAttribute('aria-invalid','true');
+    const target = $('error'); target.textContent = description; target.hidden = false;
+    input.focus(); return null;
+  }
+  function parseAmount(input, label, min, max) {
+    const raw = input.value.trim().replace(/,/g,'');
+    if (!/^(?:\d+\.?\d*|\.\d+)$/.test(raw)) return invalid(input, label + ' must be a valid non-negative number.');
+    const number = Number(raw);
+    if (!Number.isFinite(number) || number < min || number > max) return invalid(input, label + ' must be between ' + min + ' and ' + max.toLocaleString('en-GB') + '.');
+    return number;
+  }
+  function readInputs() {
+    clearError();
+    const price = parseAmount(fields.price,'Home Price',0.01,1000000000000); if (price === null) return null;
+    const deposit = parseAmount(fields.deposit,'Mortgage Deposit',0,100); if (deposit === null) return null;
+    const years = parseAmount(fields.years,'Loan Term',1/12,100); if (years === null) return null;
+    const terms = Math.round(years*12);
+    if (terms < 1) return invalid(fields.years,'Loan Term must be at least one month.');
+    const rate = parseAmount(fields.rate,'Interest Rate',0,100); if (rate === null) return null;
+    const optional = $('add-options').checked;
+    let tax = 0, homeIns = 0, mortIns = 0, other = 0;
+    if (optional) {
+      tax = parseAmount(fields.tax,'Taxes',0,100); if (tax === null) return null;
+      homeIns = parseAmount(fields.homeIns,'Home Insurance',0,100000000000); if (homeIns === null) return null;
+      mortIns = parseAmount(fields.mortIns,'Mortgage Insurance',0,100000000000); if (mortIns === null) return null;
+      other = parseAmount(fields.other,'Other Costs',0,100000000000); if (other === null) return null;
+    }
+    const yearRaw = $('year').value.trim();
+    if (!/^\d{4}$/.test(yearRaw) || Number(yearRaw) < 1900 || Number(yearRaw) > 2200) return invalid($('year'),'Start year must be between 1900 and 2200.');
+    const month = Number($('month').value);
+    return { price, deposit, years, terms, rate, optional, tax, homeIns, mortIns, other, year:Number(yearRaw), month };
+  }
+  function dateFor(i, p) {
+    const index = p.year*12+(p.month-1)+i;
+    return {month: index%12+1, year:Math.floor(index/12)};
+  }
+  function dateLabel(i, p) { const d = dateFor(i,p); return String(d.month).padStart(2,'0')+'/'+String(d.year); }
+  function dateRange(a,b,p) { const first = dateFor(a,p), last = dateFor(b,p); return String(first.month).padStart(2,'0')+'/'+String(first.year).slice(-2)+' – '+String(last.month).padStart(2,'0')+'/'+String(last.year).slice(-2); }
+  function calculate(p) {
+    const depositAmount = p.price*p.deposit/100;
+    const loan = p.price-depositAmount;
+    const r = p.rate/1200;
+    const repayment = loan === 0 ? 0 : r === 0 ? loan/p.terms : loan*r/(1-Math.pow(1+r,-p.terms));
+    const monthExtras = {tax:p.price*p.tax/1200,homeIns:p.homeIns/12,mortIns:p.mortIns/12,other:p.other/12};
+    const monthly = [];
+    const annual = [];
+    let balance = loan, totalInterest = 0, totalPrincipal = 0, totalPaid = 0;
+    for (let i=0; i<p.terms; i++) {
+      const interest = balance*r;
+      let principal = repayment-interest;
+      if (i===p.terms-1 || principal>balance) principal=balance;
+      if (principal<0) principal=0;
+      balance = Math.max(0,balance-principal);
+      totalInterest+=interest; totalPrincipal+=principal; totalPaid+=interest+principal;
+      monthly.push({period:i+1,date:dateLabel(i,p),interest,principal,balance,paid:interest+principal,cumulativeInterest:totalInterest,cumulativePaid:totalPaid});
+      if (i%12===11 || i===p.terms-1) {
+        const chunk = monthly.slice(Math.floor(i/12)*12,i+1);
+        annual.push({period:annual.length+1,from:(annual.length*12),to:i,date:dateRange(annual.length*12,i,p),interest:chunk.reduce((s,row)=>s+row.interest,0),principal:chunk.reduce((s,row)=>s+row.principal,0),balance,cumulativeInterest:totalInterest,cumulativePaid:totalPaid});
+      }
+    }
+    const extras = Object.values(monthExtras).reduce((s,val)=>s+val,0);
+    return {p,loan,depositAmount,interestOnly:loan*r,repayment,monthExtras,extras,monthly,annual,totalInterest,totalPrincipal,totalPaid,outMonthly:repayment+extras,outTotal:totalPaid+extras*p.terms};
+  }
+  function paintBreakdown(m) {
+    const rows = [
+      {name:'Mortgage Payment',monthly:m.repayment,total:m.totalPaid},
+      {name:'Taxes',monthly:m.monthExtras.tax,total:m.monthExtras.tax*m.p.terms},
+      {name:'Home Insurance',monthly:m.monthExtras.homeIns,total:m.monthExtras.homeIns*m.p.terms},
+      {name:'Mortgage Insurance',monthly:m.monthExtras.mortIns,total:m.monthExtras.mortIns*m.p.terms},
+      {name:'Other Costs',monthly:m.monthExtras.other,total:m.monthExtras.other*m.p.terms}
+    ];
+    const optionalRows = m.p.optional ? rows.filter((r,index)=>index===0 || r.monthly!==0) : rows.slice(0,1);
+    const tr = (name,monthly,total,cls='') => '<tr'+(cls?' class="'+cls+'"':'')+'><td>'+name+'</td><td>'+gbp(monthly)+'</td><td>'+gbp(total)+'</td></tr>';
+    let html = optionalRows.map(x=>tr(x.name,x.monthly,x.total)).join('');
+    html += tr('Total Out-of-Pocket',m.outMonthly,m.outTotal,'calcpro-mortgage-uk-total');
+    html += '<tr class="calcpro-mortgage-uk-stat"><td>Loan Amount</td><td colspan="2">'+gbp(m.loan)+'</td></tr>';
+    html += '<tr class="calcpro-mortgage-uk-stat"><td>Mortgage Deposit</td><td colspan="2">'+gbp(m.depositAmount)+'</td></tr>';
+    html += '<tr class="calcpro-mortgage-uk-stat"><td>Total Interest</td><td colspan="2">'+gbp(m.totalInterest)+'</td></tr>';
+    $('breakdown').innerHTML = html;
+    $('interest-only').textContent = gbp(m.interestOnly);
+    $('repayment').textContent = gbp(m.repayment);
+  }
+  function paintDonut(m) {
+    const pieces = [
+      {name:'Mortgage Repayment',amount:m.totalPaid,color:colors.payment},
+      {name:'Taxes',amount:m.monthExtras.tax*m.p.terms,color:colors.tax},
+      {name:'Home Insurance',amount:m.monthExtras.homeIns*m.p.terms,color:colors.homeIns},
+      {name:'Mortgage Insurance',amount:m.monthExtras.mortIns*m.p.terms,color:colors.mortIns},
+      {name:'Other Costs',amount:m.monthExtras.other*m.p.terms,color:colors.other}
+    ].filter(p=>p.amount>0);
+    const denom = pieces.reduce((sum,p)=>sum+p.amount,0);
+    let offset=0;
+    $('legend').innerHTML = pieces.length ? pieces.map(p=>'<div class="calcpro-mortgage-uk-legend-item"><span class="calcpro-mortgage-uk-swatch" style="background:'+p.color+'"></span><span>'+p.name+' ('+(100*p.amount/denom).toFixed(1)+'%)</span></div>').join('') : '<span>No payments</span>';
+    const stops=[];
+    pieces.forEach((p,i)=>{const start=offset; offset+=(100*p.amount/denom); stops.push(p.color+' '+start.toFixed(4)+'% '+(i===pieces.length-1?100:offset).toFixed(4)+'%');});
+    $('donut').style.background=stops.length?'conic-gradient('+stops.join(',')+')':'#d7dce2';
+    const portion=denom===0?0:100*m.totalPaid/denom;
+    $('donut-center').innerHTML=portion.toFixed(0)+'%<small>Repayment</small>';
+    $('donut').setAttribute('aria-label','Lifetime cost split: '+pieces.map(p=>p.name+' '+(100*p.amount/denom).toFixed(1)+'%').join(', '));
+  }
+  function tableRow(row,index,isAnnual) {
+    const date = isAnnual?row.date:row.date;
+    return '<tr><td>'+row.period+'</td><td>'+date+'</td><td>'+compactGbp(row.interest)+'</td><td>'+compactGbp(row.principal)+'</td><td>'+compactGbp(row.balance)+'</td></tr>';
+  }
+  function paintSchedule(m) {
+    const annual=view==='annual';
+    $('annual-tab').setAttribute('aria-selected', String(annual));
+    $('monthly-tab').setAttribute('aria-selected',String(!annual));
+    $('schedule-content').setAttribute('aria-labelledby','calcpro-mortgage-uk-'+(annual?'annual':'monthly')+'-tab');
+    $('schedule-head').innerHTML='<tr><th scope="col">'+(annual?'Year':'Month')+'</th><th scope="col">Date</th><th scope="col">Interest</th><th scope="col">Principal</th><th scope="col">Ending Balance</th></tr>';
+    const rows=annual?m.annual:m.monthly;
+    $('schedule-body').innerHTML = rows.map((row,i)=>tableRow(row,i,annual)+(!annual && (i+1)%12===0 && i!==rows.length-1 ? '<tr class="calcpro-mortgage-uk-group-row"><td colspan="5">End of year '+((i+1)/12)+'</td></tr>':'' )).join('') || '<tr><td colspan="5">No scheduled payments.</td></tr>';
+    $('schedule-content').scrollTop=0;
+  }
+  function paintGraph(m) {
+    const svg=$('svg');
+    const left=56,right=411,top=43,bottom=221;
+    const samples=[{period:0,balance:m.loan,cumulativeInterest:0,cumulativePaid:0}, ...m.annual.map(a=>({period:a.to+1,balance:a.balance,cumulativeInterest:a.cumulativeInterest,cumulativePaid:a.cumulativePaid}))];
+    const max=Math.max(1,m.loan,m.totalPaid,m.totalInterest);
+    const magnitude=Math.pow(10,Math.floor(Math.log10(max/4)));
+    const tick = [1,2,2.5,5,10].map(x=>x*magnitude).find(x=>x*4>=max) || 10*magnitude;
+    const yMax=tick*4;
+    const y = value => bottom-(value/yMax)*(bottom-top);
+    const x = period => left+(period/m.p.terms)*(right-left);
+    const displayAxis=value => value>=1000000?'£'+(value/1000000).toFixed(value%1000000===0?0:1)+'m':value>=1000?'£'+Math.round(value/1000)+'k':gbp(value,0);
+    let html='<title>Mortgage balance, cumulative interest, and cumulative mortgage payments over time</title>';
+    for (let i=0;i<=4;i++) { const v=i*tick, yy=y(v).toFixed(2); html+='<line x1="'+left+'" y1="'+yy+'" x2="'+right+'" y2="'+yy+'" stroke="#dce3e9" stroke-width="1"/><text x="48" y="'+(+yy+3)+'" fill="#6d7c8b" text-anchor="end" font-size="11">'+displayAxis(v)+'</text>'; }
+    const labelInterval=Math.max(1,Math.ceil(m.p.terms/12/6));
+    const yearCount=Math.ceil(m.p.terms/12);
+    for (let yr=0;yr<=yearCount;yr+=labelInterval) {
+      const xx=x(Math.min(yr*12,m.p.terms));
+      html+='<text x="'+xx.toFixed(2)+'" y="239" fill="#5f6f7f" text-anchor="middle" font-size="11">'+yr+'</text>';
+    }
+    html+='<line x1="'+left+'" y1="'+bottom+'" x2="'+right+'" y2="'+bottom+'" stroke="#8797a5"/><line x1="'+left+'" y1="'+top+'" x2="'+left+'" y2="'+bottom+'" stroke="#8797a5"/>';
+    html+='<text x="230" y="256" font-size="12" fill="#344a5d" text-anchor="middle">Year</text>';
+    const lines=[{key:'balance',name:'Balance',color:'#3988db'},{key:'cumulativeInterest',name:'Interest',color:'#68a932'},{key:'cumulativePaid',name:'Payment',color:'#c13230'}];
+    lines.forEach((line,index)=>{
+      const px=65+index*111;
+      html+='<line x1="'+px+'" y1="13" x2="'+(px+20)+'" y2="13" stroke="'+line.color+'" stroke-width="3"/><text x="'+(px+25)+'" y="17" font-size="12" fill="#23394b">'+line.name+'</text>';
+      const pts=samples.map(p=>x(p.period).toFixed(2)+','+y(p[line.key]).toFixed(2)).join(' ');
+      html+='<polyline points="'+pts+'" fill="none" stroke="'+line.color+'" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" />';
+      samples.slice(1).forEach(p=>{html+='<circle cx="'+x(p.period).toFixed(2)+'" cy="'+y(p[line.key]).toFixed(2)+'" r="2.4" fill="'+line.color+'"><title>Month '+p.period+': '+line.name+' '+gbp(p[line.key])+'</title></circle>';});
+    });
+    svg.innerHTML=html;
+  }
+  function render() {
+    const p=readInputs(); if (!p) return false;
+    model=calculate(p);
+    paintBreakdown(model); paintDonut(model); paintSchedule(model); paintGraph(model);
+    setStatus(''); return true;
+  }
+  function setOptions() {
+    const on=$('add-options').checked;
+    $('optionals').classList.toggle('calcpro-mortgage-uk-hidden',!on);
+    $('optionals').querySelectorAll('input').forEach(inp=>{inp.disabled=!on;});
+  }
+  function reset() {
+    Object.entries(defaults).forEach(([name,value])=>{fields[name].value=value;});
+    $('add-options').checked=true;
+    $('month').value=String(startDefault.month);
+    $('year').value=String(startDefault.year);
+    view='annual'; setOptions(); render();
+  }
+  function buildShareUrl() {
+    const url=new URL(window.location.href);
+    ['price','deposit','years','rate','tax','homeIns','mortIns','other'].forEach(key=>{url.searchParams.set('mg_'+key,fields[key].value.replace(/,/g,''));});
+    url.searchParams.set('mg_options',$('add-options').checked?'1':'0');
+    url.searchParams.set('mg_month',$('month').value);
+    url.searchParams.set('mg_year',$('year').value);
+    return url.toString();
+  }
+  function restoreShared() {
+    const params=new URLSearchParams(window.location.search);
+    if (!params.has('mg_price')) return;
+    Object.keys(defaults).forEach(key=>{ if(params.has('mg_'+key)) fields[key].value=params.get('mg_'+key); });
+    if(params.has('mg_options')) $('add-options').checked=params.get('mg_options')==='1';
+    if(params.has('mg_month')) $('month').value=params.get('mg_month');
+    if(params.has('mg_year')) $('year').value=params.get('mg_year');
+  }
+  async function copyLink() {
+    if (!render()) return;
+    const url=buildShareUrl();
+    try {
+      if (!navigator.clipboard || !navigator.clipboard.writeText) throw Error('Clipboard API unavailable');
+      await navigator.clipboard.writeText(url);
+      setStatus('Link copied with your current inputs.');
+    } catch (err) {
+      const input=document.createElement('textarea'); input.value=url;input.setAttribute('readonly','');input.style.cssText='position:fixed;left:-9999px;top:0';document.body.appendChild(input); input.select();
+      const ok=document.execCommand('copy');input.remove();
+      setStatus(ok?'Link copied with your current inputs.':'Copy link not available in this browser; try using a secure (HTTPS) site.');
+    }
+  }
+  function exportCsv() {
+    if (!model) return;
+    const rows=[['Month','Date','Interest (GBP)','Principal (GBP)','Ending balance (GBP)']].concat(model.monthly.map(x=>[x.period,x.date,x.interest.toFixed(2),x.principal.toFixed(2),x.balance.toFixed(2)]));
+    const csv=rows.map(row=>row.map(x=>'"'+String(x).replace(/"/g,'""')+'"').join(',')).join('\r\n');
+    const blob=new Blob(['\ufeff',csv],{type:'text/csv;charset=utf-8'});
+    const url=URL.createObjectURL(blob);
+    const link=document.createElement('a');link.href=url;link.download='mortgage-calculator-uk-amortization.csv';document.body.appendChild(link);link.click();link.remove();
+    setTimeout(()=>URL.revokeObjectURL(url),1000);
+    setStatus('Amortization CSV exported.');
+  }
+  form.addEventListener('submit',function(e){e.preventDefault();render();});
+  $('clear').addEventListener('click',reset);
+  $('add-options').addEventListener('change',setOptions);
+  $('annual-tab').addEventListener('click',()=>{view='annual';if(model)paintSchedule(model);});
+  $('monthly-tab').addEventListener('click',()=>{view='monthly';if(model)paintSchedule(model);});
+  [ $('annual-tab'), $('monthly-tab') ].forEach(tab => tab.addEventListener('keydown', function(event) {
+    if (event.key !== 'ArrowRight' && event.key !== 'ArrowLeft' && event.key !== 'Home' && event.key !== 'End') return;
+    event.preventDefault();
+    const toAnnual = event.key === 'Home' || (event.key === 'ArrowLeft' && view === 'monthly') || (event.key === 'ArrowRight' && view === 'monthly');
+    view = toAnnual ? 'annual' : 'monthly';
+    paintSchedule(model);
+    (toAnnual ? $('annual-tab') : $('monthly-tab')).focus();
+  }));
+  $('print').addEventListener('click',()=>window.print());
+  $('save').addEventListener('click',copyLink);
+  $('export').addEventListener('click',exportCsv);
+  $('month').value=String(startDefault.month);
+  $('year').value=String(startDefault.year);
+  restoreShared(); setOptions(); render();
+})();
+</script><script defer src="/assets/js/data.js"></script>
+<script defer src="/assets/js/style.js?v=20261111-5"></script>
+</body></html>

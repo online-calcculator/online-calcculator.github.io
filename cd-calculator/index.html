@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US">
-<head>
-<meta charset="utf-8">
+<html lang="en"><head><meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="content-language" content="en">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,17 +11,510 @@
   <meta name="author" content="Commingsoon">
   <meta name="publisher" content="Commingsoon">
   <meta name="robots" content="noindex, nofollow, max-image-preview:large">
-  <link rel="stylesheet" href="/assets/css/style.css?v=20261111-1" crossorigin="anonymous" data-n-g="">
+  <link rel="stylesheet" href="/assets/css/style.css?v=20261111-4" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/doc_style.css" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/side_style.css" crossorigin="anonymous" data-n-g=""> 
   <!--ogtags-->
-  <!--schema-->
-  <!--style-->
-</head>
+  <!--schema--><style>
+/* All calculator styles are namespaced; the surrounding CalcPro page is unchanged. */
+.calcpro-cd-root{--calcpro-cd-blue:#2d80db;--calcpro-cd-green:#83b920;--calcpro-cd-dark-green:#4e8428;--calcpro-cd-navy:#125217;--calcpro-cd-grid:#d2d2d2;font:16px Arial,Helvetica,sans-serif;color:#111;max-width:100%;line-height:1.35}
+.calcpro-cd-root *, .calcpro-cd-root *::before,.calcpro-cd-root *::after{box-sizing:border-box}
+.calcpro-cd-root button,.calcpro-cd-root input,.calcpro-cd-root select{font:inherit}
+.calcpro-cd-instruction{display:flex;align-items:center;justify-content:center;gap:26px;min-height:42px;background:#346999;color:#fff;margin-bottom:5px;font-size:16px;padding:4px 12px;text-align:center}
+.calcpro-cd-instruction-toggle{display:inline-flex;align-items:center;justify-content:center;background:#fff;color:#346999;border:0;border-radius:50%;font-size:16px;width:28px;height:28px;flex:0 0 28px;cursor:pointer;line-height:1;padding:0}
+.calcpro-cd-instruction.calcpro-cd-instruction-collapsed{min-height:29px;padding:2px 12px}
+.calcpro-cd-instruction-collapsed #calcpro-cd-instruction-text{display:none}
+.calcpro-cd-instruction-collapsed .calcpro-cd-instruction-toggle{height:24px;width:24px;flex-basis:24px;transform:rotate(180deg)}
+.calcpro-cd-primary{display:grid;grid-template-columns:minmax(0,335px) minmax(0,1fr);gap:22px;align-items:start}
+.calcpro-cd-form{background:#ededed;border:1px solid #bdbdbd;padding:11px 12px 9px;min-width:0}
+.calcpro-cd-field{display:grid;grid-template-columns:minmax(0,142px) minmax(0,1fr);align-items:center;column-gap:7px;margin:0 0 4px;min-height:31px}
+.calcpro-cd-field>label{font-size:15px;white-space:nowrap;line-height:1.2}
+.calcpro-cd-control{min-width:0;position:relative}
+.calcpro-cd-control>input,.calcpro-cd-control>select,.calcpro-cd-suffix-wrap>input{height:32px;background:#fff;border:1px solid #2b5d92;border-radius:2px;box-shadow:1px 1px 2px #b2b2b2;color:#111;padding:4px 6px;font-size:16px;min-width:0;outline-offset:1px}
+.calcpro-cd-control>input,.calcpro-cd-suffix-wrap>input{width:118px;max-width:100%}
+.calcpro-cd-control>select{width:154px;max-width:100%;padding-right:2px;cursor:pointer}
+.calcpro-cd-control.calcpro-cd-suffix-wrap{width:118px}
+.calcpro-cd-suffix-wrap{position:relative;display:inline-block;max-width:100%}
+.calcpro-cd-suffix-wrap>input{padding-right:34px}
+.calcpro-cd-suffix-wrap>span{position:absolute;right:7px;top:50%;transform:translateY(-50%);font-size:15px;pointer-events:none;color:#111}
+.calcpro-cd-length-controls .calcpro-cd-suffix-wrap{display:block;width:max-content;margin:0 0 1px}
+.calcpro-cd-length-controls .calcpro-cd-suffix-wrap>input{padding-right:55px}
+.calcpro-cd-length-controls .calcpro-cd-suffix-wrap>span{color:#818181}
+.calcpro-cd-length-field{align-items:start}
+.calcpro-cd-length-field>label{padding-top:8px}
+.calcpro-cd-help{display:inline-flex;justify-content:center;align-items:center;border:1px solid #888;border-radius:50%;width:15px;height:15px;font-size:11px;color:#6b6b6b;font-weight:700;cursor:help;vertical-align:middle}
+.calcpro-cd-error{margin:6px 2px 0;padding:6px 7px;border-left:3px solid #ad2828;background:#fff3f2;color:#8b1515;font-size:13px}
+.calcpro-cd-actions{display:flex;justify-content:center;align-items:center;gap:5px;padding-top:8px}
+.calcpro-cd-actions button{color:#fff;border:0;cursor:pointer;height:43px}
+.calcpro-cd-calculate{display:flex;gap:15px;align-items:center;background:#43801d;font-weight:bold!important;padding:0 13px 0 17px}
+.calcpro-cd-calculate:hover{background:#356a17}
+.calcpro-cd-go{display:inline-flex;justify-content:center;align-items:center;background:#a2cca1;color:#fff;border-radius:50%;height:25px;width:25px;font-size:14px}
+.calcpro-cd-clear{background:#a4a4a4;padding:0 10px}
+.calcpro-cd-clear:hover{background:#898989}
+.calcpro-cd-results{min-width:0;padding-top:3px}
+.calcpro-cd-result-header{display:flex;align-items:center;justify-content:space-between;background:var(--calcpro-cd-dark-green);color:white;height:40px;padding:4px 7px}
+.calcpro-cd-result-header h2{font:normal 22px Arial,Helvetica,sans-serif;color:white;margin:0}
+.calcpro-cd-save{display:flex;flex-direction:column;align-items:center;gap:0;justify-content:center;border:0;background:none;color:#fff;cursor:pointer;line-height:1;padding:0 2px;font-size:9px!important}
+.calcpro-cd-save span{font-size:9px}
+.calcpro-cd-summary{padding:5px 5px 0}
+.calcpro-cd-summary-row{display:flex;align-items:baseline;justify-content:space-between;gap:8px;margin-bottom:7px;font-size:15px}
+.calcpro-cd-summary-row>:last-child{text-align:right;white-space:nowrap}
+.calcpro-cd-summary-main{font-weight:bold}
+.calcpro-cd-donut-flex{display:flex;align-items:center;justify-content:center;gap:14px;margin:30px 0 4px}
+.calcpro-cd-donut{width:108px;height:108px;position:relative;flex:0 0 108px;border-radius:50%;background:conic-gradient(var(--calcpro-cd-green) 0deg 49deg,var(--calcpro-cd-blue) 49deg 360deg)}
+.calcpro-cd-donut-hole{position:absolute;inset:29px;background:#fff;border-radius:50%}
+.calcpro-cd-donut-label{position:absolute;left:0;top:0;transform:translate(-50%,-50%);color:white;font-size:12px;white-space:nowrap;pointer-events:none;text-shadow:0 0 2px #3339}
+.calcpro-cd-legend{font-size:15px;white-space:nowrap}
+.calcpro-cd-legend>div{display:flex;align-items:center;gap:6px}
+.calcpro-cd-legend i{display:inline-block;height:14px;width:21px;border-radius:3px}
+.calcpro-cd-legend-blue{background:var(--calcpro-cd-blue)}
+.calcpro-cd-legend-green{background:var(--calcpro-cd-green)}
+.calcpro-cd-save-message{font-size:12px;margin:3px 0 0;color:#34621b;min-height:0}
+.calcpro-cd-schedule{margin-top:16px}
+.calcpro-cd-schedule>h2{color:var(--calcpro-cd-navy);font-size:24px;line-height:1.22;margin:0 0 8px;font-weight:bold}
+.calcpro-cd-schedule-tabs{display:flex;gap:26px;align-items:center;margin-bottom:5px}
+.calcpro-cd-tab{font-size:16px!important;font-weight:bold!important;color:#006699;background:none;border:0;padding:0;text-decoration:underline;cursor:pointer}
+.calcpro-cd-tab-active{color:#000;text-decoration:none;cursor:default}
+.calcpro-cd-schedule-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:17px;align-items:start}
+.calcpro-cd-table-wrap{max-width:100%;overflow-x:auto}
+.calcpro-cd-table{border-collapse:collapse;font-size:15px;width:100%;white-space:nowrap;line-height:1.2}
+.calcpro-cd-table th{font-weight:bold;color:#fff;background:#2f6da8;text-align:left;border:1px solid #b6c4d0;padding:6px 4px}
+.calcpro-cd-table td{border:1px solid #ccc;padding:4px 5px;text-align:right}
+.calcpro-cd-table tbody tr:nth-child(even):not(.calcpro-cd-year-marker){background:#ececec}
+.calcpro-cd-table tbody tr.calcpro-cd-year-marker td{font-size:12px;background:#f5f7f9;color:#667;letter-spacing:.01em;text-align:center;font-style:italic}
+.calcpro-cd-chart-holder{min-width:0;overflow:hidden}
+.calcpro-cd-chart-scroll{max-width:100%;overflow-x:auto;overflow-y:hidden;outline-offset:-2px}
+.calcpro-cd-chart-scroll svg{display:block;width:100%;min-width:320px;height:auto;max-height:240px}
+.calcpro-cd-method-note{font-size:12px;color:#555;margin:9px 0}
+.calcpro-cd-root [hidden]{display:none!important}
+.calcpro-cd-root button:focus-visible,.calcpro-cd-root input:focus-visible,.calcpro-cd-root select:focus-visible,.calcpro-cd-root [tabindex="0"]:focus-visible{outline:2px solid #2369aa;outline-offset:2px}
+@media(max-width:730px){.calcpro-cd-primary{gap:14px;grid-template-columns:minmax(0,320px) minmax(0,1fr)}.calcpro-cd-form{padding-left:10px;padding-right:9px}.calcpro-cd-field{grid-template-columns:minmax(0,140px) minmax(0,1fr);column-gap:4px}.calcpro-cd-donut-flex{gap:10px}.calcpro-cd-legend{font-size:13px}}
+@media(max-width:650px){.calcpro-cd-primary{grid-template-columns:minmax(0,1fr);gap:14px}.calcpro-cd-form{max-width:400px;width:100%;margin:auto}.calcpro-cd-results{width:100%;max-width:450px;margin:0 auto}.calcpro-cd-schedule-layout{grid-template-columns:minmax(0,1fr);gap:12px}.calcpro-cd-donut-flex{margin:19px 0 12px}.calcpro-cd-chart-scroll svg{max-height:280px}.calcpro-cd-table-wrap{width:100%;max-width:100%;min-width:0}}
+@media(max-width:390px){.calcpro-cd-instruction{gap:8px;font-size:13px}.calcpro-cd-field{grid-template-columns:minmax(0,137px) minmax(0,1fr)}.calcpro-cd-field>label{font-size:14px}.calcpro-cd-control>select{font-size:14px}.calcpro-cd-schedule-tabs{gap:15px}.calcpro-cd-tab{font-size:14px!important}.calcpro-cd-schedule>h2{font-size:21px}}
+@media print{.calcpro-cd-instruction,.calcpro-cd-actions,.calcpro-cd-save,.calcpro-cd-save-message{display:none!important}.calcpro-cd-root{print-color-adjust:exact;-webkit-print-color-adjust:exact}.calcpro-cd-schedule-layout{grid-template-columns:1fr 1fr}.calcpro-cd-primary{grid-template-columns:minmax(0,335px) minmax(0,1fr)}.calcpro-cd-chart-scroll{overflow:visible}.calcpro-cd-chart-scroll svg{width:100%;min-width:0}}
 
-<body>
-<!-- Main-header-page -->
-<script defer src="/assets/js/data.js"></script>
-<script defer src="/assets/js/style.js?v=20261111-1"></script>
-</body>
-</html>
+/* Integrated template print control uses the same tool-specific prefix. */
+.calcpro-cd-print-link{float:right;margin-top:9px;padding:0;border:0;background:none;color:#006699;text-decoration:underline;font:14px Arial,Helvetica,sans-serif;cursor:pointer}
+@media print{.calcpro-cd-print-link{display:none}}
+
+</style>
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / CD Calculator</nav><button type="button" id="calcpro-cd-print" class="calcpro-cd-print-link">Print</button><h1 class="cp-page-title">CD Calculator</h1><p class="cp-intro">The Certificate of Deposit (CD) Calculator estimates maturity balances and interest earnings over time, including an optional marginal income-tax adjustment.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-cd-root" id="calcpro-cd-root">
+  <div class="calcpro-cd-instruction" id="calcpro-cd-instruction">
+    <button type="button" id="calcpro-cd-instruction-toggle" class="calcpro-cd-instruction-toggle" aria-label="Hide instructions" aria-expanded="true" aria-controls="calcpro-cd-instruction-text"><span aria-hidden="true">▼</span></button>
+    <span id="calcpro-cd-instruction-text">Modify the values and click the Calculate button to use</span>
+  </div>
+  <div class="calcpro-cd-primary">
+    <form id="calcpro-cd-form" class="calcpro-cd-form" novalidate>
+      <div class="calcpro-cd-field">
+        <label for="calcpro-cd-principal">Initial deposit</label>
+        <div class="calcpro-cd-control"><input id="calcpro-cd-principal" name="principal" class="calcpro-cd-money" type="text" inputmode="decimal" value="$10,000" autocomplete="off" aria-describedby="calcpro-cd-error" /></div>
+      </div>
+      <div class="calcpro-cd-field">
+        <label for="calcpro-cd-rate">Interest rate</label>
+        <div class="calcpro-cd-control calcpro-cd-suffix-wrap"><input id="calcpro-cd-rate" name="rate" type="text" inputmode="decimal" value="5" autocomplete="off" aria-describedby="calcpro-cd-error"/><span aria-hidden="true">%</span></div>
+      </div>
+      <div class="calcpro-cd-field">
+        <label for="calcpro-cd-compound">Compound</label>
+        <div class="calcpro-cd-control"><select id="calcpro-cd-compound" name="compound">
+          <option value="annually" selected>annually (APY)</option>
+          <option value="semiannually">semiannually</option>
+          <option value="quarterly">quarterly</option>
+          <option value="monthly">monthly (APR)</option>
+          <option value="continuously">continuously</option>
+        </select></div>
+      </div>
+      <div class="calcpro-cd-field calcpro-cd-length-field">
+        <label for="calcpro-cd-years">Deposit length</label>
+        <div class="calcpro-cd-control calcpro-cd-length-controls">
+          <div class="calcpro-cd-suffix-wrap"><input id="calcpro-cd-years" name="years" type="text" inputmode="numeric" value="3" autocomplete="off" aria-label="Deposit length in years" aria-describedby="calcpro-cd-error"/><span aria-hidden="true">years</span></div>
+          <div class="calcpro-cd-suffix-wrap"><input id="calcpro-cd-months" name="months" type="text" inputmode="numeric" value="0" autocomplete="off" aria-label="Additional deposit length in months" aria-describedby="calcpro-cd-error"/><span aria-hidden="true">months</span></div>
+        </div>
+      </div>
+      <div class="calcpro-cd-field">
+        <label for="calcpro-cd-tax">Marginal tax rate <span class="calcpro-cd-help" tabindex="0" title="An estimated marginal income-tax rate applied to interest earnings. Enter 0 if your interest is not taxable or you want gross growth only." aria-label="Help: Tax is estimated on interest at the entered marginal tax rate; use 0 for a tax-free estimate">?</span></label>
+        <div class="calcpro-cd-control calcpro-cd-suffix-wrap"><input id="calcpro-cd-tax" name="tax" type="text" inputmode="decimal" value="0" autocomplete="off" aria-describedby="calcpro-cd-error"/><span aria-hidden="true">%</span></div>
+      </div>
+      <p id="calcpro-cd-error" class="calcpro-cd-error" role="alert" hidden></p>
+      <div class="calcpro-cd-actions">
+        <button type="submit" class="calcpro-cd-calculate">Calculate <span class="calcpro-cd-go" aria-hidden="true">▶</span></button>
+        <button type="button" id="calcpro-cd-clear" class="calcpro-cd-clear">Clear</button>
+      </div>
+    </form>
+    <section class="calcpro-cd-results" aria-labelledby="calcpro-cd-results-heading" id="calcpro-cd-results">
+      <div class="calcpro-cd-result-header"><h2 id="calcpro-cd-results-heading">Results</h2><button type="button" class="calcpro-cd-save" id="calcpro-cd-save" title="Save results and schedule as CSV" aria-label="Save results and schedule as CSV"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M4 2h14l4 4v16H2V2h2zm3 1v6h10V3h-2v4H9V3H7zm5 9a4 4 0 100 8 4 4 0 000-8z"/></svg><span>save</span></button></div>
+      <div class="calcpro-cd-summary">
+        <div class="calcpro-cd-summary-row calcpro-cd-summary-main"><span>End balance</span><strong id="calcpro-cd-end-balance">$11,576.25</strong></div>
+        <div class="calcpro-cd-summary-row"><span>Total interest</span><span id="calcpro-cd-interest">$1,576.25</span></div>
+      </div>
+      <div class="calcpro-cd-donut-flex">
+        <div class="calcpro-cd-donut" id="calcpro-cd-donut" role="img" aria-label="86% initial deposit and 14% interest">
+          <div class="calcpro-cd-donut-hole"></div>
+          <span class="calcpro-cd-donut-label calcpro-cd-donut-deposit" id="calcpro-cd-donut-deposit">86%</span>
+          <span class="calcpro-cd-donut-label calcpro-cd-donut-interest" id="calcpro-cd-donut-interest">14%</span>
+        </div>
+        <div class="calcpro-cd-legend"><div><i class="calcpro-cd-legend-blue" aria-hidden="true"></i> Initial deposit</div><div><i class="calcpro-cd-legend-green" aria-hidden="true"></i> Interest</div></div>
+      </div>
+      <p id="calcpro-cd-save-message" class="calcpro-cd-save-message" role="status" aria-live="polite"></p>
+    </section>
+  </div>
+  <section id="calcpro-cd-schedule" class="calcpro-cd-schedule" aria-labelledby="calcpro-cd-schedule-heading">
+    <h2 id="calcpro-cd-schedule-heading">Accumulation Schedule</h2>
+    <div class="calcpro-cd-schedule-tabs" role="tablist" aria-label="Accumulation schedule view">
+      <button type="button" role="tab" aria-selected="true" aria-controls="calcpro-cd-schedule-table" id="calcpro-cd-annual-tab" class="calcpro-cd-tab calcpro-cd-tab-active" data-view="annual">Annual Schedule</button>
+      <button type="button" role="tab" aria-selected="false" aria-controls="calcpro-cd-schedule-table" id="calcpro-cd-monthly-tab" class="calcpro-cd-tab" data-view="monthly">Monthly Schedule</button>
+    </div>
+    <div class="calcpro-cd-schedule-layout">
+      <div class="calcpro-cd-table-wrap" id="calcpro-cd-schedule-table" role="tabpanel" aria-labelledby="calcpro-cd-annual-tab" tabindex="0">
+        <table class="calcpro-cd-table"><thead><tr><th id="calcpro-cd-period-heading" scope="col">Year</th><th scope="col">Deposit</th><th scope="col">Interest</th><th scope="col">Ending balance</th></tr></thead><tbody id="calcpro-cd-schedule-body"></tbody></table>
+      </div>
+      <div class="calcpro-cd-chart-holder"><div class="calcpro-cd-chart-scroll" tabindex="0" aria-label="Scrollable stacked balance chart"><svg id="calcpro-cd-chart" viewBox="0 0 340 215" role="img" aria-label="Yearly deposit and interest stacked bar chart" xmlns="http://www.w3.org/2000/svg"></svg></div></div>
+    </div>
+    <p class="calcpro-cd-method-note" id="calcpro-cd-tax-note" hidden>Interest shown is after estimated tax. This illustration assumes a constant tax rate on interest accrued within each year and reinvestment of net interest. Actual tax reporting and payment timing may differ.</p>
+  </section>
+</div>
+</section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><!-- REPLACE these links with real related tools for each calculator; verify live slugs. --><a href="retirement-calculator.html">Retirement</a><a href="roth-ira-calculator.html">Roth IRA</a><a href="investment-calculator.html">Investment</a><a href="compound-interest-calculator.html">Compound Interest</a><a href="annuity-payout-calculator.html">Annuity Payout</a><a href="pension-calculator.html">Pension</a><a href="inflation-calculator.html">Inflation</a><a href="future-value-calculator.html">Future Value</a><a href="income-tax-calculator.html">Income Tax</a><a href="savings-calculator.html">Savings</a><a href="mortgage-calculator.html">Mortgage</a><a href="loan-calculator.html">Loan</a></div></section></aside><article class="cp-article"><h2>How to Use the CD Calculator</h2>
+<p>Enter your initial deposit, the annual interest rate, and how often the CD compounds. Specify the term in years and months, then add an estimated marginal tax rate if you want an after-tax projection. Select <strong>Calculate</strong> to update the maturity balance, net interest, donut chart, and accumulation schedule without leaving the page.</p>
+<p>Switch between <strong>Annual Schedule</strong> and <strong>Monthly Schedule</strong> for detailed balances. <strong>Clear</strong> empties the form; the save icon exports the calculation and monthly schedule as a CSV file; <strong>Print</strong> opens your browser's print dialog.</p>
+<h2>Certificate of Deposit Interest Formulas</h2>
+<p>A CD's projected maturity balance depends on the principal (<em>P</em>), annual interest rate (<em>r</em>), and deposit term (<em>t</em>, in years). For a quoted annual percentage yield (APY):</p>
+<p><strong>Maturity value = P × (1 + APY)<sup>t</sup></strong></p>
+<p>For a nominal annual rate (APR) compounded <em>n</em> times per year:</p>
+<p><strong>Maturity value = P × (1 + r/n)<sup>n×t</sup></strong></p>
+<p>The compounding choices are annually (treated as a quoted APY), semiannually (n = 2), quarterly (n = 4), monthly (n = 12), and continuously (maturity value = P × e<sup>r×t</sup>). The calculator converts each option into a consistent effective annual growth factor before producing month-by-month balances.</p>
+<h3>How Estimated Taxes Affect Interest</h3>
+<p>When you supply a marginal tax rate, the tool estimates that fraction of each year's accrued interest as tax and rolls the remainder into the next year. Its estimated one-year after-tax factor is <strong>1 + (gross annual growth factor − 1) × (1 − tax rate)</strong>. This is a planning approximation, not a prediction of tax due or the timing of your tax payments. Actual bank crediting, day-count conventions, tax treatment, and early withdrawal penalties can change your results.</p>
+<h2>Worked CD Calculation Example</h2>
+<p>Suppose you deposit <strong>$10,000</strong> for <strong>3 years</strong> at <strong>5% APY</strong> with a <strong>0% tax estimate</strong>. The maturity value is $10,000 × (1.05)<sup>3</sup> = <strong>$11,576.25</strong>, producing <strong>$1,576.25</strong> in interest. The annual ending balances are $10,500.00, $11,025.00, and $11,576.25. A nonzero tax estimate reduces the projected interest retained and compounded.</p>
+<h2>Understanding the Results</h2>
+<p><strong>End balance</strong> is the initial deposit plus projected interest after any tax estimate. <strong>Total interest</strong> is the estimated increase in balance, not a separate additional payout. The donut shows the shares of the ending balance contributed by principal and interest; the stacked chart shows how those components develop during the term. The table's deposit column contains the initial deposit in the first period, and $0 thereafter because this calculator models a single deposit without additions.</p>
+<h2>Frequently Asked Questions</h2>
+<h3>Is the interest rate APY or APR?</h3>
+<p>Under <em>annually (APY)</em>, the input is interpreted as the effective annual yield. The other options use a nominal annual rate with the selected compounding method. An APR compounded monthly produces a slightly higher effective annual yield than the same percentage quoted as APY.</p>
+<h3>Can I enter an 18-month term?</h3>
+<p>Yes. Set the deposit length to 1 year and 6 months (or 0 years and 18 months). The calculation works in whole months and includes a final partial year in the annual schedule.</p>
+<h3>Will a bank's actual CD balance always match this estimate?</h3>
+<p>Not necessarily. Banks may use actual calendar days, different crediting schedules, promotional or variable rates, rounding methods, and withdrawal rules. Check your CD's rate disclosure and contract.</p>
+<h3>Are CD earnings taxable?</h3>
+<p>In the United States, CD interest is generally taxable, but the correct reporting year and any exceptions depend on the product and taxpayer. For guidance, consult the <a href="https://www.irs.gov/taxtopics/tc403" rel="noopener noreferrer" target="_blank">IRS Topic 403 on interest income</a>. For deposit protection information, see the <a href="https://www.fdic.gov/resources/deposit-insurance/" rel="noopener noreferrer" target="_blank">FDIC deposit insurance overview</a>.</p>
+<p class="cp-page-footer">CalcPro estimates are for informational purposes and are not financial, investment, or tax advice.</p>
+</article></main></div><script>
+(() => {
+  'use strict';
+  const root = document.getElementById('calcpro-cd-root');
+  if (!root) return;
+  const id = name => root.querySelector('#calcpro-cd-' + name);
+  const form = id('form');
+  const field = {
+    principal: id('principal'), rate: id('rate'), compound: id('compound'),
+    years: id('years'), months: id('months'), tax: id('tax')
+  };
+  const error = id('error');
+  const formatter = new Intl.NumberFormat('en-US', {style: 'currency', currency: 'USD', minimumFractionDigits: 2, maximumFractionDigits: 2});
+  const wholeFormatter = new Intl.NumberFormat('en-US', {maximumFractionDigits: 2});
+  const money = v => formatter.format(Math.abs(v) < 0.005 ? 0 : v);
+  let activeView = 'annual';
+  let lastModel = null;
+  const parseNumber = text => {
+    const cleaned = String(text).trim().replace(/[$,\s]/g, '');
+    return /^(?:\d+(?:\.\d*)?|\.\d+)$/.test(cleaned) ? Number(cleaned) : NaN;
+  };
+  const parseWhole = text => {
+    const cleaned = String(text).trim();
+    return /^\d+$/.test(cleaned) ? Number(cleaned) : NaN;
+  };
+  const showError = (message, focusField) => {
+    error.textContent = message;
+    error.hidden = false;
+    if (focusField) {
+      focusField.setAttribute('aria-invalid', 'true');
+      focusField.focus();
+    }
+  };
+  const clearErrors = () => {
+    error.hidden = true;
+    error.textContent = '';
+    Object.values(field).forEach(element => element.removeAttribute('aria-invalid'));
+  };
+  const validate = () => {
+    clearErrors();
+    const principal = parseNumber(field.principal.value);
+    const ratePercent = parseNumber(field.rate.value);
+    const taxPercent = parseNumber(field.tax.value);
+    const yearsText = field.years.value.trim();
+    const monthsText = field.months.value.trim();
+    const years = yearsText === '' && monthsText !== '' ? 0 : parseWhole(yearsText);
+    const months = monthsText === '' && yearsText !== '' ? 0 : parseWhole(monthsText);
+    if (!Number.isFinite(principal) || principal <= 0 || principal > 1e12) {
+      showError('Enter an initial deposit greater than $0 and no more than $1 trillion.', field.principal); return null;
+    }
+    if (!Number.isFinite(ratePercent) || ratePercent < 0 || ratePercent > 100) {
+      showError('Enter an interest rate between 0% and 100%.', field.rate); return null;
+    }
+    if (!Number.isSafeInteger(years) || years < 0 || years > 100) {
+      showError('Enter whole years between 0 and 100.', field.years); return null;
+    }
+    if (!Number.isSafeInteger(months) || months < 0 || months > 1200) {
+      showError('Enter a nonnegative whole number of months.', field.months); return null;
+    }
+    const totalMonths = years * 12 + months;
+    if (totalMonths < 1 || totalMonths > 1200) {
+      showError('Deposit length must be between 1 month and 100 years.', totalMonths < 1 ? field.months : field.years); return null;
+    }
+    if (!Number.isFinite(taxPercent) || taxPercent < 0 || taxPercent > 100) {
+      showError('Enter a marginal tax rate between 0% and 100%.', field.tax); return null;
+    }
+    if (!['annually', 'semiannually', 'quarterly', 'monthly', 'continuously'].includes(field.compound.value)) {
+      showError('Choose a compounding frequency.', field.compound); return null;
+    }
+    return {principal, ratePercent, taxPercent, years, months, totalMonths, compound: field.compound.value};
+  };
+  const getGrossAnnualFactor = (annualRate, compound) => {
+    if (compound === 'annually') return 1 + annualRate; // Supplied rate is already APY.
+    if (compound === 'continuously') return Math.exp(annualRate);
+    const n = {semiannually:2, quarterly:4, monthly:12}[compound];
+    return Math.pow(1 + annualRate / n, n); // Other rates are nominal APR.
+  };
+  const calculateModel = settings => {
+    const grossYearFactor = getGrossAnnualFactor(settings.ratePercent / 100, settings.compound);
+    const afterTaxShare = 1 - settings.taxPercent / 100;
+    const netYearFactor = 1 + (grossYearFactor - 1) * afterTaxShare;
+    const monthlyBalances = [settings.principal];
+    for (let month = 1; month <= settings.totalMonths; month++) {
+      const completedYears = Math.floor(month / 12);
+      const remainingMonths = month % 12;
+      // Tax is an annual effective-rate estimate, with net interest rolled into the following year.
+      const partialGrossGrowth = Math.pow(grossYearFactor, remainingMonths / 12) - 1;
+      const balance = settings.principal * Math.pow(netYearFactor, completedYears) * (1 + partialGrossGrowth * afterTaxShare);
+      monthlyBalances.push(balance);
+    }
+    const monthlyRows = [];
+    for (let month = 1; month <= settings.totalMonths; month++) {
+      monthlyRows.push({period: month, deposit: month === 1 ? settings.principal : 0,
+        interest: monthlyBalances[month] - monthlyBalances[month - 1], balance: monthlyBalances[month]});
+    }
+    const annualRows = [];
+    for (let start = 0; start < settings.totalMonths; start += 12) {
+      const lastMonth = Math.min(start + 12, settings.totalMonths);
+      const period = Math.floor(start / 12) + 1;
+      annualRows.push({period, deposit: period === 1 ? settings.principal : 0,
+        interest: monthlyBalances[lastMonth] - monthlyBalances[start], balance: monthlyBalances[lastMonth],
+        partialMonths: lastMonth - start});
+    }
+    const ending = monthlyBalances[settings.totalMonths];
+    return {...settings, grossYearFactor, grossAPY: (grossYearFactor - 1) * 100,
+      netYearFactor, ending, interest: ending - settings.principal,
+      monthlyRows, annualRows};
+  };
+  const setPosition = (element, angle, radius = 42) => {
+    const center = 54;
+    const rad = (angle - 90) * Math.PI / 180;
+    element.style.left = (center + radius * Math.cos(rad)) + 'px';
+    element.style.top = (center + radius * Math.sin(rad)) + 'px';
+  };
+  const updateDonut = model => {
+    const depositPct = model.ending > 0 ? Math.max(0, Math.min(100, model.principal / model.ending * 100)) : 100;
+    const interestPct = 100 - depositPct;
+    const sweep = interestPct * 3.6;
+    const donut = id('donut');
+    donut.style.background = `conic-gradient(#83b920 0deg ${sweep}deg, #2d80db ${sweep}deg 360deg)`;
+    donut.setAttribute('aria-label', `${Math.round(depositPct)}% initial deposit and ${Math.round(interestPct)}% interest`);
+    const interestEl = id('donut-interest');
+    const depositEl = id('donut-deposit');
+    depositEl.textContent = Math.round(depositPct) + '%';
+    interestEl.textContent = Math.round(interestPct) + '%';
+    setPosition(depositEl, sweep + (360 - sweep) / 2);
+    setPosition(interestEl, sweep / 2);
+    interestEl.hidden = interestPct < 3;
+    depositEl.hidden = depositPct < 3;
+  };
+  const niceTick = ceiling => {
+    const raw = Math.max(ceiling, 1e-12) / 5;
+    const magnitude = Math.pow(10, Math.floor(Math.log10(raw)));
+    return [1, 2, 2.5, 5, 10].map(m => m * magnitude).find(step => step >= raw) || 10 * magnitude;
+  };
+  const axisAmount = value => {
+    const abs = Math.abs(value);
+    if (abs >= 1e12) return '$' + wholeFormatter.format(value / 1e12) + 'T';
+    if (abs >= 1e9) return '$' + wholeFormatter.format(value / 1e9) + 'B';
+    if (abs >= 1e6) return '$' + wholeFormatter.format(value / 1e6) + 'M';
+    if (abs >= 1000) return '$' + wholeFormatter.format(value / 1000) + 'K';
+    return '$' + wholeFormatter.format(value);
+  };
+  const updateChart = model => {
+    const rows = activeView === 'monthly' ? model.monthlyRows : model.annualRows;
+    // For very long terms, show a representative sample while retaining the complete schedule table.
+    const stride = activeView === 'monthly' ? Math.ceil(rows.length / 60) : Math.ceil(rows.length / 60);
+    const sampled = rows.filter((_, index) => index % stride === 0 || index === rows.length - 1);
+    const width = Math.max(340, sampled.length * 23 + 78);
+    const graphLeft = 49;
+    const graphRight = width - 12;
+    const graphTop = 36;
+    const graphBottom = 175;
+    const graphHeight = graphBottom - graphTop;
+    const graphWidth = graphRight - graphLeft;
+    const tick = niceTick(model.ending);
+    const axisMax = Math.ceil(model.ending / tick) * tick;
+    const maxValue = Math.max(axisMax, tick);
+    const line = [];
+    line.push(`<title>${activeView === 'annual' ? 'Annual' : 'Monthly'} balances, principal in blue and interest in green</title>`);
+    line.push('<g font-family="Arial, Helvetica, sans-serif" fill="#333" font-size="11">');
+    for (let step = 0; step <= 5; step++) {
+      const val = maxValue * step / 5;
+      const y = graphBottom - graphHeight * step / 5;
+      line.push(`<line x1="${graphLeft}" y1="${y.toFixed(2)}" x2="${graphRight}" y2="${y.toFixed(2)}" stroke="#dedede" stroke-width="1"/>`);
+      line.push(`<text x="${graphLeft - 6}" y="${(y + 4).toFixed(2)}" text-anchor="end" font-size="10">${axisAmount(val)}</text>`);
+    }
+    line.push(`<line x1="${graphLeft}" y1="${graphBottom}" x2="${graphRight}" y2="${graphBottom}" stroke="#999" stroke-width="1"/>`);
+    sampled.forEach((row, index) => {
+      const barSpace = graphWidth / sampled.length;
+      const barWidth = Math.min(32, barSpace * 0.68);
+      const x = graphLeft + barSpace * (index + 0.5) - barWidth / 2;
+      const principalHeight = graphHeight * Math.min(model.principal, row.balance) / maxValue;
+      const interestHeight = graphHeight * Math.max(0, row.balance - model.principal) / maxValue;
+      const principalY = graphBottom - principalHeight;
+      line.push(`<rect x="${x.toFixed(2)}" y="${principalY.toFixed(2)}" width="${barWidth.toFixed(2)}" height="${principalHeight.toFixed(2)}" fill="#2d80db"><title>${activeView === 'annual' ? 'Year' : 'Month'} ${row.period}: principal ${money(model.principal)}</title></rect>`);
+      if (interestHeight > 0) line.push(`<rect x="${x.toFixed(2)}" y="${(principalY - interestHeight).toFixed(2)}" width="${barWidth.toFixed(2)}" height="${interestHeight.toFixed(2)}" fill="#83b920"><title>${activeView === 'annual' ? 'Year' : 'Month'} ${row.period}: interest ${money(row.balance - model.principal)}</title></rect>`);
+      const labelEvery = Math.max(1, Math.ceil(sampled.length / 15));
+      if (index % labelEvery === 0 || index === sampled.length - 1) line.push(`<text x="${(x + barWidth / 2).toFixed(2)}" y="189" text-anchor="middle" font-size="10">${row.period}</text>`);
+    });
+    line.push(`<rect x="${width - 140}" y="8" width="19" height="6" fill="#2d80db"/><text x="${width - 117}" y="15" font-size="11">Initial deposit</text>`);
+    line.push(`<rect x="${width - 140}" y="21" width="19" height="6" fill="#83b920"/><text x="${width - 117}" y="28" font-size="11">Interest</text>`);
+    line.push(`<text x="${(graphLeft + graphRight) / 2}" y="210" text-anchor="middle" font-size="13">${activeView === 'annual' ? 'Year' : 'Month'}</text>`);
+    line.push('</g>');
+    const svg = id('chart');
+    svg.setAttribute('viewBox', `0 0 ${width} 215`);
+    svg.style.width = width + 'px';
+    svg.setAttribute('aria-label', `${activeView === 'annual' ? 'Annual' : 'Monthly'} stacked bar chart showing a ${money(model.principal)} initial deposit and ${money(model.interest)} net interest after ${model.totalMonths} months`);
+    svg.innerHTML = line.join('');
+  };
+  const updateTable = model => {
+    const rows = activeView === 'annual' ? model.annualRows : model.monthlyRows;
+    id('period-heading').textContent = activeView === 'annual' ? 'Year' : 'Month';
+    const fragment = document.createDocumentFragment();
+    rows.forEach(row => {
+      const tr = document.createElement('tr');
+      [row.period, money(row.deposit), money(row.interest), money(row.balance)].forEach(text => {
+        const cell = document.createElement('td');
+        cell.textContent = String(text);
+        tr.appendChild(cell);
+      });
+      fragment.appendChild(tr);
+      if (activeView === 'monthly' && row.period % 12 === 0 && row.period < model.totalMonths) {
+        const marker = document.createElement('tr');
+        marker.className = 'calcpro-cd-year-marker';
+        const td = document.createElement('td');
+        td.colSpan = 4;
+        td.textContent = `End of year ${row.period / 12}`;
+        marker.appendChild(td);
+        fragment.appendChild(marker);
+      }
+    });
+    id('schedule-body').replaceChildren(fragment);
+  };
+  const setView = next => {
+    activeView = next;
+    ['annual', 'monthly'].forEach(name => {
+      const button = id(name + '-tab');
+      const active = name === next;
+      button.setAttribute('aria-selected', String(active));
+      button.tabIndex = active ? 0 : -1;
+      button.classList.toggle('calcpro-cd-tab-active', active);
+    });
+    id('schedule-table').setAttribute('aria-labelledby', 'calcpro-cd-' + next + '-tab');
+    if (lastModel) {updateTable(lastModel); updateChart(lastModel);}
+  };
+  const updateAll = model => {
+    lastModel = model;
+    id('results').hidden = false;
+    id('schedule').hidden = false;
+    id('end-balance').textContent = money(model.ending);
+    id('interest').textContent = money(model.interest);
+    id('tax-note').hidden = model.taxPercent === 0;
+    id('save-message').textContent = '';
+    updateDonut(model);
+    setView(activeView);
+  };
+  const calculate = () => {
+    const settings = validate();
+    if (!settings) return;
+    const model = calculateModel(settings);
+    if (!Number.isFinite(model.ending) || model.ending < 0) {
+      showError('These values produce an amount too large to calculate. Reduce the term, interest rate, or deposit.'); return;
+    }
+    field.principal.value = '$' + wholeFormatter.format(settings.principal);
+    updateAll(model);
+  };
+  form.addEventListener('submit', e => {e.preventDefault(); calculate();});
+  field.principal.addEventListener('blur', () => {
+    const value = parseNumber(field.principal.value);
+    if (Number.isFinite(value)) field.principal.value = '$' + wholeFormatter.format(value);
+  });
+  id('clear').addEventListener('click', () => {
+    form.reset();
+    field.principal.value = '';
+    field.rate.value = '';
+    field.years.value = '';
+    field.months.value = '';
+    field.tax.value = '';
+    clearErrors();
+    lastModel = null;
+    id('results').hidden = true;
+    id('schedule').hidden = true;
+    id('save-message').textContent = '';
+    setView('annual');
+    field.principal.focus();
+  });
+  ['annual', 'monthly'].forEach(name => {
+    const tab = id(name + '-tab');
+    tab.addEventListener('click', () => setView(name));
+    tab.addEventListener('keydown', evt => {
+      if (['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(evt.key)) {
+        evt.preventDefault();
+        const target = evt.key === 'Home' || evt.key === 'ArrowLeft' ? 'annual' : 'monthly';
+        setView(target);
+        id(target + '-tab').focus();
+      }
+    });
+  });
+  id('instruction-toggle').addEventListener('click', () => {
+    const banner = id('instruction');
+    const collapsed = banner.classList.toggle('calcpro-cd-instruction-collapsed');
+    id('instruction-toggle').setAttribute('aria-expanded', String(!collapsed));
+    id('instruction-toggle').setAttribute('aria-label', collapsed ? 'Show instructions' : 'Hide instructions');
+  });
+  id('save').addEventListener('click', () => {
+    if (!lastModel) return;
+    const m = lastModel;
+    const csv = [
+      ['CalcPro CD Calculator - saved estimate'],
+      ['Initial deposit', m.principal],
+      ['Interest rate (%)', m.ratePercent],
+      ['Compounding', m.compound],
+      ['Deposit length (months)', m.totalMonths],
+      ['Marginal tax rate (%)', m.taxPercent],
+      ['Estimated final balance', m.ending.toFixed(2)],
+      ['Estimated net interest', m.interest.toFixed(2)],
+      [],
+      ['Month', 'Deposit', 'Interest after estimated tax', 'Ending balance'],
+      ...m.monthlyRows.map(r => [r.period, r.deposit.toFixed(2), r.interest.toFixed(2), r.balance.toFixed(2)])
+    ].map(columns => columns.map(value => `"${String(value).replace(/"/g, '""')}"`).join(',')).join('\r\n');
+    const blob = new Blob(['\uFEFF' + csv], {type: 'text/csv;charset=utf-8'});
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'calcpro-cd-calculation.csv';
+    root.appendChild(link);
+    link.click();
+    link.remove();
+    window.setTimeout(() => URL.revokeObjectURL(url), 2000);
+    id('save-message').textContent = 'Calculation saved as CSV.';
+  });
+  const print = document.getElementById('calcpro-cd-print');
+  if (print) print.addEventListener('click', e => {e.preventDefault(); window.print();});
+  setView('annual');
+  calculate(); // Match the reference page's populated example on first load.
+})();
+
+</script><script defer src="/assets/js/data.js"></script>
+<script defer src="/assets/js/style.js?v=20261111-5"></script>
+</body></html>

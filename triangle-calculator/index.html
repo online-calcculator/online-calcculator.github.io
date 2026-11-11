@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US">
-<head>
-<meta charset="utf-8">
+<html lang="en"><head><meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="content-language" content="en">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,17 +11,365 @@
   <meta name="author" content="Commingsoon">
   <meta name="publisher" content="Commingsoon">
   <meta name="robots" content="noindex, nofollow, max-image-preview:large">
-  <link rel="stylesheet" href="/assets/css/style.css?v=20261111-1" crossorigin="anonymous" data-n-g="">
+  <link rel="stylesheet" href="/assets/css/style.css?v=20261111-4" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/doc_style.css" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/side_style.css" crossorigin="anonymous" data-n-g=""> 
   <!--ogtags-->
-  <!--schema-->
-  <!--style-->
-</head>
+  <!--schema--><style>
 
-<body>
-<!-- Main-header-page -->
-<script defer src="/assets/js/data.js"></script>
-<script defer src="/assets/js/style.js?v=20261111-1"></script>
-</body>
-</html>
+/* Triangle Calculator: isolated component styles. Global CalcPro layout is unchanged. */
+.calcpro-triangle{font:16px Arial,Helvetica,sans-serif;color:#141414;line-height:1.38;max-width:100%;}
+.calcpro-triangle *{box-sizing:border-box}
+.calcpro-triangle .calcpro-triangle-sr{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.calcpro-triangle .calcpro-triangle-result[hidden],.calcpro-triangle .calcpro-triangle-error[hidden],.calcpro-triangle .calcpro-triangle-options[hidden]{display:none!important}
+.calcpro-triangle .calcpro-triangle-result{margin:0 0 22px}
+.calcpro-triangle .calcpro-triangle-result-head{background:#4e8025;color:#fff;padding:7px 9px;display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:20px;min-height:37px}
+.calcpro-triangle .calcpro-triangle-save{border:1px solid #d4e6bf;color:#fff;background:transparent;font-size:12px;display:flex;gap:6px;align-items:center;justify-content:center;cursor:pointer;padding:5px 7px;min-width:65px}
+.calcpro-triangle .calcpro-triangle-save:hover{background:#416e1d}
+.calcpro-triangle .calcpro-triangle-save svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2}
+.calcpro-triangle .calcpro-triangle-options{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 0}
+.calcpro-triangle .calcpro-triangle-choice{border:1px solid #b4c6d8;padding:6px 12px;background:#f5f8fc;color:#125217;cursor:pointer}
+.calcpro-triangle .calcpro-triangle-choice[aria-pressed="true"]{background:#125217;color:white}
+.calcpro-triangle .calcpro-triangle-summary{display:grid;grid-template-columns:minmax(0,1fr) minmax(210px,47%);gap:8px;align-items:start;padding:18px 0 0}
+.calcpro-triangle .calcpro-triangle-summary h3{font-size:18px;line-height:1.35;margin:7px 0 14px;font-weight:700;color:#111}
+.calcpro-triangle .calcpro-triangle-readout{font-size:15px;line-height:1.42;overflow-wrap:anywhere}
+.calcpro-triangle .calcpro-triangle-readout p{margin:0 0 10px}
+.calcpro-triangle .calcpro-triangle-group{margin:0 0 13px}
+.calcpro-triangle .calcpro-triangle-diagram{width:100%;max-width:360px;height:auto;display:block;margin:auto;overflow:visible}
+.calcpro-triangle .calcpro-triangle-figure{margin:0;min-width:0}
+.calcpro-triangle .calcpro-triangle-figure figcaption{font-size:11px;color:#637281;text-align:center;margin-top:2px}
+.calcpro-triangle .calcpro-triangle-metrics{font-size:15px;line-height:1.4;margin:2px 0 0}
+.calcpro-triangle .calcpro-triangle-metrics p{margin:0 0 13px}
+.calcpro-triangle .calcpro-triangle-steps{margin:14px 0 18px;font-size:15px}
+.calcpro-triangle .calcpro-triangle-steps>summary{display:list-item;color:#006699;text-decoration:underline;cursor:pointer;padding:4px 0;list-style:revert}
+.calcpro-triangle .calcpro-triangle-steps-content{padding:10px 14px;background:#f6f8fa;border:1px solid #dee5ed;margin-top:7px;line-height:1.52}
+.calcpro-triangle .calcpro-triangle-steps-content p{margin:8px 0}
+.calcpro-triangle .calcpro-triangle-error{color:#872e23;background:#fff0ee;border:1px solid #d9a59e;padding:9px 11px;margin:0 0 12px;font-size:14px}
+.calcpro-triangle .calcpro-triangle-panel{border:1px solid #bfbfbf;background:#eee;min-width:0;padding:6px 8px 12px}
+.calcpro-triangle .calcpro-triangle-shape{max-width:390px;width:100%;aspect-ratio:390/216;margin:0 auto;position:relative}
+.calcpro-triangle .calcpro-triangle-schematic{display:block;width:100%;height:100%;pointer-events:none}
+.calcpro-triangle .calcpro-triangle-schematic .calcpro-triangle-edge{stroke:#161616;stroke-width:2.5;fill:none;stroke-linejoin:round}
+.calcpro-triangle .calcpro-triangle-schematic .calcpro-triangle-angle-arc{stroke:#1818de;stroke-width:1;fill:none}
+.calcpro-triangle .calcpro-triangle-schematic .calcpro-triangle-angle-letter{fill:#0000d9;font-size:16px}
+.calcpro-triangle .calcpro-triangle-schematic .calcpro-triangle-side-letter{fill:#008428;font-size:11px}
+.calcpro-triangle .calcpro-triangle-field{position:absolute;display:block;width:22%;min-width:0}
+.calcpro-triangle .calcpro-triangle-field input{width:100%;min-width:0;height:29px;padding:3px 7px;border:1px solid #165da7;background:#fff;box-shadow:1px 2px 2px #a5a5a5;border-radius:2px;color:#111;font:16px Arial,Helvetica,sans-serif}
+.calcpro-triangle .calcpro-triangle-field input:focus{outline:2px solid #225b96;outline-offset:1px}
+.calcpro-triangle .calcpro-triangle-field .calcpro-triangle-unit{position:absolute;right:6px;top:5px;font-size:12px;color:#777;pointer-events:none}
+.calcpro-triangle .calcpro-triangle-field.calcpro-triangle-withunit input{padding-right:23px}
+.calcpro-triangle .calcpro-triangle-field-c{top:1%;left:39%}
+.calcpro-triangle .calcpro-triangle-field-b{top:41%;left:13%}
+.calcpro-triangle .calcpro-triangle-field-a{top:41%;right:13%}
+.calcpro-triangle .calcpro-triangle-field-A{top:71%;left:5%}
+.calcpro-triangle .calcpro-triangle-field-B{top:71%;right:5%}
+.calcpro-triangle .calcpro-triangle-field-base{top:78%;left:39%}
+.calcpro-triangle .calcpro-triangle-selectrow{display:flex;justify-content:center;align-items:center;gap:6px;flex-wrap:wrap;margin:6px 0 12px;font-size:15px}
+.calcpro-triangle .calcpro-triangle-selectrow select{height:31px;background:#fff;border:1px solid #165da7;color:#111;font:15px Arial,Helvetica,sans-serif;border-radius:2px;padding:3px 6px}
+.calcpro-triangle .calcpro-triangle-actions{display:flex;gap:4px;align-items:stretch;justify-content:center}
+.calcpro-triangle .calcpro-triangle-calculate,.calcpro-triangle .calcpro-triangle-clear{font:bold 15px Arial,Helvetica,sans-serif;border:0;color:white;cursor:pointer;padding:10px 13px;min-height:38px}
+.calcpro-triangle .calcpro-triangle-calculate{background:#4e8025}
+.calcpro-triangle .calcpro-triangle-calculate:hover{background:#3e6d1b}
+.calcpro-triangle .calcpro-triangle-clear{background:#aaa;font-weight:400}
+.calcpro-triangle .calcpro-triangle-clear:hover{background:#888}
+.calcpro-triangle .calcpro-triangle-arrow{font-size:18px;vertical-align:middle;margin-left:8px}
+.calcpro-triangle .calcpro-triangle-hint{font-size:12px;color:#585858;text-align:center;margin:10px 0 0}
+@media(max-width:560px){
+ .calcpro-triangle .calcpro-triangle-summary{grid-template-columns:1fr;gap:1px}
+ .calcpro-triangle .calcpro-triangle-figure{grid-row:1}
+ .calcpro-triangle .calcpro-triangle-figure .calcpro-triangle-diagram{max-width:340px}
+ .calcpro-triangle .calcpro-triangle-readout{font-size:15px}
+ .calcpro-triangle .calcpro-triangle-field input{height:28px;font-size:14px;padding-left:4px;padding-right:4px}
+ .calcpro-triangle .calcpro-triangle-field.calcpro-triangle-withunit input{padding-right:15px}
+ .calcpro-triangle .calcpro-triangle-field .calcpro-triangle-unit{right:4px;top:6px;font-size:10px}
+}
+@media(max-width:350px){.calcpro-triangle .calcpro-triangle-field input{height:25px;font-size:13px}.calcpro-triangle .calcpro-triangle-field .calcpro-triangle-unit{top:5px}}
+@media print{.calcpro-triangle .calcpro-triangle-actions,.calcpro-triangle .calcpro-triangle-save,.calcpro-triangle .calcpro-triangle-hint{display:none!important}.calcpro-triangle .calcpro-triangle-result[hidden]{display:none!important}}
+
+</style>
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/math-calculator/">Math</a> / Triangle Calculator</nav><h1 class="cp-page-title">Triangle Calculator</h1><p class="cp-intro">Enter any three known measurements, including at least one side. Use the triangle diagram to enter sides a, b, c and angles A, B, C, then calculate the remaining measurements. Radian angles can use expressions such as pi/2 or pi/4.</p><section aria-label="Calculator" class="cp-tool-area">
+<div class="calcpro-triangle" id="calcpro-triangle-root">
+  <section class="calcpro-triangle-result" id="calcpro-triangle-result" aria-label="Triangle result" hidden>
+    <div class="calcpro-triangle-result-head"><span>Result</span><button type="button" class="calcpro-triangle-save" id="calcpro-triangle-save" title="Save the current triangle result as text" aria-label="Save triangle result"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 3h14l3 3v15H3V3z M7 3v7h10V3 M7 21v-8h10v8 M9 3v5h6"/></svg>Save</button></div>
+    <div id="calcpro-triangle-options" class="calcpro-triangle-options" aria-label="Alternative triangle solutions" hidden></div>
+    <div class="calcpro-triangle-summary"><div class="calcpro-triangle-readout" id="calcpro-triangle-readout"></div><figure class="calcpro-triangle-figure"><svg class="calcpro-triangle-diagram" id="calcpro-triangle-diagram" viewBox="0 0 360 240" role="img" aria-label="Diagram of solved triangle" preserveAspectRatio="xMidYMid meet"></svg><figcaption>Proportional triangle diagram</figcaption></figure></div>
+    <div class="calcpro-triangle-metrics" id="calcpro-triangle-metrics"></div>
+    <details class="calcpro-triangle-steps" id="calcpro-triangle-steps"><summary>Show Calculation Steps</summary><div class="calcpro-triangle-steps-content" id="calcpro-triangle-steps-content"></div></details>
+  </section>
+  <p class="calcpro-triangle-error" id="calcpro-triangle-error" role="alert" hidden></p>
+  <form id="calcpro-triangle-form" novalidate>
+    <div class="calcpro-triangle-panel">
+      <div class="calcpro-triangle-shape">
+        <svg class="calcpro-triangle-schematic" viewBox="0 0 390 216" aria-hidden="true">
+          <path class="calcpro-triangle-edge" d="M195 35 L115 171 L275 171 Z"/>
+          <path class="calcpro-triangle-angle-arc" d="M184 54 Q195 69 206 54 M130 171 Q126 157 121 153 M260 171 Q264 157 269 153"/>
+          <text class="calcpro-triangle-angle-letter" x="190" y="73">C</text>
+          <text class="calcpro-triangle-angle-letter" x="138" y="164">A</text>
+          <text class="calcpro-triangle-angle-letter" x="240" y="164">B</text>
+          <text class="calcpro-triangle-side-letter" x="155" y="118">side b</text>
+          <text class="calcpro-triangle-side-letter" x="207" y="118">side a</text>
+          <text class="calcpro-triangle-side-letter" x="178" y="169">side c</text>
+        </svg>
+        <label class="calcpro-triangle-field calcpro-triangle-field-c calcpro-triangle-withunit" for="calcpro-triangle-angle-C"><span class="calcpro-triangle-sr">Angle C</span><input id="calcpro-triangle-angle-C" name="angle-C" type="text" inputmode="text" value="60" autocomplete="off" aria-label="Angle C"><span class="calcpro-triangle-unit" aria-hidden="true">°</span></label>
+        <label class="calcpro-triangle-field calcpro-triangle-field-b" for="calcpro-triangle-side-b"><span class="calcpro-triangle-sr">Side b</span><input id="calcpro-triangle-side-b" name="side-b" type="text" inputmode="decimal" value="1" autocomplete="off" aria-label="Side b"></label>
+        <label class="calcpro-triangle-field calcpro-triangle-field-a" for="calcpro-triangle-side-a"><span class="calcpro-triangle-sr">Side a</span><input id="calcpro-triangle-side-a" name="side-a" type="text" inputmode="decimal" value="1" autocomplete="off" aria-label="Side a"></label>
+        <label class="calcpro-triangle-field calcpro-triangle-field-A calcpro-triangle-withunit" for="calcpro-triangle-angle-A"><span class="calcpro-triangle-sr">Angle A</span><input id="calcpro-triangle-angle-A" name="angle-A" type="text" inputmode="text" autocomplete="off" aria-label="Angle A"><span class="calcpro-triangle-unit" aria-hidden="true">°</span></label>
+        <label class="calcpro-triangle-field calcpro-triangle-field-B calcpro-triangle-withunit" for="calcpro-triangle-angle-B"><span class="calcpro-triangle-sr">Angle B</span><input id="calcpro-triangle-angle-B" name="angle-B" type="text" inputmode="text" autocomplete="off" aria-label="Angle B"><span class="calcpro-triangle-unit" aria-hidden="true">°</span></label>
+        <label class="calcpro-triangle-field calcpro-triangle-field-base" for="calcpro-triangle-side-c"><span class="calcpro-triangle-sr">Side c</span><input id="calcpro-triangle-side-c" name="side-c" type="text" inputmode="decimal" autocomplete="off" aria-label="Side c"></label>
+      </div>
+      <div class="calcpro-triangle-selectrow"><label for="calcpro-triangle-angle-unit">Angle Unit:</label><select id="calcpro-triangle-angle-unit" name="angle-unit"><option value="d" selected>degree °</option><option value="r">radian</option></select></div>
+      <div class="calcpro-triangle-actions"><button type="submit" class="calcpro-triangle-calculate">Calculate <span class="calcpro-triangle-arrow" aria-hidden="true">▶</span></button><button type="button" class="calcpro-triangle-clear" id="calcpro-triangle-clear">Clear</button></div>
+    </div>
+  </form>
+</div>
+</section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><a href="right-triangle-calculator.html">Right Triangle</a><a href="pythagorean-theorem-calculator.html">Pythagorean Theorem</a><a href="quadratic-formula-calculator.html">Quadratic Formula</a><a href="area-calculator.html">Area</a><a href="circle-calculator.html">Circle</a><a href="volume-calculator.html">Volume</a><a href="scientific-calculator.html">Scientific</a><a href="fraction-calculator.html">Fraction</a><a href="average-calculator.html">Average</a><a href="standard-deviation-calculator.html">Standard Deviation</a><a href="distance-calculator.html">Distance</a><a href="basic-calculator.html">Basic Calculator</a></div></section></aside><article class="cp-article">
+<h2>How to Use the Triangle Calculator</h2>
+<p>Enter at least three independent values including one side. Side <strong>a</strong> is opposite angle <strong>A</strong>; side <strong>b</strong> is opposite angle <strong>B</strong>; and side <strong>c</strong> is opposite angle <strong>C</strong>. You can enter three sides (SSS), two sides and their included angle (SAS), two angles and a side (ASA or AAS), or two sides and a non-included angle (SSA). Leave unknown fields blank.</p>
+<p>Select <strong>degree</strong> or <strong>radian</strong> before entering the angles. The unit selector also converts existing valid angle values. For radians, enter a decimal or an expression like <code>pi/3</code>, <code>2*pi/3</code>, or <code>π/4</code>. Select Calculate to see the side lengths, internal angles, diagram, area, heights, medians, circles, and triangle centers. Clear empties every input.</p>
+<h2>Triangle Formulas</h2>
+<h3>Angle sum and law of cosines</h3>
+<p>The internal angles always total 180°. If you know all three sides, the law of cosines gives <strong>cos(A) = (b² + c² − a²)/(2bc)</strong>; analogous expressions give B and C. When two sides and their included angle are known, rearrange the law to find the remaining side.</p>
+<h3>Law of sines</h3>
+<p>The law of sines states <strong>a/sin(A) = b/sin(B) = c/sin(C)</strong>. It solves triangles given two angles and one side. With SSA measurements, there can be zero, one, or two valid triangles. The calculator displays separate solution buttons when two triangles satisfy the entered data.</p>
+<h3>Area, altitude, medians, and circle radii</h3>
+<div class="cp-table-scroll"><table class="cp-content-table"><thead><tr><th>Measurement</th><th>Formula</th></tr></thead><tbody>
+<tr><td>Semiperimeter</td><td>s = (a + b + c)/2</td></tr>
+<tr><td>Area (Heron's formula)</td><td>K = √[s(s − a)(s − b)(s − c)]</td></tr>
+<tr><td>Height to side a</td><td>h<sub>a</sub> = 2K/a</td></tr>
+<tr><td>Median to side a</td><td>m<sub>a</sub> = ½√(2b² + 2c² − a²)</td></tr>
+<tr><td>Inradius</td><td>r = K/s</td></tr>
+<tr><td>Circumradius</td><td>R = abc/(4K)</td></tr>
+</tbody></table></div>
+<h2>Worked Example: Equilateral Triangle</h2>
+<p>Set a = 1, b = 1, and C = 60°. Because the included angle is 60° and the two adjacent sides are equal, the law of cosines gives c² = 1² + 1² − 2(1)(1)cos(60°) = 1. Thus c = 1, and A = B = C = 60°.</p>
+<p>The semiperimeter is 1.5, the area is √3/4 ≈ 0.43301, the perimeter is 3, each height is √3/2 ≈ 0.86603, the inradius is √3/6 ≈ 0.28868, and the circumradius is √3/3 ≈ 0.57735. These values appear in the default example after you select Calculate.</p>
+<h2>Understanding Coordinates and Triangle Centers</h2>
+<p>To make coordinates unambiguous, the calculator places A at (0, 0) and B at (c, 0), with C above the x-axis. The centroid is the arithmetic mean of the three vertex coordinates. The incenter is the intersection of the internal angle bisectors, and the circumcenter is the intersection of the perpendicular bisectors. For obtuse triangles, the circumcenter can lie outside the triangle.</p>
+<h2>Frequently Asked Questions</h2>
+<h3>Can three angles determine a triangle?</h3>
+<p>Three angles determine a triangle's shape but not its size. At least one side length is required to obtain actual side lengths, perimeter, and area.</p>
+<h3>Why can two triangles satisfy the same inputs?</h3>
+<p>For some side-side-angle (SSA) inputs, the law of sines permits both an acute and an obtuse value for an unknown angle. Both can be valid if their angles sum to less than 180°. Choose either solution to inspect its distinct measurements.</p>
+<h3>Why do I receive an invalid-triangle message?</h3>
+<p>Check that all sides are positive, each angle lies strictly between 0° and 180°, the angles add to 180°, and the sum of any two side lengths is greater than the third. If you enter more than three values, all the additional values must describe the same triangle.</p>
+<h3>Are the side lengths measured in centimeters or inches?</h3>
+<p>Side lengths use any consistent length unit you choose. The area is in the corresponding squared unit, while circumradius, inradius, medians, and heights use the same length unit.</p>
+<h2>Reference</h2>
+<p>For additional definitions and geometric background, see <a href="https://www.calculator.net/triangle-calculator.html" rel="noopener noreferrer">Calculator.net's Triangle Calculator</a>.</p>
+<p class="cp-page-footer">CalcPro — calculator estimates are for informational purposes.</p></article></main></div><script>
+(function(){
+  'use strict';
+  const root=document.getElementById('calcpro-triangle-root');
+  if(!root)return;
+  const form=root.querySelector('#calcpro-triangle-form');
+  const result=root.querySelector('#calcpro-triangle-result');
+  const error=root.querySelector('#calcpro-triangle-error');
+  const opts=root.querySelector('#calcpro-triangle-options');
+  const readout=root.querySelector('#calcpro-triangle-readout');
+  const metrics=root.querySelector('#calcpro-triangle-metrics');
+  const steps=root.querySelector('#calcpro-triangle-steps-content');
+  const diagram=root.querySelector('#calcpro-triangle-diagram');
+  const unitSelect=root.querySelector('#calcpro-triangle-angle-unit');
+  const keys=['a','b','c','A','B','C'];
+  const sides=['a','b','c'];const angles=['A','B','C'];
+  const fields={};
+  keys.forEach(k=>fields[k]=root.querySelector('#calcpro-triangle-'+(sides.includes(k)?'side-':'angle-')+k));
+  const PI=Math.PI;
+  let currentUnit='d',solutions=[],active=0;
+  const clamp=(n,lo,hi)=>Math.min(hi,Math.max(lo,n));
+  const approx=(x,y,eps=1e-7)=>Math.abs(x-y)<=eps*Math.max(1,Math.abs(x),Math.abs(y));
+  function fmt(n){
+    if(!Number.isFinite(n))return 'undefined';
+    if(Math.abs(n)<1e-14)return '0';
+    if(Math.abs(n)<0.00001||Math.abs(n)>=1e8)return Number(n.toPrecision(8)).toString();
+    return Number(n.toFixed(5)).toString();
+  }
+  function expr(s){
+    // Small arithmetic parser for angles: pi/2, 3pi/4, (pi/2)+0.1.
+    s=s.trim().toLowerCase().replace(/π/g,'pi').replace(/×/g,'*');
+    if(!s||s.length>100)throw Error('Please enter a valid angle.');
+    const raw=[];let at=0;
+    const pat=/\s*(?:((?:\d+(?:\.\d*)?|\.\d+)(?:e[+\-]?\d+)?)|(pi)|([()+\-*/]))/iy;
+    while(at<s.length){pat.lastIndex=at;const m=pat.exec(s);if(!m)throw Error('Use numbers, pi, and arithmetic signs for angles.');raw.push(m[1]!==undefined?{t:'n',v:Number(m[1])}:m[2]?{t:'n',v:PI,pi:true}:{t:m[3]});at=pat.lastIndex;}
+    const t=[];
+    for(const x of raw){const p=t[t.length-1];if(p&&((p.t==='n'||p.t===')')&&(x.t==='('||x.pi)))t.push({t:'*'});t.push(x);}
+    let i=0;
+    function primary(){const q=t[i++];if(!q)throw Error('Incomplete angle expression.');if(q.t==='n')return q.v;if(q.t==='+'||q.t==='-'){const v=primary();return q.t==='-'?-v:v;}if(q.t==='('){const v=add();if(!t[i]||t[i].t!==')')throw Error('Unclosed angle parenthesis.');i++;return v;}throw Error('Invalid angle expression.');}
+    function mul(){let v=primary();while(i<t.length&&(t[i].t==='*'||t[i].t==='/')){const op=t[i++].t,w=primary();v=op==='*'?v*w:v/w;}return v;}
+    function add(){let v=mul();while(i<t.length&&(t[i].t==='+'||t[i].t==='-')){const op=t[i++].t,w=mul();v=op==='+'?v+w:v-w;}return v;}
+    const val=add();if(i!==t.length||!Number.isFinite(val))throw Error('Invalid or out-of-range angle expression.');return val;
+  }
+  function parseInputs(){
+    const values={};let count=0,sideCount=0;
+    for(const k of keys){const s=fields[k].value.trim();if(!s)continue;count++;
+      let v;
+      if(sides.includes(k)){if(!/^(?:\d+(?:\.\d*)?|\.\d+)(?:e[+\-]?\d+)?$/i.test(s))throw Error('Side '+k+' must be a positive number.');v=Number(s);if(!Number.isFinite(v)||v<=0)throw Error('Side '+k+' must be greater than zero.');sideCount++;}
+      else{v=expr(s);if(currentUnit==='d')v*=PI/180;if(!(v>0&&v<PI))throw Error('Angle '+k+' must be greater than 0° and less than 180°.');}
+      values[k]=v;
+    }
+    if(count<3)throw Error('Enter at least three values, including one side.');
+    if(sideCount===0)throw Error('Enter at least one side to establish triangle size.');
+    return values;
+  }
+  function fromSides(a,b,c,method){
+    if(![a,b,c].every(v=>v>0&&Number.isFinite(v)))return null;
+    const scale=Math.max(a,b,c),aa=a/scale,bb=b/scale,cc=c/scale;
+    if(Math.max(aa,bb,cc)>=aa+bb+cc-Math.max(aa,bb,cc)-1e-14)return null;
+    const sorted=[aa,bb,cc].sort((x,y)=>y-x),[x,y,z]=sorted;
+    const areaScaled=Math.sqrt(Math.max(0,(x+(y+z))*(z-(x-y))*(z+(x-y))*(x+(y-z))))/4;
+    if(!(areaScaled>0))return null;
+    const twice=4*areaScaled;
+    const A=Math.atan2(twice,bb*bb+cc*cc-aa*aa);
+    const B=Math.atan2(twice,aa*aa+cc*cc-bb*bb);
+    const C=PI-A-B;
+    if(!(A>0&&B>0&&C>0))return null;
+    return {a,b,c,A,B,C,method};
+  }
+  function singleTriple(v,ks){
+    const ss=ks.filter(k=>sides.includes(k)),as=ks.filter(k=>angles.includes(k));
+    if(ss.length===3)return [fromSides(v.a,v.b,v.c,'SSS — law of cosines and Heron’s formula')].filter(Boolean);
+    if(ss.length===1&&as.length===2){
+      const av={};for(const k of as)av[k]=v[k];const absent=angles.find(k=>!as.includes(k));av[absent]=PI-av[as[0]]-av[as[1]];
+      if(!angles.every(k=>av[k]>0))return [];
+      const known=ss[0],denom=Math.sin(av[known.toUpperCase()]);if(denom<=0)return [];
+      const f=v[known]/denom;
+      return [fromSides(f*Math.sin(av.A),f*Math.sin(av.B),f*Math.sin(av.C),'ASA/AAS — angle sum and law of sines')].filter(Boolean);
+    }
+    if(ss.length===2&&as.length===1){
+      const ang=as[0],opp=ang.toLowerCase(),missing=sides.find(k=>!ss.includes(k));
+      if(missing===opp){
+        const u=ss[0],w=ss[1],theta=v[ang];
+        const missingVal=Math.sqrt(Math.max(0,(v[u]-v[w])**2+2*v[u]*v[w]*(1-Math.cos(theta))));
+        return [fromSides(...sides.map(k=>k===missing?missingVal:v[k]),'SAS — law of cosines')].filter(Boolean);
+      }
+      // SSA: inverse sine can produce two distinct valid triangles.
+      const knownOther=ss.find(k=>k!==opp),otherAngle=knownOther.toUpperCase();
+      const ratio=v[knownOther]*Math.sin(v[ang])/v[opp];
+      if(ratio>1+1e-12)return [];
+      const beta=Math.asin(clamp(ratio,-1,1));
+      return [beta,PI-beta].flatMap(target=>{
+        const finalAngle=PI-v[ang]-target;
+        if(!(target>0&&finalAngle>0))return [];
+        const av={[ang]:v[ang],[otherAngle]:target,[missing.toUpperCase()]:finalAngle};
+        const factor=v[opp]/Math.sin(v[ang]);
+        const obj=fromSides(...sides.map(k=>k===missing?factor*Math.sin(av[k.toUpperCase()]):v[k]),'SSA — law of sines (ambiguous case)');
+        return obj?[obj]:[];
+      });
+    }
+    return [];
+  }
+  function matches(v,sol){return Object.keys(v).every(k=>
+    sides.includes(k)?Math.abs(sol[k]-v[k])<=1e-6*Math.max(Math.abs(v[k]),Math.abs(sol[k]),1e-10)
+      :Math.abs(sol[k]-v[k])<=1e-7
+  );}
+  function solve(v){
+    const present=keys.filter(k=>v[k]!==undefined),candidates=[];
+    for(let i=0;i<present.length;i++)for(let j=i+1;j<present.length;j++)for(let k=j+1;k<present.length;k++){
+      for(const s of singleTriple(v,[present[i],present[j],present[k]])){
+        if(matches(v,s)&&!candidates.some(t=>['a','b','c'].every(x=>approx(t[x],s[x],2e-7))))candidates.push(s);
+      }
+    }
+    if(!candidates.length)throw Error('These values do not form a valid triangle, or the supplied measurements conflict. Check the angle sum, triangle inequality, and side/angle pairings.');
+    candidates.sort((p,q)=>p.A-q.A);
+    return candidates;
+  }
+  function piForm(rad){
+    const ratio=rad/PI;
+    for(let den=1;den<=24;den++){
+      const num=Math.round(ratio*den);
+      if(num<1||num>2*den)continue;
+      if(Math.abs(ratio-num/den)>1e-9)continue;
+      const gcd=(a,b)=>b?gcd(b,a%b):a;
+      const g=gcd(num,den),n=num/g,d=den/g;
+      return (n===1?'':n)+'π'+(d===1?'':'/'+d);
+    }
+    return null;
+  }
+  function angleLabel(rad){const p=piForm(rad);return fmt(rad*180/PI)+'° = '+fmt(rad)+' rad'+(p?' = '+p:'');}
+  function classify(s){
+    const sideTol=(x,y)=>Math.abs(x-y)<1e-8*Math.max(x,y);
+    const kind=sideTol(s.a,s.b)&&sideTol(s.b,s.c)?'Equilateral':sideTol(s.a,s.b)||sideTol(s.b,s.c)||sideTol(s.c,s.a)?'Isosceles':'Scalene';
+    if(kind==='Equilateral')return 'Equilateral Triangle';
+    const max=Math.max(s.A,s.B,s.C);
+    return kind+' '+(Math.abs(max-PI/2)<1e-8?'Right':max>PI/2?'Obtuse':'Acute')+' Triangle';
+  }
+  function features(t){
+    const {a,b,c}=t;
+    const s=(a+b+c)/2;
+    const Cx=b*Math.cos(t.A);
+    const Cy=b*Math.sin(t.A);
+    const area=c*Cy/2;
+    const perimeter=a+b+c;
+    const incenter={x:(a*0+b*c+c*Cx)/perimeter,y:c*Cy/perimeter};
+    const circumcenter={x:c/2,y:(b*b-c*Cx)/(2*Cy)};
+    const centroid={x:(c+Cx)/3,y:Cy/3};
+    return {s,area,perimeter,
+       heights:[a,b,c].map(e=>2*area/e),
+       medians:[Math.sqrt(Math.max(0,2*b*b+2*c*c-a*a))/2,Math.sqrt(Math.max(0,2*a*a+2*c*c-b*b))/2,Math.sqrt(Math.max(0,2*a*a+2*b*b-c*c))/2],
+       inradius:area/s,circumradius:a/(2*Math.sin(t.A)),Cx,Cy,incenter,circumcenter,centroid};
+  }
+  function point(p){return '['+fmt(p.x)+', '+fmt(p.y)+']';}
+  function makeDiagram(t,f){
+    const W=360,H=240,padX=49,padY=45;
+    const pts=[{x:0,y:0},{x:t.c,y:0},{x:f.Cx,y:f.Cy}];
+    const xs=pts.map(p=>p.x),ys=pts.map(p=>p.y),minX=Math.min(...xs),maxX=Math.max(...xs),minY=Math.min(...ys),maxY=Math.max(...ys);
+    const sw=Math.max(maxX-minX,1e-15),sh=Math.max(maxY-minY,1e-15);
+    const scale=Math.min((W-2*padX)/sw,(H-2*padY)/sh);
+    const tx=(W-sw*scale)/2,ty=(H-sh*scale)/2;
+    const pix=p=>({x:tx+(p.x-minX)*scale,y:ty+(maxY-p.y)*scale});
+    const p=pts.map(pix),cent={x:(p[0].x+p[1].x+p[2].x)/3,y:(p[0].y+p[1].y+p[2].y)/3};
+    const sideLabel=(i,j,key)=>{const m={x:(p[i].x+p[j].x)/2,y:(p[i].y+p[j].y)/2};const dx=m.x-cent.x,dy=m.y-cent.y,d=Math.hypot(dx,dy)||1;
+      return `<text x="${fmt(m.x+dx/d*15)}" y="${fmt(m.y+dy/d*15)}" text-anchor="middle" dominant-baseline="middle" fill="green" font-size="12">${key}=${fmt(t[key])}</text>`;
+    };
+    const angleText=(i,key)=>{const v=p[i],dx=v.x-cent.x,dy=v.y-cent.y,d=Math.hypot(dx,dy)||1;const dist=20;
+      return `<text x="${fmt(v.x+dx/d*dist)}" y="${fmt(v.y+dy/d*dist)}" text-anchor="middle" dominant-baseline="middle" fill="blue" font-size="12">${key}=${fmt(t[key]*180/PI)}°</text>`;
+    };
+    diagram.innerHTML=`<polygon points="${p.map(q=>fmt(q.x)+','+fmt(q.y)).join(' ')}" fill="#dddddd" stroke="#111" stroke-width="1.9"/>${sideLabel(1,2,'a')}${sideLabel(0,2,'b')}${sideLabel(0,1,'c')}${angleText(0,'A')}${angleText(1,'B')}${angleText(2,'C')}`;
+    diagram.setAttribute('aria-label',classify(t)+': sides a '+fmt(t.a)+', b '+fmt(t.b)+', c '+fmt(t.c)+', angles A '+fmt(t.A*180/PI)+', B '+fmt(t.B*180/PI)+', C '+fmt(t.C*180/PI)+' degrees');
+  }
+  function render(){
+    const t=solutions[active],f=features(t);
+    opts.hidden=solutions.length<2;
+    opts.innerHTML='';
+    if(solutions.length>1){
+      const msg=document.createElement('span');msg.textContent='Two triangles satisfy these inputs:';msg.style.alignSelf='center';opts.append(msg);
+      solutions.forEach((_,i)=>{const btn=document.createElement('button');btn.type='button';btn.className='calcpro-triangle-choice';btn.textContent='Solution '+(i+1);btn.setAttribute('aria-pressed',String(i===active));btn.addEventListener('click',()=>{active=i;render();});opts.append(btn);});
+    }
+    readout.innerHTML=`<h3>${classify(t)}</h3><div class="calcpro-triangle-group">Side a = ${fmt(t.a)}<br>Side b = ${fmt(t.b)}<br>Side c = ${fmt(t.c)}</div><div class="calcpro-triangle-group">Angle ∠A = ${angleLabel(t.A)}<br>Angle ∠B = ${angleLabel(t.B)}<br>Angle ∠C = ${angleLabel(t.C)}</div>`;
+    metrics.innerHTML=`<p>Area = ${fmt(f.area)}<br>Perimeter p = ${fmt(f.perimeter)}<br>Semiperimeter s = ${fmt(f.s)}</p><p>Height h<sub>a</sub> = ${fmt(f.heights[0])}<br>Height h<sub>b</sub> = ${fmt(f.heights[1])}<br>Height h<sub>c</sub> = ${fmt(f.heights[2])}</p><p>Median m<sub>a</sub> = ${fmt(f.medians[0])}<br>Median m<sub>b</sub> = ${fmt(f.medians[1])}<br>Median m<sub>c</sub> = ${fmt(f.medians[2])}</p><p>Inradius r = ${fmt(f.inradius)}<br>Circumradius R = ${fmt(f.circumradius)}</p><p>Vertex coordinates: A[0, 0] B[${fmt(t.c)}, 0] C${point({x:f.Cx,y:f.Cy})}<br>Centroid: ${point(f.centroid)}<br>Inscribed Circle Center: ${point(f.incenter)}<br>Circumscribed Circle Center: ${point(f.circumcenter)}</p>`;
+    steps.innerHTML=`<p><strong>Input solution method:</strong> ${t.method}.</p><p><strong>Angle sum:</strong> A + B + C = 180°. Here, ${fmt(t.A*180/PI)}° + ${fmt(t.B*180/PI)}° + ${fmt(t.C*180/PI)}° = 180°.</p><p><strong>Cosine law:</strong> a² = b² + c² − 2bc cos(A), with cyclic versions for b and c.</p><p><strong>Heron’s formula:</strong> s = (a + b + c)/2 = ${fmt(f.s)}; area = √[s(s − a)(s − b)(s − c)] = ${fmt(f.area)}.</p><p><strong>Altitude:</strong> h<sub>a</sub> = 2 × area / a = ${fmt(f.heights[0])} (and similarly for b and c).</p><p><strong>Median:</strong> m<sub>a</sub> = ½√(2b² + 2c² − a²) = ${fmt(f.medians[0])}.</p><p><strong>Inradius:</strong> r = area / s = ${fmt(f.inradius)}. <strong>Circumradius:</strong> R = abc / (4 × area) = ${fmt(f.circumradius)}.</p><p><strong>Coordinates:</strong> A = (0,0), B = (c,0), C = ((b²+c²−a²)/(2c), 2area/c) = ${point({x:f.Cx,y:f.Cy})}.</p><p><strong>Centers:</strong> centroid = (A+B+C)/3; incenter = (aA + bB + cC)/(a+b+c); circumcenter = (c/2, (b² − c×Cₓ)/(2×Cᵧ)).</p>`;
+    makeDiagram(t,f);result.hidden=false;
+  }
+  function clearResult(){result.hidden=true;error.hidden=true;root.querySelector('#calcpro-triangle-steps').open=false;solutions=[];opts.hidden=true;}
+  form.addEventListener('submit',e=>{e.preventDefault();error.hidden=true;
+    try{solutions=solve(parseInputs());active=0;root.querySelector('#calcpro-triangle-steps').open=false;render();
+      if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches)result.scrollIntoView({behavior:'smooth',block:'start'});else result.scrollIntoView({block:'start'});
+    }catch(ex){result.hidden=true;error.textContent=ex.message;error.hidden=false;}
+  });
+  root.querySelector('#calcpro-triangle-clear').addEventListener('click',()=>{keys.forEach(k=>fields[k].value='');clearResult();fields.C.focus();});
+  unitSelect.addEventListener('change',()=>{
+    const next=unitSelect.value;
+    for(const k of angles){const field=fields[k],s=field.value.trim();if(!s)continue;
+      try{let v=expr(s);if(currentUnit==='d')v*=PI/180;if(!(v>0&&v<PI))continue;
+        if(next==='r')field.value=piForm(v)?.replace('π','pi')||Number(v.toPrecision(12)).toString();
+        else field.value=Number((v*180/PI).toPrecision(12)).toString();
+      }catch(_){/* Preserve unparseable values for correction. */}
+    }
+    currentUnit=next;
+    root.querySelectorAll('.calcpro-triangle-unit').forEach(n=>n.textContent=next==='d'?'°':'rad');
+    clearResult();
+  });
+  root.querySelector('#calcpro-triangle-save').addEventListener('click',()=>{
+    if(result.hidden||!solutions.length)return;
+    const t=solutions[active];const f=features(t);
+    const contents=[classify(t),'',...keys.map(k=>k+' = '+fmt(sides.includes(k)?t[k]:t[k]*180/PI)+(angles.includes(k)?' degrees':'')),'',
+      'Area = '+fmt(f.area),'Perimeter = '+fmt(f.perimeter),'Semiperimeter = '+fmt(f.s),
+      ...f.heights.map((v,i)=>'Height h_'+sides[i]+' = '+fmt(v)),...f.medians.map((v,i)=>'Median m_'+sides[i]+' = '+fmt(v)),
+      'Inradius = '+fmt(f.inradius),'Circumradius = '+fmt(f.circumradius),
+      'A = [0, 0]','B = ['+fmt(t.c)+', 0]','C = '+point({x:f.Cx,y:f.Cy}),
+      'Centroid = '+point(f.centroid),'Incenter = '+point(f.incenter),'Circumcenter = '+point(f.circumcenter)].join('\n');
+    const url=URL.createObjectURL(new Blob([contents],{type:'text/plain;charset=utf-8'}));const a=document.createElement('a');a.href=url;a.download='triangle-calculation.txt';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
+  });
+})();
+</script><script defer src="/assets/js/data.js"></script>
+<script defer src="/assets/js/style.js?v=20261111-5"></script>
+</body></html>

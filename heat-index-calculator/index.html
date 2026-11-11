@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US">
-<head>
-<meta charset="utf-8">
+<html lang="en"><head><meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="content-language" content="en">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,17 +11,326 @@
   <meta name="author" content="Commingsoon">
   <meta name="publisher" content="Commingsoon">
   <meta name="robots" content="noindex, nofollow, max-image-preview:large">
-  <link rel="stylesheet" href="/assets/css/style.css?v=20261111-1" crossorigin="anonymous" data-n-g="">
+  <link rel="stylesheet" href="/assets/css/style.css?v=20261111-4" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/doc_style.css" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/side_style.css" crossorigin="anonymous" data-n-g=""> 
   <!--ogtags-->
-  <!--schema-->
-  <!--style-->
-</head>
+  <!--schema--><style>
 
-<body>
-<!-- Main-header-page -->
-<script defer src="/assets/js/data.js"></script>
-<script defer src="/assets/js/style.js?v=20261111-1"></script>
-</body>
-</html>
+/* Scoped Heat Index calculator UI; never changes CalcPro layout selectors. */
+.calcpro-heat-index{--calcpro-heat-index-blue:#125217;--calcpro-heat-index-green:#4b8027;--calcpro-heat-index-border:#c5c5c5;font-family:Arial,Helvetica,sans-serif;color:#151515;max-width:100%;line-height:1.4}
+.calcpro-heat-index *{box-sizing:border-box}
+.calcpro-heat-index-instruction{display:flex;align-items:center;justify-content:center;gap:12px;background:#35699d;color:#fff;min-height:36px;padding:6px 12px;margin:5px 0 14px;font-size:15px;text-align:center}
+.calcpro-heat-index-instruction[hidden],.calcpro-heat-index-result[hidden],.calcpro-heat-index-error[hidden]{display:none!important}
+.calcpro-heat-index-hint-icon{width:24px;height:24px;border-radius:50%;background:white;color:#35699d;display:inline-flex;align-items:center;justify-content:center;font-size:18px;flex:0 0 auto;line-height:1}
+.calcpro-heat-index-section{margin:0 0 34px}
+.calcpro-heat-index-section-title{font-size:20px;line-height:1.22;margin:15px 0 4px;color:var(--calcpro-heat-index-blue);font-weight:700}
+.calcpro-heat-index-form-panel{display:table;width:auto;max-width:100%;background:#eee;border:1px solid #bdbdbd;padding:9px 12px 8px;margin:0}
+.calcpro-heat-index-form{margin:0}
+.calcpro-heat-index-field{display:grid;grid-template-columns:var(--calcpro-heat-index-label-width) 104px 126px;column-gap:5px;align-items:center;min-height:32px}
+.calcpro-heat-index-form--rh{--calcpro-heat-index-label-width:127px}
+.calcpro-heat-index-form--dew{--calcpro-heat-index-label-width:160px}
+.calcpro-heat-index-field-label{text-align:right;font-size:14px;white-space:nowrap;font-weight:700}
+.calcpro-heat-index-textbox-wrap{position:relative;min-width:0}
+.calcpro-heat-index-input,.calcpro-heat-index-unit{height:29px;border:1px solid #567aa4;border-radius:2px;box-shadow:1px 1px 2px rgba(0,0,0,.18);background:#fff;font:15px Arial,Helvetica,sans-serif;color:#111}
+.calcpro-heat-index-input{width:100%;padding:3px 6px;min-width:0}
+.calcpro-heat-index-input--percent{padding-right:21px}
+.calcpro-heat-index-percent-suffix{position:absolute;right:7px;top:4px;pointer-events:none;font-size:15px}
+.calcpro-heat-index-unit{width:100%;padding:2px 3px}
+.calcpro-heat-index-input:focus-visible,.calcpro-heat-index-unit:focus-visible,.calcpro-heat-index-button:focus-visible,.calcpro-heat-index-save:focus-visible{outline:2px solid #3167a3;outline-offset:2px}
+.calcpro-heat-index-actions{display:flex;align-items:center;justify-content:center;gap:5px;margin:10px 0 0}
+.calcpro-heat-index-button{border:0;padding:7px 13px;min-height:35px;font-size:14px;font-weight:bold;cursor:pointer;color:white}
+.calcpro-heat-index-button--calculate{background:var(--calcpro-heat-index-green);display:inline-flex;align-items:center;justify-content:space-between;gap:15px}
+.calcpro-heat-index-play-icon{display:inline-grid;place-items:center;border-radius:100%;width:20px;height:20px;background:#98c59e;color:#fff;font-size:15px;line-height:20px}
+.calcpro-heat-index-button--clear{background:#a8a8a8;font-weight:400;padding:7px 10px}
+.calcpro-heat-index-button:hover{filter:brightness(.9)}
+.calcpro-heat-index-error{font-size:13px;line-height:1.4;color:#a42e25;max-width:420px;margin:8px 0 0;font-weight:bold}
+.calcpro-heat-index-result{margin:4px 0 20px;max-width:100%}
+.calcpro-heat-index-result-head{background:var(--calcpro-heat-index-green);color:#fff;min-height:35px;display:flex;align-items:center;justify-content:space-between;padding:3px 6px;font-size:20px;font-weight:400}
+.calcpro-heat-index-save{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;background:transparent;border:none;color:#fff;cursor:pointer;min-width:29px;min-height:30px;padding:2px;font-size:9px;line-height:10px;font-weight:400}
+.calcpro-heat-index-save svg{display:block;max-width:17px;max-height:17px}
+.calcpro-heat-index-result-main{font-size:21px;line-height:1.4;margin:12px 0 4px}
+.calcpro-heat-index-result-number{font-weight:700;color:green}
+.calcpro-heat-index-result-secondary{font-size:16px;margin:4px 0 5px}
+.calcpro-heat-index-risk{font-size:14px;line-height:1.28;margin:5px 0 12px}
+.calcpro-heat-index-risk-name{font-weight:700}
+.calcpro-heat-index-risk--normal .calcpro-heat-index-risk-name{color:#336699}
+.calcpro-heat-index-risk--caution .calcpro-heat-index-risk-name{color:#bd9200}
+.calcpro-heat-index-risk--extreme-caution .calcpro-heat-index-risk-name{color:#e5ad00}
+.calcpro-heat-index-risk--danger .calcpro-heat-index-risk-name{color:#c15b0b}
+.calcpro-heat-index-risk--extreme-danger .calcpro-heat-index-risk-name{color:#ad1f22}
+.calcpro-heat-index-subnote{color:#555;font-size:12px;line-height:1.45;margin:6px 0 0}
+/* Original color-coded, collapsible NWS heat-index lookup table. */
+.calcpro-heat-index-chart{margin:-12px 0 25px;max-width:100%;border:1px solid #cad7e4;padding:10px 12px;background:#f7f9fc}
+.calcpro-heat-index-chart summary{color:var(--calcpro-heat-index-blue);font-size:15px;font-weight:700;cursor:pointer}
+.calcpro-heat-index-chart-explainer{font-size:13px;margin:10px 0 8px;color:#444}
+.calcpro-heat-index-chart-scroll{overflow-x:auto;max-width:100%}
+.calcpro-heat-index-chart-table{border-collapse:collapse;width:100%;min-width:470px;text-align:center;font-size:13px}
+.calcpro-heat-index-chart-table th,.calcpro-heat-index-chart-table td{border:1px solid #cbd4d9;padding:6px 5px;font-size:13px}
+.calcpro-heat-index-chart-table th{background:#35699d;color:white}
+.calcpro-heat-index-chart-cell--normal{background:#e3f1f6}
+.calcpro-heat-index-chart-cell--caution{background:#ffedb0}
+.calcpro-heat-index-chart-cell--extreme-caution{background:#ffcf78}
+.calcpro-heat-index-chart-cell--danger{background:#f5a48a}
+.calcpro-heat-index-chart-cell--extreme-danger{background:#ed7979}
+@media(max-width:510px){
+ .calcpro-heat-index-section-title{font-size:19px}
+ .calcpro-heat-index-form-panel{width:100%;display:block;padding:10px}
+ .calcpro-heat-index-field{grid-template-columns:minmax(0,1fr) minmax(87px,105px) minmax(104px,125px);gap:4px}
+ .calcpro-heat-index-field-label{white-space:normal;overflow-wrap:normal;font-size:12px;line-height:1.2}
+ .calcpro-heat-index-input,.calcpro-heat-index-unit{font-size:14px}
+ .calcpro-heat-index-result-main{font-size:18px}
+ .calcpro-heat-index-result-head{font-size:18px}
+}
+@media(max-width:390px){
+ .calcpro-heat-index-field{grid-template-columns:minmax(0,1fr) minmax(76px,1fr) minmax(99px,1.1fr)}
+ .calcpro-heat-index-form-panel{padding:8px 6px}
+ .calcpro-heat-index-field-label{font-size:11px}
+ .calcpro-heat-index-unit{font-size:12px}
+ .calcpro-heat-index-instruction{font-size:13px}
+}
+@media print{.calcpro-heat-index-instruction,.calcpro-heat-index-actions,.calcpro-heat-index-save{display:none!important}.calcpro-heat-index-result-head{print-color-adjust:exact;-webkit-print-color-adjust:exact}}
+
+</style>
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / Other Calculators / Heat Index Calculator</nav><h1 class="cp-page-title">Heat Index Calculator</h1><p class="cp-intro">Estimate the temperature that your body feels using air temperature and relative humidity, or air temperature and dew point.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-heat-index" id="calcpro-heat-index-calculator">
+  <div class="calcpro-heat-index-instruction" id="calcpro-heat-index-instruction"><span class="calcpro-heat-index-hint-icon" aria-hidden="true">▼</span><span>Modify the values and click the Calculate button to use</span></div>
+  
+<section class="calcpro-heat-index-section" id="calcpro-heat-index-rh-section" aria-labelledby="calcpro-heat-index-rh-title">
+  <h2 class="calcpro-heat-index-section-title" id="calcpro-heat-index-rh-title">Use Relative Humidity</h2>
+  <div class="calcpro-heat-index-result" id="calcpro-heat-index-rh-result" aria-live="polite" aria-atomic="true" hidden>
+    <div class="calcpro-heat-index-result-head"><span>Result</span><button type="button" class="calcpro-heat-index-save" data-calcpro-heat-index-save="rh" title="Save result as a text file" aria-label="Save rh result">
+      <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 2h14l4 4v16H2V2h2Zm2 2v6h11V4h-2v4H9V4H6Zm6 9a4 4 0 1 0 0 8 4 4 0 0 0 0-8Z"/></svg><span>save</span>
+    </button></div>
+    <p class="calcpro-heat-index-result-main"><span>Heat Index Temperature: </span><strong class="calcpro-heat-index-result-number" id="calcpro-heat-index-rh-number"></strong> <span id="calcpro-heat-index-rh-alternates"></span></p>
+    
+    <p class="calcpro-heat-index-risk" id="calcpro-heat-index-rh-risk"></p>
+    <p class="calcpro-heat-index-subnote" id="calcpro-heat-index-rh-note"></p>
+  </div>
+  <div class="calcpro-heat-index-form-panel">
+    <form id="calcpro-heat-index-rh-form" class="calcpro-heat-index-form calcpro-heat-index-form--rh" novalidate>
+      <div class="calcpro-heat-index-field"><label class="calcpro-heat-index-field-label" for="calcpro-heat-index-air-rh">Air Temperature</label><div class="calcpro-heat-index-textbox-wrap"><input id="calcpro-heat-index-air-rh" name="airtemperature" class="calcpro-heat-index-input" type="text" inputmode="decimal" autocomplete="off" value="30" /></div><select class="calcpro-heat-index-unit" id="calcpro-heat-index-air-rh-unit" data-calcpro-heat-index-unit aria-label="Air temperature unit"><option value="celsius" selected>Celsius °C</option><option value="fahrenheit">Fahrenheit °F</option><option value="kelvin">Kelvin K</option></select></div>
+      <div class="calcpro-heat-index-field"><label class="calcpro-heat-index-field-label" for="calcpro-heat-index-humidity">Relative Humidity</label><div class="calcpro-heat-index-textbox-wrap"><input id="calcpro-heat-index-humidity" name="humidity" class="calcpro-heat-index-input calcpro-heat-index-input--percent" type="text" inputmode="decimal" autocomplete="off" value="70" aria-label="Relative humidity percentage" /><span class="calcpro-heat-index-percent-suffix" aria-hidden="true">%</span></div><span aria-hidden="true"></span></div>
+      <div class="calcpro-heat-index-actions"><button class="calcpro-heat-index-button calcpro-heat-index-button--calculate" type="submit">Calculate <span class="calcpro-heat-index-play-icon" aria-hidden="true">▶</span></button><button class="calcpro-heat-index-button calcpro-heat-index-button--clear" type="button" data-calcpro-heat-index-clear="rh">Clear</button></div>
+      <p id="calcpro-heat-index-rh-error" class="calcpro-heat-index-error" role="alert" hidden></p>
+    </form>
+  </div>
+</section>
+  
+<section class="calcpro-heat-index-section" id="calcpro-heat-index-dew-section" aria-labelledby="calcpro-heat-index-dew-title">
+  <h2 class="calcpro-heat-index-section-title" id="calcpro-heat-index-dew-title">Use Dew Point Temperature</h2>
+  <div class="calcpro-heat-index-result" id="calcpro-heat-index-dew-result" aria-live="polite" aria-atomic="true" hidden>
+    <div class="calcpro-heat-index-result-head"><span>Result</span><button type="button" class="calcpro-heat-index-save" data-calcpro-heat-index-save="dew" title="Save result as a text file" aria-label="Save dew result">
+      <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 2h14l4 4v16H2V2h2Zm2 2v6h11V4h-2v4H9V4H6Zm6 9a4 4 0 1 0 0 8 4 4 0 0 0 0-8Z"/></svg><span>save</span>
+    </button></div>
+    <p class="calcpro-heat-index-result-main"><span>Heat Index Temperature: </span><strong class="calcpro-heat-index-result-number" id="calcpro-heat-index-dew-number"></strong> <span id="calcpro-heat-index-dew-alternates"></span></p>
+    <p class="calcpro-heat-index-result-secondary">Relative Humidity: <span id="calcpro-heat-index-dew-rh"></span></p>
+    <p class="calcpro-heat-index-risk" id="calcpro-heat-index-dew-risk"></p>
+    <p class="calcpro-heat-index-subnote" id="calcpro-heat-index-dew-note"></p>
+  </div>
+  <div class="calcpro-heat-index-form-panel">
+    <form id="calcpro-heat-index-dew-form" class="calcpro-heat-index-form calcpro-heat-index-form--dew" novalidate>
+      <div class="calcpro-heat-index-field"><label class="calcpro-heat-index-field-label" for="calcpro-heat-index-air-dew">Air Temperature</label><div class="calcpro-heat-index-textbox-wrap"><input id="calcpro-heat-index-air-dew" name="airtemperature" class="calcpro-heat-index-input" type="text" inputmode="decimal" autocomplete="off" value="30" /></div><select class="calcpro-heat-index-unit" id="calcpro-heat-index-air-dew-unit" data-calcpro-heat-index-unit aria-label="Air temperature unit"><option value="celsius" selected>Celsius °C</option><option value="fahrenheit">Fahrenheit °F</option><option value="kelvin">Kelvin K</option></select></div>
+      <div class="calcpro-heat-index-field"><label class="calcpro-heat-index-field-label" for="calcpro-heat-index-dew">Dew Point Temperature</label><div class="calcpro-heat-index-textbox-wrap"><input id="calcpro-heat-index-dew" name="dewpoint" class="calcpro-heat-index-input" type="text" inputmode="decimal" autocomplete="off" value="22" aria-label="Dew point temperature" /></div><select class="calcpro-heat-index-unit" id="calcpro-heat-index-dew-unit" data-calcpro-heat-index-unit aria-label="Dew point temperature unit"><option value="celsius" selected>Celsius °C</option><option value="fahrenheit">Fahrenheit °F</option><option value="kelvin">Kelvin K</option></select></div>
+      <div class="calcpro-heat-index-actions"><button class="calcpro-heat-index-button calcpro-heat-index-button--calculate" type="submit">Calculate <span class="calcpro-heat-index-play-icon" aria-hidden="true">▶</span></button><button class="calcpro-heat-index-button calcpro-heat-index-button--clear" type="button" data-calcpro-heat-index-clear="dew">Clear</button></div>
+      <p id="calcpro-heat-index-dew-error" class="calcpro-heat-index-error" role="alert" hidden></p>
+    </form>
+  </div>
+</section>
+  <details class="calcpro-heat-index-chart" id="calcpro-heat-index-lookup"><summary>Show Heat Index Reference Chart</summary><p class="calcpro-heat-index-chart-explainer">Estimated heat index in °F by air temperature (rows) and relative humidity (columns). Colors indicate NWS heat-risk categories for shaded conditions.</p><div class="calcpro-heat-index-chart-scroll"><table class="calcpro-heat-index-chart-table"><thead><tr><th scope="col">Air °F / RH</th><th scope="col">40%</th><th scope="col">50%</th><th scope="col">60%</th><th scope="col">70%</th><th scope="col">80%</th><th scope="col">90%</th></tr></thead><tbody><tr><th scope="row">80°F</th><td class="calcpro-heat-index-chart-cell--normal">80°F</td><td class="calcpro-heat-index-chart-cell--caution">81°F</td><td class="calcpro-heat-index-chart-cell--caution">82°F</td><td class="calcpro-heat-index-chart-cell--caution">83°F</td><td class="calcpro-heat-index-chart-cell--caution">84°F</td><td class="calcpro-heat-index-chart-cell--caution">86°F</td></tr><tr><th scope="row">85°F</th><td class="calcpro-heat-index-chart-cell--caution">84°F</td><td class="calcpro-heat-index-chart-cell--caution">86°F</td><td class="calcpro-heat-index-chart-cell--caution">89°F</td><td class="calcpro-heat-index-chart-cell--extreme-caution">93°F</td><td class="calcpro-heat-index-chart-cell--extreme-caution">97°F</td><td class="calcpro-heat-index-chart-cell--extreme-caution">102°F</td></tr><tr><th scope="row">90°F</th><td class="calcpro-heat-index-chart-cell--extreme-caution">91°F</td><td class="calcpro-heat-index-chart-cell--extreme-caution">95°F</td><td class="calcpro-heat-index-chart-cell--extreme-caution">100°F</td><td class="calcpro-heat-index-chart-cell--danger">106°F</td><td class="calcpro-heat-index-chart-cell--danger">113°F</td><td class="calcpro-heat-index-chart-cell--danger">122°F</td></tr><tr><th scope="row">95°F</th><td class="calcpro-heat-index-chart-cell--extreme-caution">99°F</td><td class="calcpro-heat-index-chart-cell--danger">105°F</td><td class="calcpro-heat-index-chart-cell--danger">113°F</td><td class="calcpro-heat-index-chart-cell--danger">123°F</td><td class="calcpro-heat-index-chart-cell--extreme-danger">134°F</td><td class="calcpro-heat-index-chart-cell--extreme-danger">147°F</td></tr><tr><th scope="row">100°F</th><td class="calcpro-heat-index-chart-cell--danger">109°F</td><td class="calcpro-heat-index-chart-cell--danger">118°F</td><td class="calcpro-heat-index-chart-cell--danger">129°F</td><td class="calcpro-heat-index-chart-cell--extreme-danger">143°F</td><td class="calcpro-heat-index-chart-cell--extreme-danger">158°F</td><td class="calcpro-heat-index-chart-cell--extreme-danger">176°F</td></tr><tr><th scope="row">105°F</th><td class="calcpro-heat-index-chart-cell--danger">121°F</td><td class="calcpro-heat-index-chart-cell--extreme-danger">134°F</td><td class="calcpro-heat-index-chart-cell--extreme-danger">149°F</td><td class="calcpro-heat-index-chart-cell--extreme-danger">166°F</td><td class="calcpro-heat-index-chart-cell--extreme-danger">187°F</td><td class="calcpro-heat-index-chart-cell--extreme-danger">209°F</td></tr></tbody></table></div></details>
+</div></section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><a href="wind-chill-calculator.html">Wind Chill Calculator</a><a href="dew-point-calculator.html">Dew Point Calculator</a><a href="btu-calculator.html">BTU Calculator</a></div></section></aside><article class="cp-article"><h2>What Is the Heat Index?</h2>
+<p>The <strong>heat index</strong> estimates how hot the air feels when humidity is considered alongside air temperature. When humidity is high, perspiration evaporates less effectively, making it harder for the body to cool itself. This is an estimate for shaded conditions with light wind; direct sunshine can make the perceived heat substantially greater.</p>
+<h2>How to Use the Heat Index Calculator</h2>
+<ol><li>For a known humidity percentage, use <strong>Relative Humidity</strong>: enter the air temperature, choose Celsius, Fahrenheit, or Kelvin, and enter relative humidity from 0 to 100%.</li><li>When you know the dew point instead, use <strong>Dew Point Temperature</strong>: enter air temperature and dew point, selecting the unit of each separately.</li><li>Click <strong>Calculate</strong> under the relevant method. The heat index and caution category will appear <strong>above that method's input form</strong>.</li><li>Use <strong>Save</strong> in the result heading to download a plain-text summary, or <strong>Clear</strong> to erase that method's inputs and result.</li></ol>
+<h2>Heat Index Formula</h2>
+<p>This calculator follows the U.S. National Weather Service two-stage calculation. First, it calculates the simplified Steadman estimate. If its average with the air temperature reaches 80°F, it uses the Rothfusz regression and applies any relevant adjustment for very low or very high humidity.</p>
+<div class="cp-note"><p><strong>Rothfusz regression (temperatures in °F):</strong></p><p>HI = −42.379 + 2.04901523T + 10.14333127R − 0.22475541TR − 0.00683783T² − 0.05481717R² + 0.00122874T²R + 0.00085282TR² − 0.00000199T²R²</p><p>Here, <strong>T</strong> is air temperature in degrees Fahrenheit, and <strong>R</strong> is relative humidity as a percentage. The low- and high-humidity adjustment terms follow the NWS/WPC method.</p></div>
+<h3>Calculating Relative Humidity from Dew Point</h3>
+<p>If dew point is supplied, relative humidity is estimated with the Magnus vapor-pressure approximation, using Celsius temperatures:</p>
+<p><strong>RH = 100 × exp[17.62Td / (243.12 + Td) − 17.62T / (243.12 + T)]</strong></p>
+<p>Here, <strong>Td</strong> is dew point and <strong>T</strong> is air temperature. Dew point should not exceed the air temperature under ordinary, non-supersaturated conditions.</p>
+<h2>Worked Heat Index Examples</h2>
+<h3>Example 1: Relative humidity</h3><p>At <strong>30°C</strong> (86°F) and <strong>70% relative humidity</strong>, the estimated heat index is about <strong>35°C (95°F)</strong>, in the <strong>Extreme caution</strong> range.</p>
+<h3>Example 2: Dew point</h3><p>At an air temperature of <strong>30°C</strong> and a dew point of <strong>22°C</strong>, the Magnus formula gives approximately <strong>62% relative humidity</strong>. The resulting heat index is about <strong>33°C (92°F)</strong>, also in the <strong>Extreme caution</strong> range.</p>
+<h2>Heat Index Risk Levels</h2><p>These categories indicate general heat-related risk during prolonged exposure or physical activity. Personal vulnerability and circumstances can change the actual risk.</p>
+<div class="cp-table-scroll"><table class="cp-content-table"><thead><tr><th>Heat index</th><th>Risk level</th><th>Possible effects</th></tr></thead><tbody>
+<tr><td>80–89°F (27–31°C)</td><td>Caution</td><td>Fatigue may occur with sustained heat exposure.</td></tr>
+<tr><td>90–104°F (32–40°C)</td><td>Extreme caution</td><td>Heat cramps and heat exhaustion may occur.</td></tr>
+<tr><td>105–129°F (41–54°C)</td><td>Danger</td><td>Heat cramps or exhaustion are likely; heat stroke is possible.</td></tr>
+<tr><td>130°F+ (54°C+)</td><td>Extreme danger</td><td>Heat stroke poses an immediate threat.</td></tr>
+</tbody></table></div>
+<div class="cp-warning"><strong>Safety note:</strong> A heat-index value is not an individual medical prediction. Outdoor work, direct sun, exertion, dehydration, and other factors can increase danger. Stop strenuous activity and seek cooling if you develop heat-related symptoms.</div>
+<h2>Frequently Asked Questions</h2>
+<h3>Is heat index the same as air temperature?</h3><p>No. Air temperature is measured directly. Heat index combines temperature and humidity to approximate the apparent temperature experienced by people.</p>
+<h3>Can I use Fahrenheit or Kelvin?</h3><p>Yes. All temperature fields support Celsius, Fahrenheit, and Kelvin. Changing a field's unit automatically converts its existing numeric temperature.</p>
+<h3>What if the air temperature is below 80°F?</h3><p>The calculator returns the simplified NWS estimate when appropriate. The full Rothfusz regression is generally not used at lower apparent temperatures, and ordinary heat-risk thresholds are not applicable.</p>
+<h3>Why can sunshine feel hotter than the result?</h3><p>The official heat-index approximation describes shady conditions and light wind. Direct sunlight can raise apparent heat by up to about 15°F, according to the National Weather Service.</p>
+<h2>Methodology and Sources</h2>
+<ul><li><a href="https://www.wpc.ncep.noaa.gov/html/heatindex_equation.shtml" target="_blank" rel="noopener noreferrer">NOAA Weather Prediction Center — Heat Index Equation</a></li><li><a href="https://www.weather.gov/ctp/heat" target="_blank" rel="noopener noreferrer">National Weather Service — Heat Safety and Heat Index</a></li><li><a href="https://www.npl.co.uk/resources/q-a/dew-point-and-relative-humidity" target="_blank" rel="noopener noreferrer">National Physical Laboratory — Dew Point and Relative Humidity</a></li></ul>
+<p class="cp-page-footer">CalcPro — estimates are for informational purposes, not a substitute for local heat warnings or medical advice.</p></article></main></div><script>
+(() => {
+  'use strict';
+  const root = document.getElementById('calcpro-heat-index-calculator');
+  if (!root) return;
+  const get = (id) => document.getElementById('calcpro-heat-index-' + id);
+  const tempToC = (x, unit) => unit === 'fahrenheit' ? (x - 32) * 5 / 9 : (unit === 'kelvin' ? x - 273.15 : x);
+  const cToUnit = (c, unit) => unit === 'fahrenheit' ? c * 9 / 5 + 32 : (unit === 'kelvin' ? c + 273.15 : c);
+  const toF = (c) => c * 9 / 5 + 32;
+  const fromF = (f) => (f - 32) * 5 / 9;
+  const numeric = (field, label) => {
+    const raw = field.value.trim();
+    if (!raw) throw new Error('Please enter ' + label.toLowerCase() + '.');
+    // Reject nonnumeric strings instead of silently accepting their prefixes.
+    if (!/^[+-]?(?:\d+\.?\d*|\.\d+)(?:[eE][+-]?\d+)?$/.test(raw)) throw new Error('Enter a valid number for ' + label.toLowerCase() + '.');
+    const val = Number(raw);
+    if (!Number.isFinite(val)) throw new Error('Enter a finite number for ' + label.toLowerCase() + '.');
+    return val;
+  };
+  const readC = (id, label) => {
+    const c = tempToC(numeric(get(id), label), get(id + '-unit').value);
+    if (c < -100 || c > 100) throw new Error(label + ' must be between −100°C and 100°C (−148°F and 212°F).');
+    return c;
+  };
+  // NWS/WPC simple heat index and Rothfusz regression, with both humidity adjustments.
+  const heatIndexF = (airF, relativeHumidity) => {
+    const simple = 0.5 * (airF + 61 + (airF - 68) * 1.2 + relativeHumidity * 0.094);
+    let hi = (simple + airF) / 2;
+    if (hi < 80) return hi;
+    const T = airF, R = relativeHumidity;
+    hi = -42.379 + 2.04901523*T + 10.14333127*R - 0.22475541*T*R
+      - 0.00683783*T*T - 0.05481717*R*R + 0.00122874*T*T*R
+      + 0.00085282*T*R*R - 0.00000199*T*T*R*R;
+    if (R < 13 && T >= 80 && T <= 112) {
+      hi -= ((13 - R) / 4) * Math.sqrt(Math.max(0, (17 - Math.abs(T - 95)) / 17));
+    } else if (R > 85 && T >= 80 && T <= 87) {
+      hi += ((R - 85) / 10) * ((87 - T) / 5);
+    }
+    return hi;
+  };
+  // Magnus approximation: relative vapor pressure at dew point / at air temperature.
+  const humidityFromDewPoint = (airC, dewC) => {
+    const gamma = (c) => (17.62 * c) / (243.12 + c);
+    return 100 * Math.exp(gamma(dewC) - gamma(airC));
+  };
+  const riskInfo = (hiF) => {
+    if (hiF >= 130) return ['Extreme danger','extreme-danger','Heat stroke is a critical, immediate risk. Avoid exposure and seek a cooler place.'];
+    if (hiF >= 105) return ['Danger','danger','Heat cramps or heat exhaustion are likely; heat stroke may occur with continued activity.'];
+    if (hiF >= 90) return ['Extreme caution','extreme-caution','Heat cramps and heat exhaustion are possible. Continued activity can lead to heat stroke.'];
+    if (hiF >= 80) return ['Caution','caution','Fatigue is possible with prolonged heat exposure or physical exertion.'];
+    return ['Below heat-index caution range','normal','The estimated heat index is below the standard 80°F caution threshold.'];
+  };
+  const rounded = (n) => String(Math.round(n));
+  const outputTemps = (hiF, unit) => {
+    const values = { fahrenheit: rounded(hiF) + '°F', celsius: rounded(fromF(hiF)) + '°C', kelvin: rounded(fromF(hiF) + 273.15) + 'K' };
+    const alts = unit === 'fahrenheit' ? ['celsius','kelvin'] : unit === 'kelvin' ? ['celsius','fahrenheit'] : ['fahrenheit','kelvin'];
+    return [values[unit], '(' + values[alts[0]] + ' or ' + values[alts[1]] + ')'];
+  };
+  const saved = {rh: null,dew: null};
+  const updateHint = () => { get('instruction').hidden = !get('rh-result').hidden || !get('dew-result').hidden; };
+  const hideResult = (kind) => { get(kind + '-result').hidden = true; saved[kind] = null; updateHint(); };
+  const renderResult = (kind, hiF, rh, unit, airC, dewC) => {
+    const [primary, alternates] = outputTemps(hiF, unit);
+    const [risk, riskClass, explanation] = riskInfo(Math.round(hiF));
+    // The reference shows one active mode's result at a time.
+    hideResult(kind === 'rh' ? 'dew' : 'rh');
+    get(kind + '-number').textContent = primary;
+    get(kind + '-alternates').textContent = alternates;
+    if (kind === 'dew') get('dew-rh').textContent = rounded(rh) + '%';
+    const riskNode = get(kind + '-risk');
+    riskNode.className = 'calcpro-heat-index-risk calcpro-heat-index-risk--' + riskClass;
+    riskNode.replaceChildren();
+    const name = document.createElement('strong');
+    name.className = 'calcpro-heat-index-risk-name';
+    name.textContent = risk + ':';
+    riskNode.append(name, document.createTextNode(' ' + explanation));
+    const caution = (toF(airC) < 80 ? 'Below 80°F, the simplified NWS estimate is used. ' : '') +
+      ((airC > 50 || airC < -45 || (dewC !== null && dewC < -45)) ? 'Extreme conditions can make these approximations less reliable. ' : '') +
+      'Heat index assumes shade and light wind; direct sun can feel hotter.';
+    get(kind + '-note').textContent = caution;
+    get(kind + '-result').hidden = false;
+    saved[kind] = {
+      primary, alternates, rh: rounded(rh), risk, explanation, airC,
+      dewC, hiF, method:kind === 'rh' ? 'Relative humidity' : 'Dew point temperature'
+    };
+    get(kind + '-error').hidden = true;
+    updateHint();
+  };
+  const showError = (kind, message) => {
+    const error = get(kind + '-error');
+    error.textContent = message;
+    error.hidden = false;
+    hideResult(kind);
+  };
+  const calculate = (kind) => {
+    try {
+      const airId = kind === 'rh' ? 'air-rh' : 'air-dew';
+      const airC = readC(airId, 'Air temperature');
+      const unit = get(airId + '-unit').value;
+      let rh, dewC = null;
+      if (kind === 'rh') {
+        rh = numeric(get('humidity'), 'Relative humidity');
+        if (rh < 0 || rh > 100) throw new Error('Relative humidity must be between 0% and 100%.');
+      } else {
+        dewC = readC('dew', 'Dew point temperature');
+        if (dewC > airC + 1e-9) throw new Error('Dew point temperature cannot exceed air temperature.');
+        rh = Math.min(100, humidityFromDewPoint(airC, dewC));
+      }
+      const hiF = heatIndexF(toF(airC), rh);
+      if (!Number.isFinite(hiF)) throw new Error('The entered conditions are outside the supported calculation range.');
+      renderResult(kind, hiF, rh, unit, airC, dewC);
+    } catch (error) {
+      showError(kind, error.message || 'Please review your inputs.');
+    }
+  };
+  for (const kind of ['rh','dew']) {
+    get(kind + '-form').addEventListener('submit', (event) => { event.preventDefault(); calculate(kind); });
+    root.querySelector('[data-calcpro-heat-index-clear="' + kind + '"]').addEventListener('click', () => {
+      const form = get(kind + '-form');
+      for (const input of form.querySelectorAll('input')) input.value = '';
+      get(kind + '-error').hidden = true;
+      hideResult(kind);
+      form.querySelector('input').focus();
+    });
+    root.querySelector('[data-calcpro-heat-index-save="' + kind + '"]').addEventListener('click', () => {
+      const v = saved[kind];
+      if (!v) return;
+      const f = rounded(v.hiF);
+      const text = 'CalcPro Heat Index Calculator\n' +
+        'Method: ' + v.method + '\n' +
+        'Air temperature: ' + Math.round(v.airC * 100) / 100 + '°C\n' +
+        (v.dewC === null ? '' : 'Dew point: ' + Math.round(v.dewC * 100) / 100 + '°C\n') +
+        'Relative humidity: ' + v.rh + '%\n' +
+        'Heat index: ' + v.primary + ' ' + v.alternates + '\n' +
+        'Risk: ' + v.risk + ' — ' + v.explanation + '\n' +
+        'Methodology: NWS/WPC heat index equation; Magnus approximation for dew point mode.\n';
+      const blob = new Blob([text], {type:'text/plain;charset=utf-8'});
+      const url = URL.createObjectURL(blob);
+      const anchor = document.createElement('a');
+      anchor.href = url;
+      anchor.download = 'heat-index-' + kind + '-result.txt';
+      document.body.append(anchor);
+      anchor.click();
+      anchor.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+    });
+  }
+  // Convert displayed values when users change unit menus; preserve the same physical condition.
+  for (const sel of root.querySelectorAll('[data-calcpro-heat-index-unit]')) {
+    sel.dataset.previousUnit = sel.value;
+    sel.addEventListener('change', () => {
+      const field = get(sel.id.replace('calcpro-heat-index-','').replace('-unit',''));
+      const oldUnit = sel.dataset.previousUnit;
+      const value = Number(field.value.trim());
+      if (field.value.trim() && Number.isFinite(value)) {
+        const c = tempToC(value, oldUnit);
+        if (c >= -273.15) {
+          const converted = Math.round(cToUnit(c,sel.value) * 100) / 100;
+          field.value = String(Object.is(converted,-0) ? 0 : converted);
+        }
+      }
+      sel.dataset.previousUnit = sel.value;
+    });
+  }
+})();
+</script><script defer src="/assets/js/data.js"></script>
+<script defer src="/assets/js/style.js?v=20261111-5"></script>
+</body></html>

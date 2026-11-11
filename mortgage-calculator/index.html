@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US">
-<head>
-<meta charset="utf-8">
+<html lang="en"><head><meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="content-language" content="en">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,17 +11,513 @@
   <meta name="author" content="Commingsoon">
   <meta name="publisher" content="Commingsoon">
   <meta name="robots" content="noindex, nofollow, max-image-preview:large">
-  <link rel="stylesheet" href="/assets/css/style.css?v=20261111-1" crossorigin="anonymous" data-n-g="">
+  <link rel="stylesheet" href="/assets/css/style.css?v=20261111-4" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/doc_style.css" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/side_style.css" crossorigin="anonymous" data-n-g=""> 
   <!--ogtags-->
-  <!--schema-->
-  <!--style-->
-</head>
+  <!--schema--><style>
+/* Scoped, reference-inspired Mortgage Calculator UI; global CalcPro styles remain untouched. */
+.calcpro-mortgage{--cm-blue:#336699;--cm-dark:#125217;--cm-green:#34752a;--cm-border:#b8c2cb;--cm-paper:#f1f1f1;max-width:100%;color:#161b22;font:13px/1.35 Arial,Helvetica,sans-serif;text-align:left}
+.calcpro-mortgage *{box-sizing:border-box}
+.calcpro-mortgage button,.calcpro-mortgage input,.calcpro-mortgage select{font:inherit}
+.calcpro-mortgage button{cursor:pointer}
+.calcpro-mortgage-topline{display:flex;justify-content:space-between;align-items:center;color:var(--cm-dark);font-weight:bold;font-size:16px;margin:0 0 6px}
+.calcpro-mortgage-link{font-size:11px!important;color:#0561a4;border:0;background:transparent;text-decoration:underline;padding:0 3px}
+.calcpro-mortgage-guide{background:var(--cm-blue);color:white;font-size:12px;font-weight:bold;padding:7px 10px;margin-bottom:8px}
+.calcpro-mortgage-columns{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:14px;align-items:start}
+.calcpro-mortgage-form{min-width:0;background:var(--cm-paper);border:1px solid #bdbdbd;padding:12px 10px 8px}
+.calcpro-mortgage-field{display:grid;grid-template-columns:minmax(0,1fr) minmax(58px,100px) 54px;align-items:center;gap:4px;margin:0 0 5px;min-width:0}
+.calcpro-mortgage-field>label{text-align:right;font-size:12px;white-space:normal}
+.calcpro-mortgage-field>input,.calcpro-mortgage-field>select,.calcpro-mortgage-field .calcpro-mortgage-date select,.calcpro-mortgage-field .calcpro-mortgage-date input{height:28px;min-width:0;max-width:100%;border:1px solid #668ab4;background:white;border-radius:0;padding:3px 4px;color:#161b22;font-size:13px}
+.calcpro-mortgage-field>select{width:54px}
+.calcpro-mortgage-field>input:focus-visible,.calcpro-mortgage-field select:focus-visible,.calcpro-mortgage-extra-row input:focus-visible,.calcpro-mortgage-extra-row select:focus-visible{outline:2px solid #145a96;outline-offset:1px}
+.calcpro-mortgage-suffix{font-size:11px;color:#42536a;white-space:nowrap}
+.calcpro-mortgage-date{display:flex;gap:4px;grid-column:2 / 4;min-width:0}
+.calcpro-mortgage-date select{width:66px}.calcpro-mortgage-date input{flex:1;width:63px}
+.calcpro-mortgage-check{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:bold;margin:12px 0 6px;cursor:pointer}
+.calcpro-mortgage-check input{accent-color:#336699;margin:0;flex:none}
+.calcpro-mortgage-section-caption{text-align:center;font-size:12px;margin:7px 0 3px}
+.calcpro-mortgage-cost-block[hidden],.calcpro-mortgage-more[hidden],.calcpro-mortgage-biweekly-results[hidden],.calcpro-mortgage-errors[hidden]{display:none!important}
+.calcpro-mortgage-toggle{color:#006699;border:0;background:transparent;text-decoration:underline;font-size:12px;font-weight:700;padding:6px 2px;display:block;margin:0 auto}
+.calcpro-mortgage-more{border-top:1px solid #c1c9d0;margin-top:3px;padding-top:6px}
+.calcpro-mortgage-extra-title{color:var(--cm-dark);font-size:12px;font-weight:bold;margin:10px 0 6px}
+.calcpro-mortgage-extra-row{display:grid;grid-template-columns:minmax(0,1fr) 60px auto 58px 57px;gap:4px;align-items:center;margin-bottom:7px;font-size:11px}
+.calcpro-mortgage-extra-row>label{text-align:right;font-size:11px}
+.calcpro-mortgage-extra-row>input,.calcpro-mortgage-extra-row>select{height:26px;min-width:0;width:100%;border:1px solid #668ab4;background:white;padding:2px;color:#161b22;font-size:12px}
+.calcpro-mortgage-extra-row>span{text-align:center}
+.calcpro-mortgage-extra-row>select{padding:1px}
+.calcpro-mortgage-errors{color:#8b1c1c;background:#fff0ed;border:1px solid #ce9999;font-size:12px;padding:8px;margin-top:8px}
+.calcpro-mortgage-actions{display:flex;justify-content:center;gap:6px;margin-top:9px}
+.calcpro-mortgage-primary,.calcpro-mortgage-clear{border:0;padding:7px 12px;font-weight:bold;font-size:12px;color:white;background:var(--cm-green)}
+.calcpro-mortgage-clear{background:#999}
+.calcpro-mortgage-hint{font-size:10px;color:#67717d;line-height:1.3;margin:9px 0 0}
+.calcpro-mortgage-results{min-width:0;overflow-wrap:anywhere}
+.calcpro-mortgage-result-heading{font-size:15px;line-height:1.3;margin:0 0 7px;background:#448934;color:white;padding:6px 7px;display:flex;align-items:center;gap:6px}
+.calcpro-mortgage-result-heading>span{margin-left:2px}
+.calcpro-mortgage-save{margin-left:auto;background:transparent;color:white;border:1px solid #e0f0d7;font-size:15px;padding:0 5px}
+.calcpro-mortgage-results-table,.calcpro-mortgage-details{border-collapse:collapse;width:100%;font-size:12px;font-variant-numeric:tabular-nums}
+.calcpro-mortgage-results-table th{font-size:11px;text-align:right;white-space:nowrap;padding:3px 2px}
+.calcpro-mortgage-results-table th:first-child{text-align:left}
+.calcpro-mortgage-results-table td{padding:4px 2px;text-align:right;border-bottom:1px solid #e1e6eb;white-space:nowrap}
+.calcpro-mortgage-results-table td:first-child{text-align:left;white-space:normal}
+.calcpro-mortgage-results-table tr.calcpro-mortgage-highlight{background:#e6e6e6;font-weight:bold}
+.calcpro-mortgage-donut-layout{display:flex;gap:10px;align-items:center;padding:9px 2px 8px}
+.calcpro-mortgage-donut-layout svg{width:118px;height:118px;flex:0 0 118px}
+.calcpro-mortgage-donut-legend{font-size:11px;min-width:0;display:grid;gap:4px}
+.calcpro-mortgage-legend-row{display:flex;gap:5px;align-items:baseline}
+.calcpro-mortgage-dot{display:inline-block;width:9px;height:9px;flex:0 0 9px}
+.calcpro-mortgage-details{margin-top:2px}
+.calcpro-mortgage-details td{padding:3px 3px;border-bottom:1px solid #e8ecf0}
+.calcpro-mortgage-details td:last-child{text-align:right;font-weight:500;white-space:nowrap}
+.calcpro-mortgage-details tr:first-child{background:#ddd;font-weight:bold}
+.calcpro-mortgage-biweekly-results{border:1px solid #b7cadd;background:#f5faff;margin-top:11px;padding:9px 10px;font-size:12px;line-height:1.5}
+.calcpro-mortgage-biweekly-results strong{color:var(--cm-dark)}
+.calcpro-mortgage-schedule{margin-top:21px}
+.calcpro-mortgage-schedule-bar{display:flex;gap:12px;justify-content:space-between;align-items:center}
+.calcpro-mortgage-schedule h2{color:var(--cm-dark);font-size:16px;margin:0 0 4px}
+.calcpro-mortgage-csv{padding:4px 7px;color:#006699;border:1px solid #c6d5e3;background:white;text-decoration:underline;font-size:11px}
+.calcpro-mortgage-schedule-links{display:flex;gap:8px;margin:2px 0 6px}
+.calcpro-mortgage-tab{font-size:12px;background:transparent;border:0;color:#006699;text-decoration:underline;padding:2px 0}
+.calcpro-mortgage-tab-active{font-weight:bold;color:#111;text-decoration:none}
+.calcpro-mortgage-schedule-grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:14px;align-items:start}
+.calcpro-mortgage-table-wrap{overflow-x:auto;max-width:100%;max-height:690px;overflow-y:auto;border:1px solid #cad0d6}
+.calcpro-mortgage-schedule-table{border-collapse:collapse;width:100%;font-size:11px;font-variant-numeric:tabular-nums}
+.calcpro-mortgage-schedule-table th{background:#336699;color:white;padding:6px 4px;text-align:center;white-space:nowrap;position:sticky;top:0}
+.calcpro-mortgage-schedule-table td{padding:5px 3px;border:1px solid #d3d9df;text-align:right}
+.calcpro-mortgage-schedule-table td:nth-child(2){text-align:center;min-width:72px}
+.calcpro-mortgage-schedule-table tr:nth-child(even){background:#f2f4f7}
+.calcpro-mortgage-graph{min-width:0;border:1px solid #e0e7ee;padding:5px}
+.calcpro-mortgage-graph svg{width:100%;height:auto;display:block}
+.calcpro-mortgage-chart-note{text-align:center;font-size:10px;color:#637084;padding:0 3px 5px}
+@media(max-width:710px){.calcpro-mortgage-columns{grid-template-columns:1fr}.calcpro-mortgage-schedule-grid{grid-template-columns:1fr}.calcpro-mortgage-form{max-width:540px;width:100%}.calcpro-mortgage-results{max-width:540px;width:100%}.calcpro-mortgage-graph{max-width:540px}}
+@media(max-width:420px){.calcpro-mortgage{font-size:12px}.calcpro-mortgage-form{padding:9px 6px}.calcpro-mortgage-field{grid-template-columns:minmax(0,1fr) minmax(58px,95px) 45px;gap:3px}.calcpro-mortgage-field>select{width:45px}.calcpro-mortgage-field>label{font-size:11px}.calcpro-mortgage-extra-row{grid-template-columns:minmax(0,1fr) 49px auto 49px 48px;gap:2px}.calcpro-mortgage-extra-row>label{font-size:10px}.calcpro-mortgage-donut-layout svg{width:100px;height:100px;flex-basis:100px}.calcpro-mortgage-results-table{font-size:11px}}
+@media print{.calcpro-mortgage-guide,.calcpro-mortgage-topline .calcpro-mortgage-link,.calcpro-mortgage-save,.calcpro-mortgage-csv,.calcpro-mortgage-actions,.calcpro-mortgage-hint,.calcpro-mortgage-toggle{display:none!important}.calcpro-mortgage-columns{grid-template-columns:1fr 1fr}.calcpro-mortgage-schedule-grid{grid-template-columns:1.1fr 1fr}.calcpro-mortgage-table-wrap{max-height:none;overflow:visible}.calcpro-mortgage-form{background:white}.calcpro-mortgage{break-inside:auto}}
 
-<body>
-<!-- Main-header-page -->
-<script defer src="/assets/js/data.js"></script>
-<script defer src="/assets/js/style.js?v=20261111-1"></script>
-</body>
-</html>
+</style>
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Mortgage Calculator</nav><h1 class="cp-page-title">Mortgage Calculator</h1><p class="cp-intro">Estimate your monthly mortgage principal and interest, taxes, insurance, extra payments, payoff date, and amortization schedule.</p><section aria-label="Calculator" class="cp-tool-area">
+<div class="calcpro-mortgage" id="calcpro-mortgage-root">
+  <div class="calcpro-mortgage-topline"><span>Mortgage Calculator</span><button class="calcpro-mortgage-link" id="calcpro-mortgage-print" type="button">Print</button></div>
+  <div class="calcpro-mortgage-guide">Modify the values and click <strong>Calculate</strong> to update your results.</div>
+  <div class="calcpro-mortgage-columns">
+    <form id="calcpro-mortgage-form" class="calcpro-mortgage-form" novalidate>
+      <div class="calcpro-mortgage-field"><label for="calcpro-mortgage-price">Home Price</label><input id="calcpro-mortgage-price" type="text" inputmode="decimal" value="500,000" aria-required="true"><span class="calcpro-mortgage-suffix">USD</span></div>
+      <div class="calcpro-mortgage-field"><label for="calcpro-mortgage-down">Down Payment</label><input id="calcpro-mortgage-down" type="text" inputmode="decimal" value="20"><select aria-label="Down payment unit" id="calcpro-mortgage-down-unit" data-convert="down" data-previous="pct"><option value="pct" selected>%</option><option value="usd">$</option></select></div>
+      <div class="calcpro-mortgage-field"><label for="calcpro-mortgage-term">Loan Term</label><input id="calcpro-mortgage-term" type="text" inputmode="decimal" value="30"><span class="calcpro-mortgage-suffix">years</span></div>
+      <div class="calcpro-mortgage-field"><label for="calcpro-mortgage-rate">Interest Rate</label><input id="calcpro-mortgage-rate" type="text" inputmode="decimal" value="7.158"><span class="calcpro-mortgage-suffix">% / yr</span></div>
+      <div class="calcpro-mortgage-field"><label for="calcpro-mortgage-start-month">Start Date</label><div class="calcpro-mortgage-date"><select id="calcpro-mortgage-start-month" aria-label="Start month" data-months="true" data-default-month="11"></select><input aria-label="Start year" id="calcpro-mortgage-start-year" type="text" inputmode="numeric" value="2026"></div><span></span></div>
+      <label class="calcpro-mortgage-check"><input id="calcpro-mortgage-include" type="checkbox" checked> Include Taxes &amp; Costs Below</label>
+      <div class="calcpro-mortgage-cost-block" id="calcpro-mortgage-cost-block">
+        <div class="calcpro-mortgage-section-caption">Annual Tax &amp; Cost</div>
+        <div class="calcpro-mortgage-field"><label for="calcpro-mortgage-tax">Property Taxes</label><input id="calcpro-mortgage-tax" type="text" inputmode="decimal" value="1.2"><select id="calcpro-mortgage-tax-unit" aria-label="Property taxes unit" data-convert="tax" data-previous="pct"><option value="pct" selected>%</option><option value="usd">$</option></select></div>
+        <div class="calcpro-mortgage-field"><label for="calcpro-mortgage-insurance">Home Insurance</label><input id="calcpro-mortgage-insurance" type="text" inputmode="decimal" value="1,500"><select id="calcpro-mortgage-insurance-unit" aria-label="Home insurance unit" data-convert="insurance" data-previous="usd"><option value="pct">%</option><option value="usd" selected>$</option></select></div>
+        <div class="calcpro-mortgage-field"><label for="calcpro-mortgage-pmi">PMI Insurance</label><input id="calcpro-mortgage-pmi" type="text" inputmode="decimal" value="0"><select id="calcpro-mortgage-pmi-unit" aria-label="PMI insurance unit" data-convert="pmi" data-previous="usd"><option value="pct">%</option><option value="usd" selected>$</option></select></div>
+        <div class="calcpro-mortgage-field"><label for="calcpro-mortgage-hoa">HOA Fee</label><input id="calcpro-mortgage-hoa" type="text" inputmode="decimal" value="0"><select id="calcpro-mortgage-hoa-unit" aria-label="HOA fee unit" data-convert="hoa" data-previous="usd"><option value="pct">%</option><option value="usd" selected>$</option></select></div>
+        <div class="calcpro-mortgage-field"><label for="calcpro-mortgage-other">Other Costs</label><input id="calcpro-mortgage-other" type="text" inputmode="decimal" value="4,000"><select id="calcpro-mortgage-other-unit" aria-label="Other costs unit" data-convert="other" data-previous="usd"><option value="pct">%</option><option value="usd" selected>$</option></select></div>
+        <button class="calcpro-mortgage-toggle" id="calcpro-mortgage-more-toggle" type="button" aria-expanded="false" aria-controls="calcpro-mortgage-more">+ More Options</button>
+        <div class="calcpro-mortgage-more" id="calcpro-mortgage-more" hidden>
+          <div class="calcpro-mortgage-extra-title">Annual Tax &amp; Cost Increase</div>
+          <div class="calcpro-mortgage-field"><label for="calcpro-mortgage-tax-rise">Property Taxes Increase</label><input id="calcpro-mortgage-tax-rise" type="text" inputmode="decimal" value="0"><span class="calcpro-mortgage-suffix">% / yr</span></div>
+          <div class="calcpro-mortgage-field"><label for="calcpro-mortgage-insurance-rise">Home Insurance Increase</label><input id="calcpro-mortgage-insurance-rise" type="text" inputmode="decimal" value="0"><span class="calcpro-mortgage-suffix">% / yr</span></div>
+          <div class="calcpro-mortgage-field"><label for="calcpro-mortgage-hoa-rise">HOA Fee Increase</label><input id="calcpro-mortgage-hoa-rise" type="text" inputmode="decimal" value="0"><span class="calcpro-mortgage-suffix">% / yr</span></div>
+          <div class="calcpro-mortgage-field"><label for="calcpro-mortgage-other-rise">Other Costs Increase</label><input id="calcpro-mortgage-other-rise" type="text" inputmode="decimal" value="0"><span class="calcpro-mortgage-suffix">% / yr</span></div>
+          <div class="calcpro-mortgage-extra-title">Extra Payments</div>
+          <div class="calcpro-mortgage-extra-row"><label for="calcpro-mortgage-extra-monthly">Extra Monthly Pay ($)</label><input id="calcpro-mortgage-extra-monthly" type="text" inputmode="decimal" value="0"><span>from</span><select aria-label="Extra monthly start month" id="calcpro-mortgage-extra-monthly-month" data-months="true" data-default-month="11"></select><input aria-label="Extra monthly start year" id="calcpro-mortgage-extra-monthly-year" type="text" inputmode="numeric" value="2026"></div>
+          <div class="calcpro-mortgage-extra-row"><label for="calcpro-mortgage-extra-yearly">Extra Yearly Pay ($)</label><input id="calcpro-mortgage-extra-yearly" type="text" inputmode="decimal" value="0"><span>from</span><select aria-label="Extra yearly start month" id="calcpro-mortgage-extra-yearly-month" data-months="true" data-default-month="11"></select><input aria-label="Extra yearly start year" id="calcpro-mortgage-extra-yearly-year" type="text" inputmode="numeric" value="2026"></div>
+          <div class="calcpro-mortgage-extra-title">One-Time Extra Payments</div>
+          <div class="calcpro-mortgage-one-time-list" id="calcpro-mortgage-one-time-list">
+            <div class="calcpro-mortgage-extra-row"><label for="calcpro-mortgage-onetime-1">Extra One-time Pay ($)</label><input id="calcpro-mortgage-onetime-1" type="text" inputmode="decimal" value="0"><span>in</span><select aria-label="One-time payment month 1" id="calcpro-mortgage-onetime-month-1" data-months="true" data-default-month="11"></select><input aria-label="One-time payment year 1" id="calcpro-mortgage-onetime-year-1" type="text" inputmode="numeric" value="2026"></div>
+          </div>
+          <button class="calcpro-mortgage-toggle" id="calcpro-mortgage-onetime-toggle" type="button" aria-expanded="false">+ Additional One-Time Payments</button>
+          <label class="calcpro-mortgage-check"><input id="calcpro-mortgage-biweekly" type="checkbox"> Show Biweekly Payback Results</label>
+        </div>
+      </div>
+      <div class="calcpro-mortgage-errors" id="calcpro-mortgage-errors" role="alert" aria-live="assertive" hidden></div>
+      <div class="calcpro-mortgage-actions"><button class="calcpro-mortgage-primary" type="submit">Calculate <span aria-hidden="true">●</span></button><button id="calcpro-mortgage-clear" class="calcpro-mortgage-clear" type="button">Clear</button></div>
+      <p class="calcpro-mortgage-hint">All cost fields are annual. Percentage costs use the home price, except PMI, which uses the original loan amount.</p>
+    </form>
+    <section class="calcpro-mortgage-results" id="calcpro-mortgage-results" aria-live="polite" aria-label="Mortgage results">
+      <h2 class="calcpro-mortgage-result-heading">Monthly Pay: <span id="calcpro-mortgage-monthly-pay">—</span><button type="button" id="calcpro-mortgage-save" class="calcpro-mortgage-save" title="Save summary as text file" aria-label="Save mortgage summary">▣</button></h2>
+      <table class="calcpro-mortgage-results-table" aria-label="Breakdown of monthly and lifetime payments"><thead><tr><th>Cost</th><th>Monthly</th><th>Total</th></tr></thead><tbody id="calcpro-mortgage-breakdown"></tbody></table>
+      <div class="calcpro-mortgage-donut-layout"><svg id="calcpro-mortgage-donut" viewBox="0 0 124 124" role="img" aria-label="Breakdown of lifetime mortgage and housing costs"></svg><div class="calcpro-mortgage-donut-legend" id="calcpro-mortgage-donut-legend"></div></div>
+      <table class="calcpro-mortgage-details" aria-label="Loan summary"><tbody id="calcpro-mortgage-details"></tbody></table>
+      <div class="calcpro-mortgage-biweekly-results" id="calcpro-mortgage-biweekly-results" hidden></div>
+    </section>
+  </div>
+  <section class="calcpro-mortgage-schedule" aria-label="Amortization schedule"><div class="calcpro-mortgage-schedule-bar"><h2>Amortization schedule</h2><button type="button" class="calcpro-mortgage-csv" id="calcpro-mortgage-csv">Download CSV</button></div><div class="calcpro-mortgage-schedule-links" role="group" aria-label="Amortization view"><button type="button" id="calcpro-mortgage-annual-tab" class="calcpro-mortgage-tab calcpro-mortgage-tab-active" aria-pressed="true">Annual Schedule</button><button type="button" id="calcpro-mortgage-monthly-tab" class="calcpro-mortgage-tab" aria-pressed="false">Monthly Schedule</button></div>
+    <div class="calcpro-mortgage-schedule-grid"><div class="calcpro-mortgage-table-wrap"><table class="calcpro-mortgage-schedule-table" aria-label="Amortization table"><thead id="calcpro-mortgage-schedule-head"></thead><tbody id="calcpro-mortgage-schedule-body"></tbody></table></div><div class="calcpro-mortgage-graph"><svg id="calcpro-mortgage-line-chart" viewBox="0 0 560 256" role="img" aria-label="Mortgage balance, cumulative interest, and total paid over time"></svg><div class="calcpro-mortgage-chart-note">Loan balance, cumulative interest and cumulative principal + interest payments</div></div></div>
+  </section>
+</div>
+
+</section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><!-- REPLACE these links with real related tools for each calculator; verify live slugs. --><a href="retirement-calculator.html">Retirement</a><a href="roth-ira-calculator.html">Roth IRA</a><a href="investment-calculator.html">Investment</a><a href="compound-interest-calculator.html">Compound Interest</a><a href="annuity-payout-calculator.html">Annuity Payout</a><a href="pension-calculator.html">Pension</a><a href="inflation-calculator.html">Inflation</a><a href="future-value-calculator.html">Future Value</a><a href="income-tax-calculator.html">Income Tax</a><a href="savings-calculator.html">Savings</a><a href="amortization-calculator.html">Amortization</a><a href="loan-calculator.html">Loan</a></div></section></aside><article class="cp-article">
+<h2>How to Use the Mortgage Calculator</h2>
+<p>Enter the purchase price, the amount or percentage of your down payment, your mortgage term, annual fixed interest rate, and your first payment month. Select <strong>Calculate</strong> to estimate principal and interest, the total monthly cost of owning the home, and a full amortization schedule. A sample scenario is already calculated when the page opens.</p>
+<p>Enable <strong>Include Taxes &amp; Costs Below</strong> to include annual property tax, homeowners insurance, private mortgage insurance (PMI), HOA fees, and other annual housing expenses. Switch each field between a percentage and an annual dollar amount. Select <strong>More Options</strong> to model annual increases in non-PMI costs, extra monthly or yearly principal payments, or one-time principal prepayments.</p>
+<p>Switch between the <strong>Annual Schedule</strong> and <strong>Monthly Schedule</strong> to inspect how each loan payment reduces the balance. Save a text summary, export the amortization table as CSV, or print the results directly from this page.</p>
+<h2>Mortgage Payment Formula</h2>
+<p>For a fixed-rate, fully amortizing mortgage, the scheduled monthly principal-and-interest payment is calculated as:</p>
+<div class="cp-note"><strong>M = P × r ÷ [1 − (1 + r)<sup>−n</sup>]</strong><p>Where <strong>P</strong> is the original loan principal (price minus down payment), <strong>r</strong> is the annual interest rate divided by 1,200, and <strong>n</strong> is the number of monthly payments (years × 12). If the interest rate is zero, M = P ÷ n.</p></div>
+<p>For each month, interest equals the remaining loan balance multiplied by the monthly rate. Scheduled principal equals the mortgage payment minus that month's interest. Extra principal payments are applied to the balance immediately and can reduce the total interest and loan term. The last installment is adjusted to the amount still owed.</p>
+<h2>Worked Example: $500,000 Home</h2>
+<p>With a <strong>$500,000</strong> house price, <strong>20%</strong> ($100,000) down, a <strong>$400,000</strong> loan, a <strong>7.158%</strong> fixed interest rate, and a <strong>30-year</strong> term, the scheduled principal and interest is approximately <strong>$2,703.79 per month</strong>. If property tax is 1.2% of the house price ($6,000 per year), insurance is $1,500 per year, and other costs are $4,000 per year, estimated first-month out-of-pocket expenses total approximately <strong>$3,662.12</strong>, excluding any separate upfront closing costs.</p>
+<h2>Understanding Your Results</h2>
+<h3>Principal and Interest Versus Total Housing Cost</h3>
+<p>The large green monthly-payment figure is the <em>principal-and-interest</em> payment, not a complete monthly homeownership budget. The breakdown below it adds the other costs you choose to include. Escrowed tax or insurance contributions and separate HOA payments may differ depending on the lender and property.</p>
+<h3>PMI and Annual Increases</h3>
+<p>The PMI field is an optional annual estimate. This calculator estimates PMI only on loans initially below a 20% down payment, stopping it once the projected balance reaches 78% of the original property price; your actual cancellation terms may differ. Annual percentage increases in property tax, homeowners insurance, HOA, and other costs are applied once every 12 payments. Results use the entered annual amounts and do not forecast local tax assessments or insurance quotes.</p>
+<h3>Extra Payments and Biweekly Comparison</h3>
+<p>Extra payments reduce principal, rather than the interest rate, and may shorten the payoff period. The optional biweekly comparison models 26 half-sized P&amp;I payments per year using a simplified 26-period interest model; it is calculated separately from optional extra payments and housing costs, so it is a planning comparison rather than a lender-specific repayment schedule.</p>
+<h2>Frequently Asked Questions</h2>
+<h3>Does a larger down payment lower monthly costs?</h3>
+<p>Generally, yes. A larger down payment decreases your loan principal and may eliminate the need for PMI. The property tax and other homeowner costs do not necessarily fall with the loan amount.</p>
+<h3>Does this calculator support adjustable-rate mortgages?</h3>
+<p>No. The amortization schedule assumes the entered annual interest rate remains fixed for the entire term. Adjustable-rate loans require separate assumptions for rate resets, caps, and payment changes.</p>
+<h3>Does it include closing costs or a down payment in total out-of-pocket costs?</h3>
+<p>The lifetime out-of-pocket estimate includes mortgage principal and interest plus selected recurring housing expenses. It <strong>does not</strong> include the original down payment, closing costs, utilities not entered as other costs, capital gains, property appreciation, or investment opportunity costs.</p>
+<h3>Are the displayed totals exact lender figures?</h3>
+<p>No. Values are mathematically modeled estimates; real escrow payments, PMI policy, amortization conventions, and dates may differ from your lender's disclosures. Displayed monthly amounts are rounded to cents, while the underlying calculation retains full precision.</p>
+<h2>Sources and Further Reading</h2>
+<ul><li><a href="https://www.consumerfinance.gov/ask-cfpb/how-do-mortgage-lenders-calculate-monthly-payments-en-1965/" rel="noopener noreferrer">Consumer Financial Protection Bureau: How lenders calculate mortgage payments</a></li><li><a href="https://www.consumerfinance.gov/ask-cfpb/how-does-paying-down-a-mortgage-work-en-1943/" rel="noopener noreferrer">Consumer Financial Protection Bureau: How amortization works</a></li><li><a href="https://www.consumerfinance.gov/ask-cfpb/on-a-mortgage-whats-the-difference-between-my-principal-and-interest-payment-and-my-total-monthly-payment-en-1941/" rel="noopener noreferrer">Consumer Financial Protection Bureau: Principal and interest versus total payment</a></li></ul>
+<p class="cp-page-footer">CalcPro — mortgage and homeowner-cost figures are informational estimates, not lending offers or financial advice.</p>
+</article></main></div><script>
+(() => {
+  'use strict';
+  const root = document.getElementById('calcpro-mortgage-root');
+  if (!root) return;
+  const el = key => root.querySelector('#calcpro-mortgage-' + key);
+  const currency = n => '$' + Number(n || 0).toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2});
+  const whole = n => '$' + Math.round(n || 0).toLocaleString('en-US');
+  const number = n => Number(n || 0).toLocaleString('en-US', {maximumFractionDigits:2});
+  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  let current = null;
+  let scheduleView = 'annual';
+  let showingOneTimes = false;
+  const moneyData = [
+    { key:'pi', text:'Principal & Interest', color:'#2b7ddb' },
+    { key:'tax', text:'Property Taxes', color:'#8bbc21' },
+    { key:'insurance', text:'Home Insurance', color:'#910000' },
+    { key:'pmi', text:'PMI Insurance', color:'#ec972e' },
+    { key:'hoa', text:'HOA Fee', color:'#5d44bf' },
+    { key:'other', text:'Other Costs', color:'#1aadce' }
+  ];
+  const clean = value => String(value).trim().replace(/[$,%\s]/g,'');
+  function numeric(key, name, min=0, max=1e13) {
+    const input = el(key);
+    const stripped = clean(input.value);
+    if (!stripped || !/^-?(?:\d+(?:\.\d*)?|\.\d+)$/.test(stripped)) throw new Error(name + ' must be a valid number.');
+    const value = Number(stripped);
+    if (!Number.isFinite(value) || value < min || value > max) throw new Error(name + ' must be between ' + number(min) + ' and ' + number(max) + '.');
+    return value;
+  }
+  function year(key, name) {
+    const val = numeric(key, name, 1900, 2200);
+    if (!Number.isInteger(val)) throw new Error(name + ' must be a whole year.');
+    return val;
+  }
+  function monthIndex(month, yr) { return yr * 12 + month - 1; }
+  function period(key) { return monthIndex(Number(el(key + '-month').value), year(key + '-year', 'Extra payment year')); }
+  function monthLabel(absolute) { return months[((absolute % 12) + 12) % 12] + ' ' + Math.floor(absolute/12); }
+  function monthShort(absolute) { return ((absolute % 12) + 12) % 12 + 1 + '/' + String(Math.floor(absolute/12)).slice(-2); }
+  function dateLong(absolute) { return months[((absolute % 12) + 12) % 12] + '. ' + Math.floor(absolute/12); }
+  function annualAmount(key, base) {
+    const val = numeric(key, key[0].toUpperCase() + key.slice(1) + ' cost',0,1e12);
+    return el(key+'-unit').value === 'pct' ? val * base / 100 : val;
+  }
+  function collect() {
+    const price = numeric('price','Home price',0.01,1e12);
+    const downUnit = el('down-unit').value;
+    const downValue = numeric('down','Down payment',0,1e12);
+    if (downUnit === 'pct' && downValue > 100) throw new Error('Down payment cannot exceed 100%.');
+    const down = downUnit === 'pct' ? price * downValue/100 : downValue;
+    if (down > price + 1e-7) throw new Error('Down payment cannot exceed the home price.');
+    const term = numeric('term','Loan term',1/12,50);
+    const n = Math.round(term * 12);
+    if (Math.abs(term*12 - n)>0.00001) throw new Error('Enter the loan term in whole months (for example, 15, 30, or 2.5 years).');
+    const rate = numeric('rate','Annual interest rate',0,100);
+    const start = monthIndex(Number(el('start-month').value),year('start-year','Start year'));
+    const loan = Math.max(0,price-down);
+    const included = el('include').checked;
+    const annual = {};
+    for (const key of ['tax','insurance','pmi','hoa','other']) annual[key] = included ? annualAmount(key,key==='pmi'?loan:price):0;
+    const rises = {};
+    for (const key of ['tax','insurance','hoa','other']) rises[key] = included ? numeric(key+'-rise',key+' increase',-100,1000)/100:0;
+    const monthlyExtra = included ? numeric('extra-monthly','Extra monthly payment',0,1e12):0;
+    const yearlyExtra = included ? numeric('extra-yearly','Extra yearly payment',0,1e12):0;
+    const oneTimes = [];
+    if (included) for(let j=1;j<=10;j++) {
+      const a = numeric('onetime-'+j,'One-time payment '+j,0,1e12);
+      if(a>0) oneTimes.push({amount:a,at:monthIndex(Number(el('onetime-month-'+j).value),year('onetime-year-'+j,'One-time payment year'))});
+    }
+    return {price,down,loan,term,n,rate,start,included,annual,rises,monthlyExtra,yearlyExtra,
+      monthlyExtraAt:included?period('extra-monthly'):start,
+      yearlyExtraAt:included?period('extra-yearly'):start,oneTimes,
+      biweekly:included && el('biweekly').checked};
+  }
+  function amortize(p) {
+    const r = p.rate / 1200;
+    const monthlyPI = p.loan===0 ? 0 : r===0 ? p.loan/p.n : p.loan * r / (1-Math.pow(1+r,-p.n));
+    let balance = p.loan, totalInterest = 0, totalPaid = 0;
+    const total = {pi:0,tax:0,insurance:0,pmi:0,hoa:0,other:0};
+    const rows=[];
+    const costFirst={pi:monthlyPI,tax:0,insurance:0,pmi:0,hoa:0,other:0};
+    const growth = (key,i) => p.annual[key] / 12 * Math.pow(1+(p.rises[key]||0), Math.floor(i/12));
+    const sumExtrasAt = abs => p.oneTimes.reduce((sum,x)=>sum+(x.at===abs?x.amount:0),0);
+    // For a 100% down purchase, list housing costs over the selected horizon without a loan.
+    for(let i=0;i<p.n;i++) {
+      if (balance<=1e-7 && p.loan>0) break;
+      const abs=p.start+i;
+      const interest=balance*r;
+      const scheduledPrincipal = balance>0 ? Math.min(balance, Math.max(0, monthlyPI-interest)) : 0;
+      const extra=(balance>0&&i<p.n-1) ?
+        ((p.monthlyExtra>0&&abs>=p.monthlyExtraAt?p.monthlyExtra:0)+
+         (p.yearlyExtra>0&&abs>=p.yearlyExtraAt&&(abs-p.yearlyExtraAt)%12===0?p.yearlyExtra:0)+sumExtrasAt(abs)) : 0;
+      const principal = i===p.n-1 ? balance : Math.min(balance, scheduledPrincipal+extra);
+      const pi=interest+principal;
+      const costs = {tax:growth('tax',i),insurance:growth('insurance',i),
+        pmi: (balance > p.price*.78+1e-6 && p.down < p.price*.2-1e-6) ? p.annual.pmi/12 : 0,
+        hoa:growth('hoa',i),other:growth('other',i)};
+      if(i===0) { costFirst.pi=pi; for (const k of ['tax','insurance','pmi','hoa','other']) costFirst[k]=costs[k]; }
+      balance=Math.max(0,balance-principal);
+      totalInterest+=interest;
+      totalPaid+=pi;
+      total.pi+=pi;
+      for(const k of ['tax','insurance','pmi','hoa','other']) total[k]+=costs[k];
+      rows.push({idx:i+1,absolute:abs,interest,principal,pi,balance,extra:Math.max(0,principal-scheduledPrincipal),costs,totalInterest,totalPaid});
+    }
+    const outOfPocket=Object.values(total).reduce((a,b)=>a+b,0);
+    const firstTotal=Object.values(costFirst).reduce((a,b)=>a+b,0);
+    const annualRows=[];
+    for(let i=0;i<rows.length;i+=12) {
+      const slice=rows.slice(i,i+12), last=slice[slice.length-1];
+      annualRows.push({idx:i/12+1,start:slice[0].absolute,end:last.absolute,
+        interest:slice.reduce((s,row)=>s+row.interest,0),principal:slice.reduce((s,row)=>s+row.principal,0),
+        balance:last.balance,totalInterest:last.totalInterest,totalPaid:last.totalPaid,pi:slice.reduce((s,row)=>s+row.pi,0)});
+    }
+    return {p,monthlyPI,rows,annualRows,total,totalInterest,totalPaid,outOfPocket,costFirst,firstTotal,
+      payoff:rows.length && p.loan>0 ? rows[rows.length-1].absolute+1 : null};
+  }
+  function biweeklyScenario(calc) {
+    const p=calc.p;
+    if (p.loan===0) return null;
+    // Fixed 26 biweekly periods per year, 26 payments of half the regular monthly P&I.
+    const half=calc.monthlyPI/2, rate=p.rate/100/26;
+    let balance=p.loan,interest=0,periods=0;
+    for(;periods<26*65 && balance>1e-7;periods++){
+      const part=balance*rate;
+      if(half<=part && p.rate>0) return null;
+      const payment=Math.min(balance,half-part);
+      interest+=part; balance=Math.max(0,balance-payment);
+    }
+    const standardBaseline = (p.monthlyExtra || p.yearlyExtra || p.oneTimes.length) ?
+      amortize({...p, monthlyExtra:0, yearlyExtra:0, oneTimes:[]}).totalInterest : calc.totalInterest;
+    const savings=standardBaseline-interest;
+    const start=new Date(Math.floor(p.start/12),p.start%12,1,12);
+    start.setDate(start.getDate()+periods*14);
+    return {half,periods,interest,savings,date:months[start.getMonth()]+' '+start.getFullYear(), years:periods/26};
+  }
+  function error(message) { el('errors').textContent=message;el('errors').hidden=false; }
+  function clearError() {el('errors').hidden=true;el('errors').textContent='';}
+  function renderBreakdown(calc){
+    const lines=[['Mortgage Payment','pi'],['Property Tax','tax'],['Home Insurance','insurance'],['PMI Insurance','pmi'],['HOA Fee','hoa'],['Other Costs','other']];
+    const main=el('breakdown');main.replaceChildren();
+    for(const [label,key] of lines){
+      if(key!=='pi' && calc.total[key] <= 0.000001) continue;
+      const tr=document.createElement('tr');
+      if(key==='pi') tr.className='calcpro-mortgage-highlight';
+      for(const value of [label,currency(calc.costFirst[key]),currency(calc.total[key])]){
+        const td=document.createElement('td');td.textContent=value;tr.append(td);
+      }
+      main.append(tr);
+    }
+    const tr=document.createElement('tr');tr.className='calcpro-mortgage-highlight';
+    for(const value of ['Total Out-of-Pocket',currency(calc.firstTotal),currency(calc.outOfPocket)]){
+      const td=document.createElement('td');td.textContent=value;tr.append(td);
+    }
+    main.append(tr);
+  }
+  function renderDetails(calc){
+    const p=calc.p;
+    const data=[['House Price',currency(p.price)],['Loan Amount',currency(p.loan)],
+      ['Down Payment',currency(p.down)],['Total of '+calc.rows.length+' Mortgage Payments',currency(calc.totalPaid)],
+      ['Total Interest',currency(calc.totalInterest)],['Mortgage Payoff Date',calc.payoff===null?'No loan':dateLong(calc.payoff)]];
+    const tbody=el('details');tbody.replaceChildren();
+    for(const pair of data){const tr=document.createElement('tr');for(const x of pair){const td=document.createElement('td');td.textContent=x;tr.append(td);}tbody.append(tr);}
+  }
+  function drawDonut(calc){
+    const sum=calc.outOfPocket;
+    const svg=el('donut');svg.replaceChildren();
+    const ns='http://www.w3.org/2000/svg';
+    const circle=(attrs,title)=>{const c=document.createElementNS(ns,'circle');for(const [k,v] of Object.entries(attrs))c.setAttribute(k,v);if(title){const t=document.createElementNS(ns,'title');t.textContent=title;c.append(t);}svg.append(c);};
+    circle({cx:62,cy:62,r:44,fill:'none',stroke:'#e8edf0','stroke-width':23});
+    const circumference=2*Math.PI*44;
+    let offset=0;
+    const legend=el('donut-legend');legend.replaceChildren();
+    for(const group of moneyData){
+      const amount=calc.total[group.key];if(amount<=0.00001)continue;
+      const fraction=sum>0?amount/sum:0;
+      circle({cx:62,cy:62,r:44,fill:'none',stroke:group.color,'stroke-width':23,
+        transform:'rotate(-90 62 62)','stroke-dasharray':(fraction*circumference)+' '+circumference,
+        'stroke-dashoffset':-offset*circumference},group.text+': '+currency(amount)+' ('+(fraction*100).toFixed(1)+'%)');
+      offset+=fraction;
+      const row=document.createElement('div');row.className='calcpro-mortgage-legend-row';
+      const square=document.createElement('span');square.className='calcpro-mortgage-dot';square.style.background=group.color;
+      const desc=document.createElement('span');desc.textContent=group.text+' ('+Math.round(fraction*100)+'%)';
+      row.append(square,desc);legend.append(row);
+    }
+    const inner=document.createElementNS(ns,'text');
+    inner.setAttribute('x','62');inner.setAttribute('y','65');inner.setAttribute('font-size','14');
+    inner.setAttribute('font-weight','bold');inner.setAttribute('text-anchor','middle');inner.setAttribute('fill','#336699');
+    inner.textContent=sum>0?'100%':'$0';svg.append(inner);
+  }
+  function drawChart(calc){
+    const svg=el('line-chart'), ns='http://www.w3.org/2000/svg';svg.replaceChildren();
+    const series=[{name:'Balance',color:'#2875b5',values:[calc.p.loan,...calc.annualRows.map(x=>x.balance)]},
+      {name:'Interest',color:'#8bbc21',values:[0,...calc.annualRows.map(x=>x.totalInterest)]},
+      {name:'Payment',color:'#cc3333',values:[0,...calc.annualRows.map(x=>x.totalPaid)]}];
+    const max=Math.max(1,...series.flatMap(s=>s.values)),len=Math.max(1,calc.annualRows.length);
+    const x=step=>54+step/len*480, y=value=>205-value/max*168;
+    const elem=(tag,attrs,txt)=>{const node=document.createElementNS(ns,tag);for(const [k,v] of Object.entries(attrs||{}))node.setAttribute(k,String(v));if(txt!==undefined)node.textContent=txt;svg.append(node);return node;};
+    for(let i=0;i<=4;i++){
+      const val=max*i/4,yy=y(val);
+      elem('line',{x1:54,y1:yy,x2:534,y2:yy,stroke:'#d9e0e7','stroke-width':1});
+      const suffix=val>=1e6?(val/1e6).toFixed(1)+'M':val>=1e3?Math.round(val/1e3)+'K':Math.round(val);
+      elem('text',{x:49,y:yy+4,'text-anchor':'end','font-size':11,fill:'#718096'},'$'+suffix);
+    }
+    for(let i=0;i<=5;i++){
+      const pos=len*i/5;
+      elem('text',{x:x(pos),y:223,'text-anchor':'middle','font-size':11,fill:'#617083'},String(Math.round(pos)));
+    }
+    elem('text',{x:292,y:245,'text-anchor':'middle','font-size':12,fill:'#52677a'},'Year');
+    for(const item of series){
+      const pts=item.values.map((v,i)=>`${x(i).toFixed(1)},${y(v).toFixed(1)}`).join(' ');
+      elem('polyline',{points:pts,fill:'none',stroke:item.color,'stroke-width':2.6,'stroke-linejoin':'round','stroke-linecap':'round'});
+    }
+    series.forEach((s,i)=>{
+      elem('line',{x1:65,y1:12+i*13,x2:88,y2:12+i*13,stroke:s.color,'stroke-width':3});
+      elem('text',{x:93,y:16+i*13,'font-size':11,fill:'#273447'},s.name);
+    });
+  }
+  function renderSchedule(calc){
+    const monthly=scheduleView==='monthly';
+    const rows=monthly?calc.rows:calc.annualRows;
+    const headers=monthly?['Month','Date','Interest','Principal','Ending Balance']:['Year','Date','Interest','Principal','Ending Balance'];
+    const head=el('schedule-head');head.replaceChildren();const htr=document.createElement('tr');
+    headers.forEach(t=>{const th=document.createElement('th');th.textContent=t;htr.append(th)});head.append(htr);
+    const body=el('schedule-body');const fragment=document.createDocumentFragment();
+    for(const row of rows){
+      const entry=monthly ? [row.idx,monthShort(row.absolute),whole(row.interest),whole(row.principal),whole(row.balance)] :
+        [row.idx,monthShort(row.start)+'–'+monthShort(row.end),whole(row.interest),whole(row.principal),whole(row.balance)];
+      const tr=document.createElement('tr');
+      for(const cell of entry){const td=document.createElement('td');td.textContent=String(cell);tr.append(td)}fragment.append(tr);
+    }
+    body.replaceChildren(fragment);
+    el('annual-tab').classList.toggle('calcpro-mortgage-tab-active',!monthly);
+    el('monthly-tab').classList.toggle('calcpro-mortgage-tab-active',monthly);
+    el('annual-tab').setAttribute('aria-pressed',String(!monthly));
+    el('monthly-tab').setAttribute('aria-pressed',String(monthly));
+  }
+  function renderBiweekly(calc){
+    const box=el('biweekly-results');box.hidden=!calc.p.biweekly;
+    if(!calc.p.biweekly)return;
+    const alt=biweeklyScenario(calc);
+    if(!alt){box.textContent='Biweekly payoff comparison is not available for this loan.';return;}
+    box.replaceChildren();
+    const h=document.createElement('strong');h.textContent='Biweekly Payback Comparison';box.append(h);
+    const l=[['Biweekly P&I payment',currency(alt.half)],['Biweekly payment count',String(alt.periods)],
+      ['Estimated payoff',alt.date],['Biweekly total interest',currency(alt.interest)],
+      ['Interest saved vs. regular monthly P&I',currency(alt.savings)]];
+    for(const [label,val] of l){const div=document.createElement('div');div.textContent=label+': '+val;box.append(div)}
+    const note=document.createElement('small');note.textContent='Assumes 26 equal biweekly periods annually, half the regular monthly P&I each period, no other extra payments or costs in this comparison.';box.append(note);
+  }
+  function render(calc){
+    current=calc;
+    el('monthly-pay').textContent=currency(calc.monthlyPI);
+    renderBreakdown(calc);renderDetails(calc);drawDonut(calc);drawChart(calc);renderSchedule(calc);renderBiweekly(calc);
+  }
+  function calculate(){
+    try {const data=collect();const result=amortize(data);clearError();render(result);return true}
+    catch(e){error(e.message||'Please check all entered values.');return false}
+  }
+  function formatInput(n){return String(Math.round(n*10000)/10000)}
+  function buildMonths(){
+    root.querySelectorAll('[data-months="true"]').forEach(select=>{
+      select.replaceChildren();months.forEach((name,i)=>{const opt=document.createElement('option');opt.value=i+1;opt.textContent=name;opt.defaultSelected=(String(i+1)===(select.dataset.defaultMonth||'11'));select.append(opt)});
+      select.value=select.dataset.defaultMonth||'11';
+    });
+  }
+  function buildOneTimes(){
+    const list=el('one-time-list');const extra=document.createElement('div');extra.id='calcpro-mortgage-additional-one-times';extra.hidden=true;
+    for(let i=2;i<=10;i++){
+      const row=document.createElement('div');row.className='calcpro-mortgage-extra-row';
+      const label=document.createElement('label');label.htmlFor='calcpro-mortgage-onetime-'+i;label.textContent='Extra One-time Pay '+i+' ($)';
+      const input=document.createElement('input');input.id='calcpro-mortgage-onetime-'+i;input.type='text';input.inputMode='decimal';input.value='0';input.defaultValue='0';
+      const middle=document.createElement('span');middle.textContent='in';
+      const select=document.createElement('select');select.id='calcpro-mortgage-onetime-month-'+i;select.setAttribute('aria-label','One-time payment month '+i);select.dataset.months='true';select.dataset.defaultMonth='11';
+      const yr=document.createElement('input');yr.id='calcpro-mortgage-onetime-year-'+i;yr.type='text';yr.inputMode='numeric';yr.value='2026';yr.defaultValue='2026';yr.setAttribute('aria-label','One-time payment year '+i);
+      row.append(label,input,middle,select,yr);extra.append(row);
+    }
+    list.append(extra);
+  }
+  function changeUnits(select){
+    const key=select.dataset.convert,oldUnit=select.dataset.previous,newUnit=select.value;
+    select.dataset.previous=newUnit;
+    if(oldUnit===newUnit)return;
+    const valueInput=el(key),raw=Number(clean(valueInput.value));
+    const price=Number(clean(el('price').value));
+    const down=Number(clean(el('down').value));
+    const loan=Math.max(0,price-(el('down-unit').value==='usd'?down:price*down/100));
+    const base=key==='down'?price:key==='pmi'?loan:price;
+    if(!Number.isFinite(raw)||!Number.isFinite(base)||base<=0)return;
+    const converted=oldUnit==='pct'?raw*base/100:raw/base*100;
+    valueInput.value=formatInput(converted);
+  }
+  function download(filename,content,mime){
+    const blob=new Blob([content],{type:mime});const url=URL.createObjectURL(blob);
+    const link=document.createElement('a');link.href=url;link.download=filename;root.append(link);link.click();link.remove();
+    setTimeout(()=>URL.revokeObjectURL(url),3000);
+  }
+  function saveSummary(){
+    if(!current)return;
+    const c=current;
+    const content=['CalcPro Mortgage Calculator','',
+      'Home price: '+currency(c.p.price),'Down payment: '+currency(c.p.down),'Loan amount: '+currency(c.p.loan),
+      'Annual interest rate: '+c.p.rate+'%','Loan term: '+c.p.n+' months','Start date: '+monthLabel(c.p.start),
+      'Monthly principal and interest: '+currency(c.monthlyPI),'Initial monthly out-of-pocket: '+currency(c.firstTotal),
+      'Total interest: '+currency(c.totalInterest),'Total principal and interest paid: '+currency(c.totalPaid),
+      'Total estimated lifetime out-of-pocket: '+currency(c.outOfPocket),
+      'Mortgage payoff: '+(c.payoff===null?'No loan':monthLabel(c.payoff)),
+      '', 'Planning estimate only. Taxes and costs are modeled as configured in the calculator.'].join('\n');
+    download('mortgage-calculation-summary.txt',content,'text/plain;charset=utf-8');
+  }
+  function csvDownload(){
+    if(!current)return;
+    const csv=['Month,Date,Interest,Principal,Total P&I,Extra Principal,Ending Balance,Property Tax,Home Insurance,PMI,HOA,Other Costs'];
+    current.rows.forEach(row=>csv.push([row.idx,monthLabel(row.absolute),row.interest,row.principal,row.pi,row.extra,row.balance,
+      row.costs.tax,row.costs.insurance,row.costs.pmi,row.costs.hoa,row.costs.other].map((v,i)=>i===1?'"'+v+'"':i===0?v:Number(v).toFixed(2)).join(',')));
+    download('mortgage-amortization-schedule.csv',csv.join('\r\n'),'text/csv;charset=utf-8');
+  }
+  function reset(){
+    el('form').reset();
+    root.querySelectorAll('[data-convert]').forEach(s=>s.dataset.previous=s.value);
+    showingOneTimes=false;el('additional-one-times').hidden=true;
+    el('onetime-toggle').textContent='+ Additional One-Time Payments';el('onetime-toggle').setAttribute('aria-expanded','false');
+    el('more').hidden=true;el('more-toggle').setAttribute('aria-expanded','false');el('more-toggle').textContent='+ More Options';
+    el('cost-block').hidden=false;scheduleView='annual';clearError();calculate();
+  }
+  buildOneTimes();buildMonths();
+  el('form').addEventListener('submit',event=>{event.preventDefault();calculate()});
+  el('clear').addEventListener('click',reset);
+  el('print').addEventListener('click',()=>window.print());
+  el('save').addEventListener('click',saveSummary);
+  el('csv').addEventListener('click',csvDownload);
+  el('annual-tab').addEventListener('click',()=>{scheduleView='annual';if(current)renderSchedule(current)});
+  el('monthly-tab').addEventListener('click',()=>{scheduleView='monthly';if(current)renderSchedule(current)});
+  el('include').addEventListener('change',()=>{el('cost-block').hidden=!el('include').checked});
+  el('more-toggle').addEventListener('click',()=>{const more=el('more');more.hidden=!more.hidden;el('more-toggle').setAttribute('aria-expanded',String(!more.hidden));el('more-toggle').textContent=more.hidden?'+ More Options':'− Fewer Options'});
+  el('onetime-toggle').addEventListener('click',()=>{showingOneTimes=!showingOneTimes;el('additional-one-times').hidden=!showingOneTimes;el('onetime-toggle').setAttribute('aria-expanded',String(showingOneTimes));el('onetime-toggle').textContent=showingOneTimes?'− Hide Additional One-Time Payments':'+ Additional One-Time Payments'});
+  root.querySelectorAll('[data-convert]').forEach(select=>select.addEventListener('change',()=>changeUnits(select)));
+  calculate();
+})();
+
+</script><script defer src="/assets/js/data.js"></script>
+<script defer src="/assets/js/style.js?v=20261111-5"></script>
+</body></html>

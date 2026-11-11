@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US">
-<head>
-<meta charset="utf-8">
+<html lang="en"><head><meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="content-language" content="en">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,17 +11,305 @@
   <meta name="author" content="Commingsoon">
   <meta name="publisher" content="Commingsoon">
   <meta name="robots" content="noindex, nofollow, max-image-preview:large">
-  <link rel="stylesheet" href="/assets/css/style.css?v=20261111-1" crossorigin="anonymous" data-n-g="">
+  <link rel="stylesheet" href="/assets/css/style.css?v=20261111-4" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/doc_style.css" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/side_style.css" crossorigin="anonymous" data-n-g=""> 
   <!--ogtags-->
-  <!--schema-->
-  <!--style-->
-</head>
+  <!--schema--><style>
 
-<body>
-<!-- Main-header-page -->
-<script defer src="/assets/js/data.js"></script>
-<script defer src="/assets/js/style.js?v=20261111-1"></script>
-</body>
-</html>
+/* Estate Tax Calculator: all new selectors scoped to the calculator root. */
+.calcpro-estate-tool{--calcpro-estate-navy:#125217;--calcpro-estate-blue:#326594;--calcpro-estate-border:#bfc3c9;--calcpro-estate-green:#4d8121;color:#111;font:14px/1.4 Arial,Helvetica,sans-serif;max-width:100%;}
+.calcpro-estate-tool *{box-sizing:border-box;}
+.calcpro-estate-tool [hidden]{display:none!important;}
+.calcpro-estate-tool .calcpro-estate-hint{display:flex;gap:11px;align-items:center;justify-content:center;margin:5px 0 8px;background:var(--calcpro-estate-blue);min-height:28px;padding:5px 10px;color:#fff;font-size:13px;text-align:center;}
+.calcpro-estate-tool .calcpro-estate-hint-symbol{display:inline-grid;place-items:center;flex:0 0 auto;width:18px;height:18px;border-radius:50%;background:#fff;color:var(--calcpro-estate-blue);font-weight:700;line-height:1;}
+.calcpro-estate-tool .calcpro-estate-results{margin:0 0 20px;max-width:100%;}
+.calcpro-estate-tool .calcpro-estate-result-header{display:flex;align-items:center;justify-content:space-between;gap:12px;color:#fff;background:var(--calcpro-estate-green);min-height:30px;padding:4px 9px;}
+.calcpro-estate-tool .calcpro-estate-result-header h2{font:700 18px/1.3 Arial,Helvetica,sans-serif;margin:0;color:#fff;}
+.calcpro-estate-tool .calcpro-estate-print{display:inline-flex;align-items:center;gap:6px;cursor:pointer;border:1px solid transparent;border-radius:2px;background:transparent;color:#fff;font:700 12px Arial,Helvetica,sans-serif;padding:4px 6px;}
+.calcpro-estate-tool .calcpro-estate-print:hover,.calcpro-estate-tool .calcpro-estate-print:focus-visible{border-color:#fff;background:rgba(255,255,255,.13);}
+.calcpro-estate-tool .calcpro-estate-print svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:2;}
+.calcpro-estate-tool .calcpro-estate-result-claim{font-size:17px;line-height:1.38;margin:5px 0 4px;}
+.calcpro-estate-tool .calcpro-estate-result-message{font-size:16px;line-height:1.4;margin:3px 0 7px;}
+.calcpro-estate-tool .calcpro-estate-result-claim strong{color:#086414;}
+.calcpro-estate-tool .calcpro-estate-result-message strong{color:#086414;}
+.calcpro-estate-tool .calcpro-estate-notes{font-size:12px;line-height:1.42;margin:8px 0;color:#604a1a;padding:7px 10px;background:#fff7df;border-left:3px solid #d6a02b;}
+.calcpro-estate-tool .calcpro-estate-breakdown{margin:12px 0 10px;max-width:490px;border:1px solid #cad2d8;border-radius:2px;background:#fafcff;}
+.calcpro-estate-tool .calcpro-estate-breakdown summary{cursor:pointer;padding:8px 10px;color:#125217;font-weight:700;}
+.calcpro-estate-tool .calcpro-estate-breakdown table{border-collapse:collapse;width:100%;font-size:13px;}
+.calcpro-estate-tool .calcpro-estate-breakdown th,.calcpro-estate-tool .calcpro-estate-breakdown td{padding:6px 9px;text-align:left;border-top:1px solid #e2e6e9;}
+.calcpro-estate-tool .calcpro-estate-breakdown th{font-weight:400;}
+.calcpro-estate-tool .calcpro-estate-breakdown td{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap;}
+.calcpro-estate-tool .calcpro-estate-breakdown tr:last-child{color:#0f6024;font-weight:700;}
+.calcpro-estate-tool .calcpro-estate-form-wrap{width:100%;max-width:450px;background:#efefef;border:1px solid var(--calcpro-estate-border);padding:5px;margin:0;}
+.calcpro-estate-tool .calcpro-estate-form{margin:0;}
+.calcpro-estate-tool .calcpro-estate-group{margin:0;padding:0;border:0;min-width:0;}
+.calcpro-estate-tool .calcpro-estate-group-title{margin:0 0 3px;padding:3px 6px;width:100%;background:var(--calcpro-estate-blue);color:#fff;font:700 14px/1.25 Arial,Helvetica,sans-serif;}
+.calcpro-estate-tool .calcpro-estate-row{display:grid;grid-template-columns:minmax(0,1fr) 133px;gap:8px;align-items:center;margin:0 0 3px;min-height:24px;}
+.calcpro-estate-tool .calcpro-estate-row label{display:block;padding-left:2px;font-size:12px;line-height:1.27;}
+.calcpro-estate-tool .calcpro-estate-money{display:block;width:100%;min-width:0;height:24px;border:1px solid #125217;border-radius:0;background:#fff;color:#071c30;padding:2px 5px;font:13px/1.2 Arial,Helvetica,sans-serif;font-variant-numeric:tabular-nums;text-align:left;box-shadow:inset 0 0 0 1px #dce5ef;}
+.calcpro-estate-tool .calcpro-estate-money:focus{outline:2px solid #4b9ae2;outline-offset:1px;box-shadow:none;}
+.calcpro-estate-tool .calcpro-estate-money[aria-invalid="true"]{border-color:#ac231b;background:#fff5f3;}
+.calcpro-estate-tool .calcpro-estate-errors{color:#9d1e16;font-weight:700;font-size:12px;padding:6px 5px;}
+.calcpro-estate-tool .calcpro-estate-buttons{display:flex;align-items:center;justify-content:center;gap:5px;margin:8px 0 2px;}
+.calcpro-estate-tool .calcpro-estate-calculate,.calcpro-estate-tool .calcpro-estate-clear{cursor:pointer;white-space:nowrap;min-height:29px;padding:5px 12px;border-radius:2px;font:700 12px/1.2 Arial,Helvetica,sans-serif;color:#fff;}
+.calcpro-estate-tool .calcpro-estate-calculate{display:flex;gap:11px;align-items:center;background:#4f8325;border:1px solid #21431b;box-shadow:inset 0 0 0 1px #82ab5c;}
+.calcpro-estate-tool .calcpro-estate-calculate:hover{background:#3f7119;}
+.calcpro-estate-tool .calcpro-estate-arrow{display:inline-grid;place-items:center;color:#fff;background:#93c88b;border-radius:50%;font-size:11px;width:17px;height:17px;padding-left:2px;}
+.calcpro-estate-tool .calcpro-estate-clear{background:#aaa;border:1px solid #aaa;font-weight:400;padding:5px 8px;}
+.calcpro-estate-tool .calcpro-estate-clear:hover{background:#888;}
+.calcpro-estate-tool .calcpro-estate-smallprint{font-size:12px;line-height:1.5;color:#555;margin:12px 0 5px;max-width:650px;}
+.calcpro-estate-tool button:focus-visible,.calcpro-estate-tool summary:focus-visible{outline:2px solid #005cab;outline-offset:2px;}
+@media(max-width:480px){.calcpro-estate-tool .calcpro-estate-row{grid-template-columns:minmax(0,1fr) 114px;gap:6px}.calcpro-estate-tool .calcpro-estate-form-wrap{padding:4px}.calcpro-estate-tool .calcpro-estate-row label{font-size:11px}.calcpro-estate-tool .calcpro-estate-result-claim{font-size:16px}.calcpro-estate-tool .calcpro-estate-result-message{font-size:15px}}
+@media(max-width:340px){.calcpro-estate-tool .calcpro-estate-row{grid-template-columns:minmax(0,1fr) 94px}.calcpro-estate-tool .calcpro-estate-money{font-size:12px}.calcpro-estate-tool .calcpro-estate-hint{font-size:12px;}}
+@media print{.calcpro-estate-tool .calcpro-estate-hint,.calcpro-estate-tool .calcpro-estate-buttons,.calcpro-estate-tool .calcpro-estate-print,.calcpro-estate-tool .calcpro-estate-errors,.calcpro-estate-tool .calcpro-estate-smallprint{display:none!important}.calcpro-estate-tool .calcpro-estate-breakdown{border:0}.calcpro-estate-tool .calcpro-estate-breakdown:not([open]){display:none}.calcpro-estate-tool .calcpro-estate-form-wrap{border:1px solid #777;max-width:450px;print-color-adjust:exact;-webkit-print-color-adjust:exact}.calcpro-estate-tool .calcpro-estate-result-header{print-color-adjust:exact;-webkit-print-color-adjust:exact}}
+
+</style>
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Estate Tax Calculator</nav><h1 class="cp-page-title">Estate Tax Calculator</h1><p class="cp-intro">Estimate 2026 U.S. federal estate tax using real estate, investments, cash, insurance, debts, permitted deductions, and lifetime taxable gifts. Results appear above the form when you calculate.</p><section aria-label="Calculator" class="cp-tool-area">
+<div class="calcpro-estate-tool" id="calcpro-estate-tool">
+ <div class="calcpro-estate-results" id="calcpro-estate-results" role="status" aria-live="polite" aria-atomic="true" hidden>
+  <div class="calcpro-estate-result-header"><h2>Result:</h2><button class="calcpro-estate-print" id="calcpro-estate-print" type="button" title="Print or save as PDF"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9V3h14v6M5 17H3V9h18v8h-2M5 14h14v7H5z"/></svg><span>Print / Save PDF</span></button></div>
+  <p class="calcpro-estate-result-claim">Net taxable estate is <strong id="calcpro-estate-net">$0</strong>.</p>
+  <p class="calcpro-estate-result-message" id="calcpro-estate-result-message"></p>
+  <p class="calcpro-estate-notes" id="calcpro-estate-notes" hidden></p>
+  <details class="calcpro-estate-breakdown" id="calcpro-estate-breakdown"><summary>Show calculation breakdown</summary>
+   <table><tbody>
+    <tr><th scope="row">Total assets</th><td id="calcpro-estate-gross">$0</td></tr>
+    <tr><th scope="row">Total deductions</th><td id="calcpro-estate-deductions-total">$0</td></tr>
+    <tr><th scope="row">Net taxable estate</th><td id="calcpro-estate-estate-value">$0</td></tr>
+    <tr><th scope="row">Lifetime taxable gifts entered</th><td id="calcpro-estate-gift-value">$0</td></tr>
+    <tr><th scope="row">2026 basic exclusion</th><td id="calcpro-estate-exclusion">$15,000,000</td></tr>
+    <tr><th scope="row">Exclusion remaining for estate</th><td id="calcpro-estate-remaining">$0</td></tr>
+    <tr><th scope="row">Estate amount above exclusion</th><td id="calcpro-estate-taxable-above">$0</td></tr>
+    <tr><th scope="row">Estimated federal estate tax (40%)</th><td id="calcpro-estate-tax-total">$0</td></tr>
+   </tbody></table></details>
+ </div>
+ <div class="calcpro-estate-hint"><span class="calcpro-estate-hint-symbol" aria-hidden="true">▼</span><span>Modify the values and click the Calculate button to use</span></div>
+ <div class="calcpro-estate-form-wrap"><form class="calcpro-estate-form" id="calcpro-estate-form" novalidate>
+  <fieldset class="calcpro-estate-group"><legend class="calcpro-estate-group-title">Assets</legend>
+   <div class="calcpro-estate-row"><label for="calcpro-estate-residence">Residence &amp; Other Real Estate</label><input class="calcpro-estate-money" name="residence" id="calcpro-estate-residence" type="text" inputmode="decimal" autocomplete="off" value="$0" spellcheck="false" aria-describedby="calcpro-estate-money-help"></div>
+   <div class="calcpro-estate-row"><label for="calcpro-estate-stock">Stocks, Bonds, and Other Investments</label><input class="calcpro-estate-money" name="stock" id="calcpro-estate-stock" type="text" inputmode="decimal" autocomplete="off" value="$0" spellcheck="false" aria-describedby="calcpro-estate-money-help"></div>
+   <div class="calcpro-estate-row"><label for="calcpro-estate-saving">Savings, CDs, and Checking Account Balance</label><input class="calcpro-estate-money" name="saving" id="calcpro-estate-saving" type="text" inputmode="decimal" autocomplete="off" value="$0" spellcheck="false" aria-describedby="calcpro-estate-money-help"></div>
+   <div class="calcpro-estate-row"><label for="calcpro-estate-vehicle">Vehicles, Boats, and Other Properties</label><input class="calcpro-estate-money" name="vehicle" id="calcpro-estate-vehicle" type="text" inputmode="decimal" autocomplete="off" value="$0" spellcheck="false" aria-describedby="calcpro-estate-money-help"></div>
+   <div class="calcpro-estate-row"><label for="calcpro-estate-retirement">Retirement Plans</label><input class="calcpro-estate-money" name="retirement" id="calcpro-estate-retirement" type="text" inputmode="decimal" autocomplete="off" value="$0" spellcheck="false" aria-describedby="calcpro-estate-money-help"></div>
+   <div class="calcpro-estate-row"><label for="calcpro-estate-lifeinsurance">Life Insurance Benefit</label><input class="calcpro-estate-money" name="lifeinsurance" id="calcpro-estate-lifeinsurance" type="text" inputmode="decimal" autocomplete="off" value="$0" spellcheck="false" aria-describedby="calcpro-estate-money-help"></div>
+   <div class="calcpro-estate-row"><label for="calcpro-estate-otherasset">Other Assets</label><input class="calcpro-estate-money" name="otherasset" id="calcpro-estate-otherasset" type="text" inputmode="decimal" autocomplete="off" value="$0" spellcheck="false" aria-describedby="calcpro-estate-money-help"></div>
+  </fieldset>
+  <fieldset class="calcpro-estate-group"><legend class="calcpro-estate-group-title">Liability, Costs, and Deductibles</legend>
+   <div class="calcpro-estate-row"><label for="calcpro-estate-debt">Debts (mortgages, loan, credit cards, etc)</label><input class="calcpro-estate-money" name="debt" id="calcpro-estate-debt" type="text" inputmode="decimal" autocomplete="off" value="$0" spellcheck="false" aria-describedby="calcpro-estate-money-help"></div>
+   <div class="calcpro-estate-row"><label for="calcpro-estate-funeral">Funeral, Administration, and Claims Expenses</label><input class="calcpro-estate-money" name="funeral" id="calcpro-estate-funeral" type="text" inputmode="decimal" autocomplete="off" value="$0" spellcheck="false" aria-describedby="calcpro-estate-money-help"></div>
+   <div class="calcpro-estate-row"><label for="calcpro-estate-charitable">Charitable Contributions</label><input class="calcpro-estate-money" name="charitable" id="calcpro-estate-charitable" type="text" inputmode="decimal" autocomplete="off" value="$0" spellcheck="false" aria-describedby="calcpro-estate-money-help"></div>
+   <div class="calcpro-estate-row"><label for="calcpro-estate-statetax">State Inheritance or Estate Taxes</label><input class="calcpro-estate-money" name="statetax" id="calcpro-estate-statetax" type="text" inputmode="decimal" autocomplete="off" value="$0" spellcheck="false" aria-describedby="calcpro-estate-money-help"></div>
+  </fieldset>
+  <fieldset class="calcpro-estate-group"><legend class="calcpro-estate-group-title">Lifetime Gifted Amount</legend>
+   <div class="calcpro-estate-row"><label for="calcpro-estate-lifetimegifted">Total amount you&#x27;ve gifted tax free in your lifetime</label><input class="calcpro-estate-money" name="lifetimegifted" id="calcpro-estate-lifetimegifted" type="text" inputmode="decimal" autocomplete="off" value="$0" spellcheck="false" aria-describedby="calcpro-estate-money-help"></div>
+  </fieldset>
+  <div class="calcpro-estate-errors" id="calcpro-estate-errors" role="alert" hidden></div>
+  <div class="calcpro-estate-buttons"><button type="submit" class="calcpro-estate-calculate">Calculate <span class="calcpro-estate-arrow" aria-hidden="true">▶</span></button><button type="button" class="calcpro-estate-clear" id="calcpro-estate-clear">Clear</button></div>
+ </form></div>
+ <p class="calcpro-estate-smallprint" id="calcpro-estate-money-help">All amounts are in U.S. dollars. Include only taxable lifetime gifts that used part of your lifetime exclusion—not gifts covered by annual exclusions. 2026 estimates only; special deductions, spousal portability, and prior gift-tax adjustments are not modeled.</p>
+</div>
+</section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><!-- REPLACE these links with real related tools for each calculator; verify live slugs. --><a href="retirement-calculator.html">Retirement</a><a href="roth-ira-calculator.html">Roth IRA</a><a href="investment-calculator.html">Investment</a><a href="compound-interest-calculator.html">Compound Interest</a><a href="annuity-payout-calculator.html">Annuity Payout</a><a href="pension-calculator.html">Pension</a><a href="inflation-calculator.html">Inflation</a><a href="future-value-calculator.html">Future Value</a><a href="income-tax-calculator.html">Income Tax</a><a href="savings-calculator.html">Savings</a><a href="mortgage-calculator.html">Mortgage</a><a href="loan-calculator.html">Loan</a></div></section></aside><article class="cp-article">
+<h2>How to Use the Estate Tax Calculator</h2>
+<p>Enter the fair market value of property in each asset category, including real estate, investments, deposit accounts, vehicles and other property, retirement plans, and life insurance proceeds included in the gross estate. Enter allowable estate deductions, including qualifying debts, administration costs, charitable bequests, and state death taxes. Finally, enter cumulative lifetime <em>taxable gifts</em> that used the unified estate and gift tax exclusion.</p>
+<p>Select <strong>Calculate</strong> to see the net taxable estate, estimated federal estate tax, and an optional detailed calculation breakdown directly above your inputs. <strong>Clear</strong> resets every amount and hides the results. Use <strong>Print / Save PDF</strong> in the result bar to open your browser's print dialog, where supported.</p>
+<h2>2026 U.S. Federal Estate Tax Formula</h2>
+<p>The 2026 federal basic exclusion for a U.S. citizen or resident is <strong>$15,000,000</strong>. The highest estate and gift tax rate is <strong>40%</strong>. Because the exclusion is greater than the threshold for the 40% unified rate bracket, the tax on the portion of an estate exceeding the available exclusion can be estimated using the 40% rate.</p>
+<div class="cp-note"><strong>Estimation steps:</strong><br>
+Gross estate = Sum of all included assets.<br>
+Net taxable estate = max(0, Gross estate − Allowable deductions).<br>
+Remaining exemption = max(0, $15,000,000 − Lifetime taxable gifts using the exemption).<br>
+Estate over the exemption = max(0, Net taxable estate − Remaining exemption).<br>
+<strong>Estimated federal estate tax = Estate over the exemption × 40%.</strong></div>
+<p>This simplified model assumes the lifetime gift amount represents gifts that have already used the unified exclusion, rather than gifts protected by annual exclusions. It does not calculate previous gift taxes, marital deductions, deceased-spousal unused exclusion (DSUE), foreign-citizen special rules, special-use valuation, credits, or generation-skipping transfer taxes. The IRS uses the complete Form 706 tax computation for actual liabilities.</p>
+<h2>Worked Examples</h2>
+<h3>Example 1: Small estate</h3>
+<p>If seven asset categories are each worth $5 and there are no debts, deductions, or lifetime taxable gifts, the net taxable estate is <strong>$35</strong>. It remains below the $15 million exclusion, so estimated 2026 federal estate tax is <strong>$0</strong>.</p>
+<h3>Example 2: Estate above the exclusion</h3>
+<p>Suppose assets total $18,000,000, allowed debts and expenses total $1,000,000, and lifetime taxable gifts that used the exclusion total $2,000,000. The net taxable estate is $17,000,000 and the remaining exclusion is $13,000,000. Estimated estate tax is ($17,000,000 − $13,000,000) × 40% = <strong>$1,600,000</strong>.</p>
+<h2>Recent Federal Estate Tax Exemptions</h2>
+<div class="cp-table-scroll"><table class="cp-content-table"><thead><tr><th>Year of death</th><th>Basic exclusion</th><th>Maximum rate</th></tr></thead><tbody>
+<tr><td>2023</td><td>$12,920,000</td><td>40%</td></tr>
+<tr><td>2024</td><td>$13,610,000</td><td>40%</td></tr>
+<tr><td>2025</td><td>$13,990,000</td><td>40%</td></tr>
+<tr><td>2026</td><td>$15,000,000</td><td>40%</td></tr>
+</tbody></table></div>
+<h2>Frequently Asked Questions</h2>
+<h3>Does the calculator include state estate and inheritance taxes?</h3>
+<p>No. It estimates only federal estate tax. The state death tax field is a potentially deductible expense of the federal estate; it is <em>not</em> a computation of state taxes owed. Local laws, deductions, and exemption amounts vary.</p>
+<h3>Are annual tax-free gifts included in the lifetime gift field?</h3>
+<p>No. Enter gifts that actually reduced your lifetime applicable exclusion. For example, gifts fully excluded under the applicable annual gift tax exclusion generally do not reduce the lifetime basic exclusion.</p>
+<h3>Does a $15 million estate always owe no federal estate tax?</h3>
+<p>Not necessarily. Lifetime taxable gifts can use some or all of the exclusion, leaving less available to shelter the estate. Other estate-tax provisions may also affect the final return.</p>
+<h3>Can a surviving spouse have a larger exclusion?</h3>
+<p>Yes, under certain conditions an executor can elect portability of a deceased spouse's unused exclusion. This calculator does not offer an extra DSUE input, so qualifying estates may owe less than the estimate shown.</p>
+<h3>Is the estimate the final amount payable to the IRS?</h3>
+<p>No. The legal filing calculation may require the full Form 706 schedules, precise valuation, special deductions, gift-tax reconciliation, and further credits. Seek advice from a qualified estate-tax professional for a return or high-value estate.</p>
+<h2>Sources and Further Reading</h2>
+<ul>
+<li><a href="https://www.irs.gov/instructions/i706" target="_blank" rel="noopener noreferrer">IRS Instructions for Form 706 (2026)</a> — exemption, unified credit, and the federal estate-tax calculation.</li>
+<li><a href="https://www.irs.gov/businesses/small-businesses-self-employed/whats-new-estate-and-gift-tax" target="_blank" rel="noopener noreferrer">IRS: What's New — Estate and Gift Tax</a> — annual basic exclusion amounts.</li>
+<li><a href="https://www.irs.gov/businesses/small-businesses-self-employed/frequently-asked-questions-on-estate-taxes" target="_blank" rel="noopener noreferrer">IRS: Frequently Asked Questions on Estate Taxes</a> — included property and deductions.</li>
+</ul>
+<p class="cp-page-footer">CalcPro — 2026 U.S. federal estate tax estimates are informational, not tax or legal advice.</p>
+</article></main></div><script>
+(function () {
+  'use strict';
+  const root = document.getElementById('calcpro-estate-tool');
+  if (!root) return;
+
+  const EXCLUSION_CENTS = 1500000000n; // $15,000,000.00 for estates of decedents dying in 2026.
+  const MAX_FIELD_CENTS = 100000000000000000n; // $1 quadrillion per field; guards accidental pastes.
+  const FIELDS = {
+    assets: ['residence', 'stock', 'saving', 'vehicle', 'retirement', 'lifeinsurance', 'otherasset'],
+    deductions: ['debt', 'funeral', 'charitable', 'statetax'],
+    gifts: ['lifetimegifted']
+  };
+  const form = root.querySelector('#calcpro-estate-form');
+  const result = root.querySelector('#calcpro-estate-results');
+  const errors = root.querySelector('#calcpro-estate-errors');
+  const details = root.querySelector('#calcpro-estate-breakdown');
+  const inputs = Array.from(form.querySelectorAll('.calcpro-estate-money'));
+  const byName = new Map(inputs.map(el => [el.name, el]));
+
+  // All calculations use integer cents (BigInt), so $0.01 inputs never suffer float errors.
+  function parseMoney(text) {
+    const cleaned = String(text).trim().replace(/[\s$]/g, '');
+    if (!/^(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d{1,2})?$/.test(cleaned)) {
+      throw new Error('Enter a nonnegative dollar amount, with no more than 2 decimal places.');
+    }
+    const [whole, fraction = ''] = cleaned.replace(/,/g, '').split('.');
+    const cents = BigInt(whole) * 100n + BigInt(fraction.padEnd(2, '0') || '0');
+    if (cents > MAX_FIELD_CENTS) throw new Error('This amount is above the allowed input limit.');
+    return cents;
+  }
+
+  function money(cents) {
+    const neg = cents < 0n;
+    const abs = neg ? -cents : cents;
+    const dollars = (abs / 100n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    const leftover = abs % 100n;
+    const decimal = leftover ? '.' + leftover.toString().padStart(2, '0') : '';
+    return (neg ? '-$' : '$') + dollars + decimal;
+  }
+
+  function setText(id, text) {
+    root.querySelector('#calcpro-estate-' + id).textContent = text;
+  }
+  function sum(names, values) {
+    return names.reduce((total, name) => total + values[name], 0n);
+  }
+  function compute(values) {
+    const gross = sum(FIELDS.assets, values);
+    const deductions = sum(FIELDS.deductions, values);
+    const net = gross > deductions ? gross - deductions : 0n;
+    const lifetimeGifts = values.lifetimegifted;
+    // The field covers gifts that *used* the available unified exclusion, not
+    // annual-exclusion gifts; it cannot consume more than the basic exclusion.
+    const creditedGifts = lifetimeGifts < EXCLUSION_CENTS ? lifetimeGifts : EXCLUSION_CENTS;
+    const remaining = EXCLUSION_CENTS - creditedGifts;
+    const taxed = net > remaining ? net - remaining : 0n;
+    // Amount above the $15m exclusion is in the 40% portion of IRC 2001(c).
+    // Half-up rounding to the nearest cent: 40% x taxed.
+    const tax = (taxed * 40n + 50n) / 100n;
+    return { gross, deductions, net, lifetimeGifts, creditedGifts, remaining, taxed, tax };
+  }
+
+  function display(calc) {
+    setText('net', money(calc.net));
+    setText('gross', money(calc.gross));
+    setText('deductions-total', money(calc.deductions));
+    setText('estate-value', money(calc.net));
+    setText('gift-value', money(calc.lifetimeGifts));
+    setText('exclusion', money(EXCLUSION_CENTS));
+    setText('remaining', money(calc.remaining));
+    setText('taxable-above', money(calc.taxed));
+    setText('tax-total', money(calc.tax));
+    const msg = root.querySelector('#calcpro-estate-result-message');
+    msg.replaceChildren();
+    const label = document.createElement('span');
+    const bold = document.createElement('strong');
+    if (calc.taxed === 0n) {
+      label.textContent = 'Because your estate and lifetime taxable gifts are within the available 2026 exemption, the federal estate tax due is ';
+      bold.textContent = money(calc.tax);
+      msg.append(label, bold, document.createTextNode(' for 2026.'));
+    } else {
+      label.textContent = 'After accounting for the 2026 exclusion and lifetime taxable gifts, ' + money(calc.taxed) + ' is subject to federal estate tax. Estimated federal estate tax due is ';
+      bold.textContent = money(calc.tax);
+      msg.append(label, bold, document.createTextNode('.'));
+    }
+    const notices = [];
+    if (calc.deductions > calc.gross) {
+      notices.push('Deductions are greater than assets. Net taxable estate is limited to $0.');
+    }
+    if (calc.lifetimeGifts > EXCLUSION_CENTS) {
+      notices.push('Lifetime gifts exceed the $15,000,000 exclusion. Only $15,000,000 can use this exemption; previously taxable gifts and gift taxes paid may affect the actual Form 706 calculation.');
+    }
+    const note = root.querySelector('#calcpro-estate-notes');
+    if (notices.length) {
+      note.textContent = notices.join(' ');
+      note.hidden = false;
+    } else {
+      note.hidden = true;
+      note.textContent = '';
+    }
+    details.open = false;
+    result.hidden = false;
+  }
+
+  function validate() {
+    const values = {};
+    let firstInvalid = null;
+    errors.textContent = '';
+    errors.hidden = true;
+    for (const input of inputs) {
+      input.removeAttribute('aria-invalid');
+      try {
+        values[input.name] = parseMoney(input.value);
+      } catch (e) {
+        input.setAttribute('aria-invalid', 'true');
+        if (!firstInvalid) firstInvalid = { input, message: e.message };
+      }
+    }
+    if (firstInvalid) {
+      result.hidden = true;
+      details.open = false;
+      errors.textContent = firstInvalid.input.labels[0].textContent + ': ' + firstInvalid.message;
+      errors.hidden = false;
+      firstInvalid.input.focus();
+      return null;
+    }
+    return values;
+  }
+
+  inputs.forEach(input => {
+    input.addEventListener('blur', () => {
+      try { input.value = money(parseMoney(input.value)); }
+      catch (_) { /* submission provides a labelled error */ }
+    });
+    input.addEventListener('input', () => {
+      input.removeAttribute('aria-invalid');
+      if (!errors.hidden) { errors.hidden = true; errors.textContent = ''; }
+    });
+  });
+
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const values = validate();
+    if (values === null) return;
+    inputs.forEach(input => { input.value = money(values[input.name]); });
+    display(compute(values));
+  });
+  root.querySelector('#calcpro-estate-clear').addEventListener('click', () => {
+    inputs.forEach(input => { input.value = '$0'; input.removeAttribute('aria-invalid'); });
+    result.hidden = true;
+    details.open = false;
+    errors.hidden = true;
+    errors.textContent = '';
+  });
+  root.querySelector('#calcpro-estate-print').addEventListener('click', () => window.print());
+})();
+
+</script><script defer src="/assets/js/data.js"></script>
+<script defer src="/assets/js/style.js?v=20261111-5"></script>
+</body></html>

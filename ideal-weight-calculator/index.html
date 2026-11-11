@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US">
-<head>
-<meta charset="utf-8">
+<html lang="en"><head><meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="content-language" content="en">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,17 +11,403 @@
   <meta name="author" content="Commingsoon">
   <meta name="publisher" content="Commingsoon">
   <meta name="robots" content="noindex, nofollow, max-image-preview:large">
-  <link rel="stylesheet" href="/assets/css/style.css?v=20261111-1" crossorigin="anonymous" data-n-g="">
+  <link rel="stylesheet" href="/assets/css/style.css?v=20261111-4" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/doc_style.css" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/side_style.css" crossorigin="anonymous" data-n-g=""> 
   <!--ogtags-->
-  <!--schema-->
-  <!--style-->
-</head>
+  <!--schema--><style>
+/* Isolated Ideal Weight Calculator component. No CalcPro global selectors changed. */
+.calcpro-ideal-root{font-family:Arial,Helvetica,sans-serif;color:#151515;font-size:15px;line-height:1.35;max-width:100%;}
+.calcpro-ideal-root *{box-sizing:border-box}
+.calcpro-ideal-hint{display:flex;align-items:center;justify-content:center;gap:25px;min-height:36px;background:#336699;color:#fff;padding:5px 10px;margin:1px 0 6px;font-size:15px;text-align:center}
+.calcpro-ideal-hint[hidden]{display:none}
+.calcpro-ideal-hint-icon{font-size:14px;color:#336699;background:#fff;border-radius:50%;width:24px;height:24px;line-height:24px;flex:0 0 auto;text-align:center}
+.calcpro-ideal-grid{display:grid;grid-template-columns:minmax(0,306px) minmax(0,1fr);gap:26px;align-items:start;min-width:0}
+.calcpro-ideal-left,.calcpro-ideal-right{min-width:0}
+.calcpro-ideal-tablist{display:flex;gap:4px;align-items:flex-end;flex-wrap:wrap;margin:0;padding:0}
+.calcpro-ideal-tab{font-family:inherit;white-space:nowrap;font-size:14px;line-height:1.2;font-weight:700;border:1px solid #336699;border-bottom:0;padding:9px 7px 8px;background:#336699;color:#fff;min-height:34px;cursor:pointer}
+.calcpro-ideal-tab[aria-selected="true"]{color:#111;border-color:#bcbcbc;background:#f0f0f0;position:relative;z-index:1;margin-bottom:-1px;padding-bottom:9px}
+.calcpro-ideal-tab:hover:not([aria-selected="true"]){background:#224f7c}
+.calcpro-ideal-tab:focus-visible,.calcpro-ideal-root button:focus-visible,.calcpro-ideal-root input:focus-visible,.calcpro-ideal-root select:focus-visible{outline:2px solid #195da0;outline-offset:2px}
+.calcpro-ideal-panel{background:#efefef;border:1px solid #bdbdbd;padding:11px 10px 14px;min-height:172px}
+.calcpro-ideal-fields{display:grid;gap:9px}
+.calcpro-ideal-row{display:grid;grid-template-columns:51px minmax(0,1fr);gap:7px;align-items:center;min-width:0}
+.calcpro-ideal-label{font-size:14px}
+.calcpro-ideal-age-line{display:flex;gap:4px;align-items:center;flex-wrap:wrap}
+.calcpro-ideal-age{width:106px;max-width:100%}
+.calcpro-ideal-help{font-size:13px;color:#1a1a1a;white-space:nowrap}
+.calcpro-ideal-input{font-family:Arial,Helvetica,sans-serif;color:#111;background:#fff;border:1px solid #336699;box-shadow:1px 2px 2px rgba(0,0,0,.27);border-radius:0;padding:4px 5px;font-size:15px;line-height:20px;min-height:29px;min-width:0}
+.calcpro-ideal-input::-webkit-inner-spin-button,.calcpro-ideal-input::-webkit-outer-spin-button{opacity:.3}
+.calcpro-ideal-radio-line{display:flex;align-items:center;flex-wrap:wrap;gap:12px;font-size:14px}
+.calcpro-ideal-radio-line label{display:inline-flex;align-items:center;gap:5px;cursor:pointer}
+.calcpro-ideal-radio-line input{accent-color:#336699;width:17px;height:17px;margin:0}
+.calcpro-ideal-unit-field{position:relative;max-width:218px}
+.calcpro-ideal-cm{width:100%;padding-right:30px}
+.calcpro-ideal-unit-suffix{position:absolute;right:6px;top:50%;transform:translateY(-50%);color:#888;font-size:14px;pointer-events:none}
+.calcpro-ideal-us-height{display:flex;align-items:center;gap:7px;min-width:0}
+.calcpro-ideal-us-part{display:flex;align-items:center;gap:4px;min-width:0}
+.calcpro-ideal-us-part .calcpro-ideal-input{width:52px}
+.calcpro-ideal-us-part:last-child .calcpro-ideal-input{width:63px}
+.calcpro-ideal-small-unit{font-size:13px;white-space:nowrap;color:#555}
+.calcpro-ideal-other-height{display:flex;gap:7px;align-items:center;min-width:0}
+.calcpro-ideal-other-height .calcpro-ideal-input{width:116px;max-width:55%}
+.calcpro-ideal-unit-select{font:14px Arial,Helvetica,sans-serif;background:#fff;border:1px solid #336699;padding:4px 2px;min-height:29px;min-width:0;max-width:98px}
+.calcpro-ideal-height-view[hidden]{display:none}
+.calcpro-ideal-error{margin:10px 0 0;background:#fff4e8;border-left:3px solid #c04817;color:#8a290d;padding:8px;font-size:13px}
+.calcpro-ideal-error[hidden]{display:none}
+.calcpro-ideal-actions{display:flex;justify-content:center;align-items:center;gap:5px;margin-top:13px}
+.calcpro-ideal-calc,.calcpro-ideal-clear{font-family:inherit;font-weight:700;border:0;cursor:pointer;font-size:14px;min-height:38px;padding:8px 14px}
+.calcpro-ideal-calc{color:#fff;background:#4c862c;display:flex;align-items:center;gap:15px}
+.calcpro-ideal-calc:hover{background:#376e1c}
+.calcpro-ideal-action-arrow{display:grid;place-items:center;width:21px;height:21px;border-radius:50%;background:#a7c998;color:#fff;font-size:16px;line-height:1}
+.calcpro-ideal-clear{background:#aaa;color:#fff;font-weight:400}
+.calcpro-ideal-clear:hover{background:#888}
+.calcpro-ideal-result{min-width:0}
+.calcpro-ideal-result-title{font-family:Arial,Helvetica,sans-serif;background:#4c862c;color:#fff;font-size:20px;font-weight:400;line-height:1.25;margin:0 0 5px;padding:5px 7px;display:flex;justify-content:space-between;align-items:center;gap:8px;min-height:35px}
+.calcpro-ideal-save{font:11px Arial,Helvetica,sans-serif;color:#fff;background:transparent;border:0;display:grid;justify-items:center;gap:0;cursor:pointer;padding:0 2px}
+.calcpro-ideal-save:hover{color:#eef9e6}
+.calcpro-ideal-save svg{width:16px;height:16px;fill:currentColor;stroke:currentColor}
+.calcpro-ideal-result-intro{font-size:14px;margin:5px 0 7px}
+.calcpro-ideal-table-wrap{width:100%;overflow-x:auto}
+.calcpro-ideal-table{border-collapse:collapse;width:auto;max-width:100%;margin:0 auto;font-size:14px;line-height:1.25;white-space:nowrap}
+.calcpro-ideal-table th{background:#336699;color:#fff;text-align:left;padding:4px 5px;border:1px solid #6d8ca9;font-size:14px}
+.calcpro-ideal-table td{padding:3px 5px;border:1px solid #cacaca;font-size:14px}
+.calcpro-ideal-table tbody tr:nth-child(even){background:#eee}
+.calcpro-ideal-table td:last-child{text-align:center}
+.calcpro-ideal-table-output{color:green;font-weight:700}
+.calcpro-ideal-notice{border-left:3px solid #e0a12e;padding:7px 9px;background:#fff8e8;margin:12px 0 0;color:#60400c;font-size:12px;line-height:1.4}
+.calcpro-ideal-notice[hidden]{display:none}
+.calcpro-ideal-result-empty{text-align:center;margin:20px 4px;color:#555;font-size:14px}
+.calcpro-ideal-preview{font-size:12px;color:#555;margin:5px 0 0 58px}
+.calcpro-ideal-preview[hidden]{display:none}
+.calcpro-ideal-root [hidden]{display:none!important}
+@media(max-width:700px){.calcpro-ideal-grid{grid-template-columns:minmax(0,1fr);gap:17px}.calcpro-ideal-left{max-width:365px}.calcpro-ideal-right{max-width:100%}.calcpro-ideal-result-title{max-width:none}.calcpro-ideal-table{margin:0 auto}}
+@media(max-width:370px){.calcpro-ideal-tab{padding-left:5px;padding-right:5px;font-size:12px}.calcpro-ideal-panel{padding:10px 8px}.calcpro-ideal-row{grid-template-columns:49px minmax(0,1fr)}.calcpro-ideal-radio-line{gap:8px}.calcpro-ideal-table{font-size:12px}.calcpro-ideal-table th,.calcpro-ideal-table td{font-size:12px;padding:3px 4px}.calcpro-ideal-hint{font-size:13px;gap:10px}}
 
-<body>
-<!-- Main-header-page -->
-<script defer src="/assets/js/data.js"></script>
-<script defer src="/assets/js/style.js?v=20261111-1"></script>
-</body>
-</html>
+/* Other Units opens a full-width converter above the original calculator, as on the reference. */
+.calcpro-ideal-converter{background:#d2e8ff;padding:8px 8px 12px;margin:2px 0 8px;min-width:0;color:#111;font-size:15px}
+.calcpro-ideal-converter-intro{font-size:15px;margin:0 0 10px;line-height:1.3}
+.calcpro-ideal-converter-tabs{display:flex;gap:4px;align-items:flex-end;flex-wrap:wrap;border-bottom:1px solid #333;padding:0 0 0 6px;min-height:29px}
+.calcpro-ideal-converter-tab{font:15px Arial,Helvetica,sans-serif;background:#000;color:white;border:1px solid #000;cursor:pointer;padding:3px 6px 4px;line-height:1.1;min-height:25px}
+.calcpro-ideal-converter-tab[aria-selected="true"]{background:#f5f5f5;color:#111;border-bottom:1px solid #f5f5f5;margin-bottom:-1px;z-index:1}
+.calcpro-ideal-converter-tab:focus-visible{outline:2px solid #194c84;outline-offset:2px}
+.calcpro-ideal-converter-columns{display:grid;grid-template-columns:minmax(0,190px) minmax(0,292px);gap:20px;align-items:start;margin:18px 0 0}
+.calcpro-ideal-converter-col{min-width:0;display:flex;flex-direction:column;align-items:stretch}
+.calcpro-ideal-converter-label{font-weight:700;font-size:15px;margin:0 0 3px}
+.calcpro-ideal-converter-input{height:27px;border:1px solid #929292;border-radius:0;font:16px Arial,Helvetica,sans-serif;color:#111;background:white;padding:3px 5px;min-width:0;width:100%;box-shadow:none}
+.calcpro-ideal-converter-select{border:1px solid #9a9a9a;width:100%;min-width:0;height:111px;background:#fff;color:#111;border-radius:0;font:16px Arial,Helvetica,sans-serif;margin-top:-1px;padding:0}
+.calcpro-ideal-converter-select option{padding:1px 3px}
+.calcpro-ideal-converter-error{color:#9b2b0b;font-size:13px;margin:8px 0 0}
+.calcpro-ideal-converter-error[hidden]{display:none!important}
+.calcpro-ideal-converter[hidden]{display:none!important}
+@media(max-width:520px){.calcpro-ideal-converter-columns{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px;margin-top:12px}.calcpro-ideal-converter-select{font-size:13px}.calcpro-ideal-converter-input{font-size:14px}.calcpro-ideal-converter-tab{font-size:13px;padding:4px 5px}}
+@media(max-width:350px){.calcpro-ideal-converter-columns{gap:6px}.calcpro-ideal-converter-tab{font-size:12px;padding:4px 3px}}
+@media print{.calcpro-ideal-converter{display:none!important}}
+@media print{.calcpro-ideal-tablist,.calcpro-ideal-actions,.calcpro-ideal-hint,.calcpro-ideal-save,.calcpro-ideal-error{display:none!important}.calcpro-ideal-panel{border:1px solid #ccc}.calcpro-ideal-grid{grid-template-columns:306px 1fr}.calcpro-ideal-result-title,.calcpro-ideal-table th{print-color-adjust:exact;-webkit-print-color-adjust:exact}}
+
+</style>
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="fitness-and-health-calculator.html">Fitness &amp; Health</a> / Ideal Weight Calculator</nav><h1 class="cp-page-title">Ideal Weight Calculator</h1><p class="cp-intro">Compare ideal body weight estimates from the Robinson, Miller, Devine, and Hamwi formulas using your height and sex, plus an adult healthy BMI range. Switch between metric and US inputs, or open the five-category Other Units converter.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-ideal-root" id="calcpro-ideal-root">
+  <section class="calcpro-ideal-converter" id="calcpro-ideal-converter" aria-label="Unit converter" hidden>
+    <p class="calcpro-ideal-converter-intro">Use this converter to convert to the unit accepted by the calculator</p>
+    <div class="calcpro-ideal-converter-tabs" role="tablist" aria-label="Conversion category">
+      <button type="button" class="calcpro-ideal-converter-tab" id="calcpro-ideal-convert-tab-length" data-calcpro-ideal-category="length" role="tab" aria-selected="true">Length</button>
+      <button type="button" class="calcpro-ideal-converter-tab" id="calcpro-ideal-convert-tab-temperature" data-calcpro-ideal-category="temperature" role="tab" aria-selected="false">Temperature</button>
+      <button type="button" class="calcpro-ideal-converter-tab" id="calcpro-ideal-convert-tab-area" data-calcpro-ideal-category="area" role="tab" aria-selected="false">Area</button>
+      <button type="button" class="calcpro-ideal-converter-tab" id="calcpro-ideal-convert-tab-volume" data-calcpro-ideal-category="volume" role="tab" aria-selected="false">Volume</button>
+      <button type="button" class="calcpro-ideal-converter-tab" id="calcpro-ideal-convert-tab-weight" data-calcpro-ideal-category="weight" role="tab" aria-selected="false">Weight</button>
+    </div>
+    <div class="calcpro-ideal-converter-columns" role="group" aria-label="Convert between units">
+      <div class="calcpro-ideal-converter-col">
+        <label class="calcpro-ideal-converter-label" for="calcpro-ideal-converter-from">From:</label>
+        <input type="number" step="any" inputmode="decimal" class="calcpro-ideal-converter-input" id="calcpro-ideal-converter-from" aria-label="Value to convert"/>
+        <select class="calcpro-ideal-converter-select" size="5" id="calcpro-ideal-converter-from-unit" aria-label="From unit"></select>
+      </div>
+      <div class="calcpro-ideal-converter-col">
+        <label class="calcpro-ideal-converter-label" for="calcpro-ideal-converter-to">To:</label>
+        <input type="number" step="any" inputmode="decimal" class="calcpro-ideal-converter-input" id="calcpro-ideal-converter-to" aria-label="Converted value; can also be edited"/>
+        <select class="calcpro-ideal-converter-select" size="5" id="calcpro-ideal-converter-to-unit" aria-label="To unit"></select>
+      </div>
+    </div>
+    <p class="calcpro-ideal-converter-error" id="calcpro-ideal-converter-error" role="alert" hidden></p>
+  </section>
+  <div class="calcpro-ideal-hint" id="calcpro-ideal-hint"><span class="calcpro-ideal-hint-icon" aria-hidden="true">▼</span><span>Modify the values and click the Calculate button to use</span></div>
+  <div class="calcpro-ideal-grid">
+    <div class="calcpro-ideal-left">
+      <div class="calcpro-ideal-tablist" role="tablist" aria-label="Height unit system">
+        <button class="calcpro-ideal-tab" type="button" role="tab" id="calcpro-ideal-tab-us" aria-selected="false" aria-controls="calcpro-ideal-form-panel" data-calcpro-ideal-tab="us">US Units</button>
+        <button class="calcpro-ideal-tab" type="button" role="tab" id="calcpro-ideal-tab-metric" aria-selected="true" aria-controls="calcpro-ideal-form-panel" data-calcpro-ideal-tab="metric">Metric Units</button>
+        <button class="calcpro-ideal-tab" type="button" id="calcpro-ideal-tab-other" aria-expanded="false" aria-controls="calcpro-ideal-converter" data-calcpro-ideal-converter-toggle>Other Units</button>
+      </div>
+      <div class="calcpro-ideal-panel" id="calcpro-ideal-form-panel" role="tabpanel" aria-labelledby="calcpro-ideal-tab-metric">
+        <form id="calcpro-ideal-form" novalidate>
+          <div class="calcpro-ideal-fields">
+            <div class="calcpro-ideal-row"><label class="calcpro-ideal-label" for="calcpro-ideal-age">Age</label><div class="calcpro-ideal-age-line"><input class="calcpro-ideal-input calcpro-ideal-age" id="calcpro-ideal-age" type="number" min="2" max="80" step="1" inputmode="numeric" value="25"/><span class="calcpro-ideal-help">ages 2 - 80</span></div></div>
+            <div class="calcpro-ideal-row"><span class="calcpro-ideal-label" id="calcpro-ideal-gender-label">Gender</span><div class="calcpro-ideal-radio-line" role="group" aria-labelledby="calcpro-ideal-gender-label"><label><input type="radio" name="calcpro-ideal-gender" value="male" checked/>male</label><label><input type="radio" name="calcpro-ideal-gender" value="female"/>female</label></div></div>
+            <div class="calcpro-ideal-row"><label class="calcpro-ideal-label" id="calcpro-ideal-height-label" for="calcpro-ideal-height-cm">Height</label>
+              <div class="calcpro-ideal-height-view" data-calcpro-ideal-view="metric"><div class="calcpro-ideal-unit-field"><input class="calcpro-ideal-input calcpro-ideal-cm" id="calcpro-ideal-height-cm" type="number" min="0" step="any" inputmode="decimal" value="180" aria-describedby="calcpro-ideal-cm-unit"/><span class="calcpro-ideal-unit-suffix" id="calcpro-ideal-cm-unit">cm</span></div></div>
+              <div class="calcpro-ideal-height-view" data-calcpro-ideal-view="us" hidden><div class="calcpro-ideal-us-height"><span class="calcpro-ideal-us-part"><input class="calcpro-ideal-input" id="calcpro-ideal-height-ft" type="number" min="0" max="9" step="1" inputmode="numeric" value="5" aria-label="Feet"/><span class="calcpro-ideal-small-unit">feet</span></span><span class="calcpro-ideal-us-part"><input class="calcpro-ideal-input" id="calcpro-ideal-height-in" type="number" min="0" max="11.99" step="any" inputmode="decimal" value="10.87" aria-label="Inches"/><span class="calcpro-ideal-small-unit">inches</span></span></div></div>
+            </div>
+          </div>
+          <p id="calcpro-ideal-error" class="calcpro-ideal-error" role="alert" hidden></p>
+          <div class="calcpro-ideal-actions"><button class="calcpro-ideal-calc" type="submit">Calculate <span class="calcpro-ideal-action-arrow" aria-hidden="true">▶</span></button><button type="button" class="calcpro-ideal-clear" id="calcpro-ideal-clear">Clear</button></div>
+        </form>
+      </div>
+    </div>
+    <div class="calcpro-ideal-right"><div class="calcpro-ideal-result" id="calcpro-ideal-result" aria-live="polite" aria-atomic="true">
+      <h2 class="calcpro-ideal-result-title">Result<button type="button" class="calcpro-ideal-save" id="calcpro-ideal-save" aria-label="Save results as a PNG image" title="Save results as a PNG image"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 3h14l3 3v15H3V3h1zm3 0v7h9V3M7 21v-8h10v8" fill="none" stroke="currentColor" stroke-width="2"/><rect x="13" y="4" width="3" height="5"/></svg><span>save</span></button></h2>
+      <p class="calcpro-ideal-result-intro" id="calcpro-ideal-result-intro">The ideal weight based on popular formulas:</p>
+      <div class="calcpro-ideal-table-wrap"><table class="calcpro-ideal-table" id="calcpro-ideal-table"><thead><tr><th scope="col">Formula</th><th scope="col">Ideal Weight</th></tr></thead><tbody>
+        <tr><td>Robinson (1983)</td><td class="calcpro-ideal-table-output" id="calcpro-ideal-val-robinson">72.6 kg</td></tr>
+        <tr><td>Miller (1983)</td><td class="calcpro-ideal-table-output" id="calcpro-ideal-val-miller">71.5 kg</td></tr>
+        <tr><td>Devine (1974)</td><td class="calcpro-ideal-table-output" id="calcpro-ideal-val-devine">75.0 kg</td></tr>
+        <tr><td>Hamwi (1964)</td><td class="calcpro-ideal-table-output" id="calcpro-ideal-val-hamwi">77.3 kg</td></tr>
+        <tr><td>Healthy BMI Range</td><td class="calcpro-ideal-table-output" id="calcpro-ideal-val-bmi">59.9 - 81.0 kg</td></tr>
+      </tbody></table></div>
+      <p class="calcpro-ideal-result-empty" id="calcpro-ideal-result-empty" hidden>Enter your details and select Calculate to see your results.</p>
+      <p class="calcpro-ideal-notice" id="calcpro-ideal-notice" hidden></p>
+    </div></div>
+  </div>
+</div></section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><a href="bmi-calculator.html">BMI</a><a href="body-fat-calculator.html">Body Fat</a><a href="calorie-calculator.html">Calorie</a><a href="bmr-calculator.html">BMR</a><a href="healthy-weight-calculator.html">Healthy Weight</a><a href="lean-body-mass-calculator.html">Lean Body Mass</a><a href="tdee-calculator.html">TDEE</a><a href="macro-calculator.html">Macro</a><a href="body-surface-area-calculator.html">Body Surface Area</a><a href="target-heart-rate-calculator.html">Target Heart Rate</a><a href="army-body-fat-calculator.html">Army Body Fat</a><a href="weight-calculator.html">Weight</a></div></section></aside><article class="cp-article"><h2>How to Use the Ideal Weight Calculator</h2>
+<p>Choose <strong>Metric Units</strong> or <strong>US Units</strong> for the height input. Select <strong>Other Units</strong> to open the separate Length, Temperature, Area, Volume, and Weight converter above the calculator; use its Length tab when translating height units. Enter your age (2–80), choose male or female, and enter your height. Select <strong>Calculate</strong> to compare four widely cited ideal body weight (IBW) equations and a height-based adult BMI range. You can change units without losing your height, select <strong>Clear</strong> to start over, or select <strong>save</strong> to export the displayed result as a PNG.</p>
+<p>Age is collected to identify when adult formulas may be inappropriate. The Robinson, Miller, Devine, and Hamwi equations do <strong>not</strong> use age in their arithmetic. For people younger than 18, use age- and sex-specific pediatric growth references instead of treating these adult estimates as targets.</p>
+<h2>Ideal Body Weight Formulas</h2>
+<p>The equations start with a base weight at 5 feet (152.4 cm) and adjust by each additional inch. First calculate <strong>inches above 5 ft = height in cm ÷ 2.54 − 60</strong>.</p>
+<div class="cp-table-scroll"><table class="cp-content-table"><thead><tr><th>Equation</th><th>Male (kg)</th><th>Female (kg)</th></tr></thead><tbody>
+<tr><td>Robinson (1983)</td><td>52 + 1.9 × inches above 5 ft</td><td>49 + 1.7 × inches above 5 ft</td></tr>
+<tr><td>Miller (1983)</td><td>56.2 + 1.41 × inches above 5 ft</td><td>53.1 + 1.36 × inches above 5 ft</td></tr>
+<tr><td>Devine (1974)</td><td>50 + 2.3 × inches above 5 ft</td><td>45.5 + 2.3 × inches above 5 ft</td></tr>
+<tr><td>Hamwi (1964)</td><td>48 + 2.7 × inches above 5 ft</td><td>45.5 + 2.2 × inches above 5 ft</td></tr>
+</tbody></table></div>
+<p>The calculator uses the commonly reported metric versions of all four formulas, including the rounded metric version of Hamwi's original pound-based rule. The healthy adult BMI range is calculated as <strong>18.5 × height² to 25 × height²</strong>, where height is in meters. Kilograms convert to pounds using 1 kg = 2.2046226218 lb. Results display one decimal place.</p>
+<h2>Worked Example: 180 cm Male</h2>
+<p>For a 25-year-old male measuring 180 cm, the height is approximately 10.866 inches above 5 feet. Robinson gives 52 + 1.9 × 10.866 = <strong>72.6 kg</strong>; Miller gives <strong>71.5 kg</strong>; Devine gives <strong>75.0 kg</strong>; and Hamwi gives <strong>77.3 kg</strong>. The BMI-based adult reference interval is 18.5 × 1.80² to 25 × 1.80², or <strong>59.9–81.0 kg</strong>.</p>
+<h2>What Do the Results Mean?</h2>
+<p>The four values are separate historical estimation methods, not four competing prescriptions. Differences reflect the coefficients and populations used in their development. BMI offers a broader height-based reference interval, but neither BMI nor IBW measures body composition, fat distribution, fitness, or individual medical circumstances.</p>
+<div class="cp-note"><strong>Important:</strong> These formulas were developed primarily for adult clinical applications, including some drug-dosing contexts. Do not use them to determine medication doses without professional guidance. For children and teenagers, adult BMI cutoffs and IBW equations are not appropriate substitutes for pediatric growth charts.</div>
+<h2>Frequently Asked Questions</h2>
+<h3>Why do the four ideal weights differ?</h3><p>Each researcher used different starting values and increases per inch of height. A difference between formulas does not mean that one exact weight is medically required.</p>
+<h3>Does age change the result?</h3><p>Not in these four equations. Age is used for an age-specific caution: the equations are intended for adults, and children's weight status needs pediatric charts.</p>
+<h3>Can I enter feet and inches?</h3><p>Yes. Select US Units and enter whole feet plus inches (including decimal inches). The result appears in pounds. Metric Units displays weight in kilograms. The Other Units button opens a separate conversion tool while your active calculator unit selection stays unchanged.</p>
+<h3>How is the healthy BMI weight range calculated?</h3><p>For adults, multiply 18.5 and 25 by your height in meters squared. It is a screening reference, not an individualized health recommendation.</p>
+<h3>Does this calculator work for athletes or pregnant people?</h3><p>Its results may not represent a useful personal target for people with unusual muscle mass, pregnant people, or people with complex medical conditions. Discuss individual goals with a qualified clinician.</p>
+<h2>References and Further Reading</h2>
+<ul><li><a href="https://www.calculator.net/ideal-weight-calculator.html" rel="noopener noreferrer">Calculator.net — Ideal Weight Calculator</a> (comparison formulas and adult BMI interval)</li>
+<li><a href="https://www.peng.org.uk/pdfs/pocket-guide/statement-on-ideal-body-weight.pdf" rel="noopener noreferrer">PENG — Statement on Ideal Body Weight</a> (clinical formula comparison)</li>
+<li><a href="https://www.cdc.gov/bmi/child-teen-calculator/index.html" rel="noopener noreferrer">CDC — Child and Teen BMI Calculator</a> (pediatric BMI interpretation)</li></ul>
+<p class="cp-page-footer">CalcPro — these calculations are estimates for informational purposes and are not personal medical advice.</p></article></main></div><script>
+(()=>{
+  'use strict';
+  const root=document.getElementById('calcpro-ideal-root');
+  if(!root) return;
+  const get=id=>root.querySelector('#'+id);
+  const tabButtons=[...root.querySelectorAll('[data-calcpro-ideal-tab]')];
+  const views=[...root.querySelectorAll('[data-calcpro-ideal-view]')];
+  const form=get('calcpro-ideal-form'), error=get('calcpro-ideal-error');
+  const ageInput=get('calcpro-ideal-age'), cmInput=get('calcpro-ideal-height-cm');
+  const feetInput=get('calcpro-ideal-height-ft'), inchInput=get('calcpro-ideal-height-in');
+  const table=get('calcpro-ideal-table'), intro=get('calcpro-ideal-result-intro');
+  const empty=get('calcpro-ideal-result-empty'), notice=get('calcpro-ideal-notice');
+  const IDs=['robinson','miller','devine','hamwi','bmi'];
+  const IN_TO_CM=2.54, KG_TO_LB=2.2046226218487757;
+  let active='metric', lastValid=null;
+  const tidy=(x,dp=2)=>String(Number(x.toFixed(dp)));
+  const selectedGender=()=>root.querySelector('input[name="calcpro-ideal-gender"]:checked').value;
+  function heightCM(){
+    if(active==='metric') return cmInput.value.trim()===''?NaN:Number(cmInput.value);
+    if(active==='us'){
+      if(feetInput.value.trim()==='' || inchInput.value.trim()==='')return NaN;
+      const ft=Number(feetInput.value), inch=Number(inchInput.value);
+      if(!Number.isInteger(ft)||ft<0||!Number.isFinite(inch)||inch<0||inch>=12)return NaN;
+      return (ft*12+inch)*IN_TO_CM;
+    }
+    return NaN;
+  }
+  function setError(message){error.textContent=message;error.hidden=!message;}
+  function writeHeight(cm,unit){
+    if(!Number.isFinite(cm)||cm<=0)return;
+    if(unit==='metric')cmInput.value=tidy(cm,3);
+    else if(unit==='us'){
+      const total=cm/IN_TO_CM, ft=Math.floor(total/12);
+      feetInput.value=String(ft);
+      inchInput.value=tidy(total-ft*12,3);
+    }
+  }
+  function switchTab(next){
+    if(next===active){hideConverter();return;}
+    hideConverter();
+    const cm=heightCM();
+    active=next;
+    tabButtons.forEach(b=>{const yes=b.dataset.calcproIdealTab===next;b.setAttribute('aria-selected',yes?'true':'false');b.tabIndex=yes?0:-1;});
+    views.forEach(v=>{v.hidden=v.dataset.calcproIdealView!==next});
+    get('calcpro-ideal-form-panel').setAttribute('aria-labelledby','calcpro-ideal-tab-'+next);
+    get('calcpro-ideal-height-label').setAttribute('for',next==='us'?'calcpro-ideal-height-ft':'calcpro-ideal-height-cm');
+    if(Number.isFinite(cm)&&cm>0)writeHeight(cm,next);
+    else if(active==='metric')cmInput.value='';
+    else if(active==='us'){feetInput.value='';inchInput.value='';}
+    // Reference unit tabs re-submit calculations; update in place rather than navigate.
+    if(Number.isFinite(cm)&&cm>0&&Number.isFinite(Number(ageInput.value))&&ageInput.value!=='')calculate(false);
+    else if(lastValid){renderEmpty();}
+  }
+  tabButtons.forEach(b=>b.addEventListener('click',()=>switchTab(b.dataset.calcproIdealTab)));
+  root.querySelector('.calcpro-ideal-tablist').addEventListener('keydown',e=>{
+    if(!['ArrowRight','ArrowLeft','Home','End'].includes(e.key))return;
+    e.preventDefault();
+    const idx=tabButtons.findIndex(b=>b.dataset.calcproIdealTab===active);
+    const n=e.key==='Home'?0:e.key==='End'?tabButtons.length-1:(idx+(e.key==='ArrowRight'?1:-1)+tabButtons.length)%tabButtons.length;
+    switchTab(tabButtons[n].dataset.calcproIdealTab); tabButtons[n].focus();
+  });
+
+  // The reference's Other Units button opens an independent five-category converter.
+  // Convert via SI base units; temperature uses affine conversion rather than scaling.
+  const converter=get('calcpro-ideal-converter');
+  const otherToggle=get('calcpro-ideal-tab-other');
+  const converterFrom=get('calcpro-ideal-converter-from');
+  const converterTo=get('calcpro-ideal-converter-to');
+  const fromUnits=get('calcpro-ideal-converter-from-unit');
+  const toUnits=get('calcpro-ideal-converter-to-unit');
+  const converterError=get('calcpro-ideal-converter-error');
+  const categories={
+    length:[['meter','Meter',1],['kilometer','Kilometer',1000],['centimeter','Centimeter',.01],['millimeter','Millimeter',.001],['micrometer','Micrometer',1e-6],['nanometer','Nanometer',1e-9],['mile','Mile',1609.344],['yard','Yard',.9144],['foot','Foot',.3048],['inch','Inch',.0254],['nauticalmile','Nautical Mile',1852],['lightyear','Light Year',9.4607304725808e15]],
+    temperature:[['celsius','Celsius (°C)',null],['fahrenheit','Fahrenheit (°F)',null],['kelvin','Kelvin (K)',null],['rankine','Rankine (°R)',null]],
+    area:[['squaremeter','Square Meter',1],['squarekilometer','Square Kilometer',1e6],['squarecentimeter','Square Centimeter',.0001],['squaremillimeter','Square Millimeter',1e-6],['hectare','Hectare',10000],['acre','Acre',4046.8564224],['squaremile','Square Mile',2589988.110336],['squareyard','Square Yard',.83612736],['squarefoot','Square Foot',.09290304],['squareinch','Square Inch',.00064516]],
+    volume:[['cubicmeter','Cubic Meter',1],['cubickilometer','Cubic Kilometer',1e9],['cubiccentimeter','Cubic Centimeter',1e-6],['cubicmillimeter','Cubic Millimeter',1e-9],['liter','Liter',.001],['milliliter','Milliliter',1e-6],['usgallon','Gallon (US)',.003785411784],['usquart','Quart (US)',.000946352946],['uspint','Pint (US)',.000473176473],['uscup','Cup (US)',.0002365882365],['usfluidounce','Fluid Ounce (US)',.0000295735295625],['ustablespoon','Tablespoon (US)',.00001478676478125],['usteaspoon','Teaspoon (US)',.00000492892159375],['impgallon','Gallon (UK)',.00454609],['imppint','Pint (UK)',.00056826125],['cubicfoot','Cubic Foot',.028316846592],['cubicinch','Cubic Inch',.000016387064]],
+    weight:[['kilogram','Kilogram',1],['gram','Gram',.001],['milligram','Milligram',1e-6],['metricton','Metric Ton',1000],['pound','Pound (lb)',.45359237],['ounce','Ounce (oz)',.028349523125],['stone','Stone',6.35029318],['uston','Ton (US)',907.18474],['ukton','Ton (UK)',1016.0469088],['carat','Carat',.0002]]
+  };
+  let converterCategory='length', lastConverterEdited='from';
+  const showConverterError=message=>{converterError.textContent=message;converterError.hidden=!message;};
+  function hideConverter(){converter.hidden=true;otherToggle.setAttribute('aria-expanded','false');}
+  otherToggle.addEventListener('click',()=>{
+    const opening=converter.hidden;
+    converter.hidden=!opening;
+    otherToggle.setAttribute('aria-expanded',opening?'true':'false');
+    if(opening){get('calcpro-ideal-hint').hidden=true;}
+  });
+  function selectCategory(category){
+    converterCategory=category;
+    root.querySelectorAll('[data-calcpro-ideal-category]').forEach(b=>{const selected=b.dataset.calcproIdealCategory===category;b.setAttribute('aria-selected',selected?'true':'false');b.tabIndex=selected?0:-1;});
+    [fromUnits,toUnits].forEach(select=>{
+      select.replaceChildren();
+      categories[category].forEach(u=>select.add(new Option(u[1],u[0])));
+      select.selectedIndex=0;
+    });
+    converterFrom.value='';converterTo.value='';showConverterError('');
+  }
+  function temperatureToKelvin(value,unit){
+    return unit==='celsius'?value+273.15:unit==='fahrenheit'?(value+459.67)*5/9:unit==='rankine'?value*5/9:value;
+  }
+  function kelvinToTemperature(value,unit){
+    return unit==='celsius'?value-273.15:unit==='fahrenheit'?value*9/5-459.67:unit==='rankine'?value*9/5:value;
+  }
+  function convertValue(value,sourceUnit,targetUnit){
+    if(converterCategory==='temperature')return kelvinToTemperature(temperatureToKelvin(value,sourceUnit),targetUnit);
+    const list=categories[converterCategory];
+    const src=list.find(u=>u[0]===sourceUnit),dst=list.find(u=>u[0]===targetUnit);
+    return value*src[2]/dst[2];
+  }
+  function calculateConversion(fromWhich){
+    lastConverterEdited=fromWhich;
+    const input=fromWhich==='from'?converterFrom:converterTo;
+    const output=fromWhich==='from'?converterTo:converterFrom;
+    if(input.value.trim()===''){output.value='';showConverterError('');return;}
+    const value=Number(input.value);
+    const from=fromWhich==='from'?fromUnits.value:toUnits.value;
+    const to=fromWhich==='from'?toUnits.value:fromUnits.value;
+    const result=convertValue(value,from,to);
+    if(!Number.isFinite(result)){output.value='';showConverterError('The conversion is outside the supported numerical range.');return;}
+    output.value=Number(result.toPrecision(12)).toString();
+    showConverterError('');
+  }
+  for(const input of [converterFrom,converterTo])input.addEventListener('input',()=>calculateConversion(input===converterFrom?'from':'to'));
+  for(const select of [fromUnits,toUnits])select.addEventListener('change',()=>calculateConversion(lastConverterEdited));
+  root.querySelectorAll('[data-calcpro-ideal-category]').forEach(button=>button.addEventListener('click',()=>selectCategory(button.dataset.calcproIdealCategory)));
+  const converterTabs=[...root.querySelectorAll('[data-calcpro-ideal-category]')];
+  get('calcpro-ideal-convert-tab-length').parentElement.addEventListener('keydown',event=>{
+    if(!['ArrowRight','ArrowLeft','Home','End'].includes(event.key))return;
+    event.preventDefault();
+    const idx=converterTabs.findIndex(b=>b.dataset.calcproIdealCategory===converterCategory);
+    const next=event.key==='Home'?0:event.key==='End'?converterTabs.length-1:(idx+(event.key==='ArrowRight'?1:-1)+converterTabs.length)%converterTabs.length;
+    selectCategory(converterTabs[next].dataset.calcproIdealCategory);converterTabs[next].focus();
+  });
+  selectCategory('length');
+  function validate(){
+    const age=Number(ageInput.value);
+    if(ageInput.value.trim()===''||!Number.isInteger(age)||age<2||age>80){setError('Enter a whole-number age from 2 to 80.');return null;}
+    if(active==='us'&&(feetInput.value.trim()===''||inchInput.value.trim()===''||!Number.isInteger(Number(feetInput.value))||Number(feetInput.value)<0||Number(inchInput.value)<0||Number(inchInput.value)>=12)){
+      setError('Enter whole feet and inches from 0 up to (but not including) 12.');return null;
+    }
+    const cm=heightCM();
+    if(!Number.isFinite(cm)||cm<=0||cm>300){setError('Enter a valid height greater than 0 and no more than 300 cm (9 ft 10 in).');return null;}
+    setError('');return {age,cm,gender:selectedGender()};
+  }
+  function calcValues(cm,gender){
+    const over=cm/IN_TO_CM-60, male=gender==='male';
+    return {
+      robinson:(male?52:49)+(male?1.9:1.7)*over,
+      miller:(male?56.2:53.1)+(male?1.41:1.36)*over,
+      devine:(male?50:45.5)+2.3*over,
+      hamwi:(male?48:45.5)+(male?2.7:2.2)*over,
+      lower:18.5*(cm/100)**2,upper:25*(cm/100)**2
+    };
+  }
+  function outputValue(kg){return kg>0?((active==='us'?kg*KG_TO_LB:kg).toFixed(1)+' '+(active==='us'?'lbs':'kg')):'N/A';}
+  function renderEmpty(){
+    intro.hidden=true;table.hidden=true;empty.hidden=false;notice.hidden=true;
+    lastValid=null;get('calcpro-ideal-save').disabled=true;
+  }
+  function calculate(hideHint=true){
+    const data=validate();
+    if(!data){renderEmpty();return false;}
+    const values=calcValues(data.cm,data.gender);
+    for(const id of IDs.slice(0,4))get('calcpro-ideal-val-'+id).textContent=outputValue(values[id]);
+    const unit=active==='us'?'lbs':'kg',factor=active==='us'?KG_TO_LB:1;
+    get('calcpro-ideal-val-bmi').textContent=(values.lower*factor).toFixed(1)+' - '+(values.upper*factor).toFixed(1)+' '+unit;
+    const warnings=[];
+    if(data.age<18)warnings.push('These formulas and the 18.5–25 BMI interval are adult references, not suitable for assessing children or teenagers. Use age- and sex-specific growth charts.');
+    if(data.cm<152.4)warnings.push('Below 5 ft (152.4 cm), these adult formulas are extrapolations and may be unreliable.');
+    if(Object.values(values).some(v=>v<=0))warnings.push('One or more formulas yield a nonpositive weight at this height and are shown as N/A.');
+    notice.hidden=warnings.length===0;notice.textContent=warnings.join(' ');
+    intro.hidden=false;table.hidden=false;empty.hidden=true;
+    lastValid={...data,values,unit,factor};
+    get('calcpro-ideal-save').disabled=false;
+    if(hideHint)get('calcpro-ideal-hint').hidden=true;
+    return true;
+  }
+  form.addEventListener('submit',e=>{e.preventDefault();calculate(true);});
+  root.querySelectorAll('input').forEach(i=>i.addEventListener('input',()=>{if(!error.hidden)setError('');}));
+  get('calcpro-ideal-clear').addEventListener('click',()=>{
+    ageInput.value='';cmInput.value='';feetInput.value='';inchInput.value='';
+    root.querySelector('input[name="calcpro-ideal-gender"][value="male"]').checked=true;
+    hideConverter();setError('');
+    renderEmpty();get('calcpro-ideal-hint').hidden=false;
+    ageInput.focus();
+  });
+  get('calcpro-ideal-save').addEventListener('click',()=>{
+    if(!lastValid){setError('Calculate a valid result before saving.');return;}
+    const data=lastValid;
+    const canvas=document.createElement('canvas');canvas.width=900;canvas.height=460;
+    const ctx=canvas.getContext('2d');if(!ctx){setError('Image saving is not supported by this browser.');return;}
+    ctx.fillStyle='#fff';ctx.fillRect(0,0,900,460);
+    ctx.fillStyle='#4c862c';ctx.fillRect(0,0,900,63);
+    ctx.font='bold 28px Arial';ctx.fillStyle='#fff';ctx.fillText('Ideal Weight Calculator',26,42);
+    ctx.font='19px Arial';ctx.fillStyle='#252525';ctx.fillText('Age: '+data.age+'     Gender: '+(data.gender==='male'?'male':'female')+'     Height: '+tidy(data.cm,2)+' cm',28,101);
+    ctx.fillStyle='#336699';ctx.fillRect(28,127,844,43);
+    ctx.fillStyle='#fff';ctx.font='bold 19px Arial';ctx.fillText('Formula',43,156);ctx.fillText('Ideal Weight',565,156);
+    const rows=[['Robinson (1983)',data.values.robinson],['Miller (1983)',data.values.miller],['Devine (1974)',data.values.devine],['Hamwi (1964)',data.values.hamwi]];
+    rows.push(['Healthy BMI Range',null]);
+    rows.forEach((row,i)=>{
+      const y=170+i*43;ctx.fillStyle=i%2?'#f0f0f0':'#fafafa';ctx.fillRect(28,y,844,43);
+      ctx.strokeStyle='#d0d0d0';ctx.strokeRect(28,y,844,43);
+      ctx.fillStyle='#222';ctx.font='18px Arial';ctx.fillText(row[0],43,y+28);
+      ctx.fillStyle='#008000';ctx.font='bold 18px Arial';
+      const v=row[1]===null?(data.values.lower*data.factor).toFixed(1)+' - '+(data.values.upper*data.factor).toFixed(1)+' '+data.unit:(row[1]>0?(row[1]*data.factor).toFixed(1)+' '+data.unit:'N/A');
+      ctx.fillText(v,565,y+28);
+    });
+    ctx.fillStyle='#555';ctx.font='14px Arial';ctx.fillText('Indicative adult formula estimates; not a diagnosis or a personal weight target.',30,427);
+    const a=document.createElement('a');a.href=canvas.toDataURL('image/png');a.download='calcpro-ideal-weight-result.png';document.body.appendChild(a);a.click();a.remove();
+  });
+  // Compute the displayed initial sample from formulas (no static hard-coded output dependency).
+  calculate(false);
+})();
+</script><script defer src="/assets/js/data.js"></script>
+<script defer src="/assets/js/style.js?v=20261111-5"></script>
+</body></html>

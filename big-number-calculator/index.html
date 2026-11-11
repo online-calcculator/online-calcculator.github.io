@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US">
-<head>
-<meta charset="utf-8">
+<html lang="en"><head><meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="content-language" content="en">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,17 +11,328 @@
   <meta name="author" content="Commingsoon">
   <meta name="publisher" content="Commingsoon">
   <meta name="robots" content="noindex, nofollow, max-image-preview:large">
-  <link rel="stylesheet" href="/assets/css/style.css?v=20261111-1" crossorigin="anonymous" data-n-g="">
+  <link rel="stylesheet" href="/assets/css/style.css?v=20261111-4" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/doc_style.css" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/side_style.css" crossorigin="anonymous" data-n-g=""> 
   <!--ogtags-->
-  <!--schema-->
-  <!--style-->
-</head>
+  <!--schema--><style>
+/* Only the Big Number Calculator component is styled here. */
+.calcpro-big-calculator{font:16px Arial,Helvetica,sans-serif;color:#111;max-width:100%;line-height:1.4}
+.calcpro-big-calculator *{box-sizing:border-box}
+.calcpro-big-result[hidden],.calcpro-big-error[hidden],.calcpro-big-status[hidden]{display:none!important}
+.calcpro-big-result{margin:0 0 22px}
+.calcpro-big-result-header{min-height:39px;background:#4b841e;color:#fff;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:5px 9px}
+.calcpro-big-result-heading{font-size:23px;line-height:1.2;font-weight:400;margin:0}
+.calcpro-big-result-tools{display:flex;align-items:center;gap:9px}
+.calcpro-big-result-tools button{background:transparent;border:1px solid transparent;color:white;cursor:pointer;border-radius:3px;min-height:29px;padding:3px 5px;font:12px Arial,Helvetica,sans-serif}
+.calcpro-big-result-tools button:hover,.calcpro-big-result-tools button:focus-visible{background:#386617;border-color:#dceacf}
+.calcpro-big-result-number{font:17px/1.5 Arial,Helvetica,sans-serif;overflow-wrap:anywhere;word-break:break-word;white-space:pre-wrap;margin:5px 0 0;max-width:100%;tab-size:2}
+.calcpro-big-result-note{font-size:13px;color:#515151;margin:5px 0 0}
+.calcpro-big-error{border-left:4px solid #ba2d2d;background:#fff1f1;padding:10px 12px;margin:0 0 15px;color:#8b1c1c;overflow-wrap:anywhere}
+.calcpro-big-status{font-size:13px;color:#245e15;min-height:18px;margin:6px 0 0}
+.calcpro-big-panel{border:1px solid #bebebe;background:#ededed;padding:8px 10px 10px;margin:0;max-width:100%}
+.calcpro-big-input-row{display:grid;grid-template-columns:29px minmax(0,1fr);gap:0;margin:0 0 8px;align-items:start}
+.calcpro-big-input-row label{white-space:nowrap;padding:3px 4px 0 0}
+.calcpro-big-input-row textarea{display:block;width:100%;min-width:0;height:59px;resize:vertical;background:#fff;border:1px solid #858585;border-radius:1px;padding:7px 8px;font:17px/1.3 Arial,Helvetica,sans-serif;color:#111;outline-offset:2px}
+.calcpro-big-input-row textarea:focus-visible,.calcpro-big-precision-row input:focus-visible{outline:2px solid #356b9e}
+.calcpro-big-precision-row{display:flex;align-items:center;flex-wrap:wrap;gap:5px;margin:23px 0 23px 29px}
+.calcpro-big-precision-row input{width:95px;height:34px;padding:5px 6px;font:16px Arial,Helvetica,sans-serif;background:#fff;border:1px solid #7790a8;border-radius:2px;box-shadow:0 1px 3px #0002}
+.calcpro-big-operation-hint{text-align:center;margin:0 0 3px}
+.calcpro-big-buttons{display:flex;flex-wrap:wrap;justify-content:flex-start;gap:5px;margin-left:29px}
+.calcpro-big-buttons button{border:0;background:#4d800e;color:#fff;cursor:pointer;border-radius:3px;padding:7px 9px;min-height:37px;font:16px/1.2 Arial,Helvetica,sans-serif;white-space:nowrap}
+.calcpro-big-buttons button:hover{background:#376506}
+.calcpro-big-buttons button:focus-visible{outline:2px solid #0d4e9e;outline-offset:2px}
+.calcpro-big-buttons button:active{transform:translateY(1px)}
+.calcpro-big-buttons button:disabled{background:#8c9c7a;cursor:wait}
+.calcpro-big-utilities{display:flex;justify-content:flex-end;margin-top:7px}
+.calcpro-big-clear{font:13px Arial,Helvetica,sans-serif;border:0;background:transparent;color:#315f1c;cursor:pointer;text-decoration:underline;padding:3px}
+.calcpro-big-clear:hover{color:#20400e}
+@media(max-width:540px){.calcpro-big-panel{padding:8px}.calcpro-big-buttons{margin-left:0;gap:5px}.calcpro-big-buttons button{flex:1 0 auto;font-size:15px;min-height:39px}.calcpro-big-precision-row{margin:15px 0 21px}.calcpro-big-input-row{grid-template-columns:29px minmax(0,1fr)}.calcpro-big-result-heading{font-size:21px}}
+@media(max-width:370px){.calcpro-big-precision-row{align-items:flex-start}.calcpro-big-precision-row span{width:100%}.calcpro-big-result-tools{gap:0}}
+@media print{.calcpro-big-buttons,.calcpro-big-utilities,.calcpro-big-result-tools{display:none!important}.calcpro-big-panel{break-inside:avoid}.calcpro-big-result{break-inside:avoid}.calcpro-big-result-number{max-height:none}}
+</style>
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/math-calculator/">Math</a> / Big Number Calculator</nav><h1 class="cp-page-title">Big Number Calculator</h1><p class="cp-intro">Calculate very large numbers using integers, decimals, or E-notation scientific notation (such as 23E18 and 3.5e19). Choose an operation to see its result above the input form.</p><section aria-label="Calculator" class="cp-tool-area"><section class="calcpro-big-calculator" id="calcpro-big-calculator" aria-label="Big Number Calculator">
+  <div class="calcpro-big-result" id="calcpro-big-result" hidden>
+    <div class="calcpro-big-result-header">
+      <h2 class="calcpro-big-result-heading">Result</h2>
+      <div class="calcpro-big-result-tools">
+        <button id="calcpro-big-copy" type="button" title="Copy the result" aria-label="Copy result">⧉ Copy</button>
+        <button id="calcpro-big-save" type="button" title="Save the result as text" aria-label="Save result as a text file">▣ Save</button>
+      </div>
+    </div>
+    <div class="calcpro-big-result-number" id="calcpro-big-result-number" role="status" aria-live="polite"></div>
+    <p class="calcpro-big-result-note" id="calcpro-big-result-note"></p>
+    <p class="calcpro-big-status" id="calcpro-big-status" hidden></p>
+  </div>
+  <div class="calcpro-big-error" id="calcpro-big-error" role="alert" hidden></div>
+  <form class="calcpro-big-panel" id="calcpro-big-form" novalidate>
+    <div class="calcpro-big-input-row"><label for="calcpro-big-x">X =</label><textarea id="calcpro-big-x" name="x" rows="2" maxlength="100000" spellcheck="false" autocomplete="off" inputmode="decimal" aria-describedby="calcpro-big-input-help"></textarea></div>
+    <div class="calcpro-big-input-row"><label for="calcpro-big-y">Y =</label><textarea id="calcpro-big-y" name="y" rows="2" maxlength="100000" spellcheck="false" autocomplete="off" inputmode="decimal"></textarea></div>
+    <div class="calcpro-big-precision-row"><label for="calcpro-big-precision">Precision:</label><input id="calcpro-big-precision" type="number" min="0" max="5000" step="1" value="20" inputmode="numeric"/><span>digits after the decimal place in the result</span></div>
+    <p class="calcpro-big-operation-hint">Click the buttons below to calculate</p>
+    <div class="calcpro-big-buttons" role="group" aria-label="Arithmetic operations">
+      <button type="button" data-calcpro-big-op="plus">X + Y</button><button type="button" data-calcpro-big-op="minus">X − Y</button><button type="button" data-calcpro-big-op="multiply">X × Y</button><button type="button" data-calcpro-big-op="divide">X / Y</button><button type="button" data-calcpro-big-op="pow">X^Y</button><button type="button" data-calcpro-big-op="sqrt">√X</button><button type="button" data-calcpro-big-op="square">X ^ 2</button><button type="button" data-calcpro-big-op="factorial">X!</button><button type="button" data-calcpro-big-op="mod">MOD</button><button type="button" data-calcpro-big-op="gcd">GCD</button><button type="button" data-calcpro-big-op="lcm">LCM</button>
+    </div>
+    <div class="calcpro-big-utilities"><button id="calcpro-big-clear" class="calcpro-big-clear" type="button">Clear inputs and result</button></div>
+  </form>
+  <span id="calcpro-big-input-help" hidden>Enter a positive or negative integer, decimal, or scientific notation such as 23E18 or 3.5e19.</span>
+</section></section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><!-- REPLACE these links with real related tools for each calculator; verify live slugs. --><a href="retirement-calculator.html">Retirement</a><a href="roth-ira-calculator.html">Roth IRA</a><a href="investment-calculator.html">Investment</a><a href="compound-interest-calculator.html">Compound Interest</a><a href="annuity-payout-calculator.html">Annuity Payout</a><a href="pension-calculator.html">Pension</a><a href="inflation-calculator.html">Inflation</a><a href="future-value-calculator.html">Future Value</a><a href="income-tax-calculator.html">Income Tax</a><a href="savings-calculator.html">Savings</a><a href="mortgage-calculator.html">Mortgage</a><a href="loan-calculator.html">Loan</a></div></section></aside><article class="cp-article"><h2>How to Use the Big Number Calculator</h2>
+<p>Enter a number in <strong>X</strong> and, for two-number operations, another in <strong>Y</strong>. You can enter long whole numbers, negative values, decimals, and scientific notation such as <code>23E18</code> (23 × 10<sup>18</sup>). Choose one of the 11 green operation buttons. The answer appears <strong>above the input form</strong>, with the original inputs retained so you can run another operation.</p>
+<ol><li>Enter X and optionally Y. The √X, X² and X! buttons only use X.</li><li>Set <strong>Precision</strong> to between 0 and 5,000 decimal places. This controls the displayed rounding of division, negative powers, and square roots, not the exactness of addition or multiplication.</li><li>Click an operation. Use <strong>Copy</strong> to copy the digits, <strong>Save</strong> for a text file, or <strong>Clear inputs and result</strong> to start again.</li></ol>
+<h2>Big Number Calculator Formulas</h2>
+<div class="cp-table-scroll"><table class="cp-content-table"><thead><tr><th>Operation</th><th>Formula or definition</th><th>Notes</th></tr></thead><tbody>
+<tr><td>Add / subtract</td><td>X + Y; X − Y</td><td>Exact for supported finite decimals</td></tr>
+<tr><td>Multiply</td><td>X × Y</td><td>Exact; does not use floating-point arithmetic</td></tr>
+<tr><td>Divide</td><td>X ÷ Y</td><td>Rounded half-up to the chosen decimal precision if necessary; Y must be nonzero</td></tr>
+<tr><td>Power</td><td>X<sup>Y</sup></td><td>Y must be a whole number; negative powers use the precision setting</td></tr>
+<tr><td>Square root</td><td>√X</td><td>X must be nonnegative; rounded half-up when not exact</td></tr>
+<tr><td>Square</td><td>X<sup>2</sup> = X × X</td><td>Exact</td></tr>
+<tr><td>Factorial</td><td>X! = 1 × 2 × … × X</td><td>X must be a nonnegative integer; 0! = 1</td></tr>
+<tr><td>Modulo</td><td>X − trunc(X ÷ Y) × Y</td><td>Remainder; Y must be nonzero and the sign follows X</td></tr>
+<tr><td>Greatest common divisor</td><td>GCD(X,Y)</td><td>Greatest nonnegative common divisor for integers; finite decimals are aligned to a shared decimal scale</td></tr>
+<tr><td>Least common multiple</td><td>LCM(X,Y) = |X × Y| / GCD(X,Y)</td><td>Zero if either input is zero; uses the same shared scale for decimal inputs</td></tr>
+</tbody></table></div>
+<h2>Worked Examples</h2>
+<h3>Large Integer Addition</h3><p>With X = <code>23E18</code> and Y = <code>3.5E19</code>, the exact result of X + Y is <strong>58,000,000,000,000,000,000</strong> (displayed without separators as <code>58000000000000000000</code>). Neither number is converted to an imprecise JavaScript <code>Number</code>.</p>
+<h3>Decimal Division and Square Roots</h3><p>For X = 1 and Y = 3, division at precision 5 returns <strong>0.33333</strong>. For X = 2, √X at precision 5 returns <strong>1.41421</strong>. An exact decimal such as 10 ÷ 4 is displayed as <strong>2.5</strong>, without unnecessary trailing zeroes.</p>
+<h3>Factorials, GCD, and LCM</h3><p>For X = 20, X! returns <code>2432902008176640000</code>. For X = 48 and Y = 18, GCD returns 6 and LCM returns 144. The modulo operation uses truncation toward zero: −7 MOD 3 is −1.</p>
+<h2>What Precision Means</h2><p>The calculator represents finite decimals as an integer coefficient and a base-ten scale, using <code>BigInt</code>. This preserves every digit for addition, subtraction, multiplication, integer powers and the supported exact remainder calculations. Division and irrational square roots cannot always be represented as finite decimals, so their displayed results are rounded half-up to at most the requested number of digits after the decimal point. Trailing zeros are removed for readability.</p>
+<div class="cp-note">Practical limits protect your browser: inputs up to 100,000 characters, rendered answers up to 100,000 characters, precision up to 5,000 decimal places, integer powers with |Y| up to 100,000, and factorials through 10,000!. Very large intermediate computations can be rejected even if their final results would be small.</div>
+<h2>Frequently Asked Questions</h2>
+<h3>Can I enter scientific notation?</h3><p>Yes. <code>1.25e6</code> is 1,250,000, and <code>2.5E-3</code> is 0.0025. Use a period for the decimal separator and do not include commas in an input.</p>
+<h3>Why are large-number answers different from a regular calculator?</h3><p>Many ordinary calculators rely on IEEE 754 floating-point arithmetic, which can lose integer precision beyond 15–16 decimal digits. This calculator uses base-ten coefficient arithmetic backed by JavaScript <code>BigInt</code> instead.</p>
+<h3>Can I use fractional exponents?</h3><p>The X^Y button supports whole-number exponents, including negative ones. Fractional exponents are not supported; √X handles the square root case. Square roots of negative numbers and division by zero are not real-valued results here.</p>
+<h3>Does it have a reset button and can I save results?</h3><p>Yes. Use <strong>Clear inputs and result</strong> to reset the form, <strong>Copy</strong> to copy the answer, or <strong>Save</strong> to download the answer as a text file. Calculations run locally on the page.</p>
+<h2>Further Reading</h2><p>For background on arbitrary-sized integer arithmetic, see <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt" rel="noopener noreferrer">MDN: BigInt</a>. For the reference calculator that inspired the input layout and operation selection, see <a href="https://www.calculator.net/big-number-calculator.html" rel="noopener noreferrer">Calculator.net: Big Number Calculator</a>.</p>
+<p class="cp-page-footer">CalcPro — results are for informational and educational purposes.</p></article></main></div><script>(function () {
+  'use strict';
+  const root = document.getElementById('calcpro-big-calculator');
+  if (!root) return;
+  const byId = (id) => document.getElementById('calcpro-big-' + id);
+  const xInput = byId('x'), yInput = byId('y'), precisionInput = byId('precision');
+  const resultBox = byId('result'), resultNumber = byId('result-number');
+  const resultNote = byId('result-note'), errorBox = byId('error');
+  const status = byId('status');
+  const MAX_INPUT = 100000, MAX_OUTPUT = 100000, MAX_WORK = 120000;
+  const MAX_PRECISION = 5000, MAX_FACTORIAL = 10000, MAX_POWER = 100000;
+  let latest = '';
+  const names = {plus:'X + Y', minus:'X − Y', multiply:'X × Y', divide:'X / Y', pow:'X^Y', sqrt:'√X', square:'X²', factorial:'X!', mod:'X MOD Y', gcd:'GCD(X, Y)', lcm:'LCM(X, Y)'};
 
-<body>
-<!-- Main-header-page -->
-<script defer src="/assets/js/data.js"></script>
-<script defer src="/assets/js/style.js?v=20261111-1"></script>
-</body>
-</html>
+  function fail(message) { throw new Error(message); }
+  function power10(n) {
+    if (!Number.isSafeInteger(n) || n < 0 || n > MAX_WORK) fail('The calculation needs more than the supported 120,000 working digits. Use smaller inputs or exponents.');
+    return 10n ** BigInt(n);
+  }
+  function countDigits(n) { return (n < 0n ? -n : n).toString().length; }
+  function normalize(c, s) {
+    if (c === 0n) return {c:0n, s:0};
+    const original = c.toString();
+    const trimmed = original.replace(/0+$/, '');
+    return {c:BigInt(trimmed), s:s - (original.length - trimmed.length)};
+  }
+  function checkSize(a) {
+    if (a.c === 0n) return a;
+    const n = countDigits(a.c);
+    const length = (a.s <= 0 ? n - a.s : a.s >= n ? a.s + 2 : n + 1) + (a.c < 0n ? 1 : 0);
+    if (length > MAX_OUTPUT) fail('The full result exceeds the supported 100,000 characters. Try smaller inputs.');
+    return a;
+  }
+  function toPlain(a) {
+    checkSize(a);
+    if (a.c === 0n) return '0';
+    const neg = a.c < 0n ? '-' : '';
+    const digits = (a.c < 0n ? -a.c : a.c).toString();
+    const s = a.s;
+    if (s <= 0) return neg + digits + '0'.repeat(-s);
+    if (s >= digits.length) return neg + '0.' + '0'.repeat(s - digits.length) + digits;
+    return neg + digits.slice(0, -s) + '.' + digits.slice(-s);
+  }
+  function parseDecimal(raw, label) {
+    const input = raw.trim();
+    if (!input) fail('Enter a number for ' + label + '.');
+    if (input.length > MAX_INPUT) fail(label + ' contains too many characters (maximum 100,000).');
+    const found = /^([+-]?)(?:(\d+)(?:\.(\d*))?|\.(\d+))(?:[eE]([+-]?\d+))?$/.exec(input);
+    if (!found) fail(label + ' must be an integer, decimal, or E-notation number (for example, -3.5e19). Commas and expressions are not accepted.');
+    const expText = found[5] || '0';
+    if (expText.replace(/^[+-]?0*/, '').length > 6) fail(label + ' has an exponent outside the supported range (±100,000).');
+    const exp = Number(expText);
+    if (!Number.isSafeInteger(exp) || Math.abs(exp) > 100000) fail(label + ' has an exponent outside the supported range (±100,000).');
+    const fraction = found[3] !== undefined ? found[3] : (found[4] || '');
+    const digits = (found[2] || '0') + fraction;
+    const c = BigInt(digits) * (found[1] === '-' ? -1n : 1n);
+    return checkSize(normalize(c, fraction.length - exp));
+  }
+  function align(a, b) {
+    const s = Math.max(a.s, b.s);
+    const extraA = s - a.s, extraB = s - b.s;
+    if (a.c && countDigits(a.c) + extraA > MAX_WORK) fail('The aligned X value is too large to compute safely.');
+    if (b.c && countDigits(b.c) + extraB > MAX_WORK) fail('The aligned Y value is too large to compute safely.');
+    return {a:a.c === 0n ? 0n : a.c * power10(extraA), b:b.c === 0n ? 0n : b.c * power10(extraB), s};
+  }
+  function sum(a,b,sign) { const v=align(a,b); return normalize(v.a+BigInt(sign)*v.b, v.s); }
+  function product(a,b) {
+    if (a.c && b.c && countDigits(a.c)+countDigits(b.c)>MAX_WORK) fail('The product exceeds the supported working size.');
+    return normalize(a.c*b.c, a.s+b.s);
+  }
+  function abs(n) { return n<0n ? -n:n; }
+  function integerGcd(a,b) {
+    a=abs(a); b=abs(b);
+    while (b!==0n) { const t=a%b; a=b; b=t; }
+    return a;
+  }
+  function quotient(a,b,p) {
+    if (b.c===0n) fail('Cannot divide by zero.');
+    if (a.c===0n) return {value:{c:0n,s:0},exact:true};
+    const shift=p+b.s-a.s;
+    if (shift>=0 && countDigits(a.c)+shift>MAX_WORK && a.c!==0n) fail('The division needs too many working digits.');
+    if (shift<0 && countDigits(b.c)-shift>MAX_WORK) fail('The division needs too many working digits.');
+    let n=abs(a.c), d=abs(b.c);
+    if (shift>=0) n*=power10(shift);
+    else d*=power10(-shift);
+    let q=n/d;
+    const remainder=n%d;
+    if (remainder*2n>=d) q+=1n; // half-up rounding, away from zero on a tie
+    if ((a.c<0n)!==(b.c<0n)) q=-q;
+    return {value:normalize(q,p), exact:remainder===0n};
+  }
+  function integerSqrt(n) {
+    if (n<0n) fail('Cannot find the real square root of a negative number.');
+    if (n<2n) return n;
+    let x=1n << BigInt(Math.ceil(n.toString(2).length/2));
+    while (true) {
+      const y=(x+n/x)>>1n;
+      if (y>=x) return x;
+      x=y;
+    }
+  }
+  function squareRoot(a,p) {
+    if (a.c<0n) fail('Square root requires X to be nonnegative.');
+    if (a.c===0n) return {value:{c:0n,s:0},exact:true};
+    const shift=2*p-a.s;
+    if (shift>=0 && countDigits(a.c)+shift>MAX_WORK) fail('The square root needs too many working digits.');
+    if (shift<0 && -shift>MAX_WORK) fail('The square root needs too many working digits.');
+    const n=shift>=0 ? a.c*power10(shift) : a.c;
+    const d=shift>=0 ? 1n : power10(-shift);
+    let q=integerSqrt(n/d);
+    const exact=n===q*q*d;
+    if (4n*n >= d*(2n*q+1n)**2n) q+=1n; // round sqrt to nearest 10^-p
+    return {value:normalize(q,p),exact};
+  }
+  function asInteger(v,label) {
+    if (v.s>0) fail(label + ' must be a whole number.');
+    if (-v.s>MAX_WORK || countDigits(v.c)-v.s>MAX_WORK) fail(label + ' is too large.');
+    return v.c*power10(-v.s);
+  }
+  function exponentiation(a,b,p) {
+    const e=asInteger(b,'The exponent Y');
+    if (abs(e)>BigInt(MAX_POWER)) fail('For X^Y, the whole-number exponent Y must be between -100,000 and 100,000.');
+    if (a.c===0n && e<0n) fail('Zero cannot be raised to a negative power.');
+    if (e===0n) return {value:{c:1n,s:0},exact:true};
+    if (a.c===0n) return {value:{c:0n,s:0},exact:true};
+    if (a.c===1n && a.s===0) return {value:{c:1n,s:0},exact:true};
+    if (a.c===-1n && a.s===0) return {value:{c:(abs(e)%2n? -1n:1n),s:0},exact:true};
+    const count=Number(abs(e));
+    if (countDigits(a.c)*count>MAX_WORK) fail('This power needs more than 120,000 working digits.');
+    const pow=normalize(a.c**BigInt(count),a.s*count);
+    if (e>0n) return {value:pow,exact:true};
+    return quotient({c:1n,s:0},pow,p);
+  }
+  function factorial(a) {
+    const n=asInteger(a,'Factorial input X');
+    if (n<0n || n>BigInt(MAX_FACTORIAL)) fail('Factorial requires a nonnegative whole number from 0 through 10,000.');
+    let product=1n;
+    for (let i=2n;i<=n;i++) product*=i;
+    return {c:product,s:0};
+  }
+  function preciseCount() {
+    const raw=precisionInput.value.trim();
+    if (!/^\d+$/.test(raw)) fail('Precision must be a whole number from 0 to ' + MAX_PRECISION + '.');
+    const p=Number(raw);
+    if (!Number.isSafeInteger(p) || p<0 || p>MAX_PRECISION) fail('Precision must be a whole number from 0 to ' + MAX_PRECISION + '.');
+    return p;
+  }
+  function compute(op,a,b,p) {
+    switch (op) {
+      case 'plus': return {value:sum(a,b,1),exact:true};
+      case 'minus': return {value:sum(a,b,-1),exact:true};
+      case 'multiply': return {value:product(a,b),exact:true};
+      case 'divide': return quotient(a,b,p);
+      case 'pow': return exponentiation(a,b,p);
+      case 'sqrt': return squareRoot(a,p);
+      case 'square': return {value:product(a,a),exact:true};
+      case 'factorial': return {value:factorial(a),exact:true};
+      case 'mod': {
+        const v=align(a,b);
+        if (v.b===0n) fail('Modulo by zero is undefined.');
+        return {value:normalize(v.a%v.b,v.s),exact:true};
+      }
+      case 'gcd': {
+        const v=align(a,b);
+        return {value:normalize(integerGcd(v.a,v.b),v.s),exact:true};
+      }
+      case 'lcm': {
+        const v=align(a,b);
+        const g=integerGcd(v.a,v.b);
+        if (g!==0n && countDigits(v.a/g)+countDigits(v.b)>MAX_WORK) fail('The least common multiple needs too many working digits.');
+        const n=g===0n ? 0n : abs((v.a/g)*v.b);
+        return {value:normalize(n,v.s),exact:true};
+      }
+      default: fail('Unknown operation.');
+    }
+  }
+  function error(message) {
+    errorBox.textContent=message; errorBox.hidden=false;
+    resultBox.hidden=true;
+    status.hidden=true;
+    latest='';
+  }
+  function calculate(op) {
+    errorBox.hidden=true; status.hidden=true;
+    try {
+      const p=preciseCount();
+      const a=parseDecimal(xInput.value,'X');
+      const unary=['sqrt','square','factorial'].includes(op);
+      const b=unary ? null : parseDecimal(yInput.value,'Y');
+      const answer=compute(op,a,b,p);
+      const formatted=toPlain(answer.value);
+      latest=formatted;
+      resultNumber.textContent=formatted;
+      resultNote.textContent=names[op] + (answer.exact ? ' · Exact result' : ' · Rounded to at most ' + p + ' decimal places');
+      resultBox.hidden=false;
+    } catch (err) { error(err instanceof Error ? err.message : 'Unable to calculate the result.'); }
+  }
+  root.querySelectorAll('[data-calcpro-big-op]').forEach(button=> {
+    button.addEventListener('click',()=>calculate(button.getAttribute('data-calcpro-big-op')));
+  });
+  byId('form').addEventListener('submit',function(event){event.preventDefault();calculate('plus');});
+  byId('clear').addEventListener('click',function(){
+    xInput.value=''; yInput.value=''; precisionInput.value='20';
+    resultBox.hidden=true; errorBox.hidden=true; status.hidden=true; latest=''; xInput.focus();
+  });
+  function flash(text) { status.textContent=text; status.hidden=false; }
+  byId('copy').addEventListener('click',async function() {
+    if (!latest) return;
+    try {
+      if (navigator.clipboard && window.isSecureContext) await navigator.clipboard.writeText(latest);
+      else {
+        const temporary=document.createElement('textarea');
+        temporary.value=latest; temporary.style.position='fixed'; temporary.style.left='-99999px';
+        document.body.appendChild(temporary);temporary.select();
+        const copied=document.execCommand('copy');temporary.remove();
+        if (!copied) throw new Error('copy failed');
+      }
+      flash('Result copied to clipboard.');
+    } catch(e) { flash('Could not copy automatically. Select the result to copy it.'); }
+  });
+  byId('save').addEventListener('click',function() {
+    if (!latest) return;
+    const blob=new Blob([latest+'\n'],{type:'text/plain;charset=utf-8'});
+    const url=URL.createObjectURL(blob);
+    const link=document.createElement('a');link.href=url;link.download='big-number-result.txt';
+    document.body.appendChild(link);link.click();link.remove();
+    setTimeout(()=>URL.revokeObjectURL(url),1000);
+    flash('Result saved as big-number-result.txt.');
+  });
+})();</script><script defer src="/assets/js/data.js"></script>
+<script defer src="/assets/js/style.js?v=20261111-5"></script>
+</body></html>

@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US">
-<head>
-<meta charset="utf-8">
+<html lang="en"><head><meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="content-language" content="en">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,17 +11,441 @@
   <meta name="author" content="Commingsoon">
   <meta name="publisher" content="Commingsoon">
   <meta name="robots" content="noindex, nofollow, max-image-preview:large">
-  <link rel="stylesheet" href="/assets/css/style.css?v=20261111-1" crossorigin="anonymous" data-n-g="">
+  <link rel="stylesheet" href="/assets/css/style.css?v=20261111-4" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/doc_style.css" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/side_style.css" crossorigin="anonymous" data-n-g=""> 
   <!--ogtags-->
-  <!--schema-->
-  <!--style-->
-</head>
+  <!--schema--><style>
+/* Debt-to-Income calculator styles: intentionally scoped to the unique tool root. */
+.calcpro-dti{--dti-blue:#336699;--dti-green:#4c8627;--dti-border:#bbb;max-width:680px;color:#101010;font:14px Arial,Helvetica,sans-serif;line-height:1.28}
+.calcpro-dti [hidden]{display:none!important}
+.calcpro-dti button,.calcpro-dti input,.calcpro-dti select{font:inherit}
+.calcpro-dti button{cursor:pointer}
+.calcpro-dti-prompt{background:var(--dti-blue);color:white;text-align:center;font-size:13px;font-weight:600;padding:8px 10px;margin-bottom:4px;display:flex;align-items:center;justify-content:center;gap:16px}
+.calcpro-dti-prompt-icon{background:#fff;color:var(--dti-blue);font-size:12px;line-height:19px;width:20px;height:20px;border-radius:50%;text-align:center;flex:none}
+.calcpro-dti-form{margin:0;max-width:100%}
+.calcpro-dti-form-inner{background:#eee;border:1px solid var(--dti-border);padding:5px 7px 7px;margin:0 5px 0}
+.calcpro-dti-fields{margin:0}
+.calcpro-dti-section-label{background:var(--dti-blue);color:#fff;font-size:15px;font-weight:700;line-height:1.35;margin:0 0 4px;padding:3px 6px}
+.calcpro-dti-field{display:grid;grid-template-columns:minmax(140px,176px) minmax(87px,106px) 12px minmax(77px,96px) minmax(0,1fr);column-gap:2px;align-items:center;min-height:29px;padding:1px 1px}
+.calcpro-dti-field .calcpro-dti-label{font-size:13px;line-height:1.2;cursor:pointer}
+.calcpro-dti-dollar-wrap{display:flex;align-items:stretch;position:relative;min-width:0;height:25px}
+.calcpro-dti-dollar{position:absolute;left:5px;top:5px;pointer-events:none;color:#202020;font-size:13px}
+.calcpro-dti-dollar-wrap input{height:25px;min-width:0;width:100%;border:1px solid #4578a8;border-radius:0;background:#fff;padding:2px 4px 2px 15px;font-size:13px;color:#000}
+.calcpro-dti-slash{text-align:center;font-size:14px}
+.calcpro-dti-field select{height:25px;min-width:0;width:100%;border:1px solid #4578a8;background:#fff;border-radius:0;padding:1px 2px;color:#000;font-size:13px}
+.calcpro-dti-field-hint{font-size:10px;line-height:1.2;color:#252525;min-width:0;overflow-wrap:anywhere}
+.calcpro-dti-actions{display:flex;justify-content:center;align-items:center;gap:4px;margin:7px 0 0}
+.calcpro-dti-calculate,.calcpro-dti-clear{border:0;color:#fff;font-weight:700;padding:7px 15px;font-size:13px;min-height:29px}
+.calcpro-dti-calculate{background:#4c8528;min-width:132px}
+.calcpro-dti-calculate:hover{background:#35681b}
+.calcpro-dti-calculate span{display:inline-flex;background:#a4c79b;color:#fff;border-radius:50%;height:18px;width:18px;align-items:center;justify-content:center;font-size:11px;margin-left:7px}
+.calcpro-dti-clear{background:#aaa}
+.calcpro-dti-clear:hover{background:#777}
+.calcpro-dti-extra{margin:8px 0 1px;border-top:1px solid #d3d3d3;padding:6px 3px 1px;font-size:12px}
+.calcpro-dti-extra summary{cursor:pointer;color:#245a86;font-weight:600}
+.calcpro-dti-extra p{margin:7px 0;font-size:12px}
+.calcpro-dti-extra-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px 12px;padding:3px 0}
+.calcpro-dti-extra-grid label{display:flex;flex-direction:column;gap:4px;font-size:12px}
+.calcpro-dti-extra-grid input{height:30px;max-width:130px;border:1px solid #9bb0c0;padding:4px 6px;background:#fff}
+.calcpro-dti-error{background:#fff1f1;color:#8a1414;border:1px solid #d28888;padding:8px 9px;margin:8px 5px;font-size:13px}
+.calcpro-dti-results{margin:0 0 12px;max-width:100%}
+.calcpro-dti-results-heading{display:flex;align-items:center;justify-content:space-between;background:var(--dti-green);color:#fff;min-height:31px;padding:4px 6px}
+.calcpro-dti-results-heading h2{font:bold 16px Arial,Helvetica,sans-serif;color:#fff;margin:0}
+.calcpro-dti-result-tools{display:flex;gap:4px}
+.calcpro-dti-result-tools button{font-size:11px;color:#fff;font-weight:bold;padding:3px 7px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.45);border-radius:2px}
+.calcpro-dti-result-tools button:hover{background:rgba(255,255,255,.3)}
+.calcpro-dti-ratio-line{font-size:17px;margin:7px 0 13px}
+.calcpro-dti-ratio-line strong{color:#008d20}
+.calcpro-dti-meter-section{display:flex;align-items:center;gap:12px;margin:3px 0 22px;flex-wrap:wrap}
+.calcpro-dti-meter-visual{width:270px;min-width:190px;max-width:100%;position:relative;padding-top:18px;margin-top:0}
+.calcpro-dti-meter-number{position:absolute;top:0;left:33%;transform:translateX(-50%);font-size:12px;font-weight:bold;white-space:nowrap}
+.calcpro-dti-meter-pointer{position:absolute;top:17px;left:33%;transform:translateX(-50%);border-left:7px solid transparent;border-right:7px solid transparent;border-top:8px solid #222;width:0;height:0;z-index:1}
+.calcpro-dti-meter-track{margin-top:8px;height:20px;display:flex;overflow:hidden;color:white;font-size:11px;text-align:center;font-weight:bold}
+.calcpro-dti-meter-good{width:35%;background:#008f3b;display:flex;align-items:center;justify-content:center}
+.calcpro-dti-meter-mid{width:15%;background:#ffd900}
+.calcpro-dti-meter-high{width:50%;background:#c20f17;display:flex;align-items:center;justify-content:center}
+.calcpro-dti-meter-stops{position:relative;height:17px;font-size:10px}
+.calcpro-dti-meter-stops span{position:absolute;top:0;transform:translateX(-50%)}
+.calcpro-dti-meter-stops span:first-child{left:35%}
+.calcpro-dti-meter-stops span:last-child{left:50%}
+.calcpro-dti-rating-text{font-size:14px;flex:1;min-width:190px;margin:0}
+.calcpro-dti-breakdown-row{display:grid;grid-template-columns:minmax(210px,1fr) minmax(250px,1.25fr);align-items:start;gap:20px;margin:5px 0 8px}
+.calcpro-dti-totals{width:100%;border-collapse:collapse;background:#f0f0f0;border:1px solid #c9c9c9;font-size:12px}
+.calcpro-dti-totals th,.calcpro-dti-totals td{padding:5px 6px;border-bottom:1px solid #e1e1e1;vertical-align:top;line-height:1.3;text-align:left;font-size:12px}
+.calcpro-dti-totals th{font-weight:normal;width:51%;white-space:nowrap}
+.calcpro-dti-totals td{font-weight:700}
+.calcpro-dti-chart-wrap h3{margin:0 0 4px;text-align:center;font-size:14px;font-weight:700}
+.calcpro-dti-chart-row{display:flex;align-items:center;justify-content:center;gap:8px}
+.calcpro-dti-pie{width:120px;height:120px;flex:none}
+.calcpro-dti-legend{font-size:12px;line-height:1.4;min-width:0}
+.calcpro-dti-legend>div{display:flex;align-items:flex-start;gap:4px;flex-wrap:wrap}
+.calcpro-dti-legend b{font-weight:normal;color:#555;white-space:nowrap}
+.calcpro-dti-swatch{display:inline-block;width:12px;height:11px;flex:none;margin-top:3px}
+.calcpro-dti-swatch-home{background:#287cdd}
+.calcpro-dti-swatch-other{background:#66a622}
+.calcpro-dti-swatch-left{background:#900000}
+.calcpro-dti-overbudget{background:#fff4dc;border-left:3px solid #b47800;padding:7px 9px;font-size:12px;margin:8px 0}
+.calcpro-dti-affordability{font-size:14px;line-height:1.28;margin:9px 0 4px}
+.calcpro-dti-affordability strong{font-weight:700}
+.calcpro-dti-assumption-note{font-size:11px;line-height:1.3;margin:4px 0 11px}
+.calcpro-dti input:focus-visible,.calcpro-dti select:focus-visible,.calcpro-dti summary:focus-visible,.calcpro-dti button:focus-visible{outline:2px solid #146bb1;outline-offset:2px}
+@media(max-width:620px){.calcpro-dti-breakdown-row{grid-template-columns:1fr;gap:15px}.calcpro-dti-chart-row{justify-content:flex-start}.calcpro-dti-field{grid-template-columns:minmax(140px,155px) minmax(83px,104px) 11px minmax(76px,91px) minmax(0,1fr)}.calcpro-dti-field-hint{font-size:9px}}
+@media(max-width:500px){.calcpro-dti-form-inner{margin:0;padding:5px}.calcpro-dti-field{grid-template-columns:minmax(0,1fr) minmax(86px,108px) 12px minmax(80px,99px);row-gap:3px;min-height:33px;padding:3px 1px}.calcpro-dti-field .calcpro-dti-label{grid-column:1;font-size:12px}.calcpro-dti-dollar-wrap{grid-column:2}.calcpro-dti-slash{grid-column:3}.calcpro-dti-field select{grid-column:4}.calcpro-dti-field-hint{grid-column:1/-1;font-size:10px;margin:0 0 2px}.calcpro-dti-extra-grid{grid-template-columns:1fr 1fr}.calcpro-dti-meter-section{gap:5px;margin-bottom:12px}.calcpro-dti-rating-text{min-width:100%;font-size:13px}.calcpro-dti-prompt{font-size:12px}}
+@media(max-width:365px){.calcpro-dti-field{grid-template-columns:minmax(0,1fr) minmax(65px,88px) 8px minmax(67px,77px)}.calcpro-dti-field .calcpro-dti-label{font-size:11px}.calcpro-dti-field select,.calcpro-dti-dollar-wrap input{font-size:12px}.calcpro-dti-chart-row{gap:4px}.calcpro-dti-pie{width:108px;height:108px}.calcpro-dti-legend{font-size:11px}.calcpro-dti-extra-grid{grid-template-columns:1fr}}
+@media print{.calcpro-dti-prompt,.calcpro-dti-result-tools,.calcpro-dti-actions,.calcpro-dti-extra{display:none!important}.calcpro-dti-results{display:block!important}.calcpro-dti-form-inner{border:1px solid #aaa}.calcpro-dti{max-width:100%}}
 
-<body>
-<!-- Main-header-page -->
-<script defer src="/assets/js/data.js"></script>
-<script defer src="/assets/js/style.js?v=20261111-1"></script>
-</body>
-</html>
+</style>
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Debt-to-Income (DTI) Ratio Calculator</nav><h1 class="cp-page-title">Debt-to-Income (DTI) Ratio Calculator</h1><p class="cp-intro">Calculate your front-end and back-end debt-to-income ratios from gross income and recurring debt payments. Choose monthly or yearly amounts for every entry.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-dti" id="calcpro-dti-app">
+  <div class="calcpro-dti-prompt" id="calcpro-dti-prompt"><span class="calcpro-dti-prompt-icon" aria-hidden="true">▼</span> Modify the values and click Calculate to view your results</div>
+  <section class="calcpro-dti-results" id="calcpro-dti-results" aria-labelledby="calcpro-dti-results-title" aria-live="polite" hidden tabindex="-1">
+    <div class="calcpro-dti-results-heading"><h2 id="calcpro-dti-results-title">Results</h2><div class="calcpro-dti-result-tools"><button type="button" id="calcpro-dti-save" title="Download a text summary">Save</button><button type="button" id="calcpro-dti-print" title="Print results">Print</button></div></div>
+    <p class="calcpro-dti-ratio-line">Debt-to-Income (DTI) Ratio: <strong id="calcpro-dti-ratio">33%</strong></p>
+    <div class="calcpro-dti-meter-section">
+      <div class="calcpro-dti-meter-visual" role="img" id="calcpro-dti-meter-aria" aria-label="Debt-to-income ratio risk meter">
+        <div class="calcpro-dti-meter-number" id="calcpro-dti-meter-number">33%</div>
+        <div class="calcpro-dti-meter-pointer" id="calcpro-dti-meter-pointer"></div>
+        <div class="calcpro-dti-meter-track"><span class="calcpro-dti-meter-good">Safe</span><span class="calcpro-dti-meter-mid"></span><span class="calcpro-dti-meter-high">Very Stressful</span></div>
+        <div class="calcpro-dti-meter-stops"><span>35%</span><span>50%</span></div>
+      </div>
+      <p class="calcpro-dti-rating-text" id="calcpro-dti-rating-text">Your DTI ratio is good!</p>
+    </div>
+    <div class="calcpro-dti-breakdown-row">
+      <table class="calcpro-dti-totals" aria-label="Debt-to-income calculation summary"><tbody>
+        <tr><th scope="row">Back-End DTI Ratio</th><td id="calcpro-dti-back">33%</td></tr>
+        <tr><th scope="row">Front-End DTI Ratio</th><td id="calcpro-dti-front">24%</td></tr>
+        <tr><th scope="row">Total Income</th><td id="calcpro-dti-income">$60,000 / year or $5,000 / month</td></tr>
+        <tr><th scope="row">Total Debt</th><td id="calcpro-dti-debt">$19,800 / year or $1,650 / month</td></tr>
+      </tbody></table>
+      <div class="calcpro-dti-chart-wrap">
+        <h3>Income Breakdown</h3>
+        <div class="calcpro-dti-chart-row">
+          <svg id="calcpro-dti-pie" class="calcpro-dti-pie" viewBox="0 0 120 120" role="img" aria-label="Pie chart of monthly income used for housing, other debts and remaining income"><circle cx="60" cy="60" r="51" fill="#e8e8e8"></circle><g id="calcpro-dti-pie-slices"></g></svg>
+          <div class="calcpro-dti-legend">
+            <div><span class="calcpro-dti-swatch calcpro-dti-swatch-home"></span> House Debts/Expenses <b id="calcpro-dti-legend-home">24%</b></div>
+            <div><span class="calcpro-dti-swatch calcpro-dti-swatch-other"></span> Other Debts/Expenses <b id="calcpro-dti-legend-other">9%</b></div>
+            <div><span class="calcpro-dti-swatch calcpro-dti-swatch-left"></span> Remaining Income <b id="calcpro-dti-legend-left">67%</b></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="calcpro-dti-overbudget" id="calcpro-dti-overbudget" hidden></p>
+    <p class="calcpro-dti-affordability" id="calcpro-dti-affordability"></p>
+    <p class="calcpro-dti-assumption-note">*Illustrative U.S. home affordability only: assumes the existing housing cost is replaced, a 28% front-end and 36% back-end guideline, a 30-year mortgage at <span id="calcpro-dti-rate-text">7.118%</span> interest, <span id="calcpro-dti-down-text">20%</span> down payment, and property tax plus insurance estimated at <span id="calcpro-dti-carry-text">2%</span> of home value per year. This is not a loan offer or approval. Actual lending standards and costs vary.</p>
+  </section>
+  <form id="calcpro-dti-form" class="calcpro-dti-form" novalidate>
+    <div class="calcpro-dti-form-inner">
+      <section class="calcpro-dti-fields" aria-labelledby="calcpro-dti-group-0"><h3 class="calcpro-dti-section-label" id="calcpro-dti-group-0">Incomes (Before Tax)</h3>
+<div class="calcpro-dti-field">
+      <label class="calcpro-dti-label" for="calcpro-dti-salary-amount">Salary &amp; Earned Income</label>
+      <span class="calcpro-dti-dollar-wrap"><span aria-hidden="true" class="calcpro-dti-dollar">$</span><input id="calcpro-dti-salary-amount" name="calcpro-dti-salary" data-dti-key="salary" data-dti-label="Salary &amp; Earned Income" type="text" inputmode="decimal" autocomplete="off" value="60,000" aria-label="Salary &amp; Earned Income amount in dollars"/></span>
+      <span class="calcpro-dti-slash" aria-hidden="true">/</span>
+      <select id="calcpro-dti-salary-unit" name="calcpro-dti-salary-unit" data-dti-unit="salary" aria-label="Salary &amp; Earned Income frequency"><option value="month">Month</option><option value="year" selected>Year</option></select>
+      <small class="calcpro-dti-field-hint"></small>
+    </div>
+<div class="calcpro-dti-field">
+      <label class="calcpro-dti-label" for="calcpro-dti-pension-amount">Pension &amp; Social Security</label>
+      <span class="calcpro-dti-dollar-wrap"><span aria-hidden="true" class="calcpro-dti-dollar">$</span><input id="calcpro-dti-pension-amount" name="calcpro-dti-pension" data-dti-key="pension" data-dti-label="Pension &amp; Social Security" type="text" inputmode="decimal" autocomplete="off" value="0" aria-label="Pension &amp; Social Security amount in dollars"/></span>
+      <span class="calcpro-dti-slash" aria-hidden="true">/</span>
+      <select id="calcpro-dti-pension-unit" name="calcpro-dti-pension-unit" data-dti-unit="pension" aria-label="Pension &amp; Social Security frequency"><option value="month">Month</option><option value="year" selected>Year</option></select>
+      <small class="calcpro-dti-field-hint"></small>
+    </div>
+<div class="calcpro-dti-field">
+      <label class="calcpro-dti-label" for="calcpro-dti-investment-amount">Investment &amp; Savings</label>
+      <span class="calcpro-dti-dollar-wrap"><span aria-hidden="true" class="calcpro-dti-dollar">$</span><input id="calcpro-dti-investment-amount" name="calcpro-dti-investment" data-dti-key="investment" data-dti-label="Investment &amp; Savings" type="text" inputmode="decimal" autocomplete="off" value="0" aria-label="Investment &amp; Savings amount in dollars"/></span>
+      <span class="calcpro-dti-slash" aria-hidden="true">/</span>
+      <select id="calcpro-dti-investment-unit" name="calcpro-dti-investment-unit" data-dti-unit="investment" aria-label="Investment &amp; Savings frequency"><option value="month">Month</option><option value="year" selected>Year</option></select>
+      <small class="calcpro-dti-field-hint">interest, capital gain, dividend, rental income…</small>
+    </div>
+<div class="calcpro-dti-field">
+      <label class="calcpro-dti-label" for="calcpro-dti-otherincome-amount">Other Income</label>
+      <span class="calcpro-dti-dollar-wrap"><span aria-hidden="true" class="calcpro-dti-dollar">$</span><input id="calcpro-dti-otherincome-amount" name="calcpro-dti-otherincome" data-dti-key="otherincome" data-dti-label="Other Income" type="text" inputmode="decimal" autocomplete="off" value="0" aria-label="Other Income amount in dollars"/></span>
+      <span class="calcpro-dti-slash" aria-hidden="true">/</span>
+      <select id="calcpro-dti-otherincome-unit" name="calcpro-dti-otherincome-unit" data-dti-unit="otherincome" aria-label="Other Income frequency"><option value="month">Month</option><option value="year" selected>Year</option></select>
+      <small class="calcpro-dti-field-hint">gifts, alimony, child support…</small>
+    </div></section>
+<section class="calcpro-dti-fields" aria-labelledby="calcpro-dti-group-1"><h3 class="calcpro-dti-section-label" id="calcpro-dti-group-1">Debts / Expenses</h3>
+<div class="calcpro-dti-field">
+      <label class="calcpro-dti-label" for="calcpro-dti-rental-amount">Rental Cost</label>
+      <span class="calcpro-dti-dollar-wrap"><span aria-hidden="true" class="calcpro-dti-dollar">$</span><input id="calcpro-dti-rental-amount" name="calcpro-dti-rental" data-dti-key="rental" data-dti-label="Rental Cost" type="text" inputmode="decimal" autocomplete="off" value="1,200" aria-label="Rental Cost amount in dollars"/></span>
+      <span class="calcpro-dti-slash" aria-hidden="true">/</span>
+      <select id="calcpro-dti-rental-unit" name="calcpro-dti-rental-unit" data-dti-unit="rental" aria-label="Rental Cost frequency"><option value="month" selected>Month</option><option value="year">Year</option></select>
+      <small class="calcpro-dti-field-hint"></small>
+    </div>
+<div class="calcpro-dti-field">
+      <label class="calcpro-dti-label" for="calcpro-dti-mortgage-amount">Mortgage</label>
+      <span class="calcpro-dti-dollar-wrap"><span aria-hidden="true" class="calcpro-dti-dollar">$</span><input id="calcpro-dti-mortgage-amount" name="calcpro-dti-mortgage" data-dti-key="mortgage" data-dti-label="Mortgage" type="text" inputmode="decimal" autocomplete="off" value="0" aria-label="Mortgage amount in dollars"/></span>
+      <span class="calcpro-dti-slash" aria-hidden="true">/</span>
+      <select id="calcpro-dti-mortgage-unit" name="calcpro-dti-mortgage-unit" data-dti-unit="mortgage" aria-label="Mortgage frequency"><option value="month" selected>Month</option><option value="year">Year</option></select>
+      <small class="calcpro-dti-field-hint"></small>
+    </div>
+<div class="calcpro-dti-field">
+      <label class="calcpro-dti-label" for="calcpro-dti-propertytax-amount">Property Tax</label>
+      <span class="calcpro-dti-dollar-wrap"><span aria-hidden="true" class="calcpro-dti-dollar">$</span><input id="calcpro-dti-propertytax-amount" name="calcpro-dti-propertytax" data-dti-key="propertytax" data-dti-label="Property Tax" type="text" inputmode="decimal" autocomplete="off" value="0" aria-label="Property Tax amount in dollars"/></span>
+      <span class="calcpro-dti-slash" aria-hidden="true">/</span>
+      <select id="calcpro-dti-propertytax-unit" name="calcpro-dti-propertytax-unit" data-dti-unit="propertytax" aria-label="Property Tax frequency"><option value="month">Month</option><option value="year" selected>Year</option></select>
+      <small class="calcpro-dti-field-hint"></small>
+    </div>
+<div class="calcpro-dti-field">
+      <label class="calcpro-dti-label" for="calcpro-dti-hoa-amount">HOA Fees</label>
+      <span class="calcpro-dti-dollar-wrap"><span aria-hidden="true" class="calcpro-dti-dollar">$</span><input id="calcpro-dti-hoa-amount" name="calcpro-dti-hoa" data-dti-key="hoa" data-dti-label="HOA Fees" type="text" inputmode="decimal" autocomplete="off" value="0" aria-label="HOA Fees amount in dollars"/></span>
+      <span class="calcpro-dti-slash" aria-hidden="true">/</span>
+      <select id="calcpro-dti-hoa-unit" name="calcpro-dti-hoa-unit" data-dti-unit="hoa" aria-label="HOA Fees frequency"><option value="month" selected>Month</option><option value="year">Year</option></select>
+      <small class="calcpro-dti-field-hint"></small>
+    </div>
+<div class="calcpro-dti-field">
+      <label class="calcpro-dti-label" for="calcpro-dti-insurance-amount">Homeowner Insurance</label>
+      <span class="calcpro-dti-dollar-wrap"><span aria-hidden="true" class="calcpro-dti-dollar">$</span><input id="calcpro-dti-insurance-amount" name="calcpro-dti-insurance" data-dti-key="insurance" data-dti-label="Homeowner Insurance" type="text" inputmode="decimal" autocomplete="off" value="0" aria-label="Homeowner Insurance amount in dollars"/></span>
+      <span class="calcpro-dti-slash" aria-hidden="true">/</span>
+      <select id="calcpro-dti-insurance-unit" name="calcpro-dti-insurance-unit" data-dti-unit="insurance" aria-label="Homeowner Insurance frequency"><option value="month">Month</option><option value="year" selected>Year</option></select>
+      <small class="calcpro-dti-field-hint"></small>
+    </div>
+<div class="calcpro-dti-field">
+      <label class="calcpro-dti-label" for="calcpro-dti-creditcards-amount">Credit Cards</label>
+      <span class="calcpro-dti-dollar-wrap"><span aria-hidden="true" class="calcpro-dti-dollar">$</span><input id="calcpro-dti-creditcards-amount" name="calcpro-dti-creditcards" data-dti-key="creditcards" data-dti-label="Credit Cards" type="text" inputmode="decimal" autocomplete="off" value="200" aria-label="Credit Cards amount in dollars"/></span>
+      <span class="calcpro-dti-slash" aria-hidden="true">/</span>
+      <select id="calcpro-dti-creditcards-unit" name="calcpro-dti-creditcards-unit" data-dti-unit="creditcards" aria-label="Credit Cards frequency"><option value="month" selected>Month</option><option value="year">Year</option></select>
+      <small class="calcpro-dti-field-hint"></small>
+    </div>
+<div class="calcpro-dti-field">
+      <label class="calcpro-dti-label" for="calcpro-dti-studentloan-amount">Student Loan</label>
+      <span class="calcpro-dti-dollar-wrap"><span aria-hidden="true" class="calcpro-dti-dollar">$</span><input id="calcpro-dti-studentloan-amount" name="calcpro-dti-studentloan" data-dti-key="studentloan" data-dti-label="Student Loan" type="text" inputmode="decimal" autocomplete="off" value="0" aria-label="Student Loan amount in dollars"/></span>
+      <span class="calcpro-dti-slash" aria-hidden="true">/</span>
+      <select id="calcpro-dti-studentloan-unit" name="calcpro-dti-studentloan-unit" data-dti-unit="studentloan" aria-label="Student Loan frequency"><option value="month" selected>Month</option><option value="year">Year</option></select>
+      <small class="calcpro-dti-field-hint"></small>
+    </div>
+<div class="calcpro-dti-field">
+      <label class="calcpro-dti-label" for="calcpro-dti-autoloan-amount">Auto Loan</label>
+      <span class="calcpro-dti-dollar-wrap"><span aria-hidden="true" class="calcpro-dti-dollar">$</span><input id="calcpro-dti-autoloan-amount" name="calcpro-dti-autoloan" data-dti-key="autoloan" data-dti-label="Auto Loan" type="text" inputmode="decimal" autocomplete="off" value="250" aria-label="Auto Loan amount in dollars"/></span>
+      <span class="calcpro-dti-slash" aria-hidden="true">/</span>
+      <select id="calcpro-dti-autoloan-unit" name="calcpro-dti-autoloan-unit" data-dti-unit="autoloan" aria-label="Auto Loan frequency"><option value="month" selected>Month</option><option value="year">Year</option></select>
+      <small class="calcpro-dti-field-hint"></small>
+    </div>
+<div class="calcpro-dti-field">
+      <label class="calcpro-dti-label" for="calcpro-dti-otherloan-amount">Other Loans and Liabilities</label>
+      <span class="calcpro-dti-dollar-wrap"><span aria-hidden="true" class="calcpro-dti-dollar">$</span><input id="calcpro-dti-otherloan-amount" name="calcpro-dti-otherloan" data-dti-key="otherloan" data-dti-label="Other Loans and Liabilities" type="text" inputmode="decimal" autocomplete="off" value="0" aria-label="Other Loans and Liabilities amount in dollars"/></span>
+      <span class="calcpro-dti-slash" aria-hidden="true">/</span>
+      <select id="calcpro-dti-otherloan-unit" name="calcpro-dti-otherloan-unit" data-dti-unit="otherloan" aria-label="Other Loans and Liabilities frequency"><option value="month" selected>Month</option><option value="year">Year</option></select>
+      <small class="calcpro-dti-field-hint">personal loans, child support, alimony…</small>
+    </div></section>
+      <div class="calcpro-dti-actions"><button class="calcpro-dti-calculate" type="submit">Calculate <span aria-hidden="true">▶</span></button><button class="calcpro-dti-clear" type="button" id="calcpro-dti-clear">Clear</button></div>
+      <details class="calcpro-dti-extra"><summary>Home affordability assumptions (optional)</summary>
+        <p>These assumptions affect only the estimated house price, not the DTI ratios.</p>
+        <div class="calcpro-dti-extra-grid">
+          <label>Mortgage interest rate (%) <input id="calcpro-dti-assume-rate" name="calcpro-dti-assume-rate" type="number" min="0" max="100" step="0.001" value="7.118"/></label>
+          <label>Down payment (%) <input id="calcpro-dti-assume-down" name="calcpro-dti-assume-down" type="number" min="0" max="99.99" step="0.01" value="20"/></label>
+          <label>Loan term (years) <input id="calcpro-dti-assume-years" name="calcpro-dti-assume-years" type="number" min="1" max="50" step="1" value="30"/></label>
+          <label>Tax + insurance (% of home price / year) <input id="calcpro-dti-assume-carry" name="calcpro-dti-assume-carry" type="number" min="0" max="30" step="0.01" value="2"/></label>
+        </div>
+        <p class="calcpro-dti-extra-notice">Enter updated assumptions and click Calculate to refresh the estimate.</p>
+      </details>
+    </div>
+    <p class="calcpro-dti-error" role="alert" id="calcpro-dti-error" hidden></p>
+  </form>
+</div></section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><a href="mortgage-calculator.html">Mortgage</a><a href="house-affordability-calculator.html">House Affordability</a><a href="loan-calculator.html">Loan</a><a href="credit-card-calculator.html">Credit Card</a><a href="budget-calculator.html">Budget</a><a href="debt-payoff-calculator.html">Debt Payoff</a><a href="debt-consolidation-calculator.html">Debt Consolidation</a><a href="auto-loan-calculator.html">Auto Loan</a><a href="savings-calculator.html">Savings</a><a href="interest-calculator.html">Interest</a><a href="retirement-calculator.html">Retirement</a><a href="compound-interest-calculator.html">Compound Interest</a></div></section></aside><article class="cp-article"><h2>How to Use the Debt-to-Income Ratio Calculator</h2>
+<p>Enter your <strong>gross income before taxes</strong> in the income section, then enter the recurring monthly or annual payments for housing, credit cards, auto loans, student loans, and other obligations. Choose <strong>Month</strong> or <strong>Year</strong> separately for each amount. Click <strong>Calculate</strong> to see both DTI ratios, the income breakdown, and an illustrative new-home affordability estimate. Use <strong>Clear</strong> to remove your entries and start again.</p>
+<h2>Debt-to-Income Ratio Formula</h2>
+<p>Debt-to-income (DTI) measures how much of your gross monthly income goes toward regular debt payments. The calculator converts annual amounts to monthly values before applying these formulas:</p>
+<div class="cp-note"><strong>Back-end DTI (%) = (All monthly housing and debt payments ÷ Gross monthly income) × 100</strong><p><strong>Front-end DTI (%) = (Monthly housing expenses ÷ Gross monthly income) × 100</strong></p></div>
+<p>Housing expenses in this calculator include rent, mortgage, property tax, homeowner association (HOA) fees, and homeowners insurance. Other debt payments include credit-card minimum payments, student loans, car loans, and other required liabilities. The back-end DTI includes both groups. Enter payments, not outstanding loan balances. If you enter both rent and mortgage, both are counted until you change the entries.</p>
+<h3>Worked Example</h3>
+<p>Suppose you earn <strong>$60,000 per year</strong>, or <strong>$5,000 per month</strong>, before tax. You pay $1,200 monthly in rent, $200 toward credit cards, and $250 on an auto loan. Monthly obligations total <strong>$1,650</strong>. Your front-end ratio is $1,200 ÷ $5,000 × 100 = <strong>24%</strong>. Your back-end DTI is $1,650 ÷ $5,000 × 100 = <strong>33%</strong>. This leaves $3,350 of gross monthly income before taxes and other spending not listed here.</p>
+<h2>Understanding Your DTI Results</h2>
+<p>The results meter groups back-end ratios at or below 35% as relatively comfortable, 35%–50% as cautionary, and 50% or more as very stressful. These are <strong>illustrative bands, not mortgage approval rules</strong>. A commonly cited conventional-lending guideline is a 28% front-end ratio and 36% back-end ratio, but actual qualifying limits differ by lender, loan program, and borrower circumstances.</p>
+<p>The <strong>Income Breakdown</strong> chart divides gross income into housing expenses, other debt obligations, and the income remaining after those listed payments. A remaining-income figure is not take-home pay: income taxes, utilities, food, childcare, medical expenses, and most everyday costs are not subtracted.</p>
+<h3>How the Home Affordability Estimate Works</h3>
+<p>For a separate illustration, the calculator first estimates the maximum monthly payment for a <em>replacement</em> home as the smaller of 28% of gross monthly income and 36% of gross monthly income minus other recurring debt payments. It then estimates the home price using a fully amortizing loan, a chosen down payment, and annual property tax and insurance assumptions. Expand <strong>Home affordability assumptions</strong> in the calculator to adjust the interest rate, down payment, mortgage term, and estimated annual carrying costs.</p>
+<p>This estimate assumes your current rent or housing costs stop when the new payment begins. It does not deduct closing costs, PMI, HOA dues on the new property, or other loan-specific expenses; actual affordability may therefore differ substantially.</p>
+<h2>Frequently Asked Questions</h2>
+<h3>What is the difference between front-end and back-end DTI?</h3>
+<p>Front-end DTI includes housing-related payments only. Back-end DTI includes housing plus other recurring debt payments and is the ratio most often meant by “debt-to-income ratio.”</p>
+<h3>Do I use gross income or take-home pay?</h3>
+<p>Use income <strong>before</strong> taxes and deductions. Enter income from multiple sources only when it can reasonably be treated as income; lenders may require proof and may exclude irregular sources.</p>
+<h3>Is rent always included when applying for a mortgage?</h3>
+<p>The calculator counts the rent you enter as a housing expense so you can assess your current budget. When underwriting a proposed purchase, a lender may use the expected new housing payment instead of rent that will cease. Avoid counting a replaced housing payment twice.</p>
+<h3>Does a 36% DTI guarantee loan approval?</h3>
+<p>No. Underwriting can consider credit history, employment, assets, loan program, property-related expenses, and other requirements. The calculator does not issue a lending decision.</p>
+<h3>How can I improve my DTI ratio?</h3>
+<p>Reduce required monthly payments where feasible, avoid taking on additional debt, or increase stable, documentable gross income. Debt repayment should also be weighed against emergency savings and other financial priorities.</p>
+<h2>Sources and Further Reading</h2>
+<p>See the <a href="https://www.consumerfinance.gov/rules-policy/regulations/1026/43/" target="_blank" rel="noopener noreferrer">Consumer Financial Protection Bureau’s Regulation Z ability-to-repay requirements</a> and the <a href="https://www.nfcc.org/blog/debt-income-ratio-explained/" target="_blank" rel="noopener noreferrer">National Foundation for Credit Counseling’s DTI explanation</a> for additional context.</p>
+<p class="cp-page-footer">CalcPro — calculations are estimates for informational and educational purposes, not financial or lending advice.</p></article></main></div><script>
+(function(){
+  'use strict';
+  const root = document.getElementById('calcpro-dti-app');
+  if (!root) return;
+  const $ = id => root.querySelector('#' + id);
+  const form = $('calcpro-dti-form');
+  const results = $('calcpro-dti-results');
+  const prompt = $('calcpro-dti-prompt');
+  const error = $('calcpro-dti-error');
+  const fieldInputs = [...root.querySelectorAll('[data-dti-key]')];
+  const housingKeys = ['rental','mortgage','propertytax','hoa','insurance'];
+  const otherDebtKeys = ['creditcards','studentloan','autoloan','otherloan'];
+  const incomeKeys = ['salary','pension','investment','otherincome'];
+  let lastSummary = '';
+  const currency = n => '$' + Math.round(Math.abs(n)).toLocaleString('en-US', {maximumFractionDigits:0});
+  const money = n => (n < -0.000001 ? '-' : '') + currency(n);
+  const pct = n => Math.round(n).toLocaleString('en-US') + '%';
+  const err = msg => { error.textContent=msg; error.hidden=false; };
+  const clearError = () => { error.hidden=true; error.textContent=''; };
+  function parseAmount(field) {
+    const str=field.value.trim();
+    if (!str) return 0;
+    const raw=str.replace(/[$,\s]/g,'');
+    if (!/^(?:\d+(?:\.\d{0,2})?|\.\d{1,2})$/.test(raw)) throw new Error('Enter a valid, non-negative amount (up to two decimal places) for ' + field.dataset.dtiLabel + '.');
+    const val=Number(raw);
+    if (!Number.isFinite(val) || val>1e12) throw new Error('Enter an amount below one trillion dollars for ' + field.dataset.dtiLabel + '.');
+    return val;
+  }
+  function getAssumption(id,min,max,label) {
+    const el=$(id), v=Number(el.value);
+    if(el.value.trim()==='' || !Number.isFinite(v) || v<min || v>max) throw new Error('Enter ' + label + ' between ' + min + ' and ' + max + '.');
+    return v;
+  }
+  function getInputs() {
+    const monthly={};
+    for(const input of fieldInputs){
+      const key=input.dataset.dtiKey, val=parseAmount(input), unit=$('calcpro-dti-'+key+'-unit').value;
+      monthly[key] = unit==='year' ? val/12 : val;
+    }
+    const grossIncome=incomeKeys.reduce((s,k)=>s+monthly[k],0);
+    if(grossIncome<=0) throw new Error('Enter a total income greater than $0 to calculate your debt-to-income ratio.');
+    const housing=housingKeys.reduce((s,k)=>s+monthly[k],0);
+    const other=otherDebtKeys.reduce((s,k)=>s+monthly[k],0);
+    const interest=getAssumption('calcpro-dti-assume-rate',0,100,'an interest rate (%)')/100;
+    const down=getAssumption('calcpro-dti-assume-down',0,99.99,'a down payment (%)')/100;
+    const years=getAssumption('calcpro-dti-assume-years',1,50,'a loan term (years)');
+    const carry=getAssumption('calcpro-dti-assume-carry',0,30,'a tax plus insurance percentage')/100;
+    return {monthly,grossIncome,housing,other,interest,down,years,carry};
+  }
+  function getHousePrice(monthlyPayment,rate,down,years,carry){
+    if(monthlyPayment<=0)return 0;
+    const n=years*12, r=rate/12;
+    const paymentFactor = (1-down) * (r===0 ? 1/n : r/(-Math.expm1(-n*Math.log1p(r))));
+    const perDollar=paymentFactor+carry/12;
+    return perDollar>0 ? monthlyPayment/perDollar : 0;
+  }
+  function piePath(cx,cy,r,start,end){
+    if(end-start>=.999999) return `M ${cx} ${cy-r} A ${r} ${r} 0 1 1 ${cx-.00001} ${cy-r} A ${r} ${r} 0 1 1 ${cx} ${cy-r} Z`;
+    const theta1=start*Math.PI*2-Math.PI/2, theta2=end*Math.PI*2-Math.PI/2;
+    const x1=cx+r*Math.cos(theta1), y1=cy+r*Math.sin(theta1);
+    const x2=cx+r*Math.cos(theta2), y2=cy+r*Math.sin(theta2);
+    return `M ${cx} ${cy} L ${x1} ${y1} A ${r} ${r} 0 ${end-start>.5?1:0} 1 ${x2} ${y2} Z`;
+  }
+  function drawPie(housing,other,income){
+    // If obligations exceed earnings, chart the composition of obligations (no negative pie slices).
+    const remaining=Math.max(0,income-housing-other);
+    const total=housing+other+remaining;
+    const colors=['#287cdd','#66a622','#900000'];
+    const values=[housing,other,remaining];
+    const layer=$('calcpro-dti-pie-slices');
+    layer.replaceChildren();
+    let start=0;
+    const ns='http://www.w3.org/2000/svg';
+    values.forEach((v,i)=>{
+      if(!v || !total) return;
+      const part=v/total, end=start+part;
+      const shape=document.createElementNS(ns,'path');
+      shape.setAttribute('d',piePath(60,60,51,start,end));
+      shape.setAttribute('fill',colors[i]);
+      shape.setAttribute('stroke','#fff');shape.setAttribute('stroke-width','0.9');
+      layer.append(shape);
+      if(part>=.075){
+        const a=(start+part/2)*Math.PI*2-Math.PI/2;
+        const label=document.createElementNS(ns,'text');
+        label.setAttribute('x',(60+30*Math.cos(a)).toFixed(2));
+        label.setAttribute('y',(60+30*Math.sin(a)).toFixed(2));
+        label.setAttribute('text-anchor','middle');label.setAttribute('dominant-baseline','middle');
+        label.setAttribute('fill','white');label.setAttribute('font-size','12');label.setAttribute('font-weight','bold');
+        label.textContent=pct(part*100);layer.append(label);
+      }
+      start=end;
+    });
+    $('calcpro-dti-legend-home').textContent=pct(housing/income*100);
+    $('calcpro-dti-legend-other').textContent=pct(other/income*100);
+    $('calcpro-dti-legend-left').textContent=pct(remaining/income*100);
+    $('calcpro-dti-pie').setAttribute('aria-label', 'Housing '+pct(housing/income*100)+', other debts '+pct(other/income*100)+', remaining income '+pct(remaining/income*100)+(housing+other>income?'; debt exceeds gross income':'')+'.');
+  }
+  function calculate(evt){
+    if(evt)evt.preventDefault();
+    clearError();
+    let data;
+    try{data=getInputs();}
+    catch(e){ err(e.message); results.hidden=true;prompt.hidden=false; return; }
+    const {grossIncome,housing,other,interest,down,years,carry}=data;
+    const debt=housing+other, remaining=grossIncome-debt;
+    const back=debt/grossIncome*100,front=housing/grossIncome*100;
+    const maxHousingPayment=Math.max(0,Math.min(.28*grossIncome,.36*grossIncome-other));
+    const housePrice=getHousePrice(maxHousingPayment,interest,down,years,carry);
+    $('calcpro-dti-ratio').textContent=pct(back);
+    $('calcpro-dti-ratio').style.color=back<=35?'#008f30':back<50?'#a06b00':'#c20f17';
+    $('calcpro-dti-meter-number').textContent=pct(back);
+    $('calcpro-dti-meter-aria').setAttribute('aria-label','DTI ratio '+pct(back)+'. Safe at 35% or below, caution from 35% to 50%, very stressful above 50%.');
+    const pos=Math.max(0,Math.min(100,back));
+    $('calcpro-dti-meter-pointer').style.left=pos+'%';
+    $('calcpro-dti-meter-number').style.left=pos+'%';
+    $('calcpro-dti-rating-text').textContent=back<=35?'Your DTI ratio is good!':back<50?'Your DTI ratio is elevated. Reducing monthly debt may help.':'Your DTI ratio is high. Debt payments take a large share of gross income.';
+    $('calcpro-dti-back').textContent=pct(back);
+    $('calcpro-dti-front').textContent=pct(front);
+    $('calcpro-dti-income').textContent=money(grossIncome*12)+' / year or '+money(grossIncome)+' / month';
+    $('calcpro-dti-debt').textContent=money(debt*12)+' / year or '+money(debt)+' / month';
+    drawPie(housing,other,grossIncome);
+    const over=$('calcpro-dti-overbudget');
+    over.hidden=debt<=grossIncome;
+    over.textContent=debt>grossIncome
+      ? 'Monthly debt payments exceed gross income by '+money(debt-grossIncome)+'. The chart shows the proportions of your debt payments; no income remains after these payments.'
+      : '';
+    $('calcpro-dti-rate-text').textContent=(interest*100).toLocaleString('en-US',{maximumFractionDigits:3})+'%';
+    $('calcpro-dti-down-text').textContent=(down*100).toLocaleString('en-US',{maximumFractionDigits:2})+'%';
+    $('calcpro-dti-carry-text').textContent=(carry*100).toLocaleString('en-US',{maximumFractionDigits:2})+'%';
+    const aff=$('calcpro-dti-affordability');
+    aff.replaceChildren();
+    if(maxHousingPayment>0){
+      aff.append('If you live in the U.S. and plan to buy a house after replacing your current housing costs, a guideline-based estimate is up to ');
+      const first=document.createElement('strong'); first.textContent=money(maxHousingPayment)+' per month';aff.append(first);
+      aff.append(' for the new home, corresponding to an approximate house price of ');
+      const second=document.createElement('strong');second.textContent=money(housePrice);aff.append(second,'.');
+    }else{
+      aff.textContent='Under the illustrative 28%/36% guidelines, the other debt payments leave no monthly room for an additional housing payment. This is not an approval or denial.';
+    }
+    lastSummary='Debt-to-Income (DTI) Ratio - CalcPro\n'+
+      'Back-end DTI: '+pct(back)+'\nFront-end DTI: '+pct(front)+'\n'+
+      'Gross income: '+money(grossIncome)+' / month; '+money(grossIncome*12)+' / year\n'+
+      'Housing expenses: '+money(housing)+' / month\nOther debt: '+money(other)+' / month\n'+
+      'Total debt: '+money(debt)+' / month; '+money(debt*12)+' / year\n'+
+      'Gross income remaining after listed payments: '+money(remaining)+' / month\n'+
+      'Illustrative new housing budget: '+money(maxHousingPayment)+' / month\n'+
+      'Illustrative home price: '+money(housePrice)+'\n'+
+      'Assumptions: '+years+' years, '+(interest*100).toFixed(3)+'% annual interest, '+(down*100).toFixed(2)+'% down, '+(carry*100).toFixed(2)+'% carrying costs annually.\n'+
+      'Estimates are for informational use only, not lending approval.\n';
+    results.hidden=false;prompt.hidden=true;
+    if(evt && typeof results.scrollIntoView==='function'){
+      // The reference re-renders results above the form. Show them in-page without navigation.
+      requestAnimationFrame(()=>results.scrollIntoView({behavior:'smooth',block:'start'}));
+    }
+  }
+  form.addEventListener('submit',calculate);
+  for(const field of fieldInputs){
+    field.addEventListener('blur',()=>{try{const v=parseAmount(field);if(field.value.trim())field.value=v.toLocaleString('en-US',{maximumFractionDigits:2});}catch(e){ /* Validation appears on Calculate. */ }});
+    field.addEventListener('input',clearError);
+  }
+  $('calcpro-dti-clear').addEventListener('click',()=>{
+    form.reset();
+    for(const f of fieldInputs) f.value='';
+    clearError();results.hidden=true;prompt.hidden=false;lastSummary='';
+    const details=root.querySelector('.calcpro-dti-extra');if(details)details.open=false;
+    fieldInputs[0].focus();
+  });
+  $('calcpro-dti-save').addEventListener('click',()=>{
+    if(results.hidden || !lastSummary)return;
+    const blob=new Blob([lastSummary],{type:'text/plain;charset=utf-8'});
+    const url=URL.createObjectURL(blob);const a=document.createElement('a');
+    a.href=url;a.download='calcpro-dti-results.txt';document.body.appendChild(a);a.click();a.remove();
+    setTimeout(()=>URL.revokeObjectURL(url),2000);
+  });
+  $('calcpro-dti-print').addEventListener('click',()=>{if(!results.hidden)window.print();});
+})();
+</script><script defer src="/assets/js/data.js"></script>
+<script defer src="/assets/js/style.js?v=20261111-5"></script>
+</body></html>

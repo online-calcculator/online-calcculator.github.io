@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US">
-<head>
-<meta charset="utf-8">
+<html lang="en"><head><meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="content-language" content="en">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,17 +11,523 @@
   <meta name="author" content="Commingsoon">
   <meta name="publisher" content="Commingsoon">
   <meta name="robots" content="noindex, nofollow, max-image-preview:large">
-  <link rel="stylesheet" href="/assets/css/style.css?v=20261111-1" crossorigin="anonymous" data-n-g="">
+  <link rel="stylesheet" href="/assets/css/style.css?v=20261111-4" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/doc_style.css" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/side_style.css" crossorigin="anonymous" data-n-g=""> 
   <!--ogtags-->
-  <!--schema-->
-  <!--style-->
-</head>
+  <!--schema--><style>
+/* Roth IRA Calculator styles. All tool selectors are scoped to the unique component. */
+.calcpro-roth-ira { --calcpro-roth-ira-blue:#336699;--calcpro-roth-ira-navy:#125217;--calcpro-roth-ira-green:#447d27;--calcpro-roth-ira-border:#c6ced5;--calcpro-roth-ira-roth:#267be0;--calcpro-roth-ira-taxable:#7caa2a;--calcpro-roth-ira-principal:#a51b25; max-width:100%; color:#17202b; font:14px Arial,Helvetica,sans-serif; line-height:1.4; }
+.calcpro-roth-ira * {box-sizing:border-box}
+.calcpro-roth-ira button,.calcpro-roth-ira input{font:inherit}
+.calcpro-roth-ira input:focus-visible,.calcpro-roth-ira button:focus-visible,.calcpro-roth-ira-table-scroll:focus-visible{outline:2px solid #1477c8;outline-offset:2px}
+.calcpro-roth-ira-instruction{display:flex;align-items:center;justify-content:space-between;gap:9px;padding:5px 12px;background:var(--calcpro-roth-ira-blue);color:white;font-size:12px;font-weight:600;margin:8px 0 12px;min-height:28px}
+.calcpro-roth-ira-print{padding:1px 2px;background:transparent;border:0;color:white;text-decoration:underline;cursor:pointer;white-space:nowrap}
+.calcpro-roth-ira-panels{display:grid;grid-template-columns:minmax(260px,.95fr) minmax(0,1.15fr);gap:14px;align-items:start}
+.calcpro-roth-ira-form{padding:13px 12px 12px;background:#f5f5f5;border:1px solid #c8c8c8;min-width:0}
+.calcpro-roth-ira-fields{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(100px,.86fr);gap:10px 8px;align-items:center}
+.calcpro-roth-ira-fields>label{font-size:12px;line-height:1.3;color:#111}
+.calcpro-roth-ira-fields input:not([type=radio]){height:30px;min-width:0;width:100%;border:1px solid #7292ae;border-radius:2px;padding:4px 7px;background:#fff;color:#101820;box-shadow:none}
+.calcpro-roth-ira-fields input:not([type=radio]):focus{border-color:#165e9a}
+.calcpro-roth-ira-unit{display:flex;align-items:center;min-width:0;width:100%;height:30px;border:1px solid #7292ae;border-radius:2px;background:#fff}
+.calcpro-roth-ira-fields .calcpro-roth-ira-unit input:not([type=radio]){border:0;height:28px;min-width:0;width:100%;padding:3px 6px}
+.calcpro-roth-ira-unit>span{font-size:12px;color:#555;padding-left:8px;flex:0 0 auto}
+.calcpro-roth-ira-suffix>span{padding:0 8px 0 2px}
+.calcpro-roth-ira-full{grid-column:1/-1}
+.calcpro-roth-ira-help{display:inline-flex;align-items:center;justify-content:center;border:1px solid #b8b8b8;border-radius:50%;font-size:10px;color:#777;line-height:1;width:12px;height:12px;cursor:help}
+.calcpro-roth-ira-radio-row{display:flex;align-items:center;flex-wrap:wrap;gap:4px 12px;margin:0 0 2px;font-size:12px}
+.calcpro-roth-ira-radios{display:flex;gap:12px;white-space:nowrap}
+.calcpro-roth-ira-radios label{display:inline-flex;align-items:center;gap:3px;cursor:pointer}
+.calcpro-roth-ira-radios input{margin:0;width:14px;height:14px;accent-color:#28669a}
+.calcpro-roth-ira-max-label{font-size:12px;color:#225d1a;font-weight:700}
+.calcpro-roth-ira-buttons{display:flex;justify-content:center;align-items:center;gap:7px;margin-top:15px}
+.calcpro-roth-ira-buttons button{min-height:31px;padding:5px 13px;border:none;border-radius:2px;cursor:pointer;font-size:13px;font-weight:bold}
+.calcpro-roth-ira-calculate{background:var(--calcpro-roth-ira-green);color:#fff}
+.calcpro-roth-ira-calculate:hover{background:#37651f}
+.calcpro-roth-ira-clear{background:#a5aab0;color:white}
+.calcpro-roth-ira-clear:hover{background:#868e96}
+.calcpro-roth-ira-error{margin:10px 0 0;padding:8px 9px;border-left:3px solid #ba3c36;background:#fff0ed;color:#8a1811;font-size:12px}
+.calcpro-roth-ira-result{min-width:0;border:1px solid #e6e6e6;background:white}
+.calcpro-roth-ira-result-head{background:var(--calcpro-roth-ira-green);color:#fff;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:6px 9px;min-height:32px}
+.calcpro-roth-ira-result-head h2{font-size:16px;line-height:1.2;margin:0;color:inherit;font-weight:700}
+.calcpro-roth-ira-save{font-size:12px;background:transparent;border:1px solid #cce2bf;border-radius:3px;color:white;cursor:pointer;padding:2px 6px;white-space:nowrap}
+.calcpro-roth-ira-save:hover{background:#35621e}
+.calcpro-roth-ira-result-body{padding:7px 9px 12px}
+.calcpro-roth-ira-result-table{width:100%;border-collapse:collapse;font-size:12px;line-height:1.4;font-variant-numeric:tabular-nums}
+.calcpro-roth-ira-result-table th,.calcpro-roth-ira-result-table td{padding:5px 5px;border-bottom:1px solid #ececec}
+.calcpro-roth-ira-result-table thead th{font-size:11px;white-space:normal;font-weight:700;text-align:right;vertical-align:bottom;border-bottom:1px solid #a7b9c9}
+.calcpro-roth-ira-result-table thead th:first-child{width:41%}
+.calcpro-roth-ira-result-table tbody th{font-weight:400;text-align:left}
+.calcpro-roth-ira-result-table tbody td{text-align:right;white-space:nowrap}
+.calcpro-roth-ira-result-table .calcpro-roth-ira-emphasis th,.calcpro-roth-ira-result-table .calcpro-roth-ira-emphasis td{font-weight:700;background:#e6f0fb}
+.calcpro-roth-ira-insight{margin:13px 0 0;font-size:12px;line-height:1.5}
+.calcpro-roth-ira-limits{padding:7px 8px;margin:10px 0 0;background:#fff7e8;color:#815300;border-left:3px solid #d69a1a;font-size:11px;line-height:1.5}
+.calcpro-roth-ira-chart-section{margin:22px 0 24px}
+.calcpro-roth-ira-chart-section h3{color:var(--calcpro-roth-ira-navy);font-size:17px;text-align:center;line-height:1.3;margin:0 0 8px}
+.calcpro-roth-ira-chart-wrap{position:relative;width:100%;background:white;min-width:0}
+.calcpro-roth-ira-chart-wrap svg{width:100%;height:auto;display:block;max-height:340px;overflow:visible}
+.calcpro-roth-ira-legend{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:8px 17px;font-size:12px;margin:0 auto}
+.calcpro-roth-ira-legend span{display:inline-flex;align-items:center;gap:5px}
+.calcpro-roth-ira-legend i{width:22px;height:0;display:inline-block;border-top:3px solid}
+.calcpro-roth-ira-legend .calcpro-roth-ira-line-roth{border-color:var(--calcpro-roth-ira-roth)}
+.calcpro-roth-ira-legend .calcpro-roth-ira-line-taxable{border-color:var(--calcpro-roth-ira-taxable)}
+.calcpro-roth-ira-legend .calcpro-roth-ira-line-principal{border-color:var(--calcpro-roth-ira-principal)}
+.calcpro-roth-ira-tooltip{position:absolute;z-index:1;transform:translate(-50%,-115%);pointer-events:none;background:#13283c;color:#fff;padding:6px 9px;font-size:12px;border-radius:3px;white-space:nowrap;box-shadow:0 2px 8px #0003}
+.calcpro-roth-ira-schedule-section{margin-top:22px}
+.calcpro-roth-ira-schedule-section h3{font-size:18px;line-height:1.3;color:var(--calcpro-roth-ira-navy);margin:0 0 6px}
+.calcpro-roth-ira-table-scroll{width:100%;overflow-x:auto;overscroll-behavior-x:contain;border:1px solid #d2dce6}
+.calcpro-roth-ira-schedule-table{border-collapse:collapse;width:100%;min-width:585px;font-size:12px;font-variant-numeric:tabular-nums;line-height:1.35}
+.calcpro-roth-ira-schedule-table th,.calcpro-roth-ira-schedule-table td{padding:4px 6px;text-align:right;white-space:nowrap}
+.calcpro-roth-ira-schedule-table thead{background:#dcebf8;color:#102030}
+.calcpro-roth-ira-schedule-table thead th{text-align:center;font-weight:700}
+.calcpro-roth-ira-schedule-table thead tr:first-child th{padding-top:6px;padding-bottom:1px}
+.calcpro-roth-ira-schedule-table thead tr:nth-child(2) th{padding-top:1px;padding-bottom:6px}
+.calcpro-roth-ira-schedule-table tbody tr:nth-child(even){background:#f1f1f1}
+.calcpro-roth-ira-schedule-table tbody tr:hover{background:#e5f2fd}
+.calcpro-roth-ira-schedule-table tbody td:first-child{text-align:center;font-weight:bold}
+.calcpro-roth-ira-disclaimer{color:#58636d;margin:17px 0 3px;font-size:12px;line-height:1.6}
+.calcpro-roth-ira-visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@media (max-width:700px){.calcpro-roth-ira-panels{gap:10px}.calcpro-roth-ira-form{padding:11px 9px}.calcpro-roth-ira-fields{grid-template-columns:minmax(0,1.3fr) minmax(95px,.9fr);gap:8px 6px}.calcpro-roth-ira-result-table{font-size:11px}.calcpro-roth-ira-result-table th,.calcpro-roth-ira-result-table td{padding:4px 3px}}
+@media (max-width:610px){.calcpro-roth-ira-panels{grid-template-columns:1fr}.calcpro-roth-ira-fields{grid-template-columns:minmax(0,1fr) minmax(135px,1fr)}.calcpro-roth-ira-result-table{font-size:13px}.calcpro-roth-ira-result-table th,.calcpro-roth-ira-result-table td{padding:6px 5px}.calcpro-roth-ira-chart-section{margin-top:20px}.calcpro-roth-ira-schedule-table{font-size:12px}.calcpro-roth-ira-instruction{font-size:11px}}
+@media (max-width:350px){.calcpro-roth-ira-fields{grid-template-columns:minmax(0,1fr) 116px}.calcpro-roth-ira-result-table{font-size:11px}}
+@media print{.calcpro-roth-ira{-webkit-print-color-adjust:exact;print-color-adjust:exact}.calcpro-roth-ira-print,.calcpro-roth-ira-buttons,.calcpro-roth-ira-save,.calcpro-roth-ira-error{display:none!important}.calcpro-roth-ira-panels{grid-template-columns:40% 58%;gap:2%}.calcpro-roth-ira-table-scroll{overflow:visible}.calcpro-roth-ira-schedule-table{min-width:0;font-size:9px}.calcpro-roth-ira-schedule-section{break-before:auto}.calcpro-roth-ira-schedule-table tr{break-inside:avoid}.calcpro-roth-ira-chart-section{break-inside:avoid}}
+/* Keep hidden controls hidden even when their base rule uses display:flex. */
+.calcpro-roth-ira [hidden]{display:none!important}
+.calcpro-roth-ira-tooltip{max-width:min(92vw,490px);white-space:normal;text-align:center}
 
-<body>
-<!-- Main-header-page -->
-<script defer src="/assets/js/data.js"></script>
-<script defer src="/assets/js/style.js?v=20261111-1"></script>
-</body>
-</html>
+</style>
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Roth IRA Calculator</nav><h1 class="cp-page-title">Roth IRA Calculator</h1><p class="cp-intro">Estimate Roth IRA savings at retirement and compare them with a regular taxable investment account. Change the inputs to see updated results, a balance accumulation graph, and the annual schedule.</p><section aria-label="Calculator" class="cp-tool-area">
+<div class="calcpro-roth-ira" id="calcpro-roth-ira-app">
+  <div class="calcpro-roth-ira-instruction">
+    <span>Modify the values and click Calculate to see your results.</span>
+    <button class="calcpro-roth-ira-print" id="calcpro-roth-ira-print" type="button" title="Print this calculation">Print <span aria-hidden="true">⎙</span></button>
+  </div>
+
+  <div class="calcpro-roth-ira-panels">
+    <form class="calcpro-roth-ira-form" id="calcpro-roth-ira-form" novalidate>
+      <div class="calcpro-roth-ira-fields">
+        <label for="calcpro-roth-ira-current">Current balance</label>
+        <div class="calcpro-roth-ira-unit"><span aria-hidden="true">$</span><input id="calcpro-roth-ira-current" type="text" inputmode="decimal" autocomplete="off" value="30,000" aria-label="Current balance in US dollars" required></div>
+
+        <label for="calcpro-roth-ira-contribution" title="Amount added at the end of each year. Select Yes below to use 2026 maximum contribution limits.">Annual contribution <span class="calcpro-roth-ira-help" aria-hidden="true">?</span></label>
+        <div class="calcpro-roth-ira-unit" id="calcpro-roth-ira-manual-wrap"><span aria-hidden="true">$</span><input id="calcpro-roth-ira-contribution" type="text" inputmode="decimal" autocomplete="off" value="7,500" aria-label="Annual contribution in US dollars" required></div>
+        <span class="calcpro-roth-ira-max-label" id="calcpro-roth-ira-max-label" hidden>Maxing out</span>
+
+        <div class="calcpro-roth-ira-full calcpro-roth-ira-radio-row">
+          <span id="calcpro-roth-ira-max-question">Maximize contributions? <span class="calcpro-roth-ira-help" title="Use the 2026 limit of $7,500 before age 50 and $8,600 from age 50 onward. These dollar limits stay constant in this projection.">?</span></span>
+          <span class="calcpro-roth-ira-radios" role="group" aria-labelledby="calcpro-roth-ira-max-question">
+            <label><input type="radio" name="calcpro-roth-ira-max" value="yes"> Yes</label>
+            <label><input type="radio" name="calcpro-roth-ira-max" value="no" checked> No</label>
+          </span>
+        </div>
+
+        <label for="calcpro-roth-ira-return" title="Assumed constant annual investment return before taxable-account taxes.">Expected rate of return <span class="calcpro-roth-ira-help" aria-hidden="true">?</span></label>
+        <div class="calcpro-roth-ira-unit calcpro-roth-ira-suffix"><input id="calcpro-roth-ira-return" type="number" inputmode="decimal" value="6" step="any" min="-100" max="100" aria-label="Expected annual rate of return in percent" required><span aria-hidden="true">%</span></div>
+
+        <label for="calcpro-roth-ira-age">Current age</label>
+        <input class="calcpro-roth-ira-plain" id="calcpro-roth-ira-age" type="number" inputmode="numeric" value="30" step="1" min="0" max="119" required>
+
+        <label for="calcpro-roth-ira-retire">Retirement age</label>
+        <input class="calcpro-roth-ira-plain" id="calcpro-roth-ira-retire" type="number" inputmode="numeric" value="65" step="1" min="1" max="120" required>
+
+        <label for="calcpro-roth-ira-tax" title="Simple model: taxes are applied annually to positive growth in the taxable account.">Marginal tax rate <span class="calcpro-roth-ira-help" aria-hidden="true">?</span></label>
+        <div class="calcpro-roth-ira-unit calcpro-roth-ira-suffix"><input id="calcpro-roth-ira-tax" type="number" inputmode="decimal" value="25" step="any" min="0" max="100" aria-label="Marginal tax rate in percent" required><span aria-hidden="true">%</span></div>
+      </div>
+
+      <p class="calcpro-roth-ira-error" id="calcpro-roth-ira-error" role="alert" hidden></p>
+      <div class="calcpro-roth-ira-buttons">
+        <button type="submit" class="calcpro-roth-ira-calculate">Calculate <span aria-hidden="true">▶</span></button>
+        <button type="button" class="calcpro-roth-ira-clear" id="calcpro-roth-ira-clear">Clear</button>
+      </div>
+    </form>
+
+    <section class="calcpro-roth-ira-result" id="calcpro-roth-ira-result" aria-label="Roth IRA compared with a taxable account" aria-live="polite">
+      <div class="calcpro-roth-ira-result-head"><h2>Result</h2><button id="calcpro-roth-ira-save" type="button" class="calcpro-roth-ira-save" title="Save this calculation and annual schedule as a CSV file">Save CSV <span aria-hidden="true">↓</span></button></div>
+      <div class="calcpro-roth-ira-result-body">
+        <table class="calcpro-roth-ira-result-table">
+          <thead><tr><th scope="col"><span class="calcpro-roth-ira-visually-hidden">Metric</span></th><th scope="col">Roth IRA</th><th scope="col">Taxable account</th></tr></thead>
+          <tbody>
+            <tr class="calcpro-roth-ira-emphasis"><th scope="row" id="calcpro-roth-ira-balance-label">Balance at age 65</th><td id="calcpro-roth-ira-final-roth">—</td><td id="calcpro-roth-ira-final-taxable">—</td></tr>
+            <tr><th scope="row">Total principal</th><td id="calcpro-roth-ira-principal-roth">—</td><td id="calcpro-roth-ira-principal-taxable">—</td></tr>
+            <tr><th scope="row">Total interest</th><td id="calcpro-roth-ira-interest-roth">—</td><td id="calcpro-roth-ira-interest-taxable">—</td></tr>
+            <tr><th scope="row">Total tax</th><td id="calcpro-roth-ira-tax-roth">—</td><td id="calcpro-roth-ira-tax-taxable">—</td></tr>
+          </tbody>
+        </table>
+        <p class="calcpro-roth-ira-insight" id="calcpro-roth-ira-insight">Your projection appears here.</p>
+        <p class="calcpro-roth-ira-limits" id="calcpro-roth-ira-limits" hidden></p>
+      </div>
+    </section>
+  </div>
+
+  <section class="calcpro-roth-ira-chart-section" id="calcpro-roth-ira-chart-section" aria-labelledby="calcpro-roth-ira-chart-title">
+    <h3 id="calcpro-roth-ira-chart-title">Balance Accumulation Graph</h3>
+    <div class="calcpro-roth-ira-chart-wrap" id="calcpro-roth-ira-chart-wrap">
+      <svg id="calcpro-roth-ira-chart" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 280" role="img" aria-label="Projected Roth IRA, taxable account, and principal balances by age"></svg>
+      <div class="calcpro-roth-ira-tooltip" id="calcpro-roth-ira-tooltip" hidden></div>
+    </div>
+    <div class="calcpro-roth-ira-legend" aria-hidden="true"><span><i class="calcpro-roth-ira-line-roth"></i> Roth IRA</span><span><i class="calcpro-roth-ira-line-taxable"></i> Taxable account</span><span><i class="calcpro-roth-ira-line-principal"></i> Principal</span></div>
+  </section>
+
+  <section class="calcpro-roth-ira-schedule-section" id="calcpro-roth-ira-schedule-section" aria-labelledby="calcpro-roth-ira-schedule-title">
+    <h3 id="calcpro-roth-ira-schedule-title">Annual Schedule</h3>
+    <div class="calcpro-roth-ira-table-scroll" role="region" aria-label="Annual Roth IRA savings schedule; scroll horizontally on small screens" tabindex="0">
+      <table class="calcpro-roth-ira-schedule-table">
+        <thead>
+          <tr><th scope="col" rowspan="2">Age</th><th scope="colgroup" colspan="2">Principal</th><th scope="colgroup" colspan="2">Roth IRA</th><th scope="colgroup" colspan="2">Taxable account</th></tr>
+          <tr><th scope="col">Start</th><th scope="col">End</th><th scope="col">Start</th><th scope="col">End</th><th scope="col">Start</th><th scope="col">End</th></tr>
+        </thead>
+        <tbody id="calcpro-roth-ira-schedule-body"></tbody>
+      </table>
+    </div>
+  </section>
+  <p class="calcpro-roth-ira-disclaimer">Illustrative annual compounding in USD. Contributions are assumed to occur at the end of each year. Qualified Roth IRA growth is modeled tax-free; taxable-account taxes are assessed yearly on positive investment returns. This is not a determination of contribution eligibility or investment performance.</p>
+</div>
+
+</section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><!-- REPLACE these links with real related tools for each calculator; verify live slugs. --><a href="retirement-calculator.html">Retirement</a><a href="roth-ira-calculator.html">Roth IRA</a><a href="investment-calculator.html">Investment</a><a href="compound-interest-calculator.html">Compound Interest</a><a href="annuity-payout-calculator.html">Annuity Payout</a><a href="pension-calculator.html">Pension</a><a href="inflation-calculator.html">Inflation</a><a href="future-value-calculator.html">Future Value</a><a href="income-tax-calculator.html">Income Tax</a><a href="savings-calculator.html">Savings</a><a href="mortgage-calculator.html">Mortgage</a><a href="loan-calculator.html">Loan</a></div></section></aside><article class="cp-article">
+<h2>How to Use the Roth IRA Calculator</h2>
+<p>Enter your current Roth IRA balance, yearly contribution, expected annual return, current age, retirement age, and marginal tax rate. Select <strong>Maximize contributions — Yes</strong> to use 2026 IRA contribution limits instead of a fixed annual contribution. Click <strong>Calculate</strong> to update the comparison table, balance accumulation graph, and year-by-year schedule. Click <strong>Clear</strong> to empty the inputs, <strong>Print</strong> to print the projection, or <strong>Save CSV</strong> to export a detailed schedule.</p>
+<h2>How the Roth IRA Projection Works</h2>
+<p>The estimate assumes annual compounding, a constant annual return, and deposits made at the <strong>end of each year</strong>. The Roth IRA balance grows without modeled taxes on investment earnings. A comparable taxable account pays the chosen marginal tax rate on positive annual investment returns. Both accounts receive the same annual contributions in this simplified comparison.</p>
+<h3>Formulas</h3>
+<p>For annual return <strong>r</strong>, annual contribution <strong>C</strong>, and marginal tax rate <strong>t</strong> (each rate expressed as a decimal), the model calculates:</p>
+<ul>
+<li><strong>Roth IRA at year-end:</strong> Roth start × (1 + r) + C.</li>
+<li><strong>Taxable account at year-end:</strong> Taxable start × (1 + r) + C − [max(0, Taxable start × r) × t].</li>
+<li><strong>Principal:</strong> Starting balance + sum of all annual contributions.</li>
+<li><strong>Total gross interest:</strong> Roth ending balance − principal; taxable ending balance + taxes paid − principal.</li>
+</ul>
+<p>Annual contributions do not earn interest until the next year. The table labels each row by the age at the <em>start</em> of that year. The model does not assume a tax credit for investment losses, future changes in market returns, inflation, or withdrawals.</p>
+<h3>Worked Example</h3>
+<p>With a $30,000 starting balance, $7,500 contributed at the end of each year, a 6% annual return, a 25% marginal tax rate, and 35 years from age 30 to 65, the first-year Roth IRA balance is <strong>$39,300</strong>, and the taxable balance is <strong>$38,850</strong>. At age 65 the estimated Roth IRA balance is <strong>$1,066,343</strong> versus <strong>$751,245</strong> in the taxable account, a difference of approximately <strong>$315,098</strong>. Principal totals <strong>$292,500</strong>; rounded Roth interest is <strong>$773,843</strong>.</p>
+<h2>2026 Roth IRA Contribution Limits</h2>
+<p>For 2026, the U.S. Internal Revenue Service lists an IRA contribution limit of <strong>$7,500</strong> for those under 50 and <strong>$8,600</strong> for those 50 or older, subject to earned income and other eligibility rules. The <em>Maximize contributions</em> option uses those nominal 2026 amounts at every projected age without predicting future IRS limit changes. The calculator does not test income-based Roth IRA phaseouts, filing status, or other tax circumstances. Manually entered contributions above the illustrated 2026 limits will trigger a notice but remain calculable as a hypothetical scenario.</p>
+<h2>Understanding the Results</h2>
+<p><strong>Balance</strong> is the projected account value at retirement. <strong>Total principal</strong> consists of starting savings and new contributions. <strong>Total interest</strong> reflects investment gains before any taxable-account tax, while <strong>Total tax</strong> accumulates the modeled annual taxes on positive taxable-account growth. These values reconcile to the projected balance, subject to whole-dollar rounding.</p>
+<h2>Frequently Asked Questions</h2>
+<h3>Are qualified Roth IRA withdrawals tax-free?</h3>
+<p>Generally, qualified Roth IRA distributions can be tax-free when applicable age and five-year requirements are met. This calculator models tax-free Roth growth but does not decide whether a particular withdrawal is qualified.</p>
+<h3>Do both accounts use the same annual investment return?</h3>
+<p>Yes. Before taxes, both accounts use the same yearly return. Their balances differ because the regular taxable account is modeled as paying taxes on positive earnings each year.</p>
+<h3>Can I contribute the annual maximum for every future year?</h3>
+<p>Actual yearly limits and your ability to contribute may change. Maximize mode is an illustrative estimate using 2026 limits, not a promise that those amounts will remain available or that you qualify to contribute.</p>
+<h3>Does the calculator account for inflation or actual capital-gains tax rules?</h3>
+<p>No. Results are shown in nominal dollars, and the taxable account uses a simplified annual earnings-tax model. Real-world taxation depends on dividends, interest, capital gains, holding periods, and individual circumstances.</p>
+<h2>Sources</h2>
+<p><a href="https://www.irs.gov/retirement-plans/plan-participant-employee/retirement-topics-ira-contribution-limits" rel="noopener noreferrer" target="_blank">IRS: IRA contribution limits</a> · <a href="https://www.irs.gov/newsroom/saving-for-retirement-iras-are-an-option" rel="noopener noreferrer" target="_blank">IRS: Saving for retirement—IRAs are an option</a> · <a href="https://www.calculator.net/roth-ira-calculator.html" rel="noopener noreferrer" target="_blank">Reference Roth IRA Calculator</a>.</p>
+<p class="cp-page-footer">CalcPro — results are estimates for general information, not personalized investment, legal, or tax advice.</p>
+</article></main></div><script>
+(() => {
+  'use strict';
+  const root = document.getElementById('calcpro-roth-ira-app');
+  if (!root) return;
+  const $ = (id) => root.querySelector('#' + id);
+  const ids = {
+    form: 'calcpro-roth-ira-form', current: 'calcpro-roth-ira-current',
+    contribution: 'calcpro-roth-ira-contribution', rate: 'calcpro-roth-ira-return',
+    age: 'calcpro-roth-ira-age', retire: 'calcpro-roth-ira-retire', tax: 'calcpro-roth-ira-tax',
+    manual: 'calcpro-roth-ira-manual-wrap', maxLabel: 'calcpro-roth-ira-max-label',
+    error: 'calcpro-roth-ira-error', result: 'calcpro-roth-ira-result',
+    chartSection: 'calcpro-roth-ira-chart-section', scheduleSection: 'calcpro-roth-ira-schedule-section',
+    scheduleBody: 'calcpro-roth-ira-schedule-body', chart: 'calcpro-roth-ira-chart',
+    chartWrap: 'calcpro-roth-ira-chart-wrap', tooltip: 'calcpro-roth-ira-tooltip',
+    limits: 'calcpro-roth-ira-limits', insight: 'calcpro-roth-ira-insight'
+  };
+  const el = Object.fromEntries(Object.entries(ids).map(([key, value]) => [key, $(value)]));
+  const maxRadios = Array.from(root.querySelectorAll('input[name="calcpro-roth-ira-max"]'));
+  const currency = new Intl.NumberFormat('en-US', {style:'currency',currency:'USD',maximumFractionDigits:0,minimumFractionDigits:0});
+  let lastCalculation = null;
+
+  const money = (number) => currency.format(Math.abs(number) < 0.5 ? 0 : number);
+  const fixed2026Limit = (age) => age >= 50 ? 8600 : 7500;
+  const isMax = () => maxRadios.find(r => r.checked)?.value === 'yes';
+
+  function toggleMax() {
+    const max = isMax();
+    el.manual.hidden = max;
+    el.maxLabel.hidden = !max;
+    el.contribution.disabled = max;
+  }
+  function parseMoney(value) {
+    const cleaned = String(value).trim().replace(/[$,\s]/g, '');
+    if (!cleaned || !/^\d+(?:\.\d+)?$/.test(cleaned)) return NaN;
+    return Number(cleaned);
+  }
+  function error(message, field) {
+    el.error.textContent = message;
+    el.error.hidden = false;
+    if (field) { field.setAttribute('aria-invalid', 'true'); field.focus(); }
+  }
+  function clearError() {
+    el.error.hidden = true;
+    el.error.textContent = '';
+    [el.current,el.contribution,el.rate,el.age,el.retire,el.tax].forEach(f => f.removeAttribute('aria-invalid'));
+  }
+  function gatherInputs() {
+    clearError();
+    const startingBalance = parseMoney(el.current.value);
+    const contribution = parseMoney(el.contribution.value);
+    const maxContributions = isMax();
+    const annualRatePercent = Number(el.rate.value);
+    const currentAge = Number(el.age.value);
+    const retirementAge = Number(el.retire.value);
+    const taxRatePercent = Number(el.tax.value);
+    const blankNum = value => String(value).trim() === '';
+    if (!Number.isFinite(startingBalance) || startingBalance < 0 || startingBalance > 1e12) {
+      error('Enter a current balance from $0 to $1 trillion.', el.current); return null;
+    }
+    if (!maxContributions && (!Number.isFinite(contribution) || contribution < 0 || contribution > 1e12)) {
+      error('Enter an annual contribution from $0 to $1 trillion.', el.contribution); return null;
+    }
+    if (blankNum(el.rate.value) || !Number.isFinite(annualRatePercent) || annualRatePercent < -100 || annualRatePercent > 100) {
+      error('Enter an expected annual return between -100% and 100%.', el.rate); return null;
+    }
+    if (blankNum(el.age.value) || !Number.isInteger(currentAge) || currentAge < 0 || currentAge > 119) {
+      error('Enter a whole-number current age between 0 and 119.', el.age); return null;
+    }
+    if (blankNum(el.retire.value) || !Number.isInteger(retirementAge) || retirementAge <= currentAge || retirementAge > 120) {
+      error('Retirement age must be a whole number above current age, up to 120.', el.retire); return null;
+    }
+    if (blankNum(el.tax.value) || !Number.isFinite(taxRatePercent) || taxRatePercent < 0 || taxRatePercent > 100) {
+      error('Enter a marginal tax rate between 0% and 100%.', el.tax); return null;
+    }
+    return { startingBalance, contribution: maxContributions ? null : contribution, maxContributions,
+      annualRatePercent, annualRate: annualRatePercent / 100,
+      currentAge, retirementAge, taxRatePercent, taxRate: taxRatePercent / 100};
+  }
+
+  // Contributions happen at year-end; first earn one year of interest on the starting balance.
+  // Taxable growth is reduced by a tax on positive annual interest (no modeled loss credit).
+  function project(inputs) {
+    let principal = inputs.startingBalance;
+    let roth = inputs.startingBalance;
+    let taxable = inputs.startingBalance;
+    let cumulativeTax = 0;
+    let rothGrossInterest = 0;
+    let taxableGrossInterest = 0;
+    const schedule = [];
+    const graph = [{age:inputs.currentAge,principal,roth,taxable}];
+    let aboveCap = false;
+    for (let age = inputs.currentAge; age < inputs.retirementAge; age++) {
+      const contributed = inputs.maxContributions ? fixed2026Limit(age) : inputs.contribution;
+      if (!inputs.maxContributions && contributed > fixed2026Limit(age)) aboveCap = true;
+      const startPrincipal = principal;
+      const startRoth = roth;
+      const startTaxable = taxable;
+      const interestRoth = startRoth * inputs.annualRate;
+      const interestTaxable = startTaxable * inputs.annualRate;
+      const taxPaid = Math.max(0, interestTaxable) * inputs.taxRate;
+      roth = startRoth + interestRoth + contributed;
+      taxable = startTaxable + interestTaxable - taxPaid + contributed;
+      principal = startPrincipal + contributed;
+      cumulativeTax += taxPaid;
+      rothGrossInterest += interestRoth;
+      taxableGrossInterest += interestTaxable;
+      const row = {age, contribution:contributed, principalStart:startPrincipal, principalEnd:principal,
+        rothStart:startRoth, rothEnd:roth, taxableStart:startTaxable, taxableEnd:taxable, taxPaid};
+      schedule.push(row);
+      graph.push({age: age + 1, principal, roth, taxable});
+    }
+    return {...inputs, principal, roth, taxable, cumulativeTax,
+      rothInterest:rothGrossInterest, taxableInterest:taxableGrossInterest,
+      aboveCap, schedule, graph};
+  }
+  function fill(id, value) { $(id).textContent = money(value); }
+  function showResult(data) {
+    el.result.hidden = false;
+    $('calcpro-roth-ira-balance-label').textContent = 'Balance at age ' + data.retirementAge;
+    fill('calcpro-roth-ira-final-roth', data.roth);
+    fill('calcpro-roth-ira-final-taxable', data.taxable);
+    fill('calcpro-roth-ira-principal-roth', data.principal);
+    fill('calcpro-roth-ira-principal-taxable', data.principal);
+    fill('calcpro-roth-ira-interest-roth', data.rothInterest);
+    fill('calcpro-roth-ira-interest-taxable', data.taxableInterest);
+    fill('calcpro-roth-ira-tax-roth', 0);
+    fill('calcpro-roth-ira-tax-taxable', data.cumulativeTax);
+    const difference = data.roth - data.taxable;
+    if (Math.abs(difference) < 0.5) {
+      el.insight.textContent = 'Under these assumptions, the Roth IRA and taxable account accumulate approximately the same balance by age ' + data.retirementAge + '.';
+    } else {
+      const winner = difference > 0 ? 'Roth IRA' : 'taxable account';
+      el.insight.textContent = 'According to the provided information, the ' + winner + ' can accumulate ' + money(Math.abs(difference)) + ' more than the other account by age ' + data.retirementAge + '.';
+    }
+    if (data.aboveCap) {
+      el.limits.textContent = 'Contribution notice: Your fixed annual contribution exceeds the 2026 IRA limit in one or more years. This is a hypothetical projection, not confirmation that those contributions are permitted.';
+      el.limits.hidden = false;
+    } else if (data.maxContributions) {
+      el.limits.textContent = 'Maximize mode uses 2026 IRA limits ($7,500 under age 50; $8,600 from age 50) throughout the projection, without forecasting future limit increases. Eligibility is not checked.';
+      el.limits.hidden = false;
+    } else {
+      el.limits.hidden = true;
+    }
+  }
+  function renderSchedule(data) {
+    const fragment = document.createDocumentFragment();
+    data.schedule.forEach(row => {
+      const tr = document.createElement('tr');
+      [String(row.age), money(row.principalStart), money(row.principalEnd),
+        money(row.rothStart), money(row.rothEnd), money(row.taxableStart), money(row.taxableEnd)].forEach(value => {
+          const td = document.createElement('td');
+          td.textContent = value;
+          tr.appendChild(td);
+        });
+      fragment.appendChild(tr);
+    });
+    el.scheduleBody.replaceChildren(fragment);
+    el.scheduleSection.hidden = false;
+  }
+  const SVG_NS = 'http://www.w3.org/2000/svg';
+  function svgNode(parent, tag, attributes, text) {
+    const child = document.createElementNS(SVG_NS, tag);
+    for (const [name, value] of Object.entries(attributes || {})) child.setAttribute(name, String(value));
+    if (text !== undefined) child.textContent = text;
+    parent.appendChild(child);
+    return child;
+  }
+  function chartAxisLabel(amount) {
+    const abs = Math.abs(amount);
+    const trim = x => Number(x.toPrecision(3)).toString();
+    if (abs >= 1e12) return '$' + trim(amount / 1e12) + 'T';
+    if (abs >= 1e9) return '$' + trim(amount / 1e9) + 'B';
+    if (abs >= 1e6) return '$' + trim(amount / 1e6) + 'M';
+    if (abs >= 1e3) return '$' + trim(amount / 1e3) + 'K';
+    return '$' + trim(amount);
+  }
+  function niceStep(value) {
+    if (!Number.isFinite(value) || value <= 0) return 1;
+    const exponent = Math.pow(10, Math.floor(Math.log10(value)));
+    const fraction = value / exponent;
+    return (fraction <= 1 ? 1 : fraction <= 2 ? 2 : fraction <= 2.5 ? 2.5 : fraction <= 5 ? 5 : 10) * exponent;
+  }
+  function renderChart(data) {
+    el.chartSection.hidden = false;
+    const svg = el.chart;
+    svg.replaceChildren();
+    const W = 700, H = 280, left = 82, right = 684, top = 14, bottom = 239;
+    const ages = data.retirementAge - data.currentAge;
+    const maxBalance = Math.max(0, ...data.graph.flatMap(p => [p.roth,p.taxable,p.principal]));
+    const step = niceStep(Math.max(maxBalance, 1) / 4);
+    const yMax = Math.max(4 * step, 1);
+    const X = age => left + ((age - data.currentAge) / ages) * (right - left);
+    const Y = value => bottom - (Math.max(0,value) / yMax) * (bottom - top);
+    for (let i = 0; i <= 4; i++) {
+      const val = i * step, y = Y(val);
+      svgNode(svg, 'line', {x1:left,y1:y,x2:right,y2:y,stroke:'#dce4ec','stroke-width':'1'});
+      svgNode(svg, 'text', {x:left-10,y:y+4,'font-size':'12','text-anchor':'end',fill:'#637181'}, chartAxisLabel(val));
+    }
+    const spacing = ages > 55 ? 20 : ages > 30 ? 10 : ages > 15 ? 5 : ages > 7 ? 2 : 1;
+    const ticks = [data.currentAge];
+    for(let age = Math.ceil(data.currentAge / spacing)*spacing; age < data.retirementAge; age+=spacing) {
+      if(age > data.currentAge && age - ticks[ticks.length-1] >= Math.max(1,spacing/2)) ticks.push(age);
+    }
+    if (data.retirementAge - ticks[ticks.length-1] >= Math.max(1,spacing/3)) ticks.push(data.retirementAge);
+    ticks.forEach(age => {
+      const x = X(age);
+      svgNode(svg,'line',{x1:x,y1:top,x2:x,y2:bottom,stroke:'#e2e9ef','stroke-width':'1'});
+      svgNode(svg,'text',{x,y:bottom+20,'font-size':'12','text-anchor':'middle',fill:'#637181'},String(age));
+    });
+    svgNode(svg,'text',{x:(left+right)/2,y:H-8,'font-size':'13','text-anchor':'middle',fill:'#273849'},'Age');
+    const lines = [
+      {key:'principal',color:'#a51b25',label:'Principal'},
+      {key:'taxable',color:'#7caa2a',label:'Taxable account'},
+      {key:'roth',color:'#267be0',label:'Roth IRA'}
+    ];
+    lines.forEach(line => {
+      const path = data.graph.map((p,i) => (i===0?'M':'L') + X(p.age).toFixed(2) + ' ' + Y(p[line.key]).toFixed(2)).join(' ');
+      const node = svgNode(svg,'path',{d:path,fill:'none',stroke:line.color,'stroke-width':3,'stroke-linecap':'round','stroke-linejoin':'round'});
+      svgNode(node,'title',{},line.label);
+    });
+    const overlay = svgNode(svg, 'rect', {x:left,y:top,width:right-left,height:bottom-top,fill:'transparent',style:'cursor:crosshair'});
+    const tip = el.tooltip;
+    function showTooltip(e) {
+      const bounds = svg.getBoundingClientRect();
+      if (!bounds.width) return;
+      const xSvg = (e.clientX - bounds.left) * W / bounds.width;
+      const index = Math.max(0, Math.min(data.graph.length - 1, Math.round((xSvg-left) / (right-left) * ages)));
+      const point = data.graph[index];
+      const lines = ['Age ' + point.age, 'Roth IRA: ' + money(point.roth), 'Taxable: ' + money(point.taxable), 'Principal: ' + money(point.principal)];
+      tip.textContent = lines.join('  |  ');
+      tip.hidden = false;
+      const wrapper = el.chartWrap.getBoundingClientRect();
+      const desiredX = e.clientX - wrapper.left;
+      const safeX = Math.max(75, Math.min(wrapper.width - 75, desiredX));
+      tip.style.left = safeX + 'px';
+      tip.style.top = Math.max(38, e.clientY - wrapper.top - 8) + 'px';
+    }
+    overlay.addEventListener('pointermove', showTooltip);
+    overlay.addEventListener('pointerleave', () => {tip.hidden = true;});
+    svg.setAttribute('aria-label', 'Balances at age ' + data.retirementAge + ': Roth IRA ' + money(data.roth) + ', taxable account ' + money(data.taxable) + ', total principal ' + money(data.principal) + '. Full annual data is in the schedule below.');
+  }
+  function calculate() {
+    const inputs = gatherInputs();
+    if (!inputs) return;
+    const data = project(inputs);
+    if (![data.principal,data.roth,data.taxable,data.cumulativeTax,data.rothInterest,data.taxableInterest].every(Number.isFinite)) {
+      error('This combination produces a number too large to display. Use a lower return or a shorter time period.', el.rate);
+      return;
+    }
+    lastCalculation = data;
+    showResult(data);
+    renderChart(data);
+    renderSchedule(data);
+  }
+  el.form.addEventListener('submit', event => {event.preventDefault();calculate();});
+  maxRadios.forEach(input => input.addEventListener('change', toggleMax));
+  [el.current,el.contribution].forEach(field => {
+    field.addEventListener('blur', () => {
+      const n = parseMoney(field.value);
+      if (Number.isFinite(n)) field.value = new Intl.NumberFormat('en-US',{maximumFractionDigits:2}).format(n);
+    });
+  });
+  $('calcpro-roth-ira-clear').addEventListener('click', () => {
+    [el.current,el.contribution,el.rate,el.age,el.retire,el.tax].forEach(field => {field.value='';});
+    maxRadios.find(r => r.value === 'no').checked = true;
+    toggleMax();
+    clearError();
+    lastCalculation = null;
+    el.result.hidden = true;
+    el.chartSection.hidden = true;
+    el.scheduleSection.hidden = true;
+    el.chart.replaceChildren();
+    el.scheduleBody.replaceChildren();
+    el.tooltip.hidden = true;
+    el.current.focus();
+  });
+  $('calcpro-roth-ira-print').addEventListener('click', () => window.print());
+  $('calcpro-roth-ira-save').addEventListener('click', () => {
+    if (!lastCalculation) return;
+    const d=lastCalculation;
+    const lines = [
+      ['Roth IRA Calculation','USD'],
+      ['Current balance',d.startingBalance],
+      ['Annual contribution',d.maxContributions ? '2026 maximum, age-based' : d.contribution],
+      ['Expected annual return (%)',d.annualRatePercent],
+      ['Current age',d.currentAge],
+      ['Retirement age',d.retirementAge],
+      ['Marginal tax rate (%)',d.taxRatePercent],
+      [],
+      ['Metric','Roth IRA','Taxable account'],
+      ['Final balance',d.roth,d.taxable],
+      ['Total principal',d.principal,d.principal],
+      ['Total interest',d.rothInterest,d.taxableInterest],
+      ['Total tax',0,d.cumulativeTax],
+      [],
+      ['Age','Principal start','Principal end','Roth IRA start','Roth IRA end','Taxable start','Taxable end','Tax paid during year','Contribution'],
+      ...d.schedule.map(r=>[r.age,r.principalStart,r.principalEnd,r.rothStart,r.rothEnd,r.taxableStart,r.taxableEnd,r.taxPaid,r.contribution])
+    ];
+    const csv = lines.map(cols => cols.map(value=>{
+      const s = typeof value === 'number' ? value.toFixed(2) : String(value ?? '');
+      return '"' + s.replaceAll('"','""') + '"';
+    }).join(',')).join('\r\n');
+    const url = URL.createObjectURL(new Blob(['\ufeff',csv],{type:'text/csv;charset=utf-8'}));
+    const link = document.createElement('a');
+    link.href=url; link.download='calcpro-roth-ira-schedule.csv';
+    root.appendChild(link); link.click(); link.remove();
+    window.setTimeout(()=>URL.revokeObjectURL(url),2000);
+  });
+  toggleMax();
+  calculate(); // Match the reference, which initially shows the example calculation.
+})();
+
+</script><script defer src="/assets/js/data.js"></script>
+<script defer src="/assets/js/style.js?v=20261111-5"></script>
+</body></html>

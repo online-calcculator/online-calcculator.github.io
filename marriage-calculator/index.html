@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US">
-<head>
-<meta charset="utf-8">
+<html lang="en"><head><meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="content-language" content="en">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,17 +11,402 @@
   <meta name="author" content="Commingsoon">
   <meta name="publisher" content="Commingsoon">
   <meta name="robots" content="noindex, nofollow, max-image-preview:large">
-  <link rel="stylesheet" href="/assets/css/style.css?v=20261111-1" crossorigin="anonymous" data-n-g="">
+  <link rel="stylesheet" href="/assets/css/style.css?v=20261111-4" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/doc_style.css" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/side_style.css" crossorigin="anonymous" data-n-g=""> 
   <!--ogtags-->
   <!--schema-->
-  <!--style-->
-</head>
+<style>
+/* Isolated Marriage Tax Calculator component — 2026 U.S. federal tax year. */
+.calcpro-marriage-root{--cpm-blue:#99ccff;--cpm-green:#99cc99;--cpm-dark:#336699;--cpm-border:#b8b8b8;font:15px/1.35 Arial,Helvetica,sans-serif;color:#111;max-width:700px;margin:0;}
+.calcpro-marriage-root *{box-sizing:border-box}
+.calcpro-marriage-root [hidden]{display:none!important}
+.calcpro-marriage-toolbar{display:flex;justify-content:flex-end;margin:0 0 4px;gap:8px}
+.calcpro-marriage-link{border:0;background:transparent;padding:2px 0;color:#006699;cursor:pointer;text-decoration:underline;font:inherit;font-size:13px}
+.calcpro-marriage-banner{background:var(--cpm-dark);color:#fff;font-size:15px;font-weight:700;padding:8px 11px;margin:0 0 3px;text-align:center}
+.calcpro-marriage-formbox{border:1px solid var(--cpm-border);background:#eee;padding:6px 7px 7px}
+.calcpro-marriage-input-header,.calcpro-marriage-entry{display:grid;grid-template-columns:minmax(0,1.44fr) minmax(0,1fr) minmax(0,1fr)}
+.calcpro-marriage-input-header>*{text-align:center;padding:3px 4px;font-weight:700;font-size:14px}
+.calcpro-marriage-input-header>*:nth-child(2),.calcpro-marriage-entry>*:nth-child(2){background:var(--cpm-blue)}
+.calcpro-marriage-input-header>*:nth-child(3),.calcpro-marriage-entry>*:nth-child(3){background:var(--cpm-green)}
+.calcpro-marriage-entry>*{border-bottom:1px solid #e3e3e3;min-width:0;padding:2px 5px;display:flex;align-items:center}
+.calcpro-marriage-entry>.calcpro-marriage-fieldlabel{background:#fff;font-size:14px}
+.calcpro-marriage-entry .calcpro-marriage-control{justify-content:flex-end;}
+.calcpro-marriage-entry input[type=text],.calcpro-marriage-entry input[type=number],.calcpro-marriage-entry select,.calcpro-marriage-dependents input{height:28px;min-width:0;width:100%;border:1px solid #1b5782;border-radius:1px;background:#fff;color:#111;font:15px Arial,sans-serif;padding:3px 5px}
+.calcpro-marriage-entry input:focus,.calcpro-marriage-entry select:focus,.calcpro-marriage-extra input:focus{outline:2px solid #275f98;outline-offset:1px}
+.calcpro-marriage-entry .calcpro-marriage-money-wrap,.calcpro-marriage-entry .calcpro-marriage-pct-wrap{position:relative;width:100%;max-width:130px}
+.calcpro-marriage-entry .calcpro-marriage-money-wrap input{padding-left:9px}
+.calcpro-marriage-entry .calcpro-marriage-pct-wrap input{padding-right:19px;text-align:right}
+.calcpro-marriage-entry .calcpro-marriage-pct-wrap:after{content:'%';position:absolute;right:6px;top:5px;pointer-events:none}
+.calcpro-marriage-entry .calcpro-marriage-control select{width:100%;max-width:190px}
+.calcpro-marriage-entry .calcpro-marriage-control input[name$='dependents']{text-align:left}
+.calcpro-marriage-radiofield{width:100%;display:flex;align-items:center;justify-content:flex-end;gap:6px;flex-wrap:wrap;font-size:13px}
+.calcpro-marriage-radiofield label{display:inline-flex;align-items:center;white-space:nowrap;gap:3px;cursor:pointer}
+.calcpro-marriage-radiofield input{accent-color:#336699;width:16px;height:16px;margin:0}
+.calcpro-marriage-deduction{align-items:flex-start!important;flex-direction:column;justify-content:flex-start!important;padding-top:5px!important;padding-bottom:6px!important;}
+.calcpro-marriage-deduction .calcpro-marriage-deductions-list{padding-left:10px;line-height:1.16;font-size:13px;margin-top:4px}
+.calcpro-marriage-deduction-col{align-items:stretch!important;flex-direction:column;gap:7px;justify-content:flex-start!important;padding-top:6px!important;padding-bottom:6px!important}
+.calcpro-marriage-deduct-title{font-size:12px;text-align:center;white-space:nowrap}
+.calcpro-marriage-itemized{text-align:right;font-size:12px;line-height:1.25;width:100%}
+.calcpro-marriage-itemized span{display:block;margin:3px 0}
+.calcpro-marriage-itemized input{width:100%;max-width:130px}
+.calcpro-marriage-actions{display:flex;gap:5px;justify-content:center;align-items:center;margin:8px 0 0}
+.calcpro-marriage-calculate,.calcpro-marriage-clear,.calcpro-marriage-save{border:0;border-radius:0;font:bold 14px Arial,sans-serif;color:#fff;cursor:pointer;padding:9px 15px;min-height:37px}
+.calcpro-marriage-calculate{background:#4b8226}
+.calcpro-marriage-calculate:hover{background:#38601e}
+.calcpro-marriage-clear{background:#999}
+.calcpro-marriage-clear:hover{background:#777}
+.calcpro-marriage-save{background:#4b8226;font-size:12px;min-height:26px;padding:4px 9px}
+.calcpro-marriage-calculate:focus-visible,.calcpro-marriage-clear:focus-visible,.calcpro-marriage-save:focus-visible,.calcpro-marriage-link:focus-visible{outline:2px solid #125217;outline-offset:3px}
+.calcpro-marriage-error{border-left:4px solid #b10000;background:#fff1f1;color:#900;padding:9px 12px;margin:7px 0 8px;line-height:1.4;font-size:13px}
+.calcpro-marriage-small-note{margin:8px 1px 0;font-size:12px;color:#444}
+.calcpro-marriage-extra{margin:7px 0 0;border:1px solid #c3cbd0;background:#fafafa;font-size:13px}
+.calcpro-marriage-extra summary{cursor:pointer;font-weight:700;padding:7px 10px;color:#13466b}
+.calcpro-marriage-extra-body{padding:2px 10px 10px}
+.calcpro-marriage-extra-body p{margin:6px 0 8px;font-size:12px}
+.calcpro-marriage-extra-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.calcpro-marriage-extra-grid label{font-size:12px;display:block}
+.calcpro-marriage-extra-grid input{display:block;width:100%;max-width:135px;margin-top:4px;height:29px;border:1px solid #1b5782;background:#fff;color:#111;padding:3px 6px;font:14px Arial,sans-serif}
+.calcpro-marriage-results{margin:9px 0 15px}
+.calcpro-marriage-resultshead{display:flex;background:#4b8226;color:#fff;align-items:center;justify-content:space-between;padding:5px 8px;font-size:18px;font-weight:700}
+.calcpro-marriage-summary{font-size:15px;line-height:1.4;margin:7px 0 8px}
+.calcpro-marriage-summary strong.calcpro-marriage-penalty{color:#d10000}
+.calcpro-marriage-summary strong.calcpro-marriage-bonus{color:#2f761c}
+.calcpro-marriage-summary strong.calcpro-marriage-neutral{color:#125217}
+.calcpro-marriage-result-tablewrap{max-width:100%;overflow-x:auto}
+.calcpro-marriage-result-table{border:1px solid #444;border-collapse:collapse;font-size:13px;width:100%;font-variant-numeric:tabular-nums}
+.calcpro-marriage-result-table th{background:#666;color:#fff;font-size:12px;padding:5px 4px;text-align:center;white-space:nowrap}
+.calcpro-marriage-result-table th:first-child{width:36%}
+.calcpro-marriage-result-table th.calcpro-marriage-marriedhead{background:#366985}
+.calcpro-marriage-result-table td{padding:4px 5px;text-align:right;white-space:nowrap;border-bottom:1px solid #ebebeb}
+.calcpro-marriage-result-table td:first-child{text-align:left;white-space:normal}
+.calcpro-marriage-result-table td:nth-child(4){background:#dcedbc}
+.calcpro-marriage-result-table td:nth-child(5){background:#afd9f3}
+.calcpro-marriage-result-table tr.calcpro-marriage-total td{font-weight:700;border-top:2px solid #666;border-bottom:0}
+.calcpro-marriage-result-note{font-size:12px;line-height:1.4;margin:9px 0 5px;color:#444}
+.calcpro-marriage-result-details{font-size:12px;color:#333;border:1px solid #ddd;background:#fafafa;padding:7px 9px;margin-top:10px}
+.calcpro-marriage-result-details summary{cursor:pointer;font-weight:700}
+.calcpro-marriage-result-details p{margin:6px 0}
+@media(max-width:600px){.calcpro-marriage-input-header,.calcpro-marriage-entry{grid-template-columns:repeat(2,minmax(0,1fr))}.calcpro-marriage-input-header>*:first-child{display:none}.calcpro-marriage-entry>.calcpro-marriage-fieldlabel{grid-column:1 / -1;padding:7px 8px 3px;font-weight:600}.calcpro-marriage-entry>.calcpro-marriage-control{grid-column:auto;padding:4px 6px}.calcpro-marriage-entry .calcpro-marriage-money-wrap,.calcpro-marriage-entry .calcpro-marriage-pct-wrap{max-width:none}.calcpro-marriage-entry .calcpro-marriage-control select{max-width:none}.calcpro-marriage-deduction{grid-column:1 / -1!important}.calcpro-marriage-deduction .calcpro-marriage-deductions-list{display:none}.calcpro-marriage-deduction-col{min-height:108px}.calcpro-marriage-radiofield{justify-content:center;gap:5px}.calcpro-marriage-deduct-title{font-size:11px;white-space:normal}.calcpro-marriage-formbox{padding:5px}.calcpro-marriage-result-table{font-size:11px}.calcpro-marriage-result-table th{font-size:10px;padding:5px 3px}.calcpro-marriage-result-table td{padding:5px 3px}.calcpro-marriage-result-table th:first-child{width:28%}}
+@media(max-width:360px){.calcpro-marriage-result-table{font-size:10px}.calcpro-marriage-result-table td{padding:4px 2px}.calcpro-marriage-result-table th{font-size:9px;padding:4px 1px}}
+@media print{.calcpro-marriage-toolbar,.calcpro-marriage-banner,.calcpro-marriage-actions,.calcpro-marriage-save,.calcpro-marriage-extra,.calcpro-marriage-error{display:none!important}.calcpro-marriage-results{display:block!important}.calcpro-marriage-formbox{break-inside:avoid}.calcpro-marriage-root{max-width:100%}}
+</style>
 
-<body>
-<!-- Main-header-page -->
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Marriage Tax Calculator</nav><h1 class="cp-page-title">Marriage Tax Calculator</h1><p class="cp-intro">Compare estimated 2026 U.S. federal income taxes for two people filing individually versus filing a joint return after marriage. Enter each spouse’s income, investment gains, pre-tax savings, dependents, and deductions to see the potential marriage tax bonus or penalty.</p><section aria-label="Calculator" class="cp-tool-area">
+<div class="calcpro-marriage-root" id="calcpro-marriage-root">
+  <div class="calcpro-marriage-toolbar"><button type="button" class="calcpro-marriage-link" id="calcpro-marriage-print">Print</button></div>
+  <section class="calcpro-marriage-results" id="calcpro-marriage-results" aria-label="Tax comparison results" aria-live="polite" hidden>
+    <div class="calcpro-marriage-resultshead"><span>Results:</span><button type="button" class="calcpro-marriage-save" id="calcpro-marriage-save" title="Save comparison as text">▣ Save</button></div>
+    <p class="calcpro-marriage-summary" id="calcpro-marriage-summary"></p>
+    <div class="calcpro-marriage-result-tablewrap"><table class="calcpro-marriage-result-table">
+       <thead><tr><th rowspan="2" scope="col">2026 U.S. estimate</th><th colspan="3" scope="colgroup">If Not Married</th><th rowspan="2" class="calcpro-marriage-marriedhead" scope="col">If Married</th></tr>
+       <tr><th scope="col">Spouse 1</th><th scope="col">Spouse 2</th><th scope="col">Combined</th></tr></thead>
+       <tbody>
+<tr><td>All Income</td><td data-cpm="gross1"></td><td data-cpm="gross2"></td><td data-cpm="grossCombined"></td><td data-cpm="grossJoint"></td></tr>
+<tr><td>Federal Income Tax (net)</td><td data-cpm="federal1"></td><td data-cpm="federal2"></td><td data-cpm="federalCombined"></td><td data-cpm="federalJoint"></td></tr>
+<tr><td>Marginal Tax Rate</td><td data-cpm="marginal1"></td><td data-cpm="marginal2"></td><td>—</td><td data-cpm="marginalJoint"></td></tr>
+<tr><td>Social Security Tax</td><td data-cpm="social1"></td><td data-cpm="social2"></td><td data-cpm="socialCombined"></td><td data-cpm="socialJoint"></td></tr>
+<tr><td>Medicare Tax</td><td data-cpm="medicare1"></td><td data-cpm="medicare2"></td><td data-cpm="medicareCombined"></td><td data-cpm="medicareJoint"></td></tr>
+<tr><td>Net Investment Income Tax</td><td data-cpm="niit1"></td><td data-cpm="niit2"></td><td data-cpm="niitCombined"></td><td data-cpm="niitJoint"></td></tr>
+<tr><td>State + City Income Tax</td><td data-cpm="state1"></td><td data-cpm="state2"></td><td data-cpm="stateCombined"></td><td data-cpm="stateJoint"></td></tr>
+<tr><td>401(k), IRA Savings</td><td data-cpm="savings1"></td><td data-cpm="savings2"></td><td data-cpm="savingsCombined"></td><td data-cpm="savingsJoint"></td></tr>
+<tr class="calcpro-marriage-total"><td>Final Take Home</td><td data-cpm="home1"></td><td data-cpm="home2"></td><td data-cpm="homeCombined"></td><td data-cpm="homeJoint"></td></tr>
+</tbody>
+    </table></div>
+    <p class="calcpro-marriage-result-note" id="calcpro-marriage-takeaway"></p>
+    <details class="calcpro-marriage-result-details"><summary>How this estimate was calculated</summary>
+      <p id="calcpro-marriage-breakdown"></p>
+      <p>Net federal income tax includes estimated child and other dependent tax credits. Social Security, Medicare, and net investment income taxes are shown separately. The combined not-married values are the sums of two individually modeled returns.</p>
+      <p>Limitations: this tool does not model the earned income credit, state-specific brackets, every deduction or credit, capital-loss carryforwards, QBI deductions, AMT, or taxpayer-specific eligibility. Filing status and child-credit eligibility must be lawful for the individual circumstances.</p>
+    </details>
+  </section>
+  <div class="calcpro-marriage-banner">Modify the values and click Calculate to compare</div>
+  <form id="calcpro-marriage-form" novalidate>
+    <div class="calcpro-marriage-error" id="calcpro-marriage-error" role="alert" hidden></div>
+    <div class="calcpro-marriage-formbox">
+      <div class="calcpro-marriage-input-header"><div></div><div>Spouse 1</div><div>Spouse 2</div></div>
+      <div class="calcpro-marriage-entry"><div class="calcpro-marriage-fieldlabel">Salary + Business Income</div><div class="calcpro-marriage-control"><div class="calcpro-marriage-money-wrap"><input class="calcpro-marriage-money" id="calcpro-marriage-s1-wages" name="s1-wages" type="text" inputmode="decimal" value="65000" aria-label="Spouse 1: Salary and business income" data-calcpro-marriage-money="1" data-calcpro-marriage-negative="false" autocomplete="off"></div></div><div class="calcpro-marriage-control"><div class="calcpro-marriage-money-wrap"><input class="calcpro-marriage-money" id="calcpro-marriage-s2-wages" name="s2-wages" type="text" inputmode="decimal" value="45000" aria-label="Spouse 2: Salary and business income" data-calcpro-marriage-money="1" data-calcpro-marriage-negative="false" autocomplete="off"></div></div></div>
+<div class="calcpro-marriage-entry"><div class="calcpro-marriage-fieldlabel">Interest + Ordinary Dividends</div><div class="calcpro-marriage-control"><div class="calcpro-marriage-money-wrap"><input class="calcpro-marriage-money" id="calcpro-marriage-s1-interest" name="s1-interest" type="text" inputmode="decimal" value="0" aria-label="Spouse 1: Interest and ordinary dividends" data-calcpro-marriage-money="1" data-calcpro-marriage-negative="false" autocomplete="off"></div></div><div class="calcpro-marriage-control"><div class="calcpro-marriage-money-wrap"><input class="calcpro-marriage-money" id="calcpro-marriage-s2-interest" name="s2-interest" type="text" inputmode="decimal" value="0" aria-label="Spouse 2: Interest and ordinary dividends" data-calcpro-marriage-money="1" data-calcpro-marriage-negative="false" autocomplete="off"></div></div></div>
+<div class="calcpro-marriage-entry"><div class="calcpro-marriage-fieldlabel">Rental, Royalty, Passive Income</div><div class="calcpro-marriage-control"><div class="calcpro-marriage-money-wrap"><input class="calcpro-marriage-money" id="calcpro-marriage-s1-rental" name="s1-rental" type="text" inputmode="decimal" value="0" aria-label="Spouse 1: Rental, royalty and passive income" data-calcpro-marriage-money="1" data-calcpro-marriage-negative="true" autocomplete="off"></div></div><div class="calcpro-marriage-control"><div class="calcpro-marriage-money-wrap"><input class="calcpro-marriage-money" id="calcpro-marriage-s2-rental" name="s2-rental" type="text" inputmode="decimal" value="0" aria-label="Spouse 2: Rental, royalty and passive income" data-calcpro-marriage-money="1" data-calcpro-marriage-negative="true" autocomplete="off"></div></div></div>
+<div class="calcpro-marriage-entry"><div class="calcpro-marriage-fieldlabel">Short-Term Capital Gain / (Loss)</div><div class="calcpro-marriage-control"><div class="calcpro-marriage-money-wrap"><input class="calcpro-marriage-money" id="calcpro-marriage-s1-short" name="s1-short" type="text" inputmode="decimal" value="0" aria-label="Spouse 1: Short-term capital gain or loss" data-calcpro-marriage-money="1" data-calcpro-marriage-negative="true" autocomplete="off"></div></div><div class="calcpro-marriage-control"><div class="calcpro-marriage-money-wrap"><input class="calcpro-marriage-money" id="calcpro-marriage-s2-short" name="s2-short" type="text" inputmode="decimal" value="0" aria-label="Spouse 2: Short-term capital gain or loss" data-calcpro-marriage-money="1" data-calcpro-marriage-negative="true" autocomplete="off"></div></div></div>
+<div class="calcpro-marriage-entry"><div class="calcpro-marriage-fieldlabel">Long-Term Capital Gain / (Loss)</div><div class="calcpro-marriage-control"><div class="calcpro-marriage-money-wrap"><input class="calcpro-marriage-money" id="calcpro-marriage-s1-long" name="s1-long" type="text" inputmode="decimal" value="0" aria-label="Spouse 1: Long-term capital gain or loss" data-calcpro-marriage-money="1" data-calcpro-marriage-negative="true" autocomplete="off"></div></div><div class="calcpro-marriage-control"><div class="calcpro-marriage-money-wrap"><input class="calcpro-marriage-money" id="calcpro-marriage-s2-long" name="s2-long" type="text" inputmode="decimal" value="0" aria-label="Spouse 2: Long-term capital gain or loss" data-calcpro-marriage-money="1" data-calcpro-marriage-negative="true" autocomplete="off"></div></div></div>
+<div class="calcpro-marriage-entry"><div class="calcpro-marriage-fieldlabel">Qualified Dividends</div><div class="calcpro-marriage-control"><div class="calcpro-marriage-money-wrap"><input class="calcpro-marriage-money" id="calcpro-marriage-s1-qualified" name="s1-qualified" type="text" inputmode="decimal" value="0" aria-label="Spouse 1: Qualified dividends" data-calcpro-marriage-money="1" data-calcpro-marriage-negative="false" autocomplete="off"></div></div><div class="calcpro-marriage-control"><div class="calcpro-marriage-money-wrap"><input class="calcpro-marriage-money" id="calcpro-marriage-s2-qualified" name="s2-qualified" type="text" inputmode="decimal" value="0" aria-label="Spouse 2: Qualified dividends" data-calcpro-marriage-money="1" data-calcpro-marriage-negative="false" autocomplete="off"></div></div></div>
+<div class="calcpro-marriage-entry"><div class="calcpro-marriage-fieldlabel">401(k), IRA... Pre-Tax Savings</div><div class="calcpro-marriage-control"><div class="calcpro-marriage-money-wrap"><input class="calcpro-marriage-money" id="calcpro-marriage-s1-retirement" name="s1-retirement" type="text" inputmode="decimal" value="10000" aria-label="Spouse 1: Pre-tax retirement savings" data-calcpro-marriage-money="1" data-calcpro-marriage-negative="false" autocomplete="off"></div></div><div class="calcpro-marriage-control"><div class="calcpro-marriage-money-wrap"><input class="calcpro-marriage-money" id="calcpro-marriage-s2-retirement" name="s2-retirement" type="text" inputmode="decimal" value="6000" aria-label="Spouse 2: Pre-tax retirement savings" data-calcpro-marriage-money="1" data-calcpro-marriage-negative="false" autocomplete="off"></div></div></div>
+<div class="calcpro-marriage-entry"><div class="calcpro-marriage-fieldlabel">File Status (Before Marriage)</div><div class="calcpro-marriage-control"><select id="calcpro-marriage-s1-status" aria-label="Spouse 1 filing status"><option value="single">Single</option><option value="qss">Qualifying Surviving Spouse</option><option value="hoh">Head of Household</option></select></div><div class="calcpro-marriage-control"><select id="calcpro-marriage-s2-status" aria-label="Spouse 2 filing status"><option value="single">Single</option><option value="qss">Qualifying Surviving Spouse</option><option value="hoh">Head of Household</option></select></div></div>
+<div class="calcpro-marriage-entry"><div class="calcpro-marriage-fieldlabel">No. of Dependents</div><div class="calcpro-marriage-control"><div class=""><input class="calcpro-marriage-count" id="calcpro-marriage-s1-dependents" name="s1-dependents" type="text" inputmode="numeric" value="0" aria-label="Spouse 1: Number of dependents" data-calcpro-marriage-negative="false" autocomplete="off"></div></div><div class="calcpro-marriage-control"><div class=""><input class="calcpro-marriage-count" id="calcpro-marriage-s2-dependents" name="s2-dependents" type="text" inputmode="numeric" value="0" aria-label="Spouse 2: Number of dependents" data-calcpro-marriage-negative="false" autocomplete="off"></div></div></div>
+<div class="calcpro-marriage-entry"><div class="calcpro-marriage-fieldlabel calcpro-marriage-deduction"><span>Deductions:</span><div class="calcpro-marriage-deductions-list">Mortgage Interest<br>Charitable Donations<br>Student Loan Interest*<br>Child Care Expenses*<br>Education Tuition*</div></div><div class="calcpro-marriage-control calcpro-marriage-deduction-col"><div class="calcpro-marriage-deduct-title">Use Standard Deduction?</div>
+    <div class="calcpro-marriage-radiofield" role="group" aria-label="Spouse 1 use standard deduction">
+       <label><input type="radio" name="calcpro-marriage-deduction-s1" value="yes" checked> yes</label>
+       <label><input type="radio" name="calcpro-marriage-deduction-s1" value="no"> no</label>
+    </div>
+    <div class="calcpro-marriage-itemized" id="calcpro-marriage-itemized-wrap-s1" hidden><span>Eligible itemized deductions</span><div class="calcpro-marriage-money-wrap"><input class="calcpro-marriage-money" id="calcpro-marriage-s1-itemized" name="s1-itemized" type="text" inputmode="decimal" value="0" aria-label="Spouse 1: Total eligible itemized deductions" data-calcpro-marriage-money="1" data-calcpro-marriage-negative="false" autocomplete="off"></div></div></div><div class="calcpro-marriage-control calcpro-marriage-deduction-col"><div class="calcpro-marriage-deduct-title">Use Standard Deduction?</div>
+    <div class="calcpro-marriage-radiofield" role="group" aria-label="Spouse 2 use standard deduction">
+       <label><input type="radio" name="calcpro-marriage-deduction-s2" value="yes" checked> yes</label>
+       <label><input type="radio" name="calcpro-marriage-deduction-s2" value="no"> no</label>
+    </div>
+    <div class="calcpro-marriage-itemized" id="calcpro-marriage-itemized-wrap-s2" hidden><span>Eligible itemized deductions</span><div class="calcpro-marriage-money-wrap"><input class="calcpro-marriage-money" id="calcpro-marriage-s2-itemized" name="s2-itemized" type="text" inputmode="decimal" value="0" aria-label="Spouse 2: Total eligible itemized deductions" data-calcpro-marriage-money="1" data-calcpro-marriage-negative="false" autocomplete="off"></div></div></div></div>
+<div class="calcpro-marriage-entry"><div class="calcpro-marriage-fieldlabel">State + City Tax Rate</div><div class="calcpro-marriage-control"><div class="calcpro-marriage-pct-wrap"><input class="calcpro-marriage-rate" id="calcpro-marriage-s1-rate" name="s1-rate" type="text" inputmode="decimal" value="5" aria-label="Spouse 1: State and city tax rate" data-calcpro-marriage-negative="false" autocomplete="off"></div></div><div class="calcpro-marriage-control"><div class="calcpro-marriage-pct-wrap"><input class="calcpro-marriage-rate" id="calcpro-marriage-s2-rate" name="s2-rate" type="text" inputmode="decimal" value="5" aria-label="Spouse 2: State and city tax rate" data-calcpro-marriage-negative="false" autocomplete="off"></div></div></div>
+<div class="calcpro-marriage-entry"><div class="calcpro-marriage-fieldlabel">Self-Employed</div><div class="calcpro-marriage-control"><div class="calcpro-marriage-radiofield" role="group" aria-label="Spouse 1 self-employed">
+       <label><input type="radio" name="calcpro-marriage-self-s1" value="yes"> yes</label>
+       <label><input type="radio" name="calcpro-marriage-self-s1" value="no" checked> no</label>
+    </div></div><div class="calcpro-marriage-control"><div class="calcpro-marriage-radiofield" role="group" aria-label="Spouse 2 self-employed">
+       <label><input type="radio" name="calcpro-marriage-self-s2" value="yes"> yes</label>
+       <label><input type="radio" name="calcpro-marriage-self-s2" value="no" checked> no</label>
+    </div></div></div>
+      <div class="calcpro-marriage-actions"><button type="submit" class="calcpro-marriage-calculate">Calculate ▶</button><button type="button" class="calcpro-marriage-clear" id="calcpro-marriage-reset">Clear</button></div>
+    </div>
+    <details class="calcpro-marriage-extra" id="calcpro-marriage-extra"><summary>Dependent tax credit details (optional)</summary>
+      <div class="calcpro-marriage-extra-body"><p>Enter how many of the above dependents are qualifying children under 17. Remaining dependents are estimated for the $500 Other Dependent Credit. Qualifying children are estimated for the 2026 $2,200 Child Tax Credit (and possible refundable credit), subject to IRS rules.</p>
+      <div class="calcpro-marriage-extra-grid"><label>Spouse 1: qualifying children under 17<input type="number" id="calcpro-marriage-s1-children" min="0" max="30" step="1" value="0" inputmode="numeric"></label><label>Spouse 2: qualifying children under 17<input type="number" id="calcpro-marriage-s2-children" min="0" max="30" step="1" value="0" inputmode="numeric"></label></div></div>
+    </details>
+    <p class="calcpro-marriage-small-note">*Student-loan interest, childcare, and education costs generally use separate IRS deductions or credits; they are not automatically itemized deductions. Only enter eligible <em>itemized deductions</em> when you select “no.” Retirement contributions are assumed to be deductible pre-tax savings and eligible for the stated amount.</p>
+  </form>
+</div>
+</section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><!-- REPLACE these links with real related tools for each calculator; verify live slugs. --><a href="retirement-calculator.html">Retirement</a><a href="roth-ira-calculator.html">Roth IRA</a><a href="investment-calculator.html">Investment</a><a href="compound-interest-calculator.html">Compound Interest</a><a href="annuity-payout-calculator.html">Annuity Payout</a><a href="pension-calculator.html">Pension</a><a href="inflation-calculator.html">Inflation</a><a href="future-value-calculator.html">Future Value</a><a href="income-tax-calculator.html">Income Tax</a><a href="savings-calculator.html">Savings</a><a href="mortgage-calculator.html">Mortgage</a><a href="loan-calculator.html">Loan</a></div></section></aside><article class="cp-article">
+<h2>How to Use the Marriage Tax Calculator</h2>
+<p>Enter both spouses’ annual salary or net business income, interest and ordinary dividends, rental or passive income, short- and long-term capital gains, and qualified dividends. Enter qualified dividends separately from the ordinary-dividend field to avoid double counting. Use negative amounts for net capital losses or rental losses where appropriate.</p>
+<p>Choose each person's lawful filing status <em>before marriage</em>. Enter pre-tax eligible retirement contributions, total dependents, and any qualifying children younger than 17 under “Dependent tax credit details.” Choose either the standard deduction or the value of eligible itemized deductions for each person; enter a state and local flat-rate estimate. Click <strong>Calculate</strong> to compare filing separately as unmarried individuals with filing jointly when married.</p>
+<h2>2026 Federal Tax Formulas</h2>
+<p><strong>Ordinary federal income tax</strong> is the sum of taxable dollars within each applicable 2026 progressive bracket multiplied by its marginal rate. Taxable income is estimated as adjusted gross income minus the applicable standard or eligible itemized deductions. The married scenario uses married filing jointly thresholds and generally selects the larger allowable joint standard deduction or the total entered eligible itemized deductions.</p>
+<p>Qualified dividends and positive net long-term capital gains use the separate 2026 <strong>0%, 15%, and 20%</strong> capital-gains brackets, stacked above ordinary taxable income. A net capital loss can reduce ordinary income by no more than $3,000 in this simplified annual comparison; prior-year carryforwards are not modeled. Capital gain and loss netting is recalculated on a joint basis after marriage.</p>
+<p><strong>Payroll taxes:</strong> Employee Social Security tax is estimated at 6.2% of covered earnings up to $184,500 per earner in 2026; Medicare is 1.45% of covered employee wages. The self-employed setting applies 12.4% Social Security and 2.9% Medicare to 92.35% of business profits, including a deduction for half of regular self-employment tax. Additional Medicare tax may apply at 0.9% above $200,000 for most unmarried filers or $250,000 for joint filers. A 3.8% net investment income tax may also apply when income crosses its threshold.</p>
+<p><strong>Dependent credits:</strong> An eligible qualifying child younger than 17 may receive up to $2,200 in 2026 Child Tax Credit, and other eligible dependents may receive up to $500 each. The model approximates income phaseouts and the refundable Additional Child Tax Credit (up to $1,700 per eligible child) but does not verify eligibility or every IRS limitation.</p>
+<h2>Worked Example</h2>
+<p>Suppose spouse 1 earns $65,000 and saves $10,000 pre-tax, while spouse 2 earns $45,000 and saves $6,000, with no dependents and both eligible for the standard deduction. Estimated adjusted income is $55,000 and $39,000 separately, or $94,000 jointly. For 2026, the standard deduction is $16,100 for each single return and $32,200 for a married joint return. The taxable amounts are $38,900, $22,900, and $61,800, respectively. The calculator applies the corresponding progressive tax brackets to all three.</p>
+<h2>Understanding the Results</h2>
+<p>“If Not Married” models the spouses’ separate pre-marriage filing statuses, then adds their two results. “If Married” models a single married-filing-jointly federal return. The federal tax comparison is not the same as the final take-home comparison: payroll taxes, net investment income tax, state and city estimates, and pre-tax savings also affect take-home income.</p>
+<h2>Frequently Asked Questions</h2>
+<h3>Does getting married always reduce income tax?</h3>
+<p>No. A couple with unequal incomes may benefit from wider joint brackets, while some dual-income households may face a penalty through marginal tax thresholds, credits, and special taxes. Results vary with income and household characteristics.</p>
+<h3>What if I married on December 31?</h3>
+<p>For federal income-tax filing-status purposes, marital status is generally determined on the last day of the tax year. Someone married on December 31 is typically treated as married for that full tax year, subject to applicable rules.</p>
+<h3>Can I enter student loan interest, tuition, or childcare as itemized deductions?</h3>
+<p>Not automatically. These items generally operate under separate eligibility rules, above-the-line deduction rules, or credits. This calculator's custom deduction field is intended only for otherwise allowable itemized deductions; special education and childcare benefits are not fully modeled.</p>
+<h3>Does this calculator compute married filing separately?</h3>
+<p>No. Like the reference calculator, the comparison is unmarried individual filing versus married filing jointly. It is not a full married-filing-separately or state tax filing calculator.</p>
+<h2>Sources and Assumptions</h2>
+<p>The 2026 brackets, standard deductions, capital gains thresholds, and child tax credit limits are based on <a href="https://www.irs.gov/irb/2025-45_IRB" rel="noopener noreferrer">IRS Revenue Procedure 2025-32</a>. Payroll tax rules are described by the <a href="https://www.irs.gov/taxtopics/tc751" rel="noopener noreferrer">IRS Social Security and Medicare tax guide</a> and the <a href="https://www.irs.gov/businesses/small-businesses-self-employed/self-employment-tax-social-security-and-medicare-taxes" rel="noopener noreferrer">IRS self-employment tax guide</a>. Consult the <a href="https://www.irs.gov/credits-deductions/individuals/child-tax-credit" rel="noopener noreferrer">IRS Child Tax Credit page</a> for qualification rules.</p>
+<p>All outputs are estimates, not individualized tax advice. The calculator assumes provided retirement contributions are deductible, income is entered once in the appropriate category, and the flat state/city percentage applies to positive gross income. It does not model every deduction or credit, state-specific rules, alternative minimum tax, the earned income tax credit, QBI deductions, age-related additions, or capital-loss carryforwards.</p>
+<p class="cp-page-footer">CalcPro — calculator estimates are for informational purposes.</p></article></main></div>
+<script>
+(() => {
+  'use strict';
+  const root = document.getElementById('calcpro-marriage-root');
+  if (!root) return;
+  const $ = id => root.querySelector('#calcpro-marriage-' + id);
+  const form = $('form'), results = $('results'), error = $('error');
+  const N = new Intl.NumberFormat('en-US',{maximumFractionDigits:0});
+  const money = x => (x < 0 ? '-$' + N.format(Math.abs(Math.round(x))) : '$' + N.format(Math.round(x)));
+  const rates=[.10,.12,.22,.24,.32,.35,.37];
+  const brackets={
+    single:[12400,50400,105700,201775,256225,640600],
+    hoh:[17700,67450,105700,201750,256200,640600],
+    qss:[24800,100800,211400,403550,512450,768700],
+    joint:[24800,100800,211400,403550,512450,768700]
+  };
+  const deductions={single:16100,hoh:24150,qss:32200,joint:32200};
+  const capitalBands={single:[49450,545500],hoh:[66200,579600],qss:[98900,613700],joint:[98900,613700]};
+  const LIMIT=1e10;
+  let lastResult=null;
+  function ordinaryTax(amount,status){
+    let tax=0,previous=0;
+    const tops=brackets[status];
+    for(let i=0;i<rates.length;i++){
+      const upper=i<tops.length?tops[i]:Infinity;
+      const portion=Math.max(0,Math.min(amount,upper)-previous);
+      tax+=portion*rates[i];
+      if(amount<=upper) return tax;
+      previous=upper;
+    }
+    return tax;
+  }
+  function marginalRate(taxable,status){
+    if(taxable<=0) return 0;
+    const boundaries=brackets[status];
+    for(let i=0;i<boundaries.length;i++)if(taxable<=boundaries[i])return rates[i];
+    return .37;
+  }
+  function preferredTax(ordinaryTaxable,preferredTaxable,status){
+    const [zeroCap,mediumCap]=capitalBands[status];
+    const bottom=ordinaryTaxable,top=bottom+preferredTaxable;
+    const at15=Math.max(0,Math.min(top,mediumCap)-Math.max(bottom,zeroCap));
+    const at20=Math.max(0,top-Math.max(bottom,mediumCap));
+    return at15*.15+at20*.20;
+  }
+  function capitalSplit(short,long){
+    const net=short+long;
+    if(net<=0)return {ordinary:Math.max(-3000,net),preferred:0};
+    const pref=Math.max(0,Math.min(long,net));
+    return {ordinary:net-pref,preferred:pref};
+  }
+  function parseValue(el,label,{negative=false,integer=false,min=0,max=LIMIT}={}){
+    const raw=String(el.value).replace(/[$,%\s]/g,'').trim();
+    if(!raw || !/^-?(?:\d+(?:\.\d*)?|\.\d+)$/.test(raw))throw new InputError(label+' must be a valid number.',el);
+    const num=Number(raw);
+    if(!Number.isFinite(num)||num<(negative?-max:min)||num>max)throw new InputError(label+' must be between '+(negative?'-'+N.format(max):N.format(min))+' and '+N.format(max)+'.',el);
+    if(integer&&!Number.isInteger(num))throw new InputError(label+' must be a whole number.',el);
+    return num;
+  }
+  class InputError extends Error{constructor(message,element){super(message);this.element=element;}}
+  function radio(name){const selected=form.querySelector('input[name="calcpro-marriage-'+name+'"]:checked');return selected?selected.value:'no';}
+  function getPerson(sp){
+    const field=(key,options) =>parseValue($('s'+sp+'-'+key),'Spouse '+sp+' '+key,options);
+    const person={
+      wages:field('wages'),interest:field('interest'),rental:field('rental',{negative:true}),
+      short:field('short',{negative:true}),long:field('long',{negative:true}),qualified:field('qualified'),
+      retirement:field('retirement'),dependents:field('dependents',{integer:true,max:30}),
+      status:$('s'+sp+'-status').value,rate:field('rate',{max:100}),
+      useStandard:radio('deduction-s'+sp)==='yes',selfEmployed:radio('self-s'+sp)==='yes'
+    };
+    person.itemized=person.useStandard?0:field('itemized');
+    person.children=parseValue($('s'+sp+'-children'),'Spouse '+sp+' qualifying children under 17',{integer:true,max:30});
+    if(person.children>person.dependents)throw new InputError('Spouse '+sp+': qualifying children cannot exceed total dependents.',$('s'+sp+'-children'));
+    if(person.retirement>person.wages)throw new InputError('Spouse '+sp+': pre-tax retirement savings cannot exceed salary/business income.',$('s'+sp+'-retirement'));
+    return person;
+  }
+  function payroll(person){
+    const earnings=person.selfEmployed?person.wages*.9235:person.wages;
+    const ss=Math.min(earnings,184500)*(person.selfEmployed?.124:.062);
+    const medicareBase=earnings*(person.selfEmployed?.029:.0145);
+    return {ss,medicareBase,additionalIncome:earnings,halfSeDeduction:person.selfEmployed?(ss+medicareBase)/2:0,earned:earnings};
+  }
+  function evaluate(people,status,allowJointStandard=false){
+    const sum=(prop)=>people.reduce((a,p)=>a+p[prop],0);
+    const gross=sum('wages')+sum('interest')+sum('rental')+sum('short')+sum('long')+sum('qualified');
+    const retirement=sum('retirement');
+    const capital=capitalSplit(sum('short'),sum('long'));
+    const payrolls=people.map(payroll);
+    const ss=payrolls.reduce((a,p)=>a+p.ss,0);
+    const medBase=payrolls.reduce((a,p)=>a+p.medicareBase,0);
+    const earnings=payrolls.reduce((a,p)=>a+p.additionalIncome,0);
+    const earned=payrolls.reduce((a,p)=>a+p.earned,0);
+    const halfSe=payrolls.reduce((a,p)=>a+p.halfSeDeduction,0);
+    const medAdditional=Math.max(0,earnings-(status==='joint'?250000:200000))*.009;
+    const medicare=medBase+medAdditional;
+    const ordinaryBase=sum('wages')+sum('interest')+sum('rental')+capital.ordinary-retirement-halfSe;
+    const prefer=capital.preferred+sum('qualified');
+    const agi=ordinaryBase+prefer;
+    let deduction=0;
+    if(status==='joint'){
+      const itemized=people.reduce((acc,p)=>acc+(p.useStandard?0:p.itemized),0);
+      // Married households can generally take the higher allowable joint standard or itemized deduction.
+      deduction=allowJointStandard?Math.max(deductions.joint,itemized):itemized;
+    }else deduction=people[0].useStandard?deductions[status]:people[0].itemized;
+    const taxableOrdinary=Math.max(0,ordinaryBase-deduction);
+    const taxablePrefer=Math.max(0,prefer+Math.min(0,ordinaryBase)-Math.max(0,deduction-Math.max(0,ordinaryBase)));
+    const beforeCredits=ordinaryTax(taxableOrdinary,status)+preferredTax(taxableOrdinary,taxablePrefer,status);
+    const dependents=sum('dependents'),children=sum('children');
+    const childMax=children*2200,otherMax=(dependents-children)*500;
+    const phaseStart=status==='joint'?400000:200000;
+    const phase=Math.max(0,Math.ceil((agi-phaseStart)/1000))*50;
+    const childCredit=Math.max(0,childMax-phase);
+    const otherCredit=Math.max(0,otherMax-Math.max(0,phase-childMax));
+    const nonRefundable=Math.min(beforeCredits,childCredit+otherCredit);
+    const usedChild=Math.min(nonRefundable,childCredit);
+    const unusedChild=Math.max(0,childCredit-usedChild);
+    const refundable=Math.min(unusedChild,children*1700,Math.max(0,earned-2500)*.15);
+    const federal=beforeCredits-nonRefundable-refundable;
+    const investment=Math.max(0,sum('interest')+sum('rental')+sum('qualified')+capital.ordinary+capital.preferred);
+    const niit=Math.min(investment,Math.max(0,agi-(status==='joint'||status==='qss'?250000:200000)))*.038;
+    const state=people.reduce((acc,p)=>acc+Math.max(0,p.wages+p.interest+p.rental+p.short+p.long+p.qualified)*p.rate/100,0);
+    const home=gross-retirement-federal-ss-medicare-niit-state;
+    return {gross,retirement,agi,deduction,taxableOrdinary,taxablePrefer,beforeCredits,nonRefundable,refundable,
+      federal,ss,medicare,niit,state,home,marginal:marginalRate(taxableOrdinary,status)};
+  }
+  function updateDeductions(){
+    for(let sp=1;sp<=2;sp++){
+      const showing=radio('deduction-s'+sp)==='no';
+      $('itemized-wrap-s'+sp).hidden=!showing;
+    }
+  }
+  const resultCells=Object.fromEntries([...root.querySelectorAll('[data-cpm]')].map(el=>[el.dataset.cpm,el]));
+  function showResults(a,b,joint){
+    const sum=(key)=>a[key]+b[key];
+    const mapped={
+      gross1:a.gross,gross2:b.gross,grossCombined:sum('gross'),grossJoint:joint.gross,
+      federal1:a.federal,federal2:b.federal,federalCombined:sum('federal'),federalJoint:joint.federal,
+      social1:a.ss,social2:b.ss,socialCombined:sum('ss'),socialJoint:joint.ss,
+      medicare1:a.medicare,medicare2:b.medicare,medicareCombined:sum('medicare'),medicareJoint:joint.medicare,
+      niit1:a.niit,niit2:b.niit,niitCombined:sum('niit'),niitJoint:joint.niit,
+      state1:a.state,state2:b.state,stateCombined:sum('state'),stateJoint:joint.state,
+      savings1:a.retirement,savings2:b.retirement,savingsCombined:sum('retirement'),savingsJoint:joint.retirement,
+      home1:a.home,home2:b.home,homeCombined:sum('home'),homeJoint:joint.home
+    };
+    for(const [key,value] of Object.entries(mapped))resultCells[key].textContent=money(value);
+    resultCells.marginal1.textContent=Math.round(a.marginal*100)+'%';
+    resultCells.marginal2.textContent=Math.round(b.marginal*100)+'%';
+    resultCells.marginalJoint.textContent=Math.round(joint.marginal*100)+'%';
+    const difference=joint.federal-a.federal-b.federal;
+    const p=$('summary');p.replaceChildren();
+    const statement=document.createTextNode(difference>0.5?'Estimated marriage tax penalty: approximately ':difference<-.5?'Estimated marriage tax bonus: approximately ':'Estimated federal income tax is approximately unchanged by marriage.');
+    p.append(statement);
+    if(Math.abs(difference)>0.5){
+      const strong=document.createElement('strong');
+      strong.className=difference>0?'calcpro-marriage-penalty':'calcpro-marriage-bonus';
+      strong.textContent=money(Math.abs(difference))+(difference>0?' more':' less')+' federal income tax if married.';
+      p.append(strong);
+    }
+    const homeDifference=joint.home-a.home-b.home;
+    $('takeaway').textContent='Estimated combined take-home '+(Math.abs(homeDifference)<.5?'is unchanged':(homeDifference>0?'increases by '+money(homeDifference):'decreases by '+money(-homeDifference)))+' when married, after the displayed taxes and retirement savings. Estimates only; actual tax returns depend on individual circumstances.';
+    $('breakdown').textContent='Estimated 2026 federal taxable ordinary income: spouse 1 '+money(a.taxableOrdinary)+', spouse 2 '+money(b.taxableOrdinary)+', joint '+money(joint.taxableOrdinary)+'. Preferred-rate taxable gains/dividends: '+money(a.taxablePrefer)+' / '+money(b.taxablePrefer)+' / '+money(joint.taxablePrefer)+'. Deduction used: '+money(a.deduction)+' / '+money(b.deduction)+' / '+money(joint.deduction)+'.';
+    results.hidden=false;
+    lastResult={a,b,joint,difference,homeDifference,mapped};
+  }
+  function resetCalc(){
+    form.reset();
+    updateDeductions();
+    error.hidden=true;
+    error.textContent='';
+    results.hidden=true;
+    $('extra').open=false;
+    lastResult=null;
+  }
+  form.addEventListener('submit',event=>{
+    event.preventDefault();
+    error.hidden=true;error.textContent='';
+    try{
+      const p1=getPerson(1),p2=getPerson(2);
+      const a=evaluate([p1],p1.status),b=evaluate([p2],p2.status),joint=evaluate([p1,p2],'joint',true);
+      showResults(a,b,joint);
+      results.scrollIntoView({behavior:'smooth',block:'start'});
+    }catch(ex){
+      results.hidden=true;lastResult=null;
+      error.textContent=ex instanceof InputError?ex.message:'Unable to calculate. Please check your inputs.';
+      error.hidden=false;
+      if(ex.element){const parentDetails=ex.element.closest('details');if(parentDetails)parentDetails.open=true;ex.element.focus();ex.element.setAttribute('aria-invalid','true');}
+    }
+  });
+  form.addEventListener('change',event=>{
+    if(event.target.matches('input[name^="calcpro-marriage-deduction-"]'))updateDeductions();
+    if(event.target.matches('input'))event.target.removeAttribute('aria-invalid');
+  });
+  root.querySelectorAll('input[data-calcpro-marriage-money]').forEach(el=>{
+    el.addEventListener('blur',()=>{
+      const raw=el.value.replace(/[$,\s]/g,'');
+      if(raw && /^-?(?:\d+(?:\.\d*)?|\.\d+)$/.test(raw)){
+        const v=Number(raw);if(Number.isFinite(v))el.value=(v<0?'-':'')+'$'+new Intl.NumberFormat('en-US',{maximumFractionDigits:2}).format(Math.abs(v));
+      }
+    });
+  });
+  $('reset').addEventListener('click',resetCalc);
+  $('print').addEventListener('click',()=>window.print());
+  $('save').addEventListener('click',()=>{
+    if(!lastResult)return;
+    const {a,b,joint,difference,homeDifference,mapped}=lastResult;
+    const descriptions={gross:'All Income',federal:'Net Federal Income Tax',social:'Social Security Tax',medicare:'Medicare Tax',niit:'Net Investment Income Tax',state:'State and City Income Tax',savings:'401(k)/IRA Savings',home:'Final Take Home'};
+    const text=['Marriage Tax Calculator — 2026 U.S. Estimate','',
+      'Federal income tax difference if married: '+money(difference),'Take-home difference if married: '+money(homeDifference),'',
+      'Item | Spouse 1 | Spouse 2 | Not Married Combined | Married Joint'];
+    for(const [key,title] of Object.entries(descriptions))text.push(title+' | '+money(a[key==='savings'?'retirement':key])+' | '+money(b[key==='savings'?'retirement':key])+' | '+money(a[key==='savings'?'retirement':key]+b[key==='savings'?'retirement':key])+' | '+money(joint[key==='savings'?'retirement':key]));
+    text.push('','Informational estimates; not a tax return or professional tax advice.');
+    const blob=new Blob([text.join('\n')],{type:'text/plain;charset=utf-8'});
+    const url=URL.createObjectURL(blob),link=document.createElement('a');
+    link.href=url;link.download='marriage-tax-2026-estimate.txt';root.appendChild(link);link.click();link.remove();
+    setTimeout(()=>URL.revokeObjectURL(url),1000);
+  });
+  updateDeductions();
+})();
+</script>
 <script defer src="/assets/js/data.js"></script>
-<script defer src="/assets/js/style.js?v=20261111-1"></script>
-</body>
-</html>
+<script defer src="/assets/js/style.js?v=20261111-5"></script>
+</body></html>

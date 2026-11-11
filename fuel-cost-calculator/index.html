@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US">
-<head>
-<meta charset="utf-8">
+<html lang="en"><head><meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="content-language" content="en">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,17 +11,252 @@
   <meta name="author" content="Commingsoon">
   <meta name="publisher" content="Commingsoon">
   <meta name="robots" content="noindex, nofollow, max-image-preview:large">
-  <link rel="stylesheet" href="/assets/css/style.css?v=20261111-1" crossorigin="anonymous" data-n-g="">
+  <link rel="stylesheet" href="/assets/css/style.css?v=20261111-4" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/doc_style.css" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/side_style.css" crossorigin="anonymous" data-n-g=""> 
   <!--ogtags-->
-  <!--schema-->
-  <!--style-->
-</head>
+  <!--schema--><style>
+/* All fuel-tool declarations are scoped to the calculator's unique root. */
+.calcpro-fuel-cost{--calcpro-fuel-blue:#336699;--calcpro-fuel-green:#3f822d;--calcpro-fuel-ink:#202a33;--calcpro-fuel-border:#bcc6ce;max-width:690px;color:var(--calcpro-fuel-ink);font:14px/1.45 Arial,Helvetica,sans-serif}
+.calcpro-fuel-cost [hidden]{display:none!important}
+.calcpro-fuel-cost button,.calcpro-fuel-cost input,.calcpro-fuel-cost select{font-family:inherit}
+.calcpro-fuel-notice{background:var(--calcpro-fuel-blue);color:#fff;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:9px;min-height:34px;padding:6px 9px;margin:0 0 9px}
+.calcpro-fuel-notice-icon{display:inline-grid;place-items:center;border-radius:50%;width:18px;height:18px;color:var(--calcpro-fuel-blue);background:white;font-size:13px;font-weight:700;flex-shrink:0}
+.calcpro-fuel-result{margin-bottom:16px}
+.calcpro-fuel-result-head{background:var(--calcpro-fuel-green);display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:36px;padding:5px 9px;color:#fff}
+.calcpro-fuel-result-head h2{font-size:17px;line-height:1.3;font-weight:700;letter-spacing:0;margin:0;color:#fff}
+.calcpro-fuel-print{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:700;color:white;background:transparent;border:1px solid rgba(255,255,255,.65);border-radius:3px;padding:3px 8px;min-height:26px;cursor:pointer}
+.calcpro-fuel-print:hover{background:rgba(255,255,255,.16)}
+.calcpro-fuel-print svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.8}
+.calcpro-fuel-summary{margin:9px 0 2px;font-size:17px;line-height:1.4;font-weight:700}
+.calcpro-fuel-result-value{color:#258b17}
+.calcpro-fuel-result-head h2:focus{outline:none}
+.calcpro-fuel-equivalent{font-size:12px;color:#57616a;margin:5px 0 10px}
+.calcpro-fuel-comparisons{font-size:13px;line-height:1.5;margin:8px 0 0;padding:0;list-style:none}
+.calcpro-fuel-comparisons li{padding:2px 0}
+.calcpro-fuel-comparisons strong{color:#226b22}
+.calcpro-fuel-panel{border:1px solid #bcbcbc;background:#efefef;width:min(100%,520px);padding:10px 12px 9px}
+.calcpro-fuel-field{display:grid;grid-template-columns:minmax(111px,130px) minmax(0,1fr);gap:8px;align-items:center;margin:0 0 7px}
+.calcpro-fuel-field label{font-size:13px;font-weight:400;line-height:1.25;color:#1f2b35}
+.calcpro-fuel-control-pair{display:grid;grid-template-columns:minmax(70px,94px) minmax(0,1fr);gap:6px;min-width:0}
+.calcpro-fuel-control-pair input,.calcpro-fuel-control-pair select{box-sizing:border-box;min-width:0;max-width:100%;width:100%;height:32px;border:1px solid #547aa7;background:#fff;border-radius:2px;padding:4px 6px;font-size:13px;color:#111}
+.calcpro-fuel-control-pair input{font-variant-numeric:tabular-nums;appearance:textfield;-moz-appearance:textfield}
+.calcpro-fuel-control-pair input::-webkit-inner-spin-button,.calcpro-fuel-control-pair input::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
+.calcpro-fuel-control-pair select{padding-left:5px;padding-right:2px;cursor:pointer}
+.calcpro-fuel-control-pair input:focus-visible,.calcpro-fuel-control-pair select:focus-visible,.calcpro-fuel-actions button:focus-visible,.calcpro-fuel-print:focus-visible{outline:2px solid #0b6fbb;outline-offset:2px}
+.calcpro-fuel-actions{display:flex;gap:7px;align-items:center;justify-content:center;padding:5px 0 0}
+.calcpro-fuel-actions button{border:0;border-radius:2px;color:white;font-size:13px;min-height:32px;font-weight:700;cursor:pointer;padding:5px 12px}
+.calcpro-fuel-calculate{background:#3f822d;display:inline-flex;align-items:center;gap:8px}
+.calcpro-fuel-calculate:hover{background:#316d23}
+.calcpro-fuel-play{background:rgba(255,255,255,.24);border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:10px;width:18px;height:18px}
+.calcpro-fuel-clear{background:#81858a}
+.calcpro-fuel-clear:hover{background:#64696f}
+.calcpro-fuel-error{width:min(100%,520px);border:1px solid #c54040;background:#fff3f3;color:#932525;padding:8px 10px;margin:0 0 8px;font-size:13px}
+.calcpro-fuel-hint{font-size:12px;color:#5d6671;margin:9px 0 0;width:min(100%,520px)}
+@media(max-width:430px){.calcpro-fuel-cost{font-size:13px}.calcpro-fuel-panel{padding:8px}.calcpro-fuel-field{grid-template-columns:100px minmax(0,1fr);gap:5px}.calcpro-fuel-field label{font-size:12px}.calcpro-fuel-control-pair{grid-template-columns:minmax(62px,78px) minmax(0,1fr);gap:4px}.calcpro-fuel-control-pair select,.calcpro-fuel-control-pair input{font-size:12px;padding:3px 4px}.calcpro-fuel-summary{font-size:16px}}
+@media(max-width:340px){.calcpro-fuel-field{grid-template-columns:1fr;gap:3px;margin-bottom:10px}.calcpro-fuel-control-pair{grid-template-columns:minmax(77px,100px) minmax(0,1fr)}}
+@media print{.calcpro-fuel-cost .calcpro-fuel-notice,.calcpro-fuel-cost .calcpro-fuel-panel,.calcpro-fuel-cost .calcpro-fuel-hint,.calcpro-fuel-cost .calcpro-fuel-error,.calcpro-fuel-cost .calcpro-fuel-print{display:none!important}.calcpro-fuel-cost .calcpro-fuel-result{display:block!important}.calcpro-fuel-cost .calcpro-fuel-result-head{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+</style>
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Fuel Cost Calculator</nav><h1 class="cp-page-title">Fuel Cost Calculator</h1><p class="cp-intro">Estimate how much fuel your trip will use and what it will cost. Enter your trip distance, fuel efficiency, and gas or fuel price, then choose the appropriate units.</p><section aria-label="Calculator" class="cp-tool-area">
+<div class="calcpro-fuel-cost" id="calcpro-fuel-root">
+  <div class="calcpro-fuel-notice" id="calcpro-fuel-notice"><span class="calcpro-fuel-notice-icon" aria-hidden="true">✓</span><span>Modify the values and click the Calculate button to use</span></div>
+  <section class="calcpro-fuel-result" id="calcpro-fuel-result" aria-label="Fuel cost result" aria-live="polite" hidden>
+    <div class="calcpro-fuel-result-head"><h2 id="calcpro-fuel-result-title" tabindex="-1">Result</h2><button class="calcpro-fuel-print" id="calcpro-fuel-print" type="button" title="Print or save this result as a PDF" aria-label="Print or save result as PDF"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8V3h12v5M6 17H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2M6 14h12v7H6zM17 11h2"/></svg><span>Print / Save</span></button></div>
+    <p class="calcpro-fuel-summary" id="calcpro-fuel-summary"></p>
+    <p class="calcpro-fuel-equivalent" id="calcpro-fuel-equivalent"></p>
+    <ul class="calcpro-fuel-comparisons" id="calcpro-fuel-comparisons" aria-label="Comparison with other fuel efficiencies"></ul>
+  </section>
+  <p class="calcpro-fuel-error" id="calcpro-fuel-error" role="alert" hidden></p>
+  <form class="calcpro-fuel-panel" id="calcpro-fuel-form" novalidate>
+    <div class="calcpro-fuel-field"><label for="calcpro-fuel-distance">Trip Distance</label><div class="calcpro-fuel-control-pair"><input id="calcpro-fuel-distance" name="distance" type="number" min="0" step="any" inputmode="decimal" value="500" required aria-describedby="calcpro-fuel-error"/><select id="calcpro-fuel-distance-unit" name="distanceUnit" aria-label="Trip distance unit"><option value="miles">miles</option><option value="kilometers" selected>kilometers (km)</option></select></div></div>
+    <div class="calcpro-fuel-field"><label for="calcpro-fuel-efficiency">Fuel Efficiency</label><div class="calcpro-fuel-control-pair"><input id="calcpro-fuel-efficiency" name="efficiency" type="number" min="0" step="any" inputmode="decimal" value="10" required aria-describedby="calcpro-fuel-error"/><select id="calcpro-fuel-efficiency-unit" name="efficiencyUnit" aria-label="Fuel efficiency unit"><option value="mpg">miles per gallon (mpg)</option><option value="lp100k" selected>liters per 100 km (L/100 km)</option><option value="kpl">kilometres per liter (km/L)</option><option value="lpm">liters per mile</option></select></div></div>
+    <div class="calcpro-fuel-field"><label for="calcpro-fuel-price">Gas/Fuel Price</label><div class="calcpro-fuel-control-pair"><input id="calcpro-fuel-price" name="price" type="number" min="0" step="any" inputmode="decimal" value="3" required aria-describedby="calcpro-fuel-error"/><select id="calcpro-fuel-price-unit" name="priceUnit" aria-label="Gas or fuel price unit"><option value="gallon">per gallon</option><option value="liter" selected>per liter</option></select></div></div>
+    <div class="calcpro-fuel-actions"><button class="calcpro-fuel-calculate" type="submit">Calculate <span class="calcpro-fuel-play" aria-hidden="true">▶</span></button><button class="calcpro-fuel-clear" type="button" id="calcpro-fuel-clear">Clear</button></div>
+  </form>
+  <p class="calcpro-fuel-hint">For gallon-based calculations, a gallon means a U.S. liquid gallon (3.785411784 L). Enter fuel prices in dollars; the displayed cost uses the dollar symbol ($).</p>
+</div>
+</section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><a href="gas-mileage-calculator.html">Gas Mileage</a><a href="mileage-calculator.html">Mileage</a><a href="auto-loan-calculator.html">Auto Loan</a><a href="auto-lease-calculator.html">Auto Lease</a><a href="conversion-calculator.html">Conversion</a><a href="budget-calculator.html">Budget</a><a href="loan-calculator.html">Loan</a><a href="savings-calculator.html">Savings</a></div></section></aside><article class="cp-article">
+<h2>How to Use the Fuel Cost Calculator</h2>
+<p>Enter the one-way or round-trip <strong>distance</strong> you plan to drive. Choose miles or kilometers, enter your vehicle’s <strong>fuel efficiency</strong>, and choose the unit shown by your dashboard or vehicle specifications. Finally, enter the <strong>price of fuel</strong> per U.S. gallon or per liter. Select <strong>Calculate</strong> to see the trip's fuel use and estimated cost above the form.</p>
+<p>Changing the fuel-efficiency unit changes the meaning of the numeric value. For example, 10 L/100 km is not the same as 10 mpg. Use the <strong>Clear</strong> button to empty the numeric fields and start a new calculation.</p>
+<h2>Fuel Cost Formula</h2>
+<p>The estimate is based on the amount of fuel consumed multiplied by the cost of each unit of fuel:</p>
+<p><strong>Trip fuel cost = fuel used × fuel price per same volume unit.</strong></p>
+<p>For a vehicle measured in liters per 100 kilometers, the fuel volume is <strong>(distance in km ÷ 100) × L/100 km</strong>. For miles per U.S. gallon, it is <strong>distance in miles ÷ mpg</strong>. For kilometers per liter, it is <strong>distance in km ÷ km/L</strong>. For liters per mile, it is <strong>distance in miles × L/mile</strong>.</p>
+<h3>How Unit Conversions Work</h3>
+<div class="cp-table-scroll"><table class="cp-content-table"><thead><tr><th>Conversion</th><th>Value or calculation</th></tr></thead><tbody>
+<tr><td>Miles to kilometers</td><td>1 mile = 1.609344 km</td></tr>
+<tr><td>U.S. gallons to liters</td><td>1 U.S. liquid gallon = 3.785411784 liters</td></tr>
+<tr><td>MPG to L/100 km</td><td>235.214583 ÷ mpg</td></tr>
+<tr><td>km/L to L/100 km</td><td>100 ÷ (km/L)</td></tr>
+</tbody></table></div>
+<h2>Worked Example: A 500 km Trip</h2>
+<p>For a trip of <strong>500 km</strong>, fuel efficiency of <strong>10 L/100 km</strong>, and price of <strong>$3 per liter</strong>, fuel consumption is 500 ÷ 100 × 10 = <strong>50 liters</strong>. The estimated total cost is 50 × $3 = <strong>$150</strong>. At 5 L/100 km, the same trip would consume 25 liters and cost $75.</p>
+<h2>Understanding Your Result</h2>
+<p>The result reports the estimated fuel quantity, total fuel expense, equivalent volume in the other unit system, and cost per mile or kilometer. A comparison list shows how fuel use and trip cost would change at other efficiency ratings. These calculations assume the entered fuel efficiency stays constant for the whole trip; hills, traffic, weather, idling, vehicle load, and driving habits may change actual consumption.</p>
+<h2>Frequently Asked Questions</h2>
+<h3>Does this work for a round trip?</h3><p>Yes. Enter the full round-trip distance, or double the one-way distance before calculating.</p>
+<h3>Are the gallons U.S. or imperial?</h3><p>All gallon calculations use <strong>U.S. liquid gallons</strong>, not imperial gallons. Convert imperial-gallon measurements before entering them as mpg.</p>
+<h3>Can I use a different currency?</h3><p>The formula works with any currency, but this calculator labels results in dollars ($), like the reference. For clearly labeled totals, convert your price to dollars before entering it.</p>
+<h3>Why might my actual cost differ?</h3><p>Real-world fuel economy varies with speed, route conditions, idling, tire pressure, climate controls, and traffic. Taxes or transaction charges may also affect the price you pay.</p>
+<h2>Reference</h2><p>The input and result arrangement follows the <a href="https://www.calculator.net/fuel-cost-calculator.html">Fuel Cost Calculator on Calculator.net</a>. Distance and U.S. liquid gallon conversions use their standard exact definitions.</p>
+<p class="cp-page-footer">CalcPro — estimates are for planning purposes, not a guarantee of actual fuel consumption or expense.</p>
+</article></main></div><script>
+(() => {
+  'use strict';
+  const root = document.getElementById('calcpro-fuel-root');
+  if (!root) return;
+  const $ = (suffix) => root.querySelector('#calcpro-fuel-' + suffix);
+  const form = $('form');
+  const distanceInput = $('distance');
+  const efficiencyInput = $('efficiency');
+  const priceInput = $('price');
+  const distanceUnitInput = $('distance-unit');
+  const efficiencyUnitInput = $('efficiency-unit');
+  const priceUnitInput = $('price-unit');
+  const result = $('result');
+  const notice = $('notice');
+  const error = $('error');
+  const comparisons = $('comparisons');
+  const US_GALLON_L = 3.785411784;
+  const KM_PER_MILE = 1.609344;
 
-<body>
-<!-- Main-header-page -->
-<script defer src="/assets/js/data.js"></script>
-<script defer src="/assets/js/style.js?v=20261111-1"></script>
-</body>
-</html>
+  function fuelLiters(distanceKm, distanceMiles, efficiency, efficiencyUnit) {
+    switch (efficiencyUnit) {
+      case 'mpg': return distanceMiles / efficiency * US_GALLON_L;
+      case 'lp100k': return distanceKm * efficiency / 100;
+      case 'kpl': return distanceKm / efficiency;
+      case 'lpm': return distanceMiles * efficiency;
+      default: return NaN;
+    }
+  }
+  function formatNumber(value, maximumFractionDigits = 2) {
+    // Allow up to six decimals for very small, nonzero values without displaying 0.
+    const digits = value !== 0 && Math.abs(value) < 0.01 ? 6 : maximumFractionDigits;
+    return new Intl.NumberFormat('en-US', {maximumFractionDigits:digits}).format(value);
+  }
+  function formatPrice(value) {
+    const tiny = value !== 0 && Math.abs(value) < 0.01;
+    const roundedCents = Math.round(value * 100) / 100;
+    const minDigits = tiny ? 2 : Number.isInteger(roundedCents) ? 0 : 2;
+    return '$' + new Intl.NumberFormat('en-US', {
+      minimumFractionDigits: minDigits,
+      maximumFractionDigits: tiny ? 6 : 2
+    }).format(value);
+  }
+  function showError(message) {
+    error.textContent = message;
+    error.hidden = false;
+  }
+  function hideError() {
+    error.textContent = '';
+    error.hidden = true;
+  }
+  function readNumber(input, label, mustBePositive) {
+    const raw = input.value.trim();
+    const number = Number(raw);
+    if (!raw || !Number.isFinite(number) || number < 0 || (mustBePositive && number === 0) || number > 1e12) {
+      throw new Error('Enter a valid ' + label.toLowerCase() + ' (' + (mustBePositive ? 'greater than 0' : '0 or greater') + ', up to 1 trillion).');
+    }
+    return number;
+  }
+  const efficiencyLabels = {
+    mpg: 'miles per gallon', lp100k: 'liters per 100 km',
+    kpl: 'kilometers per liter', lpm: 'liters per mile'
+  };
+  const presetEfficiency = {
+    mpg: [5, 10, 15, 20, 25, 30, 40, 50],
+    lp100k: [40, 30, 20, 10, 5, 3, 2],
+    kpl: [2, 5, 10, 15, 20, 25, 30],
+    lpm: [1, 0.75, 0.5, 0.3, 0.2, 0.1, 0.05]
+  };
+
+  function calculate(event) {
+    if (event) event.preventDefault();
+    hideError();
+    let distance, efficiency, price;
+    try {
+      distance = readNumber(distanceInput, 'trip distance', false);
+      efficiency = readNumber(efficiencyInput, 'fuel efficiency', true);
+      price = readNumber(priceInput, 'fuel price', false);
+    } catch (validationError) {
+      showError(validationError.message);
+      result.hidden = true;
+      notice.hidden = false;
+      return;
+    }
+    const distanceUnit = distanceUnitInput.value;
+    const efficiencyUnit = efficiencyUnitInput.value;
+    const priceUnit = priceUnitInput.value;
+    const distanceMiles = distanceUnit === 'miles' ? distance : distance / KM_PER_MILE;
+    const distanceKm = distanceUnit === 'kilometers' ? distance : distance * KM_PER_MILE;
+    const liters = fuelLiters(distanceKm, distanceMiles, efficiency, efficiencyUnit);
+    const gallons = liters / US_GALLON_L;
+    const pricePerLiter = priceUnit === 'liter' ? price : price / US_GALLON_L;
+    const cost = liters * pricePerLiter;
+    if (![distanceMiles,distanceKm,liters,gallons,cost,pricePerLiter].every(Number.isFinite) || Math.abs(cost) > 1e24) {
+      showError('These values produce a result outside the supported numeric range. Try smaller values.');
+      result.hidden = true;
+      notice.hidden = false;
+      return;
+    }
+
+    const reportGallons = efficiencyUnit === 'mpg';
+    const amount = reportGallons ? gallons : liters;
+    const fuelLabel = reportGallons ? 'gallons' : 'liters';
+    const alternateAmount = reportGallons ? liters : gallons;
+    const alternateLabel = reportGallons ? 'liters' : 'US gallons';
+    $('summary').innerHTML = 'This trip will require <strong class="calcpro-fuel-result-value">' + formatNumber(amount) + ' ' + fuelLabel + '</strong> of fuel, which amounts to a fuel cost of <strong class="calcpro-fuel-result-value">' + formatPrice(cost) + '</strong>.';
+    $('equivalent').textContent = 'Equivalent fuel: ' + formatNumber(alternateAmount) + ' ' + alternateLabel + '. Estimated cost per ' + (distanceUnit === 'miles' ? 'mile' : 'km') + ': ' + formatPrice(distance > 0 ? cost / distance : 0) + '.';
+
+    // Comparing several common efficiency ratings mirrors the reference's result lines.
+    const entries = Array.from(new Set([...presetEfficiency[efficiencyUnit], efficiency]));
+    entries.sort((a,b) => (efficiencyUnit === 'lp100k' || efficiencyUnit === 'lpm') ? b - a : a - b);
+    const list = document.createDocumentFragment();
+    entries.forEach((alternative) => {
+      const altLiters = fuelLiters(distanceKm, distanceMiles, alternative, efficiencyUnit);
+      const altGallons = altLiters / US_GALLON_L;
+      const altAmount = reportGallons ? altGallons : altLiters;
+      const altCost = altLiters * pricePerLiter;
+      const li = document.createElement('li');
+      const comparisonText = 'If ' + formatNumber(alternative) + ' ' + efficiencyLabels[efficiencyUnit] + ', it will use ' + formatNumber(altAmount) + ' ' + fuelLabel + ' of fuel with cost of ' + formatPrice(altCost);
+      if (alternative === efficiency) {
+        const strong = document.createElement('strong');
+        strong.textContent = comparisonText;
+        li.appendChild(strong);
+      } else {
+        li.textContent = comparisonText;
+      }
+      list.appendChild(li);
+    });
+    comparisons.replaceChildren(list);
+    notice.hidden = true;
+    result.hidden = false;
+    // The original post-calculation page shows the result above the inputs.
+    $('result-title').focus({preventScroll:true});
+    const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    result.scrollIntoView({behavior:reduceMotion ? 'auto' : 'smooth',block:'nearest'});
+  }
+
+  form.addEventListener('submit', calculate);
+  $('clear').addEventListener('click', () => {
+    distanceInput.value = '';
+    efficiencyInput.value = '';
+    priceInput.value = '';
+    distanceUnitInput.value = 'kilometers';
+    efficiencyUnitInput.value = 'lp100k';
+    priceUnitInput.value = 'liter';
+    comparisons.replaceChildren();
+    result.hidden = true;
+    notice.hidden = false;
+    hideError();
+    distanceInput.focus();
+  });
+  $('print').addEventListener('click', () => { if (!result.hidden) window.print(); });
+  [distanceInput,efficiencyInput,priceInput,distanceUnitInput,efficiencyUnitInput,priceUnitInput].forEach((control) => {
+    control.addEventListener('input', hideError);
+  });
+})();
+</script><script defer src="/assets/js/data.js"></script>
+<script defer src="/assets/js/style.js?v=20261111-5"></script>
+</body></html>

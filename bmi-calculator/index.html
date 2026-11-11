@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US">
-<head>
-<meta charset="utf-8">
+<html lang="en"><head><meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="content-language" content="en">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,17 +11,478 @@
   <meta name="author" content="Commingsoon">
   <meta name="publisher" content="Commingsoon">
   <meta name="robots" content="noindex, nofollow, max-image-preview:large">
-  <link rel="stylesheet" href="/assets/css/style.css?v=20261111-1" crossorigin="anonymous" data-n-g="">
+  <link rel="stylesheet" href="/assets/css/style.css?v=20261111-4" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/doc_style.css" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/side_style.css" crossorigin="anonymous" data-n-g=""> 
   <!--ogtags-->
-  <!--schema-->
-  <!--style-->
-</head>
+  <!--schema--><style>
+/* BMI-specific styles: keep the CalcPro cp-* global layout untouched. */
+.calcpro-bmi{--calcpro-bmi-blue:#326596;--calcpro-bmi-green:#478122;--calcpro-bmi-edge:#bdbdbd;--calcpro-bmi-ink:#101010;color:var(--calcpro-bmi-ink);font:13px/1.35 Arial,Helvetica,sans-serif;max-width:730px;margin:0 0 14px}
+.calcpro-bmi *, .calcpro-bmi *::before,.calcpro-bmi *::after{box-sizing:border-box}
+.calcpro-bmi [hidden]{display:none!important}
+.calcpro-bmi-hint{background:var(--calcpro-bmi-blue);color:#fff;display:flex;align-items:center;justify-content:center;gap:28px;font-weight:700;font-size:12px;min-height:29px;margin-bottom:5px;text-align:center;padding:3px 8px}
+.calcpro-bmi-hint-icon{height:19px;width:19px;display:inline-flex;justify-content:center;align-items:center;background:#fff;color:var(--calcpro-bmi-blue);border-radius:50%;font-size:23px;line-height:1;flex-shrink:0}
+.calcpro-bmi-columns{display:grid;grid-template-columns:minmax(230px,0.92fr) minmax(255px,1.08fr);gap:19px;align-items:start;max-width:100%}
+.calcpro-bmi-form{border:1px solid var(--calcpro-bmi-edge);background:#ededed;min-width:0;margin:0;padding:0 0 6px}
+.calcpro-bmi-tabs{display:flex;align-items:flex-end;gap:3px;margin:-1px -1px 6px;white-space:nowrap}
+.calcpro-bmi-tab{appearance:none;border:1px solid #326596;background:#326596;color:#fff;font:700 12px/1.2 Arial,sans-serif;padding:6px 7px 5px;min-height:27px;cursor:pointer;flex:1 1 auto}
+.calcpro-bmi-tab[aria-selected="true"]{background:#fff;color:#111;border-bottom-color:#fff}
+.calcpro-bmi-tab:hover:not([aria-selected="true"]){background:#254f76}
+.calcpro-bmi-form-inner{padding:0 10px}
+.calcpro-bmi-row{display:grid;grid-template-columns:53px minmax(0,1fr);gap:3px;align-items:center;min-height:29px;margin:1px 0 3px}
+.calcpro-bmi-row>label{font-size:12px;line-height:1.2}
+.calcpro-bmi-age-line{display:flex;align-items:center;gap:6px;min-width:0;white-space:nowrap}
+.calcpro-bmi-age-line input{width:70px;max-width:45%;flex-shrink:0}
+.calcpro-bmi-age-line span{font-size:11px;white-space:nowrap}
+.calcpro-bmi input[type="number"],.calcpro-bmi select{appearance:auto;min-width:0;border:1px solid #326596;border-radius:0;background:#fff;color:#101010;font:13px/1.3 Arial,Helvetica,sans-serif;min-height:25px;padding:3px 5px;box-shadow:inset 0 1px 1px #ddd}
+.calcpro-bmi input:focus-visible,.calcpro-bmi select:focus-visible,.calcpro-bmi button:focus-visible{outline:2px solid #154a8a;outline-offset:2px}
+.calcpro-bmi input[type="number"]{width:100%;-moz-appearance:textfield}
+.calcpro-bmi input[type="number"]::-webkit-outer-spin-button,.calcpro-bmi input[type="number"]::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.calcpro-bmi-gender-row{margin:2px 0 5px;border:0;padding:0;display:flex;align-items:center;gap:8px;min-height:24px;min-width:0}
+.calcpro-bmi-gender-row legend{font-size:12px;float:left;width:56px;padding:3px 0 0;margin:0}
+.calcpro-bmi-gender-row label{display:inline-flex;align-items:center;gap:4px;font-size:12px;white-space:nowrap;cursor:pointer}
+.calcpro-bmi-gender-row input{accent-color:#34699b;width:14px;height:14px;margin:0}
+.calcpro-bmi-unit-input{display:flex;align-items:center;min-width:0;border:1px solid #326596;background:white;height:25px}
+.calcpro-bmi-unit-input:focus-within{outline:2px solid #b4c6d8;outline-offset:0}
+.calcpro-bmi-unit-input input[type="number"]{height:23px;min-height:23px;border:0;box-shadow:none;padding:2px 4px}
+.calcpro-bmi-unit-input input:focus-visible{outline:0}
+.calcpro-bmi-unit-input span{color:#666;white-space:nowrap;padding:0 5px;font-size:12px}
+.calcpro-bmi-feet-line{display:flex;gap:6px;min-width:0}
+.calcpro-bmi-feet-line .calcpro-bmi-unit-input{flex:1 1 0;min-width:0}
+.calcpro-bmi-custom-line{display:grid;grid-template-columns:minmax(0,1fr) minmax(88px,0.9fr);gap:5px;min-width:0}
+.calcpro-bmi-custom-line select{width:100%;font-size:12px;padding:2px 1px}
+.calcpro-bmi-error{margin:8px 0 3px;background:#fff0ed;color:#a12c24;padding:7px 8px;border:1px solid #c77;font-size:12px;line-height:1.35}
+.calcpro-bmi-actions{display:flex;justify-content:center;gap:5px;padding:6px 0 1px;align-items:center}
+.calcpro-bmi-actions button{border:0;border-radius:0;min-height:30px;padding:5px 11px;color:white;font:700 12px Arial,sans-serif;cursor:pointer}
+.calcpro-bmi-calculate{background:var(--calcpro-bmi-green)}
+.calcpro-bmi-calculate:hover{background:#376b17}
+.calcpro-bmi-go{border-radius:50%;background:#97bc7e;display:inline-flex;margin-left:6px;width:17px;height:17px;align-items:center;justify-content:center;font-size:10px}
+.calcpro-bmi-clear{background:#a9a9a9}
+.calcpro-bmi-clear:hover{background:#858585}
+.calcpro-bmi-result{min-width:0}
+.calcpro-bmi-result-bar{background:#4c821f;display:flex;align-items:center;justify-content:space-between;color:#fff;min-height:28px;padding:0 6px}
+.calcpro-bmi-result-bar h2{margin:0!important;color:#fff!important;font:normal 16px/1.25 Arial,sans-serif!important}
+.calcpro-bmi-result-tools{display:flex;gap:5px;align-items:center}
+.calcpro-bmi-result-tools button{border:1px solid transparent;color:#fff;background:transparent;font:11px Arial,sans-serif;cursor:pointer;padding:4px 5px;min-height:24px}
+.calcpro-bmi-result-tools button:hover{background:rgba(255,255,255,.15);text-decoration:underline}
+.calcpro-bmi-result-body{min-width:0}
+.calcpro-bmi-result-summary{font-size:14px;line-height:1.4;margin:6px 0 0;min-height:21px}
+.calcpro-bmi-result-summary strong{font-weight:700}
+.calcpro-bmi-status{margin-left:6px}
+.calcpro-bmi-status-normal{color:#007a00}
+.calcpro-bmi-status-warn{color:#ae7500}
+.calcpro-bmi-status-danger{color:#b21b1b}
+.calcpro-bmi-status-child{color:#385873}
+.calcpro-bmi-gauge{width:100%;display:flex;justify-content:center;margin:-2px auto 1px;min-width:0}
+.calcpro-bmi-gauge svg{width:min(100%,315px);height:auto;display:block;overflow:visible}
+.calcpro-bmi-gauge-labels{font:12px Arial,sans-serif;fill:#111}
+.calcpro-bmi-gauge-labels path{fill:none}
+.calcpro-bmi-gauge-thresholds{font:11px Arial,sans-serif;fill:#fff;paint-order:stroke;stroke:#777;stroke-width:.45px}
+#calcpro-bmi-gauge-reading{fill:#000;font:700 24px Arial,sans-serif}
+.calcpro-bmi-result-list{margin:0 0 0 2px;padding-left:17px;font-size:13px;line-height:1.18}
+.calcpro-bmi-result-list li{margin:2px 0}
+.calcpro-bmi-child-note{font-size:12px;line-height:1.45;margin:9px 0;background:#f4f8fb;border-left:3px solid #537c9d;padding:8px}
+.calcpro-bmi-child-note a{color:#006699;text-decoration:underline}
+.calcpro-bmi-disclaimer{color:#555;font-size:11px;line-height:1.4;margin:13px 0 0}
+@media(max-width:550px){.calcpro-bmi-columns{grid-template-columns:minmax(0,1fr);gap:16px}.calcpro-bmi-form{max-width:360px;width:100%}.calcpro-bmi-result{width:100%}.calcpro-bmi-gauge svg{max-width:330px}.calcpro-bmi-hint{gap:12px}.calcpro-bmi-disclaimer{margin-top:14px}}
+@media(max-width:330px){.calcpro-bmi-form-inner{padding:0 6px}.calcpro-bmi-tab{padding:6px 3px;font-size:11px}.calcpro-bmi-row{grid-template-columns:47px minmax(0,1fr)}.calcpro-bmi-gender-row legend{width:50px}.calcpro-bmi-age-line{gap:3px}.calcpro-bmi-age-line span{font-size:10px}}
+@media print{.calcpro-bmi-hint,.calcpro-bmi-actions,.calcpro-bmi-result-tools{display:none!important}.calcpro-bmi-columns{grid-template-columns:240px minmax(0,1fr)}.calcpro-bmi{max-width:none}.calcpro-bmi-form{border:1px solid #999}}
 
-<body>
-<!-- Main-header-page -->
-<script defer src="/assets/js/data.js"></script>
-<script defer src="/assets/js/style.js?v=20261111-1"></script>
-</body>
-</html>
+</style>
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/fitness-and-health-calculator/">Fitness &amp; Health</a> / BMI Calculator</nav><h1 class="cp-page-title">BMI Calculator</h1><p class="cp-intro">Calculate your Body Mass Index (BMI) using metric, US, or other units. See your BMI category, healthy adult weight range, BMI Prime, and Ponderal Index immediately on this page.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-bmi" id="calcpro-bmi-root">
+  <div class="calcpro-bmi-hint"><span aria-hidden="true" class="calcpro-bmi-hint-icon">⌄</span><span>Modify the values and click Calculate to use</span></div>
+  <div class="calcpro-bmi-columns">
+    <form class="calcpro-bmi-form" id="calcpro-bmi-form" novalidate>
+      <div class="calcpro-bmi-tabs" role="tablist" aria-label="Measurement units">
+        <button class="calcpro-bmi-tab" id="calcpro-bmi-tab-us" type="button" role="tab" aria-selected="false" aria-controls="calcpro-bmi-fields-us" data-calcpro-bmi-mode="us">US Units</button>
+        <button class="calcpro-bmi-tab" id="calcpro-bmi-tab-metric" type="button" role="tab" aria-selected="true" aria-controls="calcpro-bmi-fields-metric" data-calcpro-bmi-mode="metric">Metric Units</button>
+        <button class="calcpro-bmi-tab" id="calcpro-bmi-tab-other" type="button" role="tab" aria-selected="false" aria-controls="calcpro-bmi-fields-other" data-calcpro-bmi-mode="other">Other Units</button>
+      </div>
+      <div class="calcpro-bmi-form-inner">
+        <div class="calcpro-bmi-row">
+          <label for="calcpro-bmi-age">Age</label>
+          <div class="calcpro-bmi-age-line"><input id="calcpro-bmi-age" name="calcpro-bmi-age" type="number" inputmode="numeric" min="2" max="120" step="1" value="25" required/><span>ages: 2 – 120</span></div>
+        </div>
+        <fieldset class="calcpro-bmi-gender-row"><legend>Gender</legend>
+          <label><input type="radio" name="calcpro-bmi-sex" value="m" checked/> Male</label>
+          <label><input type="radio" name="calcpro-bmi-sex" value="f"/> Female</label>
+        </fieldset>
+        <div class="calcpro-bmi-fieldset" id="calcpro-bmi-fields-metric" role="tabpanel" aria-labelledby="calcpro-bmi-tab-metric">
+          <div class="calcpro-bmi-row"><label for="calcpro-bmi-cm">Height</label><div class="calcpro-bmi-unit-input"><input id="calcpro-bmi-cm" type="number" inputmode="decimal" step="any" min="0" value="180"/><span>cm</span></div></div>
+          <div class="calcpro-bmi-row"><label for="calcpro-bmi-kg">Weight</label><div class="calcpro-bmi-unit-input"><input id="calcpro-bmi-kg" type="number" inputmode="decimal" step="any" min="0" value="65"/><span>kg</span></div></div>
+        </div>
+        <div class="calcpro-bmi-fieldset" id="calcpro-bmi-fields-us" role="tabpanel" aria-labelledby="calcpro-bmi-tab-us" hidden>
+          <div class="calcpro-bmi-row"><label for="calcpro-bmi-feet">Height</label><div class="calcpro-bmi-feet-line"><div class="calcpro-bmi-unit-input"><input id="calcpro-bmi-feet" type="number" inputmode="numeric" step="1" min="0" value="5"/><span>ft</span></div><div class="calcpro-bmi-unit-input"><input id="calcpro-bmi-inches" aria-label="Inches" type="number" inputmode="decimal" step="any" min="0" max="11.99" value="10"/><span>in</span></div></div></div>
+          <div class="calcpro-bmi-row"><label for="calcpro-bmi-pounds">Weight</label><div class="calcpro-bmi-unit-input"><input id="calcpro-bmi-pounds" type="number" inputmode="decimal" step="any" min="0" value="160"/><span>lbs</span></div></div>
+        </div>
+        <div class="calcpro-bmi-fieldset" id="calcpro-bmi-fields-other" role="tabpanel" aria-labelledby="calcpro-bmi-tab-other" hidden>
+          <div class="calcpro-bmi-row"><label for="calcpro-bmi-other-height">Height</label><div class="calcpro-bmi-custom-line"><input id="calcpro-bmi-other-height" type="number" inputmode="decimal" step="any" min="0" value="1.8"/><select id="calcpro-bmi-other-height-unit" aria-label="Height unit"><option value="m">meters</option><option value="cm">cm</option><option value="in">inches</option><option value="ft">feet</option></select></div></div>
+          <div class="calcpro-bmi-row"><label for="calcpro-bmi-other-weight">Weight</label><div class="calcpro-bmi-custom-line"><input id="calcpro-bmi-other-weight" type="number" inputmode="decimal" step="any" min="0" value="65"/><select id="calcpro-bmi-other-weight-unit" aria-label="Weight unit"><option value="kg">kg</option><option value="lb">pounds</option><option value="st">stones</option></select></div></div>
+        </div>
+        <div class="calcpro-bmi-error" id="calcpro-bmi-error" role="alert" hidden></div>
+        <div class="calcpro-bmi-actions"><button class="calcpro-bmi-calculate" type="submit">Calculate <span class="calcpro-bmi-go" aria-hidden="true">▶</span></button><button class="calcpro-bmi-clear" type="button" id="calcpro-bmi-clear">Clear</button></div>
+      </div>
+    </form>
+    <section class="calcpro-bmi-result" id="calcpro-bmi-result" aria-label="BMI calculation result" aria-live="polite">
+      <div class="calcpro-bmi-result-bar"><h2>Result</h2><div class="calcpro-bmi-result-tools"><button id="calcpro-bmi-print" type="button" title="Print calculation">Print</button><button id="calcpro-bmi-save" type="button" title="Save calculation as a text file"><span aria-hidden="true">▣</span> Save</button></div></div>
+      <div class="calcpro-bmi-result-body">
+        <p class="calcpro-bmi-result-summary" id="calcpro-bmi-summary"><strong>BMI = 20.1 kg/m<sup>2</sup></strong> <strong class="calcpro-bmi-status calcpro-bmi-status-normal">(Normal)</strong></p>
+        <div class="calcpro-bmi-gauge" id="calcpro-bmi-gauge">
+          <svg viewBox="0 0 320 195" role="img" aria-labelledby="calcpro-bmi-gauge-title calcpro-bmi-gauge-desc" xmlns="http://www.w3.org/2000/svg">
+            <title id="calcpro-bmi-gauge-title">BMI category gauge</title>
+            <desc id="calcpro-bmi-gauge-desc">Colored semicircle showing the calculated BMI relative to adult BMI categories.</desc>
+            <defs><marker id="calcpro-bmi-pointer-tip" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L9,4.5 L0,9 Z" fill="#262626"/></marker>
+              <path id="calcpro-bmi-underweight-arc" d="M12 170 A148 148 0 0 1 53 75"/>
+              <path id="calcpro-bmi-normal-arc" d="M75 47 A137 137 0 0 1 184 24"/>
+              <path id="calcpro-bmi-overweight-arc" d="M163 22 A145 145 0 0 1 236 45"/>
+              <path id="calcpro-bmi-obese-arc" d="M245 55 A148 148 0 0 1 309 170"/>
+            </defs>
+            <g id="calcpro-bmi-gauge-segments"></g>
+            <g class="calcpro-bmi-gauge-thresholds" id="calcpro-bmi-gauge-thresholds"></g>
+            <g class="calcpro-bmi-gauge-labels">
+              <text><textPath href="#calcpro-bmi-underweight-arc" startOffset="5%">Underweight</textPath></text>
+              <text><textPath href="#calcpro-bmi-normal-arc" startOffset="24%">Normal</textPath></text>
+              <text><textPath href="#calcpro-bmi-overweight-arc" startOffset="6%">Overweight</textPath></text>
+              <text><textPath href="#calcpro-bmi-obese-arc" startOffset="7%">Obesity</textPath></text>
+            </g>
+            <g id="calcpro-bmi-needle" transform="rotate(0 160 166)"><line x1="160" y1="166" x2="76" y2="166" stroke="#333" stroke-width="2" marker-end="url(#calcpro-bmi-pointer-tip)"/></g>
+            <text id="calcpro-bmi-gauge-reading" x="160" y="153" text-anchor="middle">BMI = 20.1</text>
+            <circle cx="160" cy="166" r="3.8" fill="#666"/>
+          </svg>
+        </div>
+        <ul class="calcpro-bmi-result-list" id="calcpro-bmi-details">
+          <li>Healthy BMI range: 18.5 kg/m² – 25 kg/m²</li>
+          <li>Healthy weight for the height: 59.9 kg – 81 kg</li>
+          <li>BMI Prime: 0.8</li>
+          <li>Ponderal Index: 11.1 kg/m³</li>
+        </ul>
+        <p class="calcpro-bmi-child-note" id="calcpro-bmi-child-note" hidden></p>
+      </div>
+    </section>
+  </div>
+  <p class="calcpro-bmi-disclaimer">BMI is a screening measure, not a diagnosis. Adult BMI categories apply to ages 20 and above.</p>
+</div>
+</section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><a href="bmr-calculator.html">BMR</a><a href="body-fat-calculator.html">Body Fat</a><a href="calorie-calculator.html">Calorie</a><a href="ideal-weight-calculator.html">Ideal Weight</a><a href="tdee-calculator.html">TDEE</a><a href="lean-body-mass-calculator.html">Lean Body Mass</a><a href="macro-calculator.html">Macro</a><a href="protein-calculator.html">Protein</a><a href="army-body-fat-calculator.html">Army Body Fat</a><a href="calories-burned-calculator.html">Calories Burned</a><a href="body-surface-area-calculator.html">Body Surface Area</a><a href="anorexic-bmi-calculator.html">Anorexic BMI</a></div></section></aside><article class="cp-article">
+<h2>How to Use the BMI Calculator</h2>
+<p>Choose US Units, Metric Units, or Other Units, then enter your age, gender, height, and weight. Select <strong>Calculate</strong> to see your body mass index (BMI), classification, and a visual adult BMI gauge. You can switch units without losing valid measurements, print the current page, or save a text summary of the calculation.</p>
+<h2>How BMI Is Calculated</h2>
+<p>Body mass index is calculated from a person's body mass and squared height. It is a useful population screening measure, but it does not measure body fat percentage.</p>
+<div class="cp-note"><strong>Metric formula:</strong> BMI = weight (kg) ÷ [height (m)]².<br><strong>US formula:</strong> BMI ≈ 703 × weight (lb) ÷ [height (in)]².</div>
+<h3>Worked example: 65 kg at 180 cm</h3>
+<p>For a person weighing 65 kg and standing 1.8 m tall, BMI = 65 ÷ (1.8 × 1.8) = <strong>20.1 kg/m²</strong> after rounding. For adults, this is in the normal BMI range. The corresponding weight range for a BMI of 18.5–25 is about 59.9–81 kg.</p>
+<h2>Adult BMI Categories</h2>
+<p>These adult classifications apply from age 20 onward. Categories are selected using the unrounded BMI value; results are then displayed to one decimal place.</p>
+<div class="cp-table-scroll"><table class="cp-content-table"><thead><tr><th>Adult category</th><th>BMI (kg/m²)</th></tr></thead><tbody>
+<tr><td>Severe thinness</td><td>Below 16</td></tr><tr><td>Moderate thinness</td><td>16 to below 17</td></tr><tr><td>Mild thinness</td><td>17 to below 18.5</td></tr><tr><td>Normal</td><td>18.5 to below 25</td></tr><tr><td>Overweight</td><td>25 to below 30</td></tr><tr><td>Obese class I</td><td>30 to below 35</td></tr><tr><td>Obese class II</td><td>35 to below 40</td></tr><tr><td>Obese class III</td><td>40 and above</td></tr>
+</tbody></table></div>
+<h2>Understanding the Additional Results</h2>
+<h3>Healthy weight range</h3><p>For adults, the calculator multiplies the minimum and maximum normal BMI cutoffs by your height in meters squared: minimum healthy weight = 18.5 × height²; upper boundary = 25 × height². This is a reference range, not an individualized target.</p>
+<h3>BMI Prime</h3><p>BMI Prime = your BMI ÷ 25. For example, a BMI of 20.1 gives a BMI Prime of roughly 0.8.</p>
+<h3>Ponderal Index</h3><p>Ponderal Index = weight in kilograms ÷ height in meters cubed. For a 65 kg person with height 1.8 m, the result is approximately 11.1 kg/m³.</p>
+<h2>Is BMI Different for Children and Teens?</h2>
+<p>Yes. For ages 2–19, BMI must be compared with an age- and sex-specific growth reference. This calculator displays the BMI measurement but does not label a child using adult categories. For a pediatric BMI percentile, use the <a href="https://www.cdc.gov/bmi/child-teen-calculator/calculator.html" target="_blank" rel="noopener noreferrer">CDC Child and Teen BMI Calculator</a>, which accepts age in months.</p>
+<h2>Frequently Asked Questions</h2>
+<h3>Is the calculation different for men and women?</h3><p>The mathematical BMI formula is the same for both. Gender does not change the adult BMI thresholds. For people under 20, sex and precise age are necessary for pediatric percentile interpretation.</p>
+<h3>What if I use pounds and feet instead?</h3><p>US values are converted to kilograms and meters internally using the exact definitions 1 lb = 0.45359237 kg and 1 in = 0.0254 m. The result is reported in kg/m².</p>
+<h3>Can athletes have a high BMI without excess body fat?</h3><p>Yes. BMI does not distinguish muscle, bone, and fat, and it can be less informative for muscular people, pregnant individuals, or certain other populations. A clinician can interpret BMI alongside your medical history and other measures.</p>
+<h3>Why does the gauge stop at the far right?</h3><p>The display compresses BMI values at the extremes into the first or last sections of the gauge. Your numerical BMI result remains calculated from your entered measurements.</p>
+<h2>Sources</h2>
+<ul><li><a href="https://www.cdc.gov/growth-chart-training/hcp/using-bmi/calculating-bmi.html" target="_blank" rel="noopener noreferrer">CDC: Calculating BMI</a></li><li><a href="https://www.cdc.gov/growthcharts/cdc-data-files.htm" target="_blank" rel="noopener noreferrer">CDC: Growth chart and BMI-for-age data</a></li><li><a href="https://www.calculator.net/bmi-calculator.html" target="_blank" rel="noopener noreferrer">BMI Calculator reference page</a></li></ul>
+<p class="cp-page-footer">CalcPro — estimates are for informational and educational purposes. BMI is not a medical diagnosis.</p>
+</article></main></div><script>
+/* CalcPro BMI tool: local, dependency-free, scoped to the calculator root. */
+(() => {
+  'use strict';
+  const root = document.getElementById('calcpro-bmi-root');
+  if (!root) return;
+  const get = (suffix) => root.querySelector('#calcpro-bmi-' + suffix);
+  const KG_PER_POUND = 0.45359237;
+  const METERS_PER_INCH = 0.0254;
+  const METERS_PER_FOOT = 0.3048;
+  const form = get('form');
+  const tabs = Array.from(root.querySelectorAll('[data-calcpro-bmi-mode]'));
+  const fields = {us:get('fields-us'), metric:get('fields-metric'), other:get('fields-other')};
+  const message = get('error');
+  const summary = get('summary');
+  const details = get('details');
+  const childNote = get('child-note');
+  const gauge = get('gauge');
+  const gaugeReading = get('gauge-reading');
+  const needle = get('needle');
+  const save = get('save');
+  const segments = get('gauge-segments');
+  const thresholds = get('gauge-thresholds');
+  let mode = 'metric';
+  let lastResult = null;
+  let animationHandle = null;
+  let lastHeightUnit = get('other-height-unit').value;
+  let lastWeightUnit = get('other-weight-unit').value;
+  const roundDisplay = (n, digits = 1) => Number(n.toFixed(digits)).toString();
+
+  function readNumber(id, label, allowZero = false) {
+    const field = get(id);
+    const raw = field.value.trim();
+    if (raw === '') throw Error('Please enter ' + label + '.');
+    const number = Number(raw);
+    if (!Number.isFinite(number) || (allowZero ? number < 0 : number <= 0)) {
+      throw Error('Please enter a valid ' + label + '.');
+    }
+    return number;
+  }
+
+  function readMeasurements() {
+    const age = readNumber('age', 'an age from 2 to 120');
+    if (!Number.isInteger(age) || age < 2 || age > 120) {
+      throw Error('Age must be a whole number from 2 to 120.');
+    }
+    let height, weight;
+    if (mode === 'metric') {
+      height = readNumber('cm', 'height in centimeters') / 100;
+      weight = readNumber('kg', 'weight in kilograms');
+    } else if (mode === 'us') {
+      const feet = readNumber('feet', 'height in feet', true);
+      const inches = readNumber('inches', 'height in inches', true);
+      if (!Number.isInteger(feet) || inches >= 12) throw Error('Use whole feet and inches from 0 up to (but not including) 12.');
+      height = (feet * 12 + inches) * METERS_PER_INCH;
+      weight = readNumber('pounds', 'weight in pounds') * KG_PER_POUND;
+    } else {
+      const h = readNumber('other-height', 'height');
+      const w = readNumber('other-weight', 'weight');
+      height = heightToMeters(h, get('other-height-unit').value);
+      weight = weightToKg(w, get('other-weight-unit').value);
+    }
+    if (!Number.isFinite(height) || height < 0.3 || height > 3) throw Error('Enter a height between 0.3 m and 3 m.');
+    if (!Number.isFinite(weight) || weight <= 0 || weight > 1500) throw Error('Enter a positive weight up to 1,500 kg.');
+    const sex = form.querySelector('input[name="calcpro-bmi-sex"]:checked');
+    return {age, height, weight, sex: sex ? sex.value : 'm'};
+  }
+
+  function heightToMeters(value, unit) {
+    return {m:value, cm:value/100, in:value*METERS_PER_INCH, ft:value*METERS_PER_FOOT}[unit];
+  }
+  function metersToHeight(value, unit) {
+    return {m:value, cm:value*100, in:value/METERS_PER_INCH, ft:value/METERS_PER_FOOT}[unit];
+  }
+  function weightToKg(value, unit) {
+    return {kg:value, lb:value*KG_PER_POUND, st:value*14*KG_PER_POUND}[unit];
+  }
+  function kgToWeight(value, unit) {
+    return {kg:value, lb:value/KG_PER_POUND, st:value/(14*KG_PER_POUND)}[unit];
+  }
+
+  function writeMeasurements(measurement, newMode) {
+    if (newMode === 'metric') {
+      get('cm').value = roundDisplay(measurement.height * 100, 4);
+      get('kg').value = roundDisplay(measurement.weight, 5);
+    } else if (newMode === 'us') {
+      const totalInches = measurement.height / METERS_PER_INCH;
+      let feet = Math.floor(totalInches / 12);
+      let inches = Number((totalInches - 12*feet).toFixed(4));
+      if (inches >= 12) { feet += 1; inches = 0; }
+      get('feet').value = feet;
+      get('inches').value = roundDisplay(inches, 4);
+      get('pounds').value = roundDisplay(measurement.weight / KG_PER_POUND, 5);
+    } else {
+      get('other-height').value = roundDisplay(metersToHeight(measurement.height, get('other-height-unit').value), 5);
+      get('other-weight').value = roundDisplay(kgToWeight(measurement.weight, get('other-weight-unit').value), 5);
+    }
+  }
+
+  function selectMode(nextMode) {
+    if (!Object.hasOwn(fields, nextMode) || nextMode === mode) return;
+    let measurement = null;
+    try { measurement = readMeasurements(); } catch (_) { /* Keep unfinished input in its original tab. */ }
+    mode = nextMode;
+    tabs.forEach(tab => {
+      const selected = tab.dataset.calcproBmiMode === mode;
+      tab.setAttribute('aria-selected', String(selected));
+      tab.tabIndex = selected ? 0 : -1;
+    });
+    Object.entries(fields).forEach(([key, el]) => {el.hidden = key !== mode;});
+    if (measurement) writeMeasurements(measurement, mode);
+    hideError();
+  }
+
+  tabs.forEach((tab, index) => {
+    tab.addEventListener('click', () => selectMode(tab.dataset.calcproBmiMode));
+    tab.addEventListener('keydown', event => {
+      if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
+      event.preventDefault();
+      const nextIndex = event.key === 'Home' ? 0 : event.key === 'End' ? tabs.length-1 :
+        (index + (event.key === 'ArrowRight' ? 1 : -1) + tabs.length) % tabs.length;
+      selectMode(tabs[nextIndex].dataset.calcproBmiMode);
+      tabs[nextIndex].focus();
+    });
+  });
+
+  function convertOtherUnit(type) {
+    const isHeight = type === 'height';
+    const selector = get('other-' + type + '-unit');
+    const input = get('other-' + type);
+    const priorUnit = isHeight ? lastHeightUnit : lastWeightUnit;
+    const nextUnit = selector.value;
+    const oldValue = Number(input.value);
+    if (input.value.trim() !== '' && Number.isFinite(oldValue) && oldValue > 0) {
+      const metric = isHeight ? heightToMeters(oldValue, priorUnit) : weightToKg(oldValue, priorUnit);
+      input.value = roundDisplay(isHeight ? metersToHeight(metric, nextUnit) : kgToWeight(metric, nextUnit), 5);
+    }
+    if (isHeight) lastHeightUnit = nextUnit;
+    else lastWeightUnit = nextUnit;
+  }
+  get('other-height-unit').addEventListener('change', () => convertOtherUnit('height'));
+  get('other-weight-unit').addEventListener('change', () => convertOtherUnit('weight'));
+
+  const angleTable = [[0,0],[16,14],[17,22],[18.5,34],[25,95],[30,119],[35,140],[40,161],[45,180]];
+  function gaugeProgress(bmi) {
+    if (bmi <= 0) return 0;
+    for (let i=1; i<angleTable.length; i++) {
+      if (bmi <= angleTable[i][0]) {
+        const [lower, start] = angleTable[i-1];
+        const [upper, end] = angleTable[i];
+        return start + (bmi-lower)*(end-start)/(upper-lower);
+      }
+    }
+    return 180;
+  }
+  const NS = 'http://www.w3.org/2000/svg';
+  function svgEl(tag, attrs = {}) {
+    const element = document.createElementNS(NS, tag);
+    Object.entries(attrs).forEach(([k,v]) => element.setAttribute(k, String(v)));
+    return element;
+  }
+  function point(radius, progress) {
+    const theta = (180-progress) * Math.PI/180;
+    return [160+radius*Math.cos(theta), 166-radius*Math.sin(theta)];
+  }
+  function annularSector(start, end) {
+    const p0=point(132,start),p1=point(132,end),q1=point(96,end),q0=point(96,start);
+    const fmt=p=>p.map(x=>x.toFixed(2)).join(' ');
+    return `M ${fmt(p0)} A 132 132 0 0 1 ${fmt(p1)} L ${fmt(q1)} A 96 96 0 0 0 ${fmt(q0)} Z`;
+  }
+  function drawGauge() {
+    const stops = [0,14,22,34,95,119,140,161,180];
+    const colors = ['#bc2121','#ce8b8b','#ffe100','#087c37','#ffdf00','#d18b8b','#bf2424','#8d0101'];
+    for(let i=0;i<colors.length;i++) segments.appendChild(svgEl('path', {d:annularSector(stops[i],stops[i+1]),fill:colors[i]}));
+    [[16,14],[17,22],[18.5,34],[25,95],[30,119],[35,140],[40,161]].forEach(([value, angle])=>{
+      const [x,y] = point(112,angle);
+      const t=svgEl('text',{'x':x.toFixed(2),'y':(y+3).toFixed(2),'text-anchor':'middle'});
+      t.textContent = value;
+      thresholds.appendChild(t);
+    });
+  }
+  drawGauge();
+
+  function animateNeedle(bmi) {
+    if(animationHandle !== null) cancelAnimationFrame(animationHandle);
+    animationHandle = null;
+    needle.setAttribute('transform', 'rotate(0 160 166)');
+    const target = gaugeProgress(bmi);
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      needle.setAttribute('transform', `rotate(${target} 160 166)`);
+      return;
+    }
+    let start = null;
+    const step = (timestamp) => {
+      if (start === null) start = timestamp;
+      const fraction = Math.min((timestamp-start)/750,1);
+      const eased = 1-Math.pow(1-fraction,3);
+      needle.setAttribute('transform', `rotate(${(target*eased).toFixed(3)} 160 166)`);
+      animationHandle = fraction < 1 ? requestAnimationFrame(step) : null;
+    };
+    animationHandle = requestAnimationFrame(step);
+  }
+
+  function statusForAdult(bmi) {
+    if (bmi < 16) return {text:'Severe Thinness',tone:'danger'};
+    if (bmi < 17) return {text:'Moderate Thinness',tone:'danger'};
+    if (bmi < 18.5) return {text:'Mild Thinness',tone:'warn'};
+    if (bmi < 25) return {text:'Normal',tone:'normal'};
+    if (bmi < 30) return {text:'Overweight',tone:'warn'};
+    if (bmi < 35) return {text:'Obese Class I',tone:'danger'};
+    if (bmi < 40) return {text:'Obese Class II',tone:'danger'};
+    return {text:'Obese Class III',tone:'danger'};
+  }
+  function appendDetail(label, value) {
+    const li=document.createElement('li');
+    li.textContent = `${label}: ${value}`;
+    details.appendChild(li);
+  }
+  function showError(text) { message.textContent=text; message.hidden=false; }
+  function hideError() {message.hidden=true;message.textContent='';}
+  function clearResults() {
+    if (animationHandle !== null) cancelAnimationFrame(animationHandle);
+    animationHandle=null;
+    needle.setAttribute('transform','rotate(0 160 166)');
+    summary.textContent='Enter your measurements and click Calculate.';
+    gauge.hidden=true;details.replaceChildren();childNote.hidden=true;childNote.textContent='';
+    save.disabled=true;
+    lastResult=null;
+  }
+  function updateResult(measurement) {
+    const {age,height,weight} = measurement;
+    const bmi = weight/(height*height);
+    const pi = weight/(height*height*height);
+    const isChild = age < 20;
+    const status = isChild ? {text:'BMI-for-age assessment',tone:'child'} : statusForAdult(bmi);
+    summary.replaceChildren();
+    const reading = document.createElement('strong');
+    reading.textContent = `BMI = ${roundDisplay(bmi)} kg/m²`;
+    const category = document.createElement('strong');
+    category.className = 'calcpro-bmi-status calcpro-bmi-status-'+status.tone;
+    category.textContent = `(${status.text})`;
+    summary.append(reading,document.createTextNode(' '),category);
+    details.replaceChildren();
+    gaugeReading.textContent = `BMI = ${roundDisplay(bmi)}`;
+    gauge.hidden = isChild;
+    childNote.hidden = !isChild;
+    if (isChild) {
+      appendDetail('BMI', `${roundDisplay(bmi)} kg/m²`);
+      appendDetail('Ponderal Index', `${roundDisplay(pi)} kg/m³`);
+      childNote.replaceChildren(document.createTextNode('For ages 2–19, BMI categories depend on exact age (in months) and sex. Adult BMI categories and healthy-weight ranges do not apply. For a BMI-for-age percentile, use the '));
+      const link = document.createElement('a');
+      link.href='https://www.cdc.gov/bmi/child-teen-calculator/calculator.html';
+      link.target='_blank';link.rel='noopener noreferrer';link.textContent='CDC Child and Teen BMI Calculator';
+      childNote.append(link,document.createTextNode('.'));
+    } else {
+      animateNeedle(bmi);
+      const factor = mode === 'us' ? 1/KG_PER_POUND : 1;
+      const unit = mode === 'us' ? 'lbs' : 'kg';
+      appendDetail('Healthy BMI range','18.5 kg/m² – 25 kg/m²');
+      appendDetail('Healthy weight for the height',`${roundDisplay(18.5*height*height*factor)} ${unit} – ${roundDisplay(25*height*height*factor)} ${unit}`);
+      if (bmi < 18.5) appendDetail('Gain to reach BMI 18.5',`${roundDisplay((18.5*height*height-weight)*factor)} ${unit}`);
+      if (bmi >= 25) appendDetail('Lose to reach BMI 25',`${roundDisplay((weight-25*height*height)*factor)} ${unit}`);
+      appendDetail('BMI Prime',roundDisplay(bmi/25,2));
+      appendDetail('Ponderal Index',`${roundDisplay(pi)} kg/m³`);
+    }
+    lastResult={...measurement,bmi,pi,status:status.text};
+    save.disabled=false;
+  }
+  function calculate(event) {
+    if(event) event.preventDefault();
+    hideError();
+    try {updateResult(readMeasurements());}
+    catch (error) { clearResults();showError(error.message || 'Please check your measurements.'); }
+    return false;
+  }
+  form.addEventListener('submit',calculate);
+  get('clear').addEventListener('click', () => {
+    root.querySelectorAll('input[type="number"]').forEach(input=>{ input.value=''; });
+    form.querySelector('input[name="calcpro-bmi-sex"][value="m"]').checked=true;
+    clearResults();hideError();
+  });
+  get('print').addEventListener('click', () => window.print());
+  save.addEventListener('click', () => {
+    if (!lastResult) {showError('Calculate your BMI before saving a result.');return;}
+    const d=lastResult;
+    const content = `CalcPro BMI calculation\nAge: ${d.age} years\nGender: ${d.sex==='m'?'Male':'Female'}\nHeight: ${roundDisplay(d.height*100,3)} cm\nWeight: ${roundDisplay(d.weight,3)} kg\nBMI: ${roundDisplay(d.bmi)} kg/m²\nCategory: ${d.status}\nPonderal Index: ${roundDisplay(d.pi)} kg/m³\n`;
+    const url=URL.createObjectURL(new Blob([content],{type:'text/plain;charset=utf-8'}));
+    const a=document.createElement('a');a.href=url;a.download='calcpro-bmi-result.txt';
+    document.body.appendChild(a);a.click();a.remove();
+    setTimeout(()=>URL.revokeObjectURL(url),1000);
+  });
+  calculate();
+})();
+
+</script><script defer src="/assets/js/data.js"></script>
+<script defer src="/assets/js/style.js?v=20261111-5"></script>
+</body></html>

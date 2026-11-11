@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US">
-<head>
-<meta charset="utf-8">
+<html lang="en"><head><meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="content-language" content="en">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,17 +11,344 @@
   <meta name="author" content="Commingsoon">
   <meta name="publisher" content="Commingsoon">
   <meta name="robots" content="noindex, nofollow, max-image-preview:large">
-  <link rel="stylesheet" href="/assets/css/style.css?v=20261111-1" crossorigin="anonymous" data-n-g="">
+  <link rel="stylesheet" href="/assets/css/style.css?v=20261111-4" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/doc_style.css" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/side_style.css" crossorigin="anonymous" data-n-g=""> 
   <!--ogtags-->
-  <!--schema-->
-  <!--style-->
-</head>
+  <!--schema--><style>
+/* One Rep Max calculator styles: isolated from CalcPro's global cp-* styles. */
+.calcpro-orm{font:16px/1.4 Arial,Helvetica,sans-serif;color:#111;max-width:100%;min-width:0}
+.calcpro-orm *{box-sizing:border-box}
+.calcpro-orm [hidden]{display:none!important}
+.calcpro-orm button,.calcpro-orm input,.calcpro-orm select{font:inherit}
+.calcpro-orm button{cursor:pointer}
+.calcpro-orm a{color:#006699}
+.calcpro-orm .calcpro-orm-instruction{background:#35699a;color:white;padding:7px 10px;display:flex;justify-content:center;align-items:center;gap:12px;min-height:36px;font-size:15px;text-align:center;margin:0 0 4px}
+.calcpro-orm .calcpro-orm-instruction-symbol{display:inline-grid;place-items:center;flex-shrink:0;color:#35699a;background:#fff;width:24px;height:24px;border-radius:50%;font-weight:bold;font-size:16px}
+.calcpro-orm .calcpro-orm-result{margin:0 0 14px}
+.calcpro-orm .calcpro-orm-result-bar{display:flex;align-items:center;justify-content:space-between;min-height:36px;padding:5px 8px;background:#4d842c;color:#fff;font-size:20px}
+.calcpro-orm .calcpro-orm-save{border:0;background:transparent;color:#fff;font-size:12px;display:flex;flex-direction:column;gap:0;align-items:center;padding:0 3px;line-height:1}
+.calcpro-orm .calcpro-orm-save svg{width:19px;height:19px;stroke:currentColor;stroke-width:1.5}
+.calcpro-orm .calcpro-orm-result-value{margin:11px 0 20px;font-size:20px;line-height:1.4}
+.calcpro-orm .calcpro-orm-result-value strong{font-weight:700}
+.calcpro-orm .calcpro-orm-result-caption{font-size:17px;font-weight:700;margin:10px 0 2px}
+.calcpro-orm .calcpro-orm-chart-holder{max-width:535px;margin:2px auto 8px;position:relative}
+.calcpro-orm .calcpro-orm-chart{width:100%;height:auto;display:block;overflow:visible}
+.calcpro-orm .calcpro-orm-chart text{fill:#222;font-family:Arial,Helvetica,sans-serif}
+.calcpro-orm .calcpro-orm-chart .calcpro-orm-gridline{stroke:#cbd1d7;stroke-width:1}
+.calcpro-orm .calcpro-orm-chart .calcpro-orm-axisline{stroke:#88929d;stroke-width:1}
+.calcpro-orm .calcpro-orm-chart .calcpro-orm-bar{fill:#2f7ed7}
+.calcpro-orm .calcpro-orm-table-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px;justify-items:center;align-items:start;margin:10px 0 16px}
+.calcpro-orm .calcpro-orm-table-wrapper{max-width:100%;overflow-x:auto}
+.calcpro-orm table.calcpro-orm-data-table{border-collapse:collapse;white-space:nowrap;font-size:14px;min-width:228px;margin:0 auto}
+.calcpro-orm .calcpro-orm-data-table th{color:#fff;background:#336699;border:1px solid #6f879e;text-align:center;font-weight:bold;padding:4px 5px;line-height:1.3}
+.calcpro-orm .calcpro-orm-data-table td{padding:3px 6px;text-align:center;line-height:1.2;border:1px solid #c8c8c8}
+.calcpro-orm .calcpro-orm-data-table tbody tr:nth-child(even){background:#ebebeb}
+.calcpro-orm .calcpro-orm-details-note{margin:9px 0 14px;font-size:12px;color:#606060;line-height:1.5}
+.calcpro-orm .calcpro-orm-panel{display:table;border:1px solid #bdbdbd;background:#efefef;padding:7px 8px 7px;margin:0;max-width:100%}
+.calcpro-orm .calcpro-orm-form-grid{display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:5px;row-gap:5px;align-items:center}
+.calcpro-orm .calcpro-orm-field-label{white-space:nowrap;font-size:14px}
+.calcpro-orm .calcpro-orm-control-line{display:flex;align-items:center;gap:4px;flex-wrap:wrap}
+.calcpro-orm .calcpro-orm-number{width:88px;height:30px;border:1px solid #7d8c9d;box-shadow:0 1px 2px #bbc7d0;border-radius:2px;background:#fff;padding:4px 6px;color:#111;font-size:15px}
+.calcpro-orm .calcpro-orm-number:focus,.calcpro-orm select:focus,.calcpro-orm button:focus-visible,.calcpro-orm input:focus-visible{outline:2px solid #23639f;outline-offset:2px}
+.calcpro-orm .calcpro-orm-select{min-height:30px;border:1px solid #7d8c9d;background:white;padding:3px 5px;color:#111;font-size:14px;box-shadow:0 1px 2px #bbc7d0;max-width:130px}
+.calcpro-orm .calcpro-orm-unit-caption{font-size:14px;margin:0 0 0 2px;color:#000}
+.calcpro-orm .calcpro-orm-repeat-wrap{display:flex;align-items:center;position:relative}
+.calcpro-orm .calcpro-orm-repeat-wrap .calcpro-orm-number{width:115px;padding-right:47px}
+.calcpro-orm .calcpro-orm-times{position:absolute;right:8px;color:#888;font-size:13px;pointer-events:none}
+.calcpro-orm .calcpro-orm-settings-line{grid-column:1/-1;text-align:center;margin:5px 0 0}
+.calcpro-orm .calcpro-orm-settings-toggle{border:0;background:transparent;padding:3px 2px;color:#006699;font-size:14px;font-weight:700;text-decoration:underline}
+.calcpro-orm .calcpro-orm-settings{grid-column:1/-1;padding:5px 5px 2px;font-size:14px}
+.calcpro-orm .calcpro-orm-settings-title{font-weight:700;margin:8px 0 4px}
+.calcpro-orm .calcpro-orm-radio-row{display:flex;gap:10px;flex-wrap:wrap;margin-left:15px}
+.calcpro-orm .calcpro-orm-radio-row label{display:inline-flex;align-items:center;gap:5px;cursor:pointer}
+.calcpro-orm .calcpro-orm-radio-row input{margin:0;accent-color:#336699}
+.calcpro-orm .calcpro-orm-radio-stack{display:grid;gap:4px;margin:0 0 7px 15px}
+.calcpro-orm .calcpro-orm-radio-stack label{display:flex;align-items:center;gap:6px;cursor:pointer}
+.calcpro-orm .calcpro-orm-radio-stack input{margin:0;accent-color:#336699}
+.calcpro-orm .calcpro-orm-buttons{grid-column:1/-1;display:flex;justify-content:center;gap:4px;margin:3px 0 0}
+.calcpro-orm .calcpro-orm-calculate{color:#fff;background:#458323;border:0;font-weight:bold;padding:8px 12px 8px 14px;min-height:38px;display:inline-flex;align-items:center;gap:10px;font-size:14px}
+.calcpro-orm .calcpro-orm-play{display:inline-grid;place-items:center;background:#a6c29a;color:#fff;width:20px;height:20px;border-radius:50%;font-size:12px}
+.calcpro-orm .calcpro-orm-clear{color:#fff;background:#aaa;border:0;font-size:14px;padding:8px 10px;min-height:38px}
+.calcpro-orm .calcpro-orm-error{color:#a12020;background:#fff3f3;border:1px solid #e0a2a2;padding:7px 9px;margin:0 0 9px;font-size:14px;max-width:440px}
+.calcpro-orm .calcpro-orm-notice{font-size:13px;color:#27602b;margin:6px 0}
+.calcpro-orm .calcpro-orm-view-saved{margin-top:10px;color:#006699;background:transparent;border:0;text-decoration:underline;font-weight:600;padding:2px 0;font-size:13px}
+.calcpro-orm .calcpro-orm-history{margin:8px 0 14px;border:1px solid #c2cdd8;background:#f8fafb;padding:9px;max-width:100%}
+.calcpro-orm .calcpro-orm-history h3{font-size:16px;margin:0 0 6px;color:#125217}
+.calcpro-orm .calcpro-orm-history-list{padding-left:18px;margin:8px 0 10px;font-size:13px}
+.calcpro-orm .calcpro-orm-history-list li{margin:5px 0}
+.calcpro-orm .calcpro-orm-history-delete,.calcpro-orm .calcpro-orm-history-clear{border:1px solid #b2bbc2;background:#fff;color:#444;border-radius:2px;font-size:12px;padding:2px 5px;margin-left:6px}
+.calcpro-orm .calcpro-orm-muted{color:#555;font-size:13px}
+@media(max-width:600px){.calcpro-orm .calcpro-orm-table-layout{gap:12px}.calcpro-orm table.calcpro-orm-data-table{min-width:0;font-size:12px}.calcpro-orm .calcpro-orm-data-table td,.calcpro-orm .calcpro-orm-data-table th{padding:4px 3px}.calcpro-orm .calcpro-orm-chart-holder{max-width:100%}.calcpro-orm .calcpro-orm-result-value{font-size:18px}}
+@media(max-width:465px){.calcpro-orm .calcpro-orm-table-layout{grid-template-columns:1fr;justify-items:start;gap:14px}.calcpro-orm .calcpro-orm-data-table{font-size:14px!important}.calcpro-orm .calcpro-orm-data-table td,.calcpro-orm .calcpro-orm-data-table th{padding:4px 6px}.calcpro-orm .calcpro-orm-panel{width:100%;display:block}.calcpro-orm .calcpro-orm-instruction{font-size:13px}}
+@media(max-width:355px){.calcpro-orm .calcpro-orm-form-grid{grid-template-columns:1fr;gap:4px}.calcpro-orm .calcpro-orm-field-label{margin-top:4px}.calcpro-orm .calcpro-orm-unit-caption{font-size:13px}}
+@media print{.calcpro-orm .calcpro-orm-panel,.calcpro-orm .calcpro-orm-instruction,.calcpro-orm .calcpro-orm-save,.calcpro-orm .calcpro-orm-view-saved,.calcpro-orm .calcpro-orm-history{display:none!important}.calcpro-orm .calcpro-orm-result{display:block!important}.calcpro-orm .calcpro-orm-data-table th{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
 
-<body>
-<!-- Main-header-page -->
-<script defer src="/assets/js/data.js"></script>
-<script defer src="/assets/js/style.js?v=20261111-1"></script>
-</body>
-</html>
+</style>
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="fitness-and-health-calculator.html">Fitness &amp; Health</a> / One Rep Max Calculator</nav><h1 class="cp-page-title">One Rep Max Calculator</h1><p class="cp-intro">Estimate the maximum weight you can lift for a single repetition (1RM) from a set of 1–10 completed repetitions. Enter your lifted weight and rep count, then explore estimated working weights, percentages of your 1RM, and training-load charts. See the <a href="#calcpro-orm-estimation-methods">estimation methods</a> below.</p><section aria-label="Calculator" class="cp-tool-area"><div class="calcpro-orm" id="calcpro-orm-root">
+  <div class="calcpro-orm-error" id="calcpro-orm-error" role="alert" hidden></div>
+  <section class="calcpro-orm-result" id="calcpro-orm-results" aria-label="One rep max calculation results" aria-live="polite" hidden>
+    <div class="calcpro-orm-result-bar"><span>Result</span>
+      <button type="button" class="calcpro-orm-save" id="calcpro-orm-save" title="Save this estimate in this browser" aria-label="Save this estimate">
+        <svg viewBox="0 0 24 24" aria-hidden="true" fill="none"><path d="M4 3h13l3 3v15H4z" stroke="currentColor" stroke-linejoin="round"/><path d="M7 3v7h9V3M8 21v-8h9v8" stroke="currentColor"/><path d="M11 16h3" stroke="currentColor"/></svg><span>save</span>
+      </button>
+    </div>
+    <p class="calcpro-orm-result-value">Estimated one rep max: <strong id="calcpro-orm-max-value"></strong></p>
+    <h2 class="calcpro-orm-result-caption">Estimated max reps</h2>
+    <div class="calcpro-orm-chart-holder"><svg class="calcpro-orm-chart" id="calcpro-orm-chart" viewBox="0 0 560 248" role="img" aria-label="Bar chart of estimated maximum lifted weight for one to twenty repetitions"></svg></div>
+    <div class="calcpro-orm-table-layout">
+      <div class="calcpro-orm-table-wrapper"><table class="calcpro-orm-data-table"><thead><tr><th scope="col">Repetitions</th><th scope="col">Weight</th><th scope="col">% of 1RM</th></tr></thead><tbody id="calcpro-orm-reps-table"></tbody></table></div>
+      <div class="calcpro-orm-table-wrapper"><table class="calcpro-orm-data-table"><thead><tr><th scope="col">% of 1RM</th><th scope="col">Weight</th><th scope="col">Repetitions</th></tr></thead><tbody id="calcpro-orm-percent-table"></tbody></table></div>
+    </div>
+    <p class="calcpro-orm-details-note" id="calcpro-orm-method-note"></p>
+    <div class="calcpro-orm-notice" id="calcpro-orm-save-notice" role="status" hidden></div>
+  </section>
+  <div class="calcpro-orm-instruction" id="calcpro-orm-instruction"><span class="calcpro-orm-instruction-symbol" aria-hidden="true">▼</span><span>Modify the values and click the Calculate button to use</span></div>
+  <form id="calcpro-orm-form" novalidate>
+    <div class="calcpro-orm-panel">
+      <div class="calcpro-orm-form-grid">
+        <label class="calcpro-orm-field-label" for="calcpro-orm-weight">Weight Lifted</label>
+        <div class="calcpro-orm-control-line"><input class="calcpro-orm-number" id="calcpro-orm-weight" name="calcpro-orm-weight" type="number" inputmode="decimal" min="0.000001" max="1000000" step="any" value="100" required><select class="calcpro-orm-select" id="calcpro-orm-input-unit" name="calcpro-orm-input-unit" aria-label="Weight lifted unit"><option value="kg" selected>kilograms</option><option value="lb">pounds</option></select></div>
+        <label class="calcpro-orm-field-label" for="calcpro-orm-repetitions">Repeated</label>
+        <div class="calcpro-orm-control-line"><div class="calcpro-orm-repeat-wrap"><input class="calcpro-orm-number" id="calcpro-orm-repetitions" name="calcpro-orm-repetitions" type="number" inputmode="numeric" min="1" max="10" step="1" value="5" required><span class="calcpro-orm-times" aria-hidden="true">times</span></div><span class="calcpro-orm-unit-caption">(1–10)</span></div>
+        <div class="calcpro-orm-settings-line"><button class="calcpro-orm-settings-toggle" id="calcpro-orm-settings-toggle" type="button" aria-controls="calcpro-orm-settings" aria-expanded="false">+ Settings</button></div>
+        <div class="calcpro-orm-settings" id="calcpro-orm-settings" hidden>
+          <div class="calcpro-orm-settings-title">Desired unit:</div>
+          <div class="calcpro-orm-radio-row"><label><input type="radio" name="calcpro-orm-output-unit" value="kg" checked> Kilogram</label><label><input type="radio" name="calcpro-orm-output-unit" value="lb"> Pound</label></div>
+          <div class="calcpro-orm-settings-title">1RM estimation formula: <a href="#calcpro-orm-estimation-methods" title="Read about the estimation formulas" aria-label="Learn about the estimation formulas">ⓘ</a></div>
+          <div class="calcpro-orm-radio-stack"><label><input type="radio" name="calcpro-orm-formula" value="e" checked> Epley</label><label><input type="radio" name="calcpro-orm-formula" value="b"> Brzycki</label><label><input type="radio" name="calcpro-orm-formula" value="l"> Lombardi</label></div>
+        </div>
+        <div class="calcpro-orm-buttons"><button type="submit" class="calcpro-orm-calculate">Calculate <span class="calcpro-orm-play" aria-hidden="true">▶</span></button><button type="button" class="calcpro-orm-clear" id="calcpro-orm-clear">Clear</button></div>
+      </div>
+    </div>
+  </form>
+  <button type="button" class="calcpro-orm-view-saved" id="calcpro-orm-view-saved" aria-controls="calcpro-orm-history" aria-expanded="false">Saved estimates (<span id="calcpro-orm-saved-count">0</span>)</button>
+  <section class="calcpro-orm-history" id="calcpro-orm-history" aria-label="Locally saved estimates" hidden>
+    <h3>Saved one rep max estimates</h3><p class="calcpro-orm-muted">These entries are stored only in this browser on this device.</p>
+    <ol class="calcpro-orm-history-list" id="calcpro-orm-history-list"></ol>
+    <button type="button" class="calcpro-orm-history-clear" id="calcpro-orm-history-clear" hidden>Clear saved estimates</button>
+  </section>
+</div></section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><a href="bmi-calculator.html">BMI</a><a href="body-fat-calculator.html">Body Fat</a><a href="calorie-calculator.html">Calorie</a><a href="bmr-calculator.html">BMR</a><a href="ideal-weight-calculator.html">Ideal Weight</a><a href="macro-calculator.html">Macro</a><a href="army-body-fat-calculator.html">Army Body Fat</a><a href="protein-calculator.html">Protein</a><a href="lean-body-mass-calculator.html">Lean Body Mass</a><a href="tdee-calculator.html">TDEE</a><a href="calories-burned-calculator.html">Calories Burned</a><a href="pace-calculator.html">Pace</a></div></section></aside><article class="cp-article"><h2>How to Use This One Rep Max Calculator</h2>
+<p>Enter the weight you successfully lifted and the number of complete repetitions (between 1 and 10). Choose kilograms or pounds for the weight you entered. Select <strong>Calculate</strong> to see your estimated single-repetition maximum and the corresponding weight-to-repetition chart and tables.</p>
+<p>Open <strong>Settings</strong> to choose an output unit independently from the entered weight and to switch between the Epley, Brzycki, and Lombardi methods. Switching the input unit converts the entered numerical load so it represents the same physical weight. Press <strong>Clear</strong> to restore the default inputs. The save icon beside the result keeps a record locally in your browser; saved estimates can be reviewed or deleted from the link below the form.</p>
+<h2 id="calcpro-orm-estimation-methods">Estimation Methods and Formulas</h2>
+<p>A <strong>one-repetition maximum (1RM)</strong> is the heaviest load you can lift once with good technique for a particular exercise. These methods estimate it from a lighter set. Define <em>W</em> as the weight lifted and <em>r</em> as the number of completed repetitions.</p>
+<div class="cp-table-scroll"><table class="cp-content-table"><thead><tr><th scope="col">Method</th><th scope="col">Estimated 1RM</th><th scope="col">Notes</th></tr></thead><tbody><tr><td>Epley (default)</td><td>W × (1 + r / 30)</td><td>A frequently used linear estimate.</td></tr><tr><td>Brzycki</td><td>W × 36 / (37 − r)</td><td>Yields a different estimate except at some repetition counts.</td></tr><tr><td>Lombardi</td><td>W × r<sup>0.10</sup></td><td>Uses a power function.</td></tr></tbody></table></div>
+<p>When you record exactly one successful repetition, the calculator returns that observed lift as your 1RM for every method. The chart and tables reverse the selected equation to estimate how much weight corresponds to another number of repetitions. The percentage table estimates whole repetitions by rounding down the inverse calculation, with a minimum of one repetition.</p>
+<h3>Worked Example: 100 kg for 5 Repetitions</h3>
+<p>Using the default Epley method, <strong>1RM = 100 × (1 + 5/30) = 116.7 kg</strong> (rounded to one decimal place). An estimated 5-rep maximum is 100.0 kg, and 80% of the estimated 1RM is approximately 93.3 kg. The Brzycki method instead gives 112.5 kg, while Lombardi gives approximately 117.5 kg.</p>
+<h2>Understanding Your Results</h2>
+<h3>Estimated Maximum Repetitions Chart</h3>
+<p>The bar chart predicts the maximum load for sets of 1 through 20 repetitions, using the selected model. The first table gives predicted loads for selected rep targets and their percentage of 1RM. The second shows loads from 100% down to 50% of 1RM alongside estimated repetition counts. Values are rounded for readability and are not a guarantee of actual performance.</p>
+<div class="cp-note"><strong>Accuracy note:</strong> These equations are best used with a challenging set of 1–10 technically sound repetitions. Predictions for higher repetition counts shown in the chart and tables are mathematical extrapolations and generally less dependable.</div>
+<h2>Frequently Asked Questions</h2>
+<h3>Is a calculated 1RM the same as a tested one-rep maximum?</h3>
+<p>No. A calculated 1RM predicts performance using a submaximal set; a tested 1RM is observed by actually completing a single heavy repetition. Fatigue, exercise technique, training experience, and the chosen formula can affect an estimate.</p>
+<h3>Can I enter pounds and receive kilograms?</h3>
+<p>Yes. Choose pounds beside the lifted weight, open Settings, and select Kilogram as the desired output unit. The calculator uses the exact conversion 1 lb = 0.45359237 kg for the calculation and displays results to one decimal place.</p>
+<h3>Why are there predictions beyond the 10-repetition input limit?</h3>
+<p>The input limit supports more reliable 1RM estimation. The output chart and training tables extend to higher repetition counts to illustrate how the selected model behaves; these are less certain projections.</p>
+<h3>How should I use these loads safely?</h3>
+<p>Use the outputs as planning benchmarks rather than strict targets. Progress gradually and prioritize consistent technique. If you attempt a heavy single, use appropriate safety equipment and qualified supervision where applicable.</p>
+<h2>Sources and Further Reading</h2>
+<p>For additional context on the calculation methods and their use, see <a href="https://www.calculator.net/one-rep-max-calculator.html" rel="noopener noreferrer" target="_blank">Calculator.net — One Rep Max Calculator</a>, the calculator used as the visual and functional reference for this implementation.</p>
+<p class="cp-page-footer">CalcPro — 1RM estimates are for educational and training-planning purposes only and are not individualized medical or coaching advice.</p></article></main></div><script>(() => {
+  'use strict';
+  const root = document.getElementById('calcpro-orm-root');
+  if (!root) return;
+  const $ = (id) => root.querySelector('#' + id);
+  const form = $('calcpro-orm-form');
+  const weightEl = $('calcpro-orm-weight');
+  const repsEl = $('calcpro-orm-repetitions');
+  const unitEl = $('calcpro-orm-input-unit');
+  const result = $('calcpro-orm-results');
+  const errorEl = $('calcpro-orm-error');
+  const kgToPound = 2.2046226218487757;
+  const historyKey = 'calcpro-one-rep-max-estimates-v1';
+  const rowReps = [1,2,3,4,5,6,7,8,9,10,12,14,16,18,20];
+  const percentages = [100,95,90,85,80,75,70,65,60,55,50];
+  const formulaNames = {e:'Epley', b:'Brzycki', l:'Lombardi'};
+  let current = null;
+  let previousInputUnit = 'kg';
+  const getRadio = (name) => form.querySelector('input[name="' + name + '"]:checked').value;
+  const getOutputUnit = () => getRadio('calcpro-orm-output-unit');
+  const getMethod = () => getRadio('calcpro-orm-formula');
+  const toKg = (x, unit) => unit === 'kg' ? x : x / kgToPound;
+  const fromKg = (x, unit) => unit === 'kg' ? x : x * kgToPound;
+  const fmt = (x) => Number(x).toLocaleString('en-US', {minimumFractionDigits:1,maximumFractionDigits:1});
+  const showError = (message) => {errorEl.textContent = message; errorEl.hidden = false;};
+  const clearError = () => {errorEl.hidden = true; errorEl.textContent = '';};
+  const fmtEntered = (value) => Number(value.toFixed(value < 0.1 ? 8 : value < 1 ? 6 : 4)).toString();
+
+  // One completed repetition is, by definition, the observed 1RM.
+  function estimateMax(weight, reps, method){
+    if (reps === 1) return weight;
+    if (method === 'b') return weight * 36 / (37 - reps);
+    if (method === 'l') return weight * Math.pow(reps, 0.1);
+    return weight * (1 + reps/30);
+  }
+  function estimatedLoad(max, reps, method){
+    if (reps === 1) return max;
+    if (method === 'b') return max * (37-reps) / 36;
+    if (method === 'l') return max / Math.pow(reps, 0.1);
+    return max / (1 + reps/30);
+  }
+  function repsAtPercentage(pct, method){
+    if (pct === 100) return 1;
+    const p = pct/100;
+    const estimate = method === 'b' ? 37 - 36*p : method === 'l' ? Math.pow(p, -10) : 30*(1/p-1);
+    return Math.max(1,Math.floor(estimate + 1e-9));
+  }
+  function niceStep(max){
+    const rough = max / 5;
+    const power = Math.pow(10, Math.floor(Math.log10(rough)));
+    const r = rough / power;
+    return (r <= 1 ? 1 : r <= 2 ? 2 : r <= 2.5 ? 2.5 : r <= 5 ? 5 : 10) * power;
+  }
+  function svgElement(tag, attrs, text){
+    const el=document.createElementNS('http://www.w3.org/2000/svg',tag);
+    for(const k of Object.keys(attrs)) el.setAttribute(k,String(attrs[k]));
+    if(text!==undefined) el.textContent=String(text);
+    return el;
+  }
+  function renderChart(max, unit, method){
+    const svg=$('calcpro-orm-chart');
+    svg.replaceChildren();
+    svg.setAttribute('aria-label','Estimated maximum lifted weight by repetitions, from 1 to 20, in '+(unit==='kg'?'kilograms':'pounds'));
+    const x0=105, y0=15, plotH=174, plotW=383, bottom=y0+plotH;
+    const step=niceStep(max);
+    const top=Math.ceil(max/step)*step;
+    for(let tick=0;tick<=Math.round(top/step);tick++){
+      const v=tick*step, y=bottom-plotH*v/top;
+      svg.append(svgElement('line',{x1:x0,y1:y,x2:x0+plotW,y2:y,class:'calcpro-orm-gridline'}));
+      const tickLabel=Number(v.toFixed(3)).toLocaleString('en-US',{maximumFractionDigits:2});
+      svg.append(svgElement('text',{x:x0-12,y:y+4,'text-anchor':'end','font-size':12},tickLabel+' '+unit));
+    }
+    svg.append(svgElement('line',{x1:x0,y1:y0,x2:x0,y2:bottom,class:'calcpro-orm-axisline'}));
+    svg.append(svgElement('line',{x1:x0,y1:bottom,x2:x0+plotW,y2:bottom,class:'calcpro-orm-axisline'}));
+    const slot=plotW/20, barW=slot*0.53;
+    for(let reps=1;reps<=20;reps++){
+      const val=estimatedLoad(max,reps,method), barH=Math.max(0,plotH*val/top);
+      const bar=svgElement('rect',{x:x0+(reps-1)*slot+(slot-barW)/2,y:bottom-barH,width:barW,height:barH,class:'calcpro-orm-bar'});
+      bar.append(svgElement('title',{},reps+' '+(reps===1?'rep':'reps')+': '+fmt(val)+' '+unit));
+      svg.append(bar);
+    }
+    for(const rep of [5,10,15,20]) svg.append(svgElement('text',{x:x0+(rep-0.5)*slot,y:bottom+16,'text-anchor':'middle','font-size':12},rep));
+    svg.append(svgElement('text',{x:x0+plotW/2,y:238,'text-anchor':'middle','font-size':16},'Repetitions'));
+    svg.append(svgElement('text',{x:25,y:y0+plotH/2,'text-anchor':'middle','font-size':15,transform:'rotate(-90 25 '+(y0+plotH/2)+')'},'Weight'));
+  }
+  function drawResults(weightInput,reps,weightUnit,outputUnit,method){
+    const maxKg=estimateMax(toKg(weightInput,weightUnit),reps,method);
+    const max=fromKg(maxKg,outputUnit);
+    $('calcpro-orm-max-value').textContent=fmt(max)+' '+outputUnit;
+    const repsTable=$('calcpro-orm-reps-table');
+    const percentTable=$('calcpro-orm-percent-table');
+    repsTable.replaceChildren(); percentTable.replaceChildren();
+    function addRow(tbody, columns){
+      const tr=document.createElement('tr');
+      columns.forEach(value=>{const td=document.createElement('td');td.textContent=value;tr.appendChild(td);});
+      tbody.appendChild(tr);
+    }
+    rowReps.forEach(r=>{
+      const load=estimatedLoad(max,r,method);
+      addRow(repsTable,[String(r),fmt(load)+' '+outputUnit,Math.round(100*load/max)+'%']);
+    });
+    percentages.forEach(pct=>{
+      addRow(percentTable,[pct+'%',fmt(max*pct/100)+' '+outputUnit,String(repsAtPercentage(pct,method))]);
+    });
+    renderChart(max,outputUnit,method);
+    $('calcpro-orm-method-note').textContent='Estimates use the '+formulaNames[method]+' equation. Repetitions in the percentage table are rounded down to whole reps; loads are rounded to one decimal place. Estimates above 10 reps are extrapolations.';
+    $('calcpro-orm-instruction').hidden=true;
+    result.hidden=false;
+    $('calcpro-orm-save-notice').hidden=true;
+    current={input:weightInput,inputUnit:weightUnit,reps:reps,outputUnit:outputUnit,method:method,maxKg:maxKg};
+  }
+  function calculate(event){
+    if(event) event.preventDefault();
+    clearError();
+    const rawWeight=weightEl.value.trim(), rawReps=repsEl.value.trim();
+    const weight=Number(rawWeight), reps=Number(rawReps);
+    if (!rawWeight || !Number.isFinite(weight) || weight<=0 || weight>1000000){
+      showError('Enter a valid weight greater than 0 and no more than 1,000,000.');weightEl.focus();return;
+    }
+    if (!rawReps || !Number.isInteger(reps) || reps<1 || reps>10){
+      showError('Enter a whole number of repetitions between 1 and 10.');repsEl.focus();return;
+    }
+    drawResults(weight,reps,unitEl.value,getOutputUnit(),getMethod());
+  }
+  function clearCalculator(){
+    form.reset();previousInputUnit='kg';
+    $('calcpro-orm-settings').hidden=true;
+    $('calcpro-orm-settings-toggle').textContent='+ Settings';
+    $('calcpro-orm-settings-toggle').setAttribute('aria-expanded','false');
+    current=null;result.hidden=true;
+    $('calcpro-orm-instruction').hidden=false;
+    $('calcpro-orm-save-notice').hidden=true;
+    clearError();
+  }
+  form.addEventListener('submit',calculate);
+  $('calcpro-orm-clear').addEventListener('click',clearCalculator);
+  $('calcpro-orm-settings-toggle').addEventListener('click',()=>{
+    const content=$('calcpro-orm-settings'), expanded=content.hidden;
+    content.hidden=!expanded;
+    $('calcpro-orm-settings-toggle').textContent=(expanded?'-':'+')+' Settings';
+    $('calcpro-orm-settings-toggle').setAttribute('aria-expanded',String(expanded));
+  });
+  unitEl.addEventListener('change',()=>{
+    const val=Number(weightEl.value);
+    if(weightEl.value.trim() && Number.isFinite(val) && val>0){
+      const converted=fromKg(toKg(val,previousInputUnit),unitEl.value);
+      weightEl.value=fmtEntered(converted);
+    }
+    previousInputUnit=unitEl.value;
+    clearError();
+  });
+  function readHistory(){
+    try {const list=JSON.parse(localStorage.getItem(historyKey)||'[]');return Array.isArray(list)?list.filter(x=>x&&Number.isFinite(x.maxKg)).slice(0,25):[];}
+    catch {return [];}
+  }
+  function storeHistory(items){
+    try {localStorage.setItem(historyKey,JSON.stringify(items));return true;}
+    catch {return false;}
+  }
+  function renderHistory(){
+    const items=readHistory(),list=$('calcpro-orm-history-list');
+    $('calcpro-orm-saved-count').textContent=String(items.length);
+    $('calcpro-orm-history-clear').hidden=!items.length;
+    list.replaceChildren();
+    if(!items.length){
+      const li=document.createElement('li');li.textContent='No estimates saved yet.';list.append(li);return;
+    }
+    for(let i=0;i<items.length;i++){
+      const item=items[i],li=document.createElement('li');
+      const unit=item.outputUnit==='lb'?'lb':'kg',value=fromKg(item.maxKg,unit);
+      const when=new Date(item.savedAt);
+      const date=Number.isFinite(when.valueOf())?when.toLocaleDateString():'Saved';
+      li.append(document.createTextNode(date+' — '+fmt(value)+' '+unit+' ('+item.input+' '+item.inputUnit+' × '+item.reps+' reps, '+(formulaNames[item.method]||'Epley')+') '));
+      const btn=document.createElement('button');btn.type='button';btn.textContent='Delete';btn.className='calcpro-orm-history-delete';btn.setAttribute('aria-label','Delete saved estimate '+(i+1));
+      btn.addEventListener('click',()=>{const remaining=readHistory();remaining.splice(i,1);if(storeHistory(remaining))renderHistory();else showError('Unable to update saved estimates in this browser.');});
+      li.appendChild(btn);list.append(li);
+    }
+  }
+  $('calcpro-orm-save').addEventListener('click',()=>{
+    if(!current)return;
+    const entries=readHistory();entries.unshift({...current,savedAt:new Date().toISOString()});
+    const notice=$('calcpro-orm-save-notice');
+    if(storeHistory(entries.slice(0,25))){notice.textContent='Estimate saved in this browser.';renderHistory();}
+    else {notice.textContent='This browser does not allow local storage. Please copy or print your results instead.';}
+    notice.hidden=false;
+  });
+  $('calcpro-orm-view-saved').addEventListener('click',()=>{
+    const pane=$('calcpro-orm-history');const willOpen=pane.hidden;
+    pane.hidden=!willOpen;$('calcpro-orm-view-saved').setAttribute('aria-expanded',String(willOpen));
+    if(willOpen)renderHistory();
+  });
+  $('calcpro-orm-history-clear').addEventListener('click',()=>{
+    if(confirm('Delete all saved one rep max estimates on this device?')){
+      if(storeHistory([]))renderHistory();else showError('Unable to clear saved estimates in this browser.');
+    }
+  });
+  renderHistory();
+})();</script><script defer src="/assets/js/data.js"></script>
+<script defer src="/assets/js/style.js?v=20261111-5"></script>
+</body></html>
