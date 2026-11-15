@@ -74,6 +74,13 @@ body{margin:0;padding:0;background:#fff}
 .cp-tool-area .calcpro-bra-calc-form .calcpro-bra-button:hover,
 .cp-tool-area .calcpro-height-actions .calcpro-height-button:hover,
 .cp-tool-area #calcpro-speed-form .calcpro-speed-submit:hover{background:#125217!important}
+.cp-tool-area button img.cp-calculate-play-icon{
+  display:inline-block!important;flex:0 0 20px!important;box-sizing:border-box!important;
+  width:20px!important;height:20px!important;margin-left:10px!important;object-fit:contain!important;vertical-align:middle!important
+}
+.cp-tool-area button.cp-calculate-play-hide-before::before,
+.cp-tool-area button.cp-calculate-play-hide-after::after{content:none!important;display:none!important}
+.cp-tool-area button .cp-calculate-play-suppressed{display:none!important}
 .cp-tool-area [class*="result"][class*="head"],
 .cp-tool-area [class*="result"][class*="bar"],
 .cp-tool-area [class*="result"][class*="title"],

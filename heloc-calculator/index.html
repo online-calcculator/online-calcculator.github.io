@@ -11,7 +11,7 @@
   <meta name="author" content="Commingsoon">
   <meta name="publisher" content="Commingsoon">
   <meta name="robots" content="noindex, nofollow, max-image-preview:large">
-  <link rel="stylesheet" href="/assets/css/style.css?v=20261111-4" crossorigin="anonymous" data-n-g="">
+  <link rel="stylesheet" href="/assets/css/style.css?v=20261113-8" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/doc_style.css" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/side_style.css" crossorigin="anonymous" data-n-g=""> 
   <!--ogtags-->
@@ -25,7 +25,8 @@
 .calcpro-heloc .calcpro-heloc-notice{background:var(--heloc-blue);color:#fff;padding:8px 12px;margin:0 0 9px;border-radius:2px;font-size:13px}
 .calcpro-heloc .calcpro-heloc-topgrid,.calcpro-heloc .calcpro-heloc-capgrid{display:grid;grid-template-columns:minmax(230px,0.92fr) minmax(260px,1.15fr);column-gap:18px;row-gap:14px;align-items:start}
 .calcpro-heloc .calcpro-heloc-form-panel{background:#f0f0f0;border:1px solid #d7d7d7;padding:14px 13px 12px;min-width:0}
-.calcpro-heloc .calcpro-heloc-form-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(105px,133px);gap:8px;margin-bottom:9px;align-items:center}
+.calcpro-heloc .calcpro-heloc-form-row{display:grid;grid-template-columns:minmax(0,1fr) 120px;gap:8px;margin-bottom:9px;align-items:center}
+.calcpro-heloc .calcpro-heloc-unit-row{grid-template-columns:minmax(0,1fr) 156px}
 .calcpro-heloc .calcpro-heloc-form-row label{font-size:13p  x}
 .calcpro-heloc .calcpro-heloc-inputwrap{display:flex;align-items:stretch;min-width:0;position:relative}
 .calcpro-heloc .calcpro-heloc-inputwrap>input,.calcpro-heloc .calcpro-heloc-fullinput{min-width:0;max-width:100%;width:100%;height:34px;border:1px solid #7e9cb8;background:#fff;border-radius:2px;padding:6px 8px;color:#14273b;outline-offset:2px}
@@ -95,8 +96,8 @@
 .calcpro-heloc .calcpro-heloc-capresult .calcpro-heloc-zero{font-weight:700;color:#a53030}
 .calcpro-heloc .calcpro-heloc-caption{font-size:11px;color:#647080;line-height:1.5;margin:9px 0}
 .calcpro-heloc [hidden]{display:none!important}
-@media(max-width:650px){.calcpro-heloc .calcpro-heloc-topgrid,.calcpro-heloc .calcpro-heloc-capgrid{grid-template-columns:minmax(0,1fr)}.calcpro-heloc .calcpro-heloc-schedulegrid{grid-template-columns:minmax(0,1fr)}.calcpro-heloc .calcpro-heloc-chartbox{max-width:500px}.calcpro-heloc .calcpro-heloc-tablescroll{max-height:480px}.calcpro-heloc .calcpro-heloc-form-row{grid-template-columns:minmax(0,1fr) minmax(105px,145px)}}
-@media(max-width:390px){.calcpro-heloc .calcpro-heloc-form-panel{padding:11px 10px}.calcpro-heloc .calcpro-heloc-form-row{grid-template-columns:minmax(0,1fr) 118px}.calcpro-heloc .calcpro-heloc-result-title{font-size:16px}.calcpro-heloc .calcpro-heloc-resultline{font-size:12px}}
+@media(max-width:650px){.calcpro-heloc .calcpro-heloc-topgrid,.calcpro-heloc .calcpro-heloc-capgrid{grid-template-columns:minmax(0,1fr)}.calcpro-heloc .calcpro-heloc-schedulegrid{grid-template-columns:minmax(0,1fr)}.calcpro-heloc .calcpro-heloc-chartbox{max-width:500px}.calcpro-heloc .calcpro-heloc-tablescroll{max-height:480px}}
+@media(max-width:390px){.calcpro-heloc .calcpro-heloc-form-panel{padding:11px 10px}.calcpro-heloc .calcpro-heloc-result-title{font-size:16px}.calcpro-heloc .calcpro-heloc-resultline{font-size:12px}}
 @media print{.calcpro-heloc .calcpro-heloc-actions,.calcpro-heloc .calcpro-heloc-title-actions{display:none!important}.calcpro-heloc .calcpro-heloc-tablescroll{max-height:none;overflow:visible}.calcpro-heloc .calcpro-heloc-form-panel{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
 
 </style>
@@ -106,9 +107,9 @@
   <div class="calcpro-heloc-topgrid">
     <form id="calcpro-heloc-pay-form" class="calcpro-heloc-form-panel" novalidate>
       <div class="calcpro-heloc-form-row"><label for="calcpro-heloc-amount">Loan amount</label><div class="calcpro-heloc-inputwrap"><input id="calcpro-heloc-amount" type="text" inputmode="decimal" autocomplete="off" value="50,000" aria-label="Loan amount in dollars"></div></div>
-      <div class="calcpro-heloc-form-row"><label for="calcpro-heloc-rate">Interest rate</label><div class="calcpro-heloc-inputwrap"><input id="calcpro-heloc-rate" type="text" inputmode="decimal" value="8" aria-label="Annual interest rate in percent"><span class="calcpro-heloc-addon">%</span></div></div>
-      <div class="calcpro-heloc-form-row"><label for="calcpro-heloc-draw">Draw period <abbr title="Interest-only phase; assumes the entire amount remains outstanding">ⓘ</abbr></label><div class="calcpro-heloc-inputwrap"><input id="calcpro-heloc-draw" type="text" inputmode="decimal" value="5" aria-label="Draw period in years"><span class="calcpro-heloc-addon">years</span></div></div>
-      <div class="calcpro-heloc-form-row"><label for="calcpro-heloc-repay">Repayment period <abbr title="Phase during which the balance is repaid through monthly principal and interest payments">ⓘ</abbr></label><div class="calcpro-heloc-inputwrap"><input id="calcpro-heloc-repay" type="text" inputmode="decimal" value="15" aria-label="Repayment period in years"><span class="calcpro-heloc-addon">years</span></div></div>
+      <div class="calcpro-heloc-form-row calcpro-heloc-unit-row"><label for="calcpro-heloc-rate">Interest rate</label><div class="calcpro-heloc-inputwrap"><input id="calcpro-heloc-rate" type="text" inputmode="decimal" value="8" aria-label="Annual interest rate in percent"><span class="calcpro-heloc-addon">%</span></div></div>
+      <div class="calcpro-heloc-form-row calcpro-heloc-unit-row"><label for="calcpro-heloc-draw">Draw period <abbr title="Interest-only phase; assumes the entire amount remains outstanding">ⓘ</abbr></label><div class="calcpro-heloc-inputwrap"><input id="calcpro-heloc-draw" type="text" inputmode="decimal" value="5" aria-label="Draw period in years"><span class="calcpro-heloc-addon">years</span></div></div>
+      <div class="calcpro-heloc-form-row calcpro-heloc-unit-row"><label for="calcpro-heloc-repay">Repayment period <abbr title="Phase during which the balance is repaid through monthly principal and interest payments">ⓘ</abbr></label><div class="calcpro-heloc-inputwrap"><input id="calcpro-heloc-repay" type="text" inputmode="decimal" value="15" aria-label="Repayment period in years"><span class="calcpro-heloc-addon">years</span></div></div>
       <label class="calcpro-heloc-checkrow"><input id="calcpro-heloc-enable-fees" type="checkbox"><span>Include closing costs and fees</span></label>
       <div id="calcpro-heloc-options" class="calcpro-heloc-options" hidden>
         <div class="calcpro-heloc-form-row"><label for="calcpro-heloc-close-cost">Closing costs</label><div class="calcpro-heloc-cost-controls"><input id="calcpro-heloc-close-cost" class="calcpro-heloc-fullinput" type="text" inputmode="decimal" value="2,000" aria-label="Closing costs"><select id="calcpro-heloc-cost-type" aria-label="Closing costs unit"><option value="amount" selected>$</option><option value="percentage">%</option></select></div></div>
@@ -412,5 +413,5 @@
 })();
 </script>
 <script defer src="/assets/js/data.js"></script>
-<script defer src="/assets/js/style.js?v=20261111-5"></script>
+<script defer src="/assets/js/style.js?v=20261113-5"></script>
 </body></html>

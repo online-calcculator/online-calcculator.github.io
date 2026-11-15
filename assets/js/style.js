@@ -99,9 +99,13 @@
     'url-encode-decode': 'url-encode-decode'
   };
 
-  function toolHref(tool) {
-    var folder = toolRoutes[tool.slug] ||
+  function toolFolder(tool) {
+    return toolRoutes[tool.slug] ||
       (/-calculator$/i.test(tool.slug) ? tool.slug : tool.slug + '-calculator');
+  }
+
+  function toolHref(tool) {
+    var folder = toolFolder(tool);
     var pathParts = decodeURIComponent(window.location.pathname).split('/').filter(Boolean);
     if (pathParts[pathParts.length - 1] && /^index\.html$/i.test(pathParts[pathParts.length - 1])) {
       pathParts.pop();
@@ -126,7 +130,7 @@
     return tools.find(function (tool) { return tool.file.toLowerCase() === file; }) ||
       tools.find(function (tool) {
         return tool.slug.toLowerCase() === base.replace(/-(?:calpro|standalone)$/i, '') ||
-          (toolRoutes[tool.slug] || '').toLowerCase() === base;
+          toolFolder(tool).toLowerCase() === base;
       });
   }
 
@@ -169,13 +173,64 @@
     });
   }
 
+  function enhanceCalculateButtons() {
+    Array.prototype.forEach.call(document.querySelectorAll('.cp-tool-area button'), function (button) {
+      var details = [
+        button.textContent,
+        button.getAttribute('title') || '',
+        button.getAttribute('aria-label') || ''
+      ].join(' ');
+      if (!/\bcalculate\b/i.test(details)) return;
+      if (button.classList.contains('cp-calculate-play-normalized')) return;
+
+      var hasPlayGlyph = /[▶►›▸]/;
+      ['::before', '::after'].forEach(function (pseudo) {
+        if (hasPlayGlyph.test(window.getComputedStyle(button, pseudo).content || '')) {
+          button.classList.add(pseudo === '::before' ? 'cp-calculate-play-hide-before' : 'cp-calculate-play-hide-after');
+        }
+      });
+
+      Array.prototype.forEach.call(button.querySelectorAll('*'), function (element) {
+        var before = window.getComputedStyle(element, '::before').content || '';
+        var after = window.getComputedStyle(element, '::after').content || '';
+        var className = element.getAttribute('class') || '';
+        if (
+          hasPlayGlyph.test(element.textContent.trim()) ||
+          hasPlayGlyph.test(before) ||
+          hasPlayGlyph.test(after) ||
+          /(?:play|arrow|triangle)/i.test(className) ||
+          /^(?:IMG|SVG)$/.test(element.tagName)
+        ) {
+          element.classList.add('cp-calculate-play-suppressed');
+        }
+      });
+
+      function removeExistingGlyphs(node) {
+        Array.prototype.forEach.call(node.childNodes, function (child) {
+          if (child.nodeType === 3) child.nodeValue = child.nodeValue.replace(/[▶►›▸]/g, '');
+          else removeExistingGlyphs(child);
+        });
+      }
+      removeExistingGlyphs(button);
+
+      var icon = make('img', 'cp-calculate-play-icon');
+      icon.src = '/assets/images/circule.svg';
+      icon.alt = '';
+      icon.setAttribute('aria-hidden', 'true');
+      button.appendChild(icon);
+      button.classList.add('cp-calculate-play-normalized');
+    });
+  }
+
   function init() {
     enhanceSaveRestoreButtons();
+    enhanceCalculateButtons();
 
     var aside = document.querySelector('.cp-sidebar, .calpro401-sidebar, .calcpro-dice-standalone-rail, .calpro-pace-demo-sidebar, aside');
     if (!aside || aside.querySelector('.cp-tool-discovery')) return;
     var current = currentTool();
     if (!current) return;
+    aside.setAttribute('aria-label', 'Advertisement and calculator directory');
 
     Array.prototype.slice.call(aside.children).forEach(function (child) {
       if (!child.matches('.cp-ad-area, .calpro401-ad-area, .calcpro-dice-standalone-ad, .calpro-pace-demo-ad')) child.remove();
@@ -784,11 +839,57 @@
       if (current.querySelectorAll('form').length > 0) return current;
       if (current === toolArea) break;
     }
-    return toolArea.querySelectorAll('form').length > 0 ? toolArea : null;
+    return toolArea;
+  }
+
+  var infoBarMarkup = '<span class="info-icon"><img src="/assets/images/info-circle.svg" alt="Info Circle" srcset="/assets/images/info-circle.svg" height="24px"></span><span class="info-text">Customize your inputs and calculate your results instantly.</span>';
+
+  function normalizeInfoBar(infoBar) {
+    infoBar.innerHTML = infoBarMarkup;
+  }
+
+  function isInstructionBar(element) {
+    var className = typeof element.className === 'string' ? element.className : '';
+    if (!/(?:^|[\s_-])(?:hint|instruction|prompt|guidance|introbar|headingbar|formbar|notice|info-bar)(?:$|[\s_-])/i.test(className)) {
+      return false;
+    }
+    return /\b(?:modify|customize|change|adjust|enter)\b[\s\S]{0,180}\b(?:calculate|compute)\b/i.test(element.textContent);
+  }
+
+  function normalizeInfoBars(toolArea) {
+    Array.prototype.forEach.call(toolArea.querySelectorAll('.info-bar'), normalizeInfoBar);
+
+    Array.prototype.forEach.call(toolArea.querySelectorAll('div[class]'), function (instruction) {
+      if (instruction.classList.contains('info-bar') || !isInstructionBar(instruction)) return;
+      var scope = infoBarScope(instruction, toolArea);
+      if (!scope) return;
+
+      var infoBar = scope.querySelector('.info-bar');
+      if (infoBar) {
+        normalizeInfoBar(infoBar);
+      } else {
+        infoBar = document.createElement('div');
+        infoBar.className = 'info-bar';
+        normalizeInfoBar(infoBar);
+        instruction.parentNode.insertBefore(infoBar, instruction);
+      }
+
+      instruction.hidden = true;
+      instruction.style.display = 'none';
+      instruction.setAttribute('aria-hidden', 'true');
+    });
+
+    if (!toolArea.querySelector('.info-bar')) {
+      var infoBar = document.createElement('div');
+      infoBar.className = 'info-bar';
+      normalizeInfoBar(infoBar);
+      toolArea.insertBefore(infoBar, toolArea.firstChild);
+    }
   }
 
   function initializeInfoBars() {
     Array.prototype.forEach.call(document.querySelectorAll('.cp-tool-area'), function (toolArea) {
+      normalizeInfoBars(toolArea);
       var scopes = [];
       Array.prototype.forEach.call(toolArea.querySelectorAll('.info-bar'), function (infoBar) {
         var scope = infoBarScope(infoBar, toolArea);

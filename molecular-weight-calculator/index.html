@@ -12,7 +12,7 @@
   <meta name="author" content="Commingsoon">
   <meta name="publisher" content="Commingsoon">
   <meta name="robots" content="noindex, nofollow, max-image-preview:large">
-  <link rel="stylesheet" href="/assets/css/style.css?v=20261111-4" crossorigin="anonymous" data-n-g="">
+  <link rel="stylesheet" href="/assets/css/style.css?v=20261113-8" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/doc_style.css" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/side_style.css" crossorigin="anonymous" data-n-g=""> 
   <!--ogtags-->
@@ -339,7 +339,7 @@
     const title = `Molecular weight of ${lastResult.input}`;
     const css = document.querySelector('style[data-calcpro-mw-styles]')?.textContent || '';
     const html = '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+escapeHTML(title)+'</title><style>body{font:16px Arial,Helvetica,sans-serif;max-width:740px;margin:25px auto;padding:0 15px;color:#111}'+css+'</style></head><body><h1>'+escapeHTML(title)+'</h1><div class="calcpro-mw">'+copy.outerHTML+'</div><p>Computed using abridged standard atomic weights. Molar mass in grams per mole (g/mol).</p><script defer src="/assets/js/data.js"></script>
-<script defer src="/assets/js/style.js?v=20261111-5"></script>
+<script defer src="/assets/js/style.js?v=20261113-5"></script>
 </body></html>';
     const blob = new Blob([html],{type:'text/html;charset=utf-8'});
     const url = URL.createObjectURL(blob);

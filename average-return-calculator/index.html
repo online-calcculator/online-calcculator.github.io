@@ -11,12 +11,12 @@
   <meta name="author" content="Commingsoon">
   <meta name="publisher" content="Commingsoon">
   <meta name="robots" content="noindex, nofollow, max-image-preview:large">
-  <link rel="stylesheet" href="/assets/css/style.css?v=20261111-4" crossorigin="anonymous" data-n-g="">
+  <link rel="stylesheet" href="/assets/css/style.css?v=20261113-8" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/doc_style.css" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/side_style.css" crossorigin="anonymous" data-n-g=""> 
-  <!--ogtags-->
-  <!--schema--><style>
-/* Average Return Calculator — styles isolated from CalcPro global CSS. */
+  <title>Average Return Calculator: Cash Flows and Compounded Returns</title><meta name="title" content="Average Return Calculator: Cash Flows and Compounded Returns"><meta name="description" content="Estimate annual returns from dated deposits and withdrawals, or compound investment returns over different holding periods. See formulas and examples."><link rel="canonical" href="https://calpro.com/average-return-calculator/"><meta property="og:type" content="website"><meta property="og:url" content="https://calpro.com/average-return-calculator/"><meta property="og:title" content="Average Return Calculator: Cash Flows and Compounded Returns"><meta property="og:description" content="Estimate annual returns from dated deposits and withdrawals, or compound investment returns over different holding periods. See formulas and examples."><meta property="og:site_name" content="Average Return Calculator: Cash Flows and Compounded Returns"><meta name="twitter:card" content="summary"><meta name="twitter:url" content="https://calpro.com/average-return-calculator/"><meta name="twitter:title" content="Average Return Calculator: Cash Flows and Compounded Returns"><meta name="twitter:description" content="Estimate annual returns from dated deposits and withdrawals, or compound investment returns over different holding periods. See formulas and examples.">
+  <!--schema-->
+<style>
 .calcpro-average-return{--ar-blue:#336699;--ar-navy:#125217;--ar-green:#538626;--ar-border:#c2c2c2;--ar-ink:#151515;font:14px Arial,Helvetica,sans-serif;line-height:1.36;color:var(--ar-ink);max-width:100%;}
 .calcpro-average-return *{box-sizing:border-box}
 .calcpro-average-return [hidden]{display:none!important}
@@ -36,18 +36,22 @@
 .calcpro-average-return .calcpro-average-return-meta{font-size:12px;color:#555;margin:5px 0 12px}
 .calcpro-average-return .calcpro-average-return-warn{font-size:12px;color:#835000;margin:8px 0}
 .calcpro-average-return .calcpro-average-return-sheet{border:1px solid var(--ar-border);background:#ededed;display:inline-block;vertical-align:top;max-width:100%;padding:11px 13px 10px;margin:2px 0 0}
-.calcpro-average-return .calcpro-average-return-sheet--cash{width:510px}
+.calcpro-average-return .calcpro-average-return-sheet--cash{width:728px;padding-left:0}
 .calcpro-average-return .calcpro-average-return-sheet--period{width:255px}
-.calcpro-average-return .calcpro-average-return-table{border-collapse:separate;border-spacing:3px 3px;width:auto;max-width:100%;font-size:13px;margin:0}
+.calcpro-average-return .calcpro-average-return-table{border-collapse:separate;border-spacing:3px 3px;width:auto;max-width:100%;font-size:16px;margin:0}
+.calcpro-average-return .calcpro-average-return-table--cash{border-spacing:3px 3.5px}
+.calcpro-average-return .calcpro-average-return-table--cash .calcpro-average-return-number{width:19px;min-width:19px}
+.calcpro-average-return .calcpro-average-return-table--cash td:nth-child(2) select{width:98px;max-width:100%}
 .calcpro-average-return .calcpro-average-return-table th{padding:0 3px 1px;text-align:left;color:#171717;font-weight:700;vertical-align:bottom;line-height:1.13;white-space:nowrap}
 .calcpro-average-return .calcpro-average-return-table td{padding:0;vertical-align:middle;white-space:nowrap}
 .calcpro-average-return .calcpro-average-return-number{width:22px;min-width:22px;text-align:right;padding-right:3px!important;color:#222}
 .calcpro-average-return .calcpro-average-return-activity{width:127px}
 .calcpro-average-return .calcpro-average-return-amount-col{width:111px}
 .calcpro-average-return .calcpro-average-return-date-col{width:139px}
-.calcpro-average-return .calcpro-average-return-field{appearance:auto;width:100%;max-width:100%;height:29px;background:white;border:1px solid #225c97;border-radius:2px;outline-offset:1px;box-shadow:inset 0 0 0 1px rgba(43,101,159,.1);color:#111;font:13px Arial,Helvetica,sans-serif;padding:3px 5px;min-width:0}
+.calcpro-average-return .calcpro-average-return-field{appearance:auto;width:100%;max-width:100%;height:29px;background:white;border:1px solid #125217;border-radius:2px;outline-offset:1px;box-shadow:inset 0 0 0 1px rgba(43,101,159,.1);color:#111;font:16px Arial,Helvetica,sans-serif;padding:3px 5px;min-width:0;box-shadow: 1px 1px 2px #666;}
+.calcpro-average-return .calcpro-average-return-table--cash .calcpro-average-return-field{height:31px}
 .calcpro-average-return .calcpro-average-return-field:focus{outline:2px solid #4f9dc8;outline-offset:0}
-.calcpro-average-return .calcpro-average-return-field--date{min-width:128px;padding:3px 2px 3px 5px;font-size:12px}
+.calcpro-average-return .calcpro-average-return-field--date{min-width:128px;padding:3px 2px 3px 5px;font-size:16px}
 .calcpro-average-return .calcpro-average-return-field--select{padding:2px 1px}
 .calcpro-average-return .calcpro-average-return-money,.calcpro-average-return .calcpro-average-return-percent{position:relative;display:block;width:100%}
 .calcpro-average-return .calcpro-average-return-money::before{content:'$';position:absolute;left:6px;top:6px;font-size:13px;pointer-events:none}
@@ -61,14 +65,19 @@
 .calcpro-average-return .calcpro-average-return-table--period .calcpro-average-return-number{width:21px;min-width:21px}
 .calcpro-average-return .calcpro-average-return-table--period .calcpro-average-return-percent .calcpro-average-return-field{padding-right:17px}
 .calcpro-average-return .calcpro-average-return-more{border:0;background:transparent;color:#006699;padding:5px 2px;cursor:pointer;text-decoration:underline;font:13px Arial,Helvetica,sans-serif}
+.calcpro-average-return .calcpro-average-return-sheet--cash .calcpro-average-return-more{margin-left:55px;padding:6px 2px;font-size:15px}
 .calcpro-average-return .calcpro-average-return-more:hover{text-decoration:none}
 .calcpro-average-return .calcpro-average-return-buttons{display:flex;gap:5px;margin:1px 0 0 28px}
-.calcpro-average-return .calcpro-average-return-calculate{background:var(--ar-green);color:#fff;border:0;border-radius:1px;min-height:29px;padding:4px 12px;cursor:pointer;font-weight:700;font-size:13px}
+.calcpro-average-return .calcpro-average-return-calculate{background:var(--ar-green);color:#fff;border:0;border-radius:1px;min-height:41px;padding:4px 12px;cursor:pointer;font-weight:700;font-size:16px}
 .calcpro-average-return .calcpro-average-return-calculate::after{content:'▶';display:inline-flex;align-items:center;justify-content:center;background:#b9d9a6;color:#fff;border-radius:50%;font-size:9px;width:15px;height:15px;margin-left:10px}
 .calcpro-average-return .calcpro-average-return-calculate:hover{background:#38661d}
-.calcpro-average-return .calcpro-average-return-clear{background:#aaa;border:0;border-radius:1px;color:white;padding:4px 9px;cursor:pointer;font-size:13px}
+.calcpro-average-return .calcpro-average-return-sheet--cash .calcpro-average-return-calculate{min-height:40px;padding:7px 16px;font-size:16px}
+.calcpro-average-return .calcpro-average-return-sheet--cash .calcpro-average-return-calculate::after{width:20px;height:20px;font-size:11px}
+.calcpro-average-return .calcpro-average-return-clear{background:#aaa;border:0;border-radius:1px;color:white;padding:4px 9px;cursor:pointer;font-size:16px}
+.calcpro-average-return .calcpro-average-return-sheet--cash .calcpro-average-return-clear{min-height:40px;padding:7px 9px}
+.calcpro-average-return .calcpro-average-return-sheet--cash .calcpro-average-return-buttons{margin-left:55px}
 .calcpro-average-return .calcpro-average-return-clear:hover{background:#777}
-.calcpro-average-return .calcpro-average-return-error{color:#ad1717;background:#fff2f2;border-left:3px solid #bd2626;padding:9px;margin:7px 0 7px;font-size:13px;max-width:500px}
+.calcpro-average-return .calcpro-average-return-error{color:#ad1717;background:#fff2f2;border-left:3px solid #bd2626;padding:9px;margin:7px 0 7px;font-size:16px;max-width:500px}
 .calcpro-average-return .calcpro-average-return-related{background:#ededed;padding:8px 10px;max-width:590px;margin:0 0 6px;font-size:13px}
 .calcpro-average-return .calcpro-average-return-related b{display:inline-block;background:#fff;padding:3px 7px;margin:0 0 4px}
 .calcpro-average-return .calcpro-average-return-relatedlinks{display:flex;flex-wrap:wrap;gap:5px}
@@ -105,13 +114,28 @@
 .calcpro-average-return .calcpro-average-return-sheet--period .calcpro-average-return-more{margin-left:38px}
 .calcpro-average-return .calcpro-average-return-sheet--period .calcpro-average-return-buttons{margin-left:38px}
 @media(max-width:380px){.calcpro-average-return .calcpro-average-return-sheet--period{padding:7px 6px}.calcpro-average-return .calcpro-average-return-table--period .calcpro-average-return-field{font-size:12px}.calcpro-average-return .calcpro-average-return-schedule{font-size:12px}.calcpro-average-return .calcpro-average-return-schedule th{font-size:12px}.calcpro-average-return .calcpro-average-return-schedule td{padding:4px 3px}}
+.calcpro-average-return .calcpro-average-return-activity{width:112px}
+.calcpro-average-return .calcpro-average-return-amount-col{width:120px}
+.calcpro-average-return .calcpro-average-return-date-col{width:145px}
+@media(max-width:560px){
+  .calcpro-average-return .calcpro-average-return-sheet--cash{overflow-x:auto}
+  .calcpro-average-return .calcpro-average-return-table--cash{min-width:393px}
+  .calcpro-average-return .calcpro-average-return-table--cash .calcpro-average-return-activity{width:26%}
+  .calcpro-average-return .calcpro-average-return-table--cash .calcpro-average-return-amount-col{width:31%}
+  .calcpro-average-return .calcpro-average-return-table--cash .calcpro-average-return-date-col{width:37%}
+}
+@media(max-width:380px){
+  .calcpro-average-return .calcpro-average-return-table--cash{min-width:0}
+  .calcpro-average-return .calcpro-average-return-table--cash .calcpro-average-return-field{max-width:120px}
+  .calcpro-average-return .calcpro-average-return-table--cash .calcpro-average-return-field--date{max-width:145px}
+}
 </style>
-</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Average Return Calculator</nav><h1 class="cp-page-title">Average Return Calculator</h1><p class="cp-intro">Calculate average investment return from dated deposits and withdrawals, or combine returns with different holding periods to see cumulative and annualized performance.</p><section aria-label="Calculator" class="cp-tool-area">
+</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/financial-calculator/">Financial</a> / Average Return Calculator</nav><h1 class="cp-page-title">Average Return Calculator</h1><p class="cp-intro"><p>An average return can mean different things depending on the information you have. If you know an account&rsquo;s opening and closing balances plus the dates of contributions and withdrawals, a cash-flow-based annual return can account for when money entered or left the account. If you know investment returns for successive holding periods, you can compound them to find a cumulative return and its annualized equivalent.</p>
+<p>Use the relevant section of the calculator for your data. These methods answer different questions; neither should be confused with an accounting rate of return or a simple arithmetic average of percentages.</p></p><section aria-label="Calculator" class="cp-tool-area">
 <div class="calcpro-average-return" id="calcpro-average-return-root">
   <div class="calcpro-average-return-instruction" id="calcpro-average-return-instruction">Modify the values and click the Calculate button to use</div>
   <section class="calcpro-average-return-section" aria-labelledby="calcpro-average-return-cash-heading" id="calcpro-average-return-cash-section">
-    <h2 class="calcpro-average-return-heading" id="calcpro-average-return-cash-heading">Average Return Based on Cash Flow</h2>
-    <p class="calcpro-average-return-description" id="calcpro-average-return-cash-description">This calculator estimates an account's average annual return using its starting and ending balances and the dates of deposits or withdrawals.</p>
+    
     <div class="calcpro-average-return-result" id="calcpro-average-return-cash-result" hidden aria-live="polite">
       <div class="calcpro-average-return-resultbar"><span>Result</span><button type="button" class="calcpro-average-return-save" id="calcpro-average-return-save-cash" title="Save deposits and withdrawals chart as SVG">⇩ Save chart</button></div>
       <p class="calcpro-average-return-lead">The average return for the investment is <strong class="calcpro-average-return-emphasis" id="calcpro-average-return-cash-rate"></strong> per year.</p>
@@ -164,46 +188,266 @@
     </div>
     </div>
   </section>
-  <div class="calcpro-average-return-related"><b>Related</b><div class="calcpro-average-return-relatedlinks"><a href="investment-calculator.html">Investment Calculator</a><a href="interest-calculator.html">Interest Calculator</a></div></div>
-</div>
-</section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><!-- REPLACE these links with real related tools for each calculator; verify live slugs. --><a href="retirement-calculator.html">Retirement</a><a href="roth-ira-calculator.html">Roth IRA</a><a href="investment-calculator.html">Investment</a><a href="compound-interest-calculator.html">Compound Interest</a><a href="annuity-payout-calculator.html">Annuity Payout</a><a href="pension-calculator.html">Pension</a><a href="inflation-calculator.html">Inflation</a><a href="future-value-calculator.html">Future Value</a><a href="income-tax-calculator.html">Income Tax</a><a href="savings-calculator.html">Savings</a><a href="mortgage-calculator.html">Mortgage</a><a href="loan-calculator.html">Loan</a></div></section></aside><article class="cp-article">
-<h2>How to Use the Average Return Calculator</h2>
-<p>Choose the calculation that matches your data. <strong>Average Return Based on Cash Flow</strong> is for an investment account with deposits and withdrawals on specific dates. <strong>Average and Cumulative Return</strong> is for a sequence of investment rates held for different lengths of time. The forms work independently, and each has its own Calculate and Clear buttons.</p>
-<h3>Calculating an Account's Cash-Flow Return</h3>
-<ol><li>Enter the starting account value and the date on which it was measured.</li><li>Enter the ending account value and its measurement date.</li><li>For each external transaction, choose Deposit or Withdraw and enter a positive amount and its date. Leave unused rows blank; select <em>Show More Input Fields</em> for additional entries.</li><li>Click <strong>Calculate</strong> to display the annual money-weighted return above the form, alongside a deposits-and-withdrawals chart.</li></ol>
-<h3>Combining Investment Returns Across Holding Periods</h3>
-<p>Enter an annual return percentage in each populated row along with the number of full years and additional months it applies to. For instance, a 10% annual rate held for one year and two months is entered as <strong>10</strong>, <strong>1</strong>, and <strong>2</strong>. Losses can be entered as negative percentages, down to −100%. Calculate to see both cumulative and annualized compounded returns.</p>
-<h2>Formulas and Calculation Methods</h2>
-<h3>Money-Weighted Return From Dated Cash Flows</h3>
-<p>The cash-flow calculation numerically solves the rate <em>r</em> that makes the present value of the investor's cash flows equal to zero:</p>
-<p><strong>Σ [CF<sub>i</sub> / (1 + r)<sup>(d<sub>i</sub> − d<sub>0</sub>)/365.25</sup>] = 0</strong></p>
-<p>Here CF<sub>i</sub> is a signed cash flow, d<sub>i</sub> is its date in days, and d<sub>0</sub> is the starting date. Starting value and deposits are negative from the investor's perspective; withdrawals and ending value are positive. This is an XIRR-style money-weighted return. CalcPro uses a <strong>365.25-day year</strong> to align with the supplied reference example; spreadsheet applications such as Microsoft Excel's XIRR use 365 days, so small differences can occur.</p>
-<h3>Cumulative and Average Annual Return</h3>
-<p>For each entered annual rate r<sub>i</sub> (as a decimal), let t<sub>i</sub> = years + months/12. The combined growth factor is <strong>G = ∏(1 + r<sub>i</sub>)<sup>t<sub>i</sub></sup></strong>. With T = Σt<sub>i</sub> total years:</p>
-<ul><li><strong>Cumulative return = (G − 1) × 100%</strong></li><li><strong>Average annual return = (G<sup>1/T</sup> − 1) × 100%</strong></li></ul>
-<p>Compounding reflects changes to the investment base over time. It is not the simple arithmetic mean of the entered rates.</p>
-<h2>Worked Examples</h2>
-<h3>Dated Contributions and Withdrawals</h3>
-<p>Suppose an account begins at <strong>$5,600 on January 1, 2023</strong>, receives deposits of <strong>$5,000 on January 15, 2024</strong> and <strong>$3,800 on January 18, 2025</strong>, has a withdrawal of <strong>$1,500 on June 1, 2024</strong>, and ends at <strong>$18,000 on November 4, 2026</strong>. Solving the dated cash-flow equation gives approximately <strong>11.59% per year</strong> with the 365.25-day convention. Changing any value or date recalculates the result.</p>
-<h3>Unequal Holding Lengths</h3>
-<p>Suppose annual returns are <strong>10% for 1 year 2 months</strong>, <strong>−2% for 5 months</strong>, and <strong>15% for 2 years 3 months</strong>. The total time is 3 years 10 months. Compounding each rate over its holding length gives a <strong>51.78% cumulative return</strong> and approximately <strong>11.50% average annual return</strong>.</p>
-<h2>Understanding the Results</h2>
-<p>A cash-flow return is <strong>money-weighted</strong>: the amount and timing of deposits and withdrawals influence it. A geometric return series links the entered annual rates over their respective durations. Cumulative return measures the total compounded change over the entire period, while average annual return expresses that combined growth as an equivalent annual percentage. None of these metrics is a forecast, a risk measure, or a guarantee of future performance.</p>
-<h2>Frequently Asked Questions</h2>
-<h3>Why does the cash-flow result differ from a simple gain divided by starting value?</h3>
-<p>A simple gain calculation ignores when additional funds entered or left the account. The cash-flow method includes each date and amount in a discounted-cash-flow equation.</p>
-<h3>Do withdrawals count as negative investment returns?</h3>
-<p>No. A withdrawal is shown as money received from the account. It changes the investor's cash flows but does not automatically indicate an investment loss.</p>
-<h3>What if I have many transactions or return periods?</h3>
-<p>Use <em>Show More Input Fields</em>. The cash-flow form supports up to 50 transactions, and the holding-period form supports up to 60 return rows. Blank rows are ignored.</p>
-<h3>Can I enter a negative return?</h3>
-<p>Yes. For the holding-period method, a negative annual percentage represents a loss. Rates below −100% are not valid for ordinary compounded investment growth.</p>
-<h3>Why might a cash-flow return have no solution or multiple solutions?</h3>
-<p>Cash flows with an unusual pattern of alternating positive and negative amounts can produce several mathematical solutions or no solution within the supported rate range. When several solutions are detected, the calculator warns you. Such results should be interpreted cautiously.</p>
-<h2>References and Notes</h2>
-<p>For background, see <a href="https://support.microsoft.com/en-us/excel/functions/xirr-function" rel="noopener noreferrer">Microsoft Support: XIRR function</a> for irregularly timed cash-flow returns, and <a href="https://www.cfainstitute.org/" rel="noopener noreferrer">CFA Institute</a> for broader investment performance concepts. CalcPro's calculation code is original and does not send entered data to the reference website. Estimates are educational, not personalized investment advice.</p>
-<p class="cp-page-footer">CalcPro — financial estimates are for informational and educational purposes.</p>
-</article></main></div><script>(()=>{'use strict';
+    
+</section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><!-- REPLACE these links with real related tools for each calculator; verify live slugs. --><a href="retirement-calculator.html">Retirement</a><a href="roth-ira-calculator.html">Roth IRA</a><a href="investment-calculator.html">Investment</a><a href="compound-interest-calculator.html">Compound Interest</a><a href="annuity-payout-calculator.html">Annuity Payout</a><a href="pension-calculator.html">Pension</a><a href="inflation-calculator.html">Inflation</a><a href="future-value-calculator.html">Future Value</a><a href="income-tax-calculator.html">Income Tax</a><a href="savings-calculator.html">Savings</a><a href="mortgage-calculator.html">Mortgage</a><a href="loan-calculator.html">Loan</a></div></section></aside>  <article class="cp-article">
+        <h2><strong>Which calculation should you use?</strong></h2>
+        <p>Account cash flows: choose “Average Return Based on Cash Flow” when you have starting and ending account balances and a dated record of deposits or withdrawals. The annualized rate is influenced by the amounts and timing of those external cash flows, so it describes the investor’s money-weighted experience.</p>
+        <p>A series of investment returns: choose “Average and Cumulative Return” when you have consecutive period returns and each holding period’s length in years and months. It combines the returns by compounding rather than treating percentages as dollars. In an investment-performance context, chained period returns reflect time-weighted growth when the individual periods appropriately exclude external cash-flow effects.</p>
+        <p>Neither mode asks for an accounting project's average profit or book value. Those are inputs for a different measure sometimes called ARR.</p>
+        <h2><strong>Average annual return based on cash flows</strong></h2>
+        <h3><strong>How to enter balances and transactions</strong></h3>
+        <p>Enter the Starting Balance and its date, then the Ending Balance and its date. For each intervening transaction, select its activity (deposit or withdrawal), enter the amount, and supply the transaction date. The observed form displays eight transaction rows and a “Show More Input Fields” control that exposes additional rows; use only the rows you actually need. Record deposits as additions of outside money and withdrawals as money leaving the account, not as market gains or losses.</p>
+        <p>Dates matter: an early contribution has more time exposed to investment returns than the same contribution added near the end. Use consistent currency units and account values measured at the stated dates. Where possible, base balances on records that include reinvested distributions and reflect the fee basis you intend to measure.</p>
+        <h3><strong>What a cash-flow-based return means</strong></h3>
+        <p>The concept is a money-weighted return, commonly calculated as an internal rate of return (IRR) from dated cash flows. Under the usual investor sign convention, the initial investment and later deposits are negative cash flows (money paid into the account); withdrawals and the terminal account value are positive. A rate is sought that discounts those dated amounts to a net present value of zero.</p>
+        <p>Dated-cash-flow equation: 0 = Σ [CFᵢ / (1 + r)^(dᵢ / 365)], where CFᵢ is a signed cash flow on date i, dᵢ is the number of days from the first date, and r is an annual rate. This is a standard ACT/365 illustrative convention; the exact day-count convention and numerical algorithm used by the live calculator have not been verified.</p>
+        <p>Crucially, a deposit increases the account balance but is not itself investment profit. The equation compares dollars invested at different times; it does not simply divide the difference between ending and starting balances by the initial balance.</p>
+        <h3><strong>Worked example: a contribution in the middle</strong></h3>
+        <p>Suppose an account starts with $10,000 on January 1, 2025. You deposit another $5,000 on January 1, 2026, and its value reaches $17,600 on January 1, 2027. Assume no other deposits, withdrawals, fees, or taxes for this illustration. The two intervals are each 365 days.</p>
+        <p>At a 10% annual return, $10,000 grows to $11,000 in the first year. After the $5,000 deposit, $16,000 grows to $17,600 in the second year. Check: $10,000 × 1.10² + $5,000 × 1.10 = $17,600. Therefore, the example’s annual money-weighted return is 10.00%. The investment gain is $17,600 − $10,000 − $5,000 = $2,600, not $7,600.</p>
+<figure class="cp-doc-figure"><img alt="Worked example: a contribution in the middle" class="cp-doc-image" decoding="async" loading="lazy" src="/assets/images/worked-example-a-contribtion-in-the-middle.png" />          <figcaption><em>Figure 1. Original hypothetical cash-flow timeline. The contribution is separate from investment earnings; the 10% rate compounds across both years.</em></figcaption>
+        </figure>
+        <h3><strong>Why the date of a deposit or withdrawal changes the result</strong></h3>
+        <p>A large deposit just before a market gain can raise an investor’s money-weighted return, whereas a large deposit just before a market decline can lower it, even when the underlying portfolio’s sequence of percentage returns is unchanged. This is why money-weighted performance is useful for evaluating an individual account’s experience, but time-weighted return is often preferable for comparing an investment manager to a benchmark.</p>
+        <p>An IRR calculation is not guaranteed to have a single sensible solution. Complex cash-flow patterns with repeated changes of sign can produce multiple roots or no acceptable root. A live tool may also limit acceptable dates, entries, or precision. Treat its displayed result as an estimate and check it against the transaction history.</p>
+        <h2><strong>Cumulative and annualized returns for successive holding periods</strong></h2>
+        <h3><strong>How to enter period returns and holding lengths</strong></h3>
+        <p>For each successive investment period, enter its Return as a percentage and its holding length using the Years and Months columns. For example, enter −10 for a 10% loss; do not enter −0.10 if the field expects a percentage. The visible form starts with eight rows, and “Show More Input Fields” exposes additional period rows. Use the same definition of return across all periods (for example, total return with distributions reinvested, on the same before- or after-fee basis).</p>
+        <p>Each period return must represent a distinct nonoverlapping interval, in chronological order. Do not enter two overlapping returns and compound them as if they occurred one after the other. If periods have different lengths, annualization uses the combined elapsed years, not simply the count of rows.</p>
+        <h3><strong>The compounded-growth formulas</strong></h3>
+        <p>For n consecutive holding periods, let rᵢ be each return expressed as a decimal and let T be the total duration in years. The growth factor is G = ∏(1 + rᵢ). Cumulative return = G − 1. Annualized compound return = G^(1/T) − 1, provided T &gt; 0 and G is nonnegative. Multiply the final decimal by 100 to display a percentage.</p>
+        <p>When a holding length is given as whole years and months, an illustrative conversion is T = Σ (yearsᵢ + monthsᵢ/12). This is not the same as exact-date annualization, and rounding partial months or assuming every year is identical can cause small differences. The exact live implementation’s conversion and rounding conventions remain unverified.</p>
+        <p>For a single investment with no intermediate external cash flows, the same compound idea yields CAGR = (ending value / starting value)^(1/T) − 1. This balance-ratio shortcut is generally unsuitable when there were intermediate deposits or withdrawals.</p>
+        <h3><strong>Worked example: different holding lengths</strong></h3>
+        <p>Imagine $10,000 invested continuously across the following three successive periods, with gains and losses reinvested and no money added or removed. A 20% gain followed by a 10% loss followed by an 8% gain produces $11,664 at the end of the three-year span.</p>
+        <div aria-label="APR comparison table 1" class="cp-doc-table-scroll" role="region" tabindex="0">
+          <table class="cp-doc-table">
+            <tbody>
+              <tr>
+                <th scope="col">
+                  <p><strong>Period</strong></p>
+                </th>
+                <th scope="col">
+                  <p><strong>Holding length</strong></p>
+                </th>
+                <th scope="col">
+                  <p><strong>Period return</strong></p>
+                </th>
+                <th scope="col">
+                  <p><strong>Illustrative balance</strong></p>
+                </th>
+              </tr>
+              <tr>
+                <td>
+                  <p>1</p>
+                </td>
+                <td>
+                  <p>1 year</p>
+                </td>
+                <td>
+                  <p>+20%</p>
+                </td>
+                <td>
+                  <p>$12,000</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>2</p>
+                </td>
+                <td>
+                  <p>6 months</p>
+                </td>
+                <td>
+                  <p>−10%</p>
+                </td>
+                <td>
+                  <p>$10,800</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>3</p>
+                </td>
+                <td>
+                  <p>18 months</p>
+                </td>
+                <td>
+                  <p>+8%</p>
+                </td>
+                <td>
+                  <p>$11,664</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>Overall</p>
+                </td>
+                <td>
+                  <p>3 years</p>
+                </td>
+                <td>
+                  <p>+16.64% cumulative</p>
+                </td>
+                <td>
+                  <p>$11,664</p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p>The total growth factor is 1.20 × 0.90 × 1.08 = 1.1664, so the cumulative return is 16.64%. Total holding time is 1 + 0.5 + 1.5 = 3 years. Annualized return = 1.1664^(1/3) − 1 ≈ 5.2646% per year. This represents the constant compounded yearly rate that would give the same overall growth; it does not mean the investment actually earned 5.26% in each period.</p>
+        <h3><strong>Reading cumulative and average annual figures</strong></h3>
+        <p>Cumulative return answers how far the investment grew or shrank over the whole specified span. Annualized compounded return puts different investment horizons on a comparable per-year scale. A 16.64% cumulative gain across three years is not a 16.64% annual gain, nor is dividing 16.64% by 3 an exact annualization. The 5.26% figure is a compounded equivalent that respects the growth path.</p>
+        <p>A −100% period return makes the investment’s growth factor zero: the position is entirely lost and later percentage returns on that same extinguished position cannot restore its value without new capital. For an ordinary unleveraged holding, a quoted return below −100% is not a valid simple holding-period return; leveraged or liability-bearing arrangements require special treatment.</p>
+        <h2><strong>Arithmetic average, geometric average, money-weighted return, and ARR</strong></h2>
+        <p>“Average return” is ambiguous in finance. Specify the measurement method whenever you report a figure, especially if the investment saw substantial volatility or cash was added and removed. These measures are related but not interchangeable.</p>
+        <div aria-label="APR comparison table 2" class="cp-doc-table-scroll" role="region" tabindex="0">
+          <table class="cp-doc-table">
+            <tbody>
+              <tr>
+                <th scope="col">
+                  <p><strong>Measure</strong></p>
+                </th>
+                <th scope="col">
+                  <p><strong>How it is calculated</strong></p>
+                </th>
+                <th scope="col">
+                  <p><strong>What it tells you</strong></p>
+                </th>
+              </tr>
+              <tr>
+                <td>
+                  <p>Arithmetic mean</p>
+                </td>
+                <td>
+                  <p>Sum of the observed period returns ÷ number of observations</p>
+                </td>
+                <td>
+                  <p>Typical return per observation; not compounded realized growth.</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>Geometric / annualized</p>
+                </td>
+                <td>
+                  <p>Multiply (1 + period return), then take the 1/T power and subtract 1</p>
+                </td>
+                <td>
+                  <p>Compounded growth per year; periods must be nonoverlapping and cash-flow effects handled.</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>Money-weighted (IRR)</p>
+                </td>
+                <td>
+                  <p>Find the annual rate balancing dated deposits, withdrawals, initial and final value</p>
+                </td>
+                <td>
+                  <p>The investor’s account experience, sensitive to cash-flow amounts and dates.</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>Accounting ARR</p>
+                </td>
+                <td>
+                  <p>Average annual accounting profit ÷ average invested book capital</p>
+                </td>
+                <td>
+                  <p>A capital-budgeting ratio; ignores discounted cash-flow timing.</p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p>For the worked return sequence +20%, −10%, and +8%, the simple arithmetic mean is (20 − 10 + 8)/3 = 6.00% per observation, whereas the compounded annual rate across the specified three years is about 5.26%. These intervals are unequal in length, making the simple per-row average especially poor as a per-year performance figure. The arithmetic mean would describe an annual average only if the input observations were each one year long.</p>
+        <p>Consider the simpler equal-year case of +50% and −50%. Their arithmetic average is 0%, but the compounded wealth factor is 1.50 × 0.50 = 0.75: an actual cumulative loss of 25% and a two-year geometric average of approximately −13.40% per year. Percentage gains and losses are asymmetric because losses leave a smaller base for future growth.</p>
+        <p>Accounting rate of return (ARR) is a separate capital-budgeting metric. A typical expression is ARR = average annual accounting profit / average investment, though organizations may vary their denominator policy. It relies on accounting earnings rather than discounted dated cash flows, so it does not incorporate the time value of money and should not be substituted for the calculator’s two investment-return methods.</p>
+        <h2><strong>Accuracy, assumptions, and common mistakes</strong></h2>
+        <p>Cash flows versus performance: adding funds can increase ending value even when investments perform poorly. Separately identify each contribution and withdrawal; do not count the deposited principal as profit.</p>
+        <p>Periods versus annualized years: a quarterly, monthly, or multi-year return is not automatically a yearly rate. Use the period length to annualize with compounding. An arithmetic mean of unevenly spaced periods answers a different and usually less useful question.</p>
+        <p>Total return versus price change: distributions such as dividends and interest can be part of investment return. Compare consistent total-return definitions and recognize whether distributions were paid out or reinvested; do not double-count a distribution both as investment return and external deposit.</p>
+        <p>Fees, taxes, and inflation: a gross nominal return is not the investor’s after-fee, after-tax, inflation-adjusted purchasing-power return. The result reflects the account values and return inputs you supply; deductions not represented in your data will not be modeled independently.</p>
+        <p>Unknown algorithm and precision: the competitor’s static page identifies the two forms, but its interactive outputs, defaults, date-day-count basis, additional-row limits in practice, handling of multiple IRR roots, and validation messages were not independently tested here. Your deployed calculator also requires a separate tool-behavior comparison before publication claims of interface parity.</p>
+        <p>Financial context: historical averages are descriptive statistics, not forecasts or guarantees. Compare investments over matching horizons, with matching fee and return definitions, and consider volatility and risk as well as average performance.</p>
+        <section class="cp-accordion-section cp-accordion-faq" aria-labelledby="cp-apr-faq-section-title">
+          <h2 class="cp-doc-faq-heading" id="cp-apr-faq-section-title"><strong>Frequently asked questions</strong></h2>
+          <div class="cp-accordion-list">
+            <div class="cp-accordion-item" data-open="false">
+              <h3 class="cp-accordion-item-heading">
+                <button class="cp-accordion-trigger" id="cp-apr-faq-1-toggle" type="button" aria-expanded="false" aria-controls="cp-apr-faq-1-panel"><h3 class="cp-accordion-question-text">Can I add returns and divide by the number of periods?</h3><span class="cp-accordion-chevron" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="m6 9 6 6 6-6"></path></svg></span></button>
+              </h3>
+              <div class="cp-accordion-panel" id="cp-apr-faq-1-panel" role="region" aria-labelledby="cp-apr-faq-1-toggle" aria-hidden="true" inert>
+                <div class="cp-accordion-panel-inner">
+                  <div class="cp-accordion-panel-content">
+                    <p class="cp-doc-faq-answer">That produces an arithmetic mean per observation, not the compound growth actually earned. If the aim is to summarize multi-period realized investment growth, multiply (1 + return) factors and annualize over elapsed time. Arithmetic means can be useful for other statistical questions, but should be identified as such.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="cp-accordion-item" data-open="false">
+              <h3 class="cp-accordion-item-heading">
+                <button class="cp-accordion-trigger" id="cp-apr-faq-2-toggle" type="button" aria-expanded="false" aria-controls="cp-apr-faq-2-panel"><h3 class="cp-accordion-question-text">Why is my ending account balance higher than my calculated investment gain?</h3><span class="cp-accordion-chevron" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="m6 9 6 6 6-6"></path></svg></span></button>
+              </h3>
+              <div class="cp-accordion-panel" id="cp-apr-faq-2-panel" role="region" aria-labelledby="cp-apr-faq-2-toggle" aria-hidden="true" inert>
+                <div class="cp-accordion-panel-inner">
+                  <div class="cp-accordion-panel-content">
+                    <p class="cp-doc-faq-answer">Your ending balance includes the value of new deposits as well as investment performance. Subtract net contributions when identifying dollar gain, and use a dated cash-flow method to estimate an annual rate.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="cp-accordion-item" data-open="false">
+              <h3 class="cp-accordion-item-heading">
+                <button class="cp-accordion-trigger" id="cp-apr-faq-3-toggle" type="button" aria-expanded="false" aria-controls="cp-apr-faq-3-panel"><h3 class="cp-accordion-question-text">Which return should I compare with a market index?</h3><span class="cp-accordion-chevron" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="m6 9 6 6 6-6"></path></svg></span></button>
+              </h3>
+              <div class="cp-accordion-panel" id="cp-apr-faq-3-panel" role="region" aria-labelledby="cp-apr-faq-3-toggle" aria-hidden="true" inert>
+                <div class="cp-accordion-panel-inner">
+                  <div class="cp-accordion-panel-content">
+                    <p class="cp-doc-faq-answer">A time-weighted series of returns, calculated on comparable valuation and fee conventions, is generally more suitable for evaluating an investment strategy against a market benchmark because it reduces the effect of the investor’s deposit and withdrawal timing. A money-weighted return better reflects the investor’s actual cash-flow experience.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="cp-accordion-item" data-open="false">
+              <h3 class="cp-accordion-item-heading">
+                <button class="cp-accordion-trigger" id="cp-apr-faq-4-toggle" type="button" aria-expanded="false" aria-controls="cp-apr-faq-4-panel"><h3 class="cp-accordion-question-text">Can either return tell me how much I will earn next year?</h3><span class="cp-accordion-chevron" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="m6 9 6 6 6-6"></path></svg></span></button>
+              </h3>
+              <div class="cp-accordion-panel" id="cp-apr-faq-4-panel" role="region" aria-labelledby="cp-apr-faq-4-toggle" aria-hidden="true" inert>
+                <div class="cp-accordion-panel-inner">
+                  <div class="cp-accordion-panel-content">
+                    <p class="cp-doc-faq-answer">No. Both summarize inputs or historical performance. They do not model market risk, future contributions, changing inflation, taxes, or guarantee a future return.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="cp-accordion-section cp-accordion-sources" aria-label="Sources and methodology">
+          <div class="cp-accordion-list">
+            <div class="cp-accordion-item" data-open="false">
+              <h2 class="cp-accordion-item-heading">
+                <button class="cp-accordion-trigger" id="cp-apr-sources-toggle" type="button" aria-expanded="false" aria-controls="cp-apr-sources-panel"><h2 class="cp-accordion-question-text">Sources</h2><span class="cp-accordion-chevron" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="m6 9 6 6 6-6"></path></svg></span></button>
+              </h2>
+              <div class="cp-accordion-panel" id="cp-apr-sources-panel" role="region" aria-labelledby="cp-apr-sources-toggle" aria-hidden="true" inert>
+                <div class="cp-accordion-panel-inner">
+                  <div class="cp-accordion-panel-content">
+                    <p class="cp-doc-source"><a href="https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/rates-and-returns">CFA Institute: Rates and Returns (2026 curriculum)</a></p>
+                    <p class="cp-doc-source"><a href="https://rpc.cfainstitute.org/sites/default/files/docs/codes-and-standards/introduction-to-the-gips-standards-for-asset-owners_requirements_online.pdf">CFA Institute / GIPS: Time-Weighted vs. Money-Weighted Returns</a></p>
+                    <p class="cp-doc-source"><a href="https://syndication.finra.org/content/key-concepts-return-and-rate-return">FINRA: Key Concepts: Return and Rate of Return</a></p>
+                    <p class="cp-doc-source"><a href="https://www.investor.gov/introduction-investing/general-resources/news-alerts/alerts-bulletins/investor-bulletins/updated">U.S. SEC Investor.gov: How Fees and Expenses Affect Your Investment Portfolio (2025)</a></p>
+                    <p class="cp-doc-source"><a href="https://www.investor.gov/introduction-investing/general-resources/news-alerts/alerts-bulletins/investor-bulletins/fund-distributions-investor-bulletin">U.S. SEC Investor.gov: Fund Distributions (2026)</a></p>
+                    <p class="cp-doc-source"><a href="https://corporatefinanceinstitute.com/resources/accounting/arr-accounting-rate-of-return/">Corporate Finance Institute: Accounting Rate of Return</a></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </article></main></div><script>(()=>{'use strict';
   const prefix='calcpro-average-return-';
   const id=s=>document.getElementById(prefix+s);
   const root=id('root'); if(!root) return;
@@ -235,7 +479,7 @@
   id('end-date').value=today();
   function expand(which,expanded){const rows=which==='cash'?cashRows:periodRows;rows.forEach((r,i)=>r.tr.hidden=!expanded&&i>=INITIAL);const button=id(which+'-more');button.textContent=expanded?'Show Fewer Input Fields':'Show More Input Fields';button.setAttribute('aria-expanded',String(expanded))}
   ['cash','period'].forEach(which=>id(which+'-more').addEventListener('click',()=>expand(which,id(which+'-more').getAttribute('aria-expanded')!=='true')));
-  function resetCash(){id('start').value='5,600';id('start-date').value=startingDate;id('end').value='18,000';id('end-date').value=today();cashRows.forEach((row,i)=>{const def=defaultCash[i]||{mode:'d',amount:'',date:'2024-01-01'};row.mode.value=def.mode;row.amount.value=def.amount;row.date.value=def.date});expand('cash',false);showError('cash','');hideResult('cash');id('instruction').hidden=false;id('cash-description').hidden=false}
+  function resetCash(){id('start').value='5,600';id('start-date').value=startingDate;id('end').value='18,000';id('end-date').value=today();cashRows.forEach((row,i)=>{const def=defaultCash[i]||{mode:'d',amount:'',date:'2024-01-01'};row.mode.value=def.mode;row.amount.value=def.amount;row.date.value=def.date});expand('cash',false);showError('cash','');hideResult('cash');id('instruction').hidden=false}
   function resetPeriod(){periodRows.forEach((row,i)=>{const def=defaultPeriod[i]||{rate:'',years:'',months:''};row.rate.value=def.rate;row.years.value=def.years;row.months.value=def.months});expand('period',false);showError('period','');hideResult('period')}
   id('cash-clear').addEventListener('click',resetCash);id('period-clear').addEventListener('click',resetPeriod);
   function collectCash(){const start=number(id('start').value),end=number(id('end').value);if(start===null||end===null||![start,end].every(Number.isFinite)||start<0||end<0||start>1e15||end>1e15)throw Error('Enter valid, nonnegative starting and ending balances.');
@@ -290,7 +534,7 @@
     const result=id('cash-result');id('cash-rate').textContent=pct(solution.rate);id('cash-chart').innerHTML=chartSvg(data);
     const years=(data.endDate-data.startDate)/86400000/365.25;id('cash-meta').textContent=`Holding period: ${years.toFixed(2)} years  ·  Deposits: ${money(data.deposits)}  ·  Withdrawals: ${money(data.withdrawals)}  ·  Net gain: ${money(data.end+data.withdrawals-data.start-data.deposits)}`;
     id('cash-warning').hidden=solution.rootCount===1;if(solution.rootCount>1)id('cash-warning').textContent=`Multiple mathematical solutions were detected (${solution.rootCount}). The displayed rate is nearest the conventional 10% initial guess; use care when interpreting this result.`;
-    result.hidden=false;id('instruction').hidden=true;id('cash-description').hidden=true;lastCash={...data,rate:solution.rate};
+    result.hidden=false;id('instruction').hidden=true;lastCash={...data,rate:solution.rate};
     result.scrollIntoView({behavior:'smooth',block:'nearest'});
   }catch(err){showError('cash',err.message);hideResult('cash')}}
   id('cash-form').addEventListener('submit',cashCalculate);
@@ -412,5 +656,5 @@
 })();
 </script>
 <script defer src="/assets/js/data.js"></script>
-<script defer src="/assets/js/style.js?v=20261111-5"></script>
+<script defer src="/assets/js/style.js?v=20261113-5"></script>
 </body></html>

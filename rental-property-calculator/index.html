@@ -11,7 +11,7 @@
   <meta name="author" content="Commingsoon">
   <meta name="publisher" content="Commingsoon">
   <meta name="robots" content="noindex, nofollow, max-image-preview:large">
-  <link rel="stylesheet" href="/assets/css/style.css?v=20261111-4" crossorigin="anonymous" data-n-g="">
+  <link rel="stylesheet" href="/assets/css/style.css?v=20261113-8" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/doc_style.css" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/side_style.css" crossorigin="anonymous" data-n-g=""> 
   <!--ogtags-->
@@ -31,10 +31,11 @@
 .calcpro-rental-form-column{min-width:0}
 .calcpro-rental-form-section{margin:0 0 14px;min-width:0}
 .calcpro-rental-section-title{background:#336699;color:#fff;font-size:14px;line-height:1.35;font-weight:700;margin:0 0 7px;padding:4px 6px}
-.calcpro-rental-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(68px,92px) 44px;gap:4px;align-items:center;min-height:27px}
+.calcpro-rental-row{display:grid;grid-template-columns:minmax(0,1fr) 120px 44px;gap:4px;align-items:center;min-height:27px}
 .calcpro-rental-row>label, .calcpro-rental-expense-row>label{font-size:12px;overflow-wrap:normal;line-height:1.18}
 .calcpro-rental-unit{font-size:11px;white-space:nowrap}
 .calcpro-rental-money,.calcpro-rental-percent,.calcpro-rental-numeric{position:relative;display:block;min-width:0;width:100%}
+.calcpro-rental-percent,.calcpro-rental-numeric{width:90px;max-width:100%;justify-self:start}
 .calcpro-rental-money input,.calcpro-rental-percent input,.calcpro-rental-numeric input{width:100%;height:25px;min-width:0;border:1px solid #336699;border-radius:0;background:#fff;padding:2px 6px;color:#111;box-shadow:inset 1px 1px 2px #b2b2b2}
 .calcpro-rental-money input{padding-left:15px}
 .calcpro-rental-percent input{padding-right:17px}
@@ -47,8 +48,8 @@
 .calcpro-rental-radio-line label{font-size:12px;white-space:nowrap;display:inline-flex;align-items:center;gap:3px;cursor:pointer}
 .calcpro-rental-radio-line input{margin:0;width:14px;height:14px;accent-color:#336699;cursor:pointer}
 .calcpro-rental-subfields{padding-left:19px;margin:0 0 3px}
-.calcpro-rental-subfields .calcpro-rental-row{grid-template-columns:minmax(0,1fr) minmax(56px,82px) 44px}
-.calcpro-rental-expense-header,.calcpro-rental-expense-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(60px,90px) minmax(50px,72px);column-gap:4px;align-items:center}
+.calcpro-rental-subfields .calcpro-rental-row{grid-template-columns:minmax(0,1fr) 90px 44px}
+.calcpro-rental-expense-header,.calcpro-rental-expense-row{display:grid;grid-template-columns:minmax(0,1fr) 120px 90px;column-gap:4px;align-items:center}
 .calcpro-rental-expense-header{min-height:27px;font-size:11px;line-height:1.03;text-align:center}
 .calcpro-rental-expense-row{min-height:27px}
 .calcpro-rental-expense-row .calcpro-rental-percent input{padding-left:5px}
@@ -92,9 +93,9 @@
 .calcpro-rental-years-table td:first-child{text-align:center}
 .calcpro-rental-years-table tr:nth-child(even) td{background:#f0f6fa}
 .calcpro-rental-years-table tfoot td{background:#dfeaf1!important;font-weight:bold;border-top:2px solid #336699}
-@media(max-width:650px){.calcpro-rental-form{padding:0 10px 12px}.calcpro-rental-hint{margin:0 -10px 8px;gap:12px}.calcpro-rental-form-grid{gap:12px}.calcpro-rental-row{grid-template-columns:minmax(0,1fr) minmax(59px,82px) 35px}.calcpro-rental-expense-header,.calcpro-rental-expense-row{grid-template-columns:minmax(0,1fr) minmax(52px,82px) minmax(42px,55px)}.calcpro-rental-row>label,.calcpro-rental-expense-row>label{font-size:11px}.calcpro-rental-subfields{padding-left:8px}.calcpro-rental-subfields .calcpro-rental-row{grid-template-columns:minmax(0,1fr) minmax(52px,72px) 35px}.calcpro-rental-unit{font-size:10px}.calcpro-rental-money input,.calcpro-rental-percent input,.calcpro-rental-numeric input{font-size:11px}}
-@media(max-width:510px){.calcpro-rental-form-grid,.calcpro-rental-results-overview{grid-template-columns:minmax(0,1fr)}.calcpro-rental-form{padding:0 12px 14px}.calcpro-rental-hint{margin:0 -12px 10px}.calcpro-rental-form-grid{gap:2px}.calcpro-rental-row{grid-template-columns:minmax(0,1fr) minmax(80px,100px) 48px}.calcpro-rental-subfields{padding-left:18px}.calcpro-rental-subfields .calcpro-rental-row{grid-template-columns:minmax(0,1fr) minmax(70px,90px) 48px}.calcpro-rental-expense-header,.calcpro-rental-expense-row{grid-template-columns:minmax(0,1fr) minmax(75px,100px) minmax(60px,74px)}.calcpro-rental-row>label,.calcpro-rental-expense-row>label{font-size:12px}.calcpro-rental-money input,.calcpro-rental-percent input,.calcpro-rental-numeric input{font-size:12px}.calcpro-rental-sell-section{margin-top:0}.calcpro-rental-results-overview{gap:2px}.calcpro-rental-expense-chart-layout{gap:12px}.calcpro-rental-donut{height:128px;width:128px}.calcpro-rental-donut-hole{height:62px;width:62px}}
-@media(max-width:350px){.calcpro-rental-expense-header,.calcpro-rental-expense-row{grid-template-columns:minmax(0,1fr) 76px 60px}.calcpro-rental-row{grid-template-columns:minmax(0,1fr) 80px 45px}.calcpro-rental-expense-chart-layout{flex-wrap:wrap}}
+@media(max-width:650px){.calcpro-rental-form{padding:0 10px 12px}.calcpro-rental-hint{margin:0 -10px 8px;gap:12px}.calcpro-rental-form-grid{gap:12px}.calcpro-rental-row{grid-template-columns:minmax(0,1fr) 120px 35px}.calcpro-rental-expense-header,.calcpro-rental-expense-row{grid-template-columns:minmax(0,1fr) 120px 90px}.calcpro-rental-row>label,.calcpro-rental-expense-row>label{font-size:11px}.calcpro-rental-subfields{padding-left:8px}.calcpro-rental-subfields .calcpro-rental-row{grid-template-columns:minmax(0,1fr) 90px 35px}.calcpro-rental-unit{font-size:10px}.calcpro-rental-money input,.calcpro-rental-percent input,.calcpro-rental-numeric input{font-size:11px}}
+@media(max-width:510px){.calcpro-rental-form-grid,.calcpro-rental-results-overview{grid-template-columns:minmax(0,1fr)}.calcpro-rental-form{padding:0 12px 14px}.calcpro-rental-hint{margin:0 -12px 10px}.calcpro-rental-form-grid{gap:2px}.calcpro-rental-row{grid-template-columns:minmax(0,1fr) 120px 48px}.calcpro-rental-subfields{padding-left:18px}.calcpro-rental-subfields .calcpro-rental-row{grid-template-columns:minmax(0,1fr) 90px 48px}.calcpro-rental-expense-header,.calcpro-rental-expense-row{grid-template-columns:minmax(0,1fr) 120px 90px}.calcpro-rental-row>label,.calcpro-rental-expense-row>label{font-size:12px}.calcpro-rental-money input,.calcpro-rental-percent input,.calcpro-rental-numeric input{font-size:12px}.calcpro-rental-sell-section{margin-top:0}.calcpro-rental-results-overview{gap:2px}.calcpro-rental-expense-chart-layout{gap:12px}.calcpro-rental-donut{height:128px;width:128px}.calcpro-rental-donut-hole{height:62px;width:62px}}
+@media(max-width:350px){.calcpro-rental-expense-header,.calcpro-rental-expense-row{grid-template-columns:minmax(0,1fr) 120px 90px}.calcpro-rental-row{grid-template-columns:minmax(0,1fr) 120px 45px}.calcpro-rental-expense-chart-layout{flex-wrap:wrap}}
 @media print{.calcpro-rental-print-row,.calcpro-rental-form,.calcpro-rental-actions{display:none!important}.calcpro-rental-results{display:block!important}.calcpro-rental-year-scroll{overflow:visible}.calcpro-rental-years-table{min-width:0;font-size:8px}.calcpro-rental-expense-chart-layout{min-height:115px}.calcpro-rental-donut{width:100px;height:100px}.calcpro-rental-results,.calcpro-rental-expense-section{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
 
 </style>
@@ -463,5 +464,5 @@
 })();
 
 </script><script defer src="/assets/js/data.js"></script>
-<script defer src="/assets/js/style.js?v=20261111-5"></script>
+<script defer src="/assets/js/style.js?v=20261113-5"></script>
 </body></html>
