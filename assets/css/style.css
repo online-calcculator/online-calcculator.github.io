@@ -78,6 +78,7 @@ body{margin:0;padding:0;background:#fff}
   display:inline-block!important;flex:0 0 20px!important;box-sizing:border-box!important;
   width:20px!important;height:20px!important;margin-left:10px!important;object-fit:contain!important;vertical-align:middle!important
 }
+.cp-tool-area[data-hide-calculate-icon] button img.cp-calculate-play-icon{display:none!important}
 .cp-tool-area button.cp-calculate-play-hide-before::before,
 .cp-tool-area button.cp-calculate-play-hide-after::after{content:none!important;display:none!important}
 .cp-tool-area button .cp-calculate-play-suppressed{display:none!important}

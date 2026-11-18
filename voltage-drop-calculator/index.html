@@ -12,8 +12,8 @@
   <meta name="author" content="Commingsoon">
   <meta name="publisher" content="Commingsoon">
   <meta name="robots" content="noindex, nofollow, max-image-preview:large">
-  <link rel="stylesheet" href="/assets/css/style.css?v=20261113-8" crossorigin="anonymous" data-n-g="">
-  <link rel="stylesheet" href="/assets/css/doc_style.css" crossorigin="anonymous" data-n-g="">
+  <link rel="stylesheet" href="/assets/css/style.css?v=20261117-2" crossorigin="anonymous" data-n-g="">
+  <link rel="stylesheet" href="/assets/css/doc_style.css?v=20261117-1" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/side_style.css" crossorigin="anonymous" data-n-g=""> 
   <!--ogtags-->
   <!--schema--><!--TOOL CSS INSERT HERE: Paste only calculator-specific CSS here. Use unique class/id prefixes per tool, e.g. bmi-, loan-, age-. Keep header, sidebar and article CSS in style.css.--><style>
@@ -113,7 +113,7 @@
 </div>
 </form>
 <p class="calcpro-vdrop-footnote">Length is one-way. Single-phase AC and DC include the return path; three-phase AC uses the √3 factor. This is a voltage-drop estimate, not a conductor ampacity or electrical-code compliance check.</p>
-</div></section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><a href="ohms-law-calculator.html">Ohm’s Law</a><a href="resistor-calculator.html">Resistor</a><a href="electricity-calculator.html">Electricity</a><a href="scientific-calculator.html">Scientific</a><a href="conversion-calculator.html">Unit Conversion</a><a href="ratio-calculator.html">Ratio</a></div></section></aside><article class="cp-article"><h2>How to Use the Voltage Drop Calculator</h2>
+</div></section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section></aside><article class="cp-article"><h2>How to Use the Voltage Drop Calculator</h2>
 <p>Choose <strong>NEC data</strong> for conductor and conduit-specific resistance and reactance, <strong>Estimated resistance</strong> for approximate values derived from wire size and metal, or <strong>Other</strong> to enter the manufacturer’s impedance or resistance directly. Select the phase, supply voltage, number of equal conductors installed in parallel per phase, one-way cable run and load current. Click <strong>Calculate</strong> to see the voltage drop, its percentage, and the estimated voltage available at the load.</p>
 <h2>Voltage Drop Formulas</h2>
 <p>For single-phase AC or DC, estimated voltage drop is <strong>V<sub>drop</sub> = 2 × I × L × Z</strong>. For balanced three-phase AC, <strong>V<sub>drop</sub> = √3 × I × L × Z</strong>. I is current in amperes, L is the one-way conductor length, and Z is the conductor’s effective impedance per unit length (or resistance for DC). L and Z must use matching length units. When multiple equal sets are in parallel, divide the drop by the number of sets. The percentage is 100 × V<sub>drop</sub> ÷ V<sub>source</sub>; final voltage is V<sub>source</sub> − V<sub>drop</sub>.</p>
@@ -249,5 +249,5 @@
   root.querySelector('[data-action="save"]').addEventListener('click',()=>{if(results.hidden||!savedText)return;const blob=new Blob([savedText],{type:'text/plain;charset=utf-8'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='voltage-drop-calculation.txt';root.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),200);});
  });
 })();</script><script defer src="/assets/js/data.js"></script>
-<script defer src="/assets/js/style.js?v=20261113-5"></script>
+<script defer src="/assets/js/style.js?v=20261117-2"></script>
 </body></html>

@@ -468,6 +468,19 @@
   }
 
   function enhanceResults(scope) {
+    if (scope.hasAttribute('data-hide-save-buttons')) {
+      Array.prototype.forEach.call(
+        scope.querySelectorAll('button,input[type="button"],input[type="submit"]'),
+        function (button) {
+          if (isSaveAction(button)) button.hidden = true;
+        }
+      );
+      Array.prototype.forEach.call(scope.querySelectorAll('.cp-save-toolbar'), function (toolbar) {
+        toolbar.hidden = true;
+      });
+      return;
+    }
+
     var candidates = Array.prototype.filter.call(scope.querySelectorAll(resultSelector), isResult);
     candidates.filter(function (candidate) {
       return !candidates.some(function (other) {
@@ -889,6 +902,13 @@
 
   function initializeInfoBars() {
     Array.prototype.forEach.call(document.querySelectorAll('.cp-tool-area'), function (toolArea) {
+      if (toolArea.hasAttribute('data-hide-info-bar')) {
+        Array.prototype.forEach.call(toolArea.querySelectorAll('.info-bar'), function (infoBar) {
+          infoBar.hidden = true;
+        });
+        return;
+      }
+
       normalizeInfoBars(toolArea);
       var scopes = [];
       Array.prototype.forEach.call(toolArea.querySelectorAll('.info-bar'), function (infoBar) {

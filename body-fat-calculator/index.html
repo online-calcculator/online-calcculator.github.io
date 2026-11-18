@@ -11,35 +11,59 @@
   <meta name="author" content="Commingsoon">
   <meta name="publisher" content="Commingsoon">
   <meta name="robots" content="noindex, nofollow, max-image-preview:large">
-  <link rel="stylesheet" href="/assets/css/style.css?v=20261113-8" crossorigin="anonymous" data-n-g="">
-  <link rel="stylesheet" href="/assets/css/doc_style.css" crossorigin="anonymous" data-n-g="">
+  <link rel="stylesheet" href="/assets/css/style.css?v=20261117-2" crossorigin="anonymous" data-n-g="">
+  <link rel="stylesheet" href="/assets/css/doc_style.css?v=20261117-1" crossorigin="anonymous" data-n-g="">
   <link rel="stylesheet" href="/assets/css/side_style.css" crossorigin="anonymous" data-n-g=""> 
-  <!--ogtags-->
-  <!--schema--><style>
-/* All component rules are isolated to the unique body-fat root. */
+  <link rel="stylesheet" href="/assets/css/other-units-converter.css">
+  <title>Body Fat Calculator: Navy &amp; BMI Methods Explained</title><meta name="title" content="Body Fat Calculator: Navy &amp; BMI Methods Explained"><meta name="description" content="Estimate body fat with tape measurements, understand Navy and BMI formulas, compare reference ranges, and learn what your result can and cannot, tell you."><link rel="canonical" href="https://calpro.com/body-fat-calculator/"><meta property="og:type" content="website"><meta property="og:url" content="https://calpro.com/body-fat-calculator/"><meta property="og:title" content="Body Fat Calculator: Navy &amp; BMI Methods Explained"><meta property="og:description" content="Estimate body fat with tape measurements, understand Navy and BMI formulas, compare reference ranges, and learn what your result can and cannot, tell you."><meta property="og:site_name" content="Body Fat Calculator: Navy &amp; BMI Methods Explained"><meta name="twitter:card" content="summary"><meta name="twitter:url" content="https://calpro.com/body-fat-calculator/"><meta name="twitter:title" content="Body Fat Calculator: Navy &amp; BMI Methods Explained"><meta name="twitter:description" content="Estimate body fat with tape measurements, understand Navy and BMI formulas, compare reference ranges, and learn what your result can and cannot, tell you.">
+
+  <!--schema-->
+<style>
 .calcpro-bodyfat-root{font:16px Arial,Helvetica,sans-serif;color:#111;max-width:100%;line-height:1.35}
 .calcpro-bodyfat-root,.calcpro-bodyfat-root *{box-sizing:border-box}
 .calcpro-bodyfat-root [hidden]{display:none!important}
-.calcpro-bodyfat-root button,.calcpro-bodyfat-root input{font:inherit}
+.calcpro-bodyfat-root button,.calcpro-bodyfat-root input,.calcpro-bodyfat-root select{font:inherit}
 .calcpro-bodyfat-guidance{background:#396b9c;color:#fff;min-height:42px;display:flex;align-items:center;justify-content:center;gap:18px;padding:8px 10px;text-align:center;font-weight:700;margin:0 0 9px}
 .calcpro-bodyfat-guidance-icon{display:inline-flex;align-items:center;justify-content:center;background:#fff;border-radius:50%;color:#396b9c;width:27px;height:27px;font-size:16px;flex-shrink:0}
 .calcpro-bodyfat-columns{display:grid;grid-template-columns:minmax(0,345px) minmax(0,1fr);gap:17px;align-items:start}
 .calcpro-bodyfat-input-column,.calcpro-bodyfat-results{min-width:0}
 .calcpro-bodyfat-tabs{display:flex;align-items:flex-end;gap:4px;max-width:100%;flex-wrap:nowrap}
-.calcpro-bodyfat-tab{border:0;border-radius:0;background:#336699;color:#fff;font-size:15px!important;font-weight:700;min-width:0;white-space:nowrap;padding:10px 7px;cursor:pointer;flex:0 1 auto}
-.calcpro-bodyfat-tab:hover{background:#245480}
+.calcpro-bodyfat-tab{border:0;border-radius:0;background:#125217;color:#fff;font-size:16px!important;font-weight:bold!important;min-width:0;white-space:nowrap;padding:10px 7px;cursor:pointer;flex:0 1 auto}
+.calcpro-bodyfat-tab:hover{background:#125217}
 .calcpro-bodyfat-tab.calcpro-bodyfat-tab-active{background:#eee;color:#000;box-shadow:inset 0 0 0 1px #c3c3c3;border-bottom:1px solid #eee}
+.calcpro-bodyfat-converter{border:1px solid #b8cdb5;background:#f1f6ef;padding:12px;margin:8px 0 12px}
+.calcpro-bodyfat-conv-tabs{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:10px;border-bottom:1px solid #125217}
+.calcpro-bodyfat-conv-tab{border:1px solid #125217;background:#125217;color:#fff;padding:6px 9px;font-weight:700;cursor:pointer}
+.calcpro-bodyfat-conv-tab[aria-selected="true"]{background:#fff;color:#125217;border-bottom-color:#fff;margin-bottom:-1px}
+.calcpro-bodyfat-conv-columns{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.calcpro-bodyfat-conv-column{min-width:0}
+.calcpro-bodyfat-conv-column label,.calcpro-bodyfat-conv-unit-label{display:block;font-weight:700;font-size:14px;margin-bottom:3px}
+.calcpro-bodyfat-conv-value,.calcpro-bodyfat-conv-list{width:100%;min-width:0;border:1px solid #396c9c;background:#fff;color:#111;padding:6px;font:15px Arial,Helvetica,sans-serif}
+.calcpro-bodyfat-conv-value{height:34px;margin-bottom:6px}
+.calcpro-bodyfat-conv-value[readonly]{background:#f1f1f1}
+.calcpro-bodyfat-conv-list{height:122px}
+.calcpro-bodyfat-conv-result,.calcpro-bodyfat-conv-error{margin:9px 0 0;text-align:center;overflow-wrap:anywhere}
+.calcpro-bodyfat-conv-result strong{color:#125217}
+.calcpro-bodyfat-conv-error{color:#a62219}
+.calcpro-bodyfat-row-field>.calcpro-bodyfat-field{display:flex;align-items:center;gap:5px}
+.calcpro-bodyfat-row-field>.calcpro-bodyfat-field input{flex:1}
+.calcpro-bodyfat-row-field>.calcpro-bodyfat-field select{flex:0 0 92px;min-width:0;height:33px;border:1px solid #396c9c;background:#fff;color:#111;padding:3px 5px;font-size:14px}
+.calcpro-bodyfat-row-field>.calcpro-bodyfat-field .calcpro-bodyfat-unit{position:static;transform:none;flex:none}
+.calcpro-bodyfat-row-field>.calcpro-bodyfat-pair .calcpro-bodyfat-field{display:flex;align-items:center}
+.calcpro-bodyfat-unit-static{font-size:13px;color:#666;flex:none}
+.calcpro-bodyfat-panel[hidden]{display:none!important}
 .calcpro-bodyfat-form{border:1px solid #c3c3c3;background:#eee;padding:10px 9px 12px;margin:0}
 .calcpro-bodyfat-form-body{display:block}
 .calcpro-bodyfat-panel{display:block}
+.calcpro-bodyfat-form-body>.calcpro-bodyfat-panel:not(.calcpro-bodyfat-active){display:none!important}
 .calcpro-bodyfat-row{display:grid;grid-template-columns:64px minmax(0,1fr);gap:5px;align-items:center;min-height:39px;margin:0}
-.calcpro-bodyfat-row-label{font-size:15.5px;font-weight:400}
+.calcpro-bodyfat-row-label{font-size:16px;font-weight:400}
 .calcpro-bodyfat-row-field{min-width:0}
 .calcpro-bodyfat-sex{display:flex;align-items:center;gap:11px;min-height:34px}
-.calcpro-bodyfat-sex label{font-size:15px;display:flex;align-items:center;gap:5px;cursor:pointer}
-.calcpro-bodyfat-sex input{accent-color:#336699;width:18px;height:18px;margin:0}
+.calcpro-bodyfat-sex label{font-size:16px;display:flex;align-items:center;gap:5px;cursor:pointer}
+.calcpro-bodyfat-sex input{accent-color:#125217;width:18px;height:18px;margin:0}
 .calcpro-bodyfat-field{min-width:0;display:block;position:relative;flex:1 1 0}
-.calcpro-bodyfat-field input{display:block;width:100%;height:33px;padding:4px 41px 4px 6px;border:1px solid #396c9c;border-radius:2px;background:#fff;color:#111;font-size:16px!important;box-shadow:1px 2px 2px rgba(0,0,0,.14);appearance:textfield;-moz-appearance:textfield}
+.calcpro-bodyfat-field input{display:block;width:100%;height:33px;padding:4px 41px 4px 6px;border:1px solid #396c9c;border-radius:2px;background:#fff;color:#111;font-size:16px!important;box-shadow:1px 1px 2px #666;appearance:textfield;-moz-appearance:textfield}
 .calcpro-bodyfat-field input::-webkit-inner-spin-button,.calcpro-bodyfat-field input::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
 .calcpro-bodyfat-field input:focus{outline:2px solid #86b5e5;outline-offset:1px}
 .calcpro-bodyfat-unit{position:absolute;right:8px;top:50%;transform:translateY(-50%);color:#777;font-size:14px;pointer-events:none;user-select:none}
@@ -83,19 +107,46 @@
 .calcpro-bodyfat-empty{border:1px solid #ddd;background:#f7f7f7;margin-top:9px;padding:18px 12px;font-size:14px;color:#444}
 .calcpro-bodyfat-root :is(button,input):focus-visible{outline:2px solid #125217;outline-offset:2px}
 @media(max-width:700px){.calcpro-bodyfat-columns{grid-template-columns:1fr;gap:18px}.calcpro-bodyfat-gauge{max-width:380px}.calcpro-bodyfat-results{width:100%}}
-@media(max-width:380px){.calcpro-bodyfat-root{font-size:14px}.calcpro-bodyfat-tab{font-size:13px!important;padding:9px 5px}.calcpro-bodyfat-form{padding-left:6px;padding-right:6px}.calcpro-bodyfat-row{grid-template-columns:55px minmax(0,1fr);gap:3px}.calcpro-bodyfat-row-label{font-size:14px}.calcpro-bodyfat-field input{font-size:14px!important}.calcpro-bodyfat-sex{gap:6px}.calcpro-bodyfat-sex label{font-size:14px}.calcpro-bodyfat-results-table{font-size:13px}.calcpro-bodyfat-results-table th{width:70%}}
+@media(max-width:380px){.calcpro-bodyfat-root{font-size:14px}.calcpro-bodyfat-tab{font-size:13px!important;padding:9px 5px}.calcpro-bodyfat-form{padding-left:6px;padding-right:6px}.calcpro-bodyfat-row{grid-template-columns:55px minmax(0,1fr);gap:3px}.calcpro-bodyfat-row-label{font-size:14px}.calcpro-bodyfat-field input{font-size:14px!important}.calcpro-bodyfat-row-field>.calcpro-bodyfat-field select{flex-basis:78px;font-size:12px}.calcpro-bodyfat-sex{gap:6px}.calcpro-bodyfat-sex label{font-size:14px}.calcpro-bodyfat-results-table{font-size:13px}.calcpro-bodyfat-results-table th{width:70%}.calcpro-bodyfat-converter{padding:9px}.calcpro-bodyfat-conv-columns{gap:8px}.calcpro-bodyfat-conv-list{height:108px;padding:3px;font-size:13px}.calcpro-bodyfat-conv-tab{font-size:12px;padding:6px}}
 @media print{.calcpro-bodyfat-guidance,.calcpro-bodyfat-measure-note,.calcpro-bodyfat-actions,.calcpro-bodyfat-save{display:none!important}.calcpro-bodyfat-columns{grid-template-columns:1fr 1fr;gap:12px}.calcpro-bodyfat-results{break-inside:avoid}.calcpro-bodyfat-root{font-size:13px}}
 
 </style>
-</head><body><div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/fitness-and-health-calculator/">Fitness &amp; Health</a> / Body Fat Calculator</nav><h1 class="cp-page-title">Body Fat Calculator</h1><p class="cp-intro">Estimate your body fat percentage using neck, waist, height, and (for women) hip measurements. Compare the U.S. Navy and BMI-based methods, with metric, US, and other units.</p><section aria-label="Calculator" class="cp-tool-area"><section id="calcpro-bodyfat-root" class="calcpro-bodyfat-root" aria-label="Body fat calculator">
-  <div class="calcpro-bodyfat-guidance"><span class="calcpro-bodyfat-guidance-icon" aria-hidden="true">&#9660;</span> Modify the values and click Calculate to estimate body fat.</div>
+</head>
+<body>
+<div class="cp-site"><header class="cp-header"><div class="cp-header-inner"><a class="cp-brand" href="https://calpro.com/">CalcPro</a></div></header><main class="cp-layout"><div class="cp-main"><nav aria-label="Breadcrumb" class="cp-breadcrumbs"><a href="https://calpro.com/">Home</a> / <a href="https://calpro.com/fitness-and-health-calculator/">Fitness &amp; Health</a> / Body Fat Calculator</nav><h1 class="cp-page-title">Body Fat Calculator</h1><p class="cp-intro">Body fat percentage is the estimated share of your total body weight made up of fat. This calculator uses body measurements to estimate that percentage with a traditional U.S. Navy circumference equation and can also show a second, BMI-based estimate. It is useful for understanding body composition and following broad trends, but neither number is a direct measurement or a medical diagnosis.</p><section aria-label="Calculator" class="cp-tool-area"><section id="calcpro-bodyfat-root" class="calcpro-bodyfat-root" aria-label="Body fat calculator">
+  
+  <section class="calcpro-bodyfat-converter" id="calcpro-bodyfat-converter" aria-label="Unit converter" hidden>
+    <div class="calcpro-bodyfat-conv-tabs" role="tablist" aria-label="Conversion type">
+      <button class="calcpro-bodyfat-conv-tab" type="button" role="tab" data-bodyfat-conv-tab="length" aria-selected="true">Length</button>
+      <button class="calcpro-bodyfat-conv-tab" type="button" role="tab" data-bodyfat-conv-tab="temperature" aria-selected="false">Temperature</button>
+      <button class="calcpro-bodyfat-conv-tab" type="button" role="tab" data-bodyfat-conv-tab="area" aria-selected="false">Area</button>
+      <button class="calcpro-bodyfat-conv-tab" type="button" role="tab" data-bodyfat-conv-tab="volume" aria-selected="false">Volume</button>
+      <button class="calcpro-bodyfat-conv-tab" type="button" role="tab" data-bodyfat-conv-tab="weight" aria-selected="false">Weight</button>
+    </div>
+    <div class="calcpro-bodyfat-conv-columns">
+      <div class="calcpro-bodyfat-conv-column">
+        <label for="calcpro-bodyfat-conv-from">From</label>
+        <input class="calcpro-bodyfat-conv-value" id="calcpro-bodyfat-conv-from" type="text" inputmode="decimal" aria-label="Value to convert">
+        <label class="calcpro-bodyfat-conv-unit-label" for="calcpro-bodyfat-conv-from-unit">From unit</label>
+        <select class="calcpro-bodyfat-conv-list" id="calcpro-bodyfat-conv-from-unit" size="5" aria-label="From unit"></select>
+      </div>
+      <div class="calcpro-bodyfat-conv-column">
+        <label for="calcpro-bodyfat-conv-to">To</label>
+        <input class="calcpro-bodyfat-conv-value" id="calcpro-bodyfat-conv-to" type="text" readonly aria-label="Converted value">
+        <label class="calcpro-bodyfat-conv-unit-label" for="calcpro-bodyfat-conv-to-unit">To unit</label>
+        <select class="calcpro-bodyfat-conv-list" id="calcpro-bodyfat-conv-to-unit" size="5" aria-label="To unit"></select>
+      </div>
+    </div>
+    <p class="calcpro-bodyfat-conv-result" id="calcpro-bodyfat-conv-result" role="status" aria-live="polite" hidden></p>
+    <p class="calcpro-bodyfat-conv-error" id="calcpro-bodyfat-conv-error" role="alert" hidden></p>
+  </section>
+  <div class="calcpro-bodyfat-tabs" role="tablist" aria-label="Measurement units">
+    <button type="button" class="calcpro-bodyfat-tab" role="tab" aria-selected="false" aria-controls="calcpro-bodyfat-form" id="calcpro-bodyfat-tab-us" data-bodyfat-tab="us" tabindex="-1">US Units</button>
+    <button type="button" class="calcpro-bodyfat-tab calcpro-bodyfat-tab-active" role="tab" aria-selected="true" aria-controls="calcpro-bodyfat-form" id="calcpro-bodyfat-tab-metric" data-bodyfat-tab="metric" tabindex="0">Metric Units</button>
+    <button type="button" class="calcpro-bodyfat-tab" role="tab" aria-selected="false" aria-controls="calcpro-bodyfat-converter" id="calcpro-bodyfat-tab-other" data-bodyfat-tab="other" tabindex="-1">Other Units</button>
+  </div>
   <div class="calcpro-bodyfat-columns">
     <div class="calcpro-bodyfat-input-column">
-      <div class="calcpro-bodyfat-tabs" role="tablist" aria-label="Measurement units">
-        <button type="button" class="calcpro-bodyfat-tab" role="tab" aria-selected="false" aria-controls="calcpro-bodyfat-panel-us" id="calcpro-bodyfat-tab-us" data-bodyfat-tab="us">US Units</button>
-        <button type="button" class="calcpro-bodyfat-tab calcpro-bodyfat-tab-active" role="tab" aria-selected="true" aria-controls="calcpro-bodyfat-panel-metric" id="calcpro-bodyfat-tab-metric" data-bodyfat-tab="metric">Metric Units</button>
-        <button type="button" class="calcpro-bodyfat-tab" role="tab" aria-selected="false" aria-controls="calcpro-bodyfat-panel-other" id="calcpro-bodyfat-tab-other" data-bodyfat-tab="other">Other Units</button>
-      </div>
       <form class="calcpro-bodyfat-form" id="calcpro-bodyfat-form" novalidate>
         <div class="calcpro-bodyfat-form-body">
           <div class="calcpro-bodyfat-row">
@@ -106,6 +157,13 @@
             </div>
           </div>
           <div class="calcpro-bodyfat-row"><label class="calcpro-bodyfat-row-label" for="calcpro-bodyfat-age">Age</label><div class="calcpro-bodyfat-row-field"><span class="calcpro-bodyfat-field"><input type="number" inputmode="decimal" step="1" id="calcpro-bodyfat-age" value="25" aria-label="Age in years" autocomplete="off"><span class="calcpro-bodyfat-unit" aria-hidden="true">years</span></span></div></div>
+          <div class="calcpro-bodyfat-panel calcpro-bodyfat-active" id="calcpro-bodyfat-panel-universal" role="group" aria-label="Body measurements">
+            <div class="calcpro-bodyfat-row"><label class="calcpro-bodyfat-row-label" for="calcpro-bodyfat-weight">Weight</label><div class="calcpro-bodyfat-row-field"><span class="calcpro-bodyfat-field"><input type="number" inputmode="decimal" step="any" id="calcpro-bodyfat-weight" value="70" aria-label="Body weight" autocomplete="off"><select id="calcpro-bodyfat-weight-unit" aria-label="Weight unit"><option value="kg">kg</option><option value="g">grams</option><option value="lb">pounds</option><option value="oz">ounces</option><option value="st">stones</option></select></span></div></div>
+            <div class="calcpro-bodyfat-row"><label class="calcpro-bodyfat-row-label" for="calcpro-bodyfat-height">Height</label><div class="calcpro-bodyfat-row-field"><span class="calcpro-bodyfat-field"><input type="number" inputmode="decimal" step="any" id="calcpro-bodyfat-height" value="178" aria-label="Height" autocomplete="off"><select id="calcpro-bodyfat-length-unit" aria-label="Length unit for height and circumferences"><option value="cm">cm</option><option value="m">meters</option><option value="mm">mm</option><option value="in">inches</option><option value="ft">feet</option><option value="yd">yards</option></select></span></div></div>
+            <div class="calcpro-bodyfat-row"><label class="calcpro-bodyfat-row-label" for="calcpro-bodyfat-neck">Neck</label><div class="calcpro-bodyfat-row-field"><span class="calcpro-bodyfat-field"><input type="number" inputmode="decimal" step="any" id="calcpro-bodyfat-neck" value="50" aria-label="Neck circumference" autocomplete="off"><span class="calcpro-bodyfat-unit-static calcpro-bodyfat-length-label">cm</span></span></div></div>
+            <div class="calcpro-bodyfat-row"><label class="calcpro-bodyfat-row-label" for="calcpro-bodyfat-waist">Waist</label><div class="calcpro-bodyfat-row-field"><span class="calcpro-bodyfat-field"><input type="number" inputmode="decimal" step="any" id="calcpro-bodyfat-waist" value="96" aria-label="Waist circumference" autocomplete="off"><span class="calcpro-bodyfat-unit-static calcpro-bodyfat-length-label">cm</span></span></div></div>
+            <div class="calcpro-bodyfat-row" data-hip-row="true" id="calcpro-bodyfat-hip-row"><label class="calcpro-bodyfat-row-label" for="calcpro-bodyfat-hip">Hip</label><div class="calcpro-bodyfat-row-field"><span class="calcpro-bodyfat-field"><input type="number" inputmode="decimal" step="any" id="calcpro-bodyfat-hip" value="92" aria-label="Hip circumference" autocomplete="off"><span class="calcpro-bodyfat-unit-static calcpro-bodyfat-length-label">cm</span></span></div></div>
+          </div>
           <div class="calcpro-bodyfat-panel" id="calcpro-bodyfat-panel-us" role="tabpanel" aria-labelledby="calcpro-bodyfat-tab-us" hidden><div class="calcpro-bodyfat-row" data-panel-row="us"><span class="calcpro-bodyfat-row-label">Weight</span><div class="calcpro-bodyfat-row-field"><span class="calcpro-bodyfat-field"><input type="number" inputmode="decimal" step="any" id="calcpro-bodyfat-us-weight" value="154.32" aria-label="Weight in pounds" autocomplete="off"><span class="calcpro-bodyfat-unit" aria-hidden="true">lbs</span></span></div></div><div class="calcpro-bodyfat-row" data-panel-row="us"><span class="calcpro-bodyfat-row-label">Height</span><div class="calcpro-bodyfat-row-field"><span class="calcpro-bodyfat-pair"><span class="calcpro-bodyfat-field"><input type="number" inputmode="decimal" step="any" id="calcpro-bodyfat-us-height-ft" value="5" aria-label="Height ft" autocomplete="off"><span class="calcpro-bodyfat-unit" aria-hidden="true">ft</span></span><span class="calcpro-bodyfat-field"><input type="number" inputmode="decimal" step="any" id="calcpro-bodyfat-us-height-in" value="10.079" aria-label="Height in" autocomplete="off"><span class="calcpro-bodyfat-unit" aria-hidden="true">in</span></span></span></div></div><div class="calcpro-bodyfat-row" data-panel-row="us"><span class="calcpro-bodyfat-row-label">Neck</span><div class="calcpro-bodyfat-row-field"><span class="calcpro-bodyfat-pair"><span class="calcpro-bodyfat-field"><input type="number" inputmode="decimal" step="any" id="calcpro-bodyfat-us-neck-ft" value="1" aria-label="Neck ft" autocomplete="off"><span class="calcpro-bodyfat-unit" aria-hidden="true">ft</span></span><span class="calcpro-bodyfat-field"><input type="number" inputmode="decimal" step="any" id="calcpro-bodyfat-us-neck-in" value="7.685" aria-label="Neck in" autocomplete="off"><span class="calcpro-bodyfat-unit" aria-hidden="true">in</span></span></span></div></div><div class="calcpro-bodyfat-row" data-panel-row="us"><span class="calcpro-bodyfat-row-label">Waist</span><div class="calcpro-bodyfat-row-field"><span class="calcpro-bodyfat-pair"><span class="calcpro-bodyfat-field"><input type="number" inputmode="decimal" step="any" id="calcpro-bodyfat-us-waist-ft" value="3" aria-label="Waist ft" autocomplete="off"><span class="calcpro-bodyfat-unit" aria-hidden="true">ft</span></span><span class="calcpro-bodyfat-field"><input type="number" inputmode="decimal" step="any" id="calcpro-bodyfat-us-waist-in" value="1.795" aria-label="Waist in" autocomplete="off"><span class="calcpro-bodyfat-unit" aria-hidden="true">in</span></span></span></div></div><div class="calcpro-bodyfat-row" data-hip-row="true" data-panel-row="us"><span class="calcpro-bodyfat-row-label">Hip</span><div class="calcpro-bodyfat-row-field"><span class="calcpro-bodyfat-pair"><span class="calcpro-bodyfat-field"><input type="number" inputmode="decimal" step="any" id="calcpro-bodyfat-us-hip-ft" value="3" aria-label="Hip ft" autocomplete="off"><span class="calcpro-bodyfat-unit" aria-hidden="true">ft</span></span><span class="calcpro-bodyfat-field"><input type="number" inputmode="decimal" step="any" id="calcpro-bodyfat-us-hip-in" value="0.22" aria-label="Hip in" autocomplete="off"><span class="calcpro-bodyfat-unit" aria-hidden="true">in</span></span></span></div></div></div>
           <div class="calcpro-bodyfat-panel" id="calcpro-bodyfat-panel-metric" role="tabpanel" aria-labelledby="calcpro-bodyfat-tab-metric"><div class="calcpro-bodyfat-row" data-panel-row="metric"><span class="calcpro-bodyfat-row-label">Weight</span><div class="calcpro-bodyfat-row-field"><span class="calcpro-bodyfat-field"><input type="number" inputmode="decimal" step="any" id="calcpro-bodyfat-metric-weight" value="70" aria-label="Weight in kilograms" autocomplete="off"><span class="calcpro-bodyfat-unit" aria-hidden="true">kg</span></span></div></div><div class="calcpro-bodyfat-row" data-panel-row="metric"><span class="calcpro-bodyfat-row-label">Height</span><div class="calcpro-bodyfat-row-field"><span class="calcpro-bodyfat-field"><input type="number" inputmode="decimal" step="any" id="calcpro-bodyfat-metric-height" value="178" aria-label="Height in centimeters" autocomplete="off"><span class="calcpro-bodyfat-unit" aria-hidden="true">cm</span></span></div></div><div class="calcpro-bodyfat-row" data-panel-row="metric"><span class="calcpro-bodyfat-row-label">Neck</span><div class="calcpro-bodyfat-row-field"><span class="calcpro-bodyfat-field"><input type="number" inputmode="decimal" step="any" id="calcpro-bodyfat-metric-neck" value="50" aria-label="Neck circumference in centimeters" autocomplete="off"><span class="calcpro-bodyfat-unit" aria-hidden="true">cm</span></span></div></div><div class="calcpro-bodyfat-row" data-panel-row="metric"><span class="calcpro-bodyfat-row-label">Waist</span><div class="calcpro-bodyfat-row-field"><span class="calcpro-bodyfat-field"><input type="number" inputmode="decimal" step="any" id="calcpro-bodyfat-metric-waist" value="96" aria-label="Waist circumference in centimeters" autocomplete="off"><span class="calcpro-bodyfat-unit" aria-hidden="true">cm</span></span></div></div><div class="calcpro-bodyfat-row" data-hip-row="true" data-panel-row="metric"><span class="calcpro-bodyfat-row-label">Hip</span><div class="calcpro-bodyfat-row-field"><span class="calcpro-bodyfat-field"><input type="number" inputmode="decimal" step="any" id="calcpro-bodyfat-metric-hip" value="92" aria-label="Hip circumference in centimeters" autocomplete="off"><span class="calcpro-bodyfat-unit" aria-hidden="true">cm</span></span></div></div></div>
           <div class="calcpro-bodyfat-panel" id="calcpro-bodyfat-panel-other" role="tabpanel" aria-labelledby="calcpro-bodyfat-tab-other" hidden><div class="calcpro-bodyfat-row" data-panel-row="other"><span class="calcpro-bodyfat-row-label">Weight</span><div class="calcpro-bodyfat-row-field"><span class="calcpro-bodyfat-pair"><span class="calcpro-bodyfat-field"><input type="number" inputmode="decimal" step="any" id="calcpro-bodyfat-other-weight-st" value="11" aria-label="Weight st" autocomplete="off"><span class="calcpro-bodyfat-unit" aria-hidden="true">st</span></span><span class="calcpro-bodyfat-field"><input type="number" inputmode="decimal" step="any" id="calcpro-bodyfat-other-weight-lb" value="0.324" aria-label="Weight lb" autocomplete="off"><span class="calcpro-bodyfat-unit" aria-hidden="true">lb</span></span></span></div></div><div class="calcpro-bodyfat-row" data-panel-row="other"><span class="calcpro-bodyfat-row-label">Height</span><div class="calcpro-bodyfat-row-field"><span class="calcpro-bodyfat-field"><input type="number" inputmode="decimal" step="any" id="calcpro-bodyfat-other-height" value="1.78" aria-label="Height in meters" autocomplete="off"><span class="calcpro-bodyfat-unit" aria-hidden="true">m</span></span></div></div><div class="calcpro-bodyfat-row" data-panel-row="other"><span class="calcpro-bodyfat-row-label">Neck</span><div class="calcpro-bodyfat-row-field"><span class="calcpro-bodyfat-field"><input type="number" inputmode="decimal" step="any" id="calcpro-bodyfat-other-neck" value="19.685" aria-label="Neck in inches" autocomplete="off"><span class="calcpro-bodyfat-unit" aria-hidden="true">in</span></span></div></div><div class="calcpro-bodyfat-row" data-panel-row="other"><span class="calcpro-bodyfat-row-label">Waist</span><div class="calcpro-bodyfat-row-field"><span class="calcpro-bodyfat-field"><input type="number" inputmode="decimal" step="any" id="calcpro-bodyfat-other-waist" value="37.795" aria-label="Waist in inches" autocomplete="off"><span class="calcpro-bodyfat-unit" aria-hidden="true">in</span></span></div></div><div class="calcpro-bodyfat-row" data-hip-row="true" data-panel-row="other"><span class="calcpro-bodyfat-row-label">Hip</span><div class="calcpro-bodyfat-row-field"><span class="calcpro-bodyfat-field"><input type="number" inputmode="decimal" step="any" id="calcpro-bodyfat-other-hip" value="36.22" aria-label="Hip in inches" autocomplete="off"><span class="calcpro-bodyfat-unit" aria-hidden="true">in</span></span></div></div></div>
@@ -144,35 +202,264 @@
       <div id="calcpro-bodyfat-empty" class="calcpro-bodyfat-empty" hidden>Enter your measurements, then select <strong>Calculate</strong> to see results.</div>
     </section>
   </div>
-</section></section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section><section aria-labelledby="cp-related-title" class="cp-related"><h2 class="cp-related-title" id="cp-related-title">Related Calculators</h2><div class="cp-related-links"><a href="bmi-calculator.html">BMI</a><a href="bmr-calculator.html">BMR</a><a href="calorie-calculator.html">Calorie</a><a href="ideal-weight-calculator.html">Ideal Weight</a><a href="healthy-weight-calculator.html">Healthy Weight</a><a href="lean-body-mass-calculator.html">Lean Body Mass</a><a href="army-body-fat-calculator.html">Army Body Fat</a><a href="tdee-calculator.html">TDEE</a><a href="macro-calculator.html">Macro</a><a href="protein-calculator.html">Protein</a><a href="fat-intake-calculator.html">Fat Intake</a><a href="calories-burned-calculator.html">Calories Burned</a></div></section></aside><article class="cp-article"><h2>How to Use the Body Fat Calculator</h2>
-<p>Choose <strong>Metric Units</strong> for kilograms and centimeters, <strong>US Units</strong> for pounds and feet/inches, or <strong>Other Units</strong> for stone/pounds, meters, and inches. Select your sex, enter your age, weight, height, neck measurement, and waist measurement. For women, add the hip circumference. Select <strong>Calculate</strong> to update the estimate in the result panel. <strong>Clear</strong> empties all entries, and <strong>Save</strong> downloads a text summary.</p>
-<h3>How to measure correctly</h3>
-<ul><li>Measure the neck just below the larynx while standing upright.</li><li>For men, measure the waist around the navel; for women, use the narrowest waist point, consistent with the reference method.</li><li>For women, measure the hips at the widest point.</li><li>Keep the tape level and comfortably snug, and measure consistently to approximately 0.5 cm or ¼ inch.</li></ul>
-<h2>How Body Fat Is Calculated</h2>
-<p>This calculator primarily uses the <strong>U.S. Navy circumference method</strong>. The following adult equations use centimeters, base-10 logarithms, and a body-density conversion.</p>
-<h3>U.S. Navy method</h3>
-<p><strong>Men:</strong> Body fat (%) = 495 ÷ [1.0324 − 0.19077 × log<sub>10</sub>(waist − neck) + 0.15456 × log<sub>10</sub>(height)] − 450.</p>
-<p><strong>Women:</strong> Body fat (%) = 495 ÷ [1.29579 − 0.35004 × log<sub>10</sub>(waist + hip − neck) + 0.22100 × log<sub>10</sub>(height)] − 450.</p>
-<p>When US Units are selected, the calculator uses the corresponding inch-based Navy equation to align with the reference calculator. The methods may differ slightly due to their published coefficients and rounding.</p>
-<h3>BMI-based estimate</h3>
-<p>Body mass index is calculated as <strong>weight (kg) ÷ height (m)²</strong>. For adults, estimated body fat (%) is <strong>1.20 × BMI + 0.23 × age − 16.2</strong> for men, or <strong>1.20 × BMI + 0.23 × age − 5.4</strong> for women. BMI is an indirect estimate and may disagree with the circumference method.</p>
-<h2>Worked Example</h2>
-<p>For a 25-year-old man weighing 70 kg with a height of 178 cm, a 50 cm neck, and a 96 cm waist, the Navy equation estimates <strong>15.7% body fat</strong>. That corresponds to approximately <strong>11.0 kg of fat mass</strong> and <strong>59.0 kg of lean body mass</strong>. The BMI-based estimate is <strong>16.1%</strong>.</p>
-<p>The reference table lists <strong>10.5%</strong> for a 25-year-old man. The displayed <strong>3.6 kg</strong> difference is calculated as (current body-fat % − reference %) × current weight ÷ 100, capped at zero. It is a comparison at the <em>current</em> weight, not a prediction of the weight loss necessary to reach that percentage while preserving lean mass.</p>
-<h2>Understanding Body Fat Categories</h2>
-<p>The following are the reference calculator’s American Council on Exercise (ACE) classification ranges. They are descriptive ranges, not individualized clinical goals.</p>
-<div class="cp-table-scroll"><table class="cp-content-table"><thead><tr><th>Category</th><th>Men</th><th>Women</th></tr></thead><tbody><tr><td>Essential fat</td><td>2–5%</td><td>10–13%</td></tr><tr><td>Athletes</td><td>6–13%</td><td>14–20%</td></tr><tr><td>Fitness</td><td>14–17%</td><td>21–24%</td></tr><tr><td>Average</td><td>18–24%</td><td>25–31%</td></tr><tr><td>Obese</td><td>25% or higher</td><td>32% or higher</td></tr></tbody></table></div>
-<h2>Jackson &amp; Pollock Age Reference</h2>
-<p>To replicate the reference’s ideal-age row, values are taken from its age/sex table below. Between listed ages, the calculator uses straight-line interpolation. It shows N/A below age 20 or above age 55 because the source table does not specify values for those ages. These figures are reference points rather than personalized medical recommendations.</p>
-<div class="cp-table-scroll"><table class="cp-content-table"><thead><tr><th>Age</th><th>Men</th><th>Women</th></tr></thead><tbody><tr><td>20</td><td>8.5%</td><td>17.7%</td></tr><tr><td>25</td><td>10.5%</td><td>18.4%</td></tr><tr><td>30</td><td>12.7%</td><td>19.3%</td></tr><tr><td>35</td><td>13.7%</td><td>21.5%</td></tr><tr><td>40</td><td>15.3%</td><td>22.2%</td></tr><tr><td>45</td><td>16.4%</td><td>22.9%</td></tr><tr><td>50</td><td>18.9%</td><td>25.2%</td></tr><tr><td>55</td><td>20.9%</td><td>26.3%</td></tr></tbody></table></div>
-<h2>Frequently Asked Questions</h2>
-<h3>Is the U.S. Navy method exact?</h3><p>No. It uses tape measurements to approximate body density and composition. Measuring technique, body shape, and the underlying sample population affect the result. Use repeat measurements under consistent conditions to observe trends rather than treating a single number as a diagnosis.</p>
-<h3>Why is there a different result for the BMI method?</h3><p>The BMI method uses weight, height, age, and sex; the Navy method uses height and body circumferences. Because they predict body fat using different information, disagreement is normal.</p>
-<h3>Does my age change the Navy formula?</h3><p>No. Age affects only the separate BMI estimate and the age-based Jackson &amp; Pollock comparison row. It does not enter the Navy circumference equations.</p>
-<h3>Can I use the calculator for children or during pregnancy?</h3><p>The primary estimates are intended for nonpregnant adults. This implementation accepts ages 18–120 but does not claim that the historical formulas are clinically validated for every age or body type. Seek professional assessment when decisions require accurate body-composition measurements.</p>
-<h2>Sources and Further Reading</h2>
-<ul><li><a href="https://www.calculator.net/body-fat-calculator.html" target="_blank" rel="noopener noreferrer">Calculator.net — Body Fat Calculator</a> (reference layout, equations, classifications, and age table).</li><li><a href="https://www.nationalacademies.org/read/11511/chapter/7" target="_blank" rel="noopener noreferrer">National Academies — Assessing Fitness for Military Enlistment</a> (circumference-based equations).</li></ul>
-<p class="cp-page-footer">CalcPro — estimates are for general information, not diagnosis or medical advice.</p></article></main></div><script>
+</section></section></div><aside aria-label="Advertisement and related calculators" class="cp-sidebar"><section aria-label="Advertisement" class="cp-ad-area"><div class="cp-ad-slot" id="cp-ad-slot"><span>Advertisement</span><!-- AD CODE INSERT HERE. Keep the outer ad slot. --></div></section></aside>
+  <article class="cp-article">
+        <h2><strong>How to use the body fat calculator</strong></h2>
+        <p>Choose U.S. or metric units in the tabs above the calculator. Select <strong>Other Units</strong> to open the length, temperature, area, volume, and weight converter above the calculator; the individual height, circumference, and weight dropdowns also let you use other units directly. Enter age, weight, standing height, neck circumference, and waist/abdomen circumference. The female equation also uses hip circumference. The age and weight fields have different roles: weight converts the estimated percentage into fat and lean mass; age is used in the BMI-based estimate and the calculator’s age-reference display, not in the original Navy circumference equation.</p>
+        <p>Values are converted internally before calculation, so changing a unit keeps the same physical measurement. Measure circumferences consistently to about ¼ inch (0.5 cm) as the reference page advises. The Navy equation uses metric values internally; its result is independent of the display units you select.</p>
+        <p>After calculating, read the Navy estimate first, then compare the secondary BMI estimate and the body-fat category. Any age-specific “ideal” value or suggested fat-to-lose amount is a reference-based projection, not a personalized instruction to lose weight. The published comparator includes a save-calculation control and a results graphic; whether your deployed site has these functions must be verified in the working tool.</p>
+        <h2><strong>What the result means</strong></h2>
+        <h3><strong>Navy body fat percentage and category</strong></h3>
+        <p>A result such as 16.4% means the equation estimates about 16.4% of total body mass is fat. It does not mean 16.4% was directly measured. The accompanying category is a label from a historical fitness reference chart; labels such as “Fitness,” “Average,” and “Obese” are not diagnoses or guarantees of good or poor health.</p>
+        <h3><strong>Fat mass and lean body mass</strong></h3>
+        <p>Estimated fat mass = total body weight × (body fat percentage ÷ 100). Estimated lean body mass = total body weight − estimated fat mass. “Lean body mass” here includes muscle, organs, bone, water, and other nonfat tissue; it is not the same as skeletal muscle mass. For a hypothetical 82 kg adult with an estimated 16.4% body fat: fat mass ≈ 82 × 0.16436 = 13.5 kg, while lean mass ≈ 68.5 kg. These two values add back to about 82 kg; slight differences reflect rounding.</p>
+        <h3><strong>Age-reference and “fat to lose” outputs</strong></h3>
+        <p>The benchmark tool displays an age-linked reference called “Ideal Body Fat for Given Age (Jackson &amp; Pollock)” and a derived “Body Fat to Lose to Reach Ideal.” The displayed age value is not an evidence-based personal target. A fat-to-lose calculation also assumes that all the mass lost is fat and lean mass stays unchanged, an assumption that may not hold in reality. For any hypothetical target p expressed as a decimal, target weight = current estimated lean mass ÷ (1 − p), and modeled weight change = current weight − target weight. This algebra illustrates an assumption, not a recommendation.</p>
+        <h3><strong>Why the BMI estimate can disagree</strong></h3>
+        <p>The BMI-based equation uses weight, height, age, and the equation’s sex term, but no tape circumferences. The Navy method uses height and circumferences but not age or weight for its percentage calculation. Different inputs and statistical models can produce noticeably different answers in the same person. Neither should be treated as a definitive tie-breaker.</p>
+        <h2><strong>How to take the body measurements</strong></h2>
+        <p>Use a flexible, nonstretch tape; stand relaxed, keep the tape snug without indenting skin, and measure after a normal exhale. For trend comparisons, repeat the same method and measurement landmarks each time. If practical, take two readings and remeasure if they disagree substantially.</p>
+        <p><strong>Neck:</strong> Measure immediately below the larynx (voice box), with the tape angled slightly downward toward the front. Keep the neck relaxed; do not push the head forward or flare the neck.</p>
+        <p><strong>Male abdomen:</strong> Measure horizontally at the level of the navel, without pulling the stomach inward. This is not necessarily the same location as a clinical waist measurement above the hip bones.</p>
+        <p><strong>Female waist and hip:</strong> Find the smallest horizontal waist circumference for the historical Navy equation, then measure the hips around the largest circumference of the buttocks. Keep the tape level for both.</p>
+<figure class="cp-doc-figure"><img alt="" class="cp-doc-image" decoding="async" loading="lazy" src="/assets/images/how-to-take-the-body-measrements.png" />          <figcaption><em>Figure 1. Measurement landmarks for the historical Navy circumference equations. Simplified, not-to-scale illustration.</em></figcaption>
+        </figure>
+        <p>Tape placement matters because the equations respond to differences between circumference measurements. A change caused by a different waist landmark, breathing pattern, or tape tension may look like a change in body fat even when actual fat mass is unchanged.</p>
+        <h2><strong>How the U.S. Navy formula works</strong></h2>
+        <p>Hodgdon and Beckett’s 1984 circumference approach estimates body density from body shape, then converts density into body-fat percentage. The metric and U.S.-customary versions shown by the benchmark are separate coefficient forms, not one formula into which centimeters and inches can be swapped freely. All logarithms below are base 10, written log₁₀. Circumferences must be positive, and the logarithm’s interior must be greater than zero.</p>
+        <h3><strong>Male equation</strong></h3>
+        <p><strong>Metric version (all lengths in centimeters):</strong> D = 1.0324 − 0.19077 × log₁₀(W − N) + 0.15456 × log₁₀(H); body fat % = 495 ÷ D − 450. Here D is estimated body density, W is abdomen circumference at the navel, N is neck circumference, and H is standing height. In particular, W must be greater than N.</p>
+        <p><strong>U.S.-customary version (all lengths in inches):</strong> body fat % = 86.010 × log₁₀(W − N) − 70.041 × log₁₀(H) + 36.76. The inch-based version and density-based metric version may differ slightly because their coefficients are rounded independently.</p>
+        <p><strong>Worked male example, metric:</strong> Suppose height = 178 cm, neck = 38 cm, abdomen = 85 cm, age = 35 years, and weight = 82 kg. The circumference difference is 85 − 38 = 47 cm. D = 1.0324 − 0.19077 log₁₀(47) + 0.15456 log₁₀(178) ≈ 1.06124; 495 ÷ 1.06124 − 450 ≈ 16.44% body fat. Age and weight do not enter this Navy percentage, but weight determines the fat mass shown in the result.</p>
+        <h3><strong>Female equation</strong></h3>
+        <p><strong>Metric version (all lengths in centimeters):</strong> D = 1.29579 − 0.35004 × log₁₀(W + P − N) + 0.22100 × log₁₀(H); body fat % = 495 ÷ D − 450. Here W is the narrowest-waist measurement, P is the hip circumference at its widest point, N is neck circumference, and H is standing height. W + P − N must be positive.</p>
+        <p><strong>U.S.-customary version (all lengths in inches):</strong> body fat % = 163.205 × log₁₀(W + P − N) − 97.684 × log₁₀(H) − 78.387.</p>
+        <p><strong>Worked female example, metric:</strong> Suppose height = 165 cm, neck = 33 cm, waist = 75 cm, and hips = 100 cm. The combined circumference term is 75 + 100 − 33 = 142 cm. D = 1.29579 − 0.35004 log₁₀(142) + 0.22100 log₁₀(165) ≈ 1.03247; 495 ÷ 1.03247 − 450 ≈ 29.43%. At 68 kg, estimated fat mass is approximately 20.0 kg and lean mass is about 48.0 kg.</p>
+        <h2><strong>The alternative BMI-based body fat method</strong></h2>
+        <p>Body mass index (BMI) = weight in kilograms ÷ [height in meters]². It describes weight relative to height, not the percentage of fat itself. The benchmark also uses prediction equations published by Deurenberg and colleagues, who modeled estimated body-fat percentage from BMI, age, and sex in a particular research population.</p>
+        <p><strong>Adults:</strong> For the male equation, body fat % = 1.20 × BMI + 0.23 × age − 16.2. For the female equation, body fat % = 1.20 × BMI + 0.23 × age − 5.4. Age is in years. The shared form is 1.20 × BMI + 0.23 × age − 10.8 × S − 5.4, where S = 1 for male and 0 for female in the original model.</p>
+        <p><strong>Child research equations (presented for completeness, not as a pediatric diagnosis): Boys:</strong> body fat % = 1.51 × BMI − 0.70 × age − 2.2. Girls: body fat % = 1.51 × BMI − 0.70 × age + 1.4. The original paper distinguished younger children from adults; the child model explained substantially less of the observed variation. Children and teens should be assessed using age-appropriate growth information and professional context rather than the adult category bands below.</p>
+        <p><strong>Working adult comparison: </strong>The 35-year-old man weighing 82 kg at 1.78 m has BMI = 82 ÷ 1.78² ≈ 25.88. The BMI body-fat prediction is 1.20 × 25.88 + 0.23 × 35 − 16.2 ≈ 22.9%. His Navy example gave about 16.4%. The 6.5-percentage-point gap shows why results from different prediction equations must not be treated as interchangeable measurements.</p>
+        <h2><strong>Body fat categories: use the labels as context, not diagnosis</strong></h2>
+        <p>The historic American Council on Exercise (ACE) reference commonly reproduced by fitness calculators groups adult estimates into descriptive bands. The upper band is called “Obese” in that chart, but these cutoffs are expert-opinion conventions, not clinically validated universal thresholds. Body composition, age, reproductive physiology, ethnicity, and measurement error affect interpretation; a personal health evaluation also considers waist distribution, laboratory findings, medical history, and other risk factors.</p>
+        <div aria-label="APR comparison table 1" class="cp-doc-table-scroll" role="region" tabindex="0">
+          <table class="cp-doc-table">
+            <tbody>
+              <tr>
+                <th scope="col">
+                  <p><strong>Historical ACE label</strong></p>
+                </th>
+                <th scope="col">
+                  <p><strong>Women (% body fat)</strong></p>
+                </th>
+                <th scope="col">
+                  <p><strong>Men (% body fat)</strong></p>
+                </th>
+              </tr>
+              <tr>
+                <td>
+                  <p>Essential fat</p>
+                </td>
+                <td>
+                  <p>10–13</p>
+                </td>
+                <td>
+                  <p>2–5</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>Athletes</p>
+                </td>
+                <td>
+                  <p>14–20</p>
+                </td>
+                <td>
+                  <p>6–13</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>Fitness</p>
+                </td>
+                <td>
+                  <p>21–24</p>
+                </td>
+                <td>
+                  <p>14–17</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>Average / acceptable</p>
+                </td>
+                <td>
+                  <p>25–31</p>
+                </td>
+                <td>
+                  <p>18–24</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>Highest (“Obese”) band</p>
+                </td>
+                <td>
+                  <p>32 or more</p>
+                </td>
+                <td>
+                  <p>25 or more</p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p>The essential-fat category describes a very low physiological range, not a desirable goal for most people. Neither an “Athletes” label nor a “Fitness” label proves that someone is healthy or athletic, and being above a band is not sufficient evidence for a diagnosis.</p>
+        <h2><strong>Historical age-based reference values on the benchmark</strong></h2>
+        <p>The benchmark’s second table displays the following values under the label “Jackson &amp; Pollock Ideal Body Fat Percentages.” It is reproduced here only so readers can understand the comparator’s age-reference output. The exact entries and their “ideal” interpretation could not be independently verified against the cited 1985 paper, which is chiefly about body-composition assessment methods. Treat these figures as legacy page reference values rather than prescribed targets.</p>
+        <div aria-label="APR comparison table 2" class="cp-doc-table-scroll" role="region" tabindex="0">
+          <table class="cp-doc-table">
+            <tbody>
+              <tr>
+                <th scope="col">
+                  <p><strong>Age (years)</strong></p>
+                </th>
+                <th scope="col">
+                  <p><strong>Women (%)</strong></p>
+                </th>
+                <th scope="col">
+                  <p><strong>Men (%)</strong></p>
+                </th>
+              </tr>
+              <tr>
+                <td>
+                  <p>20</p>
+                </td>
+                <td>
+                  <p>17.7</p>
+                </td>
+                <td>
+                  <p>8.5</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>25</p>
+                </td>
+                <td>
+                  <p>18.4</p>
+                </td>
+                <td>
+                  <p>10.5</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>30</p>
+                </td>
+                <td>
+                  <p>19.3</p>
+                </td>
+                <td>
+                  <p>12.7</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>35</p>
+                </td>
+                <td>
+                  <p>21.5</p>
+                </td>
+                <td>
+                  <p>13.7</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>40</p>
+                </td>
+                <td>
+                  <p>22.2</p>
+                </td>
+                <td>
+                  <p>15.3</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>45</p>
+                </td>
+                <td>
+                  <p>22.9</p>
+                </td>
+                <td>
+                  <p>16.4</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>50</p>
+                </td>
+                <td>
+                  <p>25.2</p>
+                </td>
+                <td>
+                  <p>18.9</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>55</p>
+                </td>
+                <td>
+                  <p>26.3</p>
+                </td>
+                <td>
+                  <p>20.9</p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p>A value between the listed ages may be interpolated or rounded by a calculator implementation; the live behavior was not established in this editorial review. Do not infer a clinically recommended target for ages outside the displayed 20–55-year range.</p>
+        <h2><strong>What body fat can and cannot, tell you about health</strong></h2>
+        <p>Adipose tissue stores energy, helps cushion and insulate the body, and releases signaling substances involved in metabolism. Essential fat supports normal function; stored fat exists beneath the skin (subcutaneous fat) and around internal abdominal organs (visceral fat). The location of fat can matter as much as its total amount. Higher visceral or central fat accumulation is associated with greater cardiometabolic risk, including insulin resistance, type 2 diabetes, and cardiovascular disease.</p>
+        <p>Body weight alone does not reveal tissue composition. Two people can have the same weight or BMI but different amounts of muscle and fat. Changes over the life course, hormonal status, activity, illness, medication, and genetics may affect fat distribution. Conversely, exceptionally low fat estimates should not be assumed safer; low energy availability and inadequate fat reserves can be harmful.</p>
+        <p>The BMI estimate and tape method do not directly measure visceral fat. For a fuller picture, healthcare professionals may combine repeated measurements with waist-based risk assessment, blood pressure, laboratory results, and clinical history. Do not equate a calculator’s “obese” category with a diagnosis, and do not use it to decide on aggressive weight loss.</p>
+        <h2><strong>Other ways to assess body composition</strong></h2>
+        <p><strong>Tape-based Navy estimate:</strong> inexpensive, accessible, and repeatable when landmarks are used consistently, but sensitive to body proportions and measurement technique. BMI-based estimate: requires only basic measurements and age, but is indirect and cannot distinguish muscle from fat.</p>
+        <p><strong>Bioelectrical impedance analysis (BIA):</strong> estimates composition using electrical impedance, but hydration and device algorithms can shift the reading. Skinfold calipers: estimate subcutaneous fat through several measured sites, with substantial dependence on tester technique and population-specific equations.</p>
+        <p><strong>Dual-energy X-ray absorptiometry (DXA):</strong> estimates fat, lean soft tissue, and bone mineral compartments using specialized equipment; it is more informative but not perfect and has access, cost, and equipment limitations. Air-displacement plethysmography and underwater weighing estimate body density using different physical principles, but require controlled testing and assumptions about tissue densities. A sophisticated test is still an estimate with its own limitations.</p>
+        <h2><strong>Tips for interpreting changes over time</strong></h2>
+        <p class="cp-doc-pro-tip">💡 Tip: Compare measurements taken under similar conditions, with the same tape and body landmarks. Record the measurement date and method, not just the rounded percentage. Look for a sustained pattern over several readings rather than responding to a single small change. A difference of one or two percentage points may reflect technique or model variability rather than real tissue change.</p>
+        <p>If measurements are physiologically impossible (for example, a nonpositive waist-minus-neck term), the method is undefined and no credible percentage should be shown. Very unusual body proportions, pregnancy, edema or major fluid changes, medical conditions affecting body composition, and use outside the derivation population warrant additional caution. Sex-specific historical equations may not appropriately represent every individual’s physiology.</p>
+        <p>If a result raises concerns about health, eating behavior, or an unusually low target, speak with a qualified healthcare professional. A calculator is most useful as one piece of context, not a prescription.</p>
+        <section class="cp-accordion-section cp-accordion-sources" aria-label="Sources and methodology">
+          <div class="cp-accordion-list">
+            <div class="cp-accordion-item" data-open="false">
+              <h2 class="cp-accordion-item-heading">
+                <button class="cp-accordion-trigger" id="cp-apr-sources-toggle" type="button" aria-expanded="false" aria-controls="cp-apr-sources-panel"><h2 class="cp-accordion-question-text">Sources and methodology</h2><span class="cp-accordion-chevron" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="m6 9 6 6 6-6"></path></svg></span></button>
+              </h2>
+              <div class="cp-accordion-panel" id="cp-apr-sources-panel" role="region" aria-labelledby="cp-apr-sources-toggle" aria-hidden="true" inert>
+                <div class="cp-accordion-panel-inner">
+                  <div class="cp-accordion-panel-content">
+                    <p>The traditional circumference equations are based on Navy methods described in a National Academies review; the BMI prediction equations are from the original Deurenberg study. The broad fitness bands are historical ACE reference labels; the age table is retained only to explain the benchmark display. Clinical context is supported by public-health and professional sources. Source and methodology reviewed October 31, 2026.</p>
+                    <p class="cp-doc-source"><a href="https://www.ncbi.nlm.nih.gov/books/NBK235939/">National Academies / NCBI: Body Composition in the Military Services</a></p>
+                    <p class="cp-doc-source"><a href="https://pubmed.ncbi.nlm.nih.gov/2043597/">Deurenberg et al. (1991): BMI and body-fat prediction equations (PubMed)</a></p>
+                    <p class="cp-doc-source"><a href="https://www.cdc.gov/bmi/about/">CDC (December 2025): About Body Mass Index</a></p>
+                    <p class="cp-doc-source"><a href="https://www.niddk.nih.gov/health-information/weight-management/adult-overweight-obesity/am-i-healthy-weight">NIDDK: Am I at a Healthy Weight?</a></p>
+                    <p class="cp-doc-source"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10661987/">Obesity Medicine Association (2022): Body Composition Measurement Summary</a></p>
+                    <p class="cp-doc-source"><a href="https://www.amga.org/amga/media/pdfs/performance%20improvement%20and%20publications/best%20practices%20and%20analytics/learning%20collaboratives/obesity%20care%20model/oma_obesity-algorithm.pdf">Obesity Medicine Association algorithm (2024): ACE bands and their validation caveat</a></p>
+                    <p class="cp-doc-source"><a href="https://www.calculator.net/body-fat-calculator.html">Calculator.net: Reference page and legacy age table (comparison only)</a></p>
+                    <p class="cp-doc-source"><a href="https://pubmed.ncbi.nlm.nih.gov/27463295/">Jackson &amp; Pollock (1985): Practical Assessment of Body Composition (PubMed)</a></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </article></main></div><script>
 (() => {
   'use strict';
   const root = document.getElementById('calcpro-bodyfat-root');
@@ -180,14 +467,21 @@
   const find = (shortId) => root.querySelector('#calcpro-bodyfat-' + shortId);
   const KG_PER_LB = 0.45359237;
   const CM_PER_IN = 2.54;
+  const lengthUnits = {
+    cm: {label:'cm',cm:1}, m: {label:'m',cm:100}, mm: {label:'mm',cm:0.1},
+    in: {label:'in',cm:CM_PER_IN}, ft: {label:'ft',cm:12*CM_PER_IN}, yd: {label:'yd',cm:36*CM_PER_IN}
+  };
+  const weightUnits = {
+    kg: {label:'kg',kg:1}, g: {label:'g',kg:0.001}, lb: {label:'lb',kg:KG_PER_LB},
+    oz: {label:'oz',kg:KG_PER_LB/16}, st: {label:'st',kg:KG_PER_LB*14}
+  };
   const idealReference = {
     male: [[20,8.5],[25,10.5],[30,12.7],[35,13.7],[40,15.3],[45,16.4],[50,18.9],[55,20.9]],
     female: [[20,17.7],[25,18.4],[30,19.3],[35,21.5],[40,22.2],[45,22.9],[50,25.2],[55,26.3]]
   };
-  const defaults = {weightKg:70,heightCm:178,neckCm:50,waistCm:96,hipCm:92};
-  let activeUnit = 'metric';
+  let lengthUnit = find('length-unit').value;
+  let weightUnit = find('weight-unit').value;
   let lastResult = null;
-  let lastMetric = {...defaults};
   const ageInput = find('age');
   const sexInputs = [...root.querySelectorAll('input[name="calcpro-bodyfat-sex"]')];
   const currentSex = () => sexInputs.find(el => el.checked)?.value || 'male';
@@ -196,88 +490,189 @@
     const value = input ? input.value.trim() : '';
     return value === '' ? NaN : Number(value);
   };
-  const put = (id, value) => { find(id).value = value; };
   const roundEdit = (n, places) => Number(n.toFixed(places)).toString();
-  const footPart = (cm) => {
-    const inches = cm / CM_PER_IN;
-    let ft = Math.floor(inches / 12);
-    let rest = Number((inches - ft*12).toFixed(3));
-    if (rest >= 12) { ft += 1; rest = 0; }
-    return [ft, rest];
-  };
-  const footCm = (field) => (number('us-' + field + '-ft') * 12 + number('us-' + field + '-in')) * CM_PER_IN;
   const positive = (x) => Number.isFinite(x) && x > 0;
 
-  function readMeasurements(unit = activeUnit) {
-    if (unit === 'metric') return {
-      weightKg:number('metric-weight'),heightCm:number('metric-height'),neckCm:number('metric-neck'),waistCm:number('metric-waist'),hipCm:number('metric-hip')
-    };
-    if (unit === 'us') return {
-      weightKg:number('us-weight')*KG_PER_LB,
-      heightCm:footCm('height'),neckCm:footCm('neck'),waistCm:footCm('waist'),hipCm:footCm('hip')
-    };
+  function readMeasurements() {
+    const cm = lengthUnits[lengthUnit].cm;
+    const kg = weightUnits[weightUnit].kg;
     return {
-      weightKg:(number('other-weight-st')*14+number('other-weight-lb'))*KG_PER_LB,
-      heightCm:number('other-height')*100,
-      neckCm:number('other-neck')*CM_PER_IN,
-      waistCm:number('other-waist')*CM_PER_IN,
-      hipCm:number('other-hip')*CM_PER_IN
+      weightKg:number('weight')*kg,
+      heightCm:number('height')*cm,
+      neckCm:number('neck')*cm,
+      waistCm:number('waist')*cm,
+      hipCm:number('hip')*cm
     };
   }
-  function fillMeasurements(unit, values) {
-    if (unit === 'metric') {
-      for (const key of ['weight','height','neck','waist','hip']) {
-        const prop = key === 'weight' ? 'weightKg' : key + 'Cm';
-        put('metric-' + key, roundEdit(values[prop], 3));
-      }
-    } else if (unit === 'us') {
-      put('us-weight',roundEdit(values.weightKg/KG_PER_LB, 3));
-      for (const field of ['height','neck','waist','hip']) {
-        const [ft, inch] = footPart(values[field+'Cm']);
-        put('us-'+field+'-ft', ft);
-        put('us-'+field+'-in', roundEdit(inch,3));
-      }
-    } else {
-      const totalLb = values.weightKg/KG_PER_LB;
-      const st = Math.floor(totalLb/14);
-      put('other-weight-st',st);
-      put('other-weight-lb',roundEdit(totalLb-st*14,3));
-      put('other-height',roundEdit(values.heightCm/100,4));
-      for (const field of ['neck','waist','hip']) put('other-'+field,roundEdit(values[field+'Cm']/CM_PER_IN,3));
-    }
+  function updateUnitLabels() {
+    root.querySelectorAll('.calcpro-bodyfat-length-label').forEach(label => {label.textContent=lengthUnits[lengthUnit].label;});
   }
+  function convertInput(inputId, oldFactor, newFactor) {
+    const input=find(inputId);
+    if (input.value.trim()==='') return;
+    const value=Number(input.value);
+    if (Number.isFinite(value)) input.value=roundEdit(value*oldFactor/newFactor,6);
+  }
+  function changeLengthUnit() {
+    const next=find('length-unit').value;
+    const oldFactor=lengthUnits[lengthUnit].cm;
+    const nextFactor=lengthUnits[next].cm;
+    for (const id of ['height','neck','waist','hip']) convertInput(id,oldFactor,nextFactor);
+    lengthUnit=next;
+    updateUnitLabels();
+    compute(false);
+  }
+  function changeWeightUnit() {
+    const next=find('weight-unit').value;
+    convertInput('weight',weightUnits[weightUnit].kg,weightUnits[next].kg);
+    weightUnit=next;
+    updateUnitLabels();
+    compute(false);
+  }
+  let activeUnitTab='metric';
+  const unitTabs=[...root.querySelectorAll('[data-bodyfat-tab]')];
+  function selectUnitTab(unit) {
+    if(unit==='us') {
+      find('length-unit').value='in';
+      changeLengthUnit();
+      find('weight-unit').value='lb';
+      changeWeightUnit();
+      find('converter').hidden=true;
+    } else if(unit==='metric') {
+      find('length-unit').value='cm';
+      changeLengthUnit();
+      find('weight-unit').value='kg';
+      changeWeightUnit();
+      find('converter').hidden=true;
+    } else if(unit==='other') {
+      find('converter').hidden=false;
+    } else {
+      return;
+    }
+    activeUnitTab=unit;
+    unitTabs.forEach(tab=>{
+      const selected=tab.dataset.bodyfatTab===unit;
+      tab.setAttribute('aria-selected',String(selected));
+      tab.tabIndex=selected?0:-1;
+      tab.classList.toggle('calcpro-bodyfat-tab-active',selected);
+    });
+  }
+  const conversionUnits = {
+    length:[['Meter',1],['Kilometer',1000],['Centimeter',0.01],['Millimeter',0.001],['Micrometer',1e-6],['Mile',1609.344],['Yard',0.9144],['Foot',0.3048],['Inch',0.0254]],
+    temperature:[['Celsius'],['Fahrenheit'],['Kelvin'],['Rankine']],
+    area:[['Square Meter',1],['Square Kilometer',1e6],['Square Centimeter',1e-4],['Square Millimeter',1e-6],['Hectare',1e4],['Square Mile',2589988.110336],['Square Yard',0.83612736],['Square Foot',0.09290304],['Square Inch',0.00064516],['Acre',4046.8564224]],
+    volume:[['Cubic Meter',1000],['Liter',1],['Milliliter',0.001],['US Gallon',3.785411784],['US Quart',0.946352946],['US Pint',0.473176473],['US Cup',0.2365882365],['US Fluid Ounce',0.0295735295625],['Imperial Gallon',4.54609],['Cubic Foot',28.316846592],['Cubic Inch',0.016387064]],
+    weight:[['Kilogram',1],['Gram',0.001],['Milligram',1e-6],['Metric Ton',1000],['Pound',KG_PER_LB],['Ounce',0.028349523125],['Stone',KG_PER_LB*14],['Short Ton',907.18474],['Long Ton',1016.0469088],['Carat',0.0002]]
+  };
+  const converterTabs=[...root.querySelectorAll('[data-bodyfat-conv-tab]')];
+  const converterFrom=find('conv-from');
+  const converterTo=find('conv-to');
+  const converterFromUnit=find('conv-from-unit');
+  const converterToUnit=find('conv-to-unit');
+  const converterResult=find('conv-result');
+  const converterError=find('conv-error');
+  let converterCategory='length';
+  function toKelvin(value,unit) {
+    if(unit==='Celsius') return value+273.15;
+    if(unit==='Fahrenheit') return (value+459.67)*5/9;
+    if(unit==='Rankine') return value*5/9;
+    return value;
+  }
+  function fromKelvin(value,unit) {
+    if(unit==='Celsius') return value-273.15;
+    if(unit==='Fahrenheit') return value*9/5-459.67;
+    if(unit==='Rankine') return value*9/5;
+    return value;
+  }
+  function refreshConverter() {
+    const entries=conversionUnits[converterCategory];
+    const source=entries[converterFromUnit.selectedIndex];
+    const target=entries[converterToUnit.selectedIndex];
+    const valueText=converterFrom.value.trim();
+    converterTo.value='';
+    converterResult.hidden=true;
+    converterError.hidden=true;
+    converterError.textContent='';
+    if(!valueText) return;
+    const value=Number(valueText);
+    if(!Number.isFinite(value)) {
+      converterError.textContent='Enter a valid number to convert.';
+      converterError.hidden=false;
+      return;
+    }
+    let converted;
+    if(converterCategory==='temperature') {
+      const kelvin=toKelvin(value,source[0]);
+      if(kelvin<0) {
+        converterError.textContent='Temperature cannot be lower than absolute zero.';
+        converterError.hidden=false;
+        return;
+      }
+      converted=fromKelvin(kelvin,target[0]);
+    } else {
+      converted=value*source[1]/target[1];
+    }
+    if(!Number.isFinite(converted)) {
+      converterError.textContent='The converted value is outside the supported range.';
+      converterError.hidden=false;
+      return;
+    }
+    const output=Number(converted.toPrecision(10)).toString();
+    converterTo.value=output;
+    converterResult.textContent=value+' '+source[0]+' = '+output+' '+target[0];
+    converterResult.hidden=false;
+  }
+  function changeConverterCategory(category) {
+    if(!conversionUnits[category]) return;
+    converterCategory=category;
+    converterTabs.forEach(tab=>{
+      const selected=tab.dataset.bodyfatConvTab===category;
+      tab.setAttribute('aria-selected',String(selected));
+      tab.tabIndex=selected?0:-1;
+    });
+    const makeOptions=()=>conversionUnits[category].map(([name],index)=>new Option(name,String(index)));
+    converterFromUnit.replaceChildren(...makeOptions());
+    converterToUnit.replaceChildren(...makeOptions());
+    converterFromUnit.selectedIndex=0;
+    converterToUnit.selectedIndex=Math.min(1,converterToUnit.options.length-1);
+    refreshConverter();
+  }
+  unitTabs.forEach((tab,index)=>{
+    tab.addEventListener('click',()=>selectUnitTab(tab.dataset.bodyfatTab));
+    tab.addEventListener('keydown',event=>{
+      let next=index;
+      if(event.key==='ArrowRight') next=(index+1)%unitTabs.length;
+      else if(event.key==='ArrowLeft') next=(index+unitTabs.length-1)%unitTabs.length;
+      else if(event.key==='Home') next=0;
+      else if(event.key==='End') next=unitTabs.length-1;
+      else return;
+      event.preventDefault();
+      unitTabs[next].focus();
+      selectUnitTab(unitTabs[next].dataset.bodyfatTab);
+    });
+  });
+  converterTabs.forEach((tab,index)=> {
+    tab.addEventListener('click',()=>changeConverterCategory(tab.dataset.bodyfatConvTab));
+    tab.addEventListener('keydown',event=>{
+      let next=index;
+      if(event.key==='ArrowRight') next=(index+1)%converterTabs.length;
+      else if(event.key==='ArrowLeft') next=(index+converterTabs.length-1)%converterTabs.length;
+      else if(event.key==='Home') next=0;
+      else if(event.key==='End') next=converterTabs.length-1;
+      else return;
+      event.preventDefault();
+      const nextTab=converterTabs[next];
+      changeConverterCategory(nextTab.dataset.bodyfatConvTab);
+      nextTab.focus();
+    });
+  });
+  converterFrom.addEventListener('input',refreshConverter);
+  converterFromUnit.addEventListener('change',refreshConverter);
+  converterToUnit.addEventListener('change',refreshConverter);
   function selectedHipRows() {
     root.querySelectorAll('[data-hip-row]').forEach(row => {
       row.hidden = currentSex() !== 'female';
     });
-  }
-  function chooseUnit(unit) {
-    if (unit === activeUnit) return;
-    const parsed = readMeasurements();
-    const keysToRequire = currentSex() === 'male' ? ['weightKg','heightCm','neckCm','waistCm'] : ['weightKg','heightCm','neckCm','waistCm','hipCm'];
-    const isComplete = keysToRequire.every(key => Number.isFinite(parsed[key]));
-    if (isComplete) {
-      lastMetric = {...lastMetric,...parsed};
-    }
-    activeUnit = unit;
-    root.querySelectorAll('[data-bodyfat-tab]').forEach(tab => {
-      const chosen = tab.dataset.bodyfatTab === unit;
-      tab.setAttribute('aria-selected',chosen ? 'true' : 'false');
-      tab.classList.toggle('calcpro-bodyfat-tab-active',chosen);
-      tab.tabIndex = chosen ? 0 : -1;
-    });
-    for (const u of ['us','metric','other']) find('panel-'+u).hidden = u !== unit;
-    if (isComplete) {
-      fillMeasurements(unit,lastMetric);
-      compute(false);
-    } else {
-      // Keep the new unit panel empty if the previous panel was incomplete.
-      const panel = find('panel-'+unit);
-      for (const input of panel.querySelectorAll('input[type=number]')) input.value = '';
-      clearError();
-      showEmpty();
-    }
-    selectedHipRows();
   }
   function clearError() { find('error').hidden = true; find('error').textContent = ''; }
   function setError(message) { find('error').textContent = message; find('error').hidden = false; showEmpty(); }
@@ -334,14 +729,7 @@
     return 'Obese';
   }
   function displayMass(kg) {
-    if (activeUnit === 'us') return (kg/KG_PER_LB).toFixed(1)+' lbs';
-    if (activeUnit === 'other') {
-      const lbs = kg/KG_PER_LB;
-      if (lbs < 14) return lbs.toFixed(1)+' lb';
-      const st = Math.floor(lbs/14);
-      return st+' st '+(lbs-st*14).toFixed(1)+' lb';
-    }
-    return kg.toFixed(1)+' kg';
+    return (kg/weightUnits[weightUnit].kg).toFixed(1)+' '+weightUnits[weightUnit].label;
   }
   function drawGauge(pct, sex) {
     const max = sex === 'male' ? 50 : 55;
@@ -388,14 +776,13 @@
       else { clearError(); showEmpty(); }
       return false;
     }
-    const navy=navyBodyFat(values,sex,activeUnit);
+    const navy=navyBodyFat(values,sex,'metric');
     if (!Number.isFinite(navy) || navy < 0 || navy > 100) {
       if (showErrors) setError('These measurements produce a body-fat estimate outside 0–100%. Please check your measurements.');
       else {clearError();showEmpty();}
       return false;
     }
     clearError();
-    lastMetric={...values};
     const fatMass=values.weightKg*navy/100;
     const leanMass=values.weightKg-fatMass;
     const bmi=values.weightKg/Math.pow(values.heightCm/100,2);
@@ -418,7 +805,7 @@
     find('result-content').hidden=false;
     find('empty').hidden=true;
     find('save').disabled=false;
-    lastResult={age,sex,unit:activeUnit,navy,category:category(navy,sex),fatMass,leanMass,bmiPct,ideal,loseKg,weightKg:values.weightKg};
+    lastResult={age,sex,lengthUnit,weightUnit,navy,category:category(navy,sex),fatMass,leanMass,bmiPct,ideal,loseKg,weightKg:values.weightKg};
     return true;
   }
   function clear() {
@@ -434,7 +821,7 @@
     const r=lastResult;
     const lines=[
       'CalcPro — Body Fat Calculator',
-      'Measurement units: '+(r.unit==='metric'?'Metric':r.unit==='us'?'US':'Other'),
+      'Measurement units: '+lengthUnits[r.lengthUnit].label+'; '+weightUnits[r.weightUnit].label,
       'Sex: '+r.sex,
       'Age: '+r.age+' years',
       '',
@@ -458,27 +845,20 @@
     link.remove();
     setTimeout(()=>URL.revokeObjectURL(url),1500);
   }
-  root.querySelectorAll('[data-bodyfat-tab]').forEach(tab => {
-    tab.addEventListener('click',()=>chooseUnit(tab.dataset.bodyfatTab));
-    tab.addEventListener('keydown',event=>{
-      if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
-      event.preventDefault();
-      const units=['us','metric','other'];
-      const delta=event.key==='ArrowRight'?1:-1;
-      const next=units[(units.indexOf(activeUnit)+delta+units.length)%units.length];
-      chooseUnit(next);
-      find('tab-'+next).focus();
-    });
-  });
+  find('length-unit').addEventListener('change',changeLengthUnit);
+  find('weight-unit').addEventListener('change',changeWeightUnit);
   find('form').addEventListener('submit',event=>{event.preventDefault();compute(true);});
   find('clear').addEventListener('click',clear);
   find('save').addEventListener('click',save);
   sexInputs.forEach(input=>input.addEventListener('change',()=>{selectedHipRows();compute(false);}));
+  updateUnitLabels();
+  changeConverterCategory('length');
   selectedHipRows();
   drawGauge(15.654191587762455,'male');
   compute(false);
 })();
 
 </script><script defer src="/assets/js/data.js"></script>
-<script defer src="/assets/js/style.js?v=20261113-5"></script>
+<script defer src="/assets/js/other-units-converter.js"></script>
+<script defer src="/assets/js/style.js?v=20261117-2"></script>
 </body></html>
